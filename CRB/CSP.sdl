@@ -233,7 +233,7 @@ End
 TOKEN
 	Name  = "DUTY_OFFSET_VAL"
 	Value  = "0"
-	Help  = "The zero-based index of where the processor’s duty cycle setting is within the processor’s P_CNT register.\(for more information, ACPI SPEC)."
+	Help  = "The zero-based index of where the processorï¿½s duty cycle setting is within the processorï¿½s P_CNT register.\(for more information, ACPI SPEC)."
 	TokenType = Integer
 	TargetH = Yes
 	Range  = "0-0xf0"
@@ -242,7 +242,7 @@ End
 TOKEN
 	Name  = "DUTY_WIDTH_VAL"
 	Value  = "0"
-	Help  = "The bit width of the processor’s duty cycle setting value in the P_CNT register. Each processor’s duty cycle setting\allows the software to select a nominal processor frequency below its absolute frequency.\(for more information, ACPI SPEC)."
+	Help  = "The bit width of the processorï¿½s duty cycle setting value in the P_CNT register. Each processorï¿½s duty cycle setting\allows the software to select a nominal processor frequency below its absolute frequency.\(for more information, ACPI SPEC)."
 	TokenType = Integer
 	TargetH = Yes
 	Range  = "0-0xff: depends on 'duty_offset'"
@@ -366,3 +366,176 @@ End
 #**                                                                     **
 #*************************************************************************
 #*************************************************************************
+
+##  k_prj begin
+TOKEN
+	Name  = "AmiGopPolicy"
+	Value  = "0"
+	Help  = "Main Switch to Enable AmiGopPolicy in Platform"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+#	Master = Yes
+End
+TOKEN
+    Name  = "HARDWARE_SIGNATURE_MANAGEMENT_SUPPORT"
+    Value  = "0"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+#    Master = Yes
+    Help  = "Main switch to enable HardwareSignatureManagement support in Project"
+End
+TOKEN
+	Name  = "CPPC_SUPPORT"
+	Value  = "0"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+#	Master = Yes
+	Help  = "Main switch to enable CPPC supppory in Project"
+End
+TOKEN
+	Name  = "ISCT_PLATFORM_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable ISCT support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+#	Master = Yes
+End
+TOKEN
+	Name  = "IntelGigabitLan_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable Intel Gigabit Lan network chip support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+#	Master = Yes
+End
+TOKEN
+    Name  = "OemActivation_SUPPORT"
+    Value = "0"
+    Help  = "Main switch to enable OemActivation support in Project"
+    TokenType = Boolean
+    TargetH   = Yes
+    TargetMAK = Yes
+#    Master = Yes
+End
+TOKEN
+    Name  = OpalSecurity_SUPPORT
+    Value  = "0"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+#    Master = Yes
+    Help  = "Main switch to enable OpalSecurity support in Project"
+End
+TOKEN
+	Name  = "POST_TIME_TUNING_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable Post Time Tuning module in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+#	Master = Yes
+End
+TOKEN
+	Name  = "SecureBoot_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable SecureBoot Module support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+#	Master = Yes
+	Token = "CryptoAPI_SUPPORT" "=" "1"
+End
+TOKEN
+	Name  = "SecureMod_SUPPORT"
+	Value  = "0"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+#	Master = Yes
+	Token = "CryptoAPI_SUPPORT" "=" "1"
+End
+TOKEN
+    Name  = "SECURE_FLASH_SUPPORT"
+    Value  = "0"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+#    Master = Yes
+    Help  = "Main switch to enable Security Flash in Project"
+    Token = "SecSMIFlash_SUPPORT" "=" "1"
+End
+TOKEN
+	Name  = "EcPs2Kbd_SUPPORT"
+	Value  = "0"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+#	Master = Yes
+End
+TOKEN
+    Name  = "IdeSMART_Support"
+    Value  = "0"
+    Help  = "Main switch to enable IdeSMART support in Project"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+#    Master = Yes
+End
+TOKEN
+    Name  = "HDD_SECURITY_SUPPORT"
+    Value  = "0"
+    Help  = "Main switch to enable Hdd Security support in Project"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+#    Master = Yes
+End
+TOKEN
+	Name  = "AmiSgTPV_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable SwitchableGraphics TPV support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+#	Master = Yes
+        Token = "SwitchableGraphics_SUPPORT" "=" "1"
+End
+TOKEN
+	Name  = "SwitchableGraphics_SUPPORT"
+	Value  = "0"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name  = "TCG2Support"
+	Value  = "0"
+	Help  = "Enable or Disable TCG_generic support"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+#	Master = Yes
+End
+TOKEN
+	Name  = "UefiNetworkStackII"
+	Value  = "0"
+	Help  = "Main switch to enable netwwork stack drivers support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+#	Master = Yes
+End

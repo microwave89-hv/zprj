@@ -1,0 +1,5 @@
+6/15:
+	"iAMT_SUPPORT" = 0
+	IntelPTT_SUPPORT = 0
+	review crb.sdl / csp.sdl / xml
+	vscc table
