@@ -1,0 +1,13 @@
+<component>
+	name = "CppcAcpiTables"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\AcpiTables\Cppc\AcpiTables\"
+	RefName = "CppcAcpiTables"
+[files]
+"CppcAcpiTables.sdl"	
+"CppcAcpiTables.mak"	
+"Cppc.asl"	
+"CppcAcpiTables.inf"	
+"Pcct.asl"	
+"Cpc.asl"	
+<endComponent>

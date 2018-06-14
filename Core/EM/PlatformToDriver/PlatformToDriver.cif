@@ -1,0 +1,10 @@
+<component>
+    name = "PlatformToDriver"
+    category = ModulePart
+    LocalRoot = "Core\EM\PlatformToDriver"
+    RefName = "PlatformToDriver"
+[files]
+"PlatformToDriver.sdl"  
+"PlatformToDriver.mak"  
+"PlatformToDriver.c"    
+<endComponent>

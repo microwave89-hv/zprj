@@ -1,0 +1,29 @@
+TOKEN
+	Name  = "ProtocolLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable ProtocolLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "ProtocolLib_DIR"
+End
+
+MODULE
+	Help  = "Includes ProtocolLib.mak to Project"
+	File  = "ProtocolLib.mak"
+End
+
+ELINK
+	Name  = "ProtocolLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\ProtocolLib.lib"
+	Parent  = "ProtocolLib_LIB"
+	InvokeOrder = AfterParent
+End

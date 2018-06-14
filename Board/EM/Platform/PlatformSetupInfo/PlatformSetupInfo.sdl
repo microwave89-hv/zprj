@@ -1,0 +1,38 @@
+TOKEN
+	Name  = "PlatformSetupInfo_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PlatformSetupInfo support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "PlatformSetupInfo_DIR"
+End
+
+MODULE
+	Help  = "Includes PlatformSetupInfo.mak to Project"
+	File  = "PlatformSetupInfo.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PlatformSetupInfo.sdb"
+	Parent  = "SETUP_SDBS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(PlatformSetupInfo_DIR)\PlatformSetupInfo.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "InitPlatformSetupInfo,"
+	Parent  = "SetupStringInit"
+	Priority  = -10
+	InvokeOrder = AfterParent
+End
+

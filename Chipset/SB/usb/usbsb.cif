@@ -1,0 +1,8 @@
+<component>
+	name = "SouthBridge - Intel PCH"
+	category = ModulePart
+	LocalRoot = "chipset\sb\usb\"
+	RefName = "USB_SB"
+[files]
+"usbsb.c"	
+<endComponent>

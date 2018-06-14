@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "S3Save_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable S3Save Support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "S3Save_DIR"
+End
+
+MODULE
+	Help  = "Includes S3Save.mak to Project"
+	File  = "S3Save.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\S3Save.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

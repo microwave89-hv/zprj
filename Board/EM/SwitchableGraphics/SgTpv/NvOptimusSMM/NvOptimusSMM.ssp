@@ -1,0 +1,59 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/SwitchableGraphics/Sg TPV/Sg nVidia Optimus SMM/NvOptimusSMM.ssp 2     9/09/12 11:07p Joshchou $
+//
+// $Revision: 2 $
+//
+// $Date: 9/09/12 11:07p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/SwitchableGraphics/Sg TPV/Sg nVidia Optimus SMM/NvOptimusSMM.ssp $
+// 
+// 2     9/09/12 11:07p Joshchou
+// [TAG]  		EIPNone
+// [Category]  	Improvement
+// [Description]  	Tpv module support for sharkbay.
+// [Files]  		NvOptimusSMM.mak
+// NvOptimusSMM.c
+// NvOptimusSMM.dxs
+// NvOptimusSMM.ssp
+// NvOptimusSMM.asl
+// NvOptimusSMM.cif
+// 
+//**********************************************************************
+
+NvramField (CMOS_OEM_NVSWSMI_CODE)
+	OptionBits  = 1
+	Default     = 1
+	Checksum    = NO
+//	Location    = MKF_CMOS_NVOEM_OFFSET, 0FFh
+EndNvramField
+
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

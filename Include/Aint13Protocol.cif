@@ -1,0 +1,8 @@
+<component>
+	name = "AHCI Int13 Protocol"
+	category = ModulePart
+	LocalRoot = "Include"
+	RefName = "AHCI_INT13INIT_PROTOCOL"
+[files]
+"protocol\LegacyAhci.h"	= "Protocols"
+<endComponent>

@@ -1,0 +1,18 @@
+<component>
+	name = "EdkIIGlueBaseMemoryLibIa32"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\BaseMemoryLib\Ia32"
+	RefName = "EdkIIGlueBaseMemoryLibIa32"
+[files]
+"CompareMem.asm"
+"CopyMem.asm"
+"ScanMem16.asm"
+"ScanMem32.asm"
+"ScanMem64.asm"
+"ScanMem8.asm"
+"SetMem.asm"
+"SetMem16.asm"
+"SetMem32.asm"
+"SetMem64.asm"
+"ZeroMem.asm"
+<endComponent>

@@ -1,0 +1,64 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/SOURCE/Modules/PTT/FastBootSMI.dxs 1     3/11/11 10:07p Bibbyyeh $
+//
+// $Revision: 1 $
+//
+// $Date: 3/11/11 10:07p $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/PTT/FastBootSMI.dxs $
+// 
+// 1     3/11/11 10:07p Bibbyyeh
+// [TAG]		EIP54993
+// [Category]	Improvement
+// [Description]
+// 1.Sync with Fastboot_10
+// 2.Remove token "SAVE_LAST_BOOT_DEVICE_CHECKSUM"
+// 3.Add token "CALL_DISPATCHER_AGAIN_IN_FASTBOOT"
+// 4.Use SimpleText protocol to detect mode change hotkey instead of
+// pBS->ConIn.
+// 5.Simplify the code about "AMILEGACY16_FASTBOOT_SOLUTION".
+// 6.Fixed a bug that SATA device can't be found if keep TSE execution on
+// fastboot path.
+// [Files]		PPT.cif FastBoot.sdl FastBootRuntime.c FastBootTseHook.c
+// FastBoot.c FastBoot.h FastBoot.sd FastBootProtocol.cif
+// FastBootProtocol.h FastBootSMI.cif FastBootSMI.sdl FastBootSMI.c
+// FastBootSMI.dxs FastBootSMI.mak
+// 
+// 
+//*************************************************************************
+
+#include <Protocol\SmmSwDispatch.h>
+
+DEPENDENCY_START
+    EFI_SMM_SW_DISPATCH_PROTOCOL_GUID
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

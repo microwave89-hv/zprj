@@ -1,0 +1,12 @@
+<component>
+	name = "AsfTable"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\AmtWrapper\AsfTable"
+	RefName = "AsfTable"
+[files]
+"AsfTable.c"	
+"AsfTable.h"	
+"AsfTable.sdl"	
+"AsfTable.mak"	
+"AsfTable.dxs"	
+<endComponent>

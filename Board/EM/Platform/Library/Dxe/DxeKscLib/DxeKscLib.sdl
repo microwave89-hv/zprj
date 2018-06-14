@@ -1,0 +1,40 @@
+TOKEN
+	Name  = "INTEL_CRB_DXE_KSC_LIB_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable INTEL_CRB_DXE_KSC_LIB(EC:H8)support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "DxeKscLib_DIR"
+End
+
+MODULE
+	Help  = "Includes DxeKscLib.mak to Project"
+	File  = "DxeKscLib.mak"
+End
+
+ELINK
+	Name  = "DxeKscLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\DxeKscLib.lib"
+	Parent  = "DxeKscLib_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "DxeKscLib_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/I $(DxeKscLib_DIR)"
+	Parent  = "DxeKscLib_INCLUDES"
+	InvokeOrder = AfterParent
+End

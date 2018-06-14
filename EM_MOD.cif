@@ -1,0 +1,14 @@
+<component>
+	name = "EM_MOD"
+	category = ModulePart
+	RefName = "EM_MOD"
+[parts]
+"ACPI_MOD"
+"CmosManager_MOD"
+"CsmOptOut_MOD"
+"SMM_MOD"
+"NvramSmi_MOD"
+"IntelHaswell_MOD"
+"TCG2_MOD"
+"Chipset_MOD"
+<endComponent>

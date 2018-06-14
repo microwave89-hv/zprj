@@ -1,0 +1,11 @@
+<component>
+	name = "PfatSetup"
+	category = ModulePart
+	LocalRoot = "Board\EM\Pfat\PfatSetup"
+	RefName = "PfatSetup"
+[files]
+"PfatSetup.sd"
+"PfatSetup.uni"
+"PfatSetup.sdl"
+"PfatSetup.mak"
+<endComponent>

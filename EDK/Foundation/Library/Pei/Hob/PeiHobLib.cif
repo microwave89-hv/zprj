@@ -1,0 +1,11 @@
+<component>
+	name = "PeiHobLib"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Library\Pei\Hob\"
+	RefName = "PeiHobLib"
+[files]
+"PeiHobLib.sdl"	
+"PeiHobLib.mak"	
+"PeiHobLib.c"	
+"PeiHobLib.inf"	
+<endComponent>

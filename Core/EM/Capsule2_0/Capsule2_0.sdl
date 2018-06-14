@@ -1,0 +1,60 @@
+TOKEN
+	Name  = Capsule2_0_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetH = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable Capsule2_0 support in Project"
+End
+
+PATH
+	Name  = Capsule2_0_DIR
+	Help  = "Path to Capsule2_0 Module in Project"
+End
+
+MODULE
+	Help  = "Includes Capsule2_0.mak to Project"
+	File  = "Capsule2_0.mak"
+End
+
+TOKEN
+	Name  = "SUPPORT_UPDATE_CAPSULE_RESET"
+	Value  = "1"
+	Help  = "If ON - platform supports memory preserve across reset."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "MAX_CAPSULE_SIZE"
+	Value  = "0x4000000"
+	Help  = "Maximum size for capsule"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+ELINK
+	Name  = "Capsule20PeiInit,"
+	Parent  = "PeiInitNV,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "Capsule20RuntimeInit,"
+	Parent  = "RuntimeInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ProcessCapsule,"
+	Parent  = "ConnectRootBridgeHandles,"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "OemProcessCapsuleList"
+	Help  = "List of callback functions to be called to process OEM capsule"
+	InvokeOrder = ReplaceParent
+End
+

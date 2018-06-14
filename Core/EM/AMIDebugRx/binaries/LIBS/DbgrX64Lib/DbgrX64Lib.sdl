@@ -1,0 +1,16 @@
+PATH
+	Name  = "DbgrX64_DIR"
+End
+
+MODULE
+	Help  = "Includes DbgrX64Lib.mak to Project"
+	File  = "DbgrX64Lib.mak"
+End
+
+ELINK
+	Name  = "Init_AMI_USBDebugPort_HOB,"
+	Parent  = "DxeCoreInitialize"
+	Token = "x64_BUILD" "=" "1"
+	InvokeOrder = AfterParent
+End
+

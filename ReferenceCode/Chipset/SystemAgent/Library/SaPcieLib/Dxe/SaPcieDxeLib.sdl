@@ -1,0 +1,33 @@
+TOKEN
+        Name  = "SaPcieDxeLib_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable SaPcieDxeLib support in Project"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Master = Yes
+	    Token = "SaPcieLib_SUPPORT" "=" "1"
+#	    Token = "SA_PCIE_ASPM_IN_DXE" "=" "1"
+End
+
+PATH
+        Name  = "SaPcieDxeLib_DIR"
+	Help  = "SaPcieDxeLib file source directory"
+End
+
+MODULE
+        File  = "SaPcieDxeLib.mak"
+        Help  = "Includes SaPcieDxeLib.mak to Project"
+End
+
+ELINK
+        Name  = "SaPcieDxeLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\SaPcieDxeLib.lib"
+        Parent  = "SaPcieDxeLib_LIB"
+        InvokeOrder = AfterParent
+End

@@ -1,0 +1,74 @@
+## @file
+#  Component description file for the Start Watch Dog PEIM driver.
+#
+#@copyright
+#  Copyright (c)  2006 - 2012 Intel Corporation. All rights reserved
+#  This software and associated documentation (if any) is furnished
+#  under a license and may only be used or copied in accordance
+#  with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be
+#  reproduced, stored in a retrieval system, or transmitted in any
+#  form or by any means without the express written consent of
+#  Intel Corporation.
+#
+#  This file contains a 'Sample Driver' and is licensed as such
+#  under the terms of your license agreement with Intel or your
+#  vendor.  This file may be modified by the user, subject to
+#  the additional terms of the license agreement
+#
+
+[defines]
+BASE_NAME            = StartWatchDog
+FILE_GUID            = 5479E09C-2E74-481b-89F8-B0172E388D1F
+COMPONENT_TYPE       = PE32_PEIM
+
+[sources.common]
+  StartWatchDog.h
+  StartWatchDog.c
+
+#
+# Edk II Glue Driver Entry Point
+#
+ EdkIIGluePeimEntryPoint.c
+
+[includes.common]
+  $(EFI_SOURCE)/$(PROJECT_ME_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_ME_ROOT)/Library/AMT/Pei
+  $(EFI_SOURCE)/$(PROJECT_ME_ROOT)/Library/MeKernel/Pei
+  $(EFI_SOURCE)/$(PROJECT_ME_ROOT)/Library/MeKernel/Include
+
+#
+# EDK II Glue Library utilizes some standard headers from EDK
+#
+  $(EDK_SOURCE)/Foundation
+  $(EDK_SOURCE)/Foundation/Core/Dxe
+  $(EDK_SOURCE)/Foundation/Efi
+  $(EDK_SOURCE)/Foundation/Efi/Include
+  $(EDK_SOURCE)/Foundation/Framework
+  $(EDK_SOURCE)/Foundation/Framework/Include
+  $(EDK_SOURCE)/Foundation/Include
+  $(EDK_SOURCE)/Foundation/Include/IndustryStandard
+  $(EDK_SOURCE)/Foundation/Include/Pei
+  $(EDK_SOURCE)/Foundation/Library/Dxe/Include
+  $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include
+
+[libraries.common]
+  MeLibPpi
+  MeLibPei
+  AmtLibPei
+  EdkIIGlueBaseMemoryLib
+  EdkIIGluePeiDebugLibReportStatusCode
+  EdkIIGluePeiReportStatusCodeLib
+  EdkIIGluePeiServicesLib
+
+[nmake.common]
+  IMAGE_ENTRY_POINT = _ModuleEntryPoint
+  DPX_SOURCE        = StartWatchDog.dxs
+#
+# Module Entry Point
+#
+ C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_MODULE_ENTRY_POINT__=PeiInitStartWatchDog
+ C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_BASE_MEMORY_LIB__ \
+                      -D __EDKII_GLUE_PEI_DEBUG_LIB_REPORT_STATUS_CODE__ \
+                      -D __EDKII_GLUE_PEI_REPORT_STATUS_CODE_LIB__ \
+                      -D __EDKII_GLUE_PEI_SERVICES_LIB__

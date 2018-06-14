@@ -1,0 +1,9 @@
+<component>
+	name = "NB Protocols"
+	category = ModulePart
+	LocalRoot = "INCLUDE\Protocol"
+	RefName = "NB Protocols"
+[files]
+"NBMemInfo.h"	
+"NBPlatformData.h"	
+<endComponent>

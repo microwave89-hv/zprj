@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueBaseIoLibIntrinsic_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueBaseIoLibIntrinsic support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueBaseIoLibIntrinsic_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueBaseIoLibIntrinsic.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueBaseIoLibIntrinsic_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueBaseIoLibIntrinsic.mak to Project"
+	File  = "EdkIIGlueBaseIoLibIntrinsic.mak"
+End
+

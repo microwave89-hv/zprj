@@ -1,0 +1,11 @@
+<component>
+	name = "Mtftp4"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Ipv4\Mtftp4"
+	RefName = "Mtftp4"
+[files]
+"Mtftp4.sdl"	
+"Mtftp4.mak"	
+"Mtftp4Dxe.efi"	
+"Mtftp4DxeIa32.efi"	
+<endComponent>

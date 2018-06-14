@@ -1,0 +1,12 @@
+<component>
+    name = "BootGuardDxe"
+    category = ModulePart
+    LocalRoot = "Board\EM\FIT\Dxe"
+    RefName = "BootGuardDxe"
+[files]
+"BootGuardDxe.c"
+"BootGuardDxe.h"
+"BootGuardDxe.sdl"
+"BootGuardDxe.dxs"
+"BootGuardDxe.mak"
+<endComponent>

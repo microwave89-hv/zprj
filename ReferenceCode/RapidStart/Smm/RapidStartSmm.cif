@@ -1,0 +1,14 @@
+<component>
+	name = "RapidStartSmm"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\RapidStart\Smm"
+	RefName = "RapidStartSmm"
+[files]
+"RapidStartSmm.sdl"
+"RapidStartSmm.h"
+"RapidStartSmm.mak"
+"RapidStartSmm.c"
+"RapidStartSmm.dxs"
+"RapidStartSmm.inf"
+"x64\RapidStartAsm.asm"
+<endComponent>

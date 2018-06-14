@@ -1,0 +1,286 @@
+;*************************************************************************
+;*************************************************************************
+;**                                                                     **
+;**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+;**                                                                     **
+;**                       All Rights Reserved.                          **
+;**                                                                     **
+;**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+;**                                                                     **
+;**                       Phone: (770)-246-8600                         **
+;**                                                                     **
+;*************************************************************************
+;*************************************************************************
+
+;**********************************************************************
+; $Header: /Alaska/SOURCE/Modules/SMM/SmmHdr.equ 26    4/01/11 10:09a Markw $
+;
+; $Revision: 26 $
+;
+; $Date: 4/01/11 10:09a $
+;**********************************************************************
+; Revision History
+; ----------------
+; $Log: /Alaska/SOURCE/Modules/SMM/SmmHdr.equ $
+; 
+; 26    4/01/11 10:09a Markw
+; [TAG]  		EIP57440
+; [Category]  	New Feature
+; [Description]  	Add PI 1.1 SMM support for reading/writing floating
+; point/smm save state.
+; 
+; [Files]  		CpuCspLib.h, CpuCspLib.c, SmmPiSmst.c,  SmmPrivateShared.h,
+; SmmHdr.equ, SmmInit.c
+; 
+; 25    8/11/09 11:46a Markw
+; Removed Legacy registration. This is removed from latest PI and not
+; used by projects.
+; 
+; 24    7/08/09 8:09p Markw
+; Update headers.
+; 
+; 23    12/23/08 2:15p Markw
+; EIP #17900  Set up TSS. Borland C in DOS hangs otherwise.
+; 
+; 22    11/21/08 4:57p Markw
+; Add SmmInit to SMM_ENTRY_STRUCT for SMM init for first normal/S3 boot.
+; 32-bit CPU count.
+; 
+; 21    9/07/08 12:42a Markw
+; Separate SMM Private structure into inside SMM and outside SMM
+; structure.
+; 
+; 20    4/04/08 6:21p Markw
+; Add Smrr MSR to SMM_BASE_PRIVATE_STRUCT.
+; 
+; 19    3/03/08 6:35p Markw
+; Added 32-bit register for smm thunk.
+; 
+; 18    11/14/07 2:03p Markw
+; Added SMRR support and updated SMM Cache for non-SMRR.
+; 
+; 17    10/29/07 10:58a Markw
+; Smm Thunk:
+; * Code and data different segments.
+; * Code position independent.
+; * Switch for CSM for code and EBDA for data.
+; 
+; 16    10/24/07 12:00p Markw
+; SMM Thunk code position independent. Data in a separate segment than
+; code in Smm Thunk.
+; 
+; 15    9/10/07 1:39p Markw
+; Add Interrupt Handling in SMM.
+; 
+; 14    6/08/07 6:51p Markw
+; Save/Restore XMM.
+; 
+; 13    1/11/07 12:28p Markw
+; Adjusted location of fields in structure for removal of legacy.
+; 
+; 12    1/09/07 6:40p Markw
+; Update BSP Entry Structure to remove dependencies on SMM_BSP_BASE.
+; 
+; 11    12/29/06 4:45p Markw
+; Add Smm Cache Support and update CPU syncronization.
+; 
+; 10    12/21/06 5:19p Markw
+; Remove old unused SmmStackSize from Private structure.
+; 
+; 9     11/13/06 11:23a Markw
+; Added structure for AP entry.
+; 
+; 8     9/18/06 3:20p Markw
+; Updated 32 bit part for BSP an AP sync.
+; 
+; 7     9/18/06 11:47a Markw
+; 
+; 6     8/24/06 3:27p Felixp
+; Preliminary x64 support (work in progress)
+; 
+; 5     1/13/06 11:27a Markw
+; Added SMM Thunk support.
+; 
+; 4     1/10/06 2:56p Markw
+; Add support for multi-threadding and sync all CPUs during entry/exit of
+; SMM.
+; 
+; 3     7/19/05 7:59p Markw
+; Fixed smm base private header.
+; 
+; 2     7/11/05 1:06p Markw
+; Removed isCallback from structure.
+; 
+; 1     1/28/05 4:29p Sivagarn
+; Generic SMM module - Intial Check in
+; 
+; 
+;**********************************************************************
+
+;<AMI_FHDR_START>
+;----------------------------------------------------------------------------
+;
+; Name: SmmHdr.EQU
+;
+; Description: Header file for the SMM x86 assembly source
+;
+;----------------------------------------------------------------------------
+;<AMI_FHDR_END>
+
+
+FAR_CALL_PTR_16 struct
+    ptr_offset  dw ?
+    seg_offset  dw ? 
+FAR_CALL_PTR_16 ends
+
+REGISTERS struct
+    reg_eax dd ?
+    reg_ebx dd ?
+    reg_ecx dd ?
+    reg_edx dd ?
+    reg_esi dd ?
+    reg_edi dd ?
+    reg_flags dd ?
+    reg_es  dw ?
+    reg_cs  dw ?
+    reg_ss  dw ?
+    reg_ds  dw ?
+    reg_fs  dw ?
+    reg_gs  dw ?
+    reg_ebp dd ?
+REGISTERS ends
+
+IFNDEF EFIx64
+
+SMM_DESC STRUCT 1
+    Limit   dw ?
+    Base    dd ?
+    Rsv     dw ?    ;For alignment
+SMM_DESC ENDS
+
+STACK_PARAM STRUCT
+    StackPtr    dd ?
+    StackSize   dd ?
+STACK_PARAM ENDS
+
+SMM_ENTRY_INIT_STRUCT   STRUCT
+    SmmInit                 dd ?    ;This must be first.
+    SmmEntryLength          dd ?
+    GdtDescBaseOffset       dd ?
+    LCodeSelBaseOffset      dd ?
+    TssSelBaseOffset        dd ?
+    SmmThunkProcOffset      dd ?
+    SmmThunkLength          dd ?
+    Ht0                     dd ?
+    SmmEntryStart           dd ?
+    SmmDispatcherAddr       dd ?
+    SmmDispatcherPrivateStruct  dd ?
+    SmmStack                dd ?
+    CpuNo                   dd ?
+SMM_ENTRY_INIT_STRUCT   ENDS
+
+SMM_THUNK_DATA STRUCT 8
+    ;Real mode thunk
+    FarCallPtr16            FAR_CALL_PTR_16 <>
+    Regs                    REGISTERS <>
+    StackParm               STACK_PARAM <>
+    StackSave               dd ?
+    GdtSave                 SMM_DESC <>
+    IdtSave                 SMM_DESC <>
+    LegacyIdtDesc           SMM_DESC <>
+
+    Below1MStack            dw ?    ;ss = ds
+SMM_THUNK_DATA ENDS
+
+DESCRIPTOR_TABLE STRUCT 1
+    Limit   dw ?
+    Base    dd ?
+DESCRIPTOR_TABLE ends
+
+SMM_DISPATCHER_PRIVATE_STRUCT STRUCT 8
+    PageDirectories         dd ?
+    SmmXmmSave              dd ?
+    SmrrEnable              db ?
+    SmrrMsr                 dd ?
+    TsegMsr                 dd ?
+    TsegMsrBase             dq ?
+    TsegMsrMask             dq ?
+    Idt                     DESCRIPTOR_TABLE <>
+
+    ;Addional members not specified here.
+SMM_DISPATCHER_PRIVATE_STRUCT   ENDS
+
+ELSE
+
+STACK_PARAM struct
+    StackPtr	dd ?
+    StackSize	dd ?
+STACK_PARAM ends
+
+SMM_DESC STRUCT 1
+    Limit   dw ?
+    Base    dd ?
+    Rsv     dw ?    ;For alignment
+SMM_DESC ENDS
+
+DESCRIPTOR_TABLE STRUCT 1
+   	Limit   dw ?
+    Base    dq ?
+DESCRIPTOR_TABLE ends
+
+SMM_DISPATCHER_PRIVATE_STRUCT STRUCT 8
+    PageDirectories         dq ?
+    SmmXmmSave              dq ?
+    SmrrEnable              db ?
+    SmrrMsr                 dd ?
+    TsegMsr                 dd ?
+    TsegMsrBase             dq ?
+    TsegMsrMask             dq ?
+    Idt                     DESCRIPTOR_TABLE <>
+    ;Addional members not specified here.
+SMM_DISPATCHER_PRIVATE_STRUCT   ENDS
+
+SMM_ENTRY_INIT_STRUCT	STRUCT 8
+    SmmInit                 dd ?    ;This must be first.
+    SmmEntryLength          dd ?
+    GdtDescBaseOffset       dd ?
+    LCodeSelBaseOffset      dd ?
+    TssSelBaseOffset        dd ?
+    SmmThunkProcOffset      dd ?
+    SmmThunkLength          dd ?
+    Ht0                     dd ?
+    SmmEntryStart           dq ?
+    SmmDispatcherAddr       dq ?
+    SmmDispatcherPrivateStruct  dq ?
+    SmmStack                dq ?
+    CpuNo                   dd ?
+    Ia32HandlerListHead     dq ?
+SMM_ENTRY_INIT_STRUCT	ENDS
+
+SMM_THUNK_DATA STRUCT 8
+    ;Real mode thunk
+    FarCallPtr16            FAR_CALL_PTR_16 <>
+    Regs                    REGISTERS <>
+    StackParm               STACK_PARAM <>
+    StackSave               dd ?
+    GdtSave                 SMM_DESC <>
+    IdtSave                 SMM_DESC <>
+    LegacyIdtDesc           SMM_DESC <>
+    Below1MStack            dw ?    ;ss = ds
+SMM_THUNK_DATA ENDS
+
+ENDIF
+
+;*************************************************************************
+;*************************************************************************
+;**                                                                     **
+;**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+;**                                                                     **
+;**                       All Rights Reserved.                          **
+;**                                                                     **
+;**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+;**                                                                     **
+;**                       Phone: (770)-246-8600                         **
+;**                                                                     **
+;*************************************************************************
+;*************************************************************************

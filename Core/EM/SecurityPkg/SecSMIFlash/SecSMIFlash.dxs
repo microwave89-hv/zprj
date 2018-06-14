@@ -1,0 +1,67 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2014, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**             6145-F Northbelt Pkwy, Norcross, GA 30071            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SecureFlashPkg/SecureSmiFlash/SecSMIFlash.dxs 4     3/18/14 3:12p Alexp $
+//
+// $Revision: 4 $
+//
+// $Date: 3/18/14 3:12p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SecureFlashPkg/SecureSmiFlash/SecSMIFlash.dxs $
+// 
+// 4     3/18/14 3:12p Alexp
+// update year to 2014 in ftr & hdr
+// 
+// 3     8/10/12 11:42a Alexp
+// Removed dependency on Flash Update protocol
+// 
+// 
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:	SMIFlash_dxs
+//
+// Description:
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+
+#include <Protocol/SmiFlash.h>
+#include <Protocol/SmmBase.h>
+#include <Protocol/SmmSwDispatch.h>
+#include <Protocol/AmiDigitalSignature.h>
+
+DEPENDENCY_START
+  EFI_SMI_FLASH_GUID AND
+  EFI_SMM_BASE_PROTOCOL_GUID AND
+  EFI_SMM_SW_DISPATCH_PROTOCOL_GUID AND
+  AMI_SMM_DIGITAL_SIGNATURE_PROTOCOL_GUID
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2014, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**             6145-F Northbelt Pkwy, Norcross, GA 30071            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

@@ -1,0 +1,9 @@
+<component>
+	name = "RapidStartWrapperAcpiTables"
+	category = ModulePart
+	LocalRoot = "Board\EM\RapidStartWrapper\AcpiTables"
+	RefName = "RapidStartWrapperAcpiTables"
+[files]
+"RapidStartWrapperAcpiTables.sdl"
+"Ssdt\RapidStartWrapper.asl"
+<endComponent>

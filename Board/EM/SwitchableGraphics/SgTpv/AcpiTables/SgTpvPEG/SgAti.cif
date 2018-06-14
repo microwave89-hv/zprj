@@ -1,0 +1,11 @@
+<component>
+	name = "Ati"
+	category = ModulePart
+	LocalRoot = "Board\EM\SwitchableGraphics\SgTpv\AcpiTables\SgTpvPEG"
+	RefName = "AtiSG"
+[files]
+"AtiSSDT.asl"	
+"ATdGPU.asl"	
+"ATiGPU.asl"	
+"ATiGDmisc.asl"	
+<endComponent>

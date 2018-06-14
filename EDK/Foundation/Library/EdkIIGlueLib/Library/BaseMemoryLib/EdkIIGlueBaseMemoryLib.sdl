@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueBaseMemoryLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueBaseMemoryLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueBaseMemoryLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueBaseMemoryLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueBaseMemoryLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueBaseMemoryLib.mak to Project"
+	File  = "EdkIIGlueBaseMemoryLib.mak"
+End
+

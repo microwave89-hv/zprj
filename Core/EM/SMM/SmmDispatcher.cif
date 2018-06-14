@@ -1,0 +1,17 @@
+<component>
+	name = "SmmDispatcher"
+	category = ModulePart
+	LocalRoot = "Core\EM\SMM"
+	RefName = "SmmDispatcher"
+[files]
+"SmmDispatcher.sdl"	
+"SmmDispatcher.mak"	
+"SmmEntry.asm"	
+"SmmDispatcher.h"
+"SmmDispatcher.c"	
+"Smst.c"
+"SmmPiSmst.c"
+"SmmMemoryManager.c"	
+"SmmDispatcherAsm.asm"	
+"SmmDispatcher.dxs"	
+<endComponent>

@@ -1,0 +1,21 @@
+<component>
+	name = "AMI TXT Dxe"
+	category = ModulePart
+	LocalRoot = "Board\Cpu\TxtDxe"
+	RefName = "AmiTxtDxe"
+[files]
+"AmiTxtDxe.sdl"	
+"AmiTxtDxe.mak"	
+"AmiTxtDxe.c"	
+"AmiTxtDxe.dxs"	
+"TxtTcgService.h"	
+"TxtSetup.c"	
+"Include\Protocol\AmiTxtInfo.h"	
+"AmiTxtDxe.h"	
+"AmiTxtInfoSetup.c"	
+"AmiTxtInfoSetup.sd"	
+"AmiTxtInfoSetup.uni"	
+"AmiTxtInfoHook.c"
+[parts]
+"TxtSinitAcm"
+<endComponent>

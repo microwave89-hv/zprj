@@ -1,0 +1,27 @@
+TOKEN
+	Name  = "TcgDxeSupport"
+	Value  = "1"
+	Help  = "Enable or Diasble TcgPeiSupport"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetH = Yes
+	TargetMAK = Yes
+	Master = Yes
+    Token = "TCG2Support" "=" "1"
+End
+
+PATH
+	Name  = "TCGDXE_DIR"
+End
+
+MODULE
+	Help  = "Includes tcgdxe.mak into project"
+	Path  = "$(TCGDXE_DIR)"
+	File  = "tcgdxe.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\tcgdxe.ffs"
+	Parent  = "$(BUILD_DIR)\TcgPlatformSetupPolicy.ffs"
+	InvokeOrder = AfterParent
+End

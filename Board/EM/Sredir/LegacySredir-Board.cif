@@ -1,0 +1,9 @@
+<component>
+	name = "Legacy Sredir Board"
+	category = ModulePart
+	LocalRoot = "Board\EM\Sredir\"
+	RefName = "LSREDIR_BOARD"
+[files]
+"LegacySredir_Setup.C"
+"SerialCallback.Asm"	
+<endComponent>

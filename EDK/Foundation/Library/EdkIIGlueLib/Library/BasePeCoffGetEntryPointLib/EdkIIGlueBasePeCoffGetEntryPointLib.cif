@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueBasePeCoffGetEntryPointLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\BasePeCoffGetEntryPointLib"
+	RefName = "EdkIIGlueBasePeCoffGetEntryPointLib"
+[files]
+"EdkIIGlueBasePeCoffGetEntryPointLib.sdl"	
+"EdkIIGlueBasePeCoffGetEntryPointLib.mak"
+"BasePeCoffGetEntryPointLib.inf"	
+"PeCoffGetEntryPoint.c"	
+<endComponent>

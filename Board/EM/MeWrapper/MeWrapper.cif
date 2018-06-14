@@ -1,0 +1,18 @@
+<component>
+	name = "MeWrapper"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper"
+	RefName = "MeWrapper"
+[files]
+"MeWrapper.sdl"	
+[parts]
+"MeSetup"
+"MePlatformPolicy"
+"MePciPlatform"
+"Icc"
+"Smbios131"
+"TdtWrapper"
+"MdesStatusCode"
+"AtAmUi"
+"PttWrapper"
+<endComponent>

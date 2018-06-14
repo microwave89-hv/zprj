@@ -1,0 +1,12 @@
+<component>
+	name = "DptfGuidLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\AcpiTables\Dptf\Guid\"
+	RefName = "DptfGuidLib"
+[files]
+"DptfGuidLib.sdl"	
+"DptfGuidLib.mak"	
+"DptfGuidLib.inf"	
+"AcpiTableStorage\DptfAcpiTableStorage.c"	
+"AcpiTableStorage\DptfAcpiTableStorage.h"	
+<endComponent>

@@ -1,0 +1,82 @@
+\//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/SOURCE/Modules/FlashSmi/FlashSmi.dxs 1     1/20/15 1:36a Tristinchou $
+//
+// $Revision: 1 $
+//
+// $Date: 1/20/15 1:36a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/FlashSmi/FlashSmi.dxs $
+// 
+// 1     1/20/15 1:36a Tristinchou
+// [TAG]  		EIP196554
+// [Category]  	New Feature
+// [Description]  	Initial check-in
+// [Files]  		FlashSmi.cif
+// FlashSmi.chm
+// FlashSmi.sdl
+// FlashSmi.mak
+// FlashSmi.c
+// FlashSmi.dxs
+// 
+// 
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:        FlashSmi.dxs
+//
+// Description: 
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+
+#include <token.h>
+#include <Protocol/SmmBase.h>
+#include <Protocol/SmmSwDispatch.h>
+#include <Protocol/FlashProtocol.h>
+#include <Protocol/AmiDigitalSignature.h>
+
+#if defined(PI_SPECIFICATION_VERSION)&&(PI_SPECIFICATION_VERSION>=0x0001000A)
+#include <Protocol/SmmBase2.h>
+#include <Protocol/SmmCommunication.h>
+#endif
+
+DEPENDENCY_START
+  EFI_SMM_BASE_PROTOCOL_GUID AND
+#if defined(USE_SMM_COMMUNICATION)&&(USE_SMM_COMMUNICATION==1)
+  EFI_SMM_BASE2_PROTOCOL_GUID AND
+#else
+  EFI_SMM_SW_DISPATCH_PROTOCOL_GUID AND
+#endif
+  FLASH_SMM_PROTOCOL_GUID AND
+  AMI_SMM_DIGITAL_SIGNATURE_PROTOCOL_GUID
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

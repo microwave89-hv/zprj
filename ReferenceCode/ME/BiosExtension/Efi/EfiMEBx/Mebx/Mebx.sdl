@@ -1,0 +1,34 @@
+TOKEN
+	Name  = "EFIMebx_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable IccOverClocking support in Project"
+	Token = "iAMT_SUPPORT" "=" "1"
+End
+
+MODULE
+	Help  = "Includes Mebx.mak to Project"
+	File  = "Mebx.mak"
+End
+
+PATH
+	Name  = "Mebx_DIR"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Mebx.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "EFIMebx_FILE_PATH"
+	Value  = "$(Mebx_DIR)\Mebx.efi"
+	TokenType = Expression
+	TargetMAK = Yes
+	Help  = "Mebx File name and path"
+End

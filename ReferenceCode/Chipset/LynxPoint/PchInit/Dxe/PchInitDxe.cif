@@ -1,0 +1,28 @@
+<component>
+	name = "PchInitDxe"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\PchInit\Dxe"
+	RefName = "PchInitDxe"
+[files]
+"PchInitDxe.sdl"	
+"PchInitDxe.mak"	
+"PchInit.h"	
+"PchInit.c"	
+"PchAzalia.c"	
+"PchIoApic.c"	
+"PchLan.c"	
+"PchMisc.c"	
+"PchPm.c"	
+"PchSata.c"	
+"PchUsb.c"	
+"PchInit.dxs"	
+"PchRootPorts.c"	
+"PchInitCommon.h"	
+"PchDebugDump.c"	
+"PchFvi.c"	
+"PchInitDxe.inf"	
+"PchAudioDsp.c"	
+"PchUsbPrecondition.c"	
+"PchUsbPrecondition.h"	
+"PchSerialIo.c"	
+<endComponent>

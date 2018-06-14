@@ -1,0 +1,12 @@
+<component>
+	name = "TcgDxeplatform"
+	category = ModulePart
+	LocalRoot = "Board\EM\TCG2\Common"
+	RefName = "TcgDxeplatform"
+[files]
+"TcgDxeplatform.sdl"	
+"TcgDxeplatform.mak"	
+"TcgDxeplatform.c"	
+"TcgDxeplatform.h"	
+"TcgDxeplatform.dxs"	
+<endComponent>

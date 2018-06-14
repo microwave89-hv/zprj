@@ -1,0 +1,11 @@
+<component>
+	name = "FirmwareVerInfo"
+	category = ModulePart
+	LocalRoot = "Board\EM\Platform\FirmwareVerInfo"
+	RefName = "FirmwareVerInfo"
+[files]
+"FirmwareVerInfo.sdl"
+"FirmwareVerInfo.mak"
+"FirmwareVerInfo.dxs"
+"FirmwareVerInfo.c"
+<endComponent>

@@ -1,0 +1,12 @@
+<component>
+	name = "PeiDbgPort"
+	category = ModulePart
+	LocalRoot = "Core\em\AMIDebugRx\binaries\PeiAMIDebugRx\"
+	RefName = "PeiDbgPort"
+[files]
+"PeiDbgPort.sdl"	
+"PeiDbgPort.mak"	
+"PeiDbgPort.dxs"	
+"PeiDbgPortUSB.obj"	
+"PeiDbgPort.c"	
+<endComponent>

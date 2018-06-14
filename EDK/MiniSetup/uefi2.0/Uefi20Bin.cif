@@ -1,0 +1,10 @@
+<component>
+	name = "TSE Binary - UEFI2.0"
+	category = ModulePart
+	LocalRoot = "EDK\MiniSetup\uefi2.0"
+	RefName = "Uefi20Bin"
+[files]
+"uefi20Bin.sdl"	
+"Uefi20Local.lib"
+"Uefi20Localx64.lib"
+<endComponent>

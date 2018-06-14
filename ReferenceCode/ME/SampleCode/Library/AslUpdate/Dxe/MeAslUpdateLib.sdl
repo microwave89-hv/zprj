@@ -1,0 +1,29 @@
+TOKEN
+	Name  = MeAslUpdateLib_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable AslUpdateLib support in Project"
+End
+
+MODULE
+	Help  = "Includes MeAslUpdateLib.mak to Project"
+	File  = "MeAslUpdateLib.mak"
+End
+
+PATH
+	Name  = "MeAslUpdateLib_DIR"
+End
+
+ELINK
+	Name  = "MeAslUpdateLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\MeAslUpdateLib.lib"
+	Parent  = "MeAslUpdateLib_LIB"
+	InvokeOrder = AfterParent
+End

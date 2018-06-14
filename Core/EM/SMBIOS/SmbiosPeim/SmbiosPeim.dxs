@@ -1,0 +1,66 @@
+//**********************************************************************//
+//**********************************************************************//
+//**                                                                  **//
+//**        (C)Copyright 1985-2014, American Megatrends, Inc.         **//
+//**                                                                  **//
+//**                       All Rights Reserved.                       **//
+//**                                                                  **//
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **//
+//**                                                                  **//
+//**                       Phone: (770)-246-8600                      **//
+//**                                                                  **//
+//**********************************************************************//
+//**********************************************************************//
+
+//**********************************************************************//
+// $Header: /Alaska/SOURCE/Modules/SMBIOS/SmbiosPeim/SmbiosPeim.dxs 1     5/27/14 1:44p Davidd $
+//
+// $Revision: 1 $
+//
+// $Date: 5/27/14 1:44p $
+//**********************************************************************//
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SMBIOS/SmbiosPeim/SmbiosPeim.dxs $
+// 
+// 1     5/27/14 1:44p Davidd
+// [TAG]  		EIP103526
+// [Category]  	Improvement
+// [Files]  		SmbiosPeim.cif
+// SmbiosPeim.sdl
+// SmbiosPeim.mak
+// SmbiosPeim.dxs
+// SmbiosPei.c
+// 
+// 1     4/29/14 4:44p Davidd
+// [TAG]  		EIP103526
+// [Category]  	Improvement
+// [Description]  	We should update Wake-up Type in SMBIOS type 1
+// dynamically
+// [Files]  		Core\EM\SMBios\SmbiosPeim\SmbiosPeim.cif
+// Core\EM\SMBios\SmbiosPeim\SmbiosPeim.sdl
+// Core\EM\SMBios\SmbiosPeim\SmbiosPeim.mak
+// Core\EM\SMBios\SmbiosPeim\SmbiosPeim.dxs
+// Core\EM\SMBios\SmbiosPeim\SmbiosPei.c
+// 
+//**********************************************************************//
+
+#include "ppi\ReadOnlyVariable2.h"
+
+DEPENDENCY_START
+    EFI_PEI_READ_ONLY_VARIABLE2_PPI_GUID
+DEPENDENCY_END
+
+//**********************************************************************//
+//**********************************************************************//
+//**                                                                  **//
+//**        (C)Copyright 1985-2014, American Megatrends, Inc.         **//
+//**                                                                  **//
+//**                       All Rights Reserved.                       **//
+//**                                                                  **//
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **//
+//**                                                                  **//
+//**                       Phone: (770)-246-8600                      **//
+//**                                                                  **//
+//**********************************************************************//
+//**********************************************************************//

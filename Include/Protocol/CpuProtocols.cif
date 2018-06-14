@@ -1,0 +1,10 @@
+<component>
+	name = "CpuProtocols"
+	category = ModulePart
+	LocalRoot = "Include\Protocol\"
+	RefName = "CpuProtocols"
+[files]
+"AmiCpuInfo.h"	
+"AmiCpuInfo2.h"
+"MpService\MpService.h"	
+<endComponent>

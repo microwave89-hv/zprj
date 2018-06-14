@@ -1,0 +1,97 @@
+TOKEN
+	Name  = "CORE_PEI_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable CORE_PEI support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "CORE_PEI_DIR"
+End
+
+MODULE
+	Help  = "Includes CORE_PEI.mak to Project"
+	File  = "CORE_PEI.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CORE_PEI.ffs"
+	Parent  = "FV_BB"
+	Help  = "PEI Core"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PeiCoreInitialize"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "CpuIoInit,"
+	Parent  = "PeiCoreInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PciCfgInit,"
+	Parent  = "PeiCoreInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PeiInitDxeIpl,"
+	Parent  = "PeiCoreMemoryInstalled"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CORE_PEI_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(CORE_PEI_DIR)\CORE_PEI$(ARCH)$(DBG).lib"
+	Parent  = "CORE_PEI_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PeiCoreMemoryInstalled"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "PeiInitNV,"
+	Parent  = "PeiCoreInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "InstallFindFv,"
+	Parent  = "PeiCoreInitialize"
+	Token = "PI_SPECIFICATION_VERSION" "<" "0x10000"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "InstallDecompressionPpi,"
+	Parent  = "PeiCoreMemoryInstalled"
+	Token = "PI_SPECIFICATION_VERSION" ">=" "0x10000"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CpuIoMemInit,"
+	Parent  = "PeiCoreMemoryInstalled"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PciCfgMemInit,"
+	Parent  = "PeiCoreMemoryInstalled"
+	InvokeOrder = AfterParent
+End
+

@@ -1,0 +1,13 @@
+<component>
+	name = "AmiDxeLib"
+	category = ModulePart
+	LocalRoot = "Library\"
+	RefName = "AmiDxeLib"
+[files]
+"\AmiDxeLib.sdl"	
+"\AmiDxeLib.mak"	
+"\EfiDBE.c"	
+"\EfiLib.c"	
+"\AcpiRes.c"	
+"\Print.c"	
+<endComponent>

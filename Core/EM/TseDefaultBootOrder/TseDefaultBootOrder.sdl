@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "TseDefaultBootOrder_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TseDefaultBootOrder support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "TseDefaultBootOrder_DIR"
+End
+
+MODULE
+	Help  = "Includes TseDefaultBootOrder.mak to Project"
+	File  = "TseDefaultBootOrder.mak"
+End
+
+ELINK
+	Name  = "SetDefaultTseBootOrder,"
+	Parent  = "SaveLegacyDevOrder,"
+	InvokeOrder = AfterParent
+End
+

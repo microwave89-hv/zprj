@@ -1,0 +1,28 @@
+PATH
+	Name  = "AMI_TCG_PLATFORM_PEI_DIR"
+End
+
+MODULE
+	Help  = "Includes AmiTcgPlatform.mak to Project"
+	File  = "AmiTcgPlatformPeiAfterMem.mak"
+End
+
+MODULE
+	Help  = "Includes AmiTcgPlatform.mak to Project"
+	File  = "AmiTcgPlatformPeiBeforeMem.mak"
+End
+
+
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmiTcgPlatformPeiAfterMem.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End
+
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmiTcgPlatformPeiBeforeMem.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End

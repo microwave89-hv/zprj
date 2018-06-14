@@ -1,0 +1,12 @@
+<component>
+	name = "FitHook"
+	category = ModulePart
+	LocalRoot = "Board\EM\FIT\Smm"
+	RefName = "FitHook"
+
+[files]
+"FitHook.c"
+"FitHook.sdl"
+"FitHook.mak"
+
+<endComponent>

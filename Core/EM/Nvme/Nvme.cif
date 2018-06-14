@@ -1,0 +1,24 @@
+<component>
+	name = "Nvme"
+	category = eModule
+	LocalRoot = "Core\EM\Nvme\"
+	RefName = "Nvme"
+[files]
+"Nvme.sdl"	
+"Nvme.mak"	
+"Nvme.sd"	
+"Nvme.uni"	
+"Nvme.chm"	
+"NvmeSetup.c"	
+"NvmeBus.c"	
+"NvmePassthru.c"
+"NvmeComponentName.c"	
+"NvmeIncludes.h"	
+"NvmeBus.h"	
+"NvmePassthru.h"	
+[parts]
+"NvmeControllerLib"
+"NvmeSmm"
+"NVMEINT13"
+"NvmeProtocol"
+<endComponent>

@@ -1,0 +1,155 @@
+TOKEN
+	Name  = "AmiSgTPV_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SwitchableGraphics TPV support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+        Token = "SwitchableGraphics_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "SG_MUXLESS_SSVID_DID"
+	Value  = "0x21118086"
+	Help  = "SUBSYSTEM VENDOR & DEVICE ID. Using Intel iGPU"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "LOADVBIOS"
+	Value  = "1"
+	Help  = "1 = Load secondary display device VBIOS; 0 = Do not load"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "EXECUTEVBIOS"
+	Value  = "0"
+	Help  = "0 = Do no execute\1 = Execute the secondary display device VBIOS (only if LoadVbios == 1)"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "VBIOSSOURCE"
+	Value  = "1"
+	Help  = "1 = secondary display device VBIOS Source is PCI Card\0 = secondary display device VBIOS Source is FW Volume"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SGMUXDID1"
+	Value  = "0x00030301"
+	Help  = "CRT Display; SGMUXDID format\0x|<HPD Mux> |<Aux Mux>|<Disp Mux>|<Port Type>|\0x|31            24|23          16|15             8|7               0|\HPD/Aux/Disp Mux: 1 = iGPU Only, 2 = dGPU Only, 3 = Shared"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SGMUXDID2"
+	Value  = "0x00030302"
+	Help  = "LFP Display"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SGMUXDID3"
+	Value  = "0x03030308"
+	Help  = "DisplayPort_B Display"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SGMUXDID4"
+	Value  = "0x03030304"
+	Help  = "HDMI_B Display"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SGMUXDID5"
+	Value  = "0x03030305"
+	Help  = "HDMI_C Display"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SGMUXDID6"
+	Value  = "0x0303030A"
+	Help  = "DisplayPort_D Display"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SGMUXDID7"
+	Value  = "0x00030306"
+	Help  = "HDMI_D Display"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SGMUXDID8"
+	Value  = "0x00000000"
+	Help  = "Unused"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "VALIDDIDS"
+	Value  = "7"
+	Help  = "Number of valis Device IDs"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+PATH
+	Name  = "SwitchableGraphics_DIR"
+	Help  = "SwitchableGraphics DXE source directory"
+End
+
+PATH
+	Name  = "INCLUDE_DIR"
+	Path  = "Include"
+End
+
+MODULE
+	Help  = "Includes SwitchableGraphics.mak to Project"
+	File  = "SwitchableGraphics.mak"
+End
+
+ELINK
+	Name  = "/I$(SwitchableGraphics_DIR)"
+	Parent  = "SwitchableGraphics_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SwitchableGraphics.sdb"
+	Parent  = "SETUP_SDBS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(SwitchableGraphics_DIR)\SwitchableGraphics.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SwitchableGraphics_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+

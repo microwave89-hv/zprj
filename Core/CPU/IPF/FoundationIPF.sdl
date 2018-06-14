@@ -1,0 +1,19 @@
+TOKEN
+	Name  = "FoundationIPF_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable FoundationIPF support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "FoundationIPF_DIR"
+End
+
+MODULE
+	Help  = "Includes FoundationIPF.mak to Project"
+	File  = "FoundationIPF.mak"
+End
+

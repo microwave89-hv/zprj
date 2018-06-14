@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "CustomizedDecompress_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable CustomizedDecompress support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "CUSTOMIZEDDECOMPRESS"
+	Value  = "$(BUILD_DIR)\CustomizedDecompress.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "CustomizedDecompress_DIR"
+End
+
+MODULE
+	Help  = "Includes CustomizedDecompress.mak to Project"
+	File  = "CustomizedDecompress.mak"
+End

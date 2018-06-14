@@ -1,0 +1,35 @@
+TOKEN
+	Name  = "PeiDbgDbgrx64_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PeiDbgDbgrx64 support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Lock = Yes
+	Token = "x64_BUILD" "=" "1"
+End
+
+PATH
+	Name  = "PeiDbgDbgrx64_DIR"
+End
+
+MODULE
+	Help  = "Includes PeiDbgDbgrx64.mak to Project"
+	File  = "PeiDbgDbgrx64.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PeiDbgDbgrx64.ffs"
+	Parent  = "FV_MAIN"
+	Token = "DEBUG_RX_FFS_IN_FVMAIN_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PeiDbgDbgrx64.ffs"
+	Parent  = "FV_BB"
+	Token = "DEBUG_RX_FFS_IN_FVMAIN_SUPPORT" "=" "0"
+	InvokeOrder = AfterParent
+End
+

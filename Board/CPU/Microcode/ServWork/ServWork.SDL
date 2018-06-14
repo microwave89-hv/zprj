@@ -1,0 +1,1075 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2013, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30071           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+#****************************************************************************
+# $Header: /Alaska/SOURCE/CPU/Intel/NehalemMicrocode/SERVWORK/ServWork.SDL 112   8/14/15 5:28p Artems $
+#
+# $Revision: 112 $
+#
+# $Date: 8/14/15 5:28p $
+#
+#****************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/CPU/Intel/NehalemMicrocode/SERVWORK/ServWork.SDL $
+# 
+# 112   8/14/15 5:28p Artems
+# [TAG]  		EIP233803
+# [Description]  	Updated Westmere -EX Processor A-2 Stepping version 39
+# Updated Westmere -EP -WS1S Processor B-1 Stepping version 1D
+# Updated Nehalem -EX Processor D-0 Stepping version 0B
+# Updated Clarkdale Xeon Processor C-2 Stepping version 0F
+# [Files]  		ServWork.SDL
+# ServWork.CIF
+# 
+# 111   8/05/15 12:07p Artems
+# [TAG]  		EIP231326
+# [Description]  	Updated Westmere -EP -WS1S Processor B-1 Stepping
+# version 1C
+# Updated Nehalem -EP -WS1S Processor D-0 Stepping version 1B
+# Updated Lynnfield Xeon Processor B-1 Stepping version 08
+# [Files]  		ServWork.SDL
+# ServWork.CIF
+# 
+# 110   3/17/15 5:36p Artems
+# Updated IvyBridge Processor E-1, L-1 Stepping version 1C
+# 
+# 109   1/12/15 6:24p Artems
+# Server
+# Updated Haswell processor( 306CX) C-0 stepping to version 1D
+# 
+# 108   7/21/14 3:07p Craigv
+# Updated Haswell C-0 (306C3) to version 1C.
+# 
+# 107   6/23/14 1:13p Craigv
+# Updated Haswell C-0 (306C3) to version 1A.
+# Updated Ivy Bridge E-1, L-1 (306A9) to version 1B.
+# Updated Ivy Bridge M-1, S-1 (306E4) to version 428.
+# Updated Ivy Bridge EX D-1 (306E7) to version 70D.
+# 
+# 106   5/29/14 12:37p Craigv
+# Updated Haswell C-0 (306C3) to version 19.
+# Updated Ivy Bridge -EX D-1 (306E7) to version 70C.
+# Updated IvyBridge -EX -EP -EN C-0, C-1, S-0, S-1, M-0, M-1 to version
+# 427
+# 
+# 105   2/17/14 9:53a Craigv
+# Updated IvyBridge EX (306E7) to version 00000709.
+# 
+# 104   1/30/14 1:47p Craigv
+# Updated Ivy Bridge-EP (306E4) to Production.
+# Updated Ivy Bridge-EN (306E7) to Production.
+# 
+# 103   1/10/14 3:09p Craigv
+# Updated Intel Ivy Bridge -EX -EP =EN C-0, C-1, S-0, S-1, M-0, M-1
+# (306E4) to version 00000424.
+# 
+# 102   10/23/13 10:20a Mithunraghavs
+# The microcode update MED306E7_00000704.TXT for the Ivy Bridge-EX
+# processor (Ivy Bridge-EX), Family 6 Model 3E Step 7 (D-1) has been
+# updated from version 00000703 to 00000704
+# 
+# 101   10/14/13 6:11p Craigv
+# Updated Haswell Processor C-0 (306C3) to version 00000017.
+# 
+# 100   10/01/13 3:39p Craigv
+# Updated Ivy Bridge -EX -EP -EN Processor C-0, C-1, S-0, S-1, M-0, M-1
+# to version 00000417
+# 
+# 99    9/13/13 4:56p Markw
+# Updated Intel IvyBridge Processor -EX (306E7) D-1 version 700.
+# Updated Intel Lynnfield Xeon B-1 (106E5) to version 7.
+# 
+# 98    8/27/13 11:37a Markw
+# Remove non production from 306C3.
+# 
+# 97    8/26/13 1:47p Craigv
+# Updated Intel Haswell C-0 (306C3) to version 00000016.
+# 
+# 96    8/01/13 3:57p Craigv
+# Added Intel IvyBridge Processor -EX (306E7) D-1 version 00000700.
+# 
+# 95    7/18/13 4:27p Craigv
+# Updated Intel(R) Ivy Bridge -EX -EP -EN Processor C-0, C-1, S-0, S-1,
+# M-0, M-1 (306E4) to version 00000416.
+# 
+# 94    7/18/13 3:54p Craigv
+# Updated Intel Haswell C-0 (306C3) to version 00000012.
+# 
+# 93    7/15/13 7:28p Markw
+# Fix Production for 106A5.
+# 
+# 92    7/15/13 12:29p Craigv
+# Updated Intel Nehalem EP D-0 (106A5) to version 00000019.
+# Updated Intel Lynnfield Xeon B-1 (106E5) to version 00000006.
+# Updated Intel Clarkdale Xeon C-2 (20652) to version 0000000E.
+# 
+# 91    7/12/13 5:46p Craigv
+# Added Intel(R) Ivy Bridge -EX Processor D-0  Stepping (306E6) version
+# 00000600.
+# 
+# 90    7/03/13 11:17p Markw
+# Add check-in 88 changes.
+# 
+# 89    7/02/13 1:38p Craigv
+# Updated Westmere WS 1S -EP (206C2) to version 0000001A.
+# Updated Haswell C-0 (306C3) to version 00000010.
+# 
+# 88    6/27/13 11:44a Markw
+# Add TOKEN for SERVWORK_306AX.
+# 
+# 87    6/26/13 7:58p Craigv
+# Updated Sandy Bridge (206A7) D-2 to version 00000029.
+# Updated Sandy Bridge -EN -EP (206D7) C-2 to version 00000710.
+# Updated Westmere -EX (206F2) A-2 to version 00000037.
+# Updated Nehalem -EX (206E6) D-0 to version 0000000A.
+# Added Ivy Bridge (306A9) E-1, L-1 to version 00000019.
+# 
+# 86    6/21/13 11:23a Craigv
+# Updated Ivy Bridge -EX -EP -EN (306E4) C-0, C-1, S-0, S-1, M-0, M-1 to
+# version 415.
+# 
+# 85    6/13/13 3:52p Craigv
+# Updated Intel Ivy Bridge -EP (306E4) C-0, C-1, M-0, S-0 to version 413.
+# 
+# 84    5/30/13 5:21p Craigv
+# Updated Ivy Bridge (306E4) C-0, S-0, M-0 to version 410.
+# 
+# 83    5/30/13 4:43p Craigv
+# Update Intel Ivy Bridge -EX Processor (306E4) C-0 to version 40F.
+#  
+# 81    5/20/13 4:21p Craigv
+# Added Intel Haswell Processor C-0 (306C3) version 0009.
+# 
+# 80    5/10/13 11:06a Craigv
+# Update IvyBridge C-0 (306E4) -EP-EX to version 40D.
+# 
+# 79    4/17/13 5:37p Craigv
+# Updated Ivy Bridge (306E4) help string to include -EX processors.
+# 
+# 78    4/05/13 2:50p Craigv
+# Update Ivy Bridge-EX -EP -EN Processor B-1, B-2, L-1, L-2, R-0, and R-1
+# (306E2) to version 20D.
+# Updated Ivy Bridge-EP -EX Processor (306E3) B-3 to version 308.
+# Updated Ivy Bridge-EP processor C-0 (306E4) Stepping Version 40C.
+# 
+# 77    3/25/13 7:01p Craigv
+# Updated Ivy Bridge-EP -EX Processor (306E3) B-3 to version 307.
+# 
+# 76    3/21/13 3:22p Craigv
+# Added Ivy Bridge-EP processor C-0 Stepping Version 40B. 
+# 
+# 75    1/25/13 4:05p Markw
+# Update Ivy Bridge-EX -EP B-1, B-2, and L-1 (306E2) to version 20C.
+# Update Ivy Bridge-EX -EP B-3 (306E3 to version 306.
+# 
+# 74    12/04/12 11:27a Craigv
+# Added Ivy Bridge-EX -EP processor B-1 and L-1 Stepping version
+# 00000209.
+# 
+# 73    10/30/12 3:58p Craigv
+# Added Ivy Bridge-EX -EP processor B-1 and L-1 Stepping version 00000208
+# 
+# 72    8/15/12 11:08a Craigv
+# Fix for Intel(R) Ivytown A-0 re-added.
+# 
+# 71    8/08/12 12:18p Craigv
+# Update IvyTown Processor A-0 (306E0) to version 00000008.
+# 
+# 70    7/09/12 10:05a Markw
+# Fix Intel(R) IvyTown Processor A-0 Stepping tokens.
+# 
+# 69    7/06/12 5:25p Craigv
+# Added IvyTown processor A-0 Stepping version 00000005.
+# 
+# 68    6/18/12 1:57p Markw
+# Update Sandybridge-EP C-1, M-0 (206d6) to version 619.
+# Update Sandybridge-EP C-2, M-1 (206d7) to version 70D.
+# 
+# 67    5/22/12 5:23p Craigv
+# Update Sandy Bridge D-2 and Q-0 (206A7) to version 28.
+# Update Sandy Bridge-E C-2, M-1 (206D7) to version 70C.
+# 
+# 66    4/24/12 10:41a Markw
+# Add NON_PRODUCTION_MICROCODE dependency to Haswell A-0.
+# 
+# 65    4/23/12 10:55a Craigv
+# Added Haswell processor A-0 Stepping version FFFF000D
+# 
+# 64    4/19/12 11:08a Craigv
+# Update Westmere-EX A-2 (206F2) to Version 36.
+# Update Westmere EP D0 (206E6) to version 9.
+# 
+# 63    3/19/12 2:26p Craigv
+# Update Sandybridge-EP C-1, M-0 (206d6) to version 616.
+# Update Sandybridge-EP C-2, M-1 (206d7) to version 70B.
+# 
+# 62    2/14/12 12:35p Craigv
+# Update Sandybridge-EP C-1, M-0 (206d6) to version 615.
+# Update Sandybridge-EP C-2, M-1 (206d7) to version 70A.
+# 
+# 61    1/31/12 4:20p Markw
+# Update Sandybridge-EP C-1, M-0 (206d6) to version 613.
+# Update Sandybridge-EP C-2, M-1 (206d7) to version 708.
+# 
+# 60    1/20/12 11:07a Markw
+# Update help strings for Sandy Bridge. C-1 microcode is also for M-0,
+# and C-2 microcode is also for M-1.
+# 
+# 59    12/23/11 1:12p Markw
+# Update Sandybridge-EP C-1 (206d6) to version 610.
+# Update Sandybridge-EP C-2 (206d7) to version 705.
+# 
+# 58    12/07/11 10:41a Markw
+# Fix SERVWORK_206AX. Default should be off.
+# 
+# 57    12/06/11 3:19p Markw
+# Update Sandybridge-EP C-1 (206d6) to version 60F.
+# Update Sandybridge-EP C-2 (206d7) to version 704.
+# Update Lynnfield B-1 (106e5) to version 5.
+# 
+# 56    11/14/11 4:18p Markw
+# Update Sandybridge D-2 (206A7) to version 25.
+# 
+# 55    11/02/11 12:41p Markw
+# Update Sandybridge-EP C-0 (206d5) to version 513.
+# Update Sandybridge-EP C-1 (206d6) to version 60D.
+# 
+# 54    10/26/11 11:38a Markw
+# Update Westmere-EP B-1 (206C2) to Version 15.
+# Update Clarkdale Xeon C-2 (20652) to Version 0D.
+# Update Westmere-EX A-2 (206F2) to Version 34.
+# 
+# 
+# 53    10/11/11 4:11p Markw
+# Update Sandybridge-EP C-0 (206d5) to version 512.
+# Update Sandybridge-EP C-1 (206d6) to version 60C.
+# 
+# 52    9/22/11 2:23p Markw
+# Update Sandybridge-EP C-0 (206d5) to version 511.
+# Update Sandybridge-EP C-1 (206d6) to version 60B.
+# 
+# 51    9/08/11 1:05p Markw
+# Update Sandybridge-EP C-1 (206d6) to version 606.
+# 
+# 50    8/29/11 3:00p Markw
+# Update Sandybridge-EP C-0 (206d5) to version 50D.
+# 
+# 49    8/10/11 7:01p Markw
+# Update Sandybridge-EP C-0 (206d5) to version 50B.
+# 
+# 48    8/09/11 10:24a Markw
+# Update Westmere-EX A-2 (206F2) to version 32.
+# Update Sandybridge-EP C-0 (206d5) to version 50A.
+# 
+# 47    8/04/11 1:14p Markw
+# Update Nehalem-EP D- 0 (106A5 to version 16.
+# Update Sandybridge-EP C-0 (206d5) to version 509.
+# Update Sandybridge-EP C-1 (206d6) to version 80000603.
+# 
+# 46    7/13/11 11:27a Markw
+# Update Sandybridge EP C0 (206d5) to version 00000508.
+# 
+# 45    7/12/11 11:31a Markw
+# Update Sandybridge EP C0 (206d5) to version 00000507.
+# 
+# 44    7/12/11 11:10a Markw
+# Update Sandybridge EP C0 (206d5) to version 80000507.
+# 
+# 42    6/16/11 5:15p Markw
+# Update Sandybridge EP C0 (206d5) to version 80000502.
+# 
+# 41    6/13/11 5:50p Markw
+# Update Westmere EP B1 (206C2) to Version 14.
+# 
+# 40    6/03/11 12:30p Markw
+# Update Westmere EX A-2 (206F2) to version 30.
+# 
+# 39    5/12/11 5:32p Markw
+# Update Sandybridge EP EN B-0 (206d2) to version 8000020C.
+# 
+# 38    4/29/11 4:52p Markw
+# Update Sandybridge EP EN B1 (206d3) to version 80000304.
+# 
+# 37    4/01/11 11:57a Markw
+# Update Sandybridge EP EN B0 (206d2) to version 8000020b.
+# Update Sandybridge EP EN B1 (206d3) to version 80000302.
+# 
+# 36    3/24/11 10:57a Markw
+# Update Nehalem EP D0 (106A5) to version 15.
+# 
+# 35    3/07/11 6:46p Markw
+# Update Westmere EX A2 (206F2) to version 26.
+# 
+# 34    3/03/11 3:45p Markw
+# Update Sandy Bridge EN,EP, and EX B-0 (206D2) to Version 8000020A
+# 
+# 33    2/14/11 11:57a Markw
+# pdate Sandy Bridge EN,EP, and EX B-0 (206D2) to Version 80000206
+# 
+# 32    1/24/11 6:51p Markw
+# Fix default SERVWORK_206DX.
+# 
+# 31    1/24/11 6:50p Markw
+# pdate Sandy Bridge EN,EP, and EX B-0 (206D2) to Version 80000206
+# 
+# 30    1/04/11 10:23a Markw
+# Update Westmere EX A2 (206F2) to version 24.
+# 
+# 29    12/14/10 4:47p Markw
+# Update Sandy Bridge EN,EP, and EX A-1 (206D1) to Version 80000106.
+# 
+# 28    11/22/10 9:11p Markw
+# 
+# 27    11/22/10 9:07p Markw
+# Update Sandy Bridge EP A-1 (206D1) to Version 80000105.
+# 
+# 26    10/21/10 10:41a Markw
+# Update Westmere EX A1 (206F1) to version 8.
+# Update Westmere EX A2 (206F2) to version 22.
+# 
+# 25    10/15/10 4:25p Markw
+# Update Westmere EP D0 (206E6) to version 8.
+# 
+# 24    10/14/10 3:21p Markw
+# # 22    9/15/10 1:31p Markw
+# Update Sandy Bridge EP 1a (206D1) to Version 80000103..
+# 
+# 23    9/15/10 2:29p Markw
+# Update default token SERVWORK_206DX back to 0.
+# 
+# 22    9/15/10 1:31p Markw
+# Update Westmere EP B1 (206C2) to Version 13.
+# 
+# 21    9/13/10 3:43p Markw
+# Update SandyBridge EP A1 (206D1) to Version 80000101.
+# 
+# 20    9/02/10 5:03p Markw
+# Update Westmere EP B1 (206C2) to Version 10.
+# Update SandyBridge EP A0 (206D0) to Version 80000006.
+# 
+# 19    8/30/10 5:42p Markw
+# Update Lynnfield B1 (106e5) and Westmere EX A1 (206f1).
+# 
+# 18    8/19/10 10:49a Markw
+# Fix build error for microcode Clarkdale 20652 and Westmere 206C2.
+# 
+# 17    8/12/10 11:16a Markw
+# 
+# 16    8/05/10 11:37a Markw
+# Add
+# Westmere-EX processor A0 Stepping version FFFF0013
+# 
+# 15    7/27/10 10:36a Hari
+# Updated for Westmere EX A1 and clarksdale latest microcode
+# 
+# 14    7/15/10 3:55p Bhimanadhunik
+# 
+# 12    5/27/10 6:35p Markw
+# Updated Nehalem-EX D0 to version 7 and Westmere-EX A0 to version
+# 0xffff0010.
+# 
+# 10    4/09/10 9:55a Markw
+# Add M03206C2_0000000C.PDB
+# 
+# 9     3/02/10 3:39p Markw
+# Update Westmere EP B0 microcode to Rev A.
+# Nehalem EX D0 to Rev 5.
+# 
+# 8     1/19/10 11:17p Markw
+# Add Westmere EP B-1 stepping.
+# 
+# 7     1/19/10 11:03p Markw
+# Add Westmere EP B0 Ver 6
+# 
+# 6     12/18/09 4:12p Markw
+# Westmere-EP processor B1
+# 
+# 5     12/15/09 10:45p Markw
+# Add Clarkdale Xeon C2 production and Nehalem EX D0 production.
+# 
+# 4     11/17/09 2:39p Markw
+# Added Nehalem EP B0 and Westmere EP B0.
+# 
+# 3     11/05/09 5:32p Markw
+# Nehalem EX D0 added.
+# 
+# 2     10/16/09 10:27a Markw
+# 
+# 1     9/29/09 2:51p Markw
+# 
+#****************************************************************************
+
+TOKEN
+	Name  = "SERVWORK"
+	Value  = "0"
+	Help  = "Master Server/Workstation CPU uCode Enable"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Range  = "On-Off"
+End
+
+TOKEN
+	Name  = "SERVWORK_306EX"
+	Value = "0"
+	Help  = "Intel(R) IvyTown and Ivy Bridge-EP -EX"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "SERVWORK_306CX"
+	Value = "0"
+	Help  = "Intel(R) Haswell"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "SERVWORK_206DX"
+	Value  = "0"
+	Help  = "Intel(R) SandyBridge-EN -EP and -EX processors"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "SERVWORK_206AX"
+	Value  = "0"
+	Help  = "Intel(R) SandyBridge processors"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "SERVWORK_306AX"
+	Value  = "0"
+	Help  = "Intel(R) IvyBridge processors"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "SERVWORK_206FX"
+	Value  = "0"
+	Help  = "Intel(R) Westmere-EX processors"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "SERVWORK_206EX"
+	Value  = "0"
+	Help  = "Intel(R) Nehalem-EX processors"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "SERVWORK_2065X"
+	Value  = "0"
+	Help  = "Intel(R) Clarkdale Xeon processors"
+	TokenType = Boolean
+End
+
+
+TOKEN
+	Name  = "SERVWORK_206CX"
+	Value  = "0"
+	Help  = "Intel(R) Westmere-EP processors"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "SERVWORK_106AX"
+	Value  = "0"
+	Help  = "Intel(R) Nehalem-EP processors"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "SERVWORK_106EX"
+	Value  = "0"
+	Help  = "Intel(R) Lynnfield processors"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "SERVWORK_M03106A2"
+	Value  = "1"
+	Help  = "Intel(R) Nehalem-EP processor B0 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_106AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M03106A4"
+	Value  = "1"
+	Help  = "Intel(R) Nehalem-EP processor C0 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_106AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M03106A5"
+	Value  = "1"
+	Help  = "Intel(R) Nehalem-EP processor D0 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_106AX" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M1220652"
+	Value  = "1"
+	Help  = "Intel(R) Clarkdale Xeon processor C2 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_2065X" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M13206C0"
+	Value  = "1"
+	Help  = "Intel(R) Westmere-EP processor A0 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206CX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M03206C1"
+	Value  = "1"
+	Help  = "Intel(R) Westmere-EP processor B0 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206CX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M03206C2"
+	Value  = "1"
+	Help  = "Intel(R) Westmere-EP and Westmere-WS 1S B1 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206CX" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M05206E0"
+	Value  = "1"
+	Help  = "Intel(R) Nehalem-EX processor A1 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206EX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M05206E1"
+	Value  = "1"
+	Help  = "Intel(R) Nehalem-EX processor A2 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206EX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M05206E2"
+	Value  = "1"
+	Help  = "Intel(R) Nehalem-EX processor"
+	TokenType = Boolean
+	Token = "SERVWORK_206EX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M05206E3"
+	Value  = "1"
+	Help  = "Intel(R) Nehalem-EX processor B0 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206EX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M05206E5"
+	Value  = "1"
+	Help  = "Intel(R) Nehalem-EX processor C0 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206EX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M04206E6"
+	Value  = "1"
+	Help  = "Intel(R) Nehalem-EX processor D0 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206EX" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M13106E5"
+	Value  = "1"
+	Help  = "Intel(R) Lynnfield Processor B1 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_106EX" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M05206F0"
+	Value  = "1"
+	Help  = "Intel(R) Westmere-EX Processor A0 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206FX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M05206F1"
+	Value  = "1"
+	Help  = "Intel(R) Westmere-EX Processor A1 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206FX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M05206F2"
+	Value  = "1"
+	Help  = "Intel(R) Westmere-EX Processor A2 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206FX" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M07206D0"
+	Value  = "1"
+	Help  = "Intel(R) SandyBridge-EN -EP and -EX Processor A0 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206DX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M07206D1"
+	Value  = "1"
+	Help  = "Intel(R) SandyBridge-EN -EP and -EX Processor A1 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206DX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M0F206D2"
+	Value  = "1"
+	Help  = "Intel(R) SandyBridge-EN -EP and -EX Processor B0 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206DX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M0F206D3"
+	Value  = "1"
+	Help  = "Intel(R) SandyBridge-EN -EP and -EX Processor B1 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206DX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M6D206D5"
+	Value  = "1"
+	Help  = "Intel(R) SandyBridge-EP Processor C-0 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206DX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M6D206D6"
+	Value  = "1"
+	Help  = "Intel(R) SandyBridge-EP Processor C-1 and M-0 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206DX" "=" "1" 
+End
+
+TOKEN
+	Name  = "SERVWORK_M6D206D7"
+	Value  = "1"
+	Help  = "Intel(R) SandyBridge-EN -EP Processor C-2 and M-1 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206DX" "=" "1" 
+End
+
+TOKEN
+	Name  = "SERVWORK_M12206A7"
+	Value  = "1"
+	Help  = "Intel(R) SandyBridge Processor D-2 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_206AX" "=" "1" 
+End
+
+TOKEN
+	Name  = "SERVWORK_M12306A9"
+	Value  = "1"
+	Help  = "Intel(R) Ivy Bridge Processor E-1, L-1 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_306AX" "=" "1" 
+End
+
+TOKEN
+	Name  = "SERVWORK_M32306C1"
+	Value  = "1"
+	Help  = "Intel(R) Haswell Processor A-0 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_306CX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_M32306C3"
+	Value  = "1"
+	Help  = "Intel(R) Haswell Processor C-0 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_306CX" "=" "1" 
+End
+
+TOKEN
+	Name  = "SERVWORK_MED306E0"
+	Value  = "1"
+	Help  = "Intel(R) IvyTown Processor A-0 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_306EX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_MED306E2"
+	Value  = "1"
+	Help  = "Intel(R) Ivy Bridge-EP -EX Processor B-1, B-2, and L-1 Stepping"
+	TokenType = Boolean
+	Token = "SERVWORK_306EX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SERVWORK_MED306E3"
+	Value  = "1"
+	Help  = "Intel(R) Ivy Bridge-EP -EX Processor B-3"
+	TokenType = Boolean
+	Token = "SERVWORK_306EX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+    Name  = "SERVWORK_MED306E4"
+    Value = "1"
+    Help  = "Intel(R) Ivy Bridge-EP Processor C-0, M-0, S-0, C-1"
+    TokenType = Boolean
+    Token = "SERVWORK_306EX" "=" "1"
+End
+
+TOKEN
+    Name  = "SERVWORK_MED306E6"
+    Value = "1"
+    Help  = "Intel(R) Ivy Bridge-EP Processor D-0"
+    TokenType = Boolean
+    Token = "SERVWORK_306EX" "=" "1"
+    Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+    Name  = "SERVWORK_MED306E7"
+    Value = "1"
+    Help  = "Intel(R) Ivy Bridge-EP Processor D-1"
+    TokenType = Boolean
+    Token = "SERVWORK_306EX" "=" "1"
+End
+
+PATH
+	Name  = "MICROCODE_SERVWORK_DIR"
+End
+
+ELINK
+	Name  = "$(Intel_ServWork)"
+	Parent  = "MICROCODE_FILES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M03106A2_FFFF0019.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Nehalem-EP processor B0 Stepping"
+	Token = "SERVWORK_M03106A2" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M03106A4_00000011.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Nehalem-EP processor C0 Stepping"
+	Token = "SERVWORK_M03106A4" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M03106A5_0000001B.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Nehalem-EP processor D-0 & WS 1S Stepping"
+	Token = "SERVWORK_M03106A5" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M1220652_0000000F.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Clarkdale Xeon processor C-2 Stepping"
+	Token = "SERVWORK_M1220652" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M13206C0_FFFF0016.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Westmere-EP processor A0 Stepping"
+	Token = "SERVWORK_M13206C0" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M03206C1_00000006.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Westmere-EP processor B0 Stepping"
+	Token = "SERVWORK_M03206C1" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M03206C2_0000001D.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Westmere-EP and Westmere-WS 1S B1 Stepping"
+	Token = "SERVWORK_M03206C2" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M05206E0_FFFF0005.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Nehalem-EX processor A1 Stepping"
+	Token = "SERVWORK_M05206E0" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M05206E1_FFFF0006.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Nehalem-EX processor A2 Stepping"
+	Token = "SERVWORK_M05206E1" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M05206E2_FFFF0004.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Nehalem-EX processor"
+	Token = "SERVWORK_M05206E2" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M05206E3_FFFF000C.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Nehalem-EX processor B0 Stepping"
+	Token = "SERVWORK_M05206E3" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M05206E5_FFFF0016.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Nehalem-EX processor C0 Stepping"
+	Token = "SERVWORK_M05206E5" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M04206E6_0000000B.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Nehalem-EX processor D0 Stepping"
+	Token = "SERVWORK_M04206E6" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M05206F0_FFFF0013.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Westmere-EX processor A0 Stepping"
+	Token = "SERVWORK_M05206F0" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M05206F1_00000008.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Westmere-EX processor A1 Stepping"
+	Token = "SERVWORK_M05206F1" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M05206F2_00000039.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Westmere-EX processor A2 Stepping"
+	Token = "SERVWORK_M05206F2" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M13106E5_00000008.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Lynnfield Processor B-1 Stepping \CPU Signature 106E5"
+	Token = "SERVWORK_M13106E5" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M12206A7_00000029.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) SandyBridge Processor D-2 Stepping"
+	Token = "SERVWORK_M12206A7" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M12306A9_0000001C.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Ivy Bridge Processor E-1, L-1 Stepping"
+	Token = "SERVWORK_M12306A9" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M07206D0_80000006.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) SandyBridge EP Processor A0 Stepping"
+	Token = "SERVWORK_M07206D0" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M07206D1_80000106.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) SandyBridge-EN -EP and -EX Processor A1 Stepping"
+	Token = "SERVWORK_M07206D1" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M0F206D2_8000020C.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) SandyBridge-EN -EP and -EX Processor B0 Stepping"
+	Token = "SERVWORK_M0F206D2" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M0F206D3_80000304.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) SandyBridge-EN -EP and -EX Processor B1 Stepping"
+	Token = "SERVWORK_M0F206D3" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M6D206D5_00000513.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) SandyBridge-EP Processor C-0 Stepping"
+	Token = "SERVWORK_M6D206D5" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M6D206D6_00000619.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) SandyBridge-EP Processor C-1 and M-0 Stepping"
+	Token = "SERVWORK_M6D206D6" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M6D206D7_00000710.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) SandyBridge-EN -EP Processor C-2 and M-1 Stepping"
+	Token = "SERVWORK_M6D206D7" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M32306C1_FFFF000D.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Haswell Processor A-0 Stepping"
+	Token = "SERVWORK_M32306C1" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\M32306C3_0000001D.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Haswell Processor C-0 Stepping"
+	Token = "SERVWORK_M32306C3" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\MED306E0_00000008.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) IvyTown Processor A-0 Stepping"
+	Token = "SERVWORK_MED306E0" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\MED306E2_0000020D.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Ivy Bridge-EP -EX -EN Processor B-1, B-2, L-1, L-2, R-0, and R-1 Stepping"
+	Token = "SERVWORK_MED306E2" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_SERVWORK_DIR)\MED306E3_00000308.PDB"
+	Parent  = "$(Intel_ServWork)"
+	Help  = "Intel(R) Ivy Bridge-EP -EX Processor B-3 Stepping"
+	Token = "SERVWORK_MED306E3" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(MICROCODE_SERVWORK_DIR)\MED306E4_00000428.PDB"
+    Parent  = "$(Intel_ServWork)"
+    Help  = "Intel(R) Ivy Bridge -EX -EP -EN Processor C-0, C-1, S-0, S-1, M-0, M-1  Stepping"
+    Token  = "SERVWORK_MED306E4" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(MICROCODE_SERVWORK_DIR)\MED306E6_00000600.PDB"
+    Parent  = "$(Intel_ServWork)"
+    Help  = "Intel(R) Ivy Bridge -EX Processor D-0  Stepping"
+    Token  = "SERVWORK_MED306E6" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(MICROCODE_SERVWORK_DIR)\MED306E7_0000070D.PDB"
+    Parent  = "$(Intel_ServWork)"
+    Help  = "Intel(R) Ivy Bridge -EX Processor D-1  Stepping"
+    Token  = "SERVWORK_MED306E7" "=" "1"
+    InvokeOrder = AfterParent
+End

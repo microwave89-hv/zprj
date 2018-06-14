@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "PAUSEKEY_SUPPORT"
+	Value  = "0"
+	Help  = "Pause key support. ON - Pause key causes pause during POST. OFF - Pause key ignored."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "REPORT_NO_CON_OUT_ERROR"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "REPORT_NO_CON_IN_ERROR"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+PATH
+	Name  = "CONSOLE_SPLITTER_DIR"
+End
+

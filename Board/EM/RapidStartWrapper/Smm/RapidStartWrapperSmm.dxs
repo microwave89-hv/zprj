@@ -1,0 +1,92 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartWrapper/RapidStartWrapperSmm.dxs 1     12/27/12 2:23a Bensonlai $
+//
+// $Revision: 1 $
+//
+// $Date: 12/27/12 2:23a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartWrapper/RapidStartWrapperSmm.dxs $
+// 
+// 1     12/27/12 2:23a Bensonlai
+// [TAG]  		EIP110680
+// [Category]  	New Feature
+// [Description]  	When iRST application is run under OS, and change
+// timer.
+// BIOS should update the changed to Setup option as well.
+// [Files]  		Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.c
+// Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.h
+// Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.mak
+// Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.dxs
+// Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.sdl
+// Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.cif
+// Board\EM\RapidStartWrapper\AcpiTables\RapidStartWrapperAcpiTables.cif
+// Board\EM\RapidStartWrapper\AcpiTables\RapidStartWrapperAcpiTables.sdl
+// Board\EM\RapidStartWrapper\AcpiTables\Ssdt\RapidStartWrapper.asl
+// Board\EM\RapidStartWrapper\RapidStartSetup\RapidStartSetup.sd
+// 
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name: RapidStartWrapperSmm.dxs
+//
+// Description: Dependency expression file for RapidStartWrapperSmm Driver
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+
+//
+// Common for R8 and R9 codebase
+//
+#include "AutoGen.h"
+#include "DxeDepex.h"
+
+//
+// BUILD_WITH_GLUELIB and BUILD_WITH_EDKII_GLUE_LIB are both "defined" in R8 codebase;
+// BUILD_WITH_EDKII_GLUE_LIB is defined in Edk-Dev-Snapshot-20070228 and later version
+// BUILD_WITH_GLUELIB and BUILD_WITH_EDKII_GLUE_LIB are "not defined" in R9 codebase.
+//
+#if defined (BUILD_WITH_GLUELIB) || defined (BUILD_WITH_EDKII_GLUE_LIB)
+#include "EfiDepex.h"
+
+#include EFI_PROTOCOL_DEPENDENCY (SmmBase)
+#include EFI_PROTOCOL_DEPENDENCY (SmmSwDispatch)
+#include EFI_PROTOCOL_DEPENDENCY (RapidStartGlobalNvsArea)
+#include EFI_ARCH_PROTOCOL_DEFINITION (Variable)
+#endif
+
+DEPENDENCY_START
+  EFI_SMM_BASE_PROTOCOL_GUID AND
+  EFI_SMM_SW_DISPATCH_PROTOCOL_GUID AND
+  RAPID_START_GLOBAL_NVS_AREA_PROTOCOL_GUID AND
+  EFI_VARIABLE_ARCH_PROTOCOL_GUID
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

@@ -1,0 +1,12 @@
+<component>
+	name = "UpdateMemoryRecord"
+	category = ModulePart
+	LocalRoot = "Chipset\NB\SystemAgentWrap\UpdateMemoryRecord"
+	RefName = "UpdateMemoryRecord"
+[files]
+"UpdateMemoryRecord.sdl"	
+"UpdateMemoryRecord.mak"	
+"UpdateMemoryRecord.dxs"	
+"UpdateMemoryRecord.c"	
+"UpdateMemoryRecord.h"	
+<endComponent>

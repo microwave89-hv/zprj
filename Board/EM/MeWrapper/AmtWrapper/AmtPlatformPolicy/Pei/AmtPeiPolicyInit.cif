@@ -1,0 +1,13 @@
+<component>
+	name = "AmtPeiPolicyInit"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\AmtWrapper\AmtPlatformPolicy\Pei"
+	RefName = "AmtPeiPolicyInit"
+[files]
+"AmtPeiPolicyInit.c"	
+"AmtPeiPolicyInit.h"	
+"AmtPeiPolicyInit.sdl"	
+"AmtPeiPolicyInit.mak"
+"AmtPeiPolicyInit.dxs"
+"AmtPeiPolicyInit.inf"
+<endComponent>

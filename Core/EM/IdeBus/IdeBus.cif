@@ -1,0 +1,13 @@
+<component>
+	name = "IdeBus"
+	category = ModulePart
+	LocalRoot = "Core\EM\IdeBus\"
+	RefName = "IdeBus"
+[files]
+"IdeBus.sdl"	
+"IdeBus.mak"	
+"IdeBus.chm"	
+[parts]
+"IDEBusProtocol"
+"IdeBusBoard"
+<endComponent>

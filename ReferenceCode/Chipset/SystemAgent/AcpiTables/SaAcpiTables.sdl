@@ -1,0 +1,41 @@
+TOKEN
+	Name  = "SaAcpiTables_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SaAcpiTables support in Project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+PATH
+	Name  = "SaAcpiTables_DIR"
+End
+
+TOKEN
+	Name  = "GENACPITABLE"
+	Value  = "$(INTEL_SYSTEM_AGENT_DIR)\SampleCode\Tools\GenAcpiTable"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+MODULE
+	Help  = "Includes SaAcpiTables.mak to Project"
+	File  = "SaAcpiTables.mak"
+End
+
+ELINK
+	Name  = "/I$(SaAcpiTables_DIR)\Dmar"
+	Parent  = "INTEL_MCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SaAcpiTables.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SaAcpiTables.asl"
+	Parent  = "GENERIC_ASL"
+	InvokeOrder = AfterParent
+End

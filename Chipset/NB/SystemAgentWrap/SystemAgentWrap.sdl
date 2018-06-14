@@ -1,0 +1,77 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Chipset/SystemAgentWrap/SystemAgentWrap.sdl 3     7/31/13 3:28a Ireneyang $
+#
+# $Revision: 3 $
+#
+# $Date: 7/31/13 3:28a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Chipset/SystemAgentWrap/SystemAgentWrap.sdl $
+# 
+# 3     7/31/13 3:28a Ireneyang
+# [TAG]         None
+# [Category]    Improvement
+# [Description] Change token name REFERENCE_DDR_IO_BUS to DCLK_FREQUENCY.
+#               When it's 0, it would show DDR Frequency in SMBIOS
+#               (DCLK Frequency).
+#               When it's 1, it would show DDR IO Bus Clock in SMBIOS
+#               (QCLK Frequency).
+# [Files]       SystemAgentWrap.sdl;
+# 
+# 2     6/26/13 5:29a Ireneyang
+# [TAG]         None
+# [Category]    Improvement
+# [Description] According to SMBIOS spec, Set REFERENCE_DDR_IO_BUS token 
+#               for choosing how to show DDR speed.
+# [Files]       SystemAgentWrap.sdl; UpdateMemoryRecord.c;
+# 
+# 1     2/08/12 4:36a Yurenlai
+# Intel Haswell/NB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+	Name  = "SystemAgentWrap_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SystemAgentWrap support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "DCLK_FREQUENCY"
+	Value  = "0"
+	Help  = "Default: 0, 0 : DDR Frequency (DCLK Frequency)  1: DDR IO Bus Clock (QCLK Frequency)"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

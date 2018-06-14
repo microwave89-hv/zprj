@@ -1,0 +1,42 @@
+TOKEN
+	Name  = "AMI_TCG_BINARIES"
+	Value  = "1"
+	Help  = "Main switch to enable Ami TCG binaries support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+
+MODULE
+	Help  = "Include make file for module"
+	File  = "TcgBins.mak"
+End
+
+
+
+PATH
+	Name  = "TCG_BINS_DIR"
+	Help  = "Directory for module part"
+End
+
+
+ELINK
+	Name  = "$(BUILD_DIR)\TPM32BIN.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\LEGX16.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\MPTPM.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

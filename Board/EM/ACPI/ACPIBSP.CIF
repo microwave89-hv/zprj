@@ -1,0 +1,16 @@
+<component>
+	name = "ACPI - Board"
+	category = ModulePart
+	LocalRoot = "BOARD\EM\ACPI\"
+	RefName = "ACPI_BOARD"
+[files]
+"ACPI.sdl"	
+"ACPI.mak"	
+"ACPI.dxs"	
+"OEM_ACPI.C"	
+"OEM_ACPI.H"	
+"ACPI.sd"	
+"ACPI.uni"	
+[parts]
+"ASL_BOARD"
+<endComponent>

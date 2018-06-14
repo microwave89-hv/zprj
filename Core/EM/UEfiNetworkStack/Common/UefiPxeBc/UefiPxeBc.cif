@@ -1,0 +1,11 @@
+<component>
+	name = "UefiPxeBc"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Common\UefiPxeBc"
+	RefName = "UefiPxeBc"
+[files]
+"UefiPxeBc.sdl"	
+"UefiPxeBc.mak"	
+"UefiPxeBcDxeIa32.efi"
+"UefiPxeBcDxe.efi"	
+<endComponent>

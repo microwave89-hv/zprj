@@ -1,0 +1,9 @@
+<component>
+	name = "CSP Library Include"
+	category = ModulePart
+	LocalRoot = "Include\"
+	RefName = "CSP Library Include"
+[files]
+"\AMICSPLib.h"
+[parts]
+<endComponent>

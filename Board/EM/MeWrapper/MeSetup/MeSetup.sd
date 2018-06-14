@@ -1,0 +1,309 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+//**********************************************************************
+//
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/MeWrapper/MeSetup/MeSetup.sd 7     11/02/14 9:47p Tristinchou $
+//
+// $Revision: 7 $
+//
+// $Date: 11/02/14 9:47p $
+//
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/MeWrapper/MeSetup/MeSetup.sd $
+// 
+// 7     11/02/14 9:47p Tristinchou
+// [TAG]  		EIP189985
+// [Category]  	Improvement
+// [Description]  	For ME 9.1.20.1035, add NFC related option in setup
+// 
+// 6     3/14/13 2:37a Klzhan
+// Add PTT setup itrem default value.
+// 
+// 5     3/01/13 3:11a Klzhan
+// [TAG]  		EIPNone
+// [Category]  	Improvement
+// [Description]  	Fix ICBO project build error.
+// [Files]  		MeSetup.sdl
+// MeSetup.mak
+// MeSetup.sd
+// MeSetup.uni
+// MeSetup.c
+// MeSetup.h
+// MebxPrompt.c
+// MeSetupReset.c
+// MeSetup.cif
+// 
+// 4     2/07/13 1:57a Klzhan
+// [TAG]  		EIP114334
+// [Category]  	Improvement
+// [Description]  	Create a setup item for TPM Device Selection
+// [Files]  		MeSetup.sdl
+// MeSetup.mak
+// MeSetup.sd
+// MeSetup.uni
+// MeSetup.c
+// MeSetup.h
+// MebxPrompt.c
+// MeSetup.cif
+// 
+// 3     11/20/12 4:32a Klzhan
+// Add Setup Item for Ftpm
+// 
+// 2     4/23/12 11:09p Klzhan
+// 
+// 1     2/08/12 1:04a Klzhan
+// Initial Check in 
+// 
+// 1     2/25/11 1:41a Klzhan
+// Initial Check-in
+// 
+// 1     12/03/10 5:09a Klzhan
+// Initial Check-in.
+// 
+//
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//----------------------------------------------------------------------------
+//
+// Name:            Me Setup.sd
+//
+// Description:     Setup for ME Setup.
+//
+//----------------------------------------------------------------------------
+//<AMI_FHDR_END>
+#ifdef SETUP_DATA_DEFINITION
+/***********************************************************/
+/* Put NVRAM data definitions here.
+/* For example: UINT8 Data1;
+/* These definitions will be converted by the build process
+/* to a definitions of SETUP_DATA fields.
+/***********************************************************/
+
+  UINT8         MeFirmwareInfo;
+  UINT8         MeImageType;
+  UINT8         MeFwDowngrade;
+  UINT8         LocalFwUpdEnabled;
+  UINT8         LocalFwQualifier;
+  UINT8         MebxType;
+  UINT8         MDESForBiosState;
+  UINT8         FTpmSwitch;
+  UINT8         TpmDeviceSelection;
+  UINT8         TpmDeviceSelectionUpdate;
+#endif
+
+#ifdef CONTROL_DEFINITION
+    #define MESETUP_GOTO_PCHFWCONFIG\
+        goto ME_FORM_ID,\
+        prompt  = STRING_TOKEN(STR_ME_FORM),\
+        help    = STRING_TOKEN(STR_ME_FORM_HELP);
+
+#if defined NFC_SUPPORT_DXE_SUPPORT && NFC_SUPPORT_DXE_SUPPORT == 1
+    #define NFC_STATE \
+        oneof varid = NFC_SUPPORT_DATA.NFCEnable, \
+            prompt  = STRING_TOKEN(STR_NFC_STATE_PROMPT), \
+            help    = STRING_TOKEN(STR_NFC_STATE_HELP), \
+            default = DEFAULT_NFC_SETTING,\
+            option text     = STRING_TOKEN(STR_DISABLED_STRING), value = 0, flags = MANUFACTURING | RESET_REQUIRED; \
+            option text     = STRING_TOKEN(STR_ENABLED_STRING), value = 1, flags =  RESET_REQUIRED; \
+        endoneof;
+#endif
+
+#endif
+//**********************************************************************
+//                  Advanced - ME Configuration Form
+//**********************************************************************
+
+#ifdef ADVANCED_FORM_SET
+
+#ifdef FORM_SET_TYPEDEF
+  #include <MeSetup.h>
+#if defined NFC_SUPPORT_DXE_SUPPORT && NFC_SUPPORT_DXE_SUPPORT == 1
+  #include "NfcSupportDxe.h"
+#endif
+#endif
+
+#ifdef FORM_SET_VARSTORE
+#if defined NFC_SUPPORT_DXE_SUPPORT && NFC_SUPPORT_DXE_SUPPORT == 1
+  varstore NFC_SUPPORT_DATA,
+    key   = AUTO_ID(NFC_SUPPORT_DATA_ID),
+    name  = NfcSupportData,
+    guid  = NFC_SUPPORT_DATA_GUID;
+#endif
+#endif
+
+  #ifdef FORM_SET_GOTO
+  // Define goto commands for the forms defined in this file
+     MESETUP_GOTO_PCHFWCONFIG
+  #endif
+
+  #ifdef FORM_SET_FORM
+  // Define forms
+    #ifndef ME_FORM_SETUP
+    #define ME_FORM_SETUP
+
+     form formid = AUTO_ID(ME_FORM_ID),
+     title       = STRING_TOKEN(STR_ME_FORM);
+
+     text
+       help   = STRING_TOKEN(STR_ME_FW_VERSION_HELP),
+       text   = STRING_TOKEN(STR_ME_FW_VERSION_PROMPT),
+       text   = STRING_TOKEN(STR_ME_FW_VERSION_VALUE),
+       flags  = 0,
+       key    = 0;
+
+     suppressif
+       NOT ideqval SETUP_DATA.MeFirmwareInfo == 0xFF;
+
+       INVENTORY(STRING_TOKEN(STR_ME_FW_INFO_PROMPT),STRING_TOKEN(STR_ME_NORMAL_MODE))
+       INVENTORY(STRING_TOKEN(STR_ME_FW_INFO_PROMPT),STRING_TOKEN(STR_ME_ALT_DISABLED))
+       INVENTORY(STRING_TOKEN(STR_ME_FW_INFO_PROMPT),STRING_TOKEN(STR_ME_TEMP_DISABLED))
+       INVENTORY(STRING_TOKEN(STR_ME_FW_INFO_PROMPT),STRING_TOKEN(STR_ME_SECOVER))
+       INVENTORY(STRING_TOKEN(STR_ME_FW_INFO_PROMPT),STRING_TOKEN(STR_ME_FAILED))
+     endif;
+
+     text
+       help   = STRING_TOKEN(STR_ME_FW_INFO_HELP),
+       text   = STRING_TOKEN(STR_ME_FW_INFO_PROMPT),
+       text   = STRING_TOKEN(STR_ME_FW_INFO_VALUE),
+       flags  = 0,
+       key    = 0;
+
+     suppressif
+       NOT ideqval SETUP_DATA.MeFirmwareInfo == QUALIFIER_MODE
+        AND NOT ideqval SETUP_DATA.MeFirmwareInfo == LOCAL_FW_UPD_MODE;
+       text
+       help   = STRING_TOKEN(STR_ME_FW_TYPE_HELP),
+       text   = STRING_TOKEN(STR_ME_FW_TYPE_PROMPT),
+       text   = STRING_TOKEN(STR_ME_FW_TYPE_MIN),
+       flags  = 0,
+       key    = 0;
+     endif;
+
+    suppressif
+      ideqval SETUP_DATA.MeFirmwareInfo == QUALIFIER_MODE
+        AND ideqval SETUP_DATA.MeFirmwareInfo == LOCAL_FW_UPD_MODE;
+       text
+       help   = STRING_TOKEN(STR_ME_FW_TYPE_HELP),
+       text   = STRING_TOKEN(STR_ME_FW_TYPE_PROMPT),
+       text   = STRING_TOKEN(STR_ME_FW_TYPE_NORMAL),
+       flags  = 0,
+       key    = 0;
+     endif;
+
+
+    text
+      help   = STRING_TOKEN(STR_ME_FW_SKU_HELP),
+      text   = STRING_TOKEN(STR_ME_FW_SKU_PROMPT),
+      text   = STRING_TOKEN(STR_ME_FW_SKU_VALUE),
+      flags  = 0,
+      key    = 0;
+#if IntelPTT_SUPPORT
+   suppressif ideqval SB_PLATFORM_DATA.LPTType == 0;
+     text
+       help   = STRING_TOKEN(STR_PTT_CAPABILITY_STATE_HELP),
+       text   = STRING_TOKEN(STR_PTT_CAPABILITY_STATE_PROMPT),
+       text   = STRING_TOKEN(STR_PTT_CAPABILITY_STATE_VALUE),
+       flags  = 0,
+       key    = 0;
+   endif;
+#endif
+
+#if defined NFC_SUPPORT_DXE_SUPPORT && NFC_SUPPORT_DXE_SUPPORT == 1
+    text
+       help   = STRING_TOKEN(STR_NFC_SUPPORT_PROMPT),
+       text   = STRING_TOKEN(STR_NFC_SUPPORT_HELP),
+       text   = STRING_TOKEN(STR_NFC_SUPPORT_VALUE);
+
+    suppressif ideqval NFC_SUPPORT_DATA.NFCCapability == 0;
+    grayoutif ideqval NFC_SUPPORT_DATA.MeSupportNFC == 0;
+        NFC_STATE
+    SUPPRESS_GRAYOUT_ENDIF
+#endif
+
+    suppressif NOT ideqval SETUP_DATA.MeImageType == ME_IMAGE_1_5MB_FW;
+      oneof varid  = SETUP_DATA.MebxType,
+        prompt   = STRING_TOKEN(STR_MEBX_TYPE_PROMPT),
+        help     = STRING_TOKEN(STR_MEBX_TYPE_HELP),
+        option text    = STRING_TOKEN(STR_MEBX_TYPE_NONE), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;
+        option text    = STRING_TOKEN(STR_MEBX_TYPE_MEBX), value = 1, flags =  RESET_REQUIRED, key = 0;
+      endoneof;
+    endif;
+
+#if MdesStatusCode_SUPPORT
+    oneof varid  = SETUP_DATA.MDESForBiosState,
+        prompt   = STRING_TOKEN(STR_MDES_STATUS_PROMPT),
+        help     = STRING_TOKEN(STR_MDES_STATUS_HELP),
+        option text    = STRING_TOKEN(STR_DISABLED_STRING), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;
+        option text    = STRING_TOKEN(STR_ENABLED_STRING), value = 1, flags =  RESET_REQUIRED, key = 0;
+    endoneof;
+#endif
+
+#if IntelPTT_SUPPORT
+   suppressif ideqval SB_PLATFORM_DATA.LPTType == 0;
+    oneof varid  = SETUP_DATA.FTpmSwitch,
+        prompt   = STRING_TOKEN(STR_FTPMSWITCH_STATUS_PROMPT),
+        help     = STRING_TOKEN(STR_FTPMSWITCH_STATUS_HELP),
+        option text    = STRING_TOKEN(STR_GPDMA_STRING), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;
+        option text    = STRING_TOKEN(STR_MSFT_STRING), value = 1, flags =  RESET_REQUIRED, key = 0;
+    endoneof;
+
+    oneof varid  = SETUP_DATA.TpmDeviceSelection,
+        prompt   = STRING_TOKEN(STR_TPMDEVICE_SELECTION_PROMPT),
+        help     = STRING_TOKEN(STR_TPMDEVICE_SELECTION_HELP),
+        default  = DefaultTpmDeviceSelection,
+        option text    = STRING_TOKEN(STR_DTPM_STRING), value = 0, flags = RESET_REQUIRED, key = 0;
+        option text    = STRING_TOKEN(STR_PTT_STRING), value = 1, flags = MANUFACTURING | RESET_REQUIRED, key = 0;
+    endoneof;
+   endif;
+#endif
+
+       goto ME_FW_UPGRADE_ID,
+       prompt  = STRING_TOKEN(STR_FW_UPGRADE_FORM),
+       help    = STRING_TOKEN(STR_FW_UPGRADE_FORM_HELP);
+
+    endform;
+
+    form formid = AUTO_ID(ME_FW_UPGRADE_ID),
+    title       = STRING_TOKEN(STR_FW_UPGRADE_FORM);
+
+    grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+    oneof varid      = SETUP_DATA.MeFwDowngrade,
+      prompt         = STRING_TOKEN(STR_AMT_ME_FW_DOWNGRADE_PROMPT),
+      help           = STRING_TOKEN(STR_AMT_ME_FW_DOWNGRADE_HELP),
+      option text    = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;
+      option text    = STRING_TOKEN(STR_ENABLED), value = 1, flags =  RESET_REQUIRED, key = 0;
+    endoneof;
+    endif;
+
+    endform;
+   #endif // ME_FW_UPGRADE_FORM_SETUP
+  #endif
+#endif // ADVANCED_FORM_SET
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

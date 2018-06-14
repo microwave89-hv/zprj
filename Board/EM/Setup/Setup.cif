@@ -1,0 +1,23 @@
+<component>
+	name = "Setup"
+	category = ModulePart
+	LocalRoot = "Board\em\Setup\"
+	RefName = "Setup"
+[files]
+"Setup.sdl"	
+"Setup.mak"	
+"Setup.c"	
+"SetupPrivate.h"	
+"Setup.dxs"	
+"Setup.uni"	
+"Main.vfr"	
+"Advanced.vfr"	
+"Chipset.vfr"	
+"Boot.vfr"	
+"Logo.bmp"	
+"Security.vfr"	
+"Exit.vfr"
+"AmiSetupProtocol.c"
+[parts]
+"AmiSetupProtocol"
+<endComponent>

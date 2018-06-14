@@ -1,0 +1,104 @@
+TOKEN
+	Name  = "SaSsdtTables_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable SaSsdtTables support in Project"
+End
+
+TOKEN
+	Name  = "Remove_SaSsdt_Data_To_Dsdt"
+	Value  = "0"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+        TargetH = Yes
+	Help  = "Remove related SaSsdt acpi data to DSDT"
+End
+
+ELINK
+	Name  = "/D Remove_SaSsdt_Data_To_Dsdt"
+	Parent  = "INTEL_SA_RC_FLAGS"
+	Token = "Remove_SaSsdt_Data_To_Dsdt" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+MODULE
+	Help  = "Includes SgAcpiTables.mak to Project"
+	File  = "SaSsdtTables.mak"
+End
+
+PATH
+	Name  = "SaSsdtTables_DIR"
+End
+
+ELINK
+	Name  = "$(SaSsdtTables_DIR)\Sa.asl"
+	Parent  = "INTEL_GENERIC_ASL"
+	Token = "Remove_SaSsdt_Data_To_Dsdt" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "INTEL_IgdOGBDA_ASL_FILE"
+	Value  = "$(SaSsdtTables_DIR)\IgdOGBDA.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_IgdOMOBF_ASL_FILE"
+	Value  = "$(SaSsdtTables_DIR)\IgdOMOBF.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_IgdOPRN_ASL_FILE"
+	Value  = "$(SaSsdtTables_DIR)\IgdOPRN.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_IgdOSBCB_ASL_FILE"
+	Value  = "$(SaSsdtTables_DIR)\IgdOSBCB.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_INTELGFX_ASL_FILE"
+	Value  = "$(SaSsdtTables_DIR)\INTELGFX.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_SA_ASL_FILE"
+	Value  = "$(SaSsdtTables_DIR)\SA.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_SAPCIEDSM_ASL_FILE"
+	Value  = "$(SaSsdtTables_DIR)\SAPCIEDSM.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_SASSDT_ASL_FILE"
+	Value  = "$(SaSsdtTables_DIR)\SASSDT.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SaSsdt.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

@@ -1,0 +1,12 @@
+<component>
+	name = "PeiXportDbgr"
+	category = ModulePart
+	LocalRoot = "Core\em\AMIDebugRx\binaries\PeiAMIDebugRx\XPORT"
+	RefName = "PeiXportDbgr"
+[files]
+"DBGR\xp_layer.obj"	
+"DBGR\transport.obj"	
+"DBGR\usb_acc.obj"	
+"DBGR\usb_xp.obj"	
+"DBGR\UsbDebugPort.obj"	
+<endComponent>

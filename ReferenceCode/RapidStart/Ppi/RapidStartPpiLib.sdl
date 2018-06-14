@@ -1,0 +1,72 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartPpiLib/RapidStartPpiLib.sdl 1     4/19/12 8:10a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 4/19/12 8:10a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartPpiLib/RapidStartPpiLib.sdl $
+# 
+# 1     4/19/12 8:10a Yurenlai
+# Initial check in.
+#
+#*************************************************************************
+TOKEN
+        Name  = "RapidStartPpiLib_SUPPORT"
+        Value  = "1"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        Master = Yes
+        Help  = "Main switch to enable RapidStartPpiLib support in Project"
+End
+
+PATH
+        Name  = "RapidStartPpiLib_DIR"
+        Help  = "RapidStartPpiLib file source directory"
+End
+
+MODULE
+        File  = "RapidStartPpiLib.mak"
+        Help  = "Includes RapidStartPpiLib.mak to Project"
+End
+
+ELINK
+        Name  = "RapidStartPpiLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\RapidStartPpiLib.lib"
+        Parent  = "RapidStartPpiLib_LIB"
+        InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

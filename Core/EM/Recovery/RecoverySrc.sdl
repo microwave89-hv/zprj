@@ -1,0 +1,21 @@
+TOKEN
+	Name  = "RecoverySrc_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Recovery Sources support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Token = "Recovery_SUPPORT" "=" "1"
+End
+
+MODULE
+	File  = "RecoverySrc.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Recovery.lib"
+	Parent  = "$(Recovery_DIR)\Recovery.lib"
+	InvokeOrder = ReplaceParent
+End
+

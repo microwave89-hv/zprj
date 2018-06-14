@@ -1,0 +1,12 @@
+<component>
+	name = "lpit"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\AcpiTables\SampleCode\Lpit\"
+	RefName = "lpit"
+[files]
+"LowPowerIdleTable.h"	
+"lpit.act"	
+"lpit.h"	
+"lpit.mak"
+"lpit.sdl"	
+<endComponent>

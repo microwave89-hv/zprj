@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "SaLateInitSmm_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SaLateInitSmm support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "SaLateInitSmm_DIR"
+	Help  = "SaLateInitSmm file source directory"
+End
+
+MODULE
+	Help  = "Includes SaLateInitSmm.mak to Project"
+	File  = "SaLateInitSmm.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SaLateInitSmm.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

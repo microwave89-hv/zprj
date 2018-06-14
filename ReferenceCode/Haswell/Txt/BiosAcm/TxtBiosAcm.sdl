@@ -1,0 +1,39 @@
+TOKEN
+	Name  = "TxtBiosAcm_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TxtBiosAcm support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "TxtBiosAcmFile"
+	Value  = "ReferenceCode\Haswell\Txt\BiosAcm\HSW_BIOSAC_PRO_Rev1_5.BIN"
+	TokenType = File
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "TxtBiosAcm_DIR"
+	Help  = "TXT BIOS ACM directory"
+End
+
+MODULE
+	Help  = "Includes TxtBiosAcm.mak to Project"
+	File  = "TxtBiosAcm.mak"
+End
+
+ELINK
+	Name  = "/I$(TxtBiosAcm_DIR)"
+	Parent  = "TXT_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\BiosAcm.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End
+

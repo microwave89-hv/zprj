@@ -1,0 +1,15 @@
+<component>
+	name = "CpuIA32Lib"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Cpu\Pentium\"
+	RefName = "CpuIA32Lib"
+[files]
+"CpuIA32Lib.sdl"	
+"CpuIA32Lib.mak"	
+"Include\CpuIA32.h"	
+"CpuIA32Lib\EfiCpuVersion.c"	
+"CpuIA32Lib\x64\Cpu.asm"	
+"CpuIA32Lib\CpuIA32Lib.inf"	
+"CpuIA32Lib\IA32\CpuIA32.asm"	
+"CpuIA32Lib\IA32\IA32Type.inc"	
+<endComponent>

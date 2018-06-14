@@ -1,0 +1,102 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchSmiDispatcher/PchSmiDispatcher.sdl 3     12/30/13 5:10a Barretlin $
+#
+# $Revision: 3 $
+#
+# $Date: 12/30/13 5:10a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchSmiDispatcher/PchSmiDispatcher.sdl $
+# 
+# 3     12/30/13 5:10a Barretlin
+# [TAG]  		EIP145008
+# [Category]  	Improvement
+# [Description]  	Force Power button event phase always as entry to avoid
+# some power button issue
+# [Files]  		PchSmiDispatcher.sdl PchSmmPowerButton.c
+# 
+# 2     4/25/12 9:22a Victortu
+# [TAG]         None
+# [Category]    Improvement
+# [Description] Reprogram SMM ChildDispatcher drivers.
+# [Files]       SmiHandlerGeneric.c; SmiHandlerPorting.c;
+# SmiHandlerGeneric2.c; SmmChildDispatch2Main.c; SmmChildDispatcher2.mak;
+# SmmChildDispatcher2.sdl; SmmChildDispatch.h; SmmChildDispatchMain.c;
+# SmmChildDispatchProtocol.c; SmmChildDispatcher.dxs;
+# PchSmiDispatcher.sdl
+# 
+# 1     2/08/12 8:54a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+	Name  = "PchSmiDispatcher_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PchSmiDispatcher support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "INTEL_RC_SMI_DISPATCHER_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "FORCE_PWB_PHASE_AS_ENTRY"
+	Value  = "1"
+	Help  = "Force Power button event phase always as entry to avoid some power button issue. EIP145008"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+PATH
+	Name  = "PchSmiDispatcher_DIR"
+	Help  = "PchSmiDispatcher file source directory"
+End
+
+MODULE
+	Help  = "Includes PchSmiDispatcher.mak to Project"
+	File  = "PchSmiDispatcher.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PchSmiDispatcher.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

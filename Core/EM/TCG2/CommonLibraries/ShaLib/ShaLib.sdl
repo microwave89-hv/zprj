@@ -1,0 +1,27 @@
+TOKEN
+    Name  = "ShaLib_SUPPORT"
+    Value  = "1"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    Master = Yes
+    Token = "TCG2Support" "=" "1"
+End
+
+TOKEN
+    Name  = "SHALIB"
+    Value  = "$(SHALIB_DIR)\SHALIB.lib"
+    TokenType = "Expression"
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "SHALIBPEI"
+    Value  = "$(SHALIB_DIR)\SHALIBPEI.lib"
+    TokenType = "Expression"
+    TargetMAK = Yes
+End
+
+PATH
+    Name  = "SHALIB_DIR"
+End

@@ -1,0 +1,34 @@
+TOKEN
+	Name  = "TcgPeiSupport"
+	Value  = "1"
+	Help  = "Enable or Diasble TcgPeiSupport"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetH = Yes
+	TargetMAK = Yes
+	Master = Yes
+    Token = "TCG2Support" "=" "1"
+End
+
+PATH
+	Name  = "TCGPEI_DIR"
+End
+
+MODULE
+	Help  = "Includes tcgpei.mak into project"
+	Path  = "$(TCGPEI_DIR)"
+	File  = "tcgpei.mak"
+End
+
+MODULE
+	Help  = "Includes tcgpei.mak into project"
+	Path  = "$(TCGPEI_DIR)"
+	File  = "TcgPeiAftermem.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\tcgPei.ffs"
+	Parent  = "$(BUILD_DIR)\TcgPlatformSetupPeiPolicy.ffs"
+	InvokeOrder = AfterParent
+End
+

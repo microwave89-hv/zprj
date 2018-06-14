@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueUefiRuntimeServicesTableLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueUefiRuntimeServicesTableLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueUefiRuntimeServicesTableLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueUefiRuntimeServicesTableLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueUefiRuntimeServicesTableLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueUefiRuntimeServicesTableLib.mak to Project"
+	File  = "EdkIIGlueUefiRuntimeServicesTableLib.mak"
+End
+

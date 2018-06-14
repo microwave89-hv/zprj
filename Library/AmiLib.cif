@@ -1,0 +1,17 @@
+<component>
+	name = "AmiLib"
+	category = ModulePart
+	LocalRoot = "Library\"
+	RefName = "AmiLib"
+[files]
+"AmiLib.sdl"	
+"PELoader.c"	
+"Decompress.c"	
+"Memory.c"	
+"Debug.c"	
+"StdLibC.c"	
+"Misc.c"	
+"IO.c"	
+"LzmaDecode.c"	
+"LinkedList.c"	
+<endComponent>

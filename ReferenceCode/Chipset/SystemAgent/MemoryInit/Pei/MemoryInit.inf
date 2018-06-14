@@ -1,0 +1,234 @@
+## @file
+#  Component description file for MemoryInit
+#
+#@copyright
+#  Copyright (c)  1999 - 2014 Intel Corporation. All rights reserved
+#  This software and associated documentation (if any) is furnished
+#  under a license and may only be used or copied in accordance
+#  with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be
+#  reproduced, stored in a retrieval system, or transmitted in any
+#  form or by any means without the express written consent of
+#  Intel Corporation.
+#
+#  This file contains a 'Sample Driver' and is licensed as such
+#  under the terms of your license agreement with Intel or your
+#  vendor.  This file may be modified by the user, subject to
+#  the additional terms of the license agreement
+#
+
+
+[defines]
+BASE_NAME            = MemoryInit
+FILE_GUID            = 3B42EF57-16D3-44CB-8632-9FDB06B41451
+
+COMPONENT_TYPE       = PE32_PEIM
+
+[sources.common]
+  MrcSsaServices.c
+  MrcSsaServices.h
+  MemInfoHob.h
+  MemoryInit.c
+  MemoryInit.h
+  MrcDebugHook.h
+  MrcOemAddrDecode.c
+  MrcOemAddrDecode.h
+  MrcOemDebugPrint.c
+  MrcOemDebugPrint.h
+  MrcOemIo.c
+  MrcOemIo.h
+  MrcOemMemory.c
+  MrcOemMemory.h
+  MrcOemMmio.c
+  MrcOemMmio.h
+  MrcOemPlatform.c
+  MrcOemPlatform.h
+  MrcOemSmbus.c
+  MrcOemSmbus.h
+  MrcSpdDriver.c
+  MrcSpdDriver.h
+  Source/AddrDecode/MrcHswMcAddrDecode.c
+  Source/AddrDecode/MrcHswMcAddrDecode.h
+  Source/Api/MrcApi.h
+  Source/Api/MrcBdat.c
+  Source/Api/MrcBdat.h
+  Source/Api/MrcGeneral.c
+  Source/Api/MrcGeneral.h
+  Source/Api/MrcMemoryScrub.c
+  Source/Api/MrcMemoryScrub.h
+  Source/Api/MrcSaveRestore.c
+  Source/Api/MrcSaveRestore.h
+  Source/Api/MrcStartMemoryConfiguration.c
+  Source/Api/MrcStartMemoryConfiguration.h
+  Source/Include/McAddress.h
+  Source/Include/MrcCommandTraining.h
+  Source/Include/MrcCommon.h
+  Source/Include/MrcCrosser.h
+  Source/Include/MrcDdr3.h
+  Source/Include/MrcDdr3Registers.h
+  Source/Include/MrcIoControl.h
+  Source/Include/MrcMcConfiguration.h
+  Source/Include/MrcMemoryMap.h
+  Source/Include/MrcOem.h
+  Source/Include/MrcReset.h
+  Source/Include/MrcRmtData.h
+  Source/Include/MrcSpdData.h
+  Source/Include/MrcTypes.h
+  Source/Include/MrcVersion.h
+  Source/Include/MrcRegisters/McGdxcbar.h
+  Source/Include/MrcRegisters/McIoCkeCtl.h
+  Source/Include/MrcRegisters/McIoClk.h
+  Source/Include/MrcRegisters/McIoCmd.h
+  Source/Include/MrcRegisters/McIoComp.h
+  Source/Include/MrcRegisters/McIoData.h
+  Source/Include/MrcRegisters/McMain.h
+  Source/Include/MrcRegisters/McScramble.h
+  Source/Include/MrcRegisters/Pci000.h
+  Source/McConfiguration/MrcAddressDecodeConfiguration.c
+  Source/McConfiguration/MrcAddressDecodeConfiguration.h
+  Source/McConfiguration/MrcPowerModes.c
+  Source/McConfiguration/MrcPowerModes.h
+  Source/McConfiguration/MrcRefreshConfiguration.c
+  Source/McConfiguration/MrcRefreshConfiguration.h
+  Source/McConfiguration/MrcSchedulerParameters.c
+  Source/McConfiguration/MrcSchedulerParameters.h
+  Source/McConfiguration/MrcTimingConfiguration.c
+  Source/McConfiguration/MrcTimingConfiguration.h
+  Source/ReadTraining/MrcReadDqDqs.c
+  Source/ReadTraining/MrcReadDqDqs.h
+  Source/ReadTraining/MrcReadReceiveEnable.c
+  Source/ReadTraining/MrcReadReceiveEnable.h
+  Source/Services/MrcCommandTraining.c
+  Source/Services/MrcCommon.c
+  Source/Services/MrcCrosser.c
+  Source/Services/MrcDdr3.c
+  Source/Services/MrcIoControl.c
+  Source/Services/MrcMcConfiguration.c
+  Source/Services/MrcMemoryMap.c
+  Source/Services/MrcReset.c
+  Source/SpdProcessing/MrcSpdProcessing.c
+  Source/SpdProcessing/MrcSpdProcessing.h
+  Source/WriteTraining/MrcWriteDqDqs.c
+  Source/WriteTraining/MrcWriteDqDqs.h
+  Source/WriteTraining/MrcWriteLeveling.c
+  Source/WriteTraining/MrcWriteLeveling.h
+#
+# Edk II Glue Driver Entry Point
+#
+  EdkIIGluePeimEntryPoint.c
+
+[includes.common]
+  .
+  $(EFI_SOURCE)
+  $(EFI_SOURCE)/Include
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/Include
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/MemoryInit/Pei/Source/AddrDecode
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/MemoryInit/Pei/Source/Api
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/MemoryInit/Pei/Source/Include
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/MemoryInit/Pei/Source/Include/MrcRegisters
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/MemoryInit/Pei/Source/McConfiguration
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/MemoryInit/Pei/Source/ReadTraining
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/MemoryInit/Pei/Source/Services
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/MemoryInit/Pei/Source/SpdProcessing
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/MemoryInit/Pei/Source/WriteTraining
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/Ppi/SsaPeiInit
+  $(EFI_SOURCE)/$(PROJECT_ME_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_ME_ROOT)/PchMeUma
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)/Include
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)/Include/PchRegs
+  $(EFI_SOURCE)/$(PROJECT_CPU_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_CPU_ROOT)/Include
+  $(EFI_SOURCE)/$(PROJECT_CPU_ROOT)/Include/Library
+#
+# Uncomment the following RapidStart include directories if RapidStart is supported
+#
+  $(EFI_SOURCE)/$(PROJECT_RAPID_START_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_RAPID_START_ROOT)/Include
+  $(EDK_SOURCE)/Foundation
+  $(EDK_SOURCE)/Foundation/Cpu/Pentium/Include
+  $(EDK_SOURCE)/Foundation/Framework
+  $(EDK_SOURCE)/Foundation/Efi
+  $(EDK_SOURCE)/Foundation/Include
+  $(EDK_SOURCE)/Foundation/Efi/Include
+  $(EDK_SOURCE)/Foundation/Framework/Include
+  $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include
+  $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include/Library
+  $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include/Common
+  $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include/Pcd
+  $(EDK_SOURCE)/Foundation/Include/IndustryStandard
+  $(EFI_SOURCE)
+  $(EDK_SOURCE)/Foundation/Include/Pei
+  $(EDK_SOURCE)/Foundation/Library/Pei/Include
+  $(EDK_SOURCE)/Foundation/Library/Dxe/Include
+  $(EDK_SOURCE)/Foundation/Protocol/DebugMask
+
+
+#
+# Typically the sample code referenced will be available in the code base already
+# So keep this include at the end to defer to the source base definition
+# and only use the sample code definition if source base does not include these files.
+#
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/SampleCode/
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/SampleCode/Ppi
+#
+# Uncomment the following RapidStart include directories if RapidStart is supported
+#
+  $(EFI_SOURCE)/$(PROJECT_RAPID_START_ROOT)/Samplecode/Library/RapidStartCommonLib
+  $(EFI_SOURCE)/$(PROJECT_RAPID_START_ROOT)/Samplecode/Library/RapidStartPlatformLib/Pei
+
+
+[libraries.common]
+  EdkFrameworkGuidLib
+  EdkFrameworkPpiLib
+  EdkPpiLib
+  EdkGuidLib
+  SAGuidLib
+  $(PROJECT_SA_FAMILY)PpiLib
+  CpuPpiLib
+  CpuGuidLib
+  PeiLib
+  $(PROJECT_SA_FAMILY)SampleCodePpiLib
+  $(PROJECT_PCH_FAMILY)PpiLib
+  MeLibPpi
+  EfiGuidLib
+  EdkIIGlueBaseLib
+  EdkIIGlueBaseIoLibIntrinsic
+  EdkIIGluePeiDebugLibReportStatusCode
+  EdkIIGluePeiReportStatusCodeLib
+  EdkIIGluePeiServicesLib
+  EdkIIGluePeiMemoryAllocationLib
+  EdkIIGluePeiHobLib
+  EdkIIGluePeiSmbusLib
+  PchPlatformLib
+  EdkIIGlueBasePciLibPciExpress
+  EdkIIGlueBasePrintLib
+#
+# Uncomment the following RapidStart libraries if RapidStart is supported
+#
+#  RapidStartCommonLib
+#  RapidStartPpiLib
+#  RapidStartPeiLib
+  CpuPlatformLib
+  TxtLib
+
+[nmake.common]
+  IMAGE_ENTRY_POINT = _ModuleEntryPoint
+  DPX_SOURCE        = MemoryInit.dxs
+#EcpOverride: add /GL- and macro MDE_CPU_IA32
+  C_FLAGS = $(C_FLAGS) /Oi /Gs65536 /Zi /Gm -DMDE_CPU_IA32
+  C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_MODULE_ENTRY_POINT__=PeimMemoryInit\
+                       -D __EDKII_GLUE_BASE_LIB__ \
+                       -D __EDKII_GLUE_BASE_IO_LIB_INTRINSIC__ \
+                       -D __EDKII_GLUE_PEI_DEBUG_LIB_REPORT_STATUS_CODE__ \
+                       -D __EDKII_GLUE_PEI_REPORT_STATUS_CODE_LIB__ \
+                       -D __EDKII_GLUE_PEI_SERVICES_LIB__ \
+                       -D __EDKII_GLUE_PEI_MEMORY_ALLOCATION_LIB__ \
+                       -D __EDKII_GLUE_PEI_HOB_LIB__ \
+                       -D __EDKII_GLUE_PEI_SMBUS_LIB__ \
+                       -D __EDKII_GLUE_BASE_PCI_LIB_PCI_EXPRESS__ \
+                       -DMEMORY_DOWN_SUPPORT=1
+# Uncomment the following RapidStart flags if RapidStart is supported
+# C_FLAGS = $(C_FLAGS) -DRAPID_START_FLAG
+# C_FLAGS = $(C_FLAGS) -DRAPID_START_NO_SMRAM_INTEGRITY_CHECK

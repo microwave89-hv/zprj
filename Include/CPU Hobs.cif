@@ -1,0 +1,8 @@
+<component>
+	name = "CPU Hobs"
+	category = ModulePart
+	LocalRoot = "Include\"
+	RefName = "CPU Hobs"
+[files]
+"CpuHobs.h"	
+<endComponent>

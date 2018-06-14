@@ -1,0 +1,10 @@
+<component>
+	name = "PeiDbgMain"
+	category = ModulePart
+	LocalRoot = "Core\em\AMIDebugRx\binaries\PeiAMIDebugRx\"
+	RefName = "PeiDbgMain"
+[files]
+"\PeiDbgMain.sdl"	
+"\MAIN\PeiDbgMain.ffs"
+"\MAIN\PeiDbgMain_PI_1_1.ffs"	
+<endComponent>

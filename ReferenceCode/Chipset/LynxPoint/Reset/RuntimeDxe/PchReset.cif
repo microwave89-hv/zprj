@@ -1,0 +1,13 @@
+<component>
+	name = "PchReset"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Reset\RuntimeDxe"
+	RefName = "PchReset"
+[files]
+"PchReset.sdl"	
+"PchReset.mak"	
+"PchReset.c"	
+"PchReset.h"	
+"PchReset.dxs"	
+"PchResetRuntime.inf"	
+<endComponent>

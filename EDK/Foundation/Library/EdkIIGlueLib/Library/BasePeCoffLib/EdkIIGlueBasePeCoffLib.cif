@@ -1,0 +1,14 @@
+<component>
+	name = "EdkIIGlueBasePeCoffLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\BasePeCoffLib"
+	RefName = "EdkIIGlueBasePeCoffLib"
+[files]
+"EdkIIGlueBasePeCoffLib.sdl"	
+"EdkIIGlueBasePeCoffLib.mak"	
+"BasePeCoffLib.inf"	
+"BasePeCoff.c"	
+"BasePeCoffLibInternals.h"
+"Ia32\PeCoffLoaderEx.c"	
+"X64\PeCoffLoaderEx.c"	
+<endComponent>

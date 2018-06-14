@@ -1,0 +1,8 @@
+<component>
+	name = "IDEBusProtocol"
+	category = ModulePart
+	LocalRoot = "Include\Protocol\"
+	RefName = "IDEBusProtocol"
+[files]
+"\PDiskInfo.h"	
+<endComponent>

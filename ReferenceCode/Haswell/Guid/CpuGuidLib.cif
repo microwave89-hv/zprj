@@ -1,0 +1,24 @@
+<component>
+	name = "CpuGuidLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\Guid\"
+	RefName = "CpuGuidLib"
+[files]
+"CpuGuidLib.sdl"	
+"CpuGuidLib.mak"	
+"CpuGuidLib.inf"	
+"HtBistHob\HtBistHob.c"
+"HtBistHob\HtBistHob.h"
+"PowerMgmtAcpiTableStorage\PowerMgmtAcpiTableStorage.c"
+"PowerMgmtAcpiTableStorage\PowerMgmtAcpiTableStorage.h"
+"PoweronHob\PoweronHob.c"
+"PoweronHob\PoweronHob.h"
+"SmramCpuDataHeader\SmramCpuDataHeader.c"
+"SmramCpuDataHeader\SmramCpuDataHeader.h"
+"SmramCpuDataVariable\SmramCpuDataVariable.c"
+"SmramCpuDataVariable\SmramCpuDataVariable.h"
+"TxtInfoHob\TxtInfoHob.c"
+"TxtInfoHob\TxtInfoHob.h"
+"TxtOneTouch\TxtOneTouch.c"
+"TxtOneTouch\TxtOneTouch.h"
+<endComponent>

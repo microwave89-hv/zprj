@@ -1,0 +1,87 @@
+#****************************************************************************
+#****************************************************************************
+#**                                                                        **
+#**           (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                        **
+#**                          All Rights Reserved.                          **
+#**                                                                        **
+#**           5555 Oakbrook Parkway, Suite 200, Norcross, GA 30071         **
+#**                                                                        **
+#**                          Phone (770)-246-8600                          **
+#**                                                                        **
+#****************************************************************************
+#****************************************************************************
+#****************************************************************************
+# $Header: /Alaska/SOURCE/Modules/FlashSmi/FlashSmi.sdl 1     1/20/15 1:36a Tristinchou $
+#
+# $Revision: 1 $
+#
+# $Date: 1/20/15 1:36a $
+#
+#****************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/FlashSmi/FlashSmi.sdl $
+# 
+# 1     1/20/15 1:36a Tristinchou
+# [TAG]  		EIP196554
+# [Category]  	New Feature
+# [Description]  	Initial check-in
+# [Files]  		FlashSmi.cif
+# FlashSmi.chm
+# FlashSmi.sdl
+# FlashSmi.mak
+# FlashSmi.c
+# FlashSmi.dxs
+# 
+#
+#****************************************************************************
+TOKEN
+	Name  = "FlashSmiSupport"
+	Value  = "1"
+	Help  = "Main switch to enable Flash SMI support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "FLASH_SW_SMI"
+	Value  = "0x2C"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USE_SMM_COMMUNICATION"
+	Value  = "1"
+	TokenType = Integer
+	TargetH = Yes
+	Token = "SMM_COMMUNICATE_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "FlashSmi_DIR"
+End
+
+MODULE
+	Help  = "Includes FlashSmi.mak to Project"
+	File  = "FlashSmi.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\FlashSmi.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+	Token = "SecSMIFlash_SUPPORT" "=" "0"
+
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\FlashSmi.ffs"
+	Parent  = "$(BUILD_DIR)\SecSMIFlash.ffs"
+	InvokeOrder = BeforeParent
+	Token = "SecSMIFlash_SUPPORT" "=" "1"
+End

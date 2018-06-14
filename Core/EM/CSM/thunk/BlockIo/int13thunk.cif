@@ -1,0 +1,15 @@
+<component>
+	name = "INT13"
+	category = ModulePart
+	LocalRoot = "core\em\csm\thunk\BlockIo"
+	RefName = "BIOSBLKIO"
+[files]
+"CsmInt13.c"	
+"CsmBlkIoComponentName.c"	
+"CsmBlockIo.c"	
+"CsmBlockIo.h"	
+"CsmBlockIo.sdl"	
+"CsmEdd.h"	
+"biosblkio.mak"	
+"biosblkio.dxs"	
+<endComponent>

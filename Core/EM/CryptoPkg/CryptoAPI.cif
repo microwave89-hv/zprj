@@ -1,0 +1,16 @@
+<component>
+	name = "Crypto Protocol"
+	category = ModulePart
+	LocalRoot = "Core\EM\CryptoPkg"
+	RefName = "CryptoAPI"
+[files]
+"CryptoAPI.chm"	
+"CryptoAPI.sdl"	
+"CryptoAPI.mak"	
+"CryptoPei.c"	
+"CryptoDxe.c"	
+"CryptoPei.dxs"	
+"CryptoDxe.dxs"	
+[parts]
+"CryptoIncludes"
+<endComponent>

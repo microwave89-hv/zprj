@@ -1,0 +1,232 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2009, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+#**********************************************************************
+# $Header: /Alaska/Projects/Intel/Haswell/LynxPoint_SharkBay-DT_Crb_1AQQW/Board/Flash/SPI/SpiFlash.sdl 2     4/24/13 11:11p Thomaschen $
+#
+# $Revision: 2 $
+#
+# $Date: 4/24/13 11:11p $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/Projects/Intel/Haswell/LynxPoint_SharkBay-DT_Crb_1AQQW/Board/Flash/SPI/SpiFlash.sdl $
+# 
+# 2     4/24/13 11:11p Thomaschen
+# 
+# 8     4/27/12 5:12a Calvinchen
+# [TAG]  		EIP86044
+# [Category]  	Improvement
+# [Description]  	[Pegatron-DT] SMIFlash module update for display SPIROM
+# size in AFU
+# [Files]  		SpiFlash.sdl
+# SpiIdentify.c
+# 
+# 7     8/24/11 7:58a Calvinchen
+# Improvement :
+# Added Token "FAST_READ_SUPPORT" for switching the SPI
+# Read(03)/FastRead(0B)/DualOutputFastRead(3B) command. To use the
+# FastRead and the Dual Output Fast Read command MUST have Hardware SPI
+# support. **Only validated with Intel Mahobay platform (Southbridge:
+# PatherPoint)**
+# 
+# 6     2/10/11 5:43a Calvinchen
+# [TAG]  		EIP53437
+# [Category]  	Bug Fix
+# [Severity]  	Minor
+# [Symptom]  	Corrected Numonyx M25P128 Minimum Sector Size to 256K. 
+# [RootCause]  	None.
+# [Solution]  	None.
+# [Files]  		SpiFlash.sdl
+# SpiFlash.mak
+# SpiFlash.h
+# SpiIdentify.c
+# SpiFlash.cif
+# 
+# 5     10/25/10 5:55a Calvinchen
+# Added support for PEI Flash Library.
+# 
+# 4     6/24/09 3:14a Calvinchen
+# (EIP22177) Updated for Aptio Source Enhancement. 
+#
+#
+#**********************************************************************
+TOKEN
+	Name  = "SPIFlash_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SPI Flash support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SPIFLASHLIB"
+	Value  = "$(BUILD_DIR)\SPIFlash.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "SST_25VFxxx"
+	Value  = "1"
+	Help  = "Support for SST 25VF series and ESMT SPI flash parts."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SST_25LFxxx"
+	Value  = "1"
+	Help  = "Support for SST 25LF040, 25LF080A SPI flash parts."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "STM_25PExx"
+	Value  = "1"
+	Help  = "Support for ST-Micro, SPANSION, Winbond, PMC, Eon, AMIC, MXIC and Intel SPI flash parts."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ATMEL_26DFxxx"
+	Value  = "1"
+	Help  = "Support for ATMEL SPI flash parts."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "Numonyx_M25P128"
+	Value  = "0"
+	Help  = "Support for Numonyx M25P128 SPI flash parts."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FLASH_BLOCK_SIZE"
+	Value  = "0x40000"
+	Help  = "Size of the Flash Device Block"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+	Token = "Numonyx_M25P128" "=" "1"
+End
+
+TOKEN
+	Name  = "SPI_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "FAST_READ_SUPPORT"
+	Value  = "0"
+	Help  = "Fast Read Support(Need Hardware SPI Support). 0 - Read(03), 1 - Fast Read(0B), 2 - Dual Output Fast Read(3B)."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "AAI_WORD_PROGRAM"
+	Value  = "0"
+	Help  = "AAI Word Program Support(SST/PCT only)."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BLOCK_PROTECT_ENABLE"
+	Value  = "0"
+	Help  = "Support for enabling the softwaft block protect mode. ON : set BP 0,1,2 of flash status register."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+PATH
+	Name  = "SPIFlash_DIR"
+End
+
+MODULE
+	Help  = "Includes FlashSrc.mak to Project"
+	File  = "SPIFlash.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SPIFlash.lib"
+	Parent  = "$(Flash_DIR)\SPIFlash.lib"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(Flash_DIR)\SPIFlash.lib"
+	Parent  = "FLASHLISTLIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "IdentifySst_25VF,"
+	Parent  = "FlashList"
+	Token = "SST_25VFxxx" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "IdentifyStm_25PExx,"
+	Parent  = "FlashList"
+	Token = "STM_25PExx" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "IdentifyAtmel_26DF,"
+	Parent  = "FlashList"
+	Token = "ATMEL_26DFxxx" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "IdentifySst_25LF,"
+	Parent  = "FlashList"
+	Token = "SST_25LFxxx" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2009, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

@@ -1,0 +1,21 @@
+<component>
+	name = "Common"
+	category = ModulePart
+	LocalRoot = "Core\EM\TCG2\Common"
+	RefName = "Common"
+[parts]
+"TcgPei"
+"TcgDxe"
+"AmiTcgBinaries"
+"AmiTcgNvflagSample"
+"AmiTcgPlatform"
+"TcgDxeplatform"
+"TcgLegacy"
+"TcgPeiplatform"
+"TcgPlatformSetupPeiPolicy"
+"TcgPlatformSetupPolicy"
+"TcgSetup"
+"TCGSmm"
+"TpmClearOnRollback"
+"Tpm20PlatformDxe"
+<endComponent>

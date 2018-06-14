@@ -1,0 +1,13 @@
+<component>
+	name = "EdkIIGlueSmmRuntimeDxeReportStatusCodeLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\SmmRuntimeDxeReportStatusCodeLib"
+	RefName = "EdkIIGlueSmmRuntimeDxeReportStatusCodeLib"
+[files]
+"EdkIIGlueSmmRuntimeDxeReportStatusCodeLib.sdl"	
+"EdkIIGlueSmmRuntimeDxeReportStatusCodeLib.mak"
+"SmmRuntimeDxeReportStatusCodeLib.inf"
+"ReportStatusCodeLib.c"
+"SmmRuntimeDxeSupport.c"
+"ReportStatusCodeLibInternal.h"
+<endComponent>

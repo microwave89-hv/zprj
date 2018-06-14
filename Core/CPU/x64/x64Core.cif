@@ -1,0 +1,9 @@
+<component>
+	name = "x64 Core"
+	category = ModulePart
+	LocalRoot = "Core\CPU\x64\"
+	RefName = "x64Core"
+[files]
+"x64Core.sdl"	
+"x64rules.mak"	
+<endComponent>

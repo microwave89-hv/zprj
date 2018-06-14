@@ -1,0 +1,495 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+#*************************************************************************
+# $Header: /Alaska/SOURCE/Modules/Thunderbolt/TbtOemBoard/TbtOemBoard.sdl 9     2/18/14 6:11a Barretlin $
+#
+# $Revision: 9 $
+#
+# $Date: 2/18/14 6:11a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Thunderbolt/TbtOemBoard/TbtOemBoard.sdl $
+# 
+# 9     2/18/14 6:11a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Add new Thunderbolt chip
+# [Files]  		TbtOemBoard.sdl
+# 
+# 8     1/03/14 5:41a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Change default Thunderbolt host chip to Falcon Ridge
+# [Files]  		TbtOemBoard.sdl
+# 
+# 7     6/21/13 7:50a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Fix build error with non Intel RC project
+# [Files]  		TbtOemBoard.h TbtOemBoard.sdl
+# 
+# 6     4/24/13 2:39a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Using token to decide execute Sx_Exit command of RR
+# chip in S5 boot path
+# [Files]  		TbtPei.c TbtOemBoard.sdl
+# 
+# 5     4/12/13 1:48p Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Use token decide default thunderbolt Chip
+# [Files]  		TbtOemBoard.sdl TbtOemLib.c
+# 
+# 4     4/12/13 5:02a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Change token default value
+# [Files]  		TbtOemBoard.sdl
+# 
+# 3     3/21/13 7:00a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Clone Token
+# [Files]  		TbtOemBoard.sdl
+# 
+# 2     1/10/13 5:13a Barretlin
+# 
+# 1     1/10/13 4:57a Barretlin
+# Change SS path and update module for Thunderbolt Spec 1.6 for Cactus
+# Ridge chip and Thunderbolt Spec 0.5 for Redwood Ridge chip
+# 
+# 15    12/12/12 4:14a Barretlin
+# [TAG]  		EIP108272
+# [Category]  	Spec Update
+# [Severity]  	Important
+# [Description]  	Update to Spec 1.4 to support Redwood Ridge chip
+# [Files]  		TbtPei.c TbtSmm.c TbtDxe.c TbtDxe.sdl TbtGpe.asl
+# TbtOemBoard.c TbtOemBoard.h TbtOemLib.c TbtOemLib.h
+# 
+# 14    10/28/12 11:50p Barretlin
+# [TAG]  		EIP104870
+# [Category]  	Spec Update
+# [Severity]  	Important
+# [Description]  	Change wake up flow for Spec 1.2 and Spec 1.3
+# [Files]  		TbtPei.c TbtSmm.c TbtOemBoard.c TbtOemBoard.h
+# TbtOemBoard.sdl TbtOemLib.c TbtOemLib.h
+# 
+# 13    10/28/12 10:35p Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Use token to decide to skip thunderbolt device initial
+# or not before PCI bus assigning resource
+# [Files]  		TbtDxeLib.c TbtOemBoard.sdl
+# 
+# 12    10/04/12 5:43p Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Update Setup item
+# [Files]  		TbtOemBoard.sdl TbtSetup.sd TbtSetup.uni
+# 
+# 11    9/22/12 9:59a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Use token to defien thunderbolt chip pins and update
+# sample code
+# [Files]  		TbtOemBoard.c TbtOemBoard.sdl
+# 
+# 10    8/30/12 4:50a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Add new tokens which related resource for 2C and 4C
+# case
+# [Files]  		TbtOemBoard.sdl
+# 
+# 9     8/20/12 5:07a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Change default value of resources in 4C 2 port case
+# [Files]  		TbtOemBoard.sdl
+# 
+# 8     8/17/12 8:35a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	add new resource token for thunderbolt 4C chip and
+# creat "TBT_FCTP" token to switch max size
+# [Files]  		TbtOemBoard.sdl
+# 
+# 7     7/31/12 4:07a Barretlin
+# [TAG]  		EIP96350
+# [Category]  	Spec Update
+# [Severity]  	Critical
+# [Description]  	Updated Thunderbolt specification to version 1.00
+# [Files]  		TbtDxe.c TbtSmm.c TbtOemBoard.c TbtOemBoard.h
+# TbtOemBoard.sdl TbtSetup.sd TbtSetup.uni
+# 
+# 6     7/31/12 3:15a Barretlin
+# [TAG]  		EIP91119
+# [Category]  	Improvement
+# [Description]  	Resolution for enable/disable Thunderbolt device option
+# rom at POST time
+# [Files]  		TbtDxe.c TbtOemBoard.c TbtOemBoard.h TbtOemBoard.sdl
+# TbtSetup.sdl TbtSetup.sd TbtSetup.uni
+# 
+# 5     7/06/12 5:56a Barretlin
+# 
+# 4     5/24/12 9:54p Barretlin
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Add resource token, it needs the co-ordination of the
+# chipset
+# [Files]  		TbtOemBoard.sdl
+# 
+# 3     5/21/12 2:27a Barretlin
+# [TAG]  		EIP90003
+# [Category]  	Improvement
+# [Description]  	If TBT devices with option rom enabled, system maybe
+# cannot boot to OS.
+# [Files]  		TbtDxe.c TbtSmm.c TbtOemBoard.sdl
+# 
+# 2     4/16/12 10:23a Barretlin
+# [TAG]  		None 
+# [Category]  	Improvement
+# [Description]  	Improve ASL code, which redefines device name and RMV
+# method at same address when project supports RMV method,
+# that mightcause conflict
+# [Files]  		TbtDxe.c  TbtGpe.asl  TbtOemBoard.sdl
+# 
+# 1     12/08/11 4:09a Wesleychen
+# Thunderbolt eModule initially releases.
+# 
+#*************************************************************************
+TOKEN
+	Name  = "TbtOemBoard_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable TbtOemBoard support in Project"
+End
+
+TOKEN
+	Name  = "DEFAULT_TBT_CHIP"
+	Value  = "3"
+	Help  = "1: Cactus Ridge/2: Redwood Ridge/3: Falcon Ridge/4: Win Ridge."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TBT_UP_PORT_BUS"
+	Value  = "0x00"
+	Help  = "Thunderbolt Host Router Upstream Port Bus Number."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TBT_UP_PORT_DEV"
+	Value  = "0x1C"
+	Help  = "Thunderbolt Host Router Upstream Port Device Number."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TBT_UP_PORT_FUNC"
+	Value  = "0x00"
+	Help  = "Thunderbolt Host Router Upstream Port Function Number."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TBT_GO2SX"
+	Value  = "20"
+	Help  = "Thunderbolt Host Router GO2SX Pin Number, Only for Cactus Ridge chip host."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TBT_ForcePWR"
+	Value  = "21"
+	Help  = "Thunderbolt Host Router ForcePWR Pin Number."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TBT_OK2GO2SX_N"
+	Value  = "22"
+	Help  = "Thunderbolt Host Router OK2GO2SX_N Pin Number, Only for Cactus Ridge chip host."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TBT_HR_PWR"
+	Value  = "0xFF"
+	Help  = "Thunderbolt Host Router Power Pin Number, Only for Cactus Ridge chip."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TBT_HotPlugEvt"
+	Value  = "11"
+	Help  = "Thunderbolt Host Router HotPlugEvt Pin Number."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TBT_FCTP"
+	Value  = "0"
+	Help  = "Thunderbolt Host Router is 4 CIO and 2 phyical Thunderbolt port on board."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TBT_PCIBUS_SKIP"
+	Value  = "1"
+	Help  = "Allow PCI bus skip thunderbolt device initial"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TBT_RR_S5_SXEXIT"
+	Value  = "0"
+	Help  = "Enable/Disable execute Sx_Exit command of RR chip in S5 boot path."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "====== Thunderbolt Resource Configuration ======"
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "PCIEX_BASE_ADDRESS"
+	Value  = "0xF0000000"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "1"
+End
+
+TOKEN
+	Name  = "PCIEX_BASE_ADDRESS"
+	Value  = "0xE0000000"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	TOKEN = "TBT_FCTP" "=" "1"
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "1"
+End
+
+TOKEN
+	Name  = "MAX_ADDITIONAL_P2P_BRIDGES"
+	Value  = "0x80"
+	Help  = "The number of P2P bridges that can be processed in addition to the ones defined in BusNumXlat.INC."
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "1...0FFh"
+	TOKEN = "TBT_FCTP" "=" "1"
+End
+
+TOKEN
+	Name  = "COMBINE_MEM_PMEM"
+	Value  = "0"
+	Help  = "Tells if Chipset correctly supports PF MMIO\if set PF MMIO will be decoded through the same resource\window as NONE PF MMIO. PF MEM BASE and PF MEM LIMIT register pare will not be used."
+	TokenType = Boolean
+	TargetH = Yes
+	Range  = "ON or OFF. Default is OFF!"
+End
+
+TOKEN
+	Name = "TBT_PCH_PCIE_TEMP_RP_BUS_NUM_MAX"
+	Value = "255"                     # (PPTRC060.8)
+	Help = "Temp Root Port Bus Number Max for Thunderbolt."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "TBT_MAX_EXTRA_BUS_RESERVED"
+	Value = "63"
+	Help = "The Max number of extra Bus Reserved for bridges behind this Root Bridge for Thunderbolt."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "TBT_MAX_EXTRA_BUS_RESERVED"
+	Value = "245"
+	Help = "The Max number of extra Bus Reserved for bridges behind this Root Bridge for Thunderbolt."
+	TokenType = Integer
+	TargetH = Yes
+    TOKEN = "TBT_FCTP" "=" "1"
+    Token = "PCIEX_BASE_ADDRESS" "!=" "0xF8000000"
+End
+
+TOKEN
+	Name = "TBT_DEFAULT_EXTRA_BUS_RESERVED"
+	Value = "56"
+	Help = "The Default number of extra Bus Reserved for bridges behind this Root Bridge for Thunderbolt."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "TBT_DEFAULT_EXTRA_BUS_RESERVED"
+	Value = "106"
+	Help = "The Default number of extra Bus Reserved for bridges behind this Root Bridge for Thunderbolt."
+	TokenType = Integer
+	TargetH = Yes
+    TOKEN = "TBT_FCTP" "=" "1"
+End
+
+TOKEN
+	Name = "TBT_MAX_PCIE_MEM_RESERVED"
+	Value = "640"
+	Help = "The Max number of reserved memory range for this Root Bridge for Thunderbolt."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "TBT_MAX_PCIE_MEM_RESERVED"
+	Value = "1200"
+	Help = "The Max number of reserved memory range for this Root Bridge for Thunderbolt."
+	TokenType = Integer
+	TargetH = Yes
+    TOKEN = "TBT_FCTP" "=" "1"
+End
+
+TOKEN
+	Name = "TBT_DEFAULT_PCIE_MEM_RESERVED"
+	Value = "353"
+	Help = "The Default number of reserved memory range for this Root Bridge for Thunderbolt."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "TBT_DEFAULT_PCIE_MEM_RESERVED"
+	Value = "737"
+	Help = "The Default number of reserved memory range for this Root Bridge for Thunderbolt."
+	TokenType = Integer
+	TargetH = Yes
+    TOKEN = "TBT_FCTP" "=" "1"
+End
+
+TOKEN
+	Name = "TBT_MAX_PCIE_PF_MEM_RESERVED"
+	Value = "640"
+	Help = "The Max number of prefetchable memory range for this Root Bridge for Thunderbolt."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "TBT_MAX_PCIE_PF_MEM_RESERVED"
+	Value = "1200"
+	Help = "The Max number of prefetchable memory range for this Root Bridge for Thunderbolt."
+	TokenType = Integer
+	TargetH = Yes
+    TOKEN = "TBT_FCTP" "=" "1"
+End
+
+TOKEN
+	Name = "TBT_DEFAULT_PCIE_PF_MEM_RESERVED"
+	Value = "544"
+	Help = "The Default number of prefetchable memory range for this Root Bridge for Thunderbolt."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "TBT_DEFAULT_PCIE_PF_MEM_RESERVED"
+	Value = "1184"
+	Help = "The Default number of prefetchable memory range for this Root Bridge for Thunderbolt."
+	TokenType = Integer
+	TargetH = Yes
+    TOKEN = "TBT_FCTP" "=" "1"
+End
+
+TOKEN
+	Name = "TBT_MAX_PCIE_IO_RESERVED"
+	Value = "48"
+	Help = "The Max number of IO range for this Root Bridge."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "TBT_DEFAULT_PCIE_IO_RESERVED"
+	Value = "0"
+	Help = "The Default number of IO range for this Root Bridge."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+MODULE
+	Help  = "Includes TbtOemBoard.mak to Project"
+	File  = "TbtOemBoard.mak"
+End
+
+PATH
+	Name  = "TbtOemBoard_DIR"
+End
+
+ELINK
+	Name  = "/D TBT_UP_PORT_FUNC_FLAG"
+	Parent  = "GLOBAL_DEFINES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "TBT_OEMBOARD_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/I$(TbtOemBoard_DIR)"
+	Parent  = "TBT_OEMBOARD_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TbtOemBoard.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

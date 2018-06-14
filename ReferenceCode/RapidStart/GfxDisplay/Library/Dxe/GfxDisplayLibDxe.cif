@@ -1,0 +1,12 @@
+<component>
+	name = "GfxDisplayLibDxe"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\RapidStart\GfxDisplay\Library\Dxe\"
+	RefName = "GfxDisplayLibDxe"
+[files]
+"GfxDisplayLibDxe.sdl"	
+"GfxDisplayLibDxe.mak"	
+"GfxDisplayLibDxe.c"
+"GfxDisplayLibDxe.h"
+"GfxDisplayLibDxe.inf"
+<endComponent>

@@ -1,0 +1,12 @@
+<component>
+	name = "IntelRefVerDisplay"
+	category = ModulePart
+	LocalRoot = "Board\EM\Platform\IntelRefVerDisplay"
+	RefName = "IntelRefVerDisplay"
+[files]
+"IntelRefVerDisplay.sdl"	
+"IntelRefVerDisplay.mak"	
+"IntelRefVerDisplay.sd"	
+"IntelRefVerDisplay.uni"	
+"IntelRefVerSetup.c"	
+<endComponent>

@@ -1,0 +1,13 @@
+<component>
+	name = "MdesStatusCodeDxe"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\SampleCode\MdesStatusCode\Dxe"
+	RefName = "MdesStatusCodeDxe"
+[files]
+"MdesStatusCodeDxe.sdl"
+"MdesStatusCodeDxe.mak"
+"MdesStatusCodeDxe.c"
+"MdesStatusCodeDxe.dxs"
+"MdesStatusCodeDxe.h"
+"MdesStatusCodeDxe.inf"
+<endComponent>

@@ -1,0 +1,15 @@
+<component>
+	name = "BdatAccessHandler"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\BdatAccessHandler\Dxe\"
+	RefName = "BdatAccessHandler"
+[files]
+"BdatAccessHandler.sdl"	
+"BdatAccessHandler.mak"	
+"BdatAccessHandler.c"	
+"BdatAccessHandler.h"	
+"BdatAccessHandler.dxs"	
+"BdatAccessHandler.inf"	
+"BdatRmtHandler.c"
+"BdatRmtHandler.h"
+<endComponent>

@@ -1,0 +1,9 @@
+TOKEN
+	Name  = S3Support_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable S3Support support in Project"
+End

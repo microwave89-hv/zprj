@@ -1,0 +1,11 @@
+<component>
+	name = "FWH Interface - Source"
+	category = ModulePart
+	LocalRoot = "Board\Flash\FWH"
+	RefName = "FWH_INTERFACE_SOURCE"
+[files]
+"FwhFlash.sdl"	
+"FwhFlash.mak"	
+"FwhSstFlashWrite.c"	
+"FwhIntelFlashWrite.c"	
+<endComponent>

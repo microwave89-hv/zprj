@@ -1,0 +1,11 @@
+<component>
+	name = "Ip6"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Ipv6\Ip6"
+	RefName = "Ip6"
+[files]
+"Ip6.sdl"	
+"Ip6.mak"	
+"Ip6Dxe.efi"	
+"Ip6DxeIa32.efi"
+<endComponent>

@@ -1,0 +1,158 @@
+;*************************************************************************
+;*************************************************************************
+;**                                                                     **
+;**        (C)Copyright 1987-2013, American Megatrends, Inc.            **
+;**                                                                     **
+;**                       All Rights Reserved.                          **
+;**                                                                     **
+;**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+;**                                                                     **
+;**                       Phone: (770)-246-8600                         **
+;**                                                                     **
+;*************************************************************************
+;*************************************************************************
+
+;**********************************************************************
+; $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/Haswell/AMI Cpu PKG/CPU Board/CPU.EQU 1     2/07/12 3:57a Davidhsieh $
+;
+; $Revision: 1 $
+;
+; $Date: 2/07/12 3:57a $
+;**********************************************************************
+; Revision History
+; ----------------
+; $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/Haswell/AMI Cpu PKG/CPU Board/CPU.EQU $
+; 
+; 1     2/07/12 3:57a Davidhsieh
+
+;
+;**********************************************************************
+
+;<AMI_FHDR_START>
+;----------------------------------------------------------------------------
+;
+; Name:		CPU.EQU
+;
+; Description:	Equates used by the CPU module.
+;
+;----------------------------------------------------------------------------
+;<AMI_FHDR_END>
+
+include	token.equ
+
+; Miscellanous equates
+; Must be alligned properly. 1G stack
+CAR_PhysBase		EQU	MKF_CAR_BASE_ADDRESS
+CAR_PhysSize		EQU	MKF_CAR_TOTAL_SIZE
+CAR_PhysMask		EQU	(NOT (CAR_PhysSize - 1))
+
+CAR_PEISize		EQU	(CAR_PhysSize - MKF_CAR_SEC_SIZE)
+
+BSP_STACK_OFFSET	EQU	(CAR_PhysBase + CAR_PEISize - 4)
+AP_STACK_OFFSET		EQU	(CAR_PhysBase + CAR_PhysSize - 4)
+
+
+; Define the equates here
+MSR_XAPIC_BASE			EQU	01Bh
+	XAPIC_BASE_ENABLE_BIT	EQU	011d
+        XAPIC_BASE_BSP_BIT	EQU	008d
+
+	XAPIC_ENABLE_BIT	EQU	8d	; SVR SW APIC Enable/Disable Bit
+	APIC_PRESENT_BIT	EQU	9d	; APIC Present bit in Feature Flags
+
+MASK_ICR_CLEAR			EQU	0FFF33000h	; AND mask for ICR reserved bit
+OR_MASK_INIT_IPI		EQU	000004500h	; OR mask to send INIT IPI
+OR_MASK_USE_DEST_FIELD		EQU	000000000h	; OR mask to set dest field = "Dest Field"
+
+;-----------------------------------------------------------------------------
+;              Local APIC Register Equates
+;-----------------------------------------------------------------------------
+LOCAL_APIC_ID            equ     0020h
+LOCAL_APIC_VERSION       equ     0030h
+LOCAL_APIC_TASK_PRI      equ     0080h
+LOCAL_APIC_ARB_PRI       equ     0090h
+LOCAL_APIC_PROC_PRI      equ     00A0h
+LOCAL_APIC_EOI           equ     00B0h
+LOCAL_APIC_LDR           equ     00D0h
+LOCAL_APIC_DEST_FORMAT   equ     00E0h
+LOCAL_APIC_SVR           equ     00F0h
+LOCAL_APIC_ISR0          equ     0100h
+LOCAL_APIC_TMR0          equ     0180h
+LOCAL_APIC_IRR0          equ     0200h
+LOCAL_APIC_ERR_STAT      equ     0280h
+LOCAL_APIC_ICR_LO        equ     0300h
+LOCAL_APIC_ICR_HI        equ     0310h
+LOCAL_APIC_LVT           equ     0320h
+LOCAL_APIC_PERF          equ     0340h
+LOCAL_APIC_LVT_LINT0     equ     0350h
+LOCAL_APIC_LVT_LINT1     equ     0360h
+LOCAL_APIC_LVT_ERR       equ     0370h
+LOCAL_APIC_ITC           equ     0380h
+LOCAL_APIC_TIMER         equ     0390h
+LOCAL_APIC_TMR_DIV       equ     03E0h
+
+
+
+; Generic MTRR equates
+MTRR_PHYS_BASE_0		EQU	0200h
+MTRR_PHYS_MASK_0		EQU	0201h
+MTRR_PHYS_BASE_1		EQU	0202h
+MTRR_PHYS_MASK_1		EQU	0203h
+MTRR_PHYS_BASE_2		EQU	0204h
+MTRR_PHYS_MASK_2		EQU	0205h
+MTRR_PHYS_BASE_3		EQU	0206h
+MTRR_PHYS_MASK_3		EQU	0207h
+MTRR_PHYS_BASE_4		EQU	0208h
+MTRR_PHYS_MASK_4		EQU	0209h
+MTRR_PHYS_BASE_5		EQU	020Ah
+MTRR_PHYS_MASK_5		EQU	020Bh
+MTRR_PHYS_BASE_6		EQU	020Ch
+MTRR_PHYS_MASK_6		EQU	020Dh
+MTRR_PHYS_BASE_7		EQU	020Eh
+MTRR_PHYS_MASK_7		EQU	020Fh
+MTRR_FIX_64K_00000		EQU	0250h
+MTRR_FIX_16K_80000		EQU	0258h
+MTRR_FIX_16K_A0000		EQU	0259h
+MTRR_FIX_4K_C0000		EQU	0268h
+MTRR_FIX_4K_C8000		EQU	0269h
+MTRR_FIX_4K_D0000		EQU	026Ah
+MTRR_FIX_4K_D8000		EQU	026Bh
+MTRR_FIX_4K_E0000		EQU	026Ch
+MTRR_FIX_4K_E8000		EQU	026Dh
+MTRR_FIX_4K_F0000		EQU	026Eh
+MTRR_FIX_4K_F8000		EQU	026Fh
+MTRR_DEF_TYPE			EQU	02FFh
+
+EFI_SEC_PEI_HAND_OFF STRUCT
+    DataSize                dw ? ; Size of the data structure
+    Reserved1               dw ? ; Reserved to match allignment of C code
+    BootFirmwareVolumeBase  dd ? ; Base Address of the boot firmware volume
+    BootFirmwareVolumeSize  dd ? ; Size of the boot firmware volume
+    TemporaryRamBase        dd ? ; Base Address CAR
+    TemporaryRamSize        dd ? ; Size of CAR
+    PeiTemporaryRamBase     dd ? ; Base Address of CAR for PEI
+    PeiTemporaryRamSize     dd ? ; Size of CAR for PEI
+    StackBase               dd ? ; Base Address of CAR Stack
+    StackSize               dd ? ; Size of CAR Stack
+EFI_SEC_PEI_HAND_OFF ENDS
+
+EFI_PEI_SERVICES_DOUBLE_POINTER_SIZE EQU 4
+
+IDTR32 STRUCT
+    Limit                   dw ?
+    BaseAddress             dd ?
+IDTR32 ENDS
+;*************************************************************************
+;*************************************************************************
+;**                                                                     **
+;**        (C)Copyright 1987-2013, American Megatrends, Inc.            **
+;**                                                                     **
+;**                       All Rights Reserved.                          **
+;**                                                                     **
+;**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+;**                                                                     **
+;**                       Phone: (770)-246-8600                         **
+;**                                                                     **
+;*************************************************************************
+;*************************************************************************
+

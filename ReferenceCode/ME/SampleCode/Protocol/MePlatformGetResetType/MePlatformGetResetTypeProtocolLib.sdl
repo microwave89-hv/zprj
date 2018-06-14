@@ -1,0 +1,34 @@
+TOKEN
+	Name  = "MePlatformGetResetTypeProtocolLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AmtWrapperProtocolLib support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "MePlatformGetResetTypeProtocolLib_DIR"
+End
+
+ELINK
+	Name  = "/I$(MePlatformGetResetTypeProtocolLib_DIR)"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+MODULE
+	Help  = "Includes AmtWrapperProtocolLib.mak to Project"
+	File  = "MePlatformGetResetTypeProtocolLib.mak"
+End
+
+ELINK
+	Name  = "MePlatformGetResetTypeProtocolLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\MePlatformGetResetTypeProtocolLib.lib"
+	Parent  = "MePlatformGetResetTypeProtocolLib_LIB"
+	InvokeOrder = AfterParent
+End

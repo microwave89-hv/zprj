@@ -1,0 +1,366 @@
+TOKEN
+	Name  = "CSM_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AMI CSM support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "CSM16_VERSION_MAJOR"
+	Value  = "7"
+	Help  = "CSM16 major version"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CSM16_VERSION_MINOR"
+	Value  = "76"
+	Help  = "CSM16 minor version"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CSM_VERSION_BUILD"
+	Value  = "81"
+	Help  = "CSM module build version"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PCI_ROMS_OUTSIDE_CSM"
+	Value  = "0"
+	Help  = "PCI ROMs for onboard PCI devices are not included in CSM.FFS; FindEmbeddedRom locates a protocol to find them.\NOTE: this is a temporary token, it will be needed until PCI ROM loading capability is included in the CORE label. After this checking can be replaced with checking for CORE version."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "AGGRESSIVELY_JOINED_E820_ENTRIES"
+	Value  = "0"
+	Help  = "Turning on this flag would allow only one Type2 memory region above 1MB.\This reduces the total number of E820 entries and could be critical for some OSes that do not tolerate too many E820 entries (FreeBSD 6.0).\Note: when flag is turned on, some memory regions that are available will be declared reserved so OS gets less memory."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PMM_EBDA_LOMEM_SIZE"
+	Value  = "0x60000"
+	Help  = "Amount of memory below 1MB in bytes to be allocated for EBDA and PMM. This size should be a multiple of 32K.\Value should not exceed 512 KB, the remaining part of 640K will be given to IVT, BDA, non-BBS compliant OpROMs. It can also be allocated by other EFI drivers, used for PCI3.0 OpROM execution, etc.\Recommended value is 128 KB."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PMM_LOMEM_SIZE"
+	Value  = "0x30000"
+	Help  = "The total amount of memory below 1MB available for PMM allocations, in bytes. This size should be a multiple of 32K.\Value should not exceed PMM_EBDA_LOMEM_SIZE as the remaining part of it will be given for EBDA."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PMM_HIMEM_SIZE"
+	Value  = "0x9600000"
+	Help  = "PMM area size in bytes above 1MB to be allocated in bytes; this size should 64K aligned."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "LEGACY_TO_EFI_DEFAULT"
+	Value  = "0"
+	Help  = "Default setting for legacy to EFI feature.\Enabled: legacy boot options can be mixed with UEFI. Disabled: if legacy boot fails, next boot attempts are limited to legacy devices only - no UEFI boot will be tried."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "LEGACY_TO_EFI_BOOTRECORD_RETURN"
+	Value  = "0"
+	Help  = "This token controls the LegacyToEfi feature after legacy boot gives control to the boot record\Disabled: next boot option can be Legacy only.\Enabled: next boot option can be either Legacy or UEFI."
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "LEGACY_TO_EFI_DEFAULT" "=" "1"
+End
+
+TOKEN
+	Name  = "LEGACY_TO_EFI_BOOT_BUFFER_SIZE"
+	Value  = "0x300000"
+	Help  = "Size of buffer used to save memory context before legacy boot."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "OPROM_MAX_ADDRESS"
+	Value  = "0xE7FFF"
+	Help  = "The last address that can be used by Option ROM."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Range  = "0xC7FFF...0xEBFFF"
+End
+
+TOKEN
+	Name  = "SKIP_EARLY_BCV_DEVICES"
+	Value  = "{0x3f20105a}"
+	Help  = "List of VID/DIDs (combined to DWORD) that may affect POST if BCV is executed immediately after Option ROM initialization. Separate with commas.\To force skipping ALL BCVs put 0xFFFFFFFF in the beginning of the list."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "INT15_D042_SWSMI"
+	Value  = "0x44"
+	Help  = "SW SMI value to be used in INT15 func D042"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0...0FFh"
+End
+
+TOKEN
+	Name  = "USB_SWSMI"
+	Value  = "0x31"
+	Help  = "SW SMI value to be used in legacy USB"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0...0FFh"
+End
+
+TOKEN
+	Name  = "CSM_SET_ZIP_EMULATION_TYPE"
+	Value  = "0"
+	Help  = "Enable this token to see the option of ZIP drive emulation selection in the Setup."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FLEXBOOT"
+	Value  = "0"
+	Help  = "0 - Boot devices are grouped by the device type\1 - Flat list boot devices implementation."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CSM_CREATES_ATA_ATAPI_STRINGS"
+	Value  = "1"
+	Help  = "If set, CSM module will produce the names for ATA/ATAPI devices; if reset, names come from TSE."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PXE_BASECODE_ROM"
+	Value  = "0"
+	Help  = "Enable/disable PXE base code.\Enable it for the projects that have splitted PXE ROMs. Note that the other part of the PXE - UNDI - will be included as PCI Option ROM.\"
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "MAX_ADDITIONAL_P2P_BRIDGES"
+	Value  = "32"
+	Help  = "The number of P2P bridges that can be processed in addition to the ones defined in BusNumXlat.INC."
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "1...0FFh"
+End
+
+TOKEN
+	Name  = "INTERRUPTS_TO_PRESERVE"
+	Value  = "{0x13, 0x40, 0x08}"
+	Help  = "List of interrupts to be saved after CSM Init call and restored before LegacyBoot.\The default list is defined in CSM.SDL and contains three interrups: int13, int15, and int40."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CSM_DEFAULT_VMODE_SWITCHING"
+	Value  = "0"
+	Help  = "0 - switch video mode from graphics to text before executing the Option ROM, switch back to graphics afterwards\1 - use text mode during all Option ROMs execution time, no video mode switching during this time frame."
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0...1"
+End
+
+TOKEN
+	Name  = "PXE_BASECODE_ROM_FILE"
+	Value  = "AddOn\Pxebase.lom"
+	Help  = "PXE base code ROM file."
+	TokenType = File
+	TargetMAK = Yes
+	Token = "PXE_BASECODE_ROM" "=" "1"
+End
+
+TOKEN
+	Name  = "AMILEGACY16_BIN"
+	Value  = "addon\amilegacy16.bin"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "CSMCORE_DIR"
+	Path  = "core\em\csm"
+	Help  = "AMI CSM Core files source directory"
+End
+
+PATH
+	Name  = "CSMBOARD_DIR"
+End
+
+TOKEN
+	Name  = "CSM_VGA_64BITBAR_WORKAROUND"
+	Value  = "0"
+	Help  = "VBE is limited to 32 bit for an address of Video Linear Buffer.\If this token is on, the code will attempt to build the correct 64-bit linear buffer address."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+PATH
+	Name  = "X86THUNK_DIR"
+	Path  = "core\em\csm\thunk\x86"
+	Help  = "x86 thunk files source directory"
+End
+
+PATH
+	Name  = "CSM_SETUP_DIR"
+End
+
+MODULE
+	Help  = "Includes csm.mak into project"
+	Path  = "$(CSMCORE_DIR)"
+	File  = "csm.mak"
+End
+
+MODULE
+	Help  = "Includes x86Thunk.mak into project"
+	Path  = "$(X86THUNK_DIR)"
+	File  = "x86thunk.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\csm.sdb"
+	Parent  = "SETUP_SDBS"
+	Priority  = 30
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(CSM_SETUP_DIR)\csm.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 30
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\csmcore.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\x86thunk.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OEM_SERVICE_ROM_LIST"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "CSM_CUSTOM_INFS"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "InitCsmStrings,"
+	Parent  = "SetupStringInit"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "CSM_GET_OPROM_VIDEO_SWITCHING_MODE_FUNCTIONS"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name = "CSM_GET_CUSTOM_PCI_PIRQ_MASK_FUNCTIONS"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name = "CSM_GET_GATE_A20_INFORMATION_FUNCTIONS"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name = "CSM_GET_NMI_INFORMATION_FUNCTIONS"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name = "CSM_GET_OEM_INT_DATA_FUNCTIONS"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name = "CSM_GET_PLATFORM_HANDLE_FUNCTIONS"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name = "CSM_GET_PLATFORM_PCI_EMBEDDED_ROM_FUNCTIONS"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name = "CSM_GET_PLATFORM_EMBEDDED_ROM_FUNCTIONS"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name = "CSM_CHECK_OEM_PCI_SIBLINGS_FUNCTIONS"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name = "CSM_ENABLE_OEM_PCI_SIBLINGS_FUNCTIONS"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name = "CSM_GET_ROUTING_TABLE_FUNCTIONS"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name = "CSM_BSP_UPDATE_PRT_FUNCTIONS"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name = "CSM_BSP_PREPARE_TO_BOOT_FUNCTIONS"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name = "CSM_INIT_LEGACY_MEMORY_FUNCTIONS"
+    InvokeOrder = ReplaceParent
+End

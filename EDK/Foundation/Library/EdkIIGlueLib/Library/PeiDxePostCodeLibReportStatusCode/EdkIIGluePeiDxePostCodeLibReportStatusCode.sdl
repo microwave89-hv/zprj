@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGluePeiDxePostCodeLibReportStatusCode_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGluePeiDxePostCodeLibReportStatusCode support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGluePeiDxePostCodeLibReportStatusCode_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGluePeiDxePostCodeLibReportStatusCode.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGluePeiDxePostCodeLibReportStatusCode_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGluePeiDxePostCodeLibReportStatusCode.mak to Project"
+	File  = "EdkIIGluePeiDxePostCodeLibReportStatusCode.mak"
+End
+

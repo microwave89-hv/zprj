@@ -1,0 +1,36 @@
+TOKEN
+	Name  = "PttHeciDxeLib_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable PttHeciDxeLib support in Project"
+End
+
+MODULE
+	Help  = "Includes PttHeciDxeLib.mak to Project"
+	File  = "PttHeciDxeLib.mak"
+End
+
+PATH
+	Name  = "PttHeciDxeLib_DIR"
+	Help  = "Me Library file source directory"
+End
+
+ELINK
+	Name  = "PttHeciDxeLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PttHeciDxeLib.lib"
+	Parent  = "PttHeciDxeLib_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PttHeciDxeLib_DIR)"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End

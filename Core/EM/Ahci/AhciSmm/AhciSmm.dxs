@@ -1,0 +1,87 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/AHCI/AhciSmm/AhciSmm.dxs 6     2/11/11 4:11a Rameshr $
+//
+// $Revision: 6 $
+//
+// $Date: 2/11/11 4:11a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/AHCI/AhciSmm/AhciSmm.dxs $
+// 
+// 6     2/11/11 4:11a Rameshr
+// [TAG]  		EIP53704
+// [Category]  	Improvement
+// [Description]  	AMI headers update for Alaska Ahci Driver
+// [Files]  		AhciSmm.mak
+// AhciSmm.dxs
+// AhciSmm.c
+// AhciSmm.h
+// 
+// 5     12/13/10 11:15a Krishnakumarg
+// [TAG]            EIP48678
+// [Category]     Action Item
+// [Description] AHCI module does not build without CSM
+// [Solution]      Remove dependecies on CSM that are required for AHCI
+// module
+// [Files]	
+// AhciSmm.c
+// 
+// 4     5/07/10 12:40p Krishnakumarg
+// Updated the AMI header.
+// 
+// 3     12/09/09 12:32p Fasihm
+// EIP#29827: Updated the dependency and added the LegayBoot to the
+// dependents.
+// 
+// 2     11/20/09 11:18a Fasihm
+// EIP#29827:HDD Password can not be unlocked on AHCI mode when the system
+// resume from S3.
+// 
+// 1     4/28/09 6:39p Rameshr
+// Initial Check-in
+// 
+//
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:	AhciSmm.dxs
+//
+// Description:	This file is the dependency file for the AhciSmm driver
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+
+#include <Protocol\SmmBase.h>
+
+DEPENDENCY_START
+    EFI_SMM_BASE_PROTOCOL_GUID
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

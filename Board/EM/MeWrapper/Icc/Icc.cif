@@ -1,0 +1,13 @@
+<component>
+	name = "Icc"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\Icc\" 
+	RefName = "Icc"
+[files]
+"Icc.sdl"
+[parts]
+"IccProtocolLib"
+"IccPlatform"
+"IccSetup"
+"IccOverClocking"
+<endComponent>

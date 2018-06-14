@@ -1,0 +1,8 @@
+<component>
+	name = "AmiTcgPlatformProtocol"
+	category = ModulePart
+	LocalRoot = "Include\Protocol"
+	RefName = "AmiTcgPlatformProtocol"
+[files]
+"AmiTcgPlatformProtocol.h"
+<endComponent>

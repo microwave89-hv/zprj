@@ -1,0 +1,72 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/BIN/Core/Modules/Recovery/ReFlash.dxs 3     10/09/09 6:30p Felixp $
+//
+// $Revision: 3 $
+//
+// $Date: 10/09/09 6:30p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Core/Modules/Recovery/ReFlash.dxs $
+// 
+// 3     10/09/09 6:30p Felixp
+// ReFlash component is updated to support Framework and UEFI 2.1 HII
+// 
+// 2     5/21/09 4:44p Felixp
+// ReFlash driver is updated to use FlashProtocol instead of Flash library
+// functions.
+// 
+// 1     12/01/05 9:35a Felixp
+// 
+// 1     11/08/05 4:04a Felixp
+// 
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:	ReFlash.dxs
+//
+// Description:	Dependancy expression for the component
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+#if EFI_SPECIFICATION_VERSION>0x20000
+#include <Protocol/HiiDatabase.h>
+#else
+#include <Protocol/HII.h>
+#endif
+#include <Protocol/FlashProtocol.h>
+DEPENDENCY_START
+#if EFI_SPECIFICATION_VERSION>0x20000
+    EFI_HII_DATABASE_PROTOCOL_GUID
+#else
+    EFI_HII_PROTOCOL_GUID
+#endif
+    AND FLASH_PROTOCOL_GUID
+DEPENDENCY_END
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

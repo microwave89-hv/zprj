@@ -1,0 +1,14 @@
+<component>
+	name = "SB Protocols"
+	category = ModulePart
+	LocalRoot = "INCLUDE\Protocol"
+	RefName = "SB Protocols"
+[files]
+"PIDEController.h"	
+"SmmBiosWriteDispatch.h"	
+"SBSmiProtocol.h"	
+"SmmIoTrapDispatch.h"	
+"SmmPchIoTrapDispatch2.h"	
+"SBPlatformData.h"	
+"SbHpet.h"	
+<endComponent>

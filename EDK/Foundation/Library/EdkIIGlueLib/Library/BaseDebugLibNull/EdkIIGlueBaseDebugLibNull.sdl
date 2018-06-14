@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueBaseDebugLibNull_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable BaseDebugLibNull support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueBaseDebugLibNull_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueBaseDebugLibNull.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueBaseDebugLibNull_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueBaseDebugLibNull.mak to Project"
+	File  = "EdkIIGlueBaseDebugLibNull.mak"
+End
+

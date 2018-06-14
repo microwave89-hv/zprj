@@ -1,0 +1,10 @@
+<component>
+	name = "CSM Setup"
+	category = ModulePart
+	LocalRoot = "board\em\csm"
+	RefName = "CSMSETUP"
+[files]
+"\csm.uni"	
+"\csm.sd"	
+"\csmsetup.c"	
+<endComponent>

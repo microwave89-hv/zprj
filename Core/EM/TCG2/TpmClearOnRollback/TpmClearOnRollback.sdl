@@ -1,0 +1,41 @@
+TOKEN
+	Name  = "TPMCLEARONROLLBACK_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TcgPlatformSetupPolicy support in Project"
+	TokenType = Boolean
+    TargetH   = Yes
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+    Token = "TPM12Enabled" "!=" "0"
+End
+
+
+PATH
+	Name  = "TPMCLEARONROLLBACK_DIR"
+End
+
+MODULE
+	Help  = "Includes AmtPlatformPolicy.mak to Project"
+	File  = "TpmClearOnRollback.mak"
+End
+
+TOKEN
+	Name  = "TpmClearOnRollbackWrapperLib"
+	Value  = "$(BUILD_DIR)\TpmClearOnRollbackWrapperLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+
+ELINK
+	Name  = "RecoveryClearTpmBeforeFlash,"
+	Parent  = "OemBeforeFlashUpdateList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TpmClearOnRollback.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

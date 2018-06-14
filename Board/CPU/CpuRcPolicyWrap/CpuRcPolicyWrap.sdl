@@ -1,0 +1,154 @@
+#****************************************************************************
+#****************************************************************************
+#**                                                                        **
+#**           (C)Copyright 1985-2010, American Megatrends, Inc.            **
+#**                                                                        **
+#**                          All Rights Reserved.                          **
+#**                                                                        **
+#**           5555 Oakbrook Parkway, Suite 200, Norcross, GA 30071         **
+#**                                                                        **
+#**                          Phone (770)-246-8600                          **
+#**                                                                        **
+#****************************************************************************
+#****************************************************************************
+#****************************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/Haswell/AMI Cpu PKG/CPU Board/CpuRcPolicyWrap/CpuRcPolicyWrap.sdl 1     2/07/12 3:57a Davidhsieh $
+#
+# $Revision: 1 $
+#
+# $Date: 2/07/12 3:57a $
+#
+#****************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/Haswell/AMI Cpu PKG/CPU Board/CpuRcPolicyWrap/CpuRcPolicyWrap.sdl $
+# 
+# 1     2/07/12 3:57a Davidhsieh
+# 
+# 2     9/26/11 3:49a Davidhsieh
+# 
+# 1     5/06/11 6:07a Davidhsieh
+# First release
+# 
+#
+#****************************************************************************
+PATH
+	Name  = "CpuRcPolicyWrap_DIR"
+End
+
+MODULE
+	Help  = "Includes CpuPeiPolicy.mak to Project"
+	File  = "CpuRcPolicyWrap.mak"
+End
+
+ELINK
+	Name  = "CRC_PEI_POLICY_FLAGS"
+	InvokeOrder = ReplaceParent
+	Help  = "eLink for setting up extra flags to compile C files link to CpuPolicyPei PEIM"
+End
+
+ELINK
+	Name  = "/D TIANO_RELEASE_VERSION=$(TIANO_RELEASE_VERSION)"
+	Parent  = "CRC_PEI_POLICY_FLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(EDK_INCLUDES:x64=IA32)"
+	Parent  = "CRC_PEI_POLICY_FLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(EdkIIGlueLib_INCLUDES:x64=IA32)"
+	Parent  = "CRC_PEI_POLICY_FLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PROJECT_DIR)"
+	Parent  = "CRC_PEI_POLICY_FLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PROJECT_CPU_ROOT)\Ppi\CpuPlatformPolicy"
+	Parent  = "CRC_PEI_POLICY_FLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PeiCpuPolicyInitList"
+	InvokeOrder = ReplaceParent
+	Help  = "eLink for overriding CPU Reference Code PEI CPU Platform Policy."
+End
+
+ELINK
+	Name  = "PeiCpuPolicyInit,"
+	Parent  = "PeiCpuPolicyInitList"
+	InvokeOrder = AfterParent
+	Help  = "CPU module default Cpu RC PEI CPU Platform Policy overriding eLink."
+End
+
+ELINK
+	Name  = "CRC_DXE_POLICY_FLAGS"
+	InvokeOrder = ReplaceParent
+	Help  = "eLink for setting up extra flags to compile C files link to CpuPolicyPei PEIM"
+End
+
+ELINK
+	Name  = "/D TIANO_RELEASE_VERSION=$(TIANO_RELEASE_VERSION)"
+	Parent  = "CRC_DXE_POLICY_FLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(EDK_INCLUDES)"
+	Parent  = "CRC_DXE_POLICY_FLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(EdkIIGlueLib_INCLUDES)"
+	Parent  = "CRC_DXE_POLICY_FLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PROJECT_CPU_ROOT)"
+	Parent  = "CRC_DXE_POLICY_FLAGS"
+	InvokeOrder = AfterParent
+End
+
+
+ELINK
+	Name  = "/I$(PROJECT_CPU_ROOT)\Include"
+	Parent  = "CRC_DXE_POLICY_FLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(CpuPolicyInitDxe_DIR)"
+	Parent  = "CRC_DXE_POLICY_FLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PROJECT_DIR)"
+	Parent  = "CRC_DXE_POLICY_FLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "DxeCpuPolicyInitList"
+	InvokeOrder = ReplaceParent
+	Help  = "eLink for overriding CPU Reference Code DXE CPU Platform Policy."
+End
+
+ELINK
+	Name  = "DxeCpuPolicyInit,"
+	Parent  = "DxeCpuPolicyInitList"
+	InvokeOrder = AfterParent
+	Help  = "CPU module default Cpu RC DXE CPU Platform Policy overriding eLink."
+End
+

@@ -1,0 +1,14 @@
+<component>
+	name = "PeiDbgXport"
+	category = ModulePart
+	LocalRoot = "Core\em\AMIDebugRx\binaries\PeiAMIDebugRx\"
+	RefName = "PeiDbgXport"
+[files]
+"PeiDbgXport.sdl"	
+"PeiDbgXport.mak"	
+"PeiDbgXport.dxs"	
+"XPORT\XportHdr.c"	
+[parts]
+"PeiXportDbgr"
+"PeiXportRedir"
+<endComponent>

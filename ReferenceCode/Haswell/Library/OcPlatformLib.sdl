@@ -1,0 +1,32 @@
+TOKEN
+	Name  = OcPlatformLib_SUPPORT
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable OcLib support in Project"
+End
+
+TOKEN
+	Name  = "OcPlatformLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\OcPlatformLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "OcPlatformLib_DIR"
+End
+
+ELINK
+	Name  = "/I$(OcPlatformLib_DIR)\OverclockingLib"
+	Parent  = "PROJECT_CPU_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+MODULE
+	Help  = "Includes OcPlatformLib.mak to Project"
+	File  = "OcPlatformLib.mak"
+End
+

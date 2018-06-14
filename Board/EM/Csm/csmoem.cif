@@ -1,0 +1,12 @@
+<component>
+	name = "CSM16 OEM Hooks"
+	category = ModulePart
+	LocalRoot = "Board\eM\Csm\"
+	RefName = "CSM_OEM_HOOKS"
+[files]
+"MBIOSMAC.MAC"	
+"MBIOSEQU.EQU"	
+"csmoem.sdl"	
+"csmoem.mak"	
+"oem16sig.asm"	
+<endComponent>

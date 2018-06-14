@@ -1,0 +1,10 @@
+<component>
+	name = "AmiUsbSmmGlobalDataValidationLib"
+	category = ModulePart
+	LocalRoot = "core\em\usb\AmiUsbLib"
+	RefName = "AmiUsbSmmGlobalDataValidationLib"
+[files]
+"AmiUsbSmmGlobalDataValidationLib.c"
+"AmiUsbSmmGlobalDataValidationLib.mak"
+"Crc32.c"
+<endComponent>

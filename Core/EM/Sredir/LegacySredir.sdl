@@ -1,0 +1,164 @@
+TOKEN
+	Name  = "LEGACYSREDIR_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AMI Legacy Serial Redirection support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+    Token = "CSM_SUPPORT" "=" "1"
+	Token = "Terminal_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "LEGACYSREDIR_DIR"
+	Path  = "core\em\sredir"
+End
+
+TOKEN
+	Name  = "DISPLAY_WHOLE_SCREEN"
+	Value  = "0"
+	Help  = "Display the whole screen before disabling the Legacy console redirection"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TRAP_INT10_WORKAROUND"
+	Value  = "0"
+	Help  = "Trap Int10 to avoid the b8000 region accessed by Video option rom and Legacy console redirection."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SERIAL_READ_WRITE_CALLBACK"
+	Value  = "0"
+	Help  = "1- Call back will come from Sredir.bin for SerialRead and SerialWrite(SerialCallback.asm).0-Disabled."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "LEGACY_SREDIR_SWSMI"
+	Value  = "0x41"
+	Help  = "SW SMI value to be used in Legacy console redirection"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0...0FFh"
+End
+
+TOKEN
+	Name  = "COM_MMIO_WIDTH"
+	Value  = "4"
+	Help  = "MMIO Com device width size. 1- Byte, 2- Word, 4-Dword. Default Set to Dword"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "1...4h"
+End
+
+TOKEN
+	Name  = "CTRLI_KEY_MAPPING"
+	Value  = "1"
+	Help  = "0- Mapped to TAB key, 1- Mapped to CtrlI Key"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CTRLH_KEY_MAPPING"
+	Value  = "1"
+	Help  = "0- Mapped to BackSpace Key, 1- Mapped to CtrlH Key"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CHECK_FOR_LOOPBACK_DEVICE"
+	Value  = "0"
+	Help  = "0- hardware Loop back checking disabled 1- Hardware loopback checking enabled and if present redirection skipped for the port"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CLEAR_LEGACYSREDIR_KB_BUFFER_AT_READYTOBOOT"
+	Value  = "0"
+	Help  = "ON   -> Legacy Serial Redirection KB Buffer will be cleared at ReadyToBoot.\OFF  -> Legacy Serial Redirection KB Buffer will not be cleared at ReadyToBoot."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+    Name  = "UART_POLLING_REDIRECTION"
+    Value  = "0"
+    Help  = "Use polling method redirection to send and receive data from COM Port"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+PATH
+	Name  = "LEGACYSREDIR_BOARD_DIR"
+	Path  = "Board\em\sredir"
+End
+
+MODULE
+	Help  = "Includes LegacySredir.cif to Project"
+	Path  = "$(LEGACYSREDIR_DIR)"
+	File  = "LEGACYSREDIR.mak"
+End
+
+ELINK
+	Name  = "InvalidPciComDeviceList"
+	InvokeOrder = ReplaceParent
+	Help  = "Invalid PCI Device List to skip the redirection from that device. Format of the InvalidPciComDeviceList is {VendorId, DeviceId), "
+End
+
+ELINK
+	Name  = "SerialCallBackApiModuleStart"
+	Parent  = "CsmOem16Functions"
+	ProcID  = 0Bh
+	SrcFile  = "$(LEGACYSREDIR_BOARD_DIR)\SerialCallback.asm"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SerialCallback.obj"
+	Parent  = "CSM_OEM16_OBJS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "LegcaySredirModuleStart"
+    Parent = "CsmOem16Functions"
+    ProcID = 08h
+    SrcFile = "Core\em\Sredir\SerialBootCall.asm"
+    InvokeOrder = AfterParent
+End 
+
+ELINK
+    Name  = "$(BUILD_DIR)\SerialBootCall.obj"
+    Parent  = "CSM_OEM16_OBJS"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "EnableLegcaySredirModuleStart"
+    Parent = "CsmOem16Functions"
+    ProcID = 06h
+    SrcFile = "Core\em\Sredir\SredirBootFail.asm"
+    InvokeOrder = AfterParent
+End 
+
+ELINK
+    Name  = "$(BUILD_DIR)\SredirBootFail.obj"
+    Parent  = "CSM_OEM16_OBJS"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\LEGACYSREDIR.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End

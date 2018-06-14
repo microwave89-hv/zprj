@@ -1,0 +1,15 @@
+<component>
+	name = "Sg Acpi Tables"
+	category = ModulePart
+	LocalRoot = "Board\EM\SwitchableGraphics\SgTpv\AcpiTables"
+	RefName = "SgTpvAcpiTables"
+[files]
+"SgTpvAcpiTables.sdl"	
+"SgTpvAcpiTables.mak"	
+"SgTpvAcpiTables.c"	
+"SgTpvAcpitables.h"	
+[parts]
+"SgTpvPEG"
+"SgTpvPCH"
+"OEMSSDT"
+<endComponent>

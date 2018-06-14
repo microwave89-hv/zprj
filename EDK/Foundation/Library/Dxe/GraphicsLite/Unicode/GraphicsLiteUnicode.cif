@@ -1,0 +1,9 @@
+<component>
+	name = "GraphicsLiteUnicode"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Library\Dxe\GraphicsLite\Unicode"
+	RefName = "GraphicsLiteUnicode"
+[files]
+"PrintWidth.h"	
+"Sprint.c"	
+<endComponent>

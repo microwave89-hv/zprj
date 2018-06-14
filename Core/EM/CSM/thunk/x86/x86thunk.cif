@@ -1,0 +1,10 @@
+<component>
+	name = "x86Thunk"
+	category = ModulePart
+	LocalRoot = "core\em\csm\thunk\x86"
+	RefName = "x86THUNK"
+[files]
+"\thunk.c"	
+"\x86thunk.asm"
+"\x86thunk.mak"
+<endComponent>

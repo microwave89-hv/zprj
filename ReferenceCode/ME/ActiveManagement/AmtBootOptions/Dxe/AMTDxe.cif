@@ -1,0 +1,13 @@
+<component>
+	name = "AMTDxe"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\ActiveManagement\AmtBootOptions\Dxe\"
+	RefName = "AMTDxe"
+[files]
+"AMTDxe.sdl"	
+"AMTDxe.mak"	
+"ActiveManagement.c"	
+"ActiveManagement.dxs"	
+"ActiveManagement.h"	
+"ActiveManagement.inf"	
+<endComponent>

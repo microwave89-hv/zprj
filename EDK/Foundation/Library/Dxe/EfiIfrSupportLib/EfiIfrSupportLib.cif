@@ -1,0 +1,15 @@
+<component>
+	name = "EfiIfrSupportLib"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Library\Dxe\EfiIfrSupportLib\"
+	RefName = "EfiIfrSupportLib"
+[files]
+"EfiIfrSupportLib.sdl"	
+"EfiIfrSupportLib.mak"	
+"IfrCommon.c"	
+"IfrLibrary.h"	
+"IfrOnTheFly.c"	
+"IfrOpCodeCreation.c"	
+"IfrVariable.c"	
+"EfiIfrSupportLib.inf"	
+<endComponent>

@@ -1,0 +1,9 @@
+<component>
+	name = "HeciInclude"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Heci\Include\"
+	RefName = "HeciInclude"
+[files]
+"HeciInclude.sdl"
+"HeciRegs.h"
+<endComponent>

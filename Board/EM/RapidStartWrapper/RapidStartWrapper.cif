@@ -1,0 +1,19 @@
+<component>
+	name = "RapidStartWrapper"
+	category = ModulePart
+	LocalRoot = "Board\EM\RapidStartWrapper"
+	RefName = "RapidStartWrapper"
+[files]
+"RapidStartWrapper.sdl"
+"RapidStart.ssp"
+"Include\Mbr.h"
+"Include\UefiGpt.h"
+[parts]
+"RapidStartDxePolicyInit"
+"RapidStartCommonLib"
+"RapidStartDxeLib"
+"RapidStartPeiLib"
+"RapidStartSetup"
+"RapidStartWrapperSmm"
+"RapidStartWrapperAcpiTables"
+<endComponent>

@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueEdkDxeRuntimeDriverLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueEdkDxeRuntimeDriverLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueEdkDxeRuntimeDriverLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueEdkDxeRuntimeDriverLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueEdkDxeRuntimeDriverLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueEdkDxeRuntimeDriverLib.mak to Project"
+	File  = "EdkIIGlueEdkDxeRuntimeDriverLib.mak"
+End
+

@@ -1,0 +1,83 @@
+TOKEN
+    Name  = "NVMe_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable NVMe support in Project"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetH = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "NVME_VERBOSE_PRINT"
+    Value  = "0"
+    Help  = "Token to Enable/Disable Versbose Mode."
+    TokenType = Integer
+    TargetH = Yes
+End
+
+PATH
+    Name = "NVME_DIR"
+End
+
+TOKEN
+    Name  = "NVME_SETUP"
+    Value  = "1"
+    Help  = "Enable if NVMe setup controls from NVME eModule needs to be displayd in setup"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "NVME_BUS_DRIVER_VERSION"
+    Value  = "1"
+    Help  = "NVMe Bus driver version # reported in Driver Binding Protocol"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+MODULE
+    Help  = "Includes Nvme.mak to Project"
+    File  = "Nvme.mak"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\Nvme.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\Nvme.sdb"
+    Parent  = "SETUP_SDBS"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(NVME_DIR)\Nvme.sd"
+    Parent  = "SETUP_DEFINITIONS"
+    InvokeOrder = AfterParent
+    Token = "NVME_SETUP" "=" "1"
+End
+
+ELINK
+    Name  = "$(NVME_DIR)\NvmeSetup.c"
+    Parent  = "SetupCallbackFiles"
+    InvokeOrder = AfterParent
+    Token = "NVME_SETUP" "=" "1"
+End 
+
+ELINK
+    Name  = "InitNvmeStrings,"
+    Parent  = "SetupStringInit"
+    InvokeOrder = AfterParent
+    Token = "NVME_SETUP" "=" "1"
+End
+
+ELINK
+    Name  = "$(NVME_DIR)\Nvme.uni"
+    Parent  = "SetupStringFiles"
+    InvokeOrder = AfterParent
+    Token = "NVME_SETUP" "=" "1"
+End
+

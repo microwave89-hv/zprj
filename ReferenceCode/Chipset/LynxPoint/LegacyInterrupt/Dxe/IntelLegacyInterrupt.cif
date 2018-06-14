@@ -1,0 +1,12 @@
+<component>
+	name = "IntelLegacyInterrupt"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\LegacyInterrupt\Dxe"
+	RefName = "IntelLegacyInterrupt"
+[files]
+"IntelLegacyInterrupt.sdl"	
+"IntelLegacyInterrupt.mak"	
+"LegacyInterrupt.c"	
+"LegacyInterrupt.h"	
+"LegacyInterrupt.inf"	
+<endComponent>

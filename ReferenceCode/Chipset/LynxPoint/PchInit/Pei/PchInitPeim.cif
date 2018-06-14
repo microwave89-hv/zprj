@@ -1,0 +1,17 @@
+<component>
+	name = "PchInitPeim"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\PchInit\Pei"
+	RefName = "PchInitPeim"
+[files]
+"PchInitPeim.sdl"	
+"PchInitPeim.mak"	
+"PchInitPeim.h"	
+"PchInitPeim.c"	
+"PchInitPeim.dxs"	
+"PchInitPeim.inf"	
+"PchUsbInit.c"	
+"PchInitCommon.h"	
+"PchDmiPeim.c"	
+"PchUsbPreconditionPeim.c"	
+<endComponent>

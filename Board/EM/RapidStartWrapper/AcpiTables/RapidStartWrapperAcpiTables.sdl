@@ -1,0 +1,102 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartWrapper/RapidStartWrapperAcpiTables.sdl 2     4/15/13 2:38a Bensonlai $
+#
+# $Revision: 2 $
+#
+# $Date: 4/15/13 2:38a $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartWrapper/RapidStartWrapperAcpiTables.sdl $
+# 
+# 2     4/15/13 2:38a Bensonlai
+# [TAG]  		None
+# [Category]  	Bug Fix
+# [Severity]  	Important
+# [Symptom]  	If users change any item from driver then restore to boot
+# setting, our SMI can't distinguish between user's and driver's event.
+# [RootCause]  	It's an Intel driver issue.
+# [Solution]  	1. Removing the sync up with Rapid Start driver and BIOS
+# variable as default.
+# 2. Remove our BIOS workaround.
+# [Files]  		RapidStartWrapperSmm.sdl, RapidStartWrapperSmm.h,
+# RapidStartWrapperSmm.sdl, RapidStartWrapperAcpiTables.sdl,
+# RapidStartWrapper.sdl
+# 
+# 1     12/27/12 2:25a Bensonlai
+# [TAG]  		EIP110680
+# [Category]  	New Feature
+# [Description]  	When iRST application is run under OS, and change
+# timer.
+# BIOS should update the changed to Setup option as well.
+# [Files]  		Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.c
+# Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.h
+# Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.mak
+# Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.dxs
+# Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.sdl
+# Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.cif
+# Board\EM\RapidStartWrapper\AcpiTables\RapidStartWrapperAcpiTables.cif
+# Board\EM\RapidStartWrapper\AcpiTables\RapidStartWrapperAcpiTables.sdl
+# Board\EM\RapidStartWrapper\AcpiTables\Ssdt\RapidStartWrapper.asl
+# Board\EM\RapidStartWrapper\RapidStartSetup\RapidStartSetup.sd
+# 
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name:	RapidStartWrapperAcpiTables.sdl
+#
+# Description: SDL file for RapidStartWrapperAcpiTables
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+	Name  = "RapidStartWrapperAcpiTables_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable RapidStartWrapper ACPI tables in Project"
+        Token = "SYNC_UP_DRIVER_AND_BIOS_VARIABLE" "=" "1"
+End
+
+PATH
+	Name  = "RapidStartWrapperAcpiTables_DIR"
+End
+
+TOKEN
+	Name  = "INTEL_RAPIDSTART_ASL_FILE"
+	Value  = "$(RapidStartWrapperAcpiTables_DIR)\Ssdt\RapidStartWrapper.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

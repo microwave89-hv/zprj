@@ -1,0 +1,12 @@
+<component>
+	name = "S3Support"
+	category = ModulePart
+	LocalRoot = "Core\EM\S3\"
+	RefName = "S3Support"
+[files]
+"S3Support.sdl"	
+[parts]
+"S3Save"
+"S3Restore"
+"S3Common"
+<endComponent>

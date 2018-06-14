@@ -1,0 +1,11 @@
+<component>
+	name = "EdkProtocolLibIPF"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Protocol\"
+	RefName = "EdkProtocolLibIPF"
+[files]
+"ExtendedSalBootService\ExtendedSalBootService.h"	
+"ExtendedSalBootService\ExtendedSalBootService.c"	
+"ExtendedSalGuid\ExtendedSalGuid.h"	
+"ExtendedSalGuid\ExtendedSalGuid.c"	
+<endComponent>

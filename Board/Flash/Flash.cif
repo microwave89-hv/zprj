@@ -1,0 +1,18 @@
+<component>
+	name = "Flash - Source"
+	category = FLASH
+	LocalRoot = "Board\Flash\"
+	RefName = "FLASH_COMBINED_SOURCE"
+[files]
+"Flash.sdl"	
+"Flash.mak"	
+"FlashWrite.c"	
+"FlashUpdate.c"	
+"Flash.chm"	
+[parts]
+"FWH_INTERFACE_SOURCE"
+"LPC_INTERFACE_SOURCE"
+"STD_INTERFACE_SOURCE"
+"SPI_INTERFACE_SOURCE"
+"FLASH_INCLUDES"
+<endComponent>

@@ -1,0 +1,114 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SB SMI/SBSMI.sdl 2     8/13/12 10:31a Victortu $
+#
+# $Revision: 2 $
+#
+# $Date: 8/13/12 10:31a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SB SMI/SBSMI.sdl $
+# 
+# 2     8/13/12 10:31a Victortu
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Implement BIOS Lock function.
+# [Files]         SBCspLib.h, SBDxe.c, SBSMI.c, SBSMI.dxs, SBSMI.sdl
+# 
+# 1     2/08/12 8:31a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+    Name = "SBSMI_SUPPORT"
+    Value = "1"
+    Help = "Main switch to enable SB SMI support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "SW_SMI_SB_EL_S3"
+    Value  = "0xb9"
+    Help  = "Value to be written into SMI command register \to enable S3 patched codes"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "SB_PCIE_ERROR_LOG_SUPPORT"
+    Value  = "1"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "ErrorLogging_SUPPORT" "=" "1"
+    Token = "IpmiLib_SUPPORT" "=" "1"
+    Token = "SmmRuntime_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "SMM_BIOS_WRITE_PROTECT_DISABLE"
+    Value  = "1"
+    Help  = "SMM BIOS Write Protect Disable(SMM_BWP, B0:D31:F0 Reg#DCh[5]).\0 = BIOS region SMM protection is disabled.\1 = BIOS region SMM protection is enabled."
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "NvramSmiSupport" "=" "1"
+End
+
+PATH
+    Name = "SB_SMI_PATH"
+    Path = "Chipset\SB"
+End
+
+MODULE
+    Help = "Includes SBSMI.mak to Project"
+    File = "SBSMI.mak"
+End
+
+ELINK
+    Name = "$(BUILD_DIR)\SBSMI.ffs"
+    Parent = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "SB_SMI_OBJECTS"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name = "$(BUILD_DIR)\$(SB_CHIPSET_DIR)\SBSMI.obj"
+    Parent = "SB_SMI_OBJECTS"
+    InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

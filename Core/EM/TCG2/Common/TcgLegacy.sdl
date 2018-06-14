@@ -1,0 +1,36 @@
+TOKEN
+	Name  = "TcgLegacy_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TcgLegacy support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+    Token = "CSM_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "TCGLEG_DIR"
+End
+
+MODULE
+	Help  = "Includes TcgLegacy.mak to Project"
+	File  = "TcgLegacy.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TcgLegacy.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "TCG_MOR_REG"
+	Value  = "0xE3"
+	Help  = "Address of the MOR bit in CMOS (byte location in the bank of CMOS registers)"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End

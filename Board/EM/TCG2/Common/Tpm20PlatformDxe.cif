@@ -1,0 +1,17 @@
+<component>
+	name = "Tpm20PlatformDxe"
+	category = ModulePart
+	LocalRoot = "Board\EM\TCG2\Common"
+	RefName = "Tpm20PlatformDxe"
+[files]
+"Tpm20PlatformDxe.sdl"	
+"Tpm20PlatformDxe.mak"	
+"Tpm20PlatformDxe.c"	
+"Tpm20PlatformDxe.h"	
+"Tpm20PlatformDxe.dxs"	
+"Tpm20PlatformDxeLib.h"	
+"Tpm20PlatformDxeLib.c"	
+"Tpm20PlatformDxeString.uni"	
+[parts]
+"Tpm20Acpi"
+<endComponent>

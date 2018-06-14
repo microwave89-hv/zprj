@@ -1,0 +1,14 @@
+<component>
+	name = "AtDxeLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Library\AtLibrary\Dxe\"
+	RefName = "AtDxeLib"
+[files]
+"AtDxeLib.mak"
+"AtDxeLib.sdl"
+"AtAmHelper.c"
+"AtDxeLib.inf"
+"AtPolicyDebugDumpDxe.c"
+"AtAmHelper.h"
+"AtPolicyLib.h"
+<endComponent>

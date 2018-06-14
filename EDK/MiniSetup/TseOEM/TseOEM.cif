@@ -1,0 +1,10 @@
+<component>
+	name = "TSE Sources - OEM"
+	category = ModulePart
+	LocalRoot = "EDK\MiniSetup\TseOEM"
+	RefName = "TseOEM"
+[files]
+"TseOEM.sdl"	
+"TseOEM.mak"	
+"TseOEM.C"	
+<endComponent>

@@ -1,0 +1,1260 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2013, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30071           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+#****************************************************************************
+# $Header: /Alaska/SOURCE/CPU/Intel/NehalemMicrocode/DESKTOP/DESKTOP.SDL 114   2/22/17 1:31a Davidhsieh $
+#
+# $Revision: 114 $
+#
+# $Date: 2/22/17 1:31a $
+#
+#****************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/CPU/Intel/NehalemMicrocode/DESKTOP/DESKTOP.SDL $
+# 
+# 114   2/22/17 1:31a Davidhsieh
+# [TAG]  		EIP319448
+# [Category]  	Spec Update
+# [Severity]  	Important
+# [Description]  	Updated Intel(R) Haswell C-0 Stepping(306C3) version 22
+# 
+# Updated Intel(R) Broadwell-H G-0 Stepping(40671) version 17
+# 
+# Updated Intel(R) Haswell Perf Halo C-0 Stepping(40661) version 17
+# 
+# Update Intel(R) Sandy Bridge-E C-1, M-0 Stepping(206D6) version 619
+# 
+# Updated Intel(R) Broadwell-E R-0 Stepping(406F1) version 0B00001D
+# 
+# Updated Intel(R) Haswell-E R-2 Stepping(306F2) version 38
+# 
+# [Files]  		DESKTOP.SDL
+# Desktop.CIF
+# 
+# 113   6/17/16 4:05p Artems
+# [TAG]  		EIP275143
+# [Category]  	Improvement
+# [Description]  	Updated Intel(R) Haswell Processor C-0 Stepping version
+# 21
+# [Files]  		DESKTOP.SDL
+# Desktop.CIF
+# 
+# 112   4/29/16 11:53a Artems
+# [TAG]  		EIP266854
+# [Category]  	Improvement
+# [Description]  	[Aptio 4_MCU] Intel DT microcode update DT_B_100
+# [Files]  		DESKTOP.SDL
+# Desktop.CIF
+# 
+# 111   4/29/16 11:31a Artems
+# [TAG]  		EIP265620
+# [Category]  	Improvement
+# [Description]  	[Aptio 4_MCU] Iintel DT microcode update DT_P_106
+# [Files]  		DESKTOP.SDL
+# Desktop.CIF
+# 
+# 110   2/19/16 2:46p Artems
+# [TAG]  		EIP256973
+# [Category]  	Improvement
+# [Description]  	[Aptio4_MCU]Intel DT Processors Microcode Update
+# DT_P_103
+# [Files]  		DESKTOP.SDL
+# Desktop.CIF
+# 
+# 109   8/14/15 5:30p Artems
+# [TAG]  		EIP233803
+# [Description]  	Updated Clarkdale Processor C-2 Stepping version 0F
+# [Files]  		DESKTOP.SDL
+# Desktop.CIF
+# 
+# 108   8/10/15 4:27p Artems
+# [TAG]  		EIP232434
+# [Description]  	Updated Clarkdale Processor K-0 Stepping version 05
+# [Files]  		DESKTOP.SDL
+# Desktop.CIF
+# 
+# 107   8/05/15 12:01p Artems
+# [TAG]  		EIP231326
+# [Description]  	Updated Gulftown Processor B-1 Stepping version 1C
+# Updated Lynnfield Processor B-1 Stepping version 08
+# Updated Bloomfield Processor D-0 Stepping version 1B
+# Updated Bloomfield Processor C-0 Stepping version 13
+# [Files]  		DESKTOP.SDL
+# Desktop.CIF
+# 
+# 106   7/17/15 6:06p Artems
+# [TAG]  		EIP229101
+# [Category]  	Improvement
+# [Description]  	Updated Broadwell-H Processor G-0 Stepping version 12
+# [Files]  		DESKTOP.SDL
+# Desktop.CIF
+# 
+# 105   6/17/15 5:40p Artems
+# [TAG]  		EIP223845
+# [Description]  	Updated Broadwell-H Processor G-0 Stepping version 11
+# [Files]  		DESKTOP.SDL
+# Desktop.CIF
+# 
+# 104   5/18/15 4:48p Artems
+# [TAG]  		EIP218685
+# [Category]  	Improvement
+# [Description]  	Added Broadwell-E Processor L-0 Stepping version 10
+# [Files]  		DESKTOP.SDL
+# Desktop.CIF
+# 
+# 103   5/14/15 5:08p Artems
+# [TAG]  		EIP217911
+# [Category]  	Improvement
+# [Description]  	Updated Broadwell-H Processor G-0 Stepping version 10
+# [Files]  		DESKTOP.SDL
+# Desktop.CIF
+# 
+# 102   5/07/15 3:06p Artems
+# 
+# 101   3/17/15 5:32p Artems
+# Updated IvyBridge Processor E-1, L-1 Stepping version 1C
+# 
+# 100   1/12/15 6:23p Artems
+# Desktop
+# Updated Haswell processor( 306CX) C-0 stepping to version 1D
+# 
+# 99    11/25/14 10:32a Markw
+# 
+# 98    11/20/14 6:13p Markw
+# Update dependency.
+# 
+# 97    11/20/14 11:10a Mithunraghavs
+# Added Broadwell-H (4067X) E-0 stepping version FFFF0003
+# 
+# 96    11/06/14 2:48p Markw
+# Updated Haswell-E M-0, R2 (306F2) to version 29.
+# 
+# 94    7/21/14 2:59p Craigv
+# Updated Haswell C-0 (306C3) to version 1C.
+# Updated Haswell Perf Halo C-0 (40661) to version 12.
+# Updated Haswell-E M-0 (306F2) to version 23.
+# 
+# 93    6/23/14 12:44p Craigv
+# Updated Haswell Perf Halo C-0 (40661) to version 10.
+# Updated Haswell C-0 (306C3) to version 1A.
+# Updated Ivy Bridge E S-1 (306E4) to version 428.
+# Updated Ivy Bridge E-1, L-1 (306A9) to version 1B.
+# 
+# 92    5/29/14 1:17p Craigv
+# Updated Haswell C-0 (306C3) to version 19.
+# Updated Haswell-E (306F2) M-0 to version 1E.
+# 
+# 91    1/30/14 1:46p Craigv
+# Updated IvyBridge-E S-1 (306E4) to version 00000424.
+# Updated to production status
+# 
+# 90    1/23/14 5:31p Craigv
+# Updated Ivy Bridge-E (306E2) L-1, R-1 to version 0000020D.
+# Added Haswell-E (306F2) M-0 version 00000007.
+# 
+# 89    10/23/13 10:02a Mithunraghavs
+# The microcode for the Haswell-E processor (Haswell-E), Family 6 Model
+# 3F Step 1 (L-0) has been updated from 80000011 to 80000013
+# 
+# 88    10/16/13 11:50a Markw
+# Remove non-production from Haswell Perf C-0 (40661).
+# 
+# 87    10/14/13 6:04p Craigv
+# Updated Haswell C-0 (306C3) to version 00000017.
+# Updated Haswell Perf Halo C-0 (40661) to version 0000000F.
+# 
+# 86    9/23/13 3:10p Craigv
+# Added Haswell-E Processor (306F1) version 80000011.
+# 
+# 85    9/13/13 5:05p Markw
+# Updated Intel Lynnfield Xeon B-1 (106E5) to version 7.
+# 
+# 84    8/28/13 10:27a Markw
+# Fix e-link 306C3 to point to correct microcode version.
+# 
+# 83    8/27/13 11:38a Markw
+# Remove non production from 306C3.
+# 
+# 81    7/26/13 4:37p Craigv
+# Updated Intel(R) Haswell Perf Halo Processor C-0 (40661) to version
+# 0000000E.
+# 
+# 80    7/18/13 12:22p Craigv
+# Updated Intel Lynnfield B-1 (106E5) to version 00000006.
+# Updated Intel Clarkdale K-0 (20655) to version 00000004.
+# Updated Intel Clarkdale C-2 (20652) to version 0000000E.
+# Updated Intel Bloomfield D-0 (106A5) to version 00000019.
+# Updated Intel Bloomfield C-0 (106A4) to version 00000012.
+# Updated Intel Haswell C-0 (306C3) to version 00000012.
+# 
+# 79    7/15/13 11:37a Craigv
+# Updated intel Ivy Bridge-E S-1 (306E4) to version 00000416.
+# 
+# 78    7/02/13 1:50p Craigv
+# Updated Gulftown B-1 (206C2) to version 0000001A.
+# Updated Haswell C-0 (306C3) to version 00000010.
+# 
+# 77    6/26/13 7:18p Craigv
+# Updated Intel SandyBridge-E (206D7) C-2, M-1 to version 00000710.
+# Updated Intel Sandy Bridge (206A7) Q-0, D-2 to version 00000029.
+# Updated Intel Ivy Bridge (306A9) E-1, L-1 to version 00000019.
+# 
+# 76    6/13/13 3:46p Craigv
+# Added Intel Ivy Bridge-E S-1 (306E4) version 413.
+# 
+# 75    5/20/13 3:16p Craigv
+# Added Intel Haswell Perf Halo C-0 (40661) version 000A.
+# 
+# 74    5/07/13 11:54a Craigv
+# Update Haswell C-0 (306C3) to version 009.
+# 
+# 73    3/22/13 11:25a Craigv
+# Update Haswell C-0 (306C3) to version 008.
+# 
+# 72    2/22/13 4:15p Craigv
+# Updated Ivy Bridge-E (306E2) L-1 and R-1 to version 0000020C.
+# 
+# 71    2/05/13 12:35p Craigv
+# Update Haswell C-0 (306C3) to version 7.
+# 
+# 70    1/28/13 11:38a Craigv
+# Update Haswell C-0 (306C3) to version 6.
+# 
+# 69    1/17/13 11:30a Craigv
+# Update Intel(R) Ivy Bridge Processor E-1 and L-1 (306A9) to version 17.
+# 
+# 68    1/15/13 9:52p Craigv
+# Added Ivy Bridge-E (306E2) version 00000209.
+# 
+# 67    1/08/13 3:26p Markw
+# Update Haswell C-0 (306C3) to version 3
+# 
+# 66    11/16/12 4:43p Craigv
+# 
+# 65    11/16/12 4:40p Craigv
+# Update Intel(R) Ivy Bridge Processor E-1 and L-1 (306A9) to version 16
+# 
+# 64    10/30/12 10:20p Markw
+# Update Haswell B-0 (306C2) to version FFFF_0006.
+# 
+# 63    10/24/12 10:55a Craigv
+# Added Haswell Perf Halo B-0 (40660) version FFFF_0011.
+# Update Haswell B-0 (306C2) to version FFFF_0006.
+# 
+# 62    9/19/12 6:03p Craigv
+# Update Intel(R) Ivy Bridge Processor E-1 and L-1 (306A9) to version 15.
+# 
+# 61    7/20/12 2:59p Markw
+# Update Haswell A-0 (306C1) to version FFFF0013.
+# Update Haswell B-0 (306C2) to version FFFF0003.
+# 
+# 60    5/31/12 11:33a Markw
+# Updated help string to use tab instead of spaces for consistency.
+# 
+# 59    5/22/12 5:18p Craigv
+# Update Sandy Bridge D-2 and Q-0 (206A7) to version 28.
+# Update Sandy Bridge-E C-2, M-1 (206D7) to version 70C.
+# 
+# 58    4/24/12 10:46a Markw
+# Add NON_PRODUCTION_MICROCODE dependency to Haswell A-0.
+# 
+# 57    4/23/12 10:52a Craigv
+# Added Haswell processor A-0 Stepping version FFFF000D
+# 
+# 56    4/17/12 3:02p Craigv
+# Update Intel(R) Ivy Bridge Processor E-1 and L-1 (306A9) to version 12.
+# 
+# 55    3/26/12 3:52p Markw
+# Place pack changes from version 53.
+# 
+# 54    3/26/12 1:48p Craigv
+# Update Sandy Bridge D-2 and Q-0 (206A7) to version 26.
+# 
+# 53    3/22/12 11:07a Markw
+# Rearrange processor tokens to have the later CPUs earlier in the list.
+# 
+# 52    3/19/12 2:29p Craigv
+# Update Sandy Bridge-E C-1, M-0 (206D6) to version 616.
+# Update Sandy Bridge-E C-2, M-1 (206D7) to version 70B.
+# 
+# 51    2/29/12 11:01a Craigv
+# Update Intel(R) Ivy Bridge Processor E-0 and L-0 (306A8) to version 10.
+# Update Intel(R) Ivy Bridge Processor E-1 and L-1 (306A9) to version 10.
+# 
+# 50    2/14/12 12:37p Craigv
+# Update Sandy Bridge-E C-1, M-0 (206D6) to version 615.
+# Update Sandy Bridge-E C-2, M-1 (206D7) to version 70A.
+# 
+# 49    2/03/12 4:41p Craigv
+# Update Intel(R) Ivy Bridge Processor E-0 and L-0 (306A8) to version C.
+# Update Intel(R) Ivy Bridge Processor E-1 and L-1 (306A9) to version C.
+# 
+# 48    1/19/12 5:29p Markw
+# Update Intel(R) Ivy Bridge Processor E-0 and L-0 (306A8) to version A.
+# Update Intel(R) Ivy Bridge Processor E-1 and L-1 (306A9) to version A.
+# 
+# 47    1/19/12 12:33p Markw
+# Update Sandy Bridge-E C-1, M-0 (206D6) to version 610.
+# Update Sandy Bridge-E C-2, M-1 (206D7) to version 705.
+# 
+# 46    1/17/12 1:45p Markw
+# Update Intel(R) Ivy Bridge Processor E-0 (306A8) to version 8.
+# 
+# 45    1/09/12 5:45p Markw
+# Update Ivy Bridge E-1 (306A9) to Version 8.
+# 
+# 44    12/06/11 4:08p Markw
+# Update Sandy Bridge-E C-1 (206D6) to version 60F.
+# Update Sandy Bridge-E C-2 (206D7) to version 704.
+# Update Ivy Bridge E-0 (306A8) to Version 7.
+# 
+# 43    11/09/11 12:55p Markw
+# Update Sandy Bridge D-2 and Q-0 (206A7) to version 25.
+# Update Sandy Bridge-E C-1 (206D6) to version 60D.
+# Update Lynnfield B-1 (106E5) to version 5. 
+# 
+# 42    10/26/11 11:03a Markw
+# Update Gulftown B-1 (206C2) to Version 15.
+# Update Clarkdale C-2 (20652) to Version 0D.
+# Update Clarkdale K-0 (20655) to Version 03.
+# 
+# 41    10/11/11 3:50p Markw
+# Update Sandy Bridge D-2 and Q-0 (206A7) to version 23.
+# Update Sandybridge-E C-0 (206D5) to version 511.
+# Update Sandy Bridge-E C-1 (206D6) to version 60C.
+# 
+# 40    9/28/11 6:26p Markw
+# Update Sandy Bridge-E C-0 (206D5) to version 511.
+# Update Sandy Bridge-E C-0 (206D6) to version 60B.
+# Update Intel(R) Ivy Bridge Processor C-0 (306A4) to version 7.
+# Update Intel(R) Ivy Bridge Processor C-1 (306A5) to version 7.
+# 
+# 39    8/29/11 2:55p Markw
+# Update Sandy Bridge-E C-0 (206D5) to version 50D.
+# Update Intel(R) Ivy Bridge Processor C-0 (306A4) to version 5.
+# 
+# 38    8/10/11 7:07p Markw
+# Update Sandybridge-E C-0 (206d5) to version 50B.
+# 
+# 37    8/09/11 10:33a Markw
+# Revert DESKTOP back to 0 as default as expected.
+# 
+# 36    8/09/11 10:32a Markw
+# Update Sandy Bridge D-2 and Q-0 (206A7) to version 1B.
+# Update Sandybridge-E C-0 (206d5) to version 50A.
+# 
+# 35    8/04/11 1:15p Markw
+# Update Bloomfield D- 0 (106A5) to version 16.
+# Update Sandybridge-E C-0 (206d5) to version 509.
+# 
+# 34    7/27/11 1:33p Markw
+# Update Sandy Bridge-E C-0 (206D5) to version 508.
+# 
+# 33    7/12/11 11:46a Markw
+# Update Sandy Bridge D-2 and Q-0 (206A7) to version 1A.
+# 
+# 32    6/13/11 5:42p Markw
+# Update Gulftown B1 (206C2) to Version 14.
+# 
+# 31    6/03/11 12:23p Markw
+# Update Intel(R) Ivy Bridge Processor B-0 (306A2) to version 8.
+# 
+# 30    6/03/11 12:07p Markw
+# Update Sandy Bridge D-2 and Q-0 (206A7) to version 18.
+# 
+# 29    5/12/11 5:21p Markw
+# Update Bloomfield D-0 (106A5) to version 15.
+# 
+# 28    4/27/11 6:29p Markw
+# Update Sandy Bridge-E B-1 (206D3) to version 80000302.
+# Update Sandy Bridge D-2 and Q-0 (206A7) to version 17.
+# 
+# 27    3/04/11 12:02p Markw
+# Update Sandy Bridge-E B0 (206D1) to version 8000020A.
+# 
+# 26    2/15/11 6:57p Markw
+# Update Sandy Bridge-E A1 (206D0) to version 80000103.
+# Update Sandy Bridge-E B0 (206D1) to version 80000207.
+# 
+# 25    1/27/11 12:35p Markw
+#  Update Sandy Bridge D1, Q0 (206A7) to version 14.
+# 
+# 24    1/04/11 10:33a Markw
+# Update Sandy Bridge D1, Q0 (206A7) to version 12.
+# 
+# 23    12/16/10 11:28a Markw
+# Fixed dependency on M12206A7_0000000D.pdb.
+# 
+# 22    11/30/10 10:22a Markw
+# Update Sandy Bridge D1, Q0 (206A7) to version D.
+# 
+# 21    10/15/10 4:41p Markw
+# Update Sandy Bridge D1 (206A6) to version 28.
+# 
+# 20    10/08/10 10:36a Markw
+# Update Sandy Bridge D0 (206a5) to version 7.
+# Add Sandy Bridge D2 (206a7) to version 6.
+# 
+# 19    9/15/10 1:51p Markw
+# Update Gulftown B1 (206C2) to Version 13.
+# 
+# 18    9/02/10 5:04p Markw
+# Update Gulftown B1 (206C2) to Version 10.
+# 
+# 17    8/12/10 11:19a Markw
+# 
+# 16    7/27/10 10:38a Hari
+# Updated Microcode version for Clarkdale C2.
+# 
+# 15    7/26/10 11:06a Hari
+# Added Microcode for Sandy Bridge D0
+# 
+# 14    7/12/10 5:24p Hari
+# Added M03206C2_0000000F for Westmere EP processor
+# 
+# 13    6/08/10 6:44p Markw
+# Update Sandy Bridge C0 stepping to version 8.
+# 
+# 12    5/28/10 10:24a Markw
+# Update Lynnfield B1 and add Clarkdale K0.
+# 
+# 11    4/09/10 11:24a Markw
+# Add Sandy Bridge B2.
+# 
+# 10    3/04/10 5:07p Markw
+# Add Sandy Bridge B0.
+# 
+# 9     1/20/10 9:49a Markw
+# Update Gulftown B0
+# 
+# 8     1/19/10 11:30p Markw
+# Update Gulftown B1.
+# 
+# 7     12/30/09 8:13p Markw
+# Add Gulftown A1.
+# 
+# 6     11/24/09 1:11p Markw
+# Fix description.
+# 
+# 5     11/24/09 1:07p Markw
+# Fix filename.
+# 
+# 4     11/24/09 12:37p Markw
+# 
+# 3     11/24/09 12:30p Markw
+# 
+# 2     10/16/09 9:50a Markw
+# 
+# 1     9/29/09 2:51p Markw
+#****************************************************************************
+TOKEN
+	Name  = "DESKTOP"
+	Value = "0"
+	Help  = "Master Desktop CPU uCode Enable"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Range  = "On-Off"
+End
+
+TOKEN
+	Name  = "DESKTOP_406FX"
+	Value = "0"
+	Help  = "Intel(R) Broadwell-E"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "DESKTOP_4067X"
+	Value = "0"
+	Help  = "Intel(R) Broadwell-H"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "DESKTOP_4066X"
+	Value = "0"
+	Help  = "Intel(R) Haswell Perf Halo"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "DESKTOP_306FX"
+	Value = "0"
+	Help  = "Intel(R) Haswell-E"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "DESKTOP_306CX"
+	Value = "0"
+	Help  = "Intel(R) Haswell"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "DESKTOP_306EX"
+	Value  = "0"
+	Help = "Intel(R) Ivy Bridge-E"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "DESKTOP_306AX"
+	Value  = "0"
+	Help = "Intel(R) Ivy Bridge"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "DESKTOP_206DX"
+	Value  = "0"
+	Help  = "Intel(R) SandyBridge-E processors"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "DESKTOP_206AX"
+	Value = "0"
+	Help  = "Intel(R) Sandy Bridge"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "DESKTOP_106FX"
+	Value = "0"
+	Help  = "Intel(R) Havendale"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "DESKTOP_2065X"
+	Value = "0"
+	Help  = "Intel(R) Clarkdale"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "DESKTOP_106EX"
+	Value = "0"
+	Help  = "Intel(R) Clarksfield"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "DESKTOP_206CX"
+	Value = "0"
+	Help  = "Intel(R) Gulftown"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "DESKTOP_106AX"
+	Value = "0"
+	Help  = "Intel(R) Bloomfield"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "DESKTOP_M03106A4"
+	Value = "1"
+	Help  = "Bloomfield C-0"
+	TokenType = Boolean
+	Token = "DESKTOP_106AX" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M03106A5"
+	Value = "1"
+	Help  = "Bloomfield D-0"
+	TokenType = Boolean
+	Token = "DESKTOP_106AX" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M13106E0"
+	Value = "1"
+	Help  = "Intel(R) Clarksfield A-0"
+	TokenType = Boolean
+	Token = "DESKTOP_106EX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M13106E1"
+	Value = "1"
+	Help  = "Intel(R) Clarksfield A-2 \CPU Signature 106E1"
+	TokenType = Boolean
+	Token = "DESKTOP_106EX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M13106E5"
+	Value = "1"
+	Help  = "Intel(R) Lynnfield B-1"
+	TokenType = Boolean
+	Token = "DESKTOP_106EX" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M13206C0"
+	Value = "1"
+	Help  = "Intel(R) Gulftown A-0" 
+	TokenType = Boolean
+	Token = "DESKTOP_206CX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M03206C1"
+	Value = "1"
+	Help  = "Intel(R) Gulftown B-0" 
+	TokenType = Boolean
+	Token = "DESKTOP_206CX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M03206C2"
+	Value = "1"
+	Help  = "Intel(R) Gulftown B-1" 
+	TokenType = Boolean
+	Token = "DESKTOP_206CX" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M1320651"
+	Value = "1"
+	Help  = "Intel(R) Clarkdale C-0" 
+	TokenType = Boolean
+	Token = "DESKTOP_2065X" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M1220652"
+	Value = "1"
+	Help  = "Intel(R) Clarkdale C-2" 
+	TokenType = Boolean
+	Token = "DESKTOP_2065X" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M9220655"
+	Value = "1"
+	Help  = "Intel(R) Clarkdale K-0" 
+	TokenType = Boolean
+	Token = "DESKTOP_2065X" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M13106F1"
+	Value = "1"
+	Help  = "Intel(R) Havendale B-0" 
+	TokenType = Boolean
+	Token = "DESKTOP_106FX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+    Name  = "DESKTOP_M12206A1"
+    Value = "1"
+	Help  = "Intel(R) Sandy Bridge B-0" 
+	TokenType = Boolean
+	Token = "DESKTOP_206AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+END
+
+TOKEN
+    Name  = "DESKTOP_M12206A2"
+    Value = "1"
+	Help  = "Intel(R) Sandy Bridge B-2" 
+	TokenType = Boolean
+	Token = "DESKTOP_206AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+END
+
+TOKEN
+    Name  = "DESKTOP_M12206A3"
+    Value = "1"
+	Help  = "Intel(R) Sandy Bridge C-0" 
+	TokenType = Boolean
+	Token = "DESKTOP_206AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+END
+
+TOKEN
+    Name  = "DESKTOP_M12206A5"
+    Value = "1"
+	Help  = "Intel(R) Sandy Bridge D-0" 
+	TokenType = Boolean
+	Token = "DESKTOP_206AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+END
+
+TOKEN
+    Name  = "DESKTOP_M12206A6"
+    Value = "1"
+	Help  = "Intel(R) Sandy Bridge D-1" 
+	TokenType = Boolean
+	Token = "DESKTOP_206AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+END
+
+TOKEN
+    Name  = "DESKTOP_M12206A7"
+    Value = "1"
+	Help  = "Intel(R) Sandy Bridge D-2 and Q-0" 
+	TokenType = Boolean
+	Token = "DESKTOP_206AX" "=" "1"
+END
+
+TOKEN
+	Name  = "DESKTOP_M07206D1"
+	Value  = "1"
+	Help  = "Intel(R) SandyBridge-E Processor A-1 Stepping"
+	TokenType = Boolean
+	Token = "DESKTOP_206DX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M0F206D2"
+	Value  = "1"
+	Help  = "Intel(R) SandyBridge-E Processor B-0 Stepping"
+	TokenType = Boolean
+	Token = "DESKTOP_206DX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M0F206D3"
+	Value  = "1"
+	Help  = "Intel(R) SandyBridge-E Processor B-1 Stepping"
+	TokenType = Boolean
+	Token = "DESKTOP_206DX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M6D206D5"
+	Value  = "1"
+	Help  = "Intel(R) SandyBridge-E Processor C-0 Stepping"
+	TokenType = Boolean
+	Token = "DESKTOP_206DX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M6D206D6"
+	Value  = "1"
+	Help  = "Intel(R) SandyBridge-E Processor C-1 and M-0 Stepping"
+	TokenType = Boolean
+	Token = "DESKTOP_206DX" "=" "1" 
+End
+
+TOKEN
+	Name  = "DESKTOP_M6D206D7"
+	Value  = "1"
+	Help  = "Intel(R) SandyBridge-E Processor C-2 and M-1 Stepping"
+	TokenType = Boolean
+	Token = "DESKTOP_206DX" "=" "1" 
+End
+
+TOKEN
+	Name  = "DESKTOP_M12306A2"
+	Value  = "1"
+	Help  = "Intel(R) Ivy Bridge Processor B-0"
+	TokenType = Boolean
+	Token = "DESKTOP_306AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M12306A4"
+	Value  = "1"
+	Help  = "Intel(R) Ivy Bridge Processor C-0"
+	TokenType = Boolean
+	Token = "DESKTOP_306AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M12306A5"
+	Value  = "1"
+	Help  = "Intel(R) Ivy Bridge Processor C-1"
+	TokenType = Boolean
+	Token = "DESKTOP_306AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M12306A8"
+	Value  = "1"
+	Help  = "Intel(R) Ivy Bridge E-0 and L-0"
+	TokenType = Boolean
+	Token = "DESKTOP_306AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M12306A9"
+	Value  = "1"
+	Help  = "Intel(R) Ivy Bridge E-1 and L-1"
+	TokenType = Boolean
+	Token = "DESKTOP_306AX" "=" "1"
+End 
+
+TOKEN
+	Name  = "DESKTOP_MED306E2"
+	Value  = "1"
+	Help  = "Intel(R) Ivy Bridge-E L-1 R-1"
+	TokenType = Boolean
+	Token = "DESKTOP_306EX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_MED306E4"
+	Value  = "1"
+	Help  = "Intel(R) Ivy Bridge-E S-1"
+	TokenType = Boolean
+	Token = "DESKTOP_306EX" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M32306C1"
+	Value  = "1"
+	Help  = "Intel(R) Haswell Processor A-0 Stepping"
+	TokenType = Boolean
+	Token = "DESKTOP_306CX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M32306C2"
+	Value  = "1"
+	Help  = "Intel(R) Haswell Processor B-0 Stepping"
+	TokenType = Boolean
+	Token = "DESKTOP_306CX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M32306C3"
+	Value  = "1"
+	Help  = "Intel(R) Haswell C-0"
+	TokenType = Boolean
+	Token = "DESKTOP_306CX" "=" "1" 
+End
+
+TOKEN
+	Name  = "DESKTOP_M3240660"
+	Value  = "1"
+	Help  = "Intel(R) Haswell Perf Halo Processor B-0 Stepping"
+	TokenType = Boolean
+	Token = "DESKTOP_4066X" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_M3240661"
+	Value  = "1"
+	Help  = "Intel(R) Haswell Perf Halo Processor C-0 Stepping"
+	TokenType = Boolean
+	Token = "DESKTOP_4066X" "=" "1" 
+End
+
+TOKEN
+	Name  = "DESKTOP_MEF306F1"
+	Value  = "1"
+	Help  = "Intel(R) Haswell-E Processor L-0 Stepping"
+	TokenType = Boolean
+	Token = "DESKTOP_306FX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_MEF306F2"
+	Value  = "1"
+	Help  = "Intel(R) Haswell-E Processor M-0, R-2 Stepping"
+	TokenType = Boolean
+	Token = "DESKTOP_306FX" "=" "1" 
+End
+
+TOKEN
+	Name  = "DESKTOP_M2240671"
+	Value  = "1"
+	Help  = "Intel(R) Broadwell-H Processor E-0, G-0 Stepping"
+	TokenType = Boolean
+	Token = "DESKTOP_4067X" "=" "1" 
+End
+
+TOKEN
+	Name  = "DESKTOP_MEF406F0"
+	Value  = "1"
+	Help  = "Intel(R) Broadwell-E Processor L-0 Stepping"
+	TokenType = Boolean
+	Token = "DESKTOP_406FX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DESKTOP_MEF406F1"
+	Value  = "1"
+	Help  = "Intel(R) Broadwell-E Processor R-0 Stepping"
+	TokenType = Boolean
+	Token = "DESKTOP_406FX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+PATH
+	Name  = "MICROCODE_DESKTOP_DIR"
+End
+
+ELINK
+	Name  = "$(Intel_Desktop)"
+	Parent  = "MICROCODE_FILES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M03106A4_00000013.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Bloomfield C0"
+	Token = "DESKTOP_M03106A4" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M03106A5_0000001B.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Bloomfield D0"
+	Token = "DESKTOP_M03106A5" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M13106E0_FFFF001F.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Clarksfield A0"
+	Token = "DESKTOP_M13106E0" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M13106E1_FFFF000D.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Clarksfield A2"
+	Token = "DESKTOP_M13106E1" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M13106E5_00000008.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Lynnfield B1"
+	Token = "DESKTOP_M13106E5" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M13206C0_FFFF0016.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Gulftown A0" 
+	Token = "DESKTOP_M13206C0" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M03206C1_00000006.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Gulftown B0" 
+	Token = "DESKTOP_M03206C1" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M03206C2_0000001C.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Gulftown B1" 
+	Token = "DESKTOP_M03206C2" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M1320651_FFFF0012.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Clarkdale C0" 
+	Token = "DESKTOP_M1320651" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M1220652_0000000F.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Clarkdale C2" 
+	Token = "DESKTOP_M1220652" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M9220655_00000005.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Clarkdale K0" 
+	Token = "DESKTOP_M9220655" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M13106F1_FFFF0007.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Havendale B0" 
+	Token = "DESKTOP_M13106F1" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M12206A1_00000007.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Sandy Bridge B0" 
+	Token = "DESKTOP_M12206A1" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M12206A2_00000026.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Sandy Bridge B2" 
+	Token = "DESKTOP_M12206A2" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M12206A3_00000008.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Sandy Bridge C0" 
+	Token = "DESKTOP_M12206A3" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M12206A5_00000007.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Sandy Bridge D0" 
+	Token = "DESKTOP_M12206A5" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M12206A6_00000028.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Sandy Bridge D1" 
+	Token = "DESKTOP_M12206A6" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M12206A7_00000029.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Sandy Bridge D2 and Q0" 
+	Token = "DESKTOP_M12206A7" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M07206D1_80000103.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) SandyBridge-E Processor A1 Stepping"
+	Token = "DESKTOP_M07206D1" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M0F206D2_8000020A.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) SandyBridge-E Processor B0 Stepping"
+	Token = "DESKTOP_M0F206D2" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M0F206D3_80000302.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) SandyBridge-E Processor B1 Stepping"
+	Token = "DESKTOP_M0F206D3" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M6D206D5_00000512.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) SandyBridge-E Processor C-0 Stepping"
+	Token = "DESKTOP_M6D206D5" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M6D206D6_00000619.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) SandyBridge-E Processor C-1 and M-0 Stepping"
+	Token = "DESKTOP_M6D206D6" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M6D206D7_00000710.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) SandyBridge-E Processor C-2 and M-1 Stepping"
+	Token = "DESKTOP_M6D206D7" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M12306A2_00000008.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Ivy Bridge B-0"
+	Token = "DESKTOP_M12306A2" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M12306A4_00000007.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Ivy Bridge C-0"
+	Token = "DESKTOP_M12306A4" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M12306A5_00000007.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Ivy Bridge C-1"
+	Token = "DESKTOP_M12306A5" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M12306A8_00000010.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Ivy Bridge E-0 and L-0"
+	Token = "DESKTOP_M12306A8" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M12306A9_0000001C.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Ivy Bridge E-1 and L-1"
+	Token = "DESKTOP_M12306A9" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\MED306E2_0000020D.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Ivy Bridge-E L-1 and R-1"
+	Token = "DESKTOP_MED306E2" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\MED306E4_00000428.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Ivy Bridge-E S-1"
+	Token = "DESKTOP_MED306E4" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M32306C1_FFFF0013.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Haswell Processor A-0"
+	Token = "DESKTOP_M32306C1" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M32306C2_FFFF0006.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Haswell Processor B-0"
+	Token = "DESKTOP_M32306C2" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M32306C3_00000022.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Haswell C-0"
+	Token = "DESKTOP_M32306C3" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M3240660_FFFF0011.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Haswell Perf Halo Processor B-0 Stepping"
+	Token = "DESKTOP_M3240660" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M3240661_00000017.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Haswell Perf Halo Processor C-0 Stepping"
+	Token = "DESKTOP_M3240661" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\MEF306F1_80000013.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Haswell-E Processor L-0 Stepping"
+	Token = "DESKTOP_MEF306F1" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M6F306F2_00000038.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Haswell-E Processor M-0, R-2 Stepping"
+	Token = "DESKTOP_MEF306F2" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\M2240671_00000017.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Broadwell-H Processor E-0, G-0 Stepping"
+	Token = "DESKTOP_M2240671" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\MEF406F0_00000010.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Broadwell-E Processor L-0 Stepping"
+	Token = "DESKTOP_MEF406F0" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_DESKTOP_DIR)\MEF406F1_0B00001D.PDB"
+	Parent  = "$(Intel_Desktop)"
+	Help  = "Intel(R) Broadwell-E Processor R-0 Stepping"
+	Token = "DESKTOP_MEF406F1" "=" "1"
+	InvokeOrder = AfterParent
+End

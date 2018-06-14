@@ -1,0 +1,15 @@
+<component>
+	name = "CSM"
+	category = eModule
+	LocalRoot = "Board\eM\Csm\"
+	RefName = "CSM"
+[files]
+"csm.sdl"	
+"CSM.chm"	
+[parts]
+"CSMCORE"
+"CSM16"
+"CSMSB"
+"CsmProtocols"
+"CSMSETUP"
+<endComponent>

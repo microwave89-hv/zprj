@@ -1,0 +1,206 @@
+TOKEN
+	Name  = "INTEL_CPURC_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Ivy Bridge CPU reference code support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "BIST_SUPPORT"
+	Value  = "0"
+	Help  = "Due to Intel sighting report, do not turn on this token."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CpuRatioOverride_Support"
+	Value  = "0"
+	Help  = "Due to Intel sighting report, do not turn on this token."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DcaState_token"
+	Value  = "0"
+	Help  = "Due to Intel sighting report, do not turn on this token."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FastString_token"
+	Value  = "1"
+	Help  = "Token for setup CPU Policy protocol."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "MachineCheckEnable_token"
+	Value  = "1"
+	Help  = "Token for setup CPU Policy protocol."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+#TOKEN
+#	Name  = "MonitorMwaitEnable_token"
+#	Value  = "1"
+#	Help  = "Token for setup CPU Policy protocol."
+#	TokenType = Boolean
+#	TargetMAK = Yes
+#	TargetH = Yes
+#End
+
+#-TOKEN
+#-	Name  = "XapicEnable_token"
+#-	Value  = "0"
+#-	Help  = "Token for setup CPU Policy protocol."
+#-	TokenType = Boolean
+#-	TargetMAK = Yes
+#-	TargetH = Yes
+#-End
+
+#TOKEN
+#	Name  = "BspSelectione_token"
+#	Value  = "0"
+#	Help  = "Token for setup CPU Policy protocol."
+#	TokenType = Boolean
+#	TargetMAK = Yes
+#	TargetH = Yes
+#End
+
+TOKEN
+	Name  = "DcaPrefetchDelayValue_token"
+	Value  = "4"
+	Help  = "Token for setup CPU Policy protocol."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "VirtualWireMode_token"
+	Value  = "0"
+	Help  = "Token for setup CPU Policy protocol."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+PATH
+#-	Name  = "IvyBridgePkg_DIR"
+	Name  = "PROJECT_CPU_ROOT"
+End
+
+PATH
+	Name  = "PROJECT_PCH_ROOT"
+	Path  = "ReferenceCode\Chipset\LynxPoint"
+End
+
+#-PATH
+#-	Name  = "IvyBridgePkgPei_DIR"
+#-End
+
+#-PATH
+#-	Name  = "IvyBridgePkgDxe_DIR"
+#-End
+
+ELINK
+#-	Name  = "IvyBridgePkg_INCLUDES"
+	Name  = "PROJECT_CPU_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+#-ELINK
+#-	Name  = "IvyBridgePkgPei_INCLUDES"
+#-	InvokeOrder = ReplaceParent
+#-End
+#-
+#-ELINK
+#-	Name  = "IvyBridgePkgDxe_INCLUDES"
+#-	InvokeOrder = ReplaceParent
+#-End
+
+ELINK
+	Name  = "/I$(PROJECT_CPU_ROOT)"
+	Parent  = "PROJECT_CPU_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PROJECT_CPU_ROOT)\Include"
+	Parent  = "PROJECT_CPU_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PROJECT_CPU_ROOT)\Include\Library"
+	Parent  = "PROJECT_CPU_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PROJECT_CPU_ROOT)\CpuInit\Dxe\x64"
+	Parent  = "PROJECT_CPU_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PROJECT_CPU_ROOT)\SampleCode\Include"
+	Parent  = "PROJECT_CPU_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PROJECT_CPU_ROOT)\SampleCode"
+	Parent  = "PROJECT_CPU_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PROJECT_PCH_ROOT)\Include"
+	Parent  = "PROJECT_CPU_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PROJECT_PCH_ROOT)\Include\Library"
+	Parent  = "PROJECT_CPU_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+#-ELINK
+#-	Name  = "/I$(IvyBridgePkg_DIR)\SampleCode\CpuPolicyInit\Pei"
+#-	Parent  = "IvyBridgePkgPei_INCLUDES"
+#-	InvokeOrder = AfterParent
+#-End
+#-
+#-ELINK
+#-	Name  = "/I$(IvyBridgePkg_DIR)\CpuInit\Dxe"
+#-	Parent  = "IvyBridgePkgDxe_INCLUDES"
+#-	InvokeOrder = AfterParent
+#-End
+#-
+#-ELINK
+#-	Name  = "/I$(IvyBridgePkg_DIR)\SampleCode\CpuPolicyInit\Dxe"
+#-	Parent  = "IvyBridgePkgDxe_INCLUDES"
+#-	InvokeOrder = AfterParent
+#-End
+#-
+#-ELINK
+#-	Name  = "/I$(IvyBridgePkg_DIR)\SampleCode\CpuPolicyInit\Dxe\x64"
+#-	Parent  = "IvyBridgePkgDxe_INCLUDES"
+#-	InvokeOrder = AfterParent
+#-End

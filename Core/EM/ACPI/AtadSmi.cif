@@ -1,0 +1,12 @@
+<component>
+	name = "AtadSmi"
+	category = ModulePart
+	LocalRoot = "Core\EM\ACPI\"
+	RefName = "AtadSmi"
+[files]
+"AtadSmi.sdl"	
+"AtadSmi.mak"
+"AtadSmi.dxs"	
+"AtadSmi.h"
+"AtadSmi.c"
+<endComponent>

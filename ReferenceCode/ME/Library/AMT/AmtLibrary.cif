@@ -1,0 +1,11 @@
+<component>
+	name = "AmtLibrary"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Library\AMT\"
+	RefName = "AmtLibrary"
+[files]
+"AmtLibrary.sdl"
+[parts]
+"AmtLibDxe"
+"AmtLibPei"
+<endComponent>

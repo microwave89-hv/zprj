@@ -1,0 +1,16 @@
+<component>
+	name = "Partition"
+	category = ModulePart
+	LocalRoot = "Core\CORE_DXE\Partition\"
+	RefName = "Partition"
+[files]
+"Partition.sdl"	
+"ElTorito.c"	
+"ElTorito.h"	
+"Gpt.c"	
+"Gpt.h"	
+"Mbr.c"	
+"Mbr.h"	
+"Partition.c"	
+"Partition.h"	
+<endComponent>

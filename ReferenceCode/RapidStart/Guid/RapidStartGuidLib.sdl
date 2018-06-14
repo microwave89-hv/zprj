@@ -1,0 +1,68 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartGuidLib/RapidStartGuidLib.sdl 1     4/19/12 8:04a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 4/19/12 8:04a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartGuidLib/RapidStartGuidLib.sdl $
+# 
+# 1     4/19/12 8:04a Yurenlai
+# Initial check in.
+#
+#*************************************************************************
+TOKEN
+	Name  = "RapidStartGuidLib_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable iFFS GUID LIB support in Project"
+End
+
+MODULE
+	File  = "RapidStartGuidLib.mak"
+	Help  = "Includes RapidStartGuidLib.mak to Project"
+End
+
+PATH
+	Name  = "RapidStartGuidLib_DIR"
+End
+
+TOKEN
+	Name  = "RapidStartGuidLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\RapidStartGuidLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

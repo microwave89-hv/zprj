@@ -1,0 +1,11 @@
+<component>
+	name = "Ip4Config"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Ipv4\Ip4Config"
+	RefName = "Ip4Config"
+[files]
+"Ip4Config.sdl"	
+"Ip4Config.mak"	
+"Ip4ConfigDxe.efi"	
+"Ip4ConfigDxeIa32.efi"	
+<endComponent>

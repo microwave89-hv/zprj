@@ -1,0 +1,6 @@
+#include <ReferenceCode\ME\Protocol\AlertStandardFormat\AlertStandardFormat.h>
+  
+DEPENDENCY_START
+    EFI_ALERT_STANDARD_FORMAT_PROTOCOL_GUID
+DEPENDENCY_END
+

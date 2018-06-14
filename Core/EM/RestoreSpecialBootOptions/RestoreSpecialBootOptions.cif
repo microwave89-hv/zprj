@@ -1,0 +1,11 @@
+<component>
+	name = "RestoreSpecialBootOptions"
+	category = eModule
+	LocalRoot = "Core\Em\RestoreSpecialBootOptions\"
+	RefName = "RestoreSpecialBootOptions"
+[files]
+"RestoreSpecialBootOptions.sdl"	
+"RestoreSpecialBootOptions.mak"	
+"RestoreSpecialBootOptions.chm"
+"RestoreSpecialBootOptions.c"
+<endComponent>

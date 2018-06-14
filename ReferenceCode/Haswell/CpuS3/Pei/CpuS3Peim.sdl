@@ -1,0 +1,37 @@
+TOKEN
+	Name  = "CpuS3Peim_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Cpu Pei init support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "CpuS3Peim_DIR"
+End
+
+MODULE
+	Help  = "Includes CpuS3Peim.mak to Project"
+	File  = "CpuS3Peim.mak"
+End
+
+#-ELINK
+#-	Name  = "CpuS3Peim_INCLUDES"
+#-	InvokeOrder = ReplaceParent
+#-End
+#-
+#-ELINK
+#-	Name  = "/I$(CpuS3Peim_DIR)"
+#-	Parent  = "CpuS3Peim_INCLUDES"
+#-	InvokeOrder = AfterParent
+#-End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CpuS3Peim.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End
+

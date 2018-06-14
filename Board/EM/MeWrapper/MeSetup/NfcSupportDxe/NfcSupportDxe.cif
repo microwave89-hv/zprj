@@ -1,0 +1,14 @@
+<component>
+	name = "NfcSupportDxe"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\MeSetup\NfcSupportDxe"
+	RefName = "NfcSupportDxe"
+[files]
+"NfcSupportDxe.c"	
+"NfcSupportDxe.h"	
+"NfcSupportDxe.sdl"	
+"NfcSupportDxe.dxs"	
+"NfcSupportDxe.mak"	
+[parts]
+"NfcSupportSetupHook"
+<endComponent>

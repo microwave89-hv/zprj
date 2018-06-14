@@ -1,0 +1,13 @@
+<component>
+	name = "CORE_DXE"
+	category = ModulePart
+	LocalRoot = "Core\CORE_DXE\"
+	RefName = "CORE_DXE"
+[files]
+"CORE_DXE.sdl"	
+"CORE_DXE.mak"	
+"Bds.uni"	
+"BdsBoard.c"
+[parts]
+"ArchProtocol"
+<endComponent>

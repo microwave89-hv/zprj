@@ -1,0 +1,12 @@
+<component>
+	name = "PfatFlashLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Pfat\PfatFlashLib"
+	RefName = "PfatFlashLib"
+[files]
+"PfatFlashLib.sdl"	
+"PfatFlashLib.mak"	
+"PfatFlashLib.c"	
+[parts]
+"HandlePfatLegacy"
+<endComponent>

@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueBaseDebugLibNull"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\BaseDebugLibNull"
+	RefName = "EdkIIGlueBaseDebugLibNull"
+[files]
+"EdkIIGlueBaseDebugLibNull.sdl"	
+"EdkIIGlueBaseDebugLibNull.mak"	
+"BaseDebugLibNull.inf"	
+"DebugLib.c"	
+<endComponent>

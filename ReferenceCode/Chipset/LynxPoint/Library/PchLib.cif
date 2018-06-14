@@ -1,0 +1,14 @@
+<component>
+	name = "PchLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Library\"
+	RefName = "PchLib"
+[files]
+"PchLib.sdl"	
+[parts]
+"DxeRuntimePciLibPciExpress"
+"PchPciExpressHelpersLib"
+"PchPlatformLib"
+"PchSmbusLib"
+"RcFviDxeLib"
+<endComponent>

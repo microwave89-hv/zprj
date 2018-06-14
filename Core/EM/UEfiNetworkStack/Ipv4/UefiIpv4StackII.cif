@@ -1,0 +1,14 @@
+<component>
+	name = "UefiIpv4Stack II"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Ipv4"
+	RefName = "UefiIpv4Stack II"
+[files]
+"UefiIpv4StackII.sdl"	
+[parts]
+"Dhcp4"
+"Ip4Config"
+"Ip4"
+"Mtftp4"
+"Udp4"
+<endComponent>

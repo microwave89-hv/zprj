@@ -1,0 +1,14 @@
+<component>
+	name = "Library Sources"
+	category = ModulePart
+	LocalRoot = "Library\"
+	RefName = "LibSrc"
+[files]
+"LibSrc.sdl"	
+[parts]
+"AmiLib"
+"AmiPeiLib"
+"AmiDxeLib"
+"AmiIa32Lib"
+"AmiX64Lib"
+<endComponent>

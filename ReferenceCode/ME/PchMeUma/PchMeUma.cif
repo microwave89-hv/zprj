@@ -1,0 +1,13 @@
+<component>
+	name = "PchMeUma"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\PchMeUma\"
+	RefName = "PchMeUma"
+[files]
+"PchMeUma.sdl"	
+"PchMeUma.mak"	
+"PchMeUma.c"	
+"PchMeUma.h"	
+"PchMeUma.dxs"	
+"PchMeUma.inf"	
+<endComponent>

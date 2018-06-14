@@ -1,0 +1,10 @@
+<component>
+	name = "SMM_MOD"
+	category = ModulePart
+	RefName = "SMM_MOD"
+[files]
+"Core\EM\SMM\SmmEntry.asm"	
+"Core\EM\SMM\Smst.c"	
+"Core\EM\SMM\SmmInit.c"
+"Core\EM\SMM\SmmDispatcher.c"
+<endComponent>

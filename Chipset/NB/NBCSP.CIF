@@ -1,0 +1,22 @@
+<component>
+	name = "Intel SystemAgent NB Chipset"
+	category = ModulePart
+	LocalRoot = "Chipset\NB\"
+	RefName = "Intel SystemAgent NB Chipset"
+[files]
+"NBDxe.c"	
+"NBPEI.c"	
+"NBGeneric.c"	
+"NBCspLib.h"	
+"NbPciCSP.c"	
+"NBAcpi.c"	
+"NBSmm.c"	
+"hsw_VBios.dat"	
+"NB.ASL"	
+[parts]
+"NBSMI"
+"NB Protocols"
+"NB PPI"
+"SystemAgentWrap"
+"NBLegacyRegion"
+<endComponent>

@@ -1,0 +1,21 @@
+<component>
+	name = "ArchProtocol"
+	category = ModulePart
+	LocalRoot = "Include\Protocol\"
+	RefName = "ArchProtocol"
+[files]
+"Timer.h"	
+"WatchdogTimer.h"	
+"Metronome.h"	
+"CPU.h"	
+"RealTimeClock.h"	
+"Reset.h"	
+"Variable.h"	
+"MonotonicCounter.h"	
+"BDS.h"	
+"StatusCode.h"	
+"Runtime.h"	
+"Capsule.h"	
+"Security.h"	
+"Security2.h"	
+<endComponent>

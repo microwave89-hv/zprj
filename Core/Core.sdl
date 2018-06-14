@@ -1,0 +1,991 @@
+TOKEN
+	Name  = "CORE_MAJOR_VERSION"
+	Value  = "4"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CORE_MINOR_VERSION"
+	Value  = "6"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CORE_REVISION"
+	Value  = "5"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CORE_BUILD_NUMBER"
+	Value  = "4"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CORE_COMBINED_VERSION"
+	Value  = "$(CORE_MAJOR_VERSION)*65536+$(CORE_MINOR_VERSION)*100+$(CORE_REVISION)*10+$(CORE_BUILD_NUMBER)"
+	Help  = "The token value is an aggregation of all core version tokens into a single integer."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "CORE_VENDOR"
+	Value  = "American Megatrends"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEBUG_MODE"
+	Value  = "0"
+	Help  = "Main switch to control debugging features.\If this switch is set to off, all debugging capabilities are disabled.\If this switch is set to on, the following SDL tokens can be used to fine-tune debugging capabilities:\OPTIMIZATION, DEBUG_CODE, DEBUG_INFO."
+	TokenType = Boolean
+	TargetMAK = Yes
+	Range  = "0 - 1"
+End
+
+TOKEN
+	Name  = "OPTIMIZATION"
+	Value  = "0"
+	Help  = "Once DEBUG_MODE is on, this swtich is used to control compiler and linker optimization.\If DEBUG_MODE is set to off, this switch is ignored and optimization is enabled."
+	TokenType = Boolean
+	TargetMAK = Yes
+	Token = "DEBUG_MODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DEBUG_INFO"
+	Value  = "1"
+	Help  = "Once DEBUG_MODE is on, this swtich is used to control generation of the debugging information.\Debug information is used by Debuggers to provide source level debugging capability. \If DEBUG_MODE is set to off, this switch is ignored and generation of the  debugging information is disabled."
+	TokenType = Boolean
+	TargetMAK = Yes
+	Token = "DEBUG_MODE" "=" "1"
+End
+
+TOKEN
+	Name  = "DEBUG_CODE"
+	Value  = "1"
+	Help  = "Once DEBUG_MODE is on, this swtich is used to enable or disable debugging code\such as debugging messages, assert statements, and any code enclosed into #ifdef EFI_DEBUG ... #endif.\If DEBUG_MODE is set to off, this switch is ignored and debugging code is disabled."
+	TokenType = Boolean
+	TargetMAK = Yes
+	Token = "DEBUG_MODE" "=" "1"
+End
+
+TOKEN
+	Name  = "INDEPENDENT_PEI_DEBUG_SETTINGS"
+	Value  = "0"
+	Help  = "If DEBUG_MODE is set to off, this switch is ignored and all debugging capabilities are disabled.\If this switch is set to on, an independent set of debug settings can be defined for PEI modules.\If this switch is set to on, the following SDL tokens can be used to fine-tune PEI debugging capabilities:\PEI_OPTIMIZATION, PEI_DEBUG_CODE, PEI_DEBUG_INFO.\"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Range  = "0-1"
+	Token = "DEBUG_MODE" "=" "1"
+End
+
+TOKEN
+	Name  = "PEI_OPTIMIZATION"
+	Value  = "0"
+	Help  = "Applies to PEI modules only.\Once INDEPENDENT_PEI_DEBUG_SETTINGS is on, this swtich is used to control compiler and linker optimization for PEI modules\If INDEPENDENT_PEI_DEBUG_SETTINGS is set to off, this switch is ignored and OPTIMIZATION switch is used instead."
+	TokenType = Boolean
+	TargetMAK = Yes
+	Token = "INDEPENDENT_PEI_DEBUG_SETTINGS" "=" "1"
+End
+
+TOKEN
+	Name  = "PEI_DEBUG_INFO"
+	Value  = "1"
+	Help  = "Applies to PEI modules only.\Once INDEPENDENT_PEI_DEBUG_SETTINGS is on, this swtich is used to control generation of the debugging information for PEI modules.\Debug information is used by Debuggers to provide source level debugging capability. \If INDEPENDENT_PEI_DEBUG_SETTINGS is set to off, this switch is ignored and DEBUG_INFO switch is used instead."
+	TokenType = Boolean
+	TargetMAK = Yes
+	Token = "INDEPENDENT_PEI_DEBUG_SETTINGS" "=" "1"
+End
+
+TOKEN
+	Name  = "PEI_DEBUG_CODE"
+	Value  = "1"
+	Help  = "Applies to PEI modules only.\Once INDEPENDENT_PEI_DEBUG_SETTINGS is on, this swtich is used to enable or disable debugging code\such as debugging messages, assert statements, and any code enclosed into #ifdef EFI_DEBUG ... #endif.\If INDEPENDENT_PEI_DEBUG_SETTINGS is set to off, this switch is ignored and DEBUG_CODE switch is used instead."
+	TokenType = Boolean
+	TargetMAK = Yes
+	Token = "INDEPENDENT_PEI_DEBUG_SETTINGS" "=" "1"
+End
+
+TOKEN
+	Name  = "SELECTIVE_DEBUGGING_SUPPORT"
+	Value  = "0"
+	Help  = "If DEBUG_MODE is set to off, this switch is ignored and all debugging capabilities are disabled.\Enables/disables selective debugging support.\Selective debugging provides a capability to specify independent set of debug settings for a group of modules defined by SELECTIVE_DEBUGGING eLink.\SELECTIVE_DEBUGGING eLink defines list of module RefNames.\If this switch is set to on, the following SDL tokens can be used to fine-tune selective debugging capabilities:\SELECTIVE_OPTIMIZATION, SELECTIVE_DEBUG_CODE, SELECTIVE_DEBUG_INFO\"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Range  = "0-1"
+	Token = "DEBUG_MODE" "=" "1"
+End
+
+TOKEN
+	Name  = "SELECTIVE_OPTIMIZATION"
+	Value  = "0"
+	Help  = "Once SELECTIVE_DEBUGGING_SUPPORT is on, this swtich is used to control compiler and linker optimization \for modules from the SELECTIVE_DEBUGGING list.\"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Token = "SELECTIVE_DEBUGGING_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "SELECTIVE_DEBUG_INFO"
+	Value  = "1"
+	Help  = "Once SELECTIVE_DEBUGGING_SUPPORT is on, this swtich is used to control generation of the debugging information\for modules from the SELECTIVE_DEBUGGING list.\Debug information is used by Debuggers to provide source level debugging capability. "
+	TokenType = Boolean
+	TargetMAK = Yes
+	Token = "SELECTIVE_DEBUGGING_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "SELECTIVE_DEBUG_CODE"
+	Value  = "1"
+	Help  = "Once SELECTIVE_DEBUGGING_SUPPORT is on, this swtich is used to enable or disable debugging code\such as debugging messages, assert statements, and any code enclosed into #ifdef EFI_DEBUG ... #endif\for modules from the SELECTIVE_DEBUGGING list."
+	TokenType = Boolean
+	TargetMAK = Yes
+	Token = "SELECTIVE_DEBUGGING_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "BRIEF"
+	Value  = "1"
+	Help  = "Brief build mode."
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "EMBEDDED_RESOURCES"
+	Value  = "0"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CREATE_UI_SECTION"
+	Value  = "1"
+	Help  = "Setting of this switch to on enables generation of UI section for every FFS file. \The UI section has a Unicode representation of the FFS file name."
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "EFI_SPECIFICATION_VERSION"
+	Value  = "0x2000A"
+	Help  = "version of the supported EFI/UEFI specification:\0x2000A - UEFI 2.1\0x20014 - UEFI 2.2\0x2001E - UEFI 2.3\0x2001F - UEFI 2.3.1"
+	TokenType = Integer
+	TargetMAK = Yes
+	Range  = "0x2000A, 0x20014, 0x2001E, 0x2001F"
+End
+
+TOKEN
+	Name  = "PI_SPECIFICATION_VERSION"
+	Value  = "0x0005B"
+	Help  = "version of the PI specification supported:\0x0005B - PI 0.91\0x10000 - PI 1.0\0x1000A - PI 1.1\0x10014 - PI 1.2"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Range  = "0x0005B, 0x10000, 0x1000A, 0x10014"
+End
+
+TOKEN
+	Name  = "CJK_CHARACTERS_SUPPORT"
+	Value  = "0"
+	Help  = "Enables/Disables build process support for the Chinese/Japanese/Korean characters.\Since these languages are not alphabet-based, it is impossible to include glyphs for all the language characters. Only characters used in the project are included for these languages. \Extra build steps required to detect, which characters are used.\This token is created to remove build time overhead, when this is not needed.\"
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "LANGUAGE_FONT_LIST"
+	Value  = "drawing $(SUPPORTED_LANGUAGES)"
+	Help  = "Space separated list of language identifiers. \The fonts for these languages will be included into the ROM image."
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "FONT_TOOL_HII_FORMAT_SWITCH"
+	Value  = "/F 2.1"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "STRING_PACK_POST_PROCESS_COMMAND"
+	Value  = "$(FONT_TOOL) $(FONT_TOOL_HII_FORMAT_SWITCH) /P $(BUILD_DIR)\$(NAME)Str.hpk /T $(BUILD_DIR)\font.tmp"
+	Help  = "The token defines command used in rules.mak to perform additional processing \of module's HII string pack ($(BUILD_DIR)$(NAME)Str.hpk) \after standard processing (performed by StrGather utility) is completed."
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "CJK_CHARACTERS_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "ISA_IRQ_MASK"
+	Value  = "0xE305"
+	Help  = "This is an IRQ mask which may be used by ISA devices\ If BIT == 0 IRQ Available BIT == 1 IRQ Used.\DEFAULT VALUE == 0xE305."
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0...0FFFFh"
+End
+
+TOKEN
+	Name  = "ISA_DMA_MASK"
+	Value  = "0x10"
+	Help  = "This is DEFAULT mask of ISA DMA channels which may be used by ISA devices.\Set BIT=1 means Channel CAN NOT be used, Reset BIT=0 means Channel is AVAILABLE.\Channel 4 of ISA DMA controller is tacken for CASCADE DMA channel. \All the rest are available."
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0...0EFh"
+End
+
+TOKEN
+	Name  = "KBC_SUPPORT"
+	Value  = "1"
+	Help  = "Enable/Disable KBC support"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "SIO_SUPPORT" "=" "1"
+	Token = "ACPI_IA_BOOT_ARCH" "&" "2"
+End
+
+TOKEN
+	Name  = "FLOPPY_CTRL_SUPPORT"
+	Value  = "1"
+	Help  = "Switch to enable ISA Floppy Controller support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Token = "SIO_SUPPORT" "=" "1"
+	Token = "ACPI_IA_BOOT_ARCH" "&" "1"
+End
+
+TOKEN
+	Name  = "TOOL_DIR"
+	Value  = "tools"
+	Help  = "Tools directory"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "FWIMAGE"
+	Value  = "$(SILENT)FwImage"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "ASL"
+	Value  = "$(SILENT)asl"
+	Help  = "ASL compiler"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "GENDEPEX"
+	Value  = "$(SILENT)GENDEPEX"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "GENFFSFILE"
+	Value  = "$(SILENT)GENFFSFILE"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "GENFVIMAGE"
+	Value  = "GENFVIMAGE"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "GENSECTION"
+	Value  = "$(SILENT)GENSECTION /nologo"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "GENTEIMAGE"
+	Value  = "$(SILENT)GENTEIMAGE"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "PEIREBASE"
+	Value  = "$(SILENT)PEIREBASE"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "STRGATHER"
+	Value  = "STRGATHER"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "VFRCOMPILE"
+	Value  = "$(SILENT)VFRCOMPILE"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "STRGATHER"
+	Value  = "UEFISTRGATHER"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "VFRCOMPILE"
+	Value  = "$(SILENT)UEFIVFRCOMPILE"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "CIF2MAK"
+	Value  = "$(SILENT)CIF2MAK /nologo"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "PACKOPROM"
+	Value  = "$(SILENT)PackOpRom /nologo"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "AMIRC"
+	Value  = "$(SILENT)AmiRc /nologo"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "VFRID"
+	Value  = "$(SILENT)VfrId /nologo"
+	TokenType = Integer
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "MAKE"
+	Value  = "$(SILENT)NMAKE -NOLOGO -R"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "CC"
+	Value  = "$(SILENT)CL"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "CP"
+	Value  = "$(SILENT)CL /nologo /EP"
+	Help  = "C preprocessor"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "LINK"
+	Value  = "$(SILENT)LINK"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "ASM"
+	Value  = "$(SILENT)ML"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "ASM16"
+	Value  = "$(SILENT)ML"
+	TokenType = Integer
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "LIBEXE"
+	Value  = "$(SILENT)LINK /LIB"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "ASMLINK"
+	Value  = "$(SILENT)LINK16"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "PEIDEBUGFIXUP"
+	Value  = "$(SILENT)PEIDEBUGFIXUP"
+	Help  = "This is the tool responsible for patching the FV_BB \by replacing the address of PEI core entry point with \the address of PEI Debugger entry point, so that the \control can be given to PEI debugger"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "EFI_APRIORI_GUID"
+	Value  = "FC510EE7-FFDC-11D4-BD41-0080C73C8881"
+	Help  = "GUID used to identify 'a priori' file within the Firmware Volume"
+	TokenType = Expression
+	TargetMAK = Yes
+	Range  = "GUID"
+End
+
+TOKEN
+	Name  = "MERGE"
+	Value  = "MERGE64"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "FWBUILD"
+	Value  = "$(SILENT)FWBUILD"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "ECHO"
+	Value  = "$(SILENT)echo"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "DEL"
+	Value  = "$(SILENT)del"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "SILENT"
+	Value  = "@"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "BRIEF" "=" "1"
+End
+
+TOKEN
+	Name  = "SILENT_OUT"
+	Value  = "> NUL"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "BRIEF" "=" "1"
+End
+
+TOKEN
+	Name  = "DBG"
+	Value  = "Dbg"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "DEBUG_MODE" "!=" "0"
+End
+
+TOKEN
+	Name  = "ARCH"
+	Value  = "x64"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "x64_BUILD" "=" "1"
+End
+
+TOKEN
+	Name  = "FONT_TOOL"
+	Value  = "$(SILENT)FontTool"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "NV_SIMULATION"
+	Value  = "0"
+	Help  = "Debug Switch. When the switch is on, NVRAM\variables are not stored in NVRAM"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NVRAM_HEADER_SIZE"
+	Value  = "96"
+	Help  = "Size of NVRAM header, which is number of bytes from\the NVRAM_ADDRESS to the first variable record.\Currently defined as:\72(FV Header Size) + 24 (FFS File Header Size)"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+	Range  = "0-NVRAM_SIZE-1"
+End
+
+TOKEN
+	Name  = "MANUFACTURING_MODE_SUPPORT"
+	Value  = "0"
+	Help  = "When enabled adds support for manufactoring mode.\NVRAM image generated during build process will contain manufactoring defaults for variables used in Setup."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FAULT_TOLERANT_NVRAM_UPDATE"
+	Value  = "0"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BEEP_ENABLE"
+	Value  = "1"
+	Help  = "This flag enables/disables all firmware beeps"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "USE_CC_RESPONSE_FILE"
+	Value  = "0"
+	Help  = "When this option is enabled, all C-compiler(CC) options are passed via the response file.\Enable when the length of the CC command line exceeds maximum supported limit.\"
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "USE_CP_RESPONSE_FILE"
+	Value  = "0"
+	Help  = "When this option is enabled, all C-preprocessor(CP) options are passed via the response file.\Enable when the length of the CP command line exceeds maximum supported limit.\"
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "USE_LINKER_RESPONSE_FILE"
+	Value  = "0"
+	Help  = "When this option is enabled, all linker options are passed via the response file.\Enable when the length of the linker command line exceeds maximum supported limit.\"
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "GENERATE_CC_LISTING_FILE"
+	Value  = "0"
+	Help  = "Enables/disables generation of the assembly listing file."
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "TRACE_LEVEL_MASK"
+	Value  = "TRACE_ALWAYS"
+	Help  = "Defines enabled trace message levels.\The value is a bitwise OR of trace levels defined in AmiLib.h.\TRACE_ALWAYS enables all trace messages.\TRACE_NEVER disables all trace messages.\Has no effect if trace messages are disabled."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SETUP_DEFAULTS_IN_FV_MAIN"
+	Value  = "1"
+	Help  = "When this token is enabled, a copy of setup defaults \will be included into FV_MAIN as an FFS file $(BUILD_DIR)\Defaults.ffs"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Token = "AMITSE_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "UART_INPUT_CLOCK"
+	Value  = "1843200"
+	Help  = "This is an UART input clock. The default value is (24000000/13) = 1843200 MHz"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SETUP_DATA_LAYOUT_OVERRIDE_SUPPORT"
+	Value  = "0"
+	Help  = "This switch enables/disables support of the setup data (SETUP_DATA) structure override.\When this token is disabled (default), the SETUP_DATA definition is generated by the build process based on the content of the project .sd files.\When this token is enabled, the SETUP_DATA definition is provided by the external header defined by the SETUP_DATA_LAYOUT_OVERRIDE_HEADER SDL token\"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SETUP_DATA_LAYOUT_OVERRIDE_HEADER"
+	Help  = "Name of the project specific header file containing definition of the setup data structure.\The project specific definition replaces generic once when SETUP_DATA_LAYOUT_OVERRIDE_HEADER\token is enabled."
+	TokenType = Integer
+	TargetMAK = Yes
+	Token = "SETUP_DATA_LAYOUT_OVERRIDE_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "LZMA_SUPPORT"
+	Value  = "0"
+	Help  = "Enables/Disables LZMA compression support"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BUILD_RULES"
+	Value  = "$(CORE_DIR)\Rules.mak"
+	Help  = "Name of the template file processed by CIF2MAK to generate the make file."
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "CIF2MAK_DEFAULTS"
+	Value  = "/r$(BUILD_RULES) /d$(PROJECT_DIR) /o$@ /vPROJECT_DIR /lproject.lfo"
+	Help  = "Command line of the CIF2MAK utility."
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "BACKWARD_COMPATIBLE_MODE"
+	Value  = "1"
+	Help  = "Enables/Disabled backward compatibility definitions in Core header files."
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "NO_PI_MP_SERVICES_SUPPORT"
+	Value  = "1"
+	Help  = "Temporarily added to avoid collision with CPU module"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "ROM_LAYOUT_EX"
+	Value  = "$(BUILD_DIR)\RomLayoutEx.bin"
+	Help  = "Name of the file used by secure flash module to sign ROM image"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "USE_RECOVERY_IMAGE_ON_FLASH_UPDATE"
+	Value  = "1"
+	Help  = "If set to 1 system will boot using image provided in recovery capsule"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+PATH
+	Name  = "CORE_DIR"
+End
+
+ELINK
+	Name  = "FV_MAIN"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "FV_MAIN_NESTED"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "CFLAGS"
+	Help  = "command line options of the C compiler"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/nologo /c /Gy"
+	Parent  = "CFLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/W3 /WX"
+	Parent  = "CFLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "LFLAGS"
+	Help  = "command line options for 32-bit linker"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/NOLOGO"
+	Parent  = "LFLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/OPT:REF"
+	Parent  = "LFLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "AFLAGS"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/nologo /c /Cx"
+	Parent  = "AFLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/W3 /WX"
+	Parent  = "AFLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "AFLAGS16"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/nologo /c /omf /Cx"
+	Parent  = "AFLAGS16"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/OUT:$@"
+	Parent  = "LFLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "FV_BB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(CORE_DIR)\FloppyCtrl.ffs"
+	Parent  = "FV_BB"
+	Token = "FLOPPY_CTRL_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(CORE_DIR)\FileSystem$(ARCH).ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmiProtocolLib.lib"
+	Parent  = "AMIDXELIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmiPpiLib.lib"
+	Parent  = "AMIPEILIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PROCESSOR"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "PROCESSOR_RULES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Font.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(GLOBAL_DEFINES)"
+	Parent  = "CFLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(GLOBAL_DEFINES)"
+	Parent  = "AFLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(GLOBAL_DEFINES)"
+	Parent  = "AFLAGS16"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SELECTIVE_DEBUGGING"
+	Token = "SELECTIVE_DEBUGGING_SUPPORT" "=" "1"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/D EFI_SPECIFICATION_VERSION=$(EFI_SPECIFICATION_VERSION)"
+	Parent  = "GLOBAL_DEFINES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D PI_SPECIFICATION_VERSION=$(PI_SPECIFICATION_VERSION)"
+	Parent  = "GLOBAL_DEFINES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GLOBAL_DEFINES"
+	Help  = "Global macro definitions. Added to CFLAGS and AFLAGS"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "ROM_IMAGE"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(FV_BB_DESCRIPTOR)"
+	Parent  = "ROM_IMAGE"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(FV_MAIN_DESCRIPTOR)"
+	Parent  = "ROM_IMAGE"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(NVRAM_BACKUP_DESCRIPTOR)"
+	Parent  = "ROM_IMAGE"
+	Token = "FAULT_TOLERANT_NVRAM_UPDATE" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(FV_NVRAM_DESCRIPTOR)"
+	Parent  = "ROM_IMAGE"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/NODEFAULTLIB /DLL /ALIGN:32 /IGNORE:4108"
+	Parent  = "LFLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/SUBSYSTEM:NATIVE"
+	Parent  = "LFLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Defaults.ffs"
+	Parent  = "FV_MAIN"
+	Token = "SETUP_DEFAULTS_IN_FV_MAIN" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D BACKWARD_COMPATIBLE_MODE=1"
+	Parent  = "GLOBAL_DEFINES"
+	Token = "BACKWARD_COMPATIBLE_MODE" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D NO_PI_MP_SERVICES_SUPPORT=1"
+	Parent  = "GLOBAL_DEFINES"
+	Token = "NO_PI_MP_SERVICES_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+OUTPUTREGISTER
+	Name  = "TOKEN_EQU"
+	Path  = "Build"
+	File  = "token.equ"
+End
+
+OUTPUTREGISTER
+	Name  = "TOKEN_H"
+	Path  = "Build"
+	File  = "token.h"
+End
+
+OUTPUTREGISTER
+	Name  = "TOKEN_MAK"
+	Path  = "Build"
+	File  = "token.mak"
+End
+
+OUTPUTREGISTER
+	Name  = "MODULE_MAK"
+	Help  = "list of make files for enabled components"
+	Path  = "Build"
+	File  = "module.mak"
+End
+
+OUTPUTREGISTER
+	Name  = "BUSNUM_XLAT"
+	Path  = "Build"
+	File  = "BusNumXlat.INC"
+End
+
+OUTPUTREGISTER
+	Name  = "IRQ_ASM"
+	Path  = "Build"
+	File  = "oempir.inc"
+End
+

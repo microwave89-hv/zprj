@@ -1,0 +1,11 @@
+<component>
+	name = "OEM ROM ID Checking"
+	category = ModulePart
+	LocalRoot = "Core\EM\OFBD\OEMROMID\"
+	RefName = "OFBD_OEMROMID"
+[files]
+"OEMROMID.sdl"	
+"OEMROMID.mak"	
+"OEMROMID.h"	
+"OEMROMID.c"	
+<endComponent>

@@ -1,0 +1,31 @@
+TOKEN
+	Name  = DptfAcpiTables_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable DptfAcpiTables support in Project"
+End
+
+MODULE
+	Help  = "Includes DptfAcpiTables.mak to Project"
+	File  = "DptfAcpiTables.mak"
+End
+
+PATH
+	Name  = "INTEL_DPTF_ACPI_TABLE_DIR"
+End
+
+TOKEN
+	Name  = "INTEL_DPTF_ASL_FILE"
+	Value  = "$(INTEL_DPTF_ACPI_TABLE_DIR)\Dptf.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\DptfAcpiTables.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

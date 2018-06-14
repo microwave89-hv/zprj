@@ -1,0 +1,485 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/Pch.sdl 8     1/10/13 8:33a Scottyang $
+#
+# $Revision: 8 $
+#
+# $Date: 1/10/13 8:33a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/Pch.sdl $
+# 
+# 8     1/10/13 8:33a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	PCIE port swap function support.
+# [Files]  		Pch.sdl, PchRootPorts.c
+# 
+# 7     11/20/12 9:38a Scottyang
+# [TAG]  		EIP107014
+# [Category]  	Improvement
+# [Description]  	Update RC 0.8.0
+# [Files]  		ReferenceCode\Chipset\LynxPoint\*.*, SBDxe.c, SB.sd,
+# SbSetupData.c, GetSetupDate.c
+# 
+# 6     10/16/12 4:28a Scottyang
+# [TAG] EIP103924
+# 
+# [Category] Improvement
+# 
+# [Description] Update RC 0.7.1
+# 
+# [Files] ReferenceCode\Chipset\LynxPoint\*.*, SBDxe.c, SB.sd,
+# SbSetupData.c, GetSetupDate.c
+# 
+# 5     9/26/12 3:45a Victortu
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Update for Intel PCH LPT RC070.
+# [Files]         SB.sdl, SBDXE.c, SBPEI.c, Pch.sdl, SB.sd, SB.uni
+# 
+# 4     8/13/12 8:22a Victortu
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Remove PCH_A0PWRON_SAFEMODE.
+# [Files]         SBDxe.c, Pch.sdl
+# 
+# 3     7/27/12 6:29a Victortu
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Support Server/Workstation PCH ID. Please set
+# "PCH_SVR_WS_ID_SUPPORT".
+# [Files]         SBSetup.c, PchRegs.h, Pch.sdl
+# 
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Support ASLPREPROCESS_FLAG to include Iintel RC flags.
+# [Files]         Pch.sdl
+# 
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Update to support ULT Platform.
+# [Files]         SB.H, SB.mak, SB.sdl, SB.sd, SBSetup.c,
+# AcpiModeEnable.c, SBDxe.c, SBPEI.c, SBSMI.c, SleepSmi.c,
+# SmiHandlerPorting.c, SmiHandlerPorting2.c, SBPPI.h, Pch.sdl
+# 
+# 2     7/02/12 10:07a Victortu
+# 
+# 1     2/08/12 8:38a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+	Name  = "PCH_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PCH support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "CougarPoint_SUPPORT"
+	Value  = "$(PCH_SUPPORT)"
+	Help  = ""
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PCHLP_SUPPORT"
+	Value  = "0"
+	Help  = "PCH LynxPoint-LP Support"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PCIE_PORT_SWAP"
+	Value  = "0"
+	Help  = "PCH PCIE pport swap function"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+ELINK
+	Name  = "INTEL_PCH_RC_FLAGS"
+	Help  = "PCH Reference Code command line options of the compiler"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(INTEL_PCH_RC_FLAGS)"
+	Parent  = "GLOBAL_DEFINES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(INTEL_PCH_RC_FLAGS)"
+	Parent  = "ASLPREPROCESS_FLAG"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D PCH_SUPPORT"
+	Parent  = "INTEL_PCH_RC_FLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D CougarPoint_SUPPORT"
+	Parent  = "INTEL_PCH_RC_FLAGS"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "PCH_DEBUG_INFO"
+	Value  = "1"
+	Help  = "Enable/disable debug message in debug build for PCH drivers."
+	TokenType = Integer
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "SERIAL_IO_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "PCHLP_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "ADSP_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "PCHLP_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "SUS_WELL_RESTORE"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Token = "RapidStart_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "USB_PRECONDITION_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "INTEL_COUGAR_POINT_DIR"
+End
+
+PATH
+	Name  = "INTEL_PCH_DIR"
+End
+
+ELINK
+	Name  = "/I$(INTEL_COUGAR_POINT_DIR)"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_PCH_DIR)"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_COUGAR_POINT_DIR)\Include"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_PCH_DIR)\Include"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_COUGAR_POINT_DIR)\Protocol"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_PCH_DIR)\Protocol"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_COUGAR_POINT_DIR)\SampleCode"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_PCH_DIR)\SampleCode"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_COUGAR_POINT_DIR)\Include\Library"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_PCH_DIR)\Include\Library"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_COUGAR_POINT_INCLUDE_DIR)\PchRegs"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_PCH_INCLUDE_DIR)\PchRegs"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_COUGAR_POINT_DIR)\Protocol\PchPlatformPolicy"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_PCH_DIR)\Protocol\PchPlatformPolicy"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_COUGAR_POINT_DIR)\PciExpress\Dxe"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_PCH_DIR)\PciExpress\Dxe"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_COUGAR_POINT_DIR)\S3Support\Common"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_PCH_DIR)\S3Support\Common"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_COUGAR_POINT_DIR)\SmBus\Common"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_PCH_DIR)\SmBus\Common"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_COUGAR_POINT_DIR)\Spi\Common"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_PCH_DIR)\Spi\Common"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PchUsbCommonLib_DIR)"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PchResetCommonLib_DIR)"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PchS3SupportDxe_DIR)"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_COUGAR_POINT_DIR)\PchInit\Common"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_PCH_DIR)\PchInit\Common"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PchSpiPeim_DIR)"
+	Parent  = "PCH_SPI_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PchSpiSmm_DIR)"
+	Parent  = "PCH_SPI_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PchSpiRuntime_DIR)"
+	Parent  = "PCH_SPI_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PchInitDxe_DIR)"
+	Parent  = "PCH_INITDXE_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PchInitPeim_DIR)"
+	Parent  = "PCH_INITPEI_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "PCH_SPI_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "PCH_INITDXE_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "PCH_INITPEI_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "PERF_TUNE_INCLUDES"
+	InvokeOrder = ReplaceParent
+        Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+ELINK
+	Name  = "/I$(INTEL_COUGAR_POINT_DIR)"
+	Parent  = "PERF_TUNE_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_PCH_DIR)"
+	Parent  = "PERF_TUNE_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PchReset_DIR)"
+	Parent  = "PCH_INITDXE_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PchResetPeim_DIR)"
+	Parent  = "PCH_INITPEI_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D SERIAL_IO_FLAG"
+	Parent  = "INTEL_PCH_RC_FLAGS"
+	Token = "SERIAL_IO_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D ADSP_FLAG"
+	Parent  = "INTEL_PCH_RC_FLAGS"
+	Token = "ADSP_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D SUS_WELL_RESTORE"
+	Parent  = "INTEL_PCH_RC_FLAGS"
+	Token = "SUS_WELL_RESTORE" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D USB_PRECONDITION_ENABLE_FLAG"
+	Parent  = "INTEL_PCH_RC_FLAGS"
+	Token = "USB_PRECONDITION_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

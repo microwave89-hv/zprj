@@ -1,0 +1,113 @@
+TOKEN
+	Name  = SgAcpiTablesPch_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable SgAcpiTablesPch support in Project"
+    Token = "SwitchableGraphics_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "SG_ULT_RPNum"
+	Value  = "1"
+	TokenType = Expression
+        TargetMak = Yes
+	TargetH = Yes
+        Token = "SG_ULT_PORT_FUNC" "=" "0"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "SG_ULT_RPNum"
+	Value  = "2"
+	TokenType = Expression
+        TargetMak = Yes
+	TargetH = Yes
+        Token = "SG_ULT_PORT_FUNC" "=" "1"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "SG_ULT_RPNum"
+	Value  = "3"
+	TokenType = Expression
+        TargetMak = Yes
+	TargetH = Yes
+        Token = "SG_ULT_PORT_FUNC" "=" "2"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "SG_ULT_RPNum"
+	Value  = "4"
+	TokenType = Expression
+        TargetMak = Yes
+	TargetH = Yes
+        Token = "SG_ULT_PORT_FUNC" "=" "3"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "SG_ULT_RPNum"
+	Value  = "5"
+	TokenType = Expression
+        TargetMak = Yes
+	TargetH = Yes
+        Token = "SG_ULT_PORT_FUNC" "=" "4"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "SG_ULT_RPNum"
+	Value  = "6"
+	TokenType = Expression
+        TargetMak = Yes
+	TargetH = Yes
+        Token = "SG_ULT_PORT_FUNC" "=" "5"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "SG_ULT_RPNum"
+	Value  = "7"
+	TokenType = Expression
+        TargetMak = Yes
+	TargetH = Yes
+        Token = "SG_ULT_PORT_FUNC" "=" "6"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "SG_ULT_RPNum"
+	Value  = "8"
+	TokenType = Expression
+        TargetMak = Yes
+	TargetH = Yes
+        Token = "SG_ULT_PORT_FUNC" "=" "7"
+	Lock =Yes
+End
+
+TOKEN
+	Name  = "SG_ULT_RP_NUM"
+	Value  = "\_SB.PCI0.RP0$(SG_ULT_RPNum)"
+	TokenType = Expression
+	TargetH = Yes
+	Lock = Yes
+End
+
+MODULE
+	Help  = "Includes SgAcpiTablesPch.mak to Project"
+	File  = "SgAcpiTablesPch.mak"
+End
+
+PATH
+	Name  = "SGACPIPCH_DIR"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SGACPIPCH.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

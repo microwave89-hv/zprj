@@ -1,0 +1,16 @@
+<component>
+	name = "Chipset_MOD"
+	category = ModulePart
+	RefName = "Chipset_MOD"
+[files]
+"Board\EM\Platform\AcpiPlatform.c"	
+"Chipset\SB\SBRun.c"
+"ReferenceCode\Chipset\SystemAgent\MemoryInit\Pei\MemoryInit.c"
+"ReferenceCode\Haswell\PowerManagement\Dxe\PowerMgmtInit.c"
+"Chipset\NB\SystemAgentWrap\UpdateMemoryRecord\UpdateMemoryRecord.c"
+"Chipset\SB\SATA.ASL"
+"Chipset\SB\usb\usbsb.c"
+"ReferenceCode\Chipset\SystemAgent\SmbiosMemory\Dxe\SmbiosMemory.c"
+"Chipset\SB\SBDxe.c"
+"ReferenceCode\Chipset\LynxPoint\PchInit\Dxe\PchInit.c"
+<endComponent>

@@ -1,0 +1,18 @@
+<component>
+	name = "AtAmDxe"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\At\AtAm\Dxe\"
+	RefName = "AtAmDxe"
+[files]
+"At.c"	
+"At.h"	
+"AtAm.c"	
+"AtAm.h"	
+"AtAm.dxs"	
+"AtAm.inf"	
+"AtAmDxe.mak"	
+"AtAmDxe.sdl"	
+"AtHi.h"	
+[parts]
+"ATAMProtocols"
+<endComponent>

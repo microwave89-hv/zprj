@@ -1,0 +1,17 @@
+<component>
+	name = "ME Firmware Update Local"
+	category = ModulePart
+	LocalRoot = "\Chipset\eM\ME\MEUD\MEFwUpdLcl\"
+	RefName = "MEFwUpdLcl"
+[files]
+"MEFwUpdLcl.c"
+"MeFwUpdLclProtocol.h"
+"MEFwUpdLcl.sdl"
+"MEFwUpdLcl.dxs"
+"MEFwUpdLcl_SBY.dxs"
+"MEFwUpdLcl.mak"
+"MEFwUpdLclUpdateHooks.c"
+"IntelLib\FWUpdateLib.h"
+"IntelLib\me_status.h"
+"IntelLib\FWUpdateLib.lib"
+<endComponent>

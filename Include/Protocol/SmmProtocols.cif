@@ -1,0 +1,22 @@
+<component>
+	name = "SmmProtocols"
+	category = ModulePart
+	LocalRoot = "Include\Protocol\"
+	RefName = "SmmProtocols"
+[files]
+"SmmBase.h"	
+"SmmAccess.h"	
+"SmmControl.h"	
+"SmmCpuState.h"	
+"SmmThunk.h"	
+"SmmStatusCode.h"	
+"SmmSwDispatch.h"	
+"SmmSxDispatch.h"	
+"SmmPowerButtonDispatch.h"	
+"SmmStandbyButtonDispatch.h"	
+"SmmUsbDispatch.h"	
+"SmmGpiDispatch.h"	
+"SmmPeriodicTimerDispatch.h"	
+"SmmTcoDispatch.h"	
+"AmiSmmInfo.h"	
+<endComponent>

@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueHiiLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\HiiLib"
+	RefName = "EdkIIGlueHiiLib"
+[files]
+"EdkIIGlueHiiLib.sdl"	
+"EdkIIGlueHiiLib.mak"	
+"HiiLib.inf"
+"HiiLib.c"	
+<endComponent>

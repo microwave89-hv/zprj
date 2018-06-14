@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "PlatformReset_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PlatformReset support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "PlatformReset_DIR"
+End
+
+MODULE
+	Help  = "Includes PlatformReset.mak to Project"
+	File  = "PlatformReset.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PlatformReset.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

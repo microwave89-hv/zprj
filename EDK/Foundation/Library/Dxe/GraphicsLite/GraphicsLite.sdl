@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "GraphicsLite_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable GraphicsLite support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "GRAPHICSLITE"
+	Value  = "$(BUILD_DIR)\GraphicsLite.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "GraphicsLite_DIR"
+End
+
+MODULE
+	Help  = "Includes GraphicsLite.mak to Project"
+	File  = "GraphicsLite.mak"
+End
+

@@ -1,0 +1,13 @@
+<component>
+	name = "AlertStandardFormatDxe"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\ActiveManagement\AlertStandardFormat\Heci\Dxe\"
+	RefName = "AlertStandardFormatDxe"
+[files]
+"AlertStandardFormatDxe.sdl"	
+"AlertStandardFormatDxe.mak"	
+"AlertStandardFormatDxe.c"	
+"AlertStandardFormatDxe.dxs"	
+"AlertStandardFormatDxe.h"	
+"AlertStandardFormatDxe.inf"	
+<endComponent>

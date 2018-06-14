@@ -1,0 +1,24 @@
+<component>
+	name = "UsbRecovery"
+	category = eModule
+	LocalRoot = "Core\em\UsbRecovery\"
+	RefName = "UsbRecovery"
+[files]
+"UsbRecov.sdl"	
+"UsbRecov.mak"	
+"UsbPeim.h"	
+"HubPeim.h"	
+"PeiUsbLib.c"	
+"PeiUsbLib.h"	
+"usb.h"	
+"USBRecoverySrc.chm"	
+"AmiMapping.h"	
+[parts]
+"UhciPeiUsb"
+"OhciPei"
+"EhciPei"
+"XhciPei"
+"UhcPeimSrc"
+"UsbPeimSrc"
+"UsbBotPeimSrc"
+<endComponent>

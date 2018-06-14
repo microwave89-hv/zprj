@@ -1,0 +1,32 @@
+TOKEN
+	Name  = "PTTHciSmm_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable PTTHciSmm Suppport in Project"
+	Token = "IntelPTT_SUPPORT" "=" "1"
+End
+
+MODULE
+	Help  = "Includes HeciSmm.mak to Project"
+	File  = "PttHciSmm.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PttHciSmm.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+PATH
+	Name  = "PttHciSmm_DIR"
+	Help  = "PTT Hci SMM Driver files source directory"
+End
+
+ELINK
+	Name  = "/D PTT_FLAG"
+	Parent  = "GLOBAL_DEFINES"
+	InvokeOrder = AfterParent
+End

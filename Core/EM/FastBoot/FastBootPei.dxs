@@ -1,0 +1,56 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//**********************************************************************//
+// $Header: /Alaska/SOURCE/Modules/PTT/FastBootPei.dxs 1     11/02/10 1:47a Bibbyyeh $
+//
+// $Revision: 1 $
+//
+// $Date: 11/02/10 1:47a $
+//**********************************************************************//
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/PTT/FastBootPei.dxs $
+// 
+// 1     11/02/10 1:47a Bibbyyeh
+// [TAG]  		EIP47280
+// [Category]  	New Feature
+// [Description]  	Currently, BIOS will copy FV_MAIN or FV_BB into memory
+// in DXE phase.
+// If BIOS copy rom before CPU disable flash cache in PEI phase.
+// Some data are in cache already, don't need to read from physical ROM.
+// It can help to save some time.
+// [Files]  		FastBootPei.cif
+// FastBootPei.mak
+// FastBootPei.c
+// FastBootPei.dxs
+//
+//**********************************************************************//
+DEPENDENCY_START
+    TRUE
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

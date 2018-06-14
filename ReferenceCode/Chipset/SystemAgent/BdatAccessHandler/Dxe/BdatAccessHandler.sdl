@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "BdatAccessHandler_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable BdatAccessHandler support in Project"
+	Token = "MRC_BDAT_SUPPORT" "=" "1"
+End
+
+MODULE
+	Help  = "Includes BdatAccessHandler.mak to Project"
+	File  = "BdatAccessHandler.mak"
+End
+
+PATH
+	Name  = "BdatAccessHandler_DIR"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\BdatAccessHandler.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

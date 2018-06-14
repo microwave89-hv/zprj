@@ -1,0 +1,67 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchSmbusSmm/PchSmbusSmm.sdl 1     2/08/12 9:27a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 2/08/12 9:27a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchSmbusSmm/PchSmbusSmm.sdl $
+# 
+# 1     2/08/12 9:27a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+        Name  = "PchSmbusSmm_SUPPORT"
+        Value  = "1"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        Master = Yes
+        Help  = "Main switch to enable PchSmbusSmm support in Project"
+End
+
+PATH
+        Name  = "PchSmbusSmm_DIR"
+        Help  = "PchSmbusSmm file source directory"
+End
+
+MODULE
+        Help  = "Includes PchSmbusSmm.mak to Project"
+        File  = "PchSmbusSmm.mak"
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\PchSmbusSmm.ffs"
+        Parent  = "FV_MAIN"
+        InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

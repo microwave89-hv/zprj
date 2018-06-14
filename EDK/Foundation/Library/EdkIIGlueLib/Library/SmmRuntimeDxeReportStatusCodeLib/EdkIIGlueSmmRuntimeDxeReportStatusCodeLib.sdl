@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueSmmRuntimeDxeReportStatusCodeLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueSmmRuntimeDxeReportStatusCodeLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueSmmRuntimeDxeReportStatusCodeLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueSmmRuntimeDxeReportStatusCodeLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueSmmRuntimeDxeReportStatusCodeLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueSmmRuntimeDxeReportStatusCodeLib.mak to Project"
+	File  = "EdkIIGlueSmmRuntimeDxeReportStatusCodeLib.mak"
+End
+

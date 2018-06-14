@@ -1,0 +1,8 @@
+<component>
+	name = "AmiBufferValidationLib Include"
+	category = ModulePart
+	LocalRoot = "Include\"
+	RefName = "AmiBufferValidationLibInclude"
+[files]
+"AmiBufferValidationLib.h"
+<endComponent>

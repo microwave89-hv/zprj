@@ -1,0 +1,10 @@
+<component>
+	name = "ACPI_MOD"
+	category = ModulePart
+	RefName = "ACPI_MOD"
+[files]	
+"Core\EM\ACPI\AcpiCore.c"
+"Core\EM\S3\BootScriptSave.c"	
+"Core\EM\S3\BootScriptExecuter.c"	
+"Core\EM\S3\BootScriptPrivate.h"	
+<endComponent>

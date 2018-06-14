@@ -1,0 +1,11 @@
+<component>
+	name = "Clean Gpnv Error Log"
+	category = ModulePart
+	LocalRoot = "Core\EM\OFBD\CleanErrorLog\"
+	RefName = "OFBD_CLEANERRORLOG"
+[files]
+"CleanErrorLog.sdl"	
+"CleanErrorLog.mak"	
+"CleanErrorLog.h"	
+"CleanErrorLog.c"	
+<endComponent>

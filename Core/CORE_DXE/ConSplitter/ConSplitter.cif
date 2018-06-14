@@ -1,0 +1,12 @@
+<component>
+	name = "ConSplitter"
+	category = ModulePart
+	LocalRoot = "Core\CORE_DXE\ConSplitter\"
+	RefName = "ConSplitter"
+[files]
+"\ConSplitter.sdl"	
+"\ConSplit.c"	
+"\ConSplit.h"	
+"\Out.c"	
+"\In.c"	
+<endComponent>

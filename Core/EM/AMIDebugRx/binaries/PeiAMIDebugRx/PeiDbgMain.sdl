@@ -1,0 +1,55 @@
+PATH
+	Name  = "PeiDbgMain_DIR"
+End
+
+ELINK
+	Name  = "$(PeiDbgMain_DIR)\MAIN\PeiDbgMain.ffs"
+	Parent  = "FV_MAIN"
+	Token = "DBG_PI_INT_SUPPORT" "=" "1"
+	Token = "PI_SPECIFICATION_VERSION" "<" "0x10000"
+	Token = "DEBUG_RX_FFS_IN_FVMAIN_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(PeiDbgMain_DIR)\MAIN\PeiDbgMain.ffs"
+	Parent  = "FV_BB"
+	Token = "DBG_PI_INT_SUPPORT" "=" "1"
+	Token = "PI_SPECIFICATION_VERSION" "<" "0x10000"
+	Token = "DEBUG_RX_FFS_IN_FVMAIN_SUPPORT" "=" "0"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(PeiDbgMain_DIR)\MAIN\PeiDbgMain_PI_1_1.ffs"
+	Parent  = "FV_MAIN"
+	Token = "DBG_PI_INT_SUPPORT" "=" "1"
+	Token = "PI_SPECIFICATION_VERSION" ">=" "0x10000"
+	Token = "DEBUG_RX_FFS_IN_FVMAIN_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(PeiDbgMain_DIR)\MAIN\PeiDbgMain_PI_1_1.ffs"
+	Parent  = "FV_BB"
+	Token = "DBG_PI_INT_SUPPORT" "=" "1"
+	Token = "PI_SPECIFICATION_VERSION" ">=" "0x10000"
+	Token = "DEBUG_RX_FFS_IN_FVMAIN_SUPPORT" "=" "0"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(PeiDbgMain_DIR)\MAIN\PeiDbgMain.ffs"
+	Parent  = "FV_BB"
+	Token = "DBG_PI_INT_SUPPORT" "=" "0"
+	Token = "DEBUG_RX_FFS_IN_FVMAIN_SUPPORT" "=" "0"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(PeiDbgMain_DIR)\MAIN\PeiDbgMain.ffs"
+	Parent  = "FV_MAIN"
+	Token = "DBG_PI_INT_SUPPORT" "=" "0"
+	Token = "DEBUG_RX_FFS_IN_FVMAIN_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End

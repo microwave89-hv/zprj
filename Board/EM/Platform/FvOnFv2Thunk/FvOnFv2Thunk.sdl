@@ -1,0 +1,68 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/Platform/FvOnFv2Thunk/FvOnFv2Thunk.sdl 1     4/25/12 1:04p Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 4/25/12 1:04p $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/Platform/FvOnFv2Thunk/FvOnFv2Thunk.sdl $
+# 
+# 1     4/25/12 1:04p Yurenlai
+# FvOnFv2Thunk  initialization.
+# 
+#*************************************************************************
+TOKEN
+	Name  = "FvOnFv2Thunk_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable FvOnFv2Thunk support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Token = "PI_SPECIFICATION_VERSION" ">=" "0x10000"
+End
+
+PATH
+	Name  = "FvOnFv2Thunk_DIR"
+End
+
+MODULE
+	Help  = "Includes FvOnFv2Thunk.mak to Project"
+	File  = "FvOnFv2Thunk.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\FvOnFv2Thunk.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = BeforeParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

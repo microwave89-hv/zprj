@@ -1,0 +1,13 @@
+<component>
+	name = "PchSpiRuntime"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Spi\RuntimeDxe"
+	RefName = "PchSpiRuntime"
+[files]
+"PchSpiRuntime.sdl"	
+"PchSpiRuntime.mak"	
+"PchSpi.c"	
+"PchSpi.h"	
+"PchSpi.dxs"	
+"PchSpiRuntime.inf"	
+<endComponent>

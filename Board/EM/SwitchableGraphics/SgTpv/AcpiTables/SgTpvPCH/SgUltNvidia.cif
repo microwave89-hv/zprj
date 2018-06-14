@@ -1,0 +1,15 @@
+<component>
+	name = "nVidiaUlt"
+	category = ModulePart
+	LocalRoot = "Board\EM\SwitchableGraphics\SgTpv\AcpiTables\SgTpvPCH"
+	RefName = "nVidiaSGULT"
+[files]
+"NVdGPUPCH.asl"	
+"NViGPUPCH.asl"	
+"NViGDmiscPCH.asl"	
+"OpSSDTPCH.asl"	
+"NvVenturaPCH.asl"	
+"NvGPSPCH.asl"	
+"NvSSDTPCH.asl"	
+"NvGC6PCH.asl"	
+<endComponent>

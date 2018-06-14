@@ -1,0 +1,14 @@
+<component>
+	name = "SPI Interface - Source"
+	category = ModulePart
+	LocalRoot = "Board\Flash\SPI"
+	RefName = "SPI_INTERFACE_SOURCE"
+[files]
+"SpiFlash.sdl"	
+"SpiFlash.mak"	
+"SpiFlash.h"	
+"SpiIdentify.c"	
+[parts]
+"DUMMY_SPI_CSP_SOURCE"
+"ICHX_SPI_CSP_SOURCE"
+<endComponent>

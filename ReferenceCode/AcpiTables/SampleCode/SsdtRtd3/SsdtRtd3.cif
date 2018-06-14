@@ -1,0 +1,14 @@
+<component>
+	name = "SsdtRtd3"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\AcpiTables\SampleCode\SsdtRtd3\"
+	RefName = "SsdtRtd3"
+[files]
+"SsdtRtd3.sdl"	
+"SsdtRtd3.mak"	
+"Ult0Rtd3.asl"	
+"BRRtd3.asl"	
+"Rtd3FFRD.asl"	
+"RTD3Common.asl"
+"RTD3Pcie.asl"
+<endComponent>

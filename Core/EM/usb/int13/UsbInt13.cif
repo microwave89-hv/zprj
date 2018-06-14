@@ -1,0 +1,17 @@
+<component>
+	name = "USB Int13"
+	category = ModulePart
+	LocalRoot = "Core\eM\USB\int13"
+	RefName = "USBINT13"
+[files]
+"UsbInt13.sdl"	
+"UsbInt13.mak"	
+"UsbInt13.inf"	
+"UsbInt13.c"	
+"UsbInt13.h"	
+"UsbInt13ComponentName.c"	
+"UsbInt13.dxs"	
+"UsbBbs.c"
+[parts]
+"USB_I13_BINARY"
+<endComponent>

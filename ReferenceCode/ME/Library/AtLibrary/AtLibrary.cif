@@ -1,0 +1,10 @@
+<component>
+	name = "AtLibrary"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Library\AtLibrary\"
+	RefName = "AtLibrary"
+[files]
+"AtLibrary.sdl"
+[parts]
+"AtDxeLib"
+<endComponent>

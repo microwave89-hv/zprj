@@ -1,0 +1,438 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+//**********************************************************************
+//
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/MeWrapper/Icc/IccSetup/IccSetupMenu.sd 4     12/24/12 6:37a Klzhan $
+//
+// $Revision: 4 $
+//
+// $Date: 12/24/12 6:37a $
+//
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/MeWrapper/Icc/IccSetup/IccSetupMenu.sd $
+// 
+// 4     12/24/12 6:37a Klzhan
+// [TAG]  		EIP109624
+// [Category]  	New Feature
+// [Description]  	Support Lock Icc registers.
+// 
+// 3     5/14/12 4:47a Klzhan
+// [TAG]  		EIP89676
+// [Category]  	Spec Update
+// [Severity]  	Important
+// [Description]  	Support New ICC library
+// [Files]  		IccSetup.mak
+// IccSetup.sdl
+// IccCallbacks.c
+// IccCallbacks.h
+// IccSetup.h
+// IccSetupMenu.sd
+// IccSetupSubmenu.sd
+// IccStrings.uni
+// IccLoadDefault.c
+// IccSetup.cif
+// 
+// 2     4/24/12 12:31a Klzhan
+// Update modulepart to latest
+// 
+// 1     2/08/12 1:07a Klzhan
+// Initial Check in 
+// 
+// 1     2/25/11 1:42a Klzhan
+// Initial Check-in
+// 
+// 1     12/03/10 5:10a Klzhan
+// Initial Check-in.
+// 
+//
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//----------------------------------------------------------------------------
+//
+// Name:            IccSetup.sd
+//
+// Description:     SD file for ICC Setup
+//
+//----------------------------------------------------------------------------
+//<AMI_FHDR_END>
+/*++
+
+Copyright (c)  2009 Intel Corporation. All rights reserved
+This software and associated documentation (if any) is furnished
+under a license and may only be used or copied in accordance
+with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be
+reproduced, stored in a retrieval system, or transmitted in any
+form or by any means without the express written consent of
+Intel Corporation.
+
+Module Name:
+
+  IccSetupMenu.sd
+
+Abstract:
+
+  Icc's advanced menu layout
+
+--*/
+
+#ifdef SETUP_DATA_DEFINITION
+
+  UINT8         IccWdtEnabled;
+  UINT8         IccSetClockEnables;
+  UINT8         IccLockRegisters;
+  UINT8         IccDisplayProfile;
+  UINT8         IccSelectedProfile;
+  UINT8         IccProfileEnable;
+
+#endif
+
+#ifdef CONTROL_DEFINITION
+    #define ICC_GOTO_INTELICC\
+        goto ICC_FORM_ID, \
+        prompt = STRING_TOKEN(STR_ICC_FORM),\
+        help   = STRING_TOKEN(STR_ICC_FORM_HELP),\
+        flags  = INTERACTIVE,\
+        key    = AUTO_ID(KEY_ICCMENU);
+#endif
+#ifdef ADVANCED_FORM_SET
+
+#ifdef FORM_SET_TYPEDEF
+
+#include "IccSetup.h"
+
+#endif
+
+
+#ifdef FORM_SET_VARSTORE
+
+  varstore ICC_VOLATILE_SETUP_DATA, 
+    key =  AUTO_ID(ICC_VOLATILE_SETUP_DATA_VAR),
+    name = IccAdvancedSetupDataVar,
+    guid = ICC_VOLATILE_SETUP_DATA_GUID;
+    
+#endif
+
+#ifdef FORM_SET_ITEM
+#endif
+
+#ifdef FORM_SET_GOTO
+  //
+  // this grayout is always false, but ensures that callback function will receive pointer to ICC_VOLATILE_SETUP_DATA instead SETUP_DATA 
+  //
+  grayoutif ideqval ICC_VOLATILE_SETUP_DATA.AllowAdvancedOptions == 2;
+    ICC_GOTO_INTELICC
+  endif;
+#endif
+
+#ifdef FORM_SET_FORM
+  #ifndef ICC_FORM_SETUP
+  #define ICC_FORM_SETUP
+
+    form formid = AUTO_ID(ICC_FORM_ID),
+    title = STRING_TOKEN(STR_ENABLED); 
+  grayoutif  ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+    oneof varid     = SETUP_DATA.IccWdtEnabled,
+        prompt      = STRING_TOKEN(STR_ICC_WDT_ENABLE),
+        help        = STRING_TOKEN(STR_ICC_WDT_ENABLE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+    endoneof;
+    
+    oneof varid     = SETUP_DATA.IccSetClockEnables,
+        prompt      = STRING_TOKEN(STR_ICC_CLOCK_ENABLING),
+        help        = STRING_TOKEN(STR_ICC_CLOCK_ENABLING_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    oneof varid     = SETUP_DATA.IccLockRegisters,
+        prompt      = STRING_TOKEN(STR_ICC_LOCK_EOP),
+        help        = STRING_TOKEN(STR_ICC_LOCK_HELP),
+        option text = STRING_TOKEN(STR_ICC_DEFAULT), value = 3, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ICC_LOCK), value = 4, flags = MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ICC_UNLOCK),    value = 5, flags = RESET_REQUIRED;
+    endoneof;
+  endif;
+  grayoutif  ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+    suppressif ideqval SETUP_DATA.IccDisplayProfile == 0;
+    numeric varid = SETUP_DATA.IccSelectedProfile,
+        prompt    = STRING_TOKEN(STR_ICC_PROFILE),
+        help      = STRING_TOKEN(STR_ICC_PROFILE_HELP),
+        flags     = RESET_REQUIRED,
+        minimum   = 0,
+        maximum   = 7,
+        step      = 1,
+        default   = 0,
+    endnumeric;
+    SUPPRESS_GRAYOUT_ENDIF
+        
+    SEPARATOR
+    
+    SUBTITLE(STRING_TOKEN(STR_ICC_OVERCLOCKING))
+    
+    SEPARATOR
+    
+    text 
+        help   = STRING_TOKEN(STR_EMPTY),  
+        text   = STRING_TOKEN(STR_ICC_LIB_VERSION), 
+        text   = STRING_TOKEN(STR_ICC_LIB_VERSION_NR),
+        flags  = 0, key = AUTO_ID(KEY_ACCEPT);
+
+    suppressif ideqval ICC_VOLATILE_SETUP_DATA.AllowAdvancedOptions == 0;
+
+      goto ICC_ADVFORM_ID1, 
+        prompt = STRING_TOKEN(STR_ICC_SUBFORM1),
+        help   = STRING_TOKEN(STR_ICC_FORM_HELP),
+        flags  = INTERACTIVE,
+        key    = AUTO_ID(KEY_FORM1);
+
+      goto ICC_ADVFORM_ID2, 
+        prompt = STRING_TOKEN(STR_ICC_SUBFORM2),
+        help   = STRING_TOKEN(STR_ICC_FORM_HELP),
+        flags  = INTERACTIVE,
+        key    = AUTO_ID(KEY_FORM2);
+
+      goto ICC_ADVFORM_ID3, 
+        prompt = STRING_TOKEN(STR_ICC_SUBFORM3),
+        help   = STRING_TOKEN(STR_ICC_FORM_HELP),
+        flags  = INTERACTIVE,
+        key    = AUTO_ID(KEY_FORM3);
+        
+      goto ICC_ADVFORM_ID4, 
+        prompt = STRING_TOKEN(STR_ICC_SUBFORM4),
+        help   = STRING_TOKEN(STR_ICC_FORM_HELP),
+        flags  = INTERACTIVE,
+        key    = AUTO_ID(KEY_FORM4);
+        
+      goto ICC_ADVFORM_ID5, 
+        prompt = STRING_TOKEN(STR_ICC_SUBFORM5),
+        help   = STRING_TOKEN(STR_ICC_FORM_HELP),
+        flags  = INTERACTIVE,
+        key    = AUTO_ID(KEY_FORM5);
+        
+      goto ICC_ADVFORM_ID6, 
+        prompt = STRING_TOKEN(STR_ICC_SUBFORM6),
+        help   = STRING_TOKEN(STR_ICC_FORM_HELP),
+        flags  = INTERACTIVE,
+        key    = AUTO_ID(KEY_FORM6);
+
+      goto ICC_ADVFORM_ID7, 
+        prompt = STRING_TOKEN(STR_ICC_SUBFORM7),
+        help   = STRING_TOKEN(STR_ICC_FORM_HELP),
+        flags  = INTERACTIVE,
+        key    = AUTO_ID(KEY_FORM7);
+
+      goto ICC_ADVFORM_ID8, 
+        prompt = STRING_TOKEN(STR_ICC_SUBFORM8),
+        help   = STRING_TOKEN(STR_ICC_FORM_HELP),
+        flags  = INTERACTIVE,
+        key    = AUTO_ID(KEY_FORM8);
+    endif;
+
+  endform;
+
+#define INSIDE_ICC_SUBMENU
+    
+#define CLOCK_NUMBER OFFSET_0
+#ifdef SETUP_DATA_DEFINITION
+AUTO_ID(KEY_FREQ1)
+AUTO_ID(KEY_CHANGE_NOW1)
+AUTO_ID(KEY_CHANGE_ONCE1)
+AUTO_ID(KEY_CHANGE_PERM1)
+#endif
+#define KEY_FREQ KEY_FREQ1
+#define MENU_NUMBER ICC_ADVFORM_ID1
+#define KEY_CHANGE_NOW  KEY_CHANGE_NOW1
+#define KEY_CHANGE_ONCE  KEY_CHANGE_ONCE1
+#define KEY_CHANGE_PERM  KEY_CHANGE_PERM1
+form formid = AUTO_ID(ICC_ADVFORM_ID1),
+#include "IccSetupSubmenu.sd"
+#undef MENU_NUMBER
+#undef KEY_CHANGE_NOW
+#undef KEY_CHANGE_ONCE
+#undef KEY_CHANGE_PERM
+#undef CLOCK_NUMBER
+
+#define CLOCK_NUMBER OFFSET_1
+#ifdef SETUP_DATA_DEFINITION
+AUTO_ID(KEY_FREQ2)
+AUTO_ID(KEY_CHANGE_NOW2)
+AUTO_ID(KEY_CHANGE_ONCE2)
+AUTO_ID(KEY_CHANGE_PERM2)
+#endif
+#undef KEY_FREQ
+#define KEY_FREQ KEY_FREQ2
+#define MENU_NUMBER ICC_ADVFORM_ID2
+#define KEY_CHANGE_NOW  KEY_CHANGE_NOW2
+#define KEY_CHANGE_ONCE  KEY_CHANGE_ONCE2
+#define KEY_CHANGE_PERM  KEY_CHANGE_PERM2
+form formid = AUTO_ID(ICC_ADVFORM_ID2),
+#include "IccSetupSubmenu.sd"
+#undef MENU_NUMBER
+#undef KEY_CHANGE_NOW
+#undef KEY_CHANGE_ONCE
+#undef KEY_CHANGE_PERM
+#undef CLOCK_NUMBER
+
+#define CLOCK_NUMBER OFFSET_2
+#ifdef SETUP_DATA_DEFINITION
+AUTO_ID(KEY_FREQ3)
+AUTO_ID(KEY_CHANGE_NOW3)
+AUTO_ID(KEY_CHANGE_ONCE3)
+AUTO_ID(KEY_CHANGE_PERM3)
+#endif
+#undef KEY_FREQ
+#define KEY_FREQ KEY_FREQ3
+#define KEY_CHANGE_NOW  KEY_CHANGE_NOW3
+#define KEY_CHANGE_ONCE  KEY_CHANGE_ONCE3
+#define KEY_CHANGE_PERM  KEY_CHANGE_PERM3
+#define MENU_NUMBER ICC_ADVFORM_ID3
+form formid = AUTO_ID(ICC_ADVFORM_ID3),
+#include "IccSetupSubmenu.sd"
+#undef MENU_NUMBER
+#undef KEY_CHANGE_NOW
+#undef KEY_CHANGE_ONCE
+#undef KEY_CHANGE_PERM
+#undef CLOCK_NUMBER
+
+#define CLOCK_NUMBER OFFSET_3
+#ifdef SETUP_DATA_DEFINITION
+AUTO_ID(KEY_FREQ4)
+AUTO_ID(KEY_CHANGE_NOW4)
+AUTO_ID(KEY_CHANGE_ONCE4)
+AUTO_ID(KEY_CHANGE_PERM4)
+#endif
+#undef KEY_FREQ
+#define KEY_FREQ KEY_FREQ4
+#define KEY_CHANGE_NOW  KEY_CHANGE_NOW4
+#define KEY_CHANGE_ONCE  KEY_CHANGE_ONCE4
+#define KEY_CHANGE_PERM  KEY_CHANGE_PERM4
+#define MENU_NUMBER ICC_ADVFORM_ID4
+form formid = AUTO_ID(ICC_ADVFORM_ID4),
+#include "IccSetupSubmenu.sd"
+#undef MENU_NUMBER
+#undef KEY_CHANGE_NOW
+#undef KEY_CHANGE_ONCE
+#undef KEY_CHANGE_PERM
+#undef CLOCK_NUMBER
+
+#define CLOCK_NUMBER OFFSET_4
+#ifdef SETUP_DATA_DEFINITION
+AUTO_ID(KEY_FREQ5)
+AUTO_ID(KEY_CHANGE_NOW5)
+AUTO_ID(KEY_CHANGE_ONCE5)
+AUTO_ID(KEY_CHANGE_PERM5)
+#endif
+#undef KEY_FREQ
+#define KEY_FREQ KEY_FREQ5
+#define KEY_CHANGE_NOW  KEY_CHANGE_NOW5
+#define KEY_CHANGE_ONCE  KEY_CHANGE_ONCE5
+#define KEY_CHANGE_PERM  KEY_CHANGE_PERM5
+#define MENU_NUMBER ICC_ADVFORM_ID5
+form formid = AUTO_ID(ICC_ADVFORM_ID5),
+#include "IccSetupSubmenu.sd"
+#undef MENU_NUMBER
+#undef KEY_CHANGE_NOW
+#undef KEY_CHANGE_ONCE
+#undef KEY_CHANGE_PERM
+#undef CLOCK_NUMBER
+
+#define CLOCK_NUMBER OFFSET_5
+#ifdef SETUP_DATA_DEFINITION
+AUTO_ID(KEY_FREQ6)
+AUTO_ID(KEY_CHANGE_NOW6)
+AUTO_ID(KEY_CHANGE_ONCE6)
+AUTO_ID(KEY_CHANGE_PERM6)
+#endif
+#undef KEY_FREQ
+#define KEY_FREQ KEY_FREQ6
+#define KEY_CHANGE_NOW  KEY_CHANGE_NOW6
+#define KEY_CHANGE_ONCE  KEY_CHANGE_ONCE6
+#define KEY_CHANGE_PERM  KEY_CHANGE_PERM6
+#define MENU_NUMBER ICC_ADVFORM_ID6
+form formid = AUTO_ID(ICC_ADVFORM_ID6),
+#include "IccSetupSubmenu.sd"
+#undef MENU_NUMBER
+#undef KEY_CHANGE_NOW
+#undef KEY_CHANGE_ONCE
+#undef KEY_CHANGE_PERM
+#undef CLOCK_NUMBER
+
+#define CLOCK_NUMBER OFFSET_6
+#ifdef SETUP_DATA_DEFINITION
+AUTO_ID(KEY_FREQ7)
+AUTO_ID(KEY_CHANGE_NOW7)
+AUTO_ID(KEY_CHANGE_ONCE7)
+AUTO_ID(KEY_CHANGE_PERM7)
+#endif
+#undef KEY_FREQ
+#define KEY_FREQ KEY_FREQ7
+#define KEY_CHANGE_NOW  KEY_CHANGE_NOW7
+#define KEY_CHANGE_ONCE  KEY_CHANGE_ONCE7
+#define KEY_CHANGE_PERM  KEY_CHANGE_PERM7
+#define MENU_NUMBER ICC_ADVFORM_ID7
+form formid = AUTO_ID(ICC_ADVFORM_ID7),
+#include "IccSetupSubmenu.sd"
+#undef MENU_NUMBER
+#undef KEY_CHANGE_NOW
+#undef KEY_CHANGE_ONCE
+#undef KEY_CHANGE_PERM
+#undef CLOCK_NUMBER
+
+#define CLOCK_NUMBER OFFSET_7
+#ifdef SETUP_DATA_DEFINITION
+AUTO_ID(KEY_FREQ8)
+AUTO_ID(KEY_CHANGE_NOW8)
+AUTO_ID(KEY_CHANGE_ONCE8)
+AUTO_ID(KEY_CHANGE_PERM8)
+#endif
+#undef KEY_FREQ
+#define KEY_FREQ KEY_FREQ8
+#define KEY_CHANGE_NOW  KEY_CHANGE_NOW8
+#define KEY_CHANGE_ONCE  KEY_CHANGE_ONCE8
+#define KEY_CHANGE_PERM  KEY_CHANGE_PERM8
+#define MENU_NUMBER ICC_ADVFORM_ID8
+form formid = AUTO_ID(ICC_ADVFORM_ID8),
+#include "IccSetupSubmenu.sd"
+#undef MENU_NUMBER
+#undef KEY_CHANGE_NOW
+#undef KEY_CHANGE_ONCE
+#undef KEY_CHANGE_PERM
+#undef CLOCK_NUMBER
+
+#undef INSIDE_ICC_SUBMENU
+
+  #endif // ICC_FORM_SETUP
+
+#endif
+
+#endif
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

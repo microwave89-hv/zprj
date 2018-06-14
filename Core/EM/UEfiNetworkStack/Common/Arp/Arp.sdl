@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "Arp_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Arp support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "Arp_DIR"
+End
+
+MODULE
+	Help  = "Includes Arp.mak to Project"
+	File  = "Arp.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Arp.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

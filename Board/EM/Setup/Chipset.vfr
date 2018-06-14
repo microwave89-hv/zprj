@@ -1,0 +1,107 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/BIN/Board/Setup/Chipset.vfr 10    6/11/10 12:22p Felixp $
+//
+// $Revision: 10 $
+//
+// $Date: 6/11/10 12:22p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Board/Setup/Chipset.vfr $
+// 
+// 10    6/11/10 12:22p Felixp
+// AMI_CALLBACK_VARSTORE added
+// 
+// 9     10/09/09 6:43p Felixp
+// UEFI 2.1 Support (the component is updated to support Framework and
+// UEFI 2.1 HII).
+// 
+// 8     6/30/09 2:33p Robert
+// comment corrections
+// 
+// 7     6/30/09 11:42a Robert
+// Added Comment and updated parts for coding standards
+// 
+// 6     10/19/05 2:07p Felixp
+// Support for custom varstores (in .sd files) added.
+// 
+// 5     9/06/05 6:19p Girim
+// Code cleanup.
+// 
+// 3     7/12/05 11:13a Felixp
+// workaround for VFR compiler bug in varstore handling
+// 
+//**********************************************************************
+//<AMI_FHDR_START>
+
+//**********************************************************************
+//
+// Name:        Chipset.vfr
+//
+// Description: 
+//  Setup script for the "Chipset" top level setup screen
+//
+//**********************************************************************
+//<AMI_FHDR_END>
+#include "SetupPrivate.h"
+#define CHIPSET_FORM_SET
+#define FORM_SET_TYPEDEF
+#include <SetupDefinitions.h>
+#undef FORM_SET_TYPEDEF
+
+formset guid = CHIPSET_FORM_SET_GUID,
+    title = STRING_TOKEN(STR_CHIPSET),
+    help = STRING_TOKEN(STR_CHIPSET_HELP),
+    class = CHIPSET_FORM_SET_CLASS,
+    subclass = 0,
+
+    SETUP_DATA_VARSTORE
+    SYSTEM_ACCESS_VARSTORE
+    AMI_CALLBACK_VARSTORE
+
+    #define FORM_SET_VARSTORE
+    #include <SetupDefinitions.h>
+    #undef FORM_SET_VARSTORE
+
+    form formid = AUTO_ID(CHIPSET_MAIN),
+        title = STRING_TOKEN(STR_CHIPSET);
+
+        #define FORM_SET_ITEM
+        #include <SetupDefinitions.h>
+        #undef FORM_SET_ITEM
+        #define FORM_SET_GOTO
+        #include <SetupDefinitions.h>
+        #undef FORM_SET_GOTO
+    endform;
+    #define FORM_SET_FORM
+    #include <SetupDefinitions.h>
+    #undef FORM_SET_FORM
+endformset;
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

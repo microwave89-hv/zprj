@@ -1,0 +1,11 @@
+<component>
+	name = "IpSec"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Common\IpSec"
+	RefName = "IpSec"
+[files]
+"IpSec.sdl"	
+"IpSec.mak"	
+"IpSecDxeIa32.efi"	
+"IpSecDxe.efi"	
+<endComponent>

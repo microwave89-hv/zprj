@@ -1,0 +1,12 @@
+<component>
+    name = "IsctDxeAcpi"
+    category = ModulePart
+    LocalRoot = "Board\EM\Isct\Dxe"
+    RefName = "IsctAcpi"
+[files]
+"IsctAcpi.c"
+"IsctAcpi.h"
+"IsctAcpi.sdl"
+"IsctAcpi.dxs"
+"IsctAcpi.mak"
+<endComponent>

@@ -1,0 +1,13 @@
+<component>
+	name = "PttHciSmm"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Ptt\Smm\"
+	RefName = "PttHciSmm"
+[files]
+"PttHciSmm.sdl"	
+"PttHciSmm.mak"	
+"PttHciSmm.c"	
+"PttHciSmm.h"	
+"PttHciSmm.dxs"	
+"PttHciSmm.inf"	
+<endComponent>

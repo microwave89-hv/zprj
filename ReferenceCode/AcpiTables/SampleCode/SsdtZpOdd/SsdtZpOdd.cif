@@ -1,0 +1,11 @@
+<component>
+	name = "SsdtZpOdd"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\AcpiTables\SampleCode\SsdtZpOdd\"
+	RefName = "SsdtZpOdd"
+[files]
+"SsdtZpOdd.sdl"	
+"SsdtZpOdd.mak"	
+"SsdtZpOdd.asl"	
+"SsdtZpOddULT.asl"	
+<endComponent>

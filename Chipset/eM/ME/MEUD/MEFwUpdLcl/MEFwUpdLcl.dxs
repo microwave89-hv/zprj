@@ -1,0 +1,9 @@
+#include <Protocol\HeciProtocol.h>
+#include <Protocol\MeBiosPayloadData.h>
+#include <Protocol\PchPlatformPolicy.h>
+#include "MeFwUpdLclProtocol.h"
+
+DEPENDENCY_START
+  HECI_PROTOCOL_GUID AND
+  PCH_PLATFORM_POLICY_PROTOCOL_GUID
+DEPENDENCY_END

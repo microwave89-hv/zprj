@@ -1,0 +1,195 @@
+TOKEN
+	Name  = "IdeBus_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Legacy8259 support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "MASTER_SLAVE_ENUMERATION"
+	Value  = "1"
+	Help  = "When off, Slave device is detected first and \then Master is detected."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IDEBUSMASTER_SUPPORT"
+	Value  = "1"
+	Help  = "Master Switch to enable ATA and ATAPI \Busmaster support.\For ATAPI devices, ATAPI_BUSMASTER_SUPPORT \also needs to be enabled.\MWDMA and UDMA programming in devices \and the controller will be done irrespective of \this switch."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ATAPI_BUSMASTER_SUPPORT"
+	Value  = "1"
+	Help  = "Enable/Disable ATAPI Busmaster Support.\If Enabled, Busmastering will be used for ATAPI \devices else PIO transfer. "
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "IDEBUSMASTER_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "ACOUSTIC_MANAGEMENT_SUPPORT"
+	Value  = "0"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IDE_POWER_MANAGEMENT_SUPPORT"
+	Value  = "0"
+	Help  = "Enables IDE Power Management support."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "STANDBY_TIMEOUT"
+	Value  = "5"
+	Help  = "Standby Timeout value in MINUTES.\A value of ZERO, disables Standby Timer"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 - 480"
+	Token = "IDE_POWER_MANAGEMENT_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "ADVANCED_POWER_MANAGEMENT_SUPPORT"
+	Value  = "0"
+	Help  = "Enables Advanced Power Managment Support."
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "IDE_POWER_MANAGEMENT_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "ADVANCED_POWER_MANAGEMENT_LEVEL"
+	Value  = "1"
+	Help  = "Disable : 0\Minimum Power Consumption : 1\Intermediate level with Standy : 2 - 7Fh\Minimum Power Consumption  with out Standby : 80h\Intermediate level without Standy : 81 - FDh\Maximum Performance : 0FEh"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 - 0FEh"
+End
+
+TOKEN
+	Name  = "POWERUP_IN_STANDBY_SUPPORT"
+	Value  = "0"
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "IDE_POWER_MANAGEMENT_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "POWERUP_IN_STANDBY_MODE"
+	Value  = "0"
+	Help  = "ON : Device Spins up when powered on.\0FF: Device will not spinup when powered on"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IDE_POWER_MANAGEMENT_INTERFACE_SUPPORT"
+	Value  = "0"
+	Help  = "Installs IDE power Management Interface"
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "IDE_POWER_MANAGEMENT_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "HOST_PROTECTED_AREA_SUPPORT"
+	Value  = "0"
+	Help  = "Enables HOST Protected Area Interface."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IDE_HP_SUPPORT"
+	Value  = "0"
+	Help  = "Enables IDE Hot Plug Support."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "EFI_IDE_PROTOCOL"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "INTEL_IDE_PROTOCOL"
+	Value  = "$(EFI_IDE_PROTOCOL)"
+	Help  = "For backward compatibility, will keep this token value same as EFI_IDE_PROTOCOL."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+    Lock = Yes
+End
+
+TOKEN
+	Name  = "AHCI_COMPATIBLE_MODE"
+	Value  = "0"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+PATH
+	Name  = "IDEBUS_DIR"
+End
+
+MODULE
+	Help  = "Includes IdeBus.mak to Project"
+	File  = "IdeBus.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\IDEBusSrc.ffs"
+	Parent  = "FV_MAIN"
+	Disable = Yes
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "IdeBusEntryPoint,"
+	Parent  = "BdsEntryInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(IDEBUS_DIR)\IdeBusSrc$(ARCH).lib"
+	Parent  = "IdeBusSrc_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "IdeBusSrc_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "IdeBusBoardEntryPoint,"
+	Parent  = "BdsEntryInitialize"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\IdeBusBin.lib"
+	Parent  = "IdeBus_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "IdeBus_LIB"
+	InvokeOrder = ReplaceParent
+End
+

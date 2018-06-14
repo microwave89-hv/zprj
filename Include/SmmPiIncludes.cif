@@ -1,0 +1,9 @@
+<component>
+	name = "SmmPiIncludes"
+	category = ModulePart
+	LocalRoot = "Include\"
+	RefName = "SmmPiIncludes"
+[files]
+"SmmPiIncludes.sdl"
+"SmmPi.h"
+<endComponent>

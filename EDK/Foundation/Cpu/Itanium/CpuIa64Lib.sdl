@@ -1,0 +1,25 @@
+TOKEN
+	Name  = CpuIa64Lib_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable CpuIa64Lib support in Project"
+End
+
+TOKEN
+	Name  = "CPUIA64LIB"
+	Value  = "$(BUILD_DIR)\CpuIA64Lib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "CpuIa64Lib_DIR"
+End
+
+MODULE
+	Help  = "Includes CpuIa64Lib.mak to Project"
+	File  = "CpuIa64Lib.mak"
+End

@@ -1,0 +1,66 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchUsb/PchUsb.sdl 1     2/08/12 9:30a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 2/08/12 9:30a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchUsb/PchUsb.sdl $
+# 
+# 1     2/08/12 9:30a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+	Name  = "PchUsb_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PchUsb support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "PchUsb_DIR"
+End
+
+MODULE
+	Help  = "Includes PchUsb.mak to Project"
+	File  = "PchUsb.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PchUsb.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

@@ -1,0 +1,33 @@
+TOKEN
+	Name  = "DXE_STACK_SIZE"
+	Value  = "0x100000"
+	Help  = "Size of DXE Stack"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CORE_PEISrc_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable CORE_PEI Source support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "CORE_PEI_SRC_DIR"
+End
+
+MODULE
+	Help  = "Includes CORE_PEISrc.mak to Project"
+	File  = "CORE_PEISrc.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CORE_PEI.lib"
+	Parent  = "$(CORE_PEI_DIR)\CORE_PEI$(ARCH)$(DBG).lib"
+	InvokeOrder = ReplaceParent
+End
+

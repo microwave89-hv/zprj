@@ -1,0 +1,1877 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2013, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/Platform/AcpiPlatform.sd 16    5/15/14 3:14a Joshchou $
+//
+// $Revision: 16 $
+//
+// $Date: 5/15/14 3:14a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/Platform/AcpiPlatform.sd $
+// 
+// 16    5/15/14 3:14a Joshchou
+// [TAG]  		EIP167036
+// [Category]  	Improvement
+// [Description]  	 review the attributes of variable.
+// [Files]  		AcpiPlatform.c
+// AcpiPlatform.h
+// AcpiPlatform.sd
+// AcpiPlatform.cif
+// 
+// 15    4/23/14 4:21a Joshchou
+// 
+// 14    7/16/13 5:59a Alanlin
+// [TAG] EIP125350
+// [Category] Normal
+// [Severity] Normal
+// [Description] System BIOS Support for the Hardware Button for Windows*
+// 8.1 - Rev.0.5
+// [Files] AcpiPlatform.c, AcpiPlatform.sd, AcpiPlatform.uni
+// 
+// 13    6/04/13 10:19a Alanlin
+// [TAG] None 
+// [Category] Improvement
+// [Severity] Normal
+// [Description] Follow Intel CRB BIOS v126 to set default configuraton
+// setting of RTD3 devices.
+// [Files] AcpiPlatform.c, AcpiPlatform.sd, AcpiPlatform.uni
+// 
+// 12    4/24/13 7:03a Alanlin
+// [TAG] None
+// [Category] Normal
+// [Severity] Normal
+// [Description] Change "Native PCIE Enable" and "Native ASPM" to Enabled
+// as default.
+// [Files] AcpiPlatform.sd
+// 
+// 11    3/26/13 9:31a Alanlin
+// [TAG] EIP119125
+// [Category] Important
+// [Severity] Important
+// [Description] Update Shark Bay Client ACPI Reference Code Beta Version
+// 1.3.1
+// 
+// 10    2/15/13 1:13a Alanlin
+// [TAG] EIP114919
+// [Category] Important
+// [Severity] Important
+// [Description] Update Shark Bay Client ACPI Reference Code Beta Version
+// 1.1.0
+// 
+// 9     2/01/13 3:14a Alanlin
+// [TAG] None
+// [Category] Important
+// [Severity] Important
+// [Description] Fixed that DPPM-06 test item can't be passed.
+// [Files] Acpiplatform.sd.
+// 
+// 8     1/28/13 11:14p Alanlin
+// [TAG] EIP113555
+// [Category] Important
+// [Severity] Important
+// [Description] Update Shark Bay Client ACPI Reference Code Beta Version
+// 1.0.0
+// 
+// 7     1/15/13 5:46a Alanlin
+// [TAG] None
+// [Category] Normal
+// [Severity] Normal
+// [Description] Add setup item and setting for DPTF
+// [Files] Acpiplatform.c, Acpiplatform.sd, Acpiplatform.uni,
+// PlatformSetup.h
+// 
+// 6     12/18/12 11:04p Alanlin
+// [TAG] EIP107188
+// [Category] Important
+// [Severity] Important
+// [Description] USB 3.0 port can't work when RTD3 is Enabled in setup
+// menu.
+// [Files] Acpiplatform.c, Acpiplatform.mak, Acpiplatform.sd,
+// Acpiplatform.uni.
+// 
+// 5     11/09/12 5:18a Alanlin
+// [TAG]           None
+// [Category]      New Feature
+// [Severity]      Important
+// [Description]   ZpOdd SSDT acpi table support
+// [Files]         Acpiplatform.c, Acpiplatform.cif, Acpiplatform.h,
+//                 Acpiplatform.sd, Acpiplatform.uni
+// 
+// 4     10/31/12 4:41a Alanlin
+// [TAG]         None
+// [Category]    New Feature
+// [Severity]    Normal
+// [Description] Support Acpi Debug SSDT.              
+// 
+// 3     8/31/12 4:48a Yurenlai
+// [TAG]           None
+// [Category]      Improvement
+// [Severity]      Important
+// [Description]   Implement Runtime D3.
+// [Files]         AcpiPlatform.c, AcpiPlatform.cif, AcpiPlatform.h,
+// AcpiPlatform.sd, AcpiPlatform.sdl, AcpiPlatform.uni, GlobalNvsArea.h,
+// SsdtRtd3.cif, SsdtRtd3.mak, Ult0Rtd3.asl, SsdtRtd3.sdl
+// 
+// 2     7/27/12 5:11a Yurenlai
+// [TAG]         None
+// [Category]    Improvement
+// [Description] Create DPTF and CPPC setup item.
+// [Files]       AcpiPlatform.c, AcpiPlatform.sd, AcpiPlatform.uni,
+// PlatformSetup.h
+// 
+// 1     2/09/12 12:31a Yurenlai
+// Initial check in.
+// 
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:	AcpiPlatform.sd
+//
+// Description:	AcpiPlatform Form Template
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+
+#ifdef SETUP_DATA_DEFINITION
+//---------------------------------------------------------------------------
+// Put NVRAM data definitions here.
+// For example: UINT8 Data1;
+// These definitions will be converted by the build process
+// to a definitions of SETUP_DATA fields.
+//---------------------------------------------------------------------------
+#if ACPIDEBUG_SUPPORT
+    UINT8   AcpiDebugSupport;
+#endif  // ACPIDEBUG_SUPPORT
+#if RTD3_SUPPORT
+    UINT8   Rtd3Support;
+    UINT16  VRStaggeringDelay;
+    UINT16  VRRampUpDelay;
+    UINT8   Rtd3P0dl;
+    UINT8   Rtd3P3dl;
+    UINT16  Rtd3Audio;
+    UINT16  Rtd3ADSP;
+    UINT16  Rtd3I2C0;
+    UINT16  Rtd3SensorHub;
+    UINT16  Rtd3I2C1;
+    UINT16  Rtd3I2C1PS0;
+    UINT16  Rtd3TouchPanel;
+    UINT8   PepGfx;
+    UINT8   PepSata;
+    UINT8   PCapping;
+    UINT8   XhciP0;
+    UINT8   XhciP1;
+    UINT8   RIC0;
+    UINT8   RTD3ZPODD;
+    UINT8   RTD3USBCamera;
+    UINT8   RTD3MiniSataPort3;
+    UINT8   RTD3WaGpio;
+#endif  // RTD3_SUPPORT
+    UINT8   PciExpNative;
+    UINT8   NativeAspmEnable;
+#if PTID_SUPPORT
+    UINT8   PtidSupport;
+    UINT8   PeciAccessMethod;
+#endif  // PTID_SUPPORT
+#if LOW_POWER_S0_IDLE_CAPABLE
+    UINT8   PowerButton10SecOVR;
+    UINT16  LowPowerIdleSATA;
+    UINT8   EcNotification;
+    UINT8   EcCSDebugLight;
+    UINT8   SensorStandby;
+    UINT8   CSPL1Limit;
+    UINT16  CSPL1Value;
+#endif // LOW_POWER_S0_IDLE_CAPABLE
+#if CPPC_SUPPORT
+    UINT8   EnableCppc;
+    UINT8   EnableCppcPlatformSCI;
+#endif // CPPC_SUPPORT
+#if Dptf_SUPPORT
+    UINT8   EnableDptf;
+    UINT8   EnableSaDevice;
+    UINT8   ActiveThermalTripPointSa;
+    UINT8   PassiveThermalTripPointSa;
+    UINT8   CriticalThermalTripPointSa;
+    UINT8   HotThermalTripPointSa;
+    UINT8   EnablePchDevice;
+    UINT8   ActiveThermalTripPointPch;
+    UINT8   PassiveThermalTripPointPch;
+    UINT8   CriticalThermalTripPointPch;
+    UINT8   HotThermalTripPointPch;
+    UINT8   EnableMemDevice;
+    UINT8   ActiveThermalTripPointMem;
+    UINT8   PassiveThermalTripPointMem;
+    UINT8   CriticalThermalTripPointMem;
+    UINT8   HotThermalTripPointMem;
+    UINT8   EnableAmbientDevice;
+    UINT8   ActiveThermalTripPointAmbient;
+    UINT8   PassiveThermalTripPointAmbient;
+    UINT8   CriticalThermalTripPointAmbient;
+    UINT8   HotThermalTripPointAmbient;
+    UINT8   EnableSkinDevice;
+    UINT8   ActiveThermalTripPointSkin;
+    UINT8   PassiveThermalTripPointSkin;
+    UINT8   CriticalThermalTripPointSkin;
+    UINT8   HotThermalTripPointSkin;
+    UINT8   EnableExhaustDevice;
+    UINT8   ActiveThermalTripPointExhaust;
+    UINT8   PassiveThermalTripPointExhaust;
+    UINT8   CriticalThermalTripPointExhaust;
+    UINT8   HotThermalTripPointExhaust;
+    UINT8   EnableVRDevice;
+    UINT8   ActiveThermalTripPointVR;
+    UINT8   PassiveThermalTripPointVR;
+    UINT8   CriticalThermalTripPointVR;
+    UINT8   HotThermalTripPointVR;
+    UINT32  PpccStepSize;
+    UINT8   LPOEnable;
+    UINT8   LPOStartPState;
+    UINT8   LPOStepSize;
+    UINT8   LPOPowerControl;
+    UINT8   LPOPerformanceControl;
+    UINT8   EnableCTDP;
+    UINT8   EnableLPM;
+    UINT8   LPMSetting;
+    UINT8   Fan1Device;
+    UINT8   Fan2Device;
+    UINT8   DisplayParticipant;
+    UINT8   PowerParticipant;
+    UINT8   PowerPolicy;
+    UINT8   ActivePolicy;
+    UINT8   PassivePolicy;
+    UINT8   CriticalPolicy;
+    UINT8   CoolingModePolicy;
+    UINT8   TrtRevision;
+#endif // Dptf_SUPPORT
+#if IntelRMT_SUPPORT
+    UINT8   IRMTSupport;
+    UINT8   IRMTState;
+    UINT8   IRMTHWNotification;
+#endif  // IntelRMT_SUPPORT
+#endif // SETUP_DATA_DEFINITION
+
+#ifdef FORM_SET_TYPEDEF
+ #include "PlatformSetup.h"
+#endif
+
+#if defined(VFRCOMPILE) && !defined(CONTROLS_ARE_DEFINED)
+#define CONTROL_DEFINITION
+#endif
+//---------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------
+#ifdef CONTROL_DEFINITION
+
+#if ACPIDEBUG_SUPPORT
+#define ACPI_ONEOF_ACPIDEBUGSUPPORT\
+  oneof varid  = SETUP_DATA.AcpiDebugSupport,\
+    prompt = STRING_TOKEN(STR_ACPIDEBUG_PROMPT),\
+    help = STRING_TOKEN(STR_ACPIDEBUG_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+#endif // ACPIDEBUG_SUPPORT
+
+#if RTD3_SUPPORT
+#define ACPI_ONEOF_RTD3SUPPORT\
+  oneof varid  = SETUP_DATA.Rtd3Support,\
+    prompt = STRING_TOKEN(STR_RTD3_PROMPT),\
+    help = STRING_TOKEN(STR_RTD3_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_VRSTAGGERINGDELAY\
+  numeric varid  = SETUP_DATA.VRStaggeringDelay,\
+    prompt       = STRING_TOKEN (STR_VRSTAGGERINGDELAY_PROMPT),\
+    help         = STRING_TOKEN (STR_VRSTAGGERINGDELAY_HELP),\
+    flags        = RESET_REQUIRED,\
+    minimum      = 0,\
+    maximum      = 100,\
+    step         = 1,\
+    default      = 10,\
+    option text  = STRING_TOKEN (STR_VRSTAGGERINGDELAY_PROMPT), value = 10, flags = MANUFACTURING; \
+  endnumeric;
+
+#define ACPI_ONEOF_VRRAMPUPDELAY\
+  numeric varid  = SETUP_DATA.VRRampUpDelay,\
+    prompt       = STRING_TOKEN (STR_VRRAMPUPDELAY_PROMPT),\
+    help         = STRING_TOKEN (STR_VRRAMPUPDELAY_HELP),\
+    flags        = RESET_REQUIRED,\
+    minimum      = 0,\
+    maximum      = 100,\
+    step         = 1,\
+    default      = 16,\
+    option text  = STRING_TOKEN (STR_VRRAMPUPDELAY_PROMPT), value = 16, flags = MANUFACTURING; \
+  endnumeric;
+
+#define ACPI_ONEOF_RTD3P0DL\
+  numeric varid  = SETUP_DATA.Rtd3P0dl,\
+    prompt       = STRING_TOKEN (STR_RTD3P0DL_PROMPT),\
+    help         = STRING_TOKEN (STR_RTD3P0DL_HELP),\
+    flags        = RESET_REQUIRED,\
+    minimum      = 0,\
+    maximum      = 100,\
+    step         = 1,\
+    default      = 100,\
+    option text  = STRING_TOKEN (STR_RTD3P0DL_PROMPT), value = 100, flags = MANUFACTURING; \
+  endnumeric;
+
+#define ACPI_ONEOF_RTD3P3DL\
+  numeric varid  = SETUP_DATA.Rtd3P3dl,\
+    prompt       = STRING_TOKEN (STR_RTD3P3DL_PROMPT),\
+    help         = STRING_TOKEN (STR_RTD3P3DL_HELP),\
+    flags        = RESET_REQUIRED,\
+    minimum      = 0,\
+    maximum      = 10,\
+    step         = 1,\
+    default      = 10,\
+    option text  = STRING_TOKEN (STR_RTD3P3DL_PROMPT), value = 10, flags = MANUFACTURING; \
+  endnumeric;
+
+#define ACPI_ONEOF_RTD3AUDIO\
+  numeric varid  = SETUP_DATA.Rtd3Audio,\
+    prompt       = STRING_TOKEN (STR_RTD3AUDIO_PROMPT),\
+    help         = STRING_TOKEN (STR_RTD3AUDIO_HELP),\
+    flags        = RESET_REQUIRED,\
+    minimum      = 0,\
+    maximum      = 1000,\
+    step         = 1,\
+    default      = 200,\
+    option text  = STRING_TOKEN (STR_RTD3AUDIO_PROMPT), value = 200, flags = MANUFACTURING; \
+  endnumeric;
+
+#define ACPI_ONEOF_RTD3ADSP\
+  numeric varid  = SETUP_DATA.Rtd3ADSP,\
+    prompt       = STRING_TOKEN (STR_RTD3ADSP_PROMPT),\
+    help         = STRING_TOKEN (STR_RTD3ADSP_HELP),\
+    flags        = RESET_REQUIRED,\
+    minimum      = 0,\
+    maximum      = 1000,\
+    step         = 1,\
+    default      = 200,\
+    option text  = STRING_TOKEN (STR_RTD3ADSP_PROMPT), value = 200, flags = MANUFACTURING; \
+  endnumeric;
+
+#define ACPI_ONEOF_RTD3I2C0\
+  numeric varid  = SETUP_DATA.Rtd3I2C0,\
+    prompt       = STRING_TOKEN (STR_RTD3I2C0_PROMPT),\
+    help         = STRING_TOKEN (STR_RTD3I2C0_HELP),\
+    flags        = RESET_REQUIRED,\
+    minimum      = 0,\
+    maximum      = 1000,\
+    step         = 1,\
+    default      = 0,\
+    option text  = STRING_TOKEN (STR_RTD3I2C0_PROMPT), value = 0, flags = MANUFACTURING; \
+  endnumeric;
+
+#define ACPI_ONEOF_RTD3SENSORHUB\
+  numeric varid  = SETUP_DATA.Rtd3SensorHub,\
+    prompt       = STRING_TOKEN (STR_RTD3SENSORHUB_PROMPT),\
+    help         = STRING_TOKEN (STR_RTD3SENSORHUB_HELP),\
+    flags        = RESET_REQUIRED,\
+    minimum      = 0,\
+    maximum      = 1000,\
+    step         = 1,\
+    default      = 68,\
+    option text  = STRING_TOKEN (STR_RTD3SENSORHUB_PROMPT), value = 68, flags = MANUFACTURING; \
+  endnumeric;
+
+#define ACPI_ONEOF_RTD3I2C1\
+  numeric varid  = SETUP_DATA.Rtd3I2C1,\
+    prompt       = STRING_TOKEN (STR_RTD3I2C1_PROMPT),\
+    help         = STRING_TOKEN (STR_RTD3I2C1_HELP),\
+    flags        = RESET_REQUIRED,\
+    minimum      = 0,\
+    maximum      = 1000,\
+    step         = 1,\
+    default      = 0,\
+    option text  = STRING_TOKEN (STR_RTD3I2C1_PROMPT), value = 0, flags = MANUFACTURING; \
+  endnumeric;
+
+#define ACPI_ONEOF_RTD3I2C1PS0\
+  numeric varid  = SETUP_DATA.Rtd3I2C1PS0,\
+    prompt       = STRING_TOKEN (STR_RTD3I2C1PS0_PROMPT),\
+    help         = STRING_TOKEN (STR_RTD3I2C1PS0_HELP),\
+    flags        = RESET_REQUIRED,\
+    minimum      = 0,\
+    maximum      = 1000,\
+    step         = 1,\
+    default      = 68,\
+    option text  = STRING_TOKEN (STR_RTD3I2C1PS0_PROMPT), value = 68, flags = MANUFACTURING; \
+  endnumeric;
+
+#define ACPI_ONEOF_RTD3TOUCHPANEL\
+  numeric varid  = SETUP_DATA.Rtd3TouchPanel,\
+    prompt       = STRING_TOKEN (STR_RTD3TOUCHPANEL_PROMPT),\
+    help         = STRING_TOKEN (STR_RTD3TOUCHPANEL_HELP),\
+    flags        = RESET_REQUIRED,\
+    minimum      = 0,\
+    maximum      = 1000,\
+    step         = 1,\
+    default      = 68,\
+    option text  = STRING_TOKEN (STR_RTD3TOUCHPANEL_PROMPT), value = 68, flags = MANUFACTURING; \
+  endnumeric;
+
+#define ACPI_ONEOF_PEPGFX\
+  oneof varid  = SETUP_DATA.PepGfx,\
+    prompt = STRING_TOKEN(STR_PEPGFX_PROMPT),\
+    help = STRING_TOKEN(STR_PEPGFX_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_PEPSATA\
+  oneof varid  = SETUP_DATA.PepSata,\
+    prompt = STRING_TOKEN(STR_PEPSATA_PROMPT),\
+    help = STRING_TOKEN(STR_PEPSATA_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_PCAPPING\
+  oneof varid  = SETUP_DATA.PCapping,\
+    prompt = STRING_TOKEN(STR_PCAPPING_PROMPT),\
+    help = STRING_TOKEN(STR_PCAPPING_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+  
+#define ACPI_ONEOF_XHCIP0\
+  oneof varid  = SETUP_DATA.XhciP0,\
+    prompt = STRING_TOKEN(STR_XHCIP0_PROMPT),\
+    help = STRING_TOKEN(STR_XHCIP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_HIGHSPEED), value = 1, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_SUPERSPEED), value = 2, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_XHCIP1\
+  oneof varid  = SETUP_DATA.XhciP1,\
+    prompt = STRING_TOKEN(STR_XHCIP1_PROMPT),\
+    help = STRING_TOKEN(STR_XHCIP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_HIGHSPEED), value = 1, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_SUPERSPEED), value = 2, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_RIC0\
+  oneof varid  = SETUP_DATA.RIC0,\
+    prompt = STRING_TOKEN(STR_RIC0_PROMPT),\
+    help = STRING_TOKEN(STR_RIC0_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_RTD3ZPODD\
+  oneof varid  = SETUP_DATA.RTD3ZPODD,\
+    prompt = STRING_TOKEN(STR_RTD3_ZPODD_PROMPT),\
+    help = STRING_TOKEN(STR_RTD3_ZPODD_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_RTD3USBCamera\
+  oneof varid  = SETUP_DATA.RTD3USBCamera,\
+    prompt = STRING_TOKEN(STR_RTD3_USBCAMERA_PROMPT),\
+    help = STRING_TOKEN(STR_RTD3_USBCAMERA_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_RTD3MiniSataPort3\
+  oneof varid  = SETUP_DATA.RTD3MiniSataPort3,\
+    prompt = STRING_TOKEN(STR_RTD3_MINISATAPORT3_PROMPT),\
+    help = STRING_TOKEN(STR_RTD3_MINISATAPORT3_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_1_5_DK), value = 1, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_3_3_DK), value = 2, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_RTD3WAGPIO\
+  oneof varid  = SETUP_DATA.RTD3WaGpio,\
+    prompt = STRING_TOKEN(STR_RTD3_RTD3WAGPIO_PROMPT),\
+    help = STRING_TOKEN(STR_RTD3_RTD3WAGPIO_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_SLOT_1), value = 1, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_SLOT_6), value = 6, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+#endif // RTD3_SUPPORT
+
+#define ACPI_ONEOF_PCIEXPNATIVE\
+  oneof varid  = SETUP_DATA.PciExpNative,\
+    prompt = STRING_TOKEN(STR_ACPI_PCIE_NATIVE_PROMPT),\
+    help = STRING_TOKEN(STR_ACPI_PCIE_NATIVE_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_NATIVEASPMENABLE\
+  oneof varid    = SETUP_DATA.NativeAspmEnable,\
+    prompt   = STRING_TOKEN(STR_NATIVE_ASPM_PROMPT),\
+    help     = STRING_TOKEN(STR_NATIVE_ASPM_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#if PTID_SUPPORT
+#define ACPI_ONEOF_PTIDSUPPORT\
+  checkbox varid  = SETUP_DATA.PtidSupport,\
+    prompt  = STRING_TOKEN(STR_PTID_PROMPT),\
+    help    = STRING_TOKEN(STR_PTID_HELP),\
+    flags   = 0 | RESET_REQUIRED | MANUFACTURING,\
+    key     = 0,\
+  endcheckbox;
+
+#define ACPI_ONEOF_PECIACCESSMETHOD\
+  oneof varid  = SETUP_DATA.PeciAccessMethod,\
+    prompt = STRING_TOKEN(STR_PECI_ACCESS_PROMPT),\
+    help = STRING_TOKEN(STR_PECI_ACCESS_HELP),\
+    option text = STRING_TOKEN(STR_PECI_ACCESS_IO), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_PECI_ACCESS_ACPI), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+#endif // PTID_SUPPORT
+
+#if IntelRMT_SUPPORT
+#define ACPI_ONEOF_IRMTSUPPORT\
+  oneof varid  = SETUP_DATA.IRMTSupport,\
+    prompt = STRING_TOKEN(STR_IRMT_PROMPT),\
+    help = STRING_TOKEN(STR_IRMT_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_IRMTSTATE\
+  oneof varid  = SETUP_DATA.IRMTState,\
+    prompt = STRING_TOKEN(STR_IRMT_STATE_PROMPT),\
+    help = STRING_TOKEN(STR_IRMT_STATE_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_IRMTHW\
+  oneof varid  = SETUP_DATA.IRMTHWNotification,\
+    prompt = STRING_TOKEN(STR_IRMT_HW_PROMPT),\
+    help = STRING_TOKEN(STR_IRMT_HW_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#endif // IntelRMT_SUPPORT
+
+#if LOW_POWER_S0_IDLE_CAPABLE
+#define ACPI_ONEOF_POWERBUTTON10SECOVR\
+  oneof varid  = SETUP_DATA.PowerButton10SecOVR,\
+    prompt = STRING_TOKEN(STR_POWERBUTTON10SECOVR_PROMPT),\
+    help = STRING_TOKEN(STR_POWERBUTTON10SECOVR_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_LOWPOWERIDLESATA\
+  oneof varid  = SETUP_DATA.LowPowerIdleSATA,\
+    prompt = STRING_TOKEN(STR_LOWPOWERIDLESATA_PROMPT),\
+    help = STRING_TOKEN(STR_LOWPOWERIDLESATA_HELP),\
+    option text = STRING_TOKEN(STR_NOCONSTRAINT), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_SATAPORTS), value = 1, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_SATACONTROLLER), value = 2, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_ECNOTIFICATION\
+  oneof varid  = SETUP_DATA.EcNotification,\
+    prompt = STRING_TOKEN(STR_ECNOTIFICATION_PROMPT),\
+    help = STRING_TOKEN(STR_ECNOTIFICATION_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED , key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_ECCSDEBUGLIGHT\
+  oneof varid  = SETUP_DATA.EcCSDebugLight,\
+    prompt = STRING_TOKEN(STR_ECCSDEBUGLIGHT_PROMPT),\
+    help = STRING_TOKEN(STR_ECCSDEBUGLIGHT_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_SENSORSTANDBY\
+  oneof varid  = SETUP_DATA.SensorStandby,\
+    prompt = STRING_TOKEN(STR_SENSORSTANDBY_PROMPT),\
+    help = STRING_TOKEN(STR_SENSORSTANDBY_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_CSPL1LIMIT\
+  oneof varid  = SETUP_DATA.CSPL1Limit,\
+    prompt = STRING_TOKEN(STR_CSPL1LIMIT_PROMPT),\
+    help = STRING_TOKEN(STR_CSPL1LIMIT_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define ACPI_ONEOF_CSPL1VALUE\
+  numeric varid  = SETUP_DATA.CSPL1Value,\
+    prompt       = STRING_TOKEN (STR_CSPL1VALUE_PROMPT),\
+    help         = STRING_TOKEN (STR_CSPL1VALUE_HELP),\
+    flags        = RESET_REQUIRED,\
+    minimum      = 3000,\
+    maximum      = 20000,\
+    step         = 1,\
+    default      = 4500,\
+    option text  = STRING_TOKEN (STR_CSPL1VALUE_PROMPT), value = 4500, flags = MANUFACTURING; \
+  endnumeric;
+#endif // LOW_POWER_S0_IDLE_CAPABLE
+
+
+//=======================================================================//
+//                                 CPPC                                  //
+//=======================================================================//
+#if CPPC_SUPPORT
+#define CPPC_ONEOF_ENABLECPPC\
+  oneof varid  = SETUP_DATA.EnableCppc,\
+    prompt = STRING_TOKEN(STR_ENABLE_CPPC_PROMPT),\
+    help = STRING_TOKEN(STR_ENABLE_CPPC_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define CPPC_ONEOF_CPPCSCI\
+  oneof varid  = SETUP_DATA.EnableCppcPlatformSCI,\
+    prompt = STRING_TOKEN(STR_ENABLE_CPPC_SCI_PROMPT),\
+    help = STRING_TOKEN(STR_ENABLE_CPPC_SCI_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+#endif // CPPC_SUPPORT
+
+//=======================================================================//
+//                                 DPTF                                  //
+//=======================================================================//
+#if Dptf_SUPPORT
+#define DPTF_ONEOF_ENABLEDPTF\
+  oneof varid  = SETUP_DATA.EnableDptf,\
+    prompt = STRING_TOKEN(STR_ENABLE_DPTF_PROMPT),\
+    help = STRING_TOKEN(STR_ENABLE_DPTF_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+// Processor Thermal Device
+#define DPTF_ONEOF_ENABLESA\
+  oneof varid  = SETUP_DATA.EnableSaDevice,\
+    prompt = STRING_TOKEN(STR_DPTF_SA_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_SA_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_DPTF_ENABLE_SA_TD), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_DPTF_ENABLE_CPU_TD), value = 2, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_ATTPOINT_SA\
+  oneof varid  = SETUP_DATA.ActiveThermalTripPointSa,\
+    prompt = STRING_TOKEN(STR_DPTF_ATTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_ATTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_PTTPOINT_SA\
+  oneof varid  = SETUP_DATA.PassiveThermalTripPointSa,\
+    prompt = STRING_TOKEN(STR_DPTF_PTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_PTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_CTTPOINT_SA\
+  oneof varid  = SETUP_DATA.CriticalThermalTripPointSa,\
+    prompt = STRING_TOKEN(STR_DPTF_CTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_CTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_HTTPOINT_SA\
+  oneof varid  = SETUP_DATA.HotThermalTripPointSa,\
+    prompt = STRING_TOKEN(STR_DPTF_HTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_HTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+// Pch Thermal Device
+#define DPTF_ONEOF_ENABLEPCH\
+  oneof varid  = SETUP_DATA.EnablePchDevice,\
+    prompt = STRING_TOKEN(STR_DPTF_PCH_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_PCH_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_ATTPOINT_PCH\
+  oneof varid  = SETUP_DATA.ActiveThermalTripPointPch,\
+    prompt = STRING_TOKEN(STR_DPTF_ATTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_ATTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_PTTPOINT_PCH\
+  oneof varid  = SETUP_DATA.PassiveThermalTripPointPch,\
+    prompt = STRING_TOKEN(STR_DPTF_PTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_PTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_CTTPOINT_PCH\
+  oneof varid  = SETUP_DATA.CriticalThermalTripPointPch,\
+    prompt = STRING_TOKEN(STR_DPTF_CTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_CTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_HTTPOINT_PCH\
+  oneof varid  = SETUP_DATA.HotThermalTripPointPch,\
+    prompt = STRING_TOKEN(STR_DPTF_HTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_HTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+// Memory Thermal Device
+#define DPTF_ONEOF_ENABLEMEM\
+  oneof varid  = SETUP_DATA.EnableMemDevice,\
+    prompt = STRING_TOKEN(STR_DPTF_MEM_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_MEM_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_ATTPOINT_MEM\
+  oneof varid  = SETUP_DATA.ActiveThermalTripPointMem,\
+    prompt = STRING_TOKEN(STR_DPTF_ATTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_ATTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_PTTPOINT_MEM\
+  oneof varid  = SETUP_DATA.PassiveThermalTripPointMem,\
+    prompt = STRING_TOKEN(STR_DPTF_PTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_PTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_CTTPOINT_MEM\
+  oneof varid  = SETUP_DATA.CriticalThermalTripPointMem,\
+    prompt = STRING_TOKEN(STR_DPTF_CTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_CTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_HTTPOINT_MEM\
+  oneof varid  = SETUP_DATA.HotThermalTripPointMem,\
+    prompt = STRING_TOKEN(STR_DPTF_HTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_HTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+// Ambient Thermal Device
+#define DPTF_ONEOF_ENABLEAMBIENT\
+  oneof varid  = SETUP_DATA.EnableAmbientDevice,\
+    prompt = STRING_TOKEN(STR_DPTF_AMBIENT_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_AMBIENT_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_ATTPOINT_AMBIENT\
+  oneof varid  = SETUP_DATA.ActiveThermalTripPointAmbient,\
+    prompt = STRING_TOKEN(STR_DPTF_ATTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_ATTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_PTTPOINT_AMBIENT\
+  oneof varid  = SETUP_DATA.PassiveThermalTripPointAmbient,\
+    prompt = STRING_TOKEN(STR_DPTF_PTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_PTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_CTTPOINT_AMBIENT\
+  oneof varid  = SETUP_DATA.CriticalThermalTripPointAmbient,\
+    prompt = STRING_TOKEN(STR_DPTF_CTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_CTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_HTTPOINT_AMBIENT\
+  oneof varid  = SETUP_DATA.HotThermalTripPointAmbient,\
+    prompt = STRING_TOKEN(STR_DPTF_HTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_HTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+// Skin Thermal Device
+#define DPTF_ONEOF_ENABLESKIN\
+  oneof varid  = SETUP_DATA.EnableSkinDevice,\
+    prompt = STRING_TOKEN(STR_DPTF_SKIN_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_SKIN_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_ATTPOINT_SKIN\
+  oneof varid  = SETUP_DATA.ActiveThermalTripPointSkin,\
+    prompt = STRING_TOKEN(STR_DPTF_ATTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_ATTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_PTTPOINT_SKIN\
+  oneof varid  = SETUP_DATA.PassiveThermalTripPointSkin,\
+    prompt = STRING_TOKEN(STR_DPTF_PTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_PTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_CTTPOINT_SKIN\
+  oneof varid  = SETUP_DATA.CriticalThermalTripPointSkin,\
+    prompt = STRING_TOKEN(STR_DPTF_CTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_CTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_HTTPOINT_SKIN\
+  oneof varid  = SETUP_DATA.HotThermalTripPointSkin,\
+    prompt = STRING_TOKEN(STR_DPTF_HTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_HTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+// Exhaust Thermal Device
+#define DPTF_ONEOF_ENABLEEXHAUST\
+  oneof varid  = SETUP_DATA.EnableExhaustDevice,\
+    prompt = STRING_TOKEN(STR_DPTF_EXHAUST_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_EXHAUST_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_ATTPOINT_EXHAUST\
+  oneof varid  = SETUP_DATA.ActiveThermalTripPointExhaust,\
+    prompt = STRING_TOKEN(STR_DPTF_ATTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_ATTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_PTTPOINT_EXHAUST\
+  oneof varid  = SETUP_DATA.PassiveThermalTripPointExhaust,\
+    prompt = STRING_TOKEN(STR_DPTF_PTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_PTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_CTTPOINT_EXHAUST\
+  oneof varid  = SETUP_DATA.CriticalThermalTripPointExhaust,\
+    prompt = STRING_TOKEN(STR_DPTF_CTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_CTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_HTTPOINT_EXHAUST\
+  oneof varid  = SETUP_DATA.HotThermalTripPointExhaust,\
+    prompt = STRING_TOKEN(STR_DPTF_HTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_HTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+// VR Thermal Device
+#define DPTF_ONEOF_ENABLEVR\
+  oneof varid  = SETUP_DATA.EnableVRDevice,\
+    prompt = STRING_TOKEN(STR_DPTF_VR_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_VR_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_ATTPOINT_VR\
+  oneof varid  = SETUP_DATA.ActiveThermalTripPointVR,\
+    prompt = STRING_TOKEN(STR_DPTF_ATTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_ATTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_PTTPOINT_VR\
+  oneof varid  = SETUP_DATA.PassiveThermalTripPointVR,\
+    prompt = STRING_TOKEN(STR_DPTF_PTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_PTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_CTTPOINT_VR\
+  oneof varid  = SETUP_DATA.CriticalThermalTripPointVR,\
+    prompt = STRING_TOKEN(STR_DPTF_CTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_CTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_HTTPOINT_VR\
+  oneof varid  = SETUP_DATA.HotThermalTripPointVR,\
+    prompt = STRING_TOKEN(STR_DPTF_HTTP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_HTTP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 127, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_15_C), value = 15, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_23_C), value = 23, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_31_C), value = 31, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_39_C), value = 39, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_47_C), value = 47, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_55_C), value = 55, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_63_C), value = 63, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_71_C), value = 71, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_79_C), value = 79, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_87_C), value = 87, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_95_C), value = 95, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_103_C), value = 103, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_111_C), value = 111, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_119_C), value = 119, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_PPCC_STEPSIZE\
+  oneof varid  = SETUP_DATA.PpccStepSize,\
+    prompt = STRING_TOKEN(STR_DPTF_PPCC_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_PPCC_HELP),\
+    option text = STRING_TOKEN(STR_05_W), value = 500, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_10_W), value = 1000, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_15_W), value = 1500, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_20_W), value = 2000, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_LPO_ENABLE\
+  oneof varid  = SETUP_DATA.LPOEnable,\
+    prompt = STRING_TOKEN(STR_DPTF_LPO_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_LPO_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_LPOPSTATE\
+  numeric varid  = SETUP_DATA.LPOStartPState,\
+    prompt       = STRING_TOKEN (STR_DPTF_LPOPSTATE_SEL),\
+    help         = STRING_TOKEN (STR_DPTF_LPOPSTATE_SEL_HELP),\
+    flags        = RESET_REQUIRED,\
+    minimum      = 0,\
+    maximum      = 16,\
+    step         = 1,\
+    default      = 16,\
+    option text  = STRING_TOKEN (STR_DPTF_LPOPSTATE_SEL), value = 16, flags = MANUFACTURING;\
+  endnumeric;
+
+#define DPTF_ONEOF_LPOSIZE\
+  numeric varid  = SETUP_DATA.LPOStepSize,\
+    prompt       = STRING_TOKEN (STR_DPTF_LPOSIZE_SEL),\
+    help         = STRING_TOKEN (STR_DPTF_LPOSIZE_SEL_HELP),\
+    flags        = RESET_REQUIRED,\
+    minimum      = 0,\
+    maximum      = 100,\
+    step         = 1,\
+    default      = 50,\
+    option text  = STRING_TOKEN (STR_DPTF_LPOSIZE_SEL), value = 1, flags = MANUFACTURING;\
+  endnumeric;
+
+#define DPTF_ONEOF_LPO_POW\
+  oneof varid  = SETUP_DATA.LPOPowerControl,\
+    prompt = STRING_TOKEN(STR_DPTF_LPOPOW_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_LPOPOW_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_SMT_OFFLINING), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_CORE_OFFLINING), value = 2, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_LPO_PER\
+  oneof varid  = SETUP_DATA.LPOPerformanceControl,\
+    prompt = STRING_TOKEN(STR_DPTF_LPOPER_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_LPOPER_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_SMT_OFFLINING), value = 1, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_CORE_OFFLINING), value = 2, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_CTDP_ENABLE\
+  oneof varid  = SETUP_DATA.EnableCTDP,\
+    prompt = STRING_TOKEN(STR_DPTF_CTDP_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_CTDP_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_LPM_ENABLE\
+  oneof varid  = SETUP_DATA.EnableLPM,\
+    prompt = STRING_TOKEN(STR_DPTF_LPM_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_LPM_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_LPM_SETTING\
+  oneof varid  = SETUP_DATA.LPMSetting,\
+    prompt = STRING_TOKEN(STR_DPTF_LPM_SETTING_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_LPM_SETTING_HELP),\
+    option text = STRING_TOKEN(STR_LPM_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_LPM_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_LPM_APPLI_SPEC), value = 2, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_LPM_USE_OS), value = 3, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_FAN1\
+  oneof varid  = SETUP_DATA.Fan1Device,\
+    prompt = STRING_TOKEN(STR_DPTF_FAN1_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_FAN1_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_FAN2\
+  oneof varid  = SETUP_DATA.Fan2Device,\
+    prompt = STRING_TOKEN(STR_DPTF_FAN2_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_FAN2_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_DISPLAY_PARTICIPANT\
+  oneof varid  = SETUP_DATA.DisplayParticipant,\
+    prompt = STRING_TOKEN(STR_DPTF_DISPLAY_PARTICIPANT_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_DISPLAY_PARTICIPANT_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_POWER_PARTICIPANT\
+  oneof varid  = SETUP_DATA.PowerParticipant,\
+    prompt = STRING_TOKEN(STR_DPTF_POWER_PARTICIPANT_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_POWER_PARTICIPANT_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_POWER_POLICY\
+  oneof varid  = SETUP_DATA.PowerPolicy,\
+    prompt = STRING_TOKEN(STR_DPTF_POWER_POLICY_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_POWER_POLICY_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_ACTIVE_POLICY\
+  oneof varid  = SETUP_DATA.ActivePolicy,\
+    prompt = STRING_TOKEN(STR_DPTF_ACTIVE_POLICY_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_ACTIVE_POLICY_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_PASSIVE_POLICY\
+  oneof varid  = SETUP_DATA.PassivePolicy,\
+    prompt = STRING_TOKEN(STR_DPTF_PASSIVE_POLICY_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_PASSIVE_POLICY_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_CRITICAL_POLICY\
+  oneof varid  = SETUP_DATA.CriticalPolicy,\
+    prompt = STRING_TOKEN(STR_DPTF_CRITICAL_POLICY_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_CRITICAL_POLICY_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_COOLING_POLICY\
+  oneof varid  = SETUP_DATA.CoolingModePolicy,\
+    prompt = STRING_TOKEN(STR_DPTF_COOLING_POLICY_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_COOLING_POLICY_HELP),\
+    option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#define DPTF_ONEOF_TRT_REVISION\
+  oneof varid  = SETUP_DATA.TrtRevision,\
+    prompt = STRING_TOKEN(STR_DPTF_TRT_PROMPT),\
+    help = STRING_TOKEN(STR_DPTF_TRT_HELP),\
+    option text = STRING_TOKEN(STR_TRT_TRADITIONAL), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text = STRING_TOKEN(STR_TRT_PRIORITY), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+  endoneof;
+
+#endif // Dptf_SUPPORT
+
+#endif // CONTROL_DEFINITION
+//---------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------
+#ifdef CONTROLS_WITH_DEFAULTS
+#if ACPIDEBUG_SUPPORT
+    ACPI_ONEOF_ACPIDEBUGSUPPORT
+#endif // ACPIDEBUG_SUPPORT
+#if RTD3_SUPPORT
+    ACPI_ONEOF_RTD3SUPPORT
+    ACPI_ONEOF_VRSTAGGERINGDELAY
+    ACPI_ONEOF_VRRAMPUPDELAY
+    ACPI_ONEOF_RTD3P0DL
+    ACPI_ONEOF_RTD3P3DL
+    ACPI_ONEOF_RTD3AUDIO
+    ACPI_ONEOF_RTD3ADSP
+    ACPI_ONEOF_RTD3I2C0
+    ACPI_ONEOF_RTD3SENSORHUB
+    ACPI_ONEOF_RTD3I2C1
+    ACPI_ONEOF_RTD3I2C1PS0
+    ACPI_ONEOF_RTD3TOUCHPANEL
+    ACPI_ONEOF_PEPGFX
+    ACPI_ONEOF_PEPSATA
+    ACPI_ONEOF_PCAPPING
+	ACPI_ONEOF_XHCIP0
+	ACPI_ONEOF_XHCIP1
+	ACPI_ONEOF_RIC0
+    ACPI_ONEOF_RTD3ZPODD
+    ACPI_ONEOF_RTD3USBCamera
+    ACPI_ONEOF_RTD3MiniSataPort3
+    ACPI_ONEOF_RTD3WAGPIO
+#endif // RTD3_SUPPORT
+    ACPI_ONEOF_PCIEXPNATIVE
+    ACPI_ONEOF_NATIVEASPMENABLE
+#if PTID_SUPPORT
+    ACPI_ONEOF_PTIDSUPPORT
+    ACPI_ONEOF_PECIACCESSMETHOD
+#endif // PTID_SUPPORT
+#if IntelRMT_SUPPORT
+    ACPI_ONEOF_IRMTSUPPORT
+    ACPI_ONEOF_IRMTSTATE
+    ACPI_ONEOF_IRMTHW
+#endif // IntelRMT_SUPPORT
+#if LOW_POWER_S0_IDLE_CAPABLE
+    ACPI_ONEOF_POWERBUTTON10SECOVR
+    ACPI_ONEOF_LOWPOWERIDLESATA
+    ACPI_ONEOF_ECNOTIFICATION
+    ACPI_ONEOF_ECCSDEBUGLIGHT
+    ACPI_ONEOF_SENSORSTANDBY
+    ACPI_ONEOF_CSPL1LIMIT
+    ACPI_ONEOF_CSPL1VALUE
+#endif // LOW_POWER_S0_IDLE_CAPABLE
+#if CPPC_SUPPORT
+    CPPC_ONEOF_ENABLECPPC
+    CPPC_ONEOF_CPPCSCI
+#endif // CPPC_SUPPORT
+#if Dptf_SUPPORT
+    DPTF_ONEOF_ENABLEDPTF
+    DPTF_ONEOF_ENABLESA
+    DPTF_ONEOF_ATTPOINT_SA
+    DPTF_ONEOF_PTTPOINT_SA
+    DPTF_ONEOF_CTTPOINT_SA
+    DPTF_ONEOF_HTTPOINT_SA
+    DPTF_ONEOF_ENABLEPCH
+    DPTF_ONEOF_ATTPOINT_PCH
+    DPTF_ONEOF_PTTPOINT_PCH
+    DPTF_ONEOF_CTTPOINT_PCH
+    DPTF_ONEOF_HTTPOINT_PCH
+    DPTF_ONEOF_ENABLEMEM
+    DPTF_ONEOF_ATTPOINT_MEM
+    DPTF_ONEOF_PTTPOINT_MEM
+    DPTF_ONEOF_CTTPOINT_MEM
+    DPTF_ONEOF_HTTPOINT_MEM
+    DPTF_ONEOF_ENABLEAMBIENT
+    DPTF_ONEOF_ATTPOINT_AMBIENT
+    DPTF_ONEOF_PTTPOINT_AMBIENT
+    DPTF_ONEOF_CTTPOINT_AMBIENT
+    DPTF_ONEOF_HTTPOINT_AMBIENT
+    DPTF_ONEOF_ENABLESKIN
+    DPTF_ONEOF_ATTPOINT_SKIN
+    DPTF_ONEOF_PTTPOINT_SKIN
+    DPTF_ONEOF_CTTPOINT_SKIN
+    DPTF_ONEOF_HTTPOINT_SKIN
+    DPTF_ONEOF_ENABLEEXHAUST
+    DPTF_ONEOF_ATTPOINT_EXHAUST
+    DPTF_ONEOF_PTTPOINT_EXHAUST
+    DPTF_ONEOF_CTTPOINT_EXHAUST
+    DPTF_ONEOF_HTTPOINT_EXHAUST
+    DPTF_ONEOF_ENABLEVR
+    DPTF_ONEOF_ATTPOINT_VR
+    DPTF_ONEOF_PTTPOINT_VR
+    DPTF_ONEOF_CTTPOINT_VR
+    DPTF_ONEOF_HTTPOINT_VR
+    DPTF_ONEOF_PPCC_STEPSIZE
+    DPTF_ONEOF_LPO_ENABLE
+    DPTF_ONEOF_LPOPSTATE
+    DPTF_ONEOF_LPOSIZE
+    DPTF_ONEOF_LPO_POW
+    DPTF_ONEOF_LPO_PER
+    DPTF_ONEOF_CTDP_ENABLE
+    DPTF_ONEOF_LPM_ENABLE
+    DPTF_ONEOF_LPM_SETTING
+    DPTF_ONEOF_FAN1
+    DPTF_ONEOF_FAN2
+    DPTF_ONEOF_DISPLAY_PARTICIPANT
+    DPTF_ONEOF_POWER_PARTICIPANT
+    DPTF_ONEOF_POWER_POLICY
+    DPTF_ONEOF_ACTIVE_POLICY
+    DPTF_ONEOF_PASSIVE_POLICY
+    DPTF_ONEOF_CRITICAL_POLICY
+    DPTF_ONEOF_COOLING_POLICY
+    DPTF_ONEOF_TRT_REVISION
+#endif // Dptf_SUPPORT
+
+#endif // CONTROLS_WITH_DEFAULTS
+//---------------------------------------------------------------------------
+//                ADVANCED - AcpiPlatform Configuration Form
+//---------------------------------------------------------------------------
+#ifdef ADVANCED_FORM_SET
+
+  #ifndef SUPPRESS_GRAYOUT_ENDIF //old Core
+    #define SUPPRESS_GRAYOUT_ENDIF endif;
+  #endif
+
+  #ifdef FORM_SET_ITEM
+    // Define controls to be added to the main page of the formset
+  #endif
+
+  #ifdef FORM_SET_GOTO
+    // Define goto commands for the forms defined in this file
+    goto ACPIPLATFORM_FORM_ID, 
+    prompt = STRING_TOKEN(STR_ACPIPLATFORM_FORM),
+    help = STRING_TOKEN(STR_ACPIPLATFORM_FORM_HELP);
+  #endif
+
+  #ifdef FORM_SET_FORM
+    // Define forms
+    form formid = AUTO_ID(ACPIPLATFORM_FORM_ID),
+      title = STRING_TOKEN(STR_ACPIPLATFORM_FORM);
+
+      SUBTITLE(STRING_TOKEN(STR_ACPIPLATFORM_FORM))
+      SEPARATOR
+
+#if SB_SETUP_SUPPORT
+      suppressif ideqval SETUP_DATA.PcieRootPortEn[0] == 0;
+#endif
+        ACPI_ONEOF_PCIEXPNATIVE
+#if SB_SETUP_SUPPORT
+      endif;
+#endif
+
+      suppressif ideqval SETUP_DATA.PciExpNative == 0;
+        ACPI_ONEOF_NATIVEASPMENABLE
+      endif;
+
+      SEPARATOR
+
+#if ACPIDEBUG_SUPPORT
+      ACPI_ONEOF_ACPIDEBUGSUPPORT
+#endif
+
+#if RTD3_SUPPORT
+      suppressif ideqval SETUP_PLATFORM_DATA.PlatformSupportRtD3 == 0;
+      ACPI_ONEOF_RTD3SUPPORT
+      suppressif ideqval SETUP_DATA.Rtd3Support == 0;
+      ACPI_ONEOF_VRSTAGGERINGDELAY
+      ACPI_ONEOF_VRRAMPUPDELAY
+      ACPI_ONEOF_RTD3P0DL
+      ACPI_ONEOF_RTD3P3DL
+//    ACPI_ONEOF_RTD3AUDIO
+      ACPI_ONEOF_RTD3ADSP
+      ACPI_ONEOF_RTD3I2C0
+      ACPI_ONEOF_RTD3SENSORHUB
+      ACPI_ONEOF_RTD3I2C1
+      ACPI_ONEOF_RTD3I2C1PS0
+      ACPI_ONEOF_RTD3TOUCHPANEL
+      ACPI_ONEOF_PEPGFX
+      ACPI_ONEOF_PEPSATA
+      ACPI_ONEOF_PCAPPING
+	  ACPI_ONEOF_XHCIP0
+	  ACPI_ONEOF_XHCIP1
+	  ACPI_ONEOF_RIC0
+      ACPI_ONEOF_RTD3ZPODD
+      ACPI_ONEOF_RTD3USBCamera
+      ACPI_ONEOF_RTD3MiniSataPort3
+      ACPI_ONEOF_RTD3WAGPIO
+      endif;
+      endif;
+#endif
+
+#if PTID_SUPPORT
+      ACPI_ONEOF_PTIDSUPPORT
+      ACPI_ONEOF_PECIACCESSMETHOD
+#endif
+
+#if IntelRMT_SUPPORT
+    ACPI_ONEOF_IRMTSUPPORT
+    suppressif ideqval SETUP_DATA.IRMTSupport == 0;
+      ACPI_ONEOF_IRMTSTATE
+      ACPI_ONEOF_IRMTHW
+    endif;
+#endif
+
+#if LOW_POWER_S0_IDLE_CAPABLE
+      suppressif ideqval SETUP_PLATFORM_DATA.PlatformSupportRtD3 == 0;
+      suppressif ideqval SETUP_DATA.AcpiLowPowerS0Idle == 0;
+      ACPI_ONEOF_POWERBUTTON10SECOVR
+      ACPI_ONEOF_LOWPOWERIDLESATA
+      ACPI_ONEOF_ECNOTIFICATION
+      ACPI_ONEOF_ECCSDEBUGLIGHT
+      ACPI_ONEOF_SENSORSTANDBY
+      ACPI_ONEOF_CSPL1LIMIT
+      suppressif ideqval SETUP_DATA.CSPL1Limit == 0;
+      ACPI_ONEOF_CSPL1VALUE
+      endif;
+      endif;
+      endif;
+#endif
+
+#if CPPC_SUPPORT
+      suppressif ideqval SETUP_PLATFORM_DATA.PlatformSupportCppc == 0;
+        CPPC_ONEOF_ENABLECPPC
+        suppressif ideqval SETUP_DATA.EnableCppc == 0;
+          CPPC_ONEOF_CPPCSCI
+        endif;
+      endif;
+#endif
+
+      SEPARATOR
+
+#if Dptf_SUPPORT
+      goto DPTF_FORM_ID,
+      prompt = STRING_TOKEN (STR_DPTF_CONFIG_FORM_TITLE),
+      help   = STRING_TOKEN (STR_DPTF_CONFIG_FORM_HELP);
+#endif
+
+    endform;  // Platform_FORM_ID
+
+  #endif  // FORM_SET_FORM
+
+#if Dptf_SUPPORT
+//----------------------------------------------------------------------------
+//                  PLATFORM - DPTF Form
+//----------------------------------------------------------------------------
+  #ifdef FORM_SET_FORM
+
+  #ifndef DPTF_FORM_SETUP
+    #define DPTF_FORM_SETUP
+
+    form formid = AUTO_ID(DPTF_FORM_ID),
+      title     = STRING_TOKEN (STR_DPTF_CONFIG_FORM_TITLE);
+
+      SUBTITLE(STRING_TOKEN(STR_DPTF_CONFIG_FORM_TITLE))
+      SEPARATOR
+
+      DPTF_ONEOF_ENABLEDPTF
+
+      suppressif ideqval SETUP_DATA.EnableDptf == 0;
+        DPTF_ONEOF_ENABLESA
+        suppressif ideqval SETUP_DATA.EnableSaDevice == 0;
+          DPTF_ONEOF_ATTPOINT_SA
+          DPTF_ONEOF_PTTPOINT_SA
+          DPTF_ONEOF_CTTPOINT_SA
+          DPTF_ONEOF_HTTPOINT_SA
+          DPTF_ONEOF_PPCC_STEPSIZE
+          DPTF_ONEOF_LPO_ENABLE
+          DPTF_ONEOF_LPOPSTATE
+          DPTF_ONEOF_LPOSIZE
+          DPTF_ONEOF_LPO_POW
+          DPTF_ONEOF_LPO_PER
+
+          suppressif  ideqval SETUP_CPU_FEATURES.cTDPAvailable == 0;
+          DPTF_ONEOF_CTDP_ENABLE
+          endif;
+
+          suppressif ideqval SETUP_DATA.AcpiLowPowerS0Idle == 0;      
+          DPTF_ONEOF_LPM_ENABLE
+          suppressif ideqval SETUP_DATA.EnableLPM == 0;
+            DPTF_ONEOF_LPM_SETTING
+          endif;
+          endif;
+
+        endif;
+        DPTF_ONEOF_ENABLEPCH
+        suppressif ideqval SETUP_DATA.EnablePchDevice == 0;
+          DPTF_ONEOF_ATTPOINT_PCH
+          DPTF_ONEOF_PTTPOINT_PCH
+          DPTF_ONEOF_CTTPOINT_PCH
+          DPTF_ONEOF_HTTPOINT_PCH
+        endif;
+        DPTF_ONEOF_ENABLEMEM
+        suppressif ideqval SETUP_DATA.EnableMemDevice == 0;
+          DPTF_ONEOF_ATTPOINT_MEM
+          DPTF_ONEOF_PTTPOINT_MEM
+          DPTF_ONEOF_CTTPOINT_MEM
+          DPTF_ONEOF_HTTPOINT_MEM
+        endif;
+        DPTF_ONEOF_FAN1
+        DPTF_ONEOF_FAN2
+        DPTF_ONEOF_ENABLEAMBIENT
+        suppressif ideqval SETUP_DATA.EnableAmbientDevice == 0;
+          DPTF_ONEOF_ATTPOINT_AMBIENT
+          DPTF_ONEOF_PTTPOINT_AMBIENT
+          DPTF_ONEOF_CTTPOINT_AMBIENT
+          DPTF_ONEOF_HTTPOINT_AMBIENT
+        endif;
+        DPTF_ONEOF_ENABLESKIN
+        suppressif ideqval SETUP_DATA.EnableSkinDevice == 0;
+          DPTF_ONEOF_ATTPOINT_SKIN
+          DPTF_ONEOF_PTTPOINT_SKIN
+          DPTF_ONEOF_CTTPOINT_SKIN
+          DPTF_ONEOF_HTTPOINT_SKIN
+        endif;
+        DPTF_ONEOF_ENABLEEXHAUST
+        suppressif ideqval SETUP_DATA.EnableExhaustDevice == 0;
+          DPTF_ONEOF_ATTPOINT_EXHAUST
+          DPTF_ONEOF_PTTPOINT_EXHAUST
+          DPTF_ONEOF_CTTPOINT_EXHAUST
+          DPTF_ONEOF_HTTPOINT_EXHAUST
+        endif;
+        DPTF_ONEOF_ENABLEVR
+        suppressif ideqval SETUP_DATA.EnableVRDevice == 0;
+          DPTF_ONEOF_ATTPOINT_VR
+          DPTF_ONEOF_PTTPOINT_VR
+          DPTF_ONEOF_CTTPOINT_VR
+          DPTF_ONEOF_HTTPOINT_VR
+        endif;
+        DPTF_ONEOF_DISPLAY_PARTICIPANT
+        DPTF_ONEOF_POWER_PARTICIPANT
+        suppressif ideqval SETUP_DATA.PowerParticipant == 0;
+        DPTF_ONEOF_POWER_POLICY
+        endif;
+
+        SEPARATOR
+
+        goto DPTF_POLICY_FORM_ID,
+        prompt = STRING_TOKEN (STR_DPTF_POLICY_FORM_TITLE),
+        help   = STRING_TOKEN (STR_DPTF_POLICY_FORM_HELP);
+
+      endif; // suppressif ideqval SETUP_DATA.EnableDptf == 0;
+
+    endform; // DPTF 
+  #endif // DPTF_FORM_SETUP
+  #endif // FORM_SET_FORM
+//----------------------------------------------------------------------------
+//                  PLATFORM - DPTF Policy Form
+//----------------------------------------------------------------------------
+  #ifdef FORM_SET_FORM
+
+  #ifndef DPTF_POLICY_FORM_SETUP
+    #define DPTF_POLICY_FORM_SETUP
+
+    form formid = AUTO_ID(DPTF_POLICY_FORM_ID),
+      title     = STRING_TOKEN (STR_DPTF_POLICY_FORM_TITLE);
+
+      SUBTITLE(STRING_TOKEN(STR_DPTF_POLICY_FORM_TITLE))
+      SEPARATOR
+
+      DPTF_ONEOF_ACTIVE_POLICY
+      DPTF_ONEOF_PASSIVE_POLICY
+      suppressif ideqval SETUP_DATA.PassivePolicy == 0;
+        DPTF_ONEOF_TRT_REVISION
+      endif;
+      DPTF_ONEOF_CRITICAL_POLICY
+      DPTF_ONEOF_COOLING_POLICY
+
+    endform; // DPTF_POLICY 
+  #endif // DPTF_POLICY_FORM_SETUP
+  #endif // FORM_SET_FORM
+#endif // Dptf_SUPPORT
+
+#endif  // ADVANCED_FORM_SET
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2013, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

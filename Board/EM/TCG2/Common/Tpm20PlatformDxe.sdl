@@ -1,0 +1,27 @@
+TOKEN
+	Name  = "Tpm20PlatformSupport"
+	Value  = "1"
+	Help  = "Enable or Disable TCG_generic support"
+	TokenType = Boolean
+	TargetH = Yes
+	TargetMAK = Yes
+    Master    = Yes
+    Token = "TPM20Enabled" "!=" "0"
+End
+
+
+PATH
+	Name  = "TPM_20_PLATFORM_DXE_DIR"
+End
+
+MODULE
+	Help  = ""
+	File  = "Tpm20PlatformDxe.mak"
+End
+
+
+ELINK
+	Name  = "$(BUILD_DIR)\Tpm20PlatformDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

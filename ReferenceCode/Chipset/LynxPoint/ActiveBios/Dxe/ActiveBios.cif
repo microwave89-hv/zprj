@@ -1,0 +1,14 @@
+<component>
+	name = "ActiveBios"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\ActiveBios\Dxe"
+	RefName = "ActiveBios"
+[files]
+"ActiveBios.sdl"	
+"ActiveBios.mak"	
+"ActiveBiosMain.c"	
+"ActiveBios.c"	
+"ActiveBios.h"	
+"ActiveBiosDepex.dxs"	
+"ActiveBios.inf"	
+<endComponent>

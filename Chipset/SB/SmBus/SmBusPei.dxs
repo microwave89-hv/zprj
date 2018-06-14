@@ -1,0 +1,73 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SmBus/SmBusPei.dxs 1     6/06/12 8:00a Victortu $
+//
+// $Revision: 1 $
+//
+// $Date: 6/06/12 8:00a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SmBus/SmBusPei.dxs $
+// 
+// 1     6/06/12 8:00a Victortu
+// Implement EFI_PEI_SMBUS2_PPI Support.
+// 
+// 3     6/27/11 2:26p Artems
+// Updated year in file header
+// 
+// 2     10/16/09 7:25p Artems
+// Updated copyright header
+// 
+// 1     1/09/09 6:53p Artems
+// New implementation of SMBus EIP 16730
+// 
+// 1     7/30/07 6:19p Sivagarn
+// Initial check-in for the template
+// 
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//---------------------------------------------------------------------------
+//
+// Name:        SmBusPei.DXS
+//
+// Description: Dependency file for the Smbus PEI driver
+//
+//---------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+                                        // [EIP82310]>
+#include <Ppi\SmbusPolicy\SmbusPolicy.h>
+
+DEPENDENCY_START
+    PEI_SMBUS_POLICY_PPI_GUID
+DEPENDENCY_END
+                                        // <[EIP82310]
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

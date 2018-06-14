@@ -1,0 +1,9 @@
+<component>
+	name = "CORE_PEI"
+	category = ModulePart
+	LocalRoot = "Core\CORE_PEI\"
+	RefName = "CORE_PEI"
+[files]
+"CORE_PEI.sdl"	
+"CORE_PEI.mak"	
+<endComponent>

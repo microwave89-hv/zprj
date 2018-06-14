@@ -1,0 +1,19 @@
+TOKEN
+	Name  = "AmiX64Lib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AmiX64Lib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "AmiX64Lib_DIR"
+End
+
+MODULE
+	Help  = "Includes AmiX64Lib.mak to Project"
+	File  = "AmiX64Lib.mak"
+End
+

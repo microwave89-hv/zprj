@@ -1,0 +1,58 @@
+#****************************************************************************
+#****************************************************************************
+#**                                                                        **
+#**           (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                        **
+#**                          All Rights Reserved.                          **
+#**                                                                        **
+#**           5555 Oakbrook Parkway, Suite 200, Norcross, GA 30071         **
+#**                                                                        **
+#**                          Phone (770)-246-8600                          **
+#**                                                                        **
+#****************************************************************************
+#****************************************************************************
+#****************************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/Haswell/Intel Haswell Cpu RC PKG/Cpu Policy PEI/CpuPolicyPei.sdl 1     2/07/12 3:56a Davidhsieh $
+#
+# $Revision: 1 $
+#
+# $Date: 2/07/12 3:56a $
+#
+#****************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/Haswell/Intel Haswell Cpu RC PKG/Cpu Policy PEI/CpuPolicyPei.sdl $
+# 
+# 1     2/07/12 3:56a Davidhsieh
+# 
+# 1     5/06/11 6:06a Davidhsieh
+# First release
+# 
+#
+#****************************************************************************
+TOKEN
+	Name  = "CpuPeiPolicySupport"
+	Value  = "1"
+	Help  = "Main switch to enable Cpu Policy Pei support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "CpuPolicyPei_DIR"
+End
+
+MODULE
+	Help  = "Includes CpuPeiPolicy.mak to Project"
+	File  = "CpuPolicyPei.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CpuPolicyPei.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End
+

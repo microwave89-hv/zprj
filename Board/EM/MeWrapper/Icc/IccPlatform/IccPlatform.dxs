@@ -1,0 +1,116 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+//**********************************************************************
+//
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/MeWrapper/Icc/IccPlatform/IccPlatform.dxs 2     5/13/13 2:41a Klzhan $
+//
+// $Revision: 2 $
+//
+// $Date: 5/13/13 2:41a $
+//
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/MeWrapper/Icc/IccPlatform/IccPlatform.dxs $
+// 
+// 2     5/13/13 2:41a Klzhan
+// [TAG]  		EIPNone
+// [Category]  	Improvement
+// [Description]  	Fix build error when Icc_OverClocking_support is
+// disabled
+// 
+// 1     2/08/12 1:06a Klzhan
+// Initial Check in 
+// 
+// 2     6/27/11 8:39a Klzhan
+// Support New XTU protocol.
+// 
+// 1     2/25/11 1:42a Klzhan
+// Initial Check-in
+// 
+// 1     12/03/10 5:10a Klzhan
+// Initial Check-in.
+// 
+//
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//----------------------------------------------------------------------------
+//
+// Name:            IccPlatform.dxs
+//
+// Description:     Platform-specific ICC code
+//
+//----------------------------------------------------------------------------
+//<AMI_FHDR_END>
+/*++
+Copyright (c)  2009 Intel Corporation. All rights reserved
+This software and associated documentation (if any) is furnished
+under a license and may only be used or copied in accordance
+with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be
+reproduced, stored in a retrieval system, or transmitted in any
+form or by any means without the express written consent of
+Intel Corporation.
+
+Module Name:
+
+  IccPlatform.dxs
+
+Abstract:
+
+  Platform-specific ICC code
+
+--*/
+#include "Token.h"
+#include "AutoGen.h"
+#include "DxeDepex.h"
+#if defined (BUILD_WITH_GLUELIB) || defined (BUILD_WITH_EDKII_GLUE_LIB)
+#include "EfiDepex.h"
+#endif
+#include EFI_PROTOCOL_DEPENDENCY (PciRootBridgeIo)
+#include EFI_PROTOCOL_DEPENDENCY (Wdt)
+#include EFI_PROTOCOL_DEPENDENCY (PchInfo)
+#include "Protocol\IccOverClocking\IccOverClocking.h"
+#if defined PERF_TUNE_SUPPORT && PERF_TUNE_SUPPORT == 1
+
+#define PERF_TUNE_ASL_PROTOCOL_GUID \
+	{0x32519f22, 0x3eb, 0x47b6, 0xb3, 0xef, 0xdb, 0x93, 0x98, 0xd6, 0x4e, 0x45}
+#endif
+
+DEPENDENCY_START
+#if defined PERF_TUNE_SUPPORT && PERF_TUNE_SUPPORT == 1
+  PERF_TUNE_ASL_PROTOCOL_GUID AND
+#endif
+#if IccOverClocking_SUPPORT
+  ICC_OVERCLOCKING_PROTOCOL_GUID AND
+#endif
+  EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL_GUID AND
+  WDT_PROTOCOL_GUID AND
+  EFI_PCH_INFO_PROTOCOL_GUID
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

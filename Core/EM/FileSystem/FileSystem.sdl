@@ -1,0 +1,49 @@
+TOKEN
+	Name  = "FILESYSTEM_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable FileSystem Support"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "DIRECTORTY_ENTRIES_CACHED"
+	Value  = "100"
+	Help  = "Indicate the number of Directory entries \that can be cached."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FAT_CACHE_SIZE"
+	Value  = "4000h"
+	Help  = "Specifiy the FAT CACHE size for each volume."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DIR_CACHE_SIZE"
+	Value  = "4000h"
+	Help  = "Specify the DIR Cache size for each volume."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+PATH
+	Name  = "FILESYSTEM_DIR"
+End
+
+MODULE
+	Help  = "Includes FileSystem.mak to Project"
+	File  = "FileSystem.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\FileSystem.ffs"
+	Parent  = "$(CORE_DIR)\FileSystem$(ARCH).ffs"
+	InvokeOrder = ReplaceParent
+End
+

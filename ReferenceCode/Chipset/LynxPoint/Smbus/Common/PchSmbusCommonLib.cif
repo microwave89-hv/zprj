@@ -1,0 +1,11 @@
+<component>
+  name = "PchSmbusCommonLib"
+  category = ModulePart
+  LocalRoot = "ReferenceCode\Chipset\LynxPoint\Smbus\Common"
+  RefName = "PchSmbusCommonLib"
+[files]
+"PchSmbusCommonLib.sdl"
+"PchSmbusCommonLib.mak"
+"PchSmbusExec.c"
+"PchSmbusCommon.h" 
+<endComponent>

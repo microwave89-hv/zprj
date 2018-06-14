@@ -1,0 +1,18 @@
+<component>
+	name = "TxtDxe"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\Txt\TxtInit\Dxe\"
+	RefName = "TxtDxe"
+[files]
+"TxtDxe.c"	
+"TxtDxe.dxs"	
+"TxtDxe.mak"	
+"TxtDxe.sdl"	
+"TxtDxeLib.c"	
+"TxtDxeLib.h"	
+"TxtDxe.inf"	
+"TxtDxeOem.c"	
+"x64\TxtDxeBsp.asm"	
+"x64\TxtDxeAp.asm"	
+"x64\Mmx64.inc"	
+<endComponent>

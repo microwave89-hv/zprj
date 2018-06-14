@@ -1,0 +1,8 @@
+<component>
+	name = "UHCI PPI"
+	category = ModulePart
+	LocalRoot = "INCLUDE\PPI"
+	RefName = "UHCI PPI"
+[files]
+"\PeiGetUCtrl.h"
+<endComponent>

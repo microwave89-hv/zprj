@@ -1,0 +1,12 @@
+<component>
+	name = "GfxDisplayLibPei"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\RapidStart\GfxDisplay\Library\Pei\"
+	RefName = "GfxDisplayLibPei"
+[files]
+"GfxDisplayLibPei.sdl"	
+"GfxDisplayLibPei.mak"	
+"GfxDisplayLibPei.c"
+"GfxDisplayLibPei.h"
+"GfxDisplayLibPei.inf"
+<endComponent>

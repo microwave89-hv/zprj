@@ -1,0 +1,17 @@
+<component>
+	name = "Secure Flash Update"
+	category = ModulePart
+	LocalRoot = "Core\EM\SecurityPkg\SecFlashUpd\"
+	RefName = "SecFlashUpd"
+[files]
+"SecFlashUpd.sdl"	
+"SecFlashUpd.mak"	
+"VerifyFwCapsule.c"	
+"IsSecRecovery.c"	
+"EfiCapsuleRecovery.c"	
+"EfiCapsuleRecovery.dxs"	
+"SecFlashUpdDxe.c"	
+"SecFlashUpdDxe.dxs"	
+[parts]
+"FlashUpdInc"
+<endComponent>

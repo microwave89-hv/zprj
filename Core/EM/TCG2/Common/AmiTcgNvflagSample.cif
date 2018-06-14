@@ -1,0 +1,12 @@
+<component>
+	name = "AmiTcgNvflagSample"
+	category = ModulePart
+	LocalRoot = "Core\EM\TCG2\Common"
+	RefName = "AmiTcgNvflagSample"
+[files]
+"AmiTcgNvflagSample.sdl"	
+"AmiTcgNvflagSample.mak"	
+"AmiTcgNvflagSample.c"	
+"AmiTcgNvflagSample.dxs"	
+"AmiTcgNvflagSample.h"	
+<endComponent>

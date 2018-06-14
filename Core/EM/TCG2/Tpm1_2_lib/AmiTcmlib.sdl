@@ -1,0 +1,71 @@
+TOKEN
+	Name  = "AmiTcmLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TCG support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+    Token = "TCG2Support" "=" "1"
+End
+
+
+PATH
+	Name  = "AMI_TCM_LIB"
+End
+
+MODULE
+	Help  = "Includes AmiTcmlib.mak to Project"
+	File  = "AmiTcmlib.mak"
+End
+
+TOKEN
+	Name  = "SUPPORTED_TCM_DEVICE_1_VID"
+	Value  = "19F5h"
+	Help  = "Vendor ID of the a supported TCM device"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+
+TOKEN
+	Name  = "SUPPORTED_TCM_DEVICE_1_DID"
+	Value  = "0001h"
+	Help  = "Device ID of the a supported TCM device"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+
+
+TOKEN
+	Name  = "SUPPORTED_TCM_DEVICE_2_VID"
+	Value  = "1b4eh"
+	Help  = "Vendor ID of the a supported TCM device"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+
+TOKEN
+	Name  = "SUPPORTED_TCM_DEVICE_2_DID"
+	Value  = "0001h"
+	Help  = "Device ID of the a supported TCM device"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+
+TOKEN
+	Name  = "NUMBER_OF_SUPPORTED_TCM_DEVICES"
+	Value  = "0002h"
+	Help  = "number of supported tcm devices. Increase this number with addition of new DID and vendor ID"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End

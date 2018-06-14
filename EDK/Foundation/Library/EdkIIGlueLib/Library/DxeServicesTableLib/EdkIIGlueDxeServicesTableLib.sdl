@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueDxeServicesTableLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueDxeServicesTableLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueDxeServicesTableLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueDxeServicesTableLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueDxeServicesTableLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueDxeServicesTableLib.mak to Project"
+	File  = "EdkIIGlueDxeServicesTableLib.mak"
+End
+

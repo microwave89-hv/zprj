@@ -1,0 +1,36 @@
+TOKEN
+	Name  = "AmtLibPei_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable AmtLibPei support in Project"
+End
+
+MODULE
+	Help  = "Includes AmtLibPei.mak to Project"
+	File  = "AmtLibPei.mak"
+End
+
+PATH
+	Name  = "AmtLibPei_DIR"
+	Help  = "iAMT Library file source directory"
+End
+
+ELINK
+	Name  = "AmtLibPei_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmtLibPei.lib"
+	Parent  = "AmtLibPei_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(AmtLibPei_DIR)"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End

@@ -1,0 +1,8 @@
+<component>
+	name = "Flash Update Include"
+	category = ModulePart
+	LocalRoot = "Include\"
+	RefName = "FlashUpdInc"
+[files]
+"FlashUpd.h"	
+<endComponent>

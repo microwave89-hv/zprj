@@ -1,0 +1,11 @@
+<component>
+	name = "RecoveryPpi"
+	category = ModulePart
+	LocalRoot = "Include\PPI\"
+	RefName = "RecoveryPpi"
+[files]
+"DeviceRecoveryModule.h"	
+"DeviceRecoveryBlockIo.h"	
+"AtaController.h"
+"SerialDevice.h"	
+<endComponent>

@@ -1,0 +1,11 @@
+<component>
+	name = "SmbiosGetFlashData"
+	category = ModulePart
+  LocalRoot = "Core\EM\SMBios\SmbiosGetFlashData\"
+	RefName = "SmbiosGetFlashData"
+[files]
+"\SmbiosGetFlashData.sdl"
+"\SmbiosGetFlashData.mak"
+"\SmbiosGetFlashData.c"
+"\SmbiosGetFlashData.dxs"
+<endComponent>

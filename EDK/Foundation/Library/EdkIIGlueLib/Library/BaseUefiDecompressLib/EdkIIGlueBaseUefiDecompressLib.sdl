@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueBaseUefiDecompressLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueBaseUefiDecompressLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueBaseUefiDecompressLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueBaseUefiDecompressLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueBaseUefiDecompressLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueBaseUefiDecompressLib.mak to Project"
+	File  = "EdkIIGlueBaseUefiDecompressLib.mak"
+End
+

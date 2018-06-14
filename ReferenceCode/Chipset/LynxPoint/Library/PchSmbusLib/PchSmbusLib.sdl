@@ -1,0 +1,59 @@
+TOKEN
+	Name  = "PchSmbusLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PchSmbusLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "PchSmbusLib_DIR"
+End
+
+MODULE
+	Help  = "Includes PchSmbusLib.mak to Project"
+	File  = "PchSmbusLib.mak"
+End
+
+ELINK
+        Name  = "PchSmbusDxeLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "PchSmbusPeiLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+TOKEN
+	Name  = "PchSmbusLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\PchSmbusLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "$(PchSmbusLib_LIB)"
+	Parent  = "PchSmbusDxeLib_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(EdkIIGlueDxeSmbusLib_LIB)"
+	Parent  = "PchSmbusDxeLib_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(PchSmbusLib_LIB)"
+	Parent  = "PchSmbusPeiLib_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(EdkIIGluePeiSmbusLib_LIB)"
+	Parent  = "PchSmbusPeiLib_LIB"
+	InvokeOrder = AfterParent
+End

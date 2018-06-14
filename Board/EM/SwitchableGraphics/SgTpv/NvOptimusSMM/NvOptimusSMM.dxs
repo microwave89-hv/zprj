@@ -1,0 +1,65 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/SwitchableGraphics/Sg TPV/Sg nVidia Optimus SMM/NvOptimusSMM.dxs 2     9/09/12 11:07p Joshchou $
+//
+// $Revision: 2 $
+//
+// $Date: 9/09/12 11:07p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/SwitchableGraphics/Sg TPV/Sg nVidia Optimus SMM/NvOptimusSMM.dxs $
+// 
+// 2     9/09/12 11:07p Joshchou
+// [TAG]  		EIPNone
+// [Category]  	Improvement
+// [Description]  	Tpv module support for sharkbay.
+// [Files]  		NvOptimusSMM.mak
+// NvOptimusSMM.c
+// NvOptimusSMM.dxs
+// NvOptimusSMM.ssp
+// NvOptimusSMM.asl
+// NvOptimusSMM.cif
+// 
+//**********************************************************************
+
+//#include "EfiDepex.h"
+#include <Protocol\SmmBase.h>
+#include "protocol\SmmSwDispatch.h"
+#include <CmosAccess.h>
+#include <Protocol\GlobalNvsArea\GlobalNvsArea.h>
+
+DEPENDENCY_START
+  EFI_SMM_CMOS_ACCESS_GUID AND
+  EFI_GLOBAL_NVS_AREA_PROTOCOL_GUID AND
+  EFI_SMM_BASE_PROTOCOL_GUID AND
+  EFI_SMM_SW_DISPATCH_PROTOCOL_GUID
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

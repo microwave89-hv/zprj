@@ -1,0 +1,9 @@
+<component>
+	name = "MXM Protocol"
+	category = ModulePart
+	LocalRoot = "Include\Protocol\"
+	RefName = "MXM_Protocol"
+[files]
+"Mxm30.h"
+"Nbci.h"
+<endComponent>

@@ -1,0 +1,67 @@
+TOKEN
+	Name  = "AINT13_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AHCI Int13 support in the project."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Token = "CSM_SUPPORT" "=" "1"
+End
+
+
+TOKEN
+	Name  = "AHCI_CONTROLLER_COUNT"
+	Value  = "1"
+    Help  = "The controller count can range from 1-6"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+    Range  = "1-6"	
+End
+
+TOKEN
+	Name  = "AI13_BINARY_VERSION"
+	Value  = "5714"
+	Help  = "Version of AI13.bin. Higher 2 digits represent CSM version and lower 2 digits represent AI13.bin build number"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+PATH
+	Name  = "AINT13_DIR"
+End
+
+MODULE
+	Help  = "Includes Aint13.mak"
+	File  = "Aint13.mak"
+End
+
+ELINK
+	Name  = "AhciApiModuleStart"
+	Parent  = "CsmOem16Functions"
+	ProcID  = 07h
+	SrcFile  = "$(AHCI_CSP_DIR)\ahciacc.asm"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(AINT13_DIR)\aint13.inf"
+	Parent  = "CSM_CUSTOM_INFS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\ahciacc.obj"
+	Parent  = "CSM_OEM16_OBJS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\aint13.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

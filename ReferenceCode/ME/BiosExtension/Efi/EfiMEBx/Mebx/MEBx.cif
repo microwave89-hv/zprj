@@ -1,0 +1,12 @@
+<component>
+	name = "MEBx"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\BiosExtension\Efi\EfiMEBx\Mebx"
+	RefName = "MEBx"
+[files]
+"Mebx.dxs"
+"Mebx.inf"
+"Mebx.mak"
+"Mebx.sdl"
+"Mebx.efi"
+<endComponent>

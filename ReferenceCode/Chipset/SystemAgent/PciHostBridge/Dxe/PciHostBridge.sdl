@@ -1,0 +1,41 @@
+TOKEN
+	Name  = "PciHostBridge_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable PciHostBridge support in Project"
+	Token = "AMI_ROOT_BRIDGE_SUPPORT" "=" "0"
+End
+
+TOKEN
+	Name  = "TOP_LOW_MEM_GRANULARITY"
+	Value  = "0x10000000"
+	Help  = "Adjust the MMIO granularity size 256MB."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+MODULE
+	Help  = "Includes PciHostBridge.mak to Project"
+	File  = "PciHostBridge.mak"
+End
+
+PATH
+	Name  = "PciHostBridge_DIR"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PciHostBridge.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D AMI_COMBINE_MEM_PMEM_FLAG"
+	Parent  = "GLOBAL_DEFINES"
+	InvokeOrder = AfterParent
+	Token = "COMBINE_MEM_PMEM" "=" "1"
+End

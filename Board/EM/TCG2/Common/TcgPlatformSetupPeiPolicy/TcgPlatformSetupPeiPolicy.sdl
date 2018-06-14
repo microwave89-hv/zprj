@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "TcgPlatformSetupPeiPolicy_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TcgPlatformSetupPeiPolicy support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "TcgPlatformSetupPeiPolicy_DIR"
+End
+
+MODULE
+	Help  = "IncludesTcgPlatformSetupPeiPolicy.mak to Project"
+	File  = "TcgPlatformSetupPeiPolicy.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TcgPlatformSetupPeiPolicy.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End
+

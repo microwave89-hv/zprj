@@ -1,0 +1,13 @@
+<component>
+	name = "StartWatchDog"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\ActiveManagement\StartWatchDog\Pei\"
+	RefName = "StartWatchDog"
+[files]
+"StartWatchDog.sdl"	
+"StartWatchDog.mak"	
+"StartWatchDog.h"	
+"StartWatchDog.c"	
+"StartWatchDog.dxs"	
+"StartWatchDog.inf"	
+<endComponent>

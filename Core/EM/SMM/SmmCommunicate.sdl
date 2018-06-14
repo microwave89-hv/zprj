@@ -1,0 +1,44 @@
+TOKEN
+	Name  = "SMM_COMMUNICATE_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SmmBase support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Token = "PI_SPECIFICATION_VERSION" ">=" "0x1000A"
+End
+
+TOKEN
+	Name  = "SMM_COMM_SW_SMI"
+	Value  = "0xdd"
+	Help  = "SMM Communicate function SW SMI. Do not change"
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "SMM_COMM_ACPI_SW_SMI"
+	Value  = "0xde"
+	Help  = "SMM Communicate ACPI SW SMI. Do not change"
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+PATH
+	Name  = "SMM_COMMUNICATE_DIR"
+End
+
+MODULE
+	Help  = "Includes SmmCommunicate.mak to Project"
+	File  = "SmmCommunicate.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SmmCommunicate.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

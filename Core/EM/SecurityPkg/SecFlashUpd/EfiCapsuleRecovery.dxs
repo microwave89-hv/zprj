@@ -1,0 +1,89 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2014, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**             6145-F Northbelt Pkwy, Norcross, GA 30071            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SecureFlashPkg/FlashUpdate/EfiCapsuleRecovery.dxs 6     3/18/14 3:01p Alexp $
+//
+// $Revision: 6 $
+//
+// $Date: 3/18/14 3:01p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SecureFlashPkg/FlashUpdate/EfiCapsuleRecovery.dxs $
+// 
+// 6     3/18/14 3:01p Alexp
+// set 2014 in file hdr & ftr
+// 
+// 5     5/31/12 1:18p Alexp
+// EIP74625:New Capsule PPI required by latest Intel's MRC code
+//    New PPI GUID; 
+//    Capsule_2_0 Mailbox does not need extra Cap Hdr
+// EIP90678: MonotonicCounter variable guid changed
+//   Use gAmiGlobalVariableGuid
+// 
+// 4     11/21/11 5:49p Alexp
+// include optional GUID dependenccy on Intel Misc Framework
+// PEI_CAPSULE_PPI_GUID
+// 
+// 3     11/17/11 10:02a Alexp
+// include dependency on AMI_DIGITAL_SIG PPI
+// 
+// 2     7/20/11 7:16p Alexp
+// remove dependency on Capsule module
+// 
+// 1     7/01/11 4:39p Alexp
+// 
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:	Recovery.dxs
+//
+// Description:	Dependancy expression for the component
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+#include <PPI/LoadFile.h>
+#include <PPI/CryptoPPI.h>
+#include <FlashUpd.h>
+// AMI Capsule PPI (deprecated)
+#define EFI_PEI_CAPSULE_PPI_GUID  \
+  { 0x066785b1, 0xedb8, 0x46dc, 0x84, 0x2f, 0x57, 0x44, 0x04, 0xb8, 0x69, 0x2f }
+// Intel Misc Framework PEI_CAPSULE_PPI_GUID
+#define PEI_CAPSULE_PPI_GUID \
+  { 0x3acf33ee, 0xd892, 0x40f4, 0xa2, 0xfc, 0x38, 0x54, 0xd2, 0xe1, 0x32, 0x3d }
+DEPENDENCY_START
+EFI_PEI_FV_FILE_LOADER_GUID
+AND
+EFI_PEI_PERMANENT_MEMORY_INSTALLED_PPI 
+AND
+EFI_PEI_BOOT_IN_FLASH_UPDATE_MODE_PEIM_PPI
+AND
+(EFI_PEI_CAPSULE_PPI_GUID OR PEI_CAPSULE_PPI_GUID)
+AND
+AMI_DIGITAL_SIGNATURE_PPI_GUID
+DEPENDENCY_END
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2014, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**             6145-F Northbelt Pkwy, Norcross, GA 30071            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

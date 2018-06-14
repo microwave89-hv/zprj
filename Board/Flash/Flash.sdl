@@ -1,0 +1,212 @@
+#****************************************************************************
+#****************************************************************************
+#**                                                                        **
+#**           (C)Copyright 1985-2009, American Megatrends, Inc.            **
+#**                                                                        **
+#**                          All Rights Reserved.                          **
+#**                                                                        **
+#**           5555 Oakbrook Parkway, Suite 200, Norcross, GA 30071         **
+#**                                                                        **
+#**                          Phone (770)-246-8600                          **
+#**                                                                        **
+#****************************************************************************
+#****************************************************************************
+
+#****************************************************************************
+# $Header: /Alaska/SOURCE/Flash_Combined_2/Core/Flash.sdl 9     7/21/11 5:09a Calvinchen $
+#
+# $Revision: 9 $
+#
+# $Date: 7/21/11 5:09a $
+#
+#****************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Flash_Combined_2/Core/Flash.sdl $
+# 
+# 9     7/21/11 5:09a Calvinchen
+# [TAG]  		EIP60956
+# [Category]  	Improvement
+# [Description]  	Added "OemFlashValidTableList" eLink for OEM/ODM
+# invalidates the flash part supports those they don't needed.
+# [Files]  		Flash.sdl
+# Flash.mak
+# FlashWrite.c
+# Flash.chm
+# 
+# 8     10/25/10 5:56a Calvinchen
+# Added support for PEI Flash Library.
+# 
+# 7     8/06/10 12:03a Calvinchen
+# Added the "DIRECT_FLASH_MEMORY_ACCESS" Token. (Default setting is "ON",
+# "OFF" for specific EC SPIs.) 
+# 
+# 6     12/15/09 5:46a Calvinchen
+# Improvement : Added Flash Chip Name support.
+# 
+# 5     6/24/09 3:11a Calvinchen
+# (EIP22177) Updated for Aptio Source Enhancement. 
+#
+#
+#****************************************************************************
+TOKEN
+	Name  = "Flash_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable FLASH support in Project."
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "FLASH_BLOCK_SIZE"
+	Value  = "0x10000"
+	Help  = "Size of the Flash Device Block"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FLASH_ERASE_POLARITY"
+	Value  = "1"
+	Help  = "Flash Device Erase Polarity"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "0 or 1"
+End
+
+TOKEN
+	Name  = "FLASH_RETRIES"
+	Value  = "3"
+	Help  = "Number of retries attempted for the failed flash update operation"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FLASH_ERASE_TIMEOUT"
+	Value  = "50000000"
+	Help  = "The number of 100ns units until the timeout for the flash erase operation expires."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FLASH_PROGRAM_TIMEOUT"
+	Value  = "50000000"
+	Help  = "The number of 100ns units until the timeout for the flash programming operation expires."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NUMBER_OF_BYTES_PER_PAGE"
+	Value  = "64"
+	Help  = "Number of bytes per Page"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FLASH_PART_STRING_LENGTH"
+	Value  = "48"
+	Help  = "Number of bytes per Page"
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "DIRECT_FLASH_MEMORY_ACCESS"
+	Value  = "1"
+	Help  = "Direct flash memory access support while flashing."
+	TokenType = Boolean
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "BUILD_PEI_FLASH_LIB"
+	Value  = "0"
+	Help  = "Switch to build the FLASH LIB for PEI Phase."
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "FLASHLIB"
+	Value  = "$(BUILD_DIR)\Flash.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "FLASHPEILIB"
+	Value  = "$(BUILD_DIR)\IA32\Flash.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "x64_BUILD" "=" "1"
+	Token = "BUILD_PEI_FLASH_LIB" "=" "1"
+End
+
+TOKEN
+	Name  = "FLASHPEILIB"
+	Value  = "$(FLASHLIB)"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "x64_BUILD" "=" "0"
+	Token = "BUILD_PEI_FLASH_LIB" "=" "1"
+End
+
+PATH
+	Name  = "Flash_DIR"
+End
+
+MODULE
+	Help  = "Includes Flash.mak to Project"
+	File  = "Flash.mak"
+End
+
+ELINK
+	Name  = "FlashList"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "OemFlashWriteEnableList"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "OemFlashWriteDisableList"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "OemFlashValidTableList"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "FLASHLISTLIB"
+	InvokeOrder = ReplaceParent
+End
+
+#****************************************************************************
+#****************************************************************************
+#**                                                                        **
+#**           (C)Copyright 1985-2009, American Megatrends, Inc.            **
+#**                                                                        **
+#**                          All Rights Reserved.                          **
+#**                                                                        **
+#**           5555 Oakbrook Parkway, Suite 200, Norcross, GA 30071         **
+#**                                                                        **
+#**                          Phone (770)-246-8600                          **
+#**                                                                        **
+#****************************************************************************
+#****************************************************************************

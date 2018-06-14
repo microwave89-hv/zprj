@@ -1,0 +1,113 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2009, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Flash_Combined_2/Core/FWH/FwhFlash.sdl 5     6/24/09 3:12a Calvinchen $
+#
+# $Revision: 5 $
+#
+# $Date: 6/24/09 3:12a $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Flash_Combined_2/Core/FWH/FwhFlash.sdl $
+# 
+# 5     6/24/09 3:12a Calvinchen
+# (EIP22177) Updated for Aptio Source Enhancement. 
+#
+#
+#**********************************************************************
+TOKEN
+    Name  = "FWHFlash_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable FWH Flash support in Project"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "FWHFLASHLIB"
+    Value  = "$(BUILD_DIR)\FWHFlash.lib"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "Intel_82802Ax"
+    Value  = "1"
+    Help  = "This token enables support for the N82802AC/AB, ATMEL 49LW080, STM M50FW080/016 and SST 49LF016C flash parts"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "SST_49LF00x"
+    Value  = "1"
+    Help  = "This enables support for the SST 49LF008 and 004 FWH flash parts"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+PATH
+    Name  = "FWHFlash_DIR"
+End
+
+MODULE
+    Help  = "Includes FlashSrc.mak to Project"
+    File  = "FWHFlash.mak"
+End
+
+ELINK
+    Name  = "mSstFwhIdentify,"
+    Parent  = "FlashList"
+    Token = "SST_49LF00x" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "mIntelIdentify,"
+    Parent  = "FlashList"
+    Token = "Intel_82802Ax" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\FWHFlash.lib"
+    Parent  = "$(Flash_DIR)\FWHFlash.lib"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "$(Flash_DIR)\FWHFlash.lib"
+    Parent  = "FLASHLISTLIB"
+    InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2009, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

@@ -1,0 +1,12 @@
+<component>
+	name = "AmiIa32Lib"
+	category = ModulePart
+	LocalRoot = "Core\CPU\IA32\"
+	RefName = "AmiIa32Lib"
+[files]
+"AmiIa32Lib.sdl"	
+"AmiIa32Lib.mak"	
+"IA32CLib.c"	
+"IA32AsmLib\EnableLongMode.asm"	
+"IA32AsmLib\EnableMachineCheck.asm"	
+<endComponent>

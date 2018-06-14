@@ -1,0 +1,18 @@
+<component>
+	name = "SaAcpiTables"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\AcpiTables"
+	RefName = "SaAcpiTables"
+[files]
+"SaAcpiTables.sdl"	
+"SaAcpiTables.mak"	
+"HOST_BUS.ASL"	
+"Dmar\Dmar.act"	
+"Dmar\Dmar.h"	
+"SaAcpiTables.inf"	
+"SaAcpiTables_Edk.inf"	
+[parts]
+"SaSsdtTables"
+"SgAcpiTablesPeg"
+"SgAcpiTablesPch"
+<endComponent>

@@ -1,0 +1,35 @@
+TOKEN
+	Name  = "MeFwDowngrade_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable MeFwDowngrade support in Project"
+End
+
+MODULE
+	Help  = "Includes MeFwDowngrade.mak to Project"
+	File  = "MeFwDowngrade.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\MeFwDowngrade.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+PATH
+	Name  = "MeFwDowngrade_DIR"
+	Help  = "ME Driver files source directory"
+End
+
+TOKEN
+	Name  = "Always_MeFwDowngrade"
+	Value  = "0"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Help  = "MeFwDowngrade Setup item will not switch automatically when this item is TRUE"
+End

@@ -1,0 +1,15 @@
+<component>
+	name = "Crypto LIB"
+	category = ModulePart
+	LocalRoot = "Core\EM\CryptoPkg\CryptLib\"
+	RefName = "CryptoLIB"
+[files]
+"cryptlib.chm"	
+"cryptlib.sdl"	
+"cryptlib.lib"	
+"cryptlibX64.lib"	
+"cryptlibpei.lib"	
+"license.txt"
+[parts]
+"CryptoLibInc"
+<endComponent>

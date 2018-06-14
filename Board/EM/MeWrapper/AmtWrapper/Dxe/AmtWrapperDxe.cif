@@ -1,0 +1,25 @@
+<component>
+	name = "AmtWrapperDxe"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\AmtWrapper\Dxe"
+	RefName = "AmtWrapperDxe"
+[files]
+"AmtWrapperDxe.sdl"	
+"AmtWrapperDxe.c"	
+"AmtWrapperDxe.h"	
+"AmtWrapperDxe.mak"	
+"AmtWrapperDxe.dxs"
+"AsfSupport.c"	
+"AsfSupport.h"	
+"DevicePath.c"	
+"Performance.c"	
+"Performance.h"	
+"BdsBoot.c"	
+"BdsConnect.c"	
+"BdsConsole.c"	
+"BdsLib.h"	
+"BdsMisc.c"	
+"BmMachine.h"
+"KvmSupport.c"
+"KvmSupport.h"
+<endComponent>

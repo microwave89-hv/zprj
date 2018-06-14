@@ -1,0 +1,50 @@
+TOKEN
+	Name  = "BootScriptHide_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable BootScriptHide support in Project"
+	TokenType = Boolean
+    Master = Yes
+End
+
+PATH
+    Name = "BOOT_SCRIPT_HIDE_DIR"
+End
+
+MODULE
+    Help = "Includes BootScriptHide.mak to Project"
+    File = "BootScriptHide.mak"
+End
+
+TOKEN
+	Name  = "BOOT_SCRIPT_SAVE_SW_SMI_VALUE"
+	Value  = "0xD6"
+	Help  = "SW SMI value used to trigger boot script saving to SMM"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BOOT_SCRIPT_RESTORE_SW_SMI_VALUE"
+	Value  = "0xD7"
+	Help  = "SW SMI value used to trigger boot script restoring from SMM"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+ELINK
+    Name = "$(BUILD_DIR)\BootScriptHidePei.ffs"
+    Parent = "FV_BB"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "$(BUILD_DIR)\BootScriptHideSmm.ffs"
+    Parent = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "$(BUILD_DIR)\BootScriptHideDxe.ffs"
+    Parent = "FV_MAIN"
+    InvokeOrder = AfterParent
+End

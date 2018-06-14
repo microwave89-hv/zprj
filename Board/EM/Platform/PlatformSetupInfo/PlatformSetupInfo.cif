@@ -1,0 +1,13 @@
+<component>
+	name = "PlatformSetupInfo"
+	category = ModulePart
+	LocalRoot = "Board\EM\Platform\PlatformSetupInfo"
+	RefName = "PlatformSetupInfo"
+[files]
+"PlatformSetupInfo.sdl"	
+"PlatformSetupInfo.mak"	
+"PlatformSetupInfo.sd"	
+"PlatformSetupInfo.uni"	
+"PlatformSetupInfo.c"	
+"PlatformSetupInfo.h"	
+<endComponent>

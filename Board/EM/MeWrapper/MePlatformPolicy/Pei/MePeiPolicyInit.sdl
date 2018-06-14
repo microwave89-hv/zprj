@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "MEPeiPlatformPolicy_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AmtPlatformPolicy support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "MEPeiPlatformPolicy_DIR"
+End
+
+MODULE
+	Help  = "Includes AmtPlatformPolicy.mak to Project"
+	File  = "MEPeiPolicyInit.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\MEPeiPolicyInit.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End
+

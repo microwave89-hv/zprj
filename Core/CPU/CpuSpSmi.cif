@@ -1,0 +1,12 @@
+<component>
+	name = "CpuSp SMI"
+	category = ModulePart
+	LocalRoot = "Core\CPU
+	RefName = "CpuSpSMI"
+[files]
+"CpuSpSmi.sdl"
+"CpuSpSmi.mak"
+"CpuSpSmi.h"	
+"CpuSpSmi.c"	
+"CpuSpSmi.DXS"
+<endComponent>

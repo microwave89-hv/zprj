@@ -1,0 +1,93 @@
+TOKEN
+	Name  = "PlatformInfo_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PlatformInfo support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "PlatformInfo_RevisonId"
+	Value  = "0x01"
+	Help  = "BoardId Red Fort"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PlatformInfo_PlatformFlavor"
+	Value  = "$(FlavorDesktop)"
+	Help  = "BoardId Red Fort"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "PCH_SKU" "=" "0"
+End
+
+TOKEN
+	Name  = "PlatformInfo_PlatformFlavor"
+	Value  = "$(FlavorMobile)"
+	Help  = "BoardId Red Fort"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "PCH_SKU" "=" "1"
+End
+
+TOKEN
+	Name  = "PlatformInfo_BoardId"
+	Value  = "$(BoardIdGraysReef)"
+	Help  = "BoardId Emerald Lake"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PlatformInfo_BoardRev"
+	Value  = "0x00"
+	Help  = "BoardId Red Fort"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "PCH_SKU" "=" "0"
+End
+
+TOKEN
+	Name  = "PlatformInfo_BoardRev"
+	Value  = "0x02"
+	Help  = "BoardId Red Fort"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "PCH_SKU" "=" "1"
+End
+
+PATH
+	Name  = "PlatformInfo_DIR"
+End
+
+MODULE
+	Help  = "Includes PlatformInfo.mak to Project"
+	File  = "PlatformInfo.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PlatformInfo.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PLATFORM_INFO_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/I $(PlatformInfo_DIR)"
+	Parent  = "PLATFORM_INFO_INCLUDES"
+	InvokeOrder = AfterParent
+End
+

@@ -1,0 +1,79 @@
+TOKEN
+	Name  = "SmbiosDMIEdit_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AMI DMIEdit for SMBIOS support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "NonSmiDmiEdit_Support"
+	Value  = "1"
+	Help  = "Switch to disable/enable Non-SMI support"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DMI_ARRAY_COUNT"
+	Value  = "256"
+	Help  = "The maximum number of entires DMIEdit array can hold"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+    Name  = "REGISTER_SW_SMI_FN50"
+    Value  = "1"
+    Help  = "Enable/Disable SW SMI Function 0x50 registration"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "REGISTER_SW_SMI_FN51"
+    Value  = "1"
+    Help  = "Enable/Disable SW SMI Function 0x51 registration"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "REGISTER_SW_SMI_FN52"
+    Value  = "1"
+    Help  = "Enable/Disable SW SMI Function 0x52 registration"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+PATH
+	Name  = "SMBIOS_DMIEDIT_DIR"
+End
+
+MODULE
+	Help  = "Includes SmbiosDMIEdit.mak to Project"
+	File  = "SmbiosDMIEdit.mak"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\SmbiosDMIEdit.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "$(PRESERVE_LIB)"
+    Parent = "OFBDLISTLIB"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "$(BUILD_DIR)\SmbiosNvram.lib"
+    Parent = "PRESERVE_LIB"
+    InvokeOrder = AfterParent
+    Token = "SMBIOS_DMIEDIT_DATA_LOC" "=" "2"
+    Token = "SMBIOS_PRESERVE_NVRAM" "=" "1"
+End

@@ -1,0 +1,80 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/Platform/FirmwareVerInfo/FirmwareVerInfo.sdl 2     11/20/12 7:22a Alanlin $
+#
+# $Revision: 2 $
+#
+# $Date: 11/20/12 7:22a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/Platform/FirmwareVerInfo/FirmwareVerInfo.sdl $
+# 
+# 2     11/20/12 7:22a Alanlin
+# 
+# 1     6/13/12 8:38a Yurenlai
+# [TAG] None
+# [Category] Improvement
+# [Description] Support Firmware Version Information.
+# [Files] AcpiPlatform.cif, Board/EM/Platform/FirmwareVerInfo/*.*
+# 
+#*************************************************************************
+TOKEN
+	Name  = "FirmwareVerInfo_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable FirmwareVerInfo support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Token = "PI_SPECIFICATION_VERSION" ">=" "0x10000"
+End
+
+TOKEN
+	Name  = "FVI_SMBIOS_TYPE"
+	Value  = "0xDD"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+PATH
+	Name  = "FirmwareVerInfo_DIR"
+End
+
+MODULE
+	Help  = "Includes FirmwareVerInfo.mak to Project"
+	File  = "FirmwareVerInfo.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\FirmwareVerInfo.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

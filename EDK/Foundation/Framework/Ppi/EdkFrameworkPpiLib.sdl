@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkFrameworkPpiLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkFrameworkPpiLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EDKFRAMEWORKPPILIB"
+	Value  = "$(BUILD_DIR)\EdkFrameworkPpiLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkFrameworkPpiLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkFrameworkPpiLib.mak to Project"
+	File  = "EdkFrameworkPpiLib.mak"
+End
+

@@ -1,0 +1,11 @@
+<component>
+	name = "TcgService_Protocol"
+	category = ModulePart
+	LocalRoot = "Core\EM\TCG2\Common\Protocol\"
+	RefName = "TcgService_Protocol"
+[files]
+"TcgService\TcgService.c"	
+"TcgService\TcgService.h"	
+"TcgService\TcgTcmService.h"	
+"TcgService\TcgTcmService.c"	
+<endComponent>

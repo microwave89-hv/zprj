@@ -1,0 +1,153 @@
+TOKEN
+    Name  = SecVariables_SUPPORT
+    Value  = "1"
+    TokenType = Boolean
+    TargetMAK = Yes
+    Master = Yes
+End
+TOKEN
+    Name  = "DBT_include"
+    Value  = "0"
+    TokenType = Boolean
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "DBX_include"
+    Value  = "1"
+    TokenType = Boolean
+    TargetMAK = Yes
+End
+
+
+TOKEN
+    Name  = "PkVarFile"
+    Value  = "$(SecVariables_DIR)\PK"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "KekVarFile"
+    Value  = "$(SecVariables_DIR)\KEK"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "dbVarFile"
+    Value  = "$(SecVariables_DIR)\db"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "dbtVarFile"
+    Value  = "$(SecVariables_DIR)\dbt"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "dbxVarFile"
+    Value  = "$(SecVariables_DIR)\dbx"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+PATH
+    Name  = "SecVariables_DIR"
+    Help  = "Path to Variables Module in Project"
+End
+
+MODULE
+    File  = "Variables.mak"
+End
+
+ELINK
+    Name  = "$(PkVarFile)"
+    Parent = "PkVar"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(KekVarFile)"
+    Parent = "KekVar"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(dbVarFile)"
+    Parent = "dbVar"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(dbtVarFile)"
+    Parent = "dbtVar"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(dbxVarFile)"
+    Parent = "dbxVar"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "PkVar"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "KekVar"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "dbVar"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "dbtVar"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "dbxVar"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\PkVar.ffs"
+    Parent  = "FV_BB"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\KekVar.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\dbVar.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\dbtVar.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+    Token = "DBT_include" "=" "1"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\dbxVar.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+    Token = "DBX_include" "=" "1"
+End

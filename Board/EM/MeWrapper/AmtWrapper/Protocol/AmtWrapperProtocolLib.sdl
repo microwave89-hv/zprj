@@ -1,0 +1,34 @@
+TOKEN
+	Name  = "AmtWrapperProtocolLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AmtWrapperProtocolLib support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "AmtWrapperProtocolLib_DIR"
+End
+
+ELINK
+	Name  = "/I$(AmtWrapperProtocolLib_DIR)\AmtWrapper"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+MODULE
+	Help  = "Includes AmtWrapperProtocolLib.mak to Project"
+	File  = "AmtWrapperProtocolLib.mak"
+End
+
+ELINK
+	Name  = "AmtWrapperProtocolLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmtWrapperProtocolLib.lib"
+	Parent  = "AmtWrapperProtocolLib_LIB"
+	InvokeOrder = AfterParent
+End

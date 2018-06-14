@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueDxeServicesTableLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\DxeServicesTableLib"
+	RefName = "EdkIIGlueDxeServicesTableLib"
+[files]
+"EdkIIGlueDxeServicesTableLib.sdl"	
+"EdkIIGlueDxeServicesTableLib.mak"
+"DxeServicesTableLib.inf"	
+"DxeServicesTableLib.c"	
+<endComponent>

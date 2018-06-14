@@ -1,0 +1,12 @@
+<component>
+	name = "PlatformReset"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\SampleCode\PlatformReset\RuntimeDxe"
+	RefName = "PlatformReset"
+[files]
+"PlatformReset.sdl"	
+"PlatformReset.mak"
+"PlatformReset.h"	
+"PlatformReset.c"	
+"PlatformReset.dxs"
+<endComponent>

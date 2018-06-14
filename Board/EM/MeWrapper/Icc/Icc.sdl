@@ -1,0 +1,25 @@
+TOKEN
+    Name  = "ICC_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable ICC support in Project"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+End
+    
+PATH
+	Name  = "Icc_DIR"
+End
+
+ELINK
+	Name  = "ICC_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/I$(Icc_DIR)"
+	Parent  = "ICC_INCLUDES"
+	InvokeOrder = AfterParent
+End

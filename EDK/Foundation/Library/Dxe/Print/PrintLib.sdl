@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "PrintLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PrintLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "PRINTLIB"
+	Value  = "$(BUILD_DIR)\PrintLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "PrintLib_DIR"
+End
+
+MODULE
+	Help  = "Includes PrintLib.mak to Project"
+	File  = "PrintLib.mak"
+End
+

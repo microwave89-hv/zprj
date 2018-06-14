@@ -1,0 +1,27 @@
+TOKEN
+	Name  = "PttWrapper_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable TdtWrapper support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Token = "PTTHciSmm_SUPPORT" "=" "1"
+End
+
+
+PATH
+	Name  = "PttWrapper_DIR"
+End
+
+MODULE
+	Help  = "Includes TdtWrapper.mak to Project"
+	File  = "PttWrapper.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PttWrapper.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

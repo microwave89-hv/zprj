@@ -1,0 +1,50 @@
+TOKEN
+	Name  = "iME_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable iAMT support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "IntelPTT_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Intel PTT support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+#TOKEN
+#	Name  = "INTEL_ME_RELEASE_VERSION"
+#	Value  = "0.80"
+#	Help  = "Follow Intel Release Reference Code version"
+#	TokenType = Integer
+#End
+
+PATH
+	Name  = "ME_DIR"
+	Help  = "ME Driver files source directory"
+End
+
+ELINK
+	Name  = "/I$(ME_DIR)"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(ME_DIR)\SampleCode\Include"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ME_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+

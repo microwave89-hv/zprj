@@ -1,0 +1,110 @@
+TOKEN
+	Name  = "SgTpvAcpiTables_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SgAcpiTables support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "SGTPV_ACPI_SSDT_GUID"
+	Value  = "{0x6A061113, 0xFE54, 0x4A07, 0xA2, 0x8E, 0x0A, 0x69, 0x35, 0x9E, 0xB0, 0x69}"
+	Help  = "SGTpv Acpi Package"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SGTPV_ACPIPCH_SSDT_GUID"
+	Value  = "{0x9b65fe7c, 0x855e, 0x43cc, 0xa1, 0x70, 0xa2, 0xa6, 0x85, 0xf3, 0x65, 0x5f}"
+	Help  = "SGTpv Acpi Package"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SGTPV_ASL_DEBUG"
+	Value  = "1"
+	Help  = "Turns on debug check points in ASL code"
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "DEBUG_MODE" "=" "1"
+End
+
+TOKEN
+	Name  = "NV_VENTURA_SUPPORT"
+	Value  = "0"
+	Help  = "Switch to enable Nvidia Ventura support with SG and Optimus.\Controls inclusion of different ASL reference code"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NV_GPS_SUPPORT"
+	Value  = "0"
+	Help  = "Switch to enable Nvidia GPS support with SG and Optimus.\Controls inclusion of different ASL reference code"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NV_GC6_SUPPORT"
+	Value  = "0"
+	Help  = "Switch to enable Nvidia GC6 support Optimus.Notice:It is sample code for reference,should be modified it by different board design"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NV_OPTIMUS_DISPLAYLESS"
+	Value  = "0"
+	Help  = "Follow nVidia's suggetion, Optimus displayless platform has no used for other sub-functions.just support sub-functions NVOP_FUNC_SUPPORT, NVOP_FUNC_GETOBJBYTYPE,    NVOP_FUNC_GETALLONJS, NVOP_FUNC_OPTIMUSCAPS) in  _DSM NVOP_FUNC_SUPPORT (0x00000000) function"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PCI_SCOPE"
+	Value  = "\_SB.PCI0"
+	TokenType = Expression
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "PEG_SCOPE"
+	Value  = "\_SB.PCI0.PEG0"
+	Help  = "PLATFORM PORTING!!! Update iGPU and dGPU device names as defined in SB/NB.SDL"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IGPU_SCOPE"
+	Value  = "\_SB.PCI0.GFX0"
+	Help  = "PLATFORM PORTING!!! Update iGPU and dGPU device names as defined in SB/NB.SDL"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+PATH
+	Name  = "SGTPV_ACPI_DIR"
+	Help  = "Path to SG AcpiTable folder"
+End
+
+MODULE
+	File  = "SgTpvAcpiTables.mak"
+End
+
+ELINK
+	Name  = "/I$(SGTPV_ACPI_DIR)"
+	Parent  = "SwitchableGraphics_INCLUDES"
+	InvokeOrder = AfterParent
+End
+

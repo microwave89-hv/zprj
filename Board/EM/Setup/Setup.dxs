@@ -1,0 +1,63 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/BIN/Board/Setup/Setup.dxs 6     2/15/11 4:29p Artems $
+//
+// $Revision: 6 $
+//
+// $Date: 2/15/11 4:29p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Board/Setup/Setup.dxs $
+// 
+// 6     2/15/11 4:29p Artems
+// Replaced TABs with spaces
+// 
+// 5     6/30/09 11:42a Robert
+// Added Comment and updated parts for coding standards
+// 
+// 3     8/22/05 5:30p Felixp
+// dependency from ConsoleControl so that Setup will be started once 
+// all devices are connected
+// 
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:    Setup.dxs
+//
+// Description: 
+//  Dependancy expression for the Setup component
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+#include <Protocol/ConsoleControl.h>
+
+DEPENDENCY_START
+CONSOLE_IN_DEVICES_STARTED_PROTOCOL_GUID
+DEPENDENCY_END
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

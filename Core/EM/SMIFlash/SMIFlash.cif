@@ -1,0 +1,16 @@
+<component>
+	name = "SMIFlash"
+	category = eModule
+	LocalRoot = "CORE\EM\SMIFlash\"
+	RefName = "SMIFlash"
+[files]
+"SMIFlash.sdl"	
+"SMIFlash.mak"	
+"SMIFlash.dxs"	
+"SMIFlash.c"	
+"SMIFlash.chm"	
+"SMIFlashLinks.c"	
+"SMIFlashDxe.dxs"	
+[parts]
+"SMIFlashProtocols"
+<endComponent>

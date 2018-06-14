@@ -1,0 +1,36 @@
+TOKEN
+  Name  = "AcpiProtocolLib_SUPPORT"
+  Value  = "1"
+  TokenType = Boolean
+  TargetEQU = Yes
+  TargetMAK = Yes
+  Master = Yes
+  Help  = "Main switch to enable AcpiProtocolLib support in Project"
+End
+
+MODULE
+  Help  = "Includes AcpiProtocolLib.mak to Project"
+  File  = "AcpiProtocolLib.mak"
+End
+
+PATH
+  Name  = "AcpiProtocolLib_DIR"
+End
+
+TOKEN
+    Name  = "AcpiProtocolLib_LIB"
+    Value  = "$(BUILD_DIR)\AcpiProtocolLib.lib"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+ELINK
+	Name  = "AcpiProtocolLib_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "/I$(AcpiProtocolLib_DIR)"
+    Parent  = "AcpiProtocolLib_INCLUDES"
+    InvokeOrder = AfterParent
+End

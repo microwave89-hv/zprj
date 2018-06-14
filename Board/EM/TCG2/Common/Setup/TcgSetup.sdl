@@ -1,0 +1,50 @@
+TOKEN
+	Name  = "TCGSETUP_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to control TCG setup pages"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "DISPLAY_TPM_SETUP_ERROR"
+	Value  = "0"
+	Help  = "Control warning message in setup if a TPM request form setup failed "
+	TokenType = Boolean
+	TargetEQU = Yes
+    TargetH   = Yes
+	TargetMAK = Yes
+End
+
+MODULE
+	Help  = "Includes TcgSetup.mak to Project"
+	File  = "TcgSetup.mak"
+End
+
+PATH
+	Name  = "TCG_SETUP_DIR"
+	Help  = "Tcg Setup Directory"
+End
+
+ELINK
+	Name  = "$(TCG_SETUP_DIR)\TcgSetup.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 0
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TcgSetup.sdb"
+	Parent  = "SETUP_SDBS"
+	Priority  = 0
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "-i $(TCG_SETUP_DIR)"
+	Parent  = "SETUP_VFR_INCLUDES"
+	Priority  = 0
+	InvokeOrder = AfterParent
+End

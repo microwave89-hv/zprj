@@ -1,0 +1,20 @@
+<component>
+	name = "CsmVideo"
+	category = ModulePart
+	LocalRoot = "Core\EM\CSM\Thunk\CsmVideo\"
+	RefName = "CsmVideo"
+[files]
+"CsmVideo.sdl"	
+"CsmVideo.mak"	
+"UefiBiosVideo.h"	
+"UefiBiosVideo.c"	
+"ComponentName.c"	
+"VesaBiosExtensions.h"	
+"pci22.h"	
+"AmiMapping.h"	
+"AmiMapping.c"	
+"VgaMiniPort.h"	
+"VgaClass.h"	
+"VgaClass.c"	
+"CsmVideo.dxs"	
+<endComponent>

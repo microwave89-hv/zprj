@@ -1,0 +1,14 @@
+<component>
+	name = "AmiTcgPlatformPei"
+	category = ModulePart
+	LocalRoot = "Board\EM\TCG2\Common"
+	RefName = "AmiTcgPlatformPei"
+[files]
+"AmiTcgPlatformPei.h"	
+"AmiTcgPlatformPei.dxs"	
+"AmiTcgPlatformPei.sdl"	
+"AmiTcgPlatformPeiLib.c"	
+[parts]
+"AmiTcgPlatformPeiBeforeMem"
+"AmiTcgPlatformPeiAfterMem"
+<endComponent>

@@ -1,0 +1,18 @@
+<component>
+	name = "UefiHii"
+	category = ModulePart
+	LocalRoot = "Core\CORE_DXE\UefiHii\"
+	RefName = "UefiHii"
+[files]
+"UefiHii.sdl"	
+"HiiConfig.c"	
+"HiiDatabase.c"	
+"HiiFont.c"	
+"HiiFontEx.c"	
+"HiiPrivate.h"	
+"HiiString.c"	
+"Hii.chm"	
+"UefiHiiUtils.c"	
+"HiAccessConfig.c"	
+"hii21ExportConfig.c"	
+<endComponent>

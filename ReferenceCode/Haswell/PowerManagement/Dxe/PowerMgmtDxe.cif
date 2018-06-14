@@ -1,0 +1,19 @@
+<component>
+	name = "PowerMgmtInit"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\PowerManagement\Dxe"
+	RefName = "PowerMgmtInit"
+[files]
+"PowerMgmtDxe.mak"
+"PowerMgmtDxe.sdl"
+"PowerMgmtDxe.inf"
+"PowerMgmtDxe.dxs"
+"PowerMgmtInit.c"
+"IdleStates.c"
+"MiscFunctions.c"
+"PerformanceStates.c"
+"PowerLimits.c"
+"Thermal.c"
+"PowerMgmtCommon.h"
+"PowerMgmtInit.h"
+<endComponent>

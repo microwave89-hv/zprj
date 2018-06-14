@@ -1,0 +1,75 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+//**********************************************************************
+//
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/AmtWrapper/AmtWrapperDxe/AmtWrapperDxe.dxs 1     2/08/12 1:08a Klzhan $
+//
+// $Revision: 1 $
+//
+// $Date: 2/08/12 1:08a $
+//
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/AmtWrapper/AmtWrapperDxe/AmtWrapperDxe.dxs $
+// 
+// 1     2/08/12 1:08a Klzhan
+// Initial Check in 
+// 
+// 1     2/25/11 1:43a Klzhan
+// Initial Check-in
+// 
+// 1     12/03/10 5:10a Klzhan
+// Initial Check-in.
+// 
+//
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//----------------------------------------------------------------------------
+//
+// Name:            AmtWrapperDxe.dxs
+//
+// Description:     Dependency file for AMTWrapperDxe module.
+//
+//----------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+#include "EfiDepex.h"
+
+#include EFI_PROTOCOL_DEFINITION (BootScriptSave)
+#include EFI_PROTOCOL_DEPENDENCY (PciRootBridgeIo)
+#include EFI_PROTOCOL_DEFINITION (AlertStandardFormat)
+#include EFI_PROTOCOL_DEFINITION (ActiveManagement)
+
+DEPENDENCY_START
+  EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL_GUID AND
+  EFI_ACTIVE_MANAGEMENT_PROTOCOL_GUID AND
+  EFI_ALERT_STANDARD_FORMAT_PROTOCOL_GUID AND
+  EFI_BOOT_SCRIPT_SAVE_PROTOCOL_GUID
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

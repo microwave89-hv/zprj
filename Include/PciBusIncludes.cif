@@ -1,0 +1,11 @@
+<component>
+	name = "PciBusIncludes"
+	category = ModulePart
+	LocalRoot = "Include\"
+	RefName = "PciBusIncludes"
+[files]
+"PciBus.h"	
+"PciHostBridge.h"	
+"PciBusEx.h"	
+"PCIE30.h"	
+<endComponent>

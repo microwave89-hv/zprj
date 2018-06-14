@@ -1,0 +1,59 @@
+TOKEN
+	Name  = "ZPODD_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable ZpODD support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Token = "PCH_SKU" "=" "1"
+End
+
+TOKEN
+	Name  = "STD_ZPODD_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Stand ZpODD support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "ZPODD_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_ZPODD_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable ULT ZpODD support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "ZPODD_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "INTEL_SSDTZPODD_DIR"
+End
+
+TOKEN
+	Name  = "INTEL_ZPODD_ASL_FILE"
+	Value  = "$(INTEL_SSDTZPODD_DIR)\SsdtZpOdd.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_ZPODDULT_ASL_FILE"
+	Value  = "$(INTEL_SSDTZPODD_DIR)\SsdtZpOddult.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+MODULE
+	Help  = "Includes SsdtZpOdd.mak to Project"
+	File  = "SsdtZpOdd.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SsdtZpOdd.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

@@ -1,0 +1,5432 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2013, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Board/SB.sdl 65    7/21/14 10:45p Mirayang $
+#
+# $Revision: 65 $
+#
+# $Date: 7/21/14 10:45p $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Board/SB.sdl $
+# 
+# 65    7/21/14 10:45p Mirayang
+# [TAG]  		EIP176923 
+# [Category]  	Improvement
+# [Description]  	Program BUC.SDO to 1 on normal boot in PCH component.
+# 
+# 64    5/16/14 6:19a Barretlin
+# [TAG]  		EIP167087
+# [Category]  	Improvement
+# [Description]  	BIOS security improvement on Haswell CRB project
+# [Files]  		SBGeneric.c SBDxe.c SBCspLib.h Sb.sdl Sb.sd Sb.h
+# 
+# 63    3/13/14 11:06a Barretlin
+# [TAG]  		EIP153695
+# [Category]  	Improvement
+# [Description]  	USB Per port control is not reasonable when
+# OEM_USBPREPORT_DISABLE_SUPPORT token is Enabled and USB devices are
+# behind hubs
+# [Files]  		Sb.sdl Sb.sd Sb.uni GetSetupData.c SbDxe.c PchUsbCommon.c
+# PchRegsUsb.h
+# 
+# 62    11/19/13 7:34a Barretlin
+# [TAG]  		EIP141917
+# [Category]  	New Feature
+# [Description]  	Support SetTimer() with HPET Timer on Lynx Point
+# [Files]  		SB.sdl SBGeneric.c SBDxe.c SbHpet.h sbProtocal.cif
+# SamrtTimer.sdl
+# 
+# 61    10/28/13 2:46a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	add programming serial IO device's SSID
+# [Files]  		SB.sdl SB.H
+# 
+# 60    10/06/13 2:27a Barretlin
+# [TAG]  		EIP138340
+# [Category]  	Improvement
+# [Description]  	SATA drive detection issue in PCH Platform BIOS
+# reference code revision 1.6.2
+# [Files]  		SB.sdl SBPEI.c
+# 
+# 59    9/18/13 1:01a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	change default value of PCH_RCRB_OIC_CEN token
+# [Files]  		SB.sdl
+# 
+# 58    9/17/13 2:46p Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	use token to decide SATA RxEq policy vaule
+# [Files]  		SB.sdl SbPei.c
+# 
+# 57    9/17/13 1:58p Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	set a token to enable/disable SATA DLAE bit
+# [Files]  		SB.sdl SBDxe.c
+# 
+# 56    9/17/13 8:32a Barretlin
+# [TAG]  		EIP136354
+# [Category]  	Improvement
+# [Description]  	remove setting RCBA Coprocessor Error Enable bit
+# [Files]  		SB.sdl SbPei.c
+# 
+# 55    8/23/13 3:39a Barretlin
+# [TAG]  		EIP133819
+# [Category]  	Improvement
+# [Description]  	update for Intel PCH RC 1.6.2.0
+# [Files]  		SB.sdl SBPEI.c
+# 
+# 54    8/22/13 3:01a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	make sure CRB without SIO solution only for SharkBay
+# MB/ULT CRB
+# [Files]  		SB.sdl SB.mak
+# 
+# 53    7/30/13 3:05a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Support CRB without Super IO.
+# [Files]  		SB.sdl, SB.mak
+# 
+# 52    7/03/13 8:05a Scottyang
+# [TAG]  		EIP124410
+# [Category]  	Improvement
+# [Description]  	Implement SMBIOS type 88h for CRID.
+# [Files]  		SBDxe.c, SB.sdl, SB.sd, SBSetup.c, SBSetup.sdl
+# 
+# 51    4/24/13 2:14a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Porting GPI interrupt by LPT-LP EDS 1.5.
+# [Files]  		SB.sdl, SB.H, SBPPI.h, SBPEI.c
+# 
+# 50    4/23/13 4:15a Wesleychen
+# [TAG]         None
+# [Category]    Improvement
+# [Description] Add token "ONLY_CLEAR_RTC_EN_IN_PEI" for improve
+# "EIP120623".
+# [Files]       AcpiModeEnable.c; SB.SDL; SBPEI.c
+# 
+# 49    4/15/13 10:58p Wesleychen
+# [TAG]          None
+# [Category]     Improvement
+# [Description]  Change the default of SX_NOTIFY_PWRB to 1.
+# [Files]        SB.SDL
+# 
+# 48    4/09/13 11:42p Wesleychen
+# [TAG]           EIP120480
+# [Category]      Improvement
+# [Description]   Always disabling PCH platform policy "ExternalObffEn".
+# [Files]         SB.SDL, SBDXE.c
+# 
+# 47    4/08/13 2:55a Wesleychen
+# 
+# [TAG]           EIP118045
+# [Category]      Improvement
+# [Description]   Creat tokens to support Power Button Notify
+#                 for misc events.
+#                 Neew token: "SX_NOTIFY_PWRB"
+# [Files]         SB.SDL; SB.ASL
+# 
+# 46    4/08/13 2:46a Wesleychen
+# [TAG]           EIP120159
+# [Category]      Improvement
+# [Description]   Update for Intel PCH LPT RC140.
+#                 Added new tokens:
+#                 1. "PCH_RESET_CYCLE_DURATION"
+#                 2. "LEGACY_DMA_DISABLE"
+# [Files]         SB.SDL; SBDXE.c
+# 
+# 45    4/08/13 2:40a Wesleychen
+# [TAG]         EIP116939
+# [Category]    Bug Fix
+# [Severity]    Normal
+# [Symptom]     The available memory size is less than
+#               2GB in Windowss 7 32 bit.
+# [RootCause]   The "SB_TEMP_MMIO_BASE" is too low.
+# [Solution]    Rearrange "SB_TEMP_MMIO_BASE" to
+#               4GB - 16M(ROM) - 64KB (Intel Required).
+# [Files]       SB.SDL; SBDxe.c
+# 
+# 44    4/02/13 10:30a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Follow Intel BIOS 114.4 GPIO setting at ULT platform.
+# [Files]  		SB.sdl
+# SBPEIBoard.c
+# 
+# 42    4/02/13 3:32a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Clear PCIE retrain bit for some device which cannot
+# clear this bit.
+# [Files]  		SB.sdl, PchPciExpressHelpersLibrary.c
+# 
+# 41    3/22/13 5:09a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Wireless LAN PHY use SLP_WLAN# pin
+# [Files]  		SB.sdl, SBDxe.c
+# 
+# 40    3/04/13 9:58p Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Add token for PCH policy.
+# [Files]  		SBDxe.c, SB.sdl
+# 
+# 39    2/26/13 1:01a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Follow intel BIOS V112 to change IRQ rout.
+# [Files]  		SB.sdl, SBPEI.c
+# 
+# 38    2/18/13 2:54a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Set PCIE root port function swapping default is
+# disable.
+# [Files]  		SB.sd, SB.uni, SB.sdl
+# 
+# 37    1/30/13 12:58a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Update for 4.6.5.3_TBT_002.
+# [Files]  		SB.sd, SB.sdl
+# 
+# 36    1/28/13 4:14a Scottyang
+# [TAG]  		EIP108803
+# [Category]  	Improvement
+# [Description]  	Disable usb port after setup.
+# [Files]  		SB.sdl, SBDxe.c
+# 
+# 35    1/25/13 7:51a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Use token to set "BIOS Lock", "SMI Lock", BIOS
+# Interface Lock", "GPIO Lock" and "RTC RAM Lock".
+# [Files]  		SB.sd, SB.sdl
+# 
+# 34    1/24/13 12:48a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Create GPIO function token for ULT.
+# [Files]  		SB.sdl
+# 
+# 33    1/17/13 3:33a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Correct ULT GPIO's help message
+# [Files]  		SB.sdl
+# SBPEIBoard.c
+# 
+# 32    1/11/13 1:52a Scottyang
+# [TAG]  		EIP88358
+# [Category]  	Improvement
+# [Description]  	Add FORCE_USER_TO_SETUP_IF_CMOS_BAD token
+# [Files]  		SBDex.c, SBPei.c, RTC.h, SB.sdl
+# 
+# 31    1/11/13 12:44a Scottyang
+# [TAG]         EIP81593
+# [Category]    Improvement
+# [Description] Added new SDL token "COLD_RESET_WITH_POWER_CYCLE".
+# [Files]       SB.sdl,  SBGeneric.c,  PchResetCommon.c,
+# PchResetCommonLib.sdl
+# 
+# 30    1/10/13 8:19a Scottyang
+# [TAG]  		EIP111666
+# [Category]  	New Feature
+# [Description]  	Support OEM reset callback function Elink.
+# [Files]  		SB.mak, SBCspLib.h, SBGeneric.c, SB.sdl, PchReset.c
+# 
+# 29    1/09/13 8:24a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Synchronous GPIO with Intel BIOS V104.2.
+# [Files]  		SB.sdl
+# SBPEIBoard.c
+# 
+# 28    11/20/12 9:52p Scottyang
+# [TAG] None
+# [Category] Improvement
+# [Description] Change ASL build path by token. 
+# [Files] SB.sdl, SB.mak
+# 
+# 27    11/08/12 8:41p Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Change APIC ID to 02.
+# [Files]  		SB.sdl
+# 
+# 26    11/08/12 7:15a Scottyang
+# [TAG]  		None
+# [Category]  	New Feature
+# [Description]  	Add token "PROGRAM_GPIO_TYPE" for select ULT GPIO
+# program function(token or array directly).
+# [Files]  		SB.sdl, SBPEIBoard.c
+# 
+# 25    11/06/12 8:03a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Change "SB_TEMP_MMIO_BASE" to "0xDFFF0000"
+# [Files]  		SB.sdl
+# 
+# 23    10/30/12 10:10p Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Update SATA RAID rom to 12.5.0.1710
+# [Files]  		SataDriver.efi, SataOrom125.bin, SB.sdl
+# 
+# 22    10/25/12 8:17a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Add new device and remove device which no use
+# [Files]  		SBPEI.c, SB.sdl
+# 
+# 21    10/23/12 3:11a Scottyang
+# [TAG]      EIP84560
+# [Category] Bug Fix
+# [Symptom]  Can't enter Win8 after Win8 AHCI driver version:11.5.0.1122
+# install.
+# [Solution] fixed in EIP84560
+# [Files]    sb.sdl, sb.mak, sata.asl
+# 
+# 18    10/16/12 5:01a Scottyang
+# [TAG]  		EIP84720
+# [Category]  	Improvement
+# [Description]  	Support Hot-Plug in Shark Bay
+# [Files]  		PchRootPort.c, PchPcie.asl, PchPciExpressHelpersLib.mak,
+# PchPciExpressHlpersLibrary.c, SB.sdl
+# 
+# 17    10/14/12 6:04a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Correct LNKA is 16
+# 
+# 16    10/12/12 4:54a Scottyang
+# [TAG]  		EIP87695
+# [Category]  	Improvement
+# [Description]  	System should reboot successfully next time if S3
+# resume fail
+# [Files]  		SB.sdl, SBPei.c
+# 
+# 14    10/01/12 5:54a Victortu
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Create new token "SOLUTION_FOR_EIP95440" for EIP#95440
+# changed.
+# [Files]         SB.sdl, SBDXE.c
+# 
+# 13    9/26/12 3:49a Victortu
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   If SPI Flash module support VSCC updated, skip
+# programming VSCC.
+# [Files]         SB.sdl, SBDxe.c
+# 
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Update from EIP#95440 to resolve the RAID driver
+# compatibility issue.
+# [Files]         SB.mak, SB.sdl, SBDXE.c
+# 
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Update for Intel PCH LPT RC070.
+# [Files]         SB.sdl, SBDXE.c, SBPEI.c, Pch.sdl, SB.sd, SB.uni
+# 
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Update for PCH LP GPIO compatible.
+# [Files]         SB.sdl, SB.H, AcpiModeEnable.c, AcpiModeEnable.sdl,
+# SBDxe.c, SBGeneric.c, SBPEI.c, SBSMI.c, SleepSmi.c,
+# SmiHandlerPorting.c, SmiHandlerPorting2.c
+# 
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Implement ULT platform LPSS and ADSP setup option.
+# [Files]         GetSetupData.c, SB.sd, SB.uni, SbSetupData.h, SBDxe.c,
+# SB.sdl
+# 
+# 12    9/12/12 5:11a Victortu
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Remove useless HdmiVerbTable.
+# [Files]         SB.sdl, SBCspLib.h, SBDxe.c, SBGeneric.c 
+# 
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Change "SB_TEMP_IO_BASE" to "0x1200".
+# [Files]         SB.sdl
+# 
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Support OEM update VSCC table.
+# [Files]         SB.H, SB.mak, SB.sdl, SBDXE.c
+# 
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Modify for Thunderbolt support.
+# [Files]         GetSetupData.c, SB.sdl, SB.sd, SB.uni, SbSetupData.h,
+# PciHotPlug.c
+# 
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Modify for ULT GPIO changed by PCH LPT-LP EDS 1.0.
+# [Files]         SB.H, SB.sdl, AcpiModeEnable.c, AcpiModeEnable.sdl,
+# SBPEI.c
+# 
+# 11    8/30/12 9:47a Victortu
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Change "GPIO_BASE_ADDRESS" to "0x1C00".
+# [Files]         SB.sdl
+# 
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Update "GPE0_BLK_ADDRESS" and "GPE0_BLK_LENGTH" for
+# RTD3 support.
+# [Files]         SB.sdl
+# 
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Fixed building error when disable all PCI slots.
+# [Files]         SB.sdl
+# 
+# 10    8/24/12 6:48a Victortu
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Remove useless SB_SHADOW_CONTROL.
+# [Files]         SB.sdl, SBCspLib.h, SBGeneric.c
+# 
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Update RC_PORT_x for PCIe.
+# [Files]         SB.sdl, SB.sd, SBDxe.c
+# 
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Corrected EHCI_MMIO_BASE_ADDRESS1 to fix system hang at
+# 0x71 when AMI_DEBUGGER_SUPPORT.
+# [Files]         SB.sdl
+# 
+# 9     8/15/12 1:11a Victortu
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Update "SB_TEMP_MMIO_BASE" and
+# "EHCI_MMIO_BASE_ADDRESS".
+# [Files]         SB.sdl, SBDxe.c, SBPEI.c
+# 
+# 8     8/13/12 10:14a Victortu
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Remove ThimblePeak 1/2/3.
+# [Files]         SB.sdl
+# 
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Create the token "USB30_OVER_CURRENT_MAPPING_SETTINGS"
+# for the policy "Usb30OverCurrentPins".
+# [Files]         SB.sdl, SBDxe.c
+# 
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Changed PM Base Address from 0x400 to 0x1800.
+# [Files]         SB.sdl
+# 
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Update PCH Policy.
+# [Files]         SB.sdl, SBDxe.c, SBPEI.c
+# 
+# 7     7/27/12 6:02a Victortu
+# Update setup items and policies.
+# 
+# 6     7/02/12 10:21a Victortu
+# [TAG]		None
+# [Category]	Improvement
+# [Description]	Updated and modified for PCH RC 0.6.0.
+# [Files]		SBGeneric.c, SB.sdl, SBCspLib.h, SBDxe.c, SBPEI.c
+# 
+# 5     6/13/12 11:33p Victortu
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Implement Warm Boot function for Secure Flash feature.
+# [Files]         SB.H, SB.mak, SB.sdl, SBDxe.c, SBGeneric.c, SBPEI.c,
+# SBSMI.c
+# 
+# 4     5/03/12 6:32a Victortu
+# [TAG]           None 
+# [Category]      Improvement 
+# [Description]   Modify to support Thunderbolt. 
+# [Files]         SB.sd; SB.uni; SB.sdl; SbSetupData.h; PciHotPlug.c 
+# 
+# 3     3/22/12 10:22a Victortu
+# [TAG]		None
+# [Category]	Improvement
+# [Description]	Rename SataOpROM. Notice : This SataOrom120.bin file is
+# dummy
+# [Files]		SB.sdl, SataOrom120.bin, sbCSP.CIF
+# 
+# [TAG]		None
+# [Category]	Bug Fix
+# [Severity]		Normal
+# [Symptom]	System hang up if enable "DEBUG_MODE"
+# [Solution]		Set "USB_PORTS_LENGTH" to 0x80 as default
+# [Files]		SB.sdl
+# 
+# 2     2/20/12 4:21a Yurenlai
+# [TAG]         None
+# [Category]    Improvement
+# [Description] Fill in a temp value for token "USB_PORTS_LENGTH".
+# [Files]       SB.sdl
+# 
+# 1     2/08/12 8:22a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+
+IRQLINK
+	Name  = "LNKA"
+	Reg  = 060h
+	IrqList  = 3,4,5,6,10,11,12,14,15
+	InterruptType = LevelLow
+End
+
+IRQLINK
+	Name  = "LNKB"
+	Reg  = 061h
+	IrqList  = 3,4,5,6,10,11,12,14,15
+	InterruptType = LevelLow
+End
+
+IRQLINK
+	Name  = "LNKC"
+	Reg  = 062h
+	IrqList  = 3,4,5,6,10,11,12,14,15
+	InterruptType = LevelLow
+End
+
+IRQLINK
+	Name  = "LNKD"
+	Reg  = 063h
+	IrqList  = 3,4,5,6,10,11,12,14,15
+	InterruptType = LevelLow
+End
+
+IRQLINK
+	Name  = "LNKE"
+	Reg  = 068h
+	IrqList  = 3,4,5,6,10,11,12,14,15
+	InterruptType = LevelLow
+End
+
+IRQLINK
+	Name  = "LNKF"
+	Reg  = 069h
+	IrqList  = 3,4,5,6,10,11,12,14,15
+	InterruptType = LevelLow
+End
+
+IRQLINK
+	Name  = "LNKG"
+	Reg  = 06ah
+	IrqList  = 3,4,5,6,10,11,12,14,15
+	InterruptType = LevelLow
+End
+
+IRQLINK
+	Name  = "LNKH"
+	Reg  = 06bh
+	IrqList  = 3,4,5,6,10,11,12,14,15
+	InterruptType = LevelLow
+End
+
+PCIDEVICE
+	Title  = "LPC Bridge"
+	Bus  = 00h
+	Dev  = 01fh
+	Fun  = 00h
+	ASLfile  = "$(INTEL_ACPI_ASL_DIR)\Lpcb.ASL"
+	ASLdeviceName  = "LPCB"
+	IntA = 	LNKF; 21
+	IntB = 	LNKD; 19
+	IntC = 	LNKC; 18
+	IntD = 	LNKA; 16
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	LPCBridge = Yes
+	PWRBwake = Yes
+	ROMMain = No
+End
+
+PCIDEVICE
+	Title  = "SATA #0"
+	Bus  = 00h
+	Dev  = 01fh
+	Fun  = 02h
+	IntB = 	LNKD; 19
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	ROMMain = No
+End
+
+PCIDEVICE
+	Title  = "SATA #1"
+	Bus  = 00h
+	Dev  = 01fh
+	Fun  = 05h
+	IntB = 	LNKD; 19
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	ROMMain = No
+End
+
+PCIDEVICE
+	Title  = "SATA RAID Controller(Mobile)"
+	Bus  = 00h
+	Dev  = 01fh
+	Fun  = 02h
+	ROMFile  = "Chipset\SB\SataOrom125.bin"
+	DeviceID  = 0282ah
+	VendorID  = 08086h
+	IntB = 	LNKD; 19
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	OptionROM = Yes
+	CompressedROM = Yes
+	Token = "PCH_SKU" "=" "1"
+End
+
+PCIDEVICE
+	Title  = "SATA RAID Controller(Desktop)"
+	Bus  = 00h
+	Dev  = 01fh
+	Fun  = 02h
+	ROMFile  = "Chipset\SB\SataOrom125.bin"
+	DeviceID  = 02822h
+	VendorID  = 08086h
+	IntB = 	LNKD; 19
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	OptionROM = Yes
+	CompressedROM = Yes
+	Token = "PCH_SKU" "=" "0"
+End
+
+PCIDEVICE
+	Title  = "SMBus Controller"
+	Bus  = 00h
+	Dev  = 01fh
+	Fun  = 03h
+	IntC = 	LNKC; 18
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+End
+
+PCIDEVICE
+	Title  = "Thermal Controller"
+	Bus  = 00h
+	Dev  = 01fh
+	Fun  = 06h
+	IntC = 	LNKC; 18
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+End
+
+PCIDEVICE
+	Title  = "XHCI Controller"
+	Bus  = 00h
+	Dev  = 014h
+	Fun  = 00h
+	IntA = 	LNKA; 16
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+End
+
+PCIDEVICE
+	Title  = "EHCI #0"
+	Bus  = 00h
+	Dev  = 01dh
+	Fun  = 00h
+	IntA = 	LNKH; 23
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+End
+
+PCIDEVICE
+	Title  = "EHCI #1"
+	Bus  = 00h
+	Dev  = 01ah
+	Fun  = 00h
+	IntA = 	LNKA; 16
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+End
+
+PCIDEVICE
+	Title  = "High Definition Audio"
+	Bus  = 00h
+	Dev  = 01bh
+	Fun  = 00h
+	IntA = 	LNKG; 22
+	DeviceType = OnBoard
+	PCIBusSize = PciEx
+	ROMMain = No
+End
+
+PCIDEVICE
+	Title  = "GbE Controller"
+	Bus  = 00h
+	Dev  = 019h
+	Fun  = 00h
+	ROMFile  = "Chipset\SB\GbE_OR.BIN"
+	DeviceID  = 01502h
+	VendorID  = 08086h
+	IntA = 	LNKE; 20
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	OptionROM = Yes
+	CompressedROM = Yes
+	LinkDevice = Yes
+End
+
+PCIDEVICE
+	Title  = "ME"
+	Bus  = 00h
+	Dev  = 016h
+	IntA = 	LNKA; 16
+	IntB = 	LNKD; 19
+	IntC = 	LNKC; 18
+	IntD = 	LNKB; 17
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	ROMMain = No
+End
+
+PCIDEVICE
+	Title  = "PCIE Root Port #1"
+	Bus  = 00h
+	Dev  = 01ch
+	Fun  = 00h
+	BridgeBus  = 04h
+	GPEbit  = 09h
+	SleepNum  = 04h
+	ASLfile  = "$(PchAcpiTables_DIR)\PchPcie.asl"
+	ASLdeviceName  = "RP01"
+	IntA = 	LNKA; 16
+	IntB = 	LNKB; 17
+	IntC = 	LNKC; 18
+	IntD = 	LNKD; 19
+	Token = "RC_PORT_0" "=" "1"
+	DeviceType = OnBoard
+	PCIBusSize = PciEx
+	PCIBridge = Yes
+	ROMMain = No
+End
+
+PCIDEVICE
+	Title  = "PCIE Root Port #2"
+	Bus  = 00h
+	Dev  = 01ch
+	Fun  = 01h
+	BridgeBus  = 05h
+	GPEbit  = 09h
+	SleepNum  = 04h
+	ASLfile  = "$(PchAcpiTables_DIR)\PchPcie.asl"
+	ASLdeviceName  = "RP02"
+	Token = "RC_PORT_0" "=" "1"
+	Token = "RC_PORT_1" "=" "1"
+	DeviceType = OnBoard
+	PCIBusSize = PciEx
+	PCIBridge = Yes
+End
+
+PCIDEVICE
+	Title  = "PCIE Root Port #3"
+	Bus  = 00h
+	Dev  = 01ch
+	Fun  = 02h
+	BridgeBus  = 06h
+	GPEbit  = 09h
+	SleepNum  = 04h
+	ASLfile  = "$(PchAcpiTables_DIR)\PchPcie.asl"
+	ASLdeviceName  = "RP03"
+	Token = "RC_PORT_0" "=" "1"
+	Token = "RC_PORT_2" "=" "1"
+	DeviceType = OnBoard
+	PCIBusSize = PciEx
+	PCIBridge = Yes
+End
+
+PCIDEVICE
+	Title  = "PCIE Root Port #4"
+	Bus  = 00h
+	Dev  = 01ch
+	Fun  = 03h
+	BridgeBus  = 07h
+	GPEbit  = 09h
+	SleepNum  = 04h
+	ASLfile  = "$(PchAcpiTables_DIR)\PchPcie.asl"
+	ASLdeviceName  = "RP04"
+	Token = "RC_PORT_0" "=" "1"
+	Token = "RC_PORT_3" "=" "1"
+	DeviceType = OnBoard
+	PCIBusSize = PciEx
+	PCIBridge = Yes
+End
+
+PCIDEVICE
+	Title  = "PCIE Root Port #5"
+	Bus  = 00h
+	Dev  = 01ch
+	Fun  = 04h
+	BridgeBus  = 08h
+	GPEbit  = 09h
+	SleepNum  = 04h
+	ASLfile  = "$(PchAcpiTables_DIR)\PchPcie.asl"
+	ASLdeviceName  = "RP05"
+	Token = "RC_PORT_0" "=" "1"
+	Token = "RC_PORT_4" "=" "1"
+	DeviceType = OnBoard
+	PCIBusSize = PciEx
+	PCIBridge = Yes
+End
+
+PCIDEVICE
+	Title  = "PCIE Root Port #6"
+	Bus  = 00h
+	Dev  = 01ch
+	Fun  = 05h
+	BridgeBus  = 09h
+	GPEbit  = 09h
+	SleepNum  = 04h
+	ASLfile  = "$(PchAcpiTables_DIR)\PchPcie.asl"
+	ASLdeviceName  = "RP06"
+	Token = "RC_PORT_0" "=" "1"
+	Token = "RC_PORT_5" "=" "1"
+	DeviceType = OnBoard
+	PCIBusSize = PciEx
+	PCIBridge = Yes
+End
+
+PCIDEVICE
+	Title  = "PCIE Root Port #7"
+	Bus  = 00h
+	Dev  = 01ch
+	Fun  = 06h
+	BridgeBus  = 0eh
+	GPEbit  = 09h
+	SleepNum  = 04h
+	ASLfile  = "$(PchAcpiTables_DIR)\PchPcie.asl"
+	ASLdeviceName  = "RP07"
+	Token = "RC_PORT_0" "=" "1"
+	Token = "RC_PORT_6" "=" "1"
+	DeviceType = OnBoard
+	PCIBusSize = PciEx
+	PCIBridge = Yes
+End
+
+PCIDEVICE
+	Title  = "PCIE Root Port #8"
+	Bus  = 00h
+	Dev  = 01ch
+	Fun  = 07h
+	BridgeBus  = 0fh
+	GPEbit  = 09h
+	SleepNum  = 04h
+	ASLfile  = "$(PchAcpiTables_DIR)\PchPcie.asl"
+	ASLdeviceName  = "RP08"
+	Token = "RC_PORT_0" "=" "1"
+	Token = "RC_PORT_7" "=" "1"
+	DeviceType = OnBoard
+	PCIBusSize = PciEx
+	PCIBridge = Yes
+End
+
+PCIDEVICE
+	Title  = "PCIE Port #1 Slot"
+	Bus  = 04h
+	Dev  = 00h
+	Slot  = 021h
+	IntA = 	LNKA; 16
+	IntB = 	LNKB; 17
+	IntC = 	LNKC; 18
+	IntD = 	LNKD; 19
+	Token = "RC_PORT_0" "=" "1"
+	DeviceType = Slot
+	PCIBusSize = PciEx
+End
+
+PCIDEVICE
+	Title  = "PCIE Port #2 Slot"
+	Bus  = 05h
+	Dev  = 00h
+	Slot  = 022h
+	IntA = 	LNKB; 17
+	IntB = 	LNKC; 18
+	IntC = 	LNKD; 19
+	IntD = 	LNKA; 16
+	Token = "RC_PORT_0" "=" "1"
+	Token = "RC_PORT_1" "=" "1"
+	DeviceType = Slot
+	PCIBusSize = PciEx
+End
+
+PCIDEVICE
+	Title  = "PCIE Port #3 Slot"
+	Bus  = 06h
+	Dev  = 00h
+	Slot  = 08h
+	IntA = 	LNKC; 18
+	IntB = 	LNKD; 19
+	IntC = 	LNKA; 16
+	IntD = 	LNKB; 17
+	Token = "RC_PORT_0" "=" "1"
+	Token = "RC_PORT_2" "=" "1"
+	DeviceType = Slot
+	PCIBusSize = PciEx
+End
+
+PCIDEVICE
+	Title  = "PCIE Port #4 Slot"
+	Bus  = 07h
+	Dev  = 00h
+	Slot  = 09h
+	IntA = 	LNKD; 19
+	IntB = 	LNKA; 16
+	IntC = 	LNKB; 17
+	IntD = 	LNKC; 18
+	Token = "RC_PORT_0" "=" "1"
+	Token = "RC_PORT_3" "=" "1"
+	DeviceType = Slot
+	PCIBusSize = PciEx
+End
+
+PCIDEVICE
+	Title  = "PCIE Port #5 Slot"
+	Bus  = 08h
+	Dev  = 00h
+	Slot  = 0ah
+	IntA = 	LNKA; 16
+	IntB = 	LNKB; 17
+	IntC = 	LNKC; 18
+	IntD = 	LNKD; 19
+	Token = "RC_PORT_0" "=" "1"
+	Token = "RC_PORT_4" "=" "1"
+	DeviceType = Slot
+	PCIBusSize = PciEx
+End
+
+PCIDEVICE
+	Title  = "PCIE Port #6 Slot"
+	Bus  = 09h
+	Dev  = 00h
+	Slot  = 010h
+	IntA = 	LNKB; 17
+	IntB = 	LNKC; 18
+	IntC = 	LNKD; 19
+	IntD = 	LNKA; 16
+	Token = "RC_PORT_0" "=" "1"
+	Token = "RC_PORT_5" "=" "1"
+	DeviceType = Slot
+	PCIBusSize = PciEx
+End
+
+PCIDEVICE
+	Title  = "PCIE Port #7 Slot"
+	Bus  = 0eh
+	Dev  = 00h
+	Slot  = 011h
+	IntA = 	LNKC; 18
+	IntB = 	LNKD; 19
+	IntC = 	LNKA; 16
+	IntD = 	LNKB; 17
+	Token = "RC_PORT_0" "=" "1"
+	Token = "RC_PORT_6" "=" "1"
+	DeviceType = Slot
+	PCIBusSize = PciEx
+End
+
+PCIDEVICE
+	Title  = "PCIE Port #8 Slot"
+	Bus  = 0fh
+	Dev  = 00h
+	Slot  = 012h
+	IntA = 	LNKD; 19
+	IntB = 	LNKA; 16
+	IntC = 	LNKB; 17
+	IntD = 	LNKC; 18
+	Token = "RC_PORT_0" "=" "1"
+	Token = "RC_PORT_7" "=" "1"
+	DeviceType = Slot
+	PCIBusSize = PciEx
+End
+
+PCIDEVICE
+	Title  = "DMA Controller"
+	Bus  = 00h
+	Dev  = 015h
+	Fun  = 00h
+	IntB = 	LNKE; 20
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	Token = "ULT_SUPPORT" "=" "1"
+End
+
+PCIDEVICE
+	Title  = "I2c0"
+	Bus  = 00h
+	Dev  = 015h
+	Fun  = 01h
+	IntC = 	LNKF; 21
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	Token = "ULT_SUPPORT" "=" "1"
+End
+
+PCIDEVICE
+	Title  = "I2c1"
+	Bus  = 00h
+	Dev  = 015h
+	Fun  = 02h
+	IntC = 	LNKF; 21
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	Token = "ULT_SUPPORT" "=" "1"
+End
+
+PCIDEVICE
+	Title  = "SPI0"
+	Bus  = 00h
+	Dev  = 015h
+	Fun  = 03h
+	IntC = 	LNKF; 21
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	Token = "ULT_SUPPORT" "=" "1"
+End
+
+PCIDEVICE
+	Title  = "SPI1"
+	Bus  = 00h
+	Dev  = 015h
+	Fun  = 04h
+	IntC = 	LNKF; 21
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	Token = "ULT_SUPPORT" "=" "1"
+End
+
+PCIDEVICE
+	Title  = "UART0"
+	Bus  = 00h
+	Dev  = 015h
+	Fun  = 05h
+	IntD = 	LNKF; 21
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	Token = "ULT_SUPPORT" "=" "1"
+End
+
+PCIDEVICE
+	Title  = "UART1"
+	Bus  = 00h
+	Dev  = 015h
+	Fun  = 06h
+	IntD = 	LNKF; 21
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	Token = "ULT_SUPPORT" "=" "1"
+End
+
+PCIDEVICE
+	Title  = "SDIO"
+	Bus  = 00h
+	Dev  = 017h
+	Fun  = 00h
+	IntA = 	LNKG; 22
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	Token = "ULT_SUPPORT" "=" "1"
+End
+
+PCIDEVICE
+	Title  = "Audio DSP"
+	Bus  = 00h
+	Dev  = 013h
+	Fun  = 00h
+	IntA = 	LNKH; 23
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	Token = "ULT_SUPPORT" "=" "1"
+End
+
+IOAPIC
+	Title  = "IO APIC"
+	APICID  = 02h
+	VectorBase  = 00h
+	VectorRange  = 017h
+	AddressBase  = 0fec00000h
+End
+
+TOKEN
+	Name  = "SB_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Template - SouthBridge support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "SB_TEMPLATE_VER"
+	Value  = "0006"
+	Help  = "South Bridge Template Version Number.\ DO NOT CHANGE THIS VALUE"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "SB_DEBUG_MESSAGE"
+	Value  = "1"
+	Help  = "Enables/disables debug message in SB module"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "DEBUG_MODE" "!=" "0"
+End
+
+TOKEN
+	Name  = "SB_RESET_PPI_SUPPORT"
+	Value  = "1"
+	Help  = "Enable this token if reset PPI is from south bridge.\ If not disable this and provide reset functionality from other PEIM."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "COLD_RESET_WITH_POWER_CYCLE"
+	Value  = "0"
+	Help  = "Enable this token for EfiResetCold do full reset.\ If not disable this and provide EfiResetCold do hard reset."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SB_STALL_PPI_SUPPORT"
+	Value  = "1"
+	Help  = "Enable this token if Stall PPI is from south bridge.\ If not disable this and provide reset functionality from other PEIM."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "OEM_UPDATE_VSCC_TABLE_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "OEM_UPDATE_VSCC_TABLE_SUPPORT"
+	Value  = "0"
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "SPI_INITIALIZE_WITH_VSCC" "=" "1"
+End
+
+TOKEN
+	Name  = " "
+	TokenType = Integer
+End
+
+TOKEN
+	Name  = "=============== SB Specific Tokens =============="
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "ENABLE_RTC_ONE_SECOND_WAKEUP"
+	Value  = "0"
+	Help  = "1: Setups RTC 1 second alarm as well."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PERFORM_KBC_RESET"
+	Value  = "0"
+	Help  = "WARNING: When this token is enabled, it might pull down the system boot speed."
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "HECI_BASE_ADDRESS"
+	Value  = "0xFEDB0000"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "HECI2_BASE_ADDRESS"
+	Value  = "0xFEDC0000"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMBUS_BASE_ADDRESS"
+	Value  = "0x0580"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMBS"
+	Value  = "$(SMBUS_BASE_ADDRESS)"
+	Help  = "SMBus I/O Registes Base Address"
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMBL"
+	Value  = "0x20"
+	Help  = "SMBus I/O Registes Range"
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SB_PIRQ_ROUTER_VID"
+	Value  = "0x8086"
+	Help  = "IRQ Router Vendor ID. \PLEASE CHANGE THIS AS PER CHIPSET"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SB_PIRQ_ROUTER_DID"
+	Value  = "0x27B8"
+	Help  = "IRQ Router Device ID. \PLEASE CHANGE THIS AS PER CHIPSET"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SPI_BASE_ADDRESS"
+	Value  = "0x3800"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PM_BASE_ADDRESS"
+	Value  = "0x1800"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PBLK"
+	Value  = "$(PM_BASE_ADDRESS) + 10h"
+	Help  = "Boot-starp CPU Control Block register address. Use return value of PM_BASE_ADDRESS with proper offset.\Value can be returned by CPUx_PBLK tokens, x is the Processor index the PBLK is wired to.\Example : $(PM_BASE_ADDRESS) + 10h\"
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "PMBS"
+	Value  = "$(PM_BASE_ADDRESS)"
+	Help  = "ASL alias for ACPI I/O base address."
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "PMLN"
+	Value  = "0x100"
+	Help  = "Power Management registers block length"
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCO_BASE_ADDRESS"
+	Value  = "$(PM_BASE_ADDRESS) + 60h"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "GPIO_BASE_ADDRESS"
+	Value  = "0x1C00"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "GPI_IRQ_2_IOXAPIC"
+	Value  = "0xFFFF"
+	Help  = "Enable the corresponding GPIO PIRQ pin to generate IOxAPIC interrupt for PchLp"
+	TokenType = Integer
+	Range  = "{0-0xFFFF}"
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "GPBS"
+	Value  = "$(GPIO_BASE_ADDRESS)"
+	Help  = "ASL alias for General Purpose I/O base address."
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "GPLN"
+	Value  = "0x400"
+	Help  = "GP I/O Registes Range"
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SW_SMI_IO_ADDRESS"
+	Value  = "0xb2"
+	Help  = "PLEASE CHANGE THIS VALUE AS PER PM_BASE_ADDRESS"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SW_SMI_IO_DATA_ADDRESS"
+	Value  = "0xb3"
+	Help  = "PLEASE CHANGE THIS VALUE AS PER PM_BASE_ADDRESS"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMIP"
+	Value  = "$(SW_SMI_IO_ADDRESS)"
+	Help  = "Token to go to ASL Name Definitions"
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "PCH_SKU"
+	Value  = "1"
+	Help  = "0:Desktop, Workstation\1:Mobile\2:UP Server"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "COUGAR_POINT_SKU"
+	Value  = "$(PCH_SKU)"
+	Help  = "0:Desktop, Workstation\1:Mobile\2:UP Server"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SPI_READ_CONFIG"
+	Value  = "2"
+	Help  = "0:No prefetching, but caching enabled.\1:No prefetching and no caching.\2:Prefetching and Caching enabled."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "HIDE_BIOS_SECURITY_PAGE"
+	Value  = "0"
+	Help  = "Hide Bios security page in the setup."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMI_LOCK_ENABLE"
+	Value  = "1"
+	Help  = "0:Set the default value to 'Disabled'.\1:Set the default value to 'Enabled'.\B0:D31:F0:A0h[4]"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BIOS_INTERFACE_LOCKDOWN"
+	Value  = "1"
+	Help  = "0:Set the default value to 'Disabled'.\1:Set the default value to 'Enabled'.\BLE, RCBA + 3410h[0]"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "GPIO_LOCKDOWN_ENABLE"
+	Value  = "0"
+	Help  = "0:Set the default value to 'Disabled'.\1:Set the default value to 'Enabled'.\GLE, B0:D31:F0:4Ch[0]"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BIOS_LOCK_ENABLE"
+	Value  = "1"
+	Help  = "0:Set the default value to 'Disabled'.\1:Set the default value to 'Enabled'."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "RTC_LOCK_ENABLE"
+	Value  = "0"
+	Help  = "0:Set the default value to 'Disabled'.\1:Set the default value to 'Enabled'."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ROOT_PORT_FUN_SWAP_ENABLE"
+	Value  = "0"
+	Help  = "0:Set the default value to 'Disabled'.\1:Set the default value to 'Enabled'."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_CRID_ENABLE"
+	Value  = "0"
+	Help  = "1:Enable CRID feature/0:Disable CRID feature"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PCH_PWR_OPT_DMI"
+	Value  = "1"
+	Help  = "0:Set the function to 'Disabled'.\1:Set the function to 'Enabled'."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PCH_PWR_OPT_GBE"
+	Value  = "1"
+	Help  = "0:Set the function to 'Disabled'.\1:Set the function to 'Enabled'."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PCH_PWR_OPT_XHCI"
+	Value  = "0"
+	Help  = "0:Set the function to 'Disabled'.\1:Set the function to 'Enabled'."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PCH_PWR_OPT_EHCI"
+	Value  = "0"
+	Help  = "0:Set the function to 'Disabled'.\1:Set the function to 'Enabled'."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PCH_PWR_OPT_SATA"
+	Value  = "1"
+	Help  = "0:Set the function to 'Disabled'.\1:Set the function to 'Enabled'."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "MEM_CLOSE_STATE_EN"
+	Value  = "1"
+	Help  = "0:Set the function to 'Disabled'.\1:Set the function to 'Enabled'."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "INTERNAL_OBFF_EN"
+	Value  = "1"
+	Help  = "0:Set the function to 'Disabled'.\1:Set the function to 'Enabled'."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NUM_OF_DEVLTR_OVERRID"
+	Value  = "0"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEVLTR_OVERRID"
+	Value  = "0"
+	Help  = "0:Set the function to 'Disabled'.\1:Set the function to 'Enabled'."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "LEGACY_DMA_DISABLE"
+	Value  = "0"
+	Help  = "0:Legacy DMA is enable.\1:Legacy DMA is disable.\Supported in PCH RC v1.4.0."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USB_PORTS_LENGTH"
+	Value  = "0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80"
+	Help  = "0x33 = 3.3 inch, 0x146 = 14.6 inch ...."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USB_OVER_CURRENT_MAPPING_SETTINGS"
+	Value  = "0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ULT_USB_OVER_CURRENT_MAPPING_SETTINGS"
+	Value  = "0, 0, 8, 8, 2, 2, 1, 1"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USB30_OVER_CURRENT_MAPPING_SETTINGS"
+	Value  = "0, 0, 1, 1, 2, 2"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USB_PORT_LOCATION_CONFIG"
+	Value  = "1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1"
+	Help  = "BIT0 = Port0; BIT1 = Port1 ... ; BIT13 = Port13\0:BackPanel\1:FrontPanel\2:Dock\3:MiniPciE\4:Flex\5:InternalTopology\6:Skip\7:Max"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "EHCI_CON_DISCON_WAKE_UP_SUPPORT"
+	Value  = "0"
+	Help  = "WARNING: Not all OS support this function, for more detail please refer to Intel PCH Spec. 12.8 Platform Controller Hub (PCH) USB 2.0 Wake On Connect / Disconnect Handling and PCH EDS RMHWKCTL - Rate Matching Hub Wake Control Reg (PCH EDS RCBA + 35B0h)."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "OEM_USB_PER_PORT_DISABLE_SUPPORT"
+	Value  = "0"
+	Help  = "USB per-port disable function will execute at ready to boot. USB device can use at setup when port is disable but not at OS, DOS or Shell."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SB_PCI_DEVICES_SSID_TABLE"
+	Value  = "{HECI_BUS_DEV_FUN, -1}, {HECI2_BUS_DEV_FUN, -1}, {IDER_BUS_DEV_FUN, -1}, {KT_BUS_DEV_FUN, -1}, {LAN_BUS_DEV_FUN, -1}, {XHCI_BUS_DEV_FUN, -1}, {EHCI2_BUS_DEV_FUN, -1}, {HDA_BUS_DEV_FUN, -1}, {PCIEBRS_BUS_DEV_FUN, -1}, {PCIEBRS2_BUS_DEV_FUN, -1}, {PCIEBRS3_BUS_DEV_FUN, -1}, {PCIEBRS4_BUS_DEV_FUN, -1}, {PCIEBRS5_BUS_DEV_FUN, -1}, {PCIEBRS6_BUS_DEV_FUN, -1}, {PCIEBRS7_BUS_DEV_FUN, -1}, {PCIEBRS8_BUS_DEV_FUN, -1}, {EHCI_BUS_DEV_FUN, -1}, {PCIBR_BUS_DEV_FUN, -1}, {SB_BUS_DEV_FUN, -1}, {SATA_BUS_DEV_FUN, -1}, {SMBUS_BUS_DEV_FUN, -1}, {SATA2_BUS_DEV_FUN, -1}, {THERMAL_BUS_DEV_FUN, -1}, {-1, -1}"
+	Help  = "List of PCI device's Sub-System ID in the following format:\{Device#1 Bus/Device/Function, Device#1 Sub-ID}, {Device#2 Bus/Device/Function, Device#2 Sub-ID}...\The format of the PCI bus/device/function is followed by EFI_PCI_CONFIGURATION_ADDRESS.\If the value of Sub-ID is -1, that means BIOS will use PCI Vendor-ID and Device-ID instead.\The last structure {-1, -1} is end of the table, don't remove it!"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SB_PCI_DEVICES_SSID_TABLE"
+	Value  = "{SIO_DMA_BUS_DEV_FUN, -1}, {SIO_I2C0_BUS_DEV_FUN, -1}, {SIO_I2C1_BUS_DEV_FUN, -1}, {SIO_GSPI0_BUS_DEV_FUN, -1}, {SIO_GSPI1_BUS_DEV_FUN, -1}, {SIO_UART0_BUS_DEV_FUN, -1}, {SIO_UART1_BUS_DEV_FUN, -1}, {SIO_SDIO_BUS_DEV_FUN, -1}, {HECI_BUS_DEV_FUN, -1}, {HECI2_BUS_DEV_FUN, -1}, {IDER_BUS_DEV_FUN, -1}, {KT_BUS_DEV_FUN, -1}, {LAN_BUS_DEV_FUN, -1}, {XHCI_BUS_DEV_FUN, -1}, {EHCI2_BUS_DEV_FUN, -1}, {HDA_BUS_DEV_FUN, -1}, {PCIEBRS_BUS_DEV_FUN, -1}, {PCIEBRS2_BUS_DEV_FUN, -1}, {PCIEBRS3_BUS_DEV_FUN, -1}, {PCIEBRS4_BUS_DEV_FUN, -1}, {PCIEBRS5_BUS_DEV_FUN, -1}, {PCIEBRS6_BUS_DEV_FUN, -1}, {PCIEBRS7_BUS_DEV_FUN, -1}, {PCIEBRS8_BUS_DEV_FUN, -1}, {EHCI_BUS_DEV_FUN, -1}, {PCIBR_BUS_DEV_FUN, -1}, {SB_BUS_DEV_FUN, -1}, {SATA_BUS_DEV_FUN, -1}, {SMBUS_BUS_DEV_FUN, -1}, {SATA2_BUS_DEV_FUN, -1}, {THERMAL_BUS_DEV_FUN, -1}, {-1, -1}"
+	Help  = "List of PCI device's Sub-System ID in the following format:\{Device#1 Bus/Device/Function, Device#1 Sub-ID}, {Device#2 Bus/Device/Function, Device#2 Sub-ID}...\The format of the PCI bus/device/function is followed by EFI_PCI_CONFIGURATION_ADDRESS.\If the value of Sub-ID is -1, that means BIOS will use PCI Vendor-ID and Device-ID instead.\The last structure {-1, -1} is end of the table, don't remove it!"
+	TokenType = Expression
+	TargetH = Yes
+	Token = "ULT_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "TSGPIO_C_PMSYN"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TSGPIO_D_PMSYN"
+	Value  = "1"
+        Help  = "0:Disable\1:Enable"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TSGPIO_C_C0_TRANSMIT"
+	Value  = "1"
+        Help  = "0:Disable\1:Enable"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TSGPIO_D_C0_TRANSMIT"
+	Value  = "1"
+        Help  = "0:Disable\1:Enable"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TSGPIO_C_PIN_SEL"
+	Value  = "1"
+	TokenType = Integer
+	TargetH = Yes
+	Range = "0-1"
+End
+
+TOKEN
+	Name  = "TSGPIO_D_PIN_SEL"
+	Value  = "0"
+	TokenType = Integer
+	TargetH = Yes
+	Range = "0-1"
+End
+
+TOKEN
+	Name = "DEVICE_NAME_LENGTH"
+	Value = "14"
+	Help = "ATA/ATAPI Device name length, this token is defined the maximum characters of the device name will be showed on SETUP."
+	TokenType = Integer
+	TargetH = Yes
+	Range = "2-41"
+End
+
+TOKEN
+	Name = "SB_SWSMI_WRITE_TO_BOOTSCRIPT"
+	Value = "0"
+	Help = "0: Software SMI SW_SMI_ACPI_ENABLE and SW_SMI_SB_ACPI_S3 will be written to boot script in CSM module.\1: Software SMI SW_SMI_ACPI_ENABLE and SW_SMI_SB_ACPI_S3 will be written to boot script in SB eChipset."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "SB_SWSMI_WRITE_TO_BOOTSCRIPT"
+	Value = "1"
+	Help = "0: Software SMI SW_SMI_ACPI_ENABLE and SW_SMI_SB_ACPI_S3 will be written to boot script in CSM module.\1: Software SMI SW_SMI_ACPI_ENABLE and SW_SMI_SB_ACPI_S3 will be written to boot script in SB eChipset."
+	TokenType = Boolean
+	TargetH = Yes
+        Token = "LegacyInterrupt_SUPPORT" "=" "0"
+End
+
+TOKEN
+	Name = "PCH_IO_APIC_ID"
+	Value = "02"
+	Help = "Assign IO APIC ID"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "PCH_APIC_RANGE_SELECT"
+	Value = "0"
+	Help = "Program APIC Range Select bits at RCBA + 31FEh[7:0]"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "HDA_RESET_WAIT_TIMER"
+	Value = "300"
+	Help = "Minimum link timing requirements."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "ME_WAKE_STS"
+	Value = "1"
+	Help = "Clear Intel ME WAKE STATUS."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "ME_HRST_COLD_STS"
+	Value = "1"
+	Help = "Clear Intel ME Host Reset Cold Status."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "ME_HRST_WARM_STS"
+	Value = "1"
+	Help = "Clear Intel ME Host Reset Warm Status"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "PCH_SLP_S3_MIN_ASSERT_VALUE"
+	Value = "2"
+	Help = "SLP_S3# Stretch\0:60us\1:1ms\2:50ms\3:2s"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "PCH_SLP_SUS_MIN_ASSERT_VALUE"
+	Value = "3"
+	Help = "SLP_SUS# Minimum Assertion Width.\0:0ms\1:500ms\2:1s\3:4s"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "PCH_SLPA_MIN_ASSERT_VALUE"
+	Value = "3"
+	Help = "SLP_A# Minimum Assertion Width.\0:0ms\1:4s\2:98ms\3:2s"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "PCH_RESET_CYCLE_DURATION"
+	Value = "4"
+	Help = "Reset Power Cycle Duration.\1:1-2s\2:2-3s\3:3-4s\4:4-5s\Supported in PCH RC v1.4.0."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "SLP_STRCH_SUS_UP"
+	Value = "0"
+	Help = "SLP Stretching After SUS Well Power Up\0:Disable\1:Enable"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "TTLEVELS_SUGGEST"
+	Value = "1"
+	Help = "Thermal Throttling.\0:Disable\1:Enable"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "DMIHAAWC_SUGGEST"
+	Value = "1"
+	Help = "0:Disable\1:Enable"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "SATATT_SUGGEST"
+	Value = "1"
+	Help = "0:Disable\1:Enable"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "SIRQ_ENABLE"
+	Value = "1"
+	Help = "0:Disable\1:Enable"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "SIRQ_START_FRAME_PULSE"
+	Value = "0"
+	Help = "0:4 clocks\1:6 clocks\2:8 clocks"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "PCH_PCIE_ADVANCED_ERROR_REPORTING"
+	Value = "0"
+	Help = "0:Disable\1:Enable"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "PCH_PCIE_PME_INTERRUPT"
+	Value = "0"
+	Help = "0:Disable\1:Enable"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "PCH_PCIE_COMPLETION_TIME_OUT"
+	Value = "0"
+	Help = "0:Default\1:50us~100us\2:1ms~10ms\3:16ms~55ms\4:65ms~210ms\5:260ms~900ms\6:1s~3.5s\7:4s~13s\8:17s~64s\9:Disable"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "PCH_PCIE_TEMP_RP_BUS_NUM_MIN"
+	Value = "2"
+	Help = "Temp Root Port Bus Number Min"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "PCH_PCIE_TEMP_RP_BUS_NUM_MAX"
+	Value = "4"
+	Help = "Temp Root Port Bus Number Max"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "PCH_PCIE_TEMP_RP_BUS_NUM_MAX"
+	Value = "$(TBT_PCH_PCIE_TEMP_RP_BUS_NUM_MAX)"
+	Help = "Temp Root Port Bus Number Max"
+	TokenType = Integer
+	TargetH = Yes
+	Token = "Thunderbolt_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name = "MAX_EXTRA_BUS_RESERVED"
+	Value = "7"
+	Help = "The Max number of extra Bus Reserved for bridges behind this Root Bridge "
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "MAX_EXTRA_BUS_RESERVED"
+	Value = "$(TBT_MAX_EXTRA_BUS_RESERVED)"
+	Help = "The Max number of extra Bus Reserved for bridges behind this Root Bridge "
+	TokenType = Integer
+	TargetH = Yes
+	Token = "Thunderbolt_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name = "MAX_PCIE_MEM_RESERVED"
+	Value = "20"
+	Help = "The Max number of reserved memory range for this Root Bridge."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "MAX_PCIE_MEM_RESERVED"
+	Value = "$(TBT_MAX_PCIE_MEM_RESERVED)"
+	Help = "The Max number of reserved memory range for this Root Bridge."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "Thunderbolt_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name = "MAX_PCIE_PF_MEM_RESERVED"
+	Value = "20"
+	Help = "The Max number of prefetchable memory range for this Root Bridge."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "MAX_PCIE_PF_MEM_RESERVED"
+	Value = "$(TBT_MAX_PCIE_PF_MEM_RESERVED)"
+	Help = "The Max number of prefetchable memory range for this Root Bridge."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "Thunderbolt_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name = "MAX_PCIE_IO_RESERVED"
+	Value = "20"
+	Help = "The Max number of IO range for this Root Bridge."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "MAX_PCIE_IO_RESERVED"
+	Value = "$(TBT_MAX_PCIE_IO_RESERVED)"
+	Help = "The Max number of IO range for this Root Bridge."
+	TokenType = Integer
+	TargetH = Yes
+	TOKEN = "Thunderbolt_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name = "SATA_MODE_IDE"
+	Value = "0"
+	TokenType = Integer
+	TargetH = Yes
+        Lock = Yes
+End
+
+TOKEN
+	Name = "SATA_MODE_AHCI"
+	Value = "1"
+	TokenType = Integer
+	TargetH = Yes
+        Lock = Yes
+End
+
+TOKEN
+	Name = "SATA_MODE_RAID"
+	Value = "2"
+	TokenType = Integer
+	TargetH = Yes
+        Lock = Yes
+End
+
+TOKEN
+	Name  = "SATA_PORT1_LENGTH_CONFIG"
+	Value  = "{1, 0, 1, 0, 1, 2}"
+	Help  = "format: SATA_GEN1_RXEQ_ENABLE, SATA_GEN1_RXEQ_VALUE, SATA_GEN2_RXEQ_ENABLE, SATA_GEN2_RXEQ_VALUE, SATA_GEN3_RXEQ_ENABLE, SATA_GEN3_RXEQ_VALUE. Enable item: Enable:1\Disable:0. Value item:vaule range for ULT platform:0 ~ 0xF. \ vaule range for Two-chip platform:1 ~ 0xC. Please refer Intel PCH EDS for detail information."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SATA_PORT2_LENGTH_CONFIG"
+	Value  = "{1, 0, 1, 0, 1, 2}"
+	Help  = "format: SATA_GEN1_RXEQ_ENABLE, SATA_GEN1_RXEQ_VALUE, SATA_GEN2_RXEQ_ENABLE, SATA_GEN2_RXEQ_VALUE, SATA_GEN3_RXEQ_ENABLE, SATA_GEN3_RXEQ_VALUE. Enable item: Enable:1\Disable:0. Value item:vaule range for ULT platform:0 ~ 0xF. \ vaule range for Two-chip platform:1 ~ 0xC. Please refer Intel PCH EDS for detail information."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SATA_PORT3_LENGTH_CONFIG"
+	Value  = "{1, 0, 1, 0, 1, 2}"
+	Help  = "format: SATA_GEN1_RXEQ_ENABLE, SATA_GEN1_RXEQ_VALUE, SATA_GEN2_RXEQ_ENABLE, SATA_GEN2_RXEQ_VALUE, SATA_GEN3_RXEQ_ENABLE, SATA_GEN3_RXEQ_VALUE. Enable item: Enable:1\Disable:0. Value item:vaule range for ULT platform:0 ~ 0xF. \ vaule range for Two-chip platform:1 ~ 0xC. Please refer Intel PCH EDS for detail information."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SATA_PORT4_LENGTH_CONFIG"
+	Value  = "{1, 0, 1, 0, 1, 2}"
+	Help  = "format: SATA_GEN1_RXEQ_ENABLE, SATA_GEN1_RXEQ_VALUE, SATA_GEN2_RXEQ_ENABLE, SATA_GEN2_RXEQ_VALUE, SATA_GEN3_RXEQ_ENABLE, SATA_GEN3_RXEQ_VALUE. Enable item: Enable:1\Disable:0. Value item:vaule range for ULT platform:0 ~ 0xF. \ vaule range for Two-chip platform:1 ~ 0xC. Please refer Intel PCH EDS for detail information."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SATA_PORT5_LENGTH_CONFIG"
+	Value  = "{1, 0, 1, 0, 1, 2}"
+	Help  = "format: SATA_GEN1_RXEQ_ENABLE, SATA_GEN1_RXEQ_VALUE, SATA_GEN2_RXEQ_ENABLE, SATA_GEN2_RXEQ_VALUE, SATA_GEN3_RXEQ_ENABLE, SATA_GEN3_RXEQ_VALUE. Enable item: Enable:1\Disable:0. Value item:vaule range for ULT platform:0 ~ 0xF. \ vaule range for Two-chip platform:1 ~ 0xC. Please refer Intel PCH EDS for detail information."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SATA_PORT6_LENGTH_CONFIG"
+	Value  = "{1, 0, 1, 0, 1, 2}"
+	Help  = "format: SATA_GEN1_RXEQ_ENABLE, SATA_GEN1_RXEQ_VALUE, SATA_GEN2_RXEQ_ENABLE, SATA_GEN2_RXEQ_VALUE, SATA_GEN3_RXEQ_ENABLE, SATA_GEN3_RXEQ_VALUE. Enable item: Enable:1\Disable:0. Value item:vaule range for ULT platform:0 ~ 0xF. \ vaule range for Two-chip platform:1 ~ 0xC. Please refer Intel PCH EDS for detail information"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "SPI_FV_BB_PROTECTED_RANGE_BASE"
+	Value = "$(FLASH_SIZE) - (0xFFFFFFFF - $(FV_BB_BASE) + 1)"
+	Help = "it is BIOS rom address offset, C code will translate it to Flash rom address"
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name = "SPI_FV_BB_PROTECTED_RANGE_LENGTH"
+	Value = "$(FV_BB_BLOCKS) * $(FLASH_BLOCK_SIZE)"
+	Help = "Protected region length"
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name = "SPI_FV_MAIN_PROTECTED_RANGE_BASE"
+	Value = "$(FLASH_SIZE) - (0xFFFFFFFF - $(FV_MAIN_BASE) + 1)"
+	Help = "it is BIOS rom address offset, C code will translate it to Flash rom address"
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name = "SPI_FV_MAIN_PROTECTED_RANGE_LENGTH"
+	Value = "$(FV_MAIN_BLOCKS) * $(FLASH_BLOCK_SIZE)"
+	Help = "Protected region length"
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name = "SPI_FV_DATA_PROTECTED_RANGE_BASE"
+	Value = "$(FLASH_SIZE) - (0xFFFFFFFF - $(FV_DATA_BASE) + 1)"
+	Help = "it is BIOS rom address offset, C code will translate it to Flash rom address"
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name = "SPI_FV_DATA_PROTECTED_RANGE_LENGTH"
+	Value = "$(FV_DATA_SIZE)"
+	Help = "Protected range length"
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name = "SPI_PROTECTED_RANGE_0"
+	Value = "{2, FALSE, FALSE, $(SPI_FV_BB_PROTECTED_RANGE_BASE), $(SPI_FV_BB_PROTECTED_RANGE_LENGTH)}"
+	Help = "Format:\ 1st - The type of protected range 0, the available types are Undefined Type(0), Descriptor Type(1), BIOS Type(2), ME/TXE Type(3) abd GBE Type(4).\ 2nd - Write Protected Enable.\ 3rd - Read Protected Enable.\ 4th - The protection range base(MUST be 4KB alignment), it is only used for the protected types 0(Undefined) and 2(BIOS).\ 5th - The protection range length(the minimun length MUST be 4KB).\ Note : If 2nd & 3rd parameters both are Zeros, then this protected range will be disabled.\ This protected range is default for FV_BB, but you can update it according to your own design."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "SPI_PROTECTED_RANGE_1"
+	Value = "{2, FALSE, FALSE, $(SPI_FV_MAIN_PROTECTED_RANGE_BASE), $(SPI_FV_MAIN_PROTECTED_RANGE_LENGTH)}"
+	Help = "Format:\ 1st - The type of protected range 1, the available types are Undefined Type(0), Descriptor Type(1), BIOS Type(2), ME/TXE Type(3) abd GBE Type(4).\ 2nd - Write Protected Enable.\ 3rd - Read Protected Enable.\ 4th - The protection range base(MUST be 4KB alignment), it is only used for the protected types 0(Undefined) and 2(BIOS).\ 5th - The protection range length(the minimun length MUST be 4KB).\ Note : If 2nd & 3rd parameters both are Zeros, then this protected range will be disabled.\ This protected range is default for FV_MAIN, but you can update it according to your own design."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "SPI_PROTECTED_RANGE_2"
+	Value = "{2, FALSE, FALSE, $(SPI_FV_DATA_PROTECTED_RANGE_BASE), $(SPI_FV_DATA_PROTECTED_RANGE_LENGTH)}"
+	Help = "Format:\ 1st - The type of protected range 2, the available types are Undefined Type(0), Descriptor Type(1), BIOS Type(2), ME/TXE Type(3) abd GBE Type(4).\ 2nd - Write Protected Enable.\ 3rd - Read Protected Enable.\ 4th - The protection range base(MUST be 4KB alignment), it is only used for the protected types 0(Undefined) and 2(BIOS).\ 5th - The protection range length(the minimun length MUST be 4KB).\ Note : If 2nd & 3rd parameters both are Zeros, then this protected range will be disabled.\ This protected range is default for FV_DATA, but you can update it according to your own design."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "SPI_PROTECTED_RANGE_3"
+	Value = "{0, FALSE, FALSE, 0, 0}"
+	Help = "Format:\ 1st - The type of protected range 3, the available types are Undefined Type(0), Descriptor Type(1), BIOS Type(2), ME/TXE Type(3) abd GBE Type(4).\ 2nd - Write Protected Enable.\ 3rd - Read Protected Enable.\ 4th - The protection range base(MUST be 4KB alignment), it is only used for the protected types 0(Undefined) and 2(BIOS).\ 5th - The protection range length(the minimun length MUST be 4KB).\ Note : If 2nd & 3rd parameters both are Zeros, then this protected range will be disabled."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "SPI_PROTECTED_RANGE_4"
+	Value = "{0, FALSE, FALSE, 0, 0}"
+	Help = "Format:\ 1st - The type of protected range 4, the available types are Undefined Type(0), Descriptor Type(1), BIOS Type(2), ME/TXE Type(3) abd GBE Type(4).\ 2nd - Write Protected Enable.\ 3rd - Read Protected Enable.\ 4th - The protection range base(MUST be 4KB alignment), it is only used for the protected types 0(Undefined) and 2(BIOS).\ 5th - The protection range length(the minimun length MUST be 4KB).\ Note : If 2nd & 3rd parameters both are Zeros, then this protected range will be disabled."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FORCE_USER_TO_SETUP_IF_CMOS_BAD"
+	Value  = "0"
+	Help  = "When this flag is on, Setup will be automatically launched whenever CMOS is bad."
+	TokenType = Boolean
+	TargetH = Yes
+End
+                                        # [EIP87695]>
+TOKEN
+	Name  = "SYSTEM_REBOOT_NORMALLY_IF_S3_IS_FAILED"
+	Value  = "0"
+	Help  = "Add a workaround path to avoid that the system can't reboot normally when S3 resume is failed."
+	TokenType = Boolean
+	TargetH = Yes
+End
+                                        # <[EIP87695]
+
+TOKEN
+	Name  = "ZPODD_SATA_PORT"
+	Value  = "0x02"
+	Help  = "ZPODD SATA Port Number."
+	TokenType = Integer
+	TargetH = Yes
+  Token = "PCH_SKU" "=" "1"
+End
+
+TOKEN
+	Name  = "SB_SATA_DLAE"
+	Value  = "0"
+	Help  = "Drive LED on ATAPI Enable (DLAE).\ 1:Enable \ 0:Disable"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PCH_RCRB_OIC_CEN"
+	Value  = "1"
+	Help  = "Set RCBA Coprocessor Error Enable bit.\ 1:Enable \ 0:Disable"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "HOST_WLAN_PP_EN"
+	Value  = "0"
+	Help  = "Host Wireless LAN PHY Power.\ 1:Enable \ 0:Disable"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ONLY_CLEAR_RTC_EN_IN_PEI"
+	Value  = "1"
+	Help  = "1: Only clear RTC_EN in PM1_EN \ 0: Clear all enable bits in PM1_EN."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = " "
+	TokenType = Integer
+End
+
+TOKEN
+	Name  = "=============== PCH CMOS Tokens =============="
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "SB_CMOS_MISC_FLAG_REG"
+	Value  = "0x90"
+	Help  = "[1:0] = 00b: COMPLETE_SAVE_RESTORE_STD_CMOS.\[1:0] = 01b: ENABLE_NMI_BEFORE_SMI_EXIT.\[1:0] = 10b: DISABLE_NMI_BEFORE_SMI_EXIT."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+        Lock = Yes
+        Token = "CMOS_MANAGER_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = " "
+	TokenType = Integer
+End
+
+TOKEN
+	Name = "============== IO DECODE SETINNG =============="
+	Value = " "
+	TokenType = Expression
+End
+
+TOKEN
+	Name = "SB_IO_DECODE_IN_SEC"
+	Value = "0"
+	Help = "The value of SIO_PME_BASE_ADDRESS, '0' means no function."
+	TokenType = Boolean
+	TargetEQU = Yes
+End
+
+TOKEN
+	Name = "SB_GEN_DECODE_RANGE_1"
+	Value = "0"
+#	   Value = "$(SIO_PME_BASE_ADDRESS)"  <example>
+#	   Value = "$(IT8720F_PME_BASE_ADDRESS)"  <example>
+	Help = "The value of SIO_PME_BASE_ADDRESS, '0' means no function."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Range = "00 - 0FFFFh"
+	Token = "SB_IO_DECODE_IN_SEC" "=" "1"
+End
+
+TOKEN
+	Name = "SB_GEN_DECODE_RANGE_2"
+	Value = "0"
+#	   Value = "$(SIO_PME_BASE_ADDRESS)"  <example>
+#	   Value = "$(IT8720F_PME_BASE_ADDRESS)"  <example>
+	Help = "The value of SIO_PME_BASE_ADDRESS, '0' means no function."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Range = "00 - 0FFFFh"
+	Token = "SB_IO_DECODE_IN_SEC" "=" "1"
+End
+
+TOKEN
+	Name = "SB_GEN_DECODE_RANGE_3"
+	Value = "0"
+#	   Value = "$(SIO_PME_BASE_ADDRESS)"  <example>
+#	   Value = "$(IT8720F_PME_BASE_ADDRESS)"  <example>
+	Help = "The value of SIO_PME_BASE_ADDRESS, '0' means no function."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Range = "00 - 0FFFFh"
+	Token = "SB_IO_DECODE_IN_SEC" "=" "1"
+End
+
+TOKEN
+	Name = "SB_GEN_DECODE_RANGE_4"
+	Value = "0"
+#	   Value = "$(SIO_PME_BASE_ADDRESS)"  <example>
+#	   Value = "$(IT8720F_PME_BASE_ADDRESS)"  <example>
+	Help = "The value of SIO_PME_BASE_ADDRESS, '0' means no function."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Range = "00 - 0FFFFh"
+	Token = "SB_IO_DECODE_IN_SEC" "=" "1"
+End
+
+TOKEN
+	Name  = " "
+	TokenType = Integer
+End
+
+TOKEN
+	Name = "============== GPIO SETINNG =============="
+	Value = " "
+	TokenType = Expression
+End
+
+TOKEN
+	Name = "PROGRAM_DEFAULT_GPIO"
+	Value = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "PROGRAM_GPIO_TYPE"
+	Value = "0"
+	Help = "0:use array directly/1:use token define"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "IS_GPIO"
+	Value = "0x0001"
+	Help = "It is a GPIO, the pin will be used as a GPIO."
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name = "IS_NOT_GPIO"
+	Value = "0x0000"
+	Help = "It is not a GPIO, the pin will be used as native function."
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name = "IS_GPI"
+	Value = "0x0002"
+	Help = "It is a GPIO and is an input."
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name = "IS_GPO"
+	Value = "0x0000"
+	Help = "It is a GPIO and is an output."
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name = "OUTPUT_HIGH"
+	Value = "0x0004"
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name = "OUTPUT_LOW"
+	Value = "0x0000"
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name = "GPO_HIGH"
+	Value = "$(IS_GPIO)+$(IS_GPO)+$(OUTPUT_HIGH)"
+	Help = "It is a GP output and driving a high level on the pin."
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name = "GPO_LOW"
+	Value = "$(IS_GPIO)+$(IS_GPO)+$(OUTPUT_LOW)"
+	Help = "It is a GP output and driving a low level on the pin."
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name = "GPI_NON_INV"
+	Value = "0x0000"
+	Help = "The GPI pin will active high to cause SMI# or SCI. \This value must be combined with token IS_GPI."
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name = "GPI_INV"
+	Value = "0x0008"
+	Help = "The GPI pin will active low to cause SMI# or SCI. \This value must be combined with token IS_GPI."
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name = "GPO_BLINK"
+	Value = "0x0010"
+	Help = "The GPO pin will blink at a rate of approximately once per second. This value must be combined with tokens GPO_HIGH or GPO_LOW."
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name = "GPIO_RESET"
+	Value = "0x0020"
+	Help = ""
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+  Name = "GPIO_OWN_ACPI"
+  Value = "0x0000"
+  Help = "It is GPIO use by ACPI driver."
+  TokenType = Integer
+  TargetH = Yes
+  Lock = Yes
+End
+
+TOKEN
+  Name = "GPIO_OWN_GPIO"
+  Value = "0x0040"
+  Help = "It is GPIO use by GPIO driver."
+  TokenType = Integer
+  TargetH = Yes
+  Lock = Yes
+End
+
+TOKEN
+  Name = "GPI_LEB_EDGE"
+  Value = "0x0000"
+  Help = "The GPI pin use by Edge Mode."
+  TokenType = Integer
+  TargetH = Yes
+  Lock = Yes
+End
+
+TOKEN
+  Name = "GPI_LEB_LEVEL"
+  Value = "0x0080"
+  Help = "The GPI pin use by Level Mode."
+  TokenType = Integer
+  TargetH = Yes
+  Lock = Yes
+End
+
+TOKEN
+  Name = "GPI_NDIS_ENABLE"
+  Value = "0x0000"
+  Help = "The GPI pin Input seneing enable."
+  TokenType = Integer
+  TargetH = Yes
+  Lock = Yes
+End
+
+TOKEN
+  Name = "GPI_NDIS_DISABLE"
+  Value = "0x0100"
+  Help = "The GPI pin Iutput seneing disable."
+  TokenType = Integer
+  TargetH = Yes
+  Lock = Yes
+End
+
+TOKEN
+  Name = "GPIO_GPIWP_NONE"
+  Value = "0x0000"
+  Help = "None"
+  TokenType = Integer
+  TargetH = Yes
+  Lock = Yes
+End
+
+TOKEN
+  Name = "GPIO_GPIWP_DOWN"
+  Value = "0x0200"
+  Help = "Pull Down"
+  TokenType = Integer
+  TargetH = Yes
+  Lock = Yes
+End
+
+TOKEN
+  Name = "GPIO_GPIWP_UP"
+  Value = "0x0400"
+  Help = "Pull Up"
+  TokenType = Integer
+  TargetH = Yes
+  Lock = Yes
+End
+
+TOKEN
+  Name = "GPIO_GPIWP_INVALID"
+  Value = "0x0600"
+  Help = "Invalid"
+  TokenType = Integer
+  TargetH = Yes
+  Lock = Yes
+End
+
+TOKEN
+  Name = "GPI_INT_ENABLE"
+  Value = "0x0800"
+  Help = "This bit enables the corresponding GPIOn to generate APIC interrupt."
+  TokenType = Integer
+  TargetH = Yes
+  Lock = Yes
+End
+
+TOKEN
+	Name = "GPIO_002"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "GPIO_003"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "GPIO_004"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "GPIO_005"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "GPIO_010"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "GPIO_019"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "GPIO_021"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "GPIO_022"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "GPIO_024"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "GPIO_029"
+	Value = "$(GPO_HIGH)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "GPIO_035"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "GPIO_036"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "GPIO_037"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "GPIO_038"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "GPIO_039"
+	Value = "$(IS_NOT_GPIO)"
+	TokenType = Integer
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "GPIO_048"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ULT_GPIO_000"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_001"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_002"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_003"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_004"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_005"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_006"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_007"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_008"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_INV)+$(GPI_LEB_LEVEL)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_009"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_LEB_LEVEL)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_010"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_INV)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_011"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPI_LEB_LEVEL)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_012"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_013"
+	Value  = "$(IS_GPIO)+$(OUTPUT_HIGH)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_014"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_INV)+$(GPIO_GPIWP_DOWN)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_015"
+	Value  = "$(IS_GPIO)+$(OUTPUT_LOW)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_016"
+	Value  = "$(IS_GPIO)+$(OUTPUT_HIGH)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_017"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_INV)+$(GPI_LEB_LEVEL)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_018"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPI_LEB_LEVEL)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_019"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_020"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_021"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_022"
+	Value  = "$(IS_GPIO)+$(OUTPUT_LOW)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_023"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_024"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPIO_OWN_GPIO)+$(GPIO_RESET)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_025"
+	Value  = "$(IS_GPIO)+$(OUTPUT_HIGH)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_026"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_027"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_INV)+$(GPI_LEB_LEVEL)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_028"
+	Value  = "$(IS_GPIO)+$(OUTPUT_LOW)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_029"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_030"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_031"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_032"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_033"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_034"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_INV)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_035"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_INV)+$(OUTPUT_HIGH)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_036"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_INV)+$(GPI_LEB_LEVEL)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_037"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_038"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_039"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_040"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_041"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_042"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_043"
+	Value  = "$(IS_GPIO)+$(OUTPUT_HIGH)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_044"
+	Value  = "$(IS_GPIO)+$(OUTPUT_HIGH)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_045"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_INV)+$(GPI_LEB_LEVEL)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_046"
+	Value  = "$(IS_GPIO)+$(OUTPUT_HIGH)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_047"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_INV)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_048"
+	Value  = "$(IS_GPIO)+$(OUTPUT_HIGH)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_049"
+	Value  = "$(IS_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_050"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_LEB_LEVEL)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_051"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_INV)+$(GPI_LEB_LEVEL)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_052"
+	Value  = "$(IS_GPIO)+$(OUTPUT_HIGH)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_053"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_054"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_INV)+$(GPI_LEB_LEVEL)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_055"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_LEB_LEVEL)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_056"
+	Value  = "$(IS_GPIO)+$(OUTPUT_HIGH)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_057"
+	Value  = "$(IS_GPIO)+$(OUTPUT_LOW)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_058"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_LEB_LEVEL)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_059"
+	Value  = "$(IS_GPIO)+$(OUTPUT_HIGH)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_060"
+	Value  = "$(IS_GPIO)+$(OUTPUT_LOW)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_061"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_062"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_063"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_064"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_065"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_066"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_067"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_068"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_069"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_070"
+	Value  = "$(IS_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_071"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_072"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_073"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_074"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_075"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_076"
+	Value  = "$(IS_GPIO)+$(OUTPUT_HIGH)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_077"
+	Value  = "$(IS_GPIO)+$(OUTPUT_HIGH)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_078"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_LEB_LEVEL)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_079"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_INV)+$(GPI_LEB_LEVEL)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_080"
+	Value  = "$(IS_GPIO)+$(IS_GPI)+$(GPI_LEB_LEVEL)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_081"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_082"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_083"
+	Value  = "$(IS_GPIO)+$(OUTPUT_LOW)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_084"
+	Value  = "$(IS_GPIO)+$(OUTPUT_LOW)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_085"
+	Value  = "$(IS_GPIO)+$(OUTPUT_LOW)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_086"
+	Value  = "$(IS_GPIO)+$(OUTPUT_LOW)+$(GPI_LEB_LEVEL)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_087"
+	Value  = "$(IS_GPIO)+$(OUTPUT_LOW)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_088"
+	Value  = "$(IS_GPIO)+$(OUTPUT_HIGH)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_089"
+	Value  = "$(IS_GPIO)+$(OUTPUT_HIGH)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_090"
+	Value  = "$(IS_GPIO)+$(OUTPUT_LOW)+$(GPI_NDIS_DISABLE)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_091"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_092"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_093"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_094"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "ULT_GPIO_095"
+	Value  = "$(IS_NOT_GPIO)+$(OUTPUT_HIGH)+$(GPIO_OWN_GPIO)"
+	Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select.\BIT6:GPIO OWN - 0:ACPI driver/ 1:GPIO driver \ BIT7:GPIO LEB - 0: Edge Mode/ 1: Level Mode \BIT8: GPIO DIS - 0: Input sensing enable/ 1: Output sensing disable \BIT9~10 - 00: none/ 01:pull down/ 10: pull up/ 11: invalid \ BIT11 - 0: GPI Interrupt Disable / 1: GPI Interrupt Enable"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PROGRAM_GPIO_TYPE" "=" "1"
+End
+
+TOKEN
+	Name  = "=============== ACPI Specific Tokens =============="
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "APCB"
+	Value  = "0x0FEC00000"
+	Help  = "Default I/O APIC(s) memory start address, bytes\0x0FEC00000 - default, 0 - I/O APIC's disabled"
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "APCL"
+	Value  = "0x1000"
+	Help  = "I/O APIC(s) memory decoded range, bytes\0x1000 - default,\0 - I/O APIC's not decoded "
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "A_POS_DECODE"
+	Value  = "0"
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "SW_SMI_SB_ACPI_S3"
+	Value  = "0xb8"
+	Help  = "Value to be written into SMI command register \to enable S3 patched codes"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0xB7 - 0xBD"
+End
+
+TOKEN
+	Name  = "SMCR"
+	Value  = "$(PM_BASE_ADDRESS)+0x30"
+	Help  = "SMI Control Register"
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "ACPI_SCI_INT"
+	Value  = "9"
+	Help  = "SCI Interrupt number"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "4-15"
+End
+
+TOKEN
+	Name  = "PM_SCI_ENABLE"
+	Value  = "0x01"
+	Help  = "Value that needs to be written in PM1_CNT regirter \to Enable SCI generation on PM events"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ACPI_ALARM_DAY_CMOS"
+	Value  = "0x0d"
+	Help  = "RTC Index of the Day-of-Month alarm"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 - 0xff 0 = not supported"
+End
+
+TOKEN
+	Name  = "ACPI_ALARM_MONTH_CMOS"
+	Value  = "0x00"
+	Help  = "RTC Index of the Month-of-year alarm\"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-0xff 0 = not supported"
+End
+
+TOKEN
+	Name  = "ACPI_CENTURY_CMOS"
+	Value  = "0x32"
+	Help  = "RTC Index of the Century-of-Data\"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-0xff 0 = not supported"
+End
+
+TOKEN
+	Name  = "ACPI_RESET_REG_ADDRESS"
+	Value  = "0xcf9"
+	Help  = "Reset Register Address (Part of GAS Structure refer, to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 = not Supported other values depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "ACPI_RESET_REG_TYPE"
+	Value  = "1"
+	Help  = "Reset Register Id (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0=System memory; 1=System I/O; 2=PCI Config Space; 3=Embeded Controller; 4=SMBus; 0x7F=Functional Fixed Hardware; All other values reserved"
+End
+
+TOKEN
+	Name  = "ACPI_RESET_REG_BITWIDTH"
+	Value  = "8"
+	Help  = "Reset Register Bit Width (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "ACPI_RESET_REG_BITOFFSET"
+	Value  = "0"
+	Help  = "Reset Register Bit Offset (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "ACPI_RESET_REG_VALUE"
+	Value  = "006h"
+	Help  = "Value to write to the Reset Register to initiate System Reset"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "? - chipset specific"
+End
+
+TOKEN
+	Name  = "PM1A_EVT_BLK_ADDRESS"
+	Value  = "$(PM_BASE_ADDRESS)"
+	Help  = "PM1a_EVT BLK Base Address (Part of GAS Structure refer, to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 = not Supported other values depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM1A_EVT_BLK_TYPE"
+	Value  = "1"
+	Help  = "PM1a_EVT BLK Registes Id (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0=System memory; 1=System I/O; 2=PCI Config Space; 3=Embeded Controller; 4=SMBus; 0x7F=Functional Fixed Hardware; All other values reserved"
+End
+
+TOKEN
+	Name  = "PM1A_EVT_BLK_BITWIDTH"
+	Value  = "32"
+	Help  = "PM1a_EVT BLK Registes Bit Width (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM1A_EVT_BLK_BITOFFSET"
+	Value  = "0"
+	Help  = "PM1a_EVT BLK Registes Bit Offset (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM1_EVT_LENGTH"
+	Value  = "4"
+	Help  = "PM1a_EVT BLK length in bytes"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM1A_CNT_BLK_ADDRESS"
+	Value  = "$(PM_BASE_ADDRESS)+0x04"
+	Help  = "PM1a_CNT BLK Base Address (Part of GAS Structure refer, to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 = not Supported other values depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM1A_CNT_BLK_TYPE"
+	Value  = "1"
+	Help  = "PM1a_CNT BLK Registes Id (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0=System memory; 1=System I/O; 2=PCI Config Space; 3=Embeded Controller; 4=SMBus; 0x7F=Functional Fixed Hardware; All other values reserved"
+End
+
+TOKEN
+	Name  = "PM1A_CNT_BLK_BITWIDTH"
+	Value  = "16"
+	Help  = "PM1a_CNT BLK Registes Bit Width (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM1A_CNT_BLK_BITOFFSET"
+	Value  = "0"
+	Help  = "PM1a_CNTT BLK Registes Bit Offset (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM1_CNT_LENGTH"
+	Value  = "2"
+	Help  = "PM1a_CNT BLK length in bytes"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM1B_EVT_BLK_ADDRESS"
+	Value  = "0"
+	Help  = "PM1b_EVT BLK Base Address (Part of GAS Structure refer, to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 = not Supported other values depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM1B_EVT_BLK_TYPE"
+	Value  = "1"
+	Help  = "PM1b_EVT BLK Registes Id (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0=System memory; 1=System I/O; 2=PCI Config Space; 3=Embeded Controller; 4=SMBus; 0x7F=Functional Fixed Hardware; All other values reserved"
+End
+
+TOKEN
+	Name  = "PM1B_EVT_BLK_BITWIDTH"
+	Value  = "0"
+	Help  = "PM1a_EVT BLK Registes Bit Width (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM1B_EVT_BLK_BITOFFSET"
+	Value  = "0"
+	Help  = "PM1a_EVT BLK Registes Bit Offset (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM1B_CNT_BLK_ADDRESS"
+	Value  = "0"
+	Help  = "PM1b_CNT BLK Base Address (Part of GAS Structure refer, to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 = not Supported other values depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM1B_CNT_BLK_TYPE"
+	Value  = "1"
+	Help  = "PM1a_CNT BLK Registes Id (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0=System memory; 1=System I/O; 2=PCI Config Space; 3=Embeded Controller; 4=SMBus; 0x7F=Functional Fixed Hardware; All other values reserved"
+End
+
+TOKEN
+	Name  = "PM1B_CNT_BLK_BITWIDTH"
+	Value  = "0"
+	Help  = "PM1a_CNT BLK Registes Bit Width (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM1B_CNT_BLK_BITOFFSET"
+	Value  = "0"
+	Help  = "PM1a_CNTT BLK Registes Bit Offset (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM2_CNT_BLK_ADDRESS"
+	Value  = "$(PM_BASE_ADDRESS)+0x50"
+	Help  = "PM2_CNT BLK Base Address (Part of GAS Structure refer, to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 = not Supported other values depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM2_CNT_BLK_TYPE"
+	Value  = "1"
+	Help  = "PM2_CNT BLK Registes Id (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0=System memory; 1=System I/O; 2=PCI Config Space; 3=Embeded Controller; 4=SMBus; 0x7F=Functional Fixed Hardware; All other values reserved"
+End
+
+TOKEN
+	Name  = "PM2_CNT_BLK_BITWIDTH"
+	Value  = "8"
+	Help  = "PM2_CNT BLK Registes Bit Width (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM2_CNT_BLK_BITOFFSET"
+	Value  = "0"
+	Help  = "PM2_CNT BLK Registes Bit Offset (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM2_CNT_LENGTH"
+	Value  = "1"
+	Help  = "PM2_CNT BLK length in bytes"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM_TMR_BLK_ADDRESS"
+	Value  = "$(PM_BASE_ADDRESS)+0x08"
+	Help  = "PM_TMR BLK Base Address (Part of GAS Structure refer, to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 = not Supported other values depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM_TMR_BLK_TYPE"
+	Value  = "1"
+	Help  = "PM_TMR BLK Registes Id (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0=System memory; 1=System I/O; 2=PCI Config Space; 3=Embeded Controller; 4=SMBus; 0x7F=Functional Fixed Hardware; All other values reserved"
+End
+
+TOKEN
+	Name  = "PM_TMR_BLK_BITWIDTH"
+	Value  = "32"
+	Help  = "PM_TMR BLK Registes Bit Width (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM_TMR_BLK_BITOFFSET"
+	Value  = "0"
+	Help  = "PM_TMR BLK Registes Bit Offset (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "PM_TMR_LENGTH"
+	Value  = "4"
+	Help  = "PM_TMR BLK length in bytes"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "GPE0_BLK_ADDRESS"
+	Value  = "$(PM_BASE_ADDRESS)+0x20"
+	Help  = "GPE0 BLK Base Address (Part of GAS Structure refer, to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 = not Supported other values depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "GPE0_BLK_ADDRESS"
+	Value  = "$(PM_BASE_ADDRESS)+0x80"
+	Help  = "GPE0 BLK Base Address (Part of GAS Structure refer, to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Token = "ULT_SUPPORT" "=" "1"
+	Range  = "0 = not Supported other values depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "GPE0_BLK_TYPE"
+	Value  = "1"
+	Help  = "GPE0 BLK Registes Id (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0=System memory; 1=System I/O; 2=PCI Config Space; 3=Embeded Controller; 4=SMBus; 0x7F=Functional Fixed Hardware; All other values reserved"
+End
+
+TOKEN
+	Name  = "GPE0_BLK_BITWIDTH"
+	Value  = "128"
+	Help  = "GPE0 BLK Registes Bit Width (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "GPE0_BLK_BITOFFSET"
+	Value  = "0"
+	Help  = "GPE0 BLK Registes Bit Offset (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "GPE0_BLK_LENGTH"
+	Value  = "16"
+	Help  = "GPE0 BLK length in bytes"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "GPE0_BLK_LENGTH"
+	Value  = "32"
+	Help  = "GPE0 BLK length in bytes"
+	TokenType = Integer
+	TargetH = Yes
+	Token = "ULT_SUPPORT" "=" "1"
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "GPE1_BLK_ADDRESS"
+	Value  = "0"
+	Help  = "GPE1 BLK Base Address (Part of GAS Structure refer, to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 = not Supported other values depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "GPE1_BLK_TYPE"
+	Value  = "1"
+	Help  = "GPE1 BLK Registes Id (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0=System memory; 1=System I/O; 2=PCI Config Space; 3=Embeded Controller; 4=SMBus; 0x7F=Functional Fixed Hardware; All other values reserved"
+End
+
+TOKEN
+	Name  = "GPE1_BLK_BITWIDTH"
+	Value  = "0"
+	Help  = "GPE1 BLK Registes Bit Width (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "GPE1_BLK_BITOFFSET"
+	Value  = "0"
+	Help  = "GPE1 BLK Registes Bit Offset (Part of GAS Structure, refer to ACPI v2.0 spec for details)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "GPE1_BLK_LENGTH"
+	Value  = "0"
+	Help  = "GPE1 BLK length in bytes"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "value range depends on other GAS elements"
+End
+
+TOKEN
+	Name  = "GPE1_BASE_OFFSET"
+	Value  = "0"
+	Help  = "GPE1 Base offset within the ACPI general purpose event model (FADT byte 94)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-0xff"
+End
+
+TOKEN
+	Name  = "GPE1_BASE_OFFSET"
+	Value  = "0x10"
+	Help  = "GPE1 Base offset within the ACPI general purpose event model (FADT byte 94)"
+	TokenType = Integer
+	TargetH = Yes
+	Token = "ULT_SUPPORT" "=" "1"
+	Range  = "0-0xff"
+End
+
+TOKEN
+	Name  = "PRIMARY_CHANNEL_ENABLE"
+	Value  = "1"
+	Help  = "Enable/Disable Primary Channel"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PRIMARY_MASTER_DRIVE_ENABLE"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "MAX_UDMA"
+	Value  = "5"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "MAX_PIO"
+	Value  = "4"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PRIMARY_SLAVE_DRIVE_ENABLE"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SECONDARY_CHANNEL_ENABLE"
+	Value  = "1"
+	Help  = "Enable/Disable Secondary Channel"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SECONDARY_MASTER_DRIVE_ENABLE"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SECONDARY_SLAVE_DRIVE_ENABLE"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BUSMASTER_ENABLE"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "MASTER_INTERRUPT_BASE"
+	Value  = "0x58"
+	Help  = "This value set the Interrupt Vector base for the master. Hardware IRQ0 = this base.\In legacy real mode this value is 8. It can not be 8 in protected mode.\This value must be a multiple of 8, and the this value must be different than SLAVE_INTERRUPT_BASE."
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-F8"
+End
+
+TOKEN
+	Name  = "SLAVE_INTERRUPT_BASE"
+	Value  = "0x70"
+	Help  = "This value set the Interrupt Vector base for the slave. Hardware IRQ8 = this base.\In legacy real mode this value is 0x70.\This value must be a multiple of 8, and the this value must be different than MASTER_INTERRUPT_BASE."
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-F8"
+End
+
+TOKEN
+	Name  = "A_S0_PKG"
+	Value  = "0x0,0x0,0,0"
+	Help  = "Intel ICH(x) example. Modify for a new Chipset"
+	TokenType = Expression
+	TargetMAK = Yes
+	Range  = "4 decimal or Hex (use '0x' prefix) values sepparated with ','"
+End
+
+TOKEN
+	Name  = "A_S1_PKG"
+	Value  = "0x1,0x0,0,0"
+	Help  = "Intel ICH(x) example. Modify for a new Chipset"
+	TokenType = Expression
+	TargetMAK = Yes
+	Range  = "4 decimal or Hex (use '0x' prefix) values separated with ','"
+End
+
+TOKEN
+	Name  = "A_S2_PKG"
+	Value  = "0x2,0x0,0,0"
+	TokenType = Expression
+	TargetMAK = Yes
+	Range  = "4 decimal or Hex (use '0x' prefix) values separated with ','"
+End
+
+TOKEN
+	Name  = "A_S3_PKG"
+	Value  = "0x5,0x0,0,0"
+	Help  = "Intel ICH(x) example. Modify for a new Chipset"
+	TokenType = Expression
+	TargetMAK = Yes
+	Range  = "4 decimal or Hex (use '0x' prefix) values separated with ','"
+End
+
+TOKEN
+	Name  = "A_S4_PKG"
+	Value  = "0x6,0x0,0,0"
+	Help  = "Intel ICH(x) example. Modify for a new Chipset"
+	TokenType = Expression
+	TargetMAK = Yes
+	Range  = "4 decimal or Hex (use '0x' prefix) values separated with ','"
+End
+
+TOKEN
+	Name  = "A_S5_PKG"
+	Value  = "0x7,0x0,0,0"
+	Help  = "Intel ICH(x) example. Modify for a new Chipset"
+	TokenType = Expression
+	TargetMAK = Yes
+	Range  = "4 decimal or Hex (use '0x' prefix) values separated with ','"
+End
+
+TOKEN
+	Name  = "S4_WAKE_FROM_RTC_SUPPORTED"
+	Value  = "1"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "REMOTE_POWER_ON_SUPPORTED"
+	Value  = "0"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "INCLUDE_SB_ASM_FILE_IN_SEC"
+	Value  = "1"
+	Help  = "Includes an ASM file and an eLink in SEC build process for SB code modification:"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "SLEEP_BUTTON_SUPPORT"
+	Value  = "0"
+	Help  = "Enable/Disable ACPI Sleep Button."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "HPET_SUPPORT"
+	Value  = "1"
+	Help  = "Enables High Performance Event Timer (HPET) Support in Project"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "HPET_BASE_ADDRESS"
+	Value  = "0xFED00000"
+	Help  = "HPET Block Registers"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0xFED00000 or 0xFED01000 or 0xFED02000 or 0xFED04000"
+	Token = "HPET_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "HPTB"
+	Value  = "$(HPET_BASE_ADDRESS)"
+	Help  = "Same as HPET_BASE_ADDRESS for ASL use "
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+	Token = "HPET_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "HPTC"
+	Value  = "$(SB_RCRB_BASE_ADDRESS)+0x3404"
+	Help  = "High Precision Event Timer Configuration Register"
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "offset 0x3404 from RCBA "
+	Token = "HPET_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "HPET_PROTOCOL_SUPPORT"
+	Value  = "0"
+	Help  = "Use High Performance Event Timer (HPET) instead of 8254 to support Timer protocol in Project"
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "HPET_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "HPET_DEFAULT_TICK_DURATION"
+	Value  = "10000"
+	Help  = "The unit is 100ns, the default value is 1ms."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "HPET_SUPPORT" "=" "1"
+	Token = "HPET_PROTOCOL_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "HPET_OFFSET"
+	Value  = "0"
+	Help  = "The offset of High Performance Event Timer.\This value can't exceed in the number of HPET capability.\The timer must also be able to support periodic mode."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "HPET_SUPPORT" "=" "1"
+	Token = "HPET_PROTOCOL_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "HPET_APIC_INTERRUPT_MODE"
+	Value  = "1"
+	Help  = "Off : The timer interrupt will be routed to PIC(8259).\On : The timer interrupt will be routed to APIC."
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "HPET_SUPPORT" "=" "1"
+	Token = "HPET_PROTOCOL_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "HPET_APIC_INTERRUPT_PIN"
+	Value  = "20"
+	Help  = "Select an APIC interrupt pin for the timer's interrupt.\Notice! Please refer to your HPET F/W porting guide to know which APIC interrupt pins can be used for this timer's interrupt."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "HPET_SUPPORT" "=" "1"
+        Token = "HPET_PROTOCOL_SUPPORT" "=" "1"
+        Token = "HPET_APIC_INTERRUPT_MODE" "=" "1"
+        Range  = "20, 21, 22, 23"
+End
+
+TOKEN
+        Name  = "HPET_INTERRUPT_POLARITY"
+        Value  = "0"
+        Help  = "On : The polarity is high.\Off : The polarity is low."
+        TokenType = Boolean
+        TargetH = Yes
+        Token = "HPET_SUPPORT" "=" "1"
+        Token = "HPET_PROTOCOL_SUPPORT" "=" "1"
+        Token = "HPET_APIC_INTERRUPT_MODE" "=" "1"
+End
+
+TOKEN
+        Name  = "HPET_INTERRUPT_TRIGGER"
+        Value  = "0"
+        Help  = "On : level triggered.\Off : edge triggered."
+        TokenType = Boolean
+        TargetH = Yes
+        Token = "HPET_SUPPORT" "=" "1"
+        Token = "HPET_PROTOCOL_SUPPORT" "=" "1"
+        Token = "HPET_APIC_INTERRUPT_MODE" "=" "1"
+End
+
+TOKEN
+	Name  = "HDD_POWER_LOSS_IN_S3"
+	Value  = "1"
+	Help  = "Disable this feature if HDD doesn't lose power \during S3 resume. HDD need to be unlocked during \S3 resume if it loses power and \also HDD need to be put in Freeze state.\"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CMOS_ADDR_PORT"
+	Value  = "0x70"
+	Help  = "CMOS Index Port."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CMOS_DATA_PORT"
+	Value  = "0x71"
+	Help  = "CMOS Data Port."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CMOS_BAD_REG"
+	Value  = "0x0E"
+	Help  = "CMOS Diagnostics Port."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_YEAR"
+	Value  = "2009"
+	Help  = "Year, that will be set in RTC in case of date corruption"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "1998-2099"
+End
+
+TOKEN
+	Name  = "DEFAULT_MONTH"
+	Value  = "1"
+	Help  = "Month, that will be set in RTC in case of date corruption"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "1-12"
+End
+
+TOKEN
+	Name  = "DEFAULT_DAY"
+	Value  = "1"
+	Help  = "Day, that will be set in RTC in case of date corruption"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "1-31"
+End
+
+TOKEN
+	Name  = "EARLIEST_YEAR"
+	Value  = "1998"
+	Help  = "If year, stored in RTC is less than this value, date will be considered as incorrect"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "1998"
+End
+
+TOKEN
+	Name  = "PCI_DEBUG_PORT"
+	Value  = "080h"
+	Help  = "Debug Card I/O Port, default is 80h"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SB_TEMP_IO_BASE"
+	Value  = "0x1200"
+	Help  = "A Temporal I/O Base Address for Init.\Its length is 1K bytes."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "AMI_INIT_VERB_TABLE_IN_S3"
+	Value  = "0"
+	Help  = "This is a backup solution for Intel RC"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "RESERVED_ROM_LENGTH"
+	Value = "0x1000000"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "RESERVED_ROM_BASE"
+	Value = "(0xFFFFFFFF-$(RESERVED_ROM_LENGTH)+1)"
+	Help  = "Reserved for ROM image."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "SB_TEMP_MMIO_BASE"
+	Value = "($(RESERVED_ROM_BASE)-$(SB_TEMP_MMIO_BASE_LENGTH))"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "SB_TEMP_MMIO_BASE_LENGTH"
+	Value = "0x10000"
+	Help  = "Intel required minimum size is 64KB bytes."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "MAX_NUM_HD_CODECS"
+	Value  = "0x04"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "KBC_AUTODETECT_PORTS"
+	Value  = "0"
+	Help  = "Auto detection of KB/MS using AMI KB-5.  This switch will enable/disable the connector swap of Keyboard and PS2 Mouse i.e. keyboard\can be connected to PS2 Mouse connector and vice-versa."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SIO_SB_DEV_NUM"
+	Value  = "0x1F"
+	Help  = "SB LPC Device Number"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FLSZ"
+	Value  = "$(FLASH_SIZE)"
+	Help  = "Size of the Flash Device in bytes"
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "SB_RCRB_BASE_ADDRESS"
+	Value  = "0FED1C000h"
+	Help  = "\The Root Complex Base Address of PCH.\Must be aligned a 16-KB boundary."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SB_RCBA"
+	Value  = "$(SB_RCRB_BASE_ADDRESS)"
+	Help  = "\The Root Complex Base Address of PCH.\Must be aligned a 16-KB boundary."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SB_RCRB_LENGTH"
+	Value  = "0x4000"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SRCB"
+	Value  = "$(SB_RCRB_BASE_ADDRESS)"
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "RCLN"
+	Value  = "$(SB_RCRB_LENGTH)"
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "RESERVED_PAGE_ROUTE"
+	Value  = "0"
+	Help  = "0 - Forward to LPC.\1 - Forward to PCI.\Please refer to RCBA#3410h[2]."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "RC_PORT_0"
+	Value  = "1"
+	Help  = "Set to 'On' if PCH Root Complex Port #0  phisically enabled and connected on the board"
+	TokenType = Boolean
+	TargetH = Yes
+	Range  = "On - Off"
+End
+
+TOKEN
+	Name  = "RC_PORT_1"
+	Value  = "1"
+	Help  = "Set to 'On' if PCH Root Complex Port #1  phisically enabled and connected on the board"
+	TokenType = Boolean
+	TargetH = Yes
+	Range  = "On - Off"
+	Token = "RC_PORT_0" "=" "1"
+End
+
+TOKEN
+	Name  = "RC_PORT_2"
+	Value  = "1"
+	Help  = "Set to 'On' if PCH Root Complex Port #2  phisically enabled and connected on the board"
+	TokenType = Boolean
+	TargetH = Yes
+	Range  = "On - Off"
+	Token = "RC_PORT_0" "=" "1"
+End
+
+TOKEN
+	Name  = "RC_PORT_3"
+	Value  = "1"
+	Help  = "Set to 'On' if PCH Root Complex Port #3  phisically enabled and connected on the board"
+	TokenType = Boolean
+	TargetH = Yes
+	Range  = "On - Off"
+	Token = "RC_PORT_0" "=" "1"
+End
+
+TOKEN
+	Name  = "RC_PORT_4"
+	Value  = "1"
+	Help  = "Set to 'On' if PCH Root Complex Port #4  phisically enabled and connected on the board"
+	TokenType = Boolean
+	TargetH = Yes
+	Range  = "On - Off"
+	Token = "RC_PORT_0" "=" "1"
+End
+
+TOKEN
+	Name  = "RC_PORT_5"
+	Value  = "1"
+	Help  = "Set to 'On' if PCH Root Complex Port #5  phisically enabled and connected on the board"
+	TokenType = Boolean
+	TargetH = Yes
+	Range  = "On - Off"
+	Token = "RC_PORT_0" "=" "1"
+End
+
+TOKEN
+	Name  = "RC_PORT_6"
+	Value  = "1"
+	Help  = "Set to 'On' if PCH Root Complex Port #6  phisically enabled and connected on the board"
+	TokenType = Boolean
+	TargetH = Yes
+	Range  = "On - Off"
+	Token = "RC_PORT_0" "=" "1"
+End
+
+TOKEN
+	Name  = "RC_PORT_7"
+	Value  = "1"
+	Help  = "Set to 'On' if PCH Root Complex Port #7  phisically enabled and connected on the board"
+	TokenType = Boolean
+	TargetH = Yes
+	Range  = "On - Off"
+	Token = "RC_PORT_0" "=" "1"
+End
+
+TOKEN
+	Name  = "HOTPLUG_RMV_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch if PCH Root Complex Port support _RMV function which is defined in ASL code. 0:Disable\1:Enable"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "HOTPLUG_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "/D HOTPLUG_EOI_FLAG"
+	Parent  = "GLOBAL_DEFINES"
+	InvokeOrder = AfterParent
+	Token = "HOTPLUG_RMV_SUPPORT" "=" "0"
+End
+
+TOKEN
+	Name  = "SX_NOTIFY_PWRB"
+	Value  = "1"
+	Help  = "Enable/Disable report notify power button event when system resume form sleep state."
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PCIE_CLEAR_RETRAIN_BIT_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to clear PCH Root Port retrain bit for some device will not clear this bit. It will make 1 ms delay for each PCIE device 0:Disable\1:Enable"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+ELINK
+	Name  = "/D PCIE_CLEAR_RETRAIN_BIT_SUPPORT_FLAG"
+	Parent  = "GLOBAL_DEFINES"
+	InvokeOrder = AfterParent
+	Token = "PCIE_CLEAR_RETRAIN_BIT_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = " "
+	TokenType = Integer
+End
+
+TOKEN
+	Name  = "====== SB USB Rx Configuration ======"
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "PCI_EHCI_BUS_NUMBER"
+	Value  = "0x0"
+	Help  = "EHCI controller bus number"
+	TokenType = Integer
+	TargetH = Yes
+	Token = "USB_DEBUG_TRANSPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "PCI_EHCI_DEV_FUNC_NUMBER"
+	Value  = "0xD0"
+	Help  = "EHCI controller device and function number. \Bit 0-2 represents function number and\ Bit 3-7 represents device number"
+	TokenType = Integer
+	TargetH = Yes
+	Token = "USB_DEBUG_TRANSPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "PCI_EHCI_BAR_OFFSET"
+	Value  = "0x10"
+	TokenType = Integer
+	TargetH = Yes
+	Token = "USB_DEBUG_TRANSPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "EHCI_MMIO_BASE_ADDRESS"
+	Value  = "$(EHCI_MMIO_BASE_ADDRESS1)"
+	TokenType = Integer
+	TargetH = Yes
+	Token = "PCI_EHCI_DEV_FUNC_NUMBER" "=" "0xD0"
+	Token = "USB_DEBUG_TRANSPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "EHCI_MMIO_BASE_ADDRESS"
+	Value  = "$(EHCI_MMIO_BASE_ADDRESS2)"
+	TokenType = Integer
+	TargetH = Yes
+	Token = "PCI_EHCI_DEV_FUNC_NUMBER" "=" "0xE8"
+	Token = "USB_DEBUG_TRANSPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "EHCI_MMIO_BASE_ADDRESS1"
+	Value  = "0xFECD0000"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "EHCI_MMIO_BASE_ADDRESS2"
+	Value  = "$(EHCI_MMIO_BASE_ADDRESS1)+0xC00"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "EHCI_MMIO_SIZE"
+	Value  = "0x400"
+	TokenType = Integer
+	TargetH = Yes
+	Token = "USB_DEBUG_TRANSPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "CLOCK_GENERATOR_ADDRESS"
+	Value  = "0xD2"
+	Help  = "Clock generator address. Set to 0xFF to disable\clock generator programming."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CLOCK_GENERATOR_SETTINGS"
+	Value  = "{0x35, 0x83, 0xFF, 0xFF, 0xFC, 0x00, 0x00, 0x26, 0x03, 0x25, 0xFD, 0x56, 0x0D}"
+	Help  = "List of initial clock controller register settings for Desktop."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = " "
+	TokenType = Integer
+End
+
+TOKEN
+	Name  = "====== UEFI based Configuration ======"
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "OFFSET_0"
+	Value  = "1"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_0"
+	Value  = "0"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_1"
+	Value  = "2"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_1"
+	Value  = "1"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_2"
+	Value  = "3"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_2"
+	Value  = "2"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_3"
+	Value  = "4"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_3"
+	Value  = "3"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_4"
+	Value  = "5"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_4"
+	Value  = "4"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_5"
+	Value  = "6"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_5"
+	Value  = "5"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_6"
+	Value  = "7"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_6"
+	Value  = "6"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_7"
+	Value  = "8"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_7"
+	Value  = "7"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_8"
+	Value  = "9"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_8"
+	Value  = "8"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_9"
+	Value  = "10"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_9"
+	Value  = "9"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_10"
+	Value  = "11"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_10"
+	Value  = "10"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_11"
+	Value  = "12"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_11"
+	Value  = "11"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_12"
+	Value  = "13"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_12"
+	Value  = "12"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_13"
+	Value  = "14"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_13"
+	Value  = "13"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = " "
+	TokenType = Integer
+End
+
+PATH
+	Name  = "SB_CHIPSET_DIR"
+	Path  = "Chipset\SB"
+End
+
+TOKEN
+	Name  = "INTEL_SATA_ASL_FILE"
+	Value  = "$(SB_CHIPSET_DIR)\SATA.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_IDE_ASL_FILE"
+	Value  = "$(SB_CHIPSET_DIR)\IDE.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "SB_BOARD_DIR"
+	Path  = "Board\SB"
+End
+
+MODULE
+	Help  = "Includes SB.mak to Project"
+	File  = "SB.mak"
+End
+
+ELINK
+	Name  = "SBPEIDBG_Initialize,"
+	Parent  = "PeiDebuggerInitialize"
+	Priority  = 10
+	Token = "AMIDEBUG_RX_SUPPORT" "=" "1"
+	Token = "PeiDebugger_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+# Only for Mobile/ULT CRB >>>
+TOKEN
+	Name  = "CRB_UART_CONFIG"
+	Value  = "1"
+	Help  = "Only for Mobile/ULT CRB UART configuration"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Token = "PCH_SKU" "=" "1"
+	Token = "CRB_SIO_SUPPORT" "=" "0"
+	Token = "VirtualSerial_SUPPORT" "=" "1"
+	Token = "DEBUG_MODE" "=" "1"
+End
+
+ELINK
+	Name  = "SBPEIDBG_Initialize,"
+	Parent  = "PeiCoreInitialize"
+	Priority  = 10
+	Token = "PCH_SKU" "=" "1"
+	Token = "CRB_SIO_SUPPORT" "=" "0"
+	Token = "VirtualSerial_SUPPORT" "=" "1"
+	Token = "DEBUG_MODE" "=" "1"
+	InvokeOrder = AfterParent
+End
+# Only for Mobile/ULT CRB <<<
+
+ELINK
+	Name  = "$(SB_CHIPSET_DIR)\SB.asl"
+	Parent  = "INTEL_GENERIC_ASL"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "\_SB.PCI0.SBRG.SPTS(Arg0)"
+	Parent  = "ASL_PTS"
+	Help  = "Include South Bridge Specific Function at PTS.\Arg0 is a sleep state the System is targeted for."
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "\_SB.PCI0.SBRG.SWAK(Arg0)"
+	Parent  = "ASL_WAK"
+	Help  = "Include South Bridge Specific Function at WAK.\Arg0 is a sleep state the System is resuming from. "
+	SrcFile  = "Chipset\SB\SB.ASL"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(SB_BOARD_DIR)"
+	Parent  = "$(GLOBAL_DEFINES)"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(SB_CHIPSET_DIR)"
+	Parent  = "$(GLOBAL_DEFINES)"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SBPEI.ffs"
+	Parent  = "FV_BB"
+	Help  = "INTEL ICH7 SB PEI component"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SBDXE.ffs"
+	Parent  = "FV_MAIN"
+	Help  = "INTEL ICH7 SB DXE component"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SBRUN.ffs"
+	Parent  = "FV_MAIN"
+	Help  = "INTEL ICH7 SB Runtime DXE component"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SBSATAIDE.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SBSECInit.OBJ"
+	Parent  = "ADDON_SEC_CORE_OBJ_FILES"
+	Token = "INCLUDE_SB_ASM_FILE_IN_SEC" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "SBCSPLib"
+	Value  = "$$(LIB_BUILD_DIR)\AmiSbCSPLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "\_SB.SBPS(Arg0)"
+	Parent  = "ASL_PTS"
+	Help  = "Include South Bridge Specific Function at PTS."
+	SrcFile  = "Chipset\SB\SLEEPBTN.ASL"
+	Token = "SLEEP_BUTTON_SUPPORT" "=" "1"
+	Token = "ACPI_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(SB_CHIPSET_DIR)\RRIORDMA.ASL"
+	Parent  = "INTEL_GENERIC_ASL"
+	Help  = "Include LPC RRIO & RDMA ASL"
+	Token = "ACPI_SUPPORT" "=" "1"
+	Token = "ACPI_MODULE_VER" ">" "30"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "UsbDxeDebuggerInitialize"
+	Token = "USB_DEBUG_TRANSPORT" "=" "1"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "SBPEIDBG_InitUsbEhci,"
+	Parent  = "PeiDebuggerInitialize"
+	Priority  = 150
+	Token = "USB_DEBUG_TRANSPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SBPEIDBG_InitUsbEhci,"
+	Parent  = "UsbDxeDebuggerInitialize"
+	Token = "USB_DEBUG_TRANSPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SBSmmSaveRestoreStates,"
+	Parent  = "SmmSaveRestoreEnvironment"
+	Token = "SMM_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{0, 0, 0x80, 0xff, ReadWriteCmosBank2},"
+	Parent  = "CMOS_PORT_MAPPING"
+	Help  = "Second bank CMOS access range (Registers in range: 0x80-0xff)"
+	Token = "CMOS_MANAGER_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SbGetRtcPowerStatus"
+	Parent  = "CMOS_BATTERY_TEST_MAPPING"
+	Help  = "Link the standard function to determine whether or not the CMOS battery is good."
+	Token = "CMOS_MANAGER_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(SB_BOARD_DIR)\Sb.ssp"
+	Parent  = "ADDON_SSP_FILES"
+	Token = "CMOS_MANAGER_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SbConfigurationList"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "SbTimerSaveRestoreRegistersCallbacks"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "OEM_HDA_VERB_TABLE"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "OEM_SPI_VSCC_TABLE"
+	Help  = "{VidDid, Vscc}"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "OEM_HDA_VERB_TABLE_CONTENT"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "SBIsDefaultConfigMode,"
+	Parent  = "IsDefaultConfigMode"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OEM_PCI_DEVICE_CALLBACK(0, 0, SBProtectedPciDevice),"
+	Parent  = "OEM_SKIP_PCI_DEVICE"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OEM_PCI_DEVICE_CALLBACK(0, 0, SBProgramPciDevice),"
+	Parent  = "OEM_PROGRAM_PCI_DEVICE"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OEM_PCI_DEVICE_CALLBACK(0, 0, SBUpdatePciDeviceAttributes),"
+	Parent  = "OEM_PCI_ATTRIBUTES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SECSB_EarlyInit"
+	Parent  = "GainestownSecRcEntry"
+	Help  = "SB Early Init in SEC (before Cache as memory enabling)"
+	SrcFile  = "Board\SB\SBSECInit.ASM"
+	Token = "INCLUDE_SB_ASM_FILE_IN_SEC" "=" "1"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "{0xFFFFFFFF, 0, 0xFF, FALSE, 1, 0, DummyVerbTable},"
+	Parent  = "OEM_HDA_VERB_TABLE"
+	Help  = "Dummy Verb Table"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{0xEF4017, 0x2025},"
+	Parent  = "OEM_SPI_VSCC_TABLE"
+	Help  = "W25Q64"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "BiosLockEnableSMIFlashHook,"
+	Parent  = "SMIFlashEndHandlerList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SbS3WarmResetLink"
+	InvokeOrder = ReplaceParent
+        Token = "SecureMod_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "SBLib_BeforeShutdown,"
+	Parent  = "SbS3WarmResetLink"
+	InvokeOrder = AfterParent
+  Token = "SecureMod_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "BusOverrideGuidsforUefiRaid"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+  Name  = "SbRuntimeResetElinkList"
+  InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "{0xBB65942B,0x521F,0x4EC3,0xBA,0xF9,0xA9,0x25,0x40,0xCF,0x60,0xD2},"
+	Parent  = "BusOverrideGuidsforUefiRaid"
+	Help  = "FFS Guid of Satacontroller Driver"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{0x8F5A2E02,0x538C,0x4D59,0xB9,0x20,0xC4,0x78,0x6A,0xCB,0xC5,0x52},"
+	Parent  = "BusOverrideGuidsforUefiRaid"
+	Help  = "FFS Guid of AHCI Driver"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "DISABLE_DAYLIGHT_SAVINGS"
+	Value = "0"
+	Help  = "1: Disable Daylight Savings; 0: Enable Daylight Savings"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2013, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

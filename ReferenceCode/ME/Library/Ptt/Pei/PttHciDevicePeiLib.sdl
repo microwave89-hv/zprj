@@ -1,0 +1,36 @@
+TOKEN
+	Name  = "PttHciDevicePeiLib_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable PttHciDevicePeiLib support in Project"
+End
+
+MODULE
+	Help  = "Includes PttHciDevicePeiLib.mak to Project"
+	File  = "PttHciDevicePeiLib.mak"
+End
+
+PATH
+	Name  = "PttHciDevicePeiLib_DIR"
+	Help  = ""
+End
+
+ELINK
+	Name  = "PttHciDevicePeiLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PttHciDevicePeiLib.lib"
+	Parent  = "PttHciDevicePeiLib_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PttHciDevicePeiLib_DIR)"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End

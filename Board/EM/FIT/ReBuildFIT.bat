@@ -1,0 +1,1 @@
+FITUtil.exe BIOS.rom 0

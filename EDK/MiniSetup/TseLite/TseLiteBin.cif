@@ -1,0 +1,12 @@
+<component>
+	name = "TSE Binary - TSE Lite"
+	category = ModulePart
+	LocalRoot = "EDK\MiniSetup\TseLite"
+	RefName = "TseLiteBin"
+[files]
+"TseLiteBin.sdl"	
+"TseLiteLocal.lib"
+"TseLiteLocalx64.lib"
+"StyleHook\StyleHook.lib"
+"StyleHook\StyleHookx64.lib"
+<endComponent>

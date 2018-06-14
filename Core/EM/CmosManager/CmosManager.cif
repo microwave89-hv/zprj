@@ -1,0 +1,16 @@
+<component>
+	name = "CMOS Manager"
+	category = eModule
+	LocalRoot = "Core\EM\CmosManager\"
+	RefName = "CmosManager"
+[files]
+"CmosManager.sdl"	
+"CmosManager.chm"	
+[parts]
+"CmosBoard"
+"CmosSec"
+"CmosPei"
+"CmosDxe"
+"CmosSmm"
+"CmosCore"
+<endComponent>

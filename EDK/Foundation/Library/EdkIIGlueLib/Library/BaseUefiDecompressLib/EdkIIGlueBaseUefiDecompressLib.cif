@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueBaseUefiDecompressLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\BaseUefiDecompressLib"
+	RefName = "EdkIIGlueBaseUefiDecompressLib"
+[files]
+"EdkIIGlueBaseUefiDecompressLib.sdl"	
+"EdkIIGlueBaseUefiDecompressLib.mak"
+"BaseUefiDecompressLib.inf"	
+"BaseUefiDecompressLib.c"	
+<endComponent>

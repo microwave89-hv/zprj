@@ -1,0 +1,11 @@
+<component>
+	name = "IntelGigabitLan"
+	category = eModule
+	LocalRoot = "Board\EM\IntelGigabitLan\"
+	RefName = "IntelGigabitLan"
+[files]
+"IntelGigabitLan.sdl"	
+"IntelGigabitLan.mak"	
+"IntelGigabitLanIa32.efi"	
+"IntelGigabitLanx64.efi"	
+<endComponent>

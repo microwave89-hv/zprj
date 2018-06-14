@@ -1,0 +1,32 @@
+TOKEN
+	Name  = "BiosExtensionLoader_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable BiosExtensionLoader support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Token = "iAMT_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "BiosExtensionLoader_DIR"
+	Help  = "iAMT BiosExtensionLoader file source directory"
+End
+
+MODULE
+	Help  = "Includes BiosExtensionLoader.mak to Project"
+	File  = "BiosExtensionLoader.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\BiosExtensionLoader.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(BiosExtensionLoader_DIR)"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End

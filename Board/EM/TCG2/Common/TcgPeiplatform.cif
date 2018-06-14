@@ -1,0 +1,12 @@
+<component>
+	name = "TcgPeiplatform"
+	category = ModulePart
+	LocalRoot = "Board\EM\TCG2\Common"
+	RefName = "TcgPeiplatform"
+[files]
+"TcgPeiplatform.sdl"	
+"TcgPeiplatform.mak"	
+"TcgPeiplatform.c"	
+"TcgPeiplatform.h"	
+"TcgPeiplatform.dxs"	
+<endComponent>

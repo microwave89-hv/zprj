@@ -1,0 +1,137 @@
+TOKEN
+	Name  = ACOUSTIC_MANAGEMENT_DRIVER_SUPPORT
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable Acoustic Management support in Project"
+End
+
+PATH
+	Name  = "ACOUSTIC_DIR"
+End
+
+MODULE
+	Help  = "Includes Aoustic.mak to Project"
+	File  = "Acoustic.mak"
+End
+
+TOKEN
+	Name  = "INDIVIDUAL_ACOUSTIC_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "ACOUSTIC_MANAGEMENT_DRIVER_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "ACOUSTIC_DEVICE_COUNT"
+	Value  = "6"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Help  = "Default number of devices that may have Acoustic support. If you need to add more than 6 devices acoustic.sd and AcousticSetup.c file also needs to be changed"
+End
+
+TOKEN
+	Name  = "IDE_CONTROLLER_LOCATION"
+	Value  = "{0, 0x1F, 2}"
+	TokenType = Expression
+	TargetH = Yes
+	Help  = "Bus, Device and Function of the First IDE (SATA) controller."
+	Token = "ACOUSTIC_MANAGEMENT_DRIVER_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "NUMBER_OF_PORTS_ON_FIRST_CONTROLLER"
+	Value  = "4"
+	TokenType = Integer
+	TargetH = Yes
+	Help  = "Number of Ports on First IDE (SATA) controller."
+	Token = "ACOUSTIC_MANAGEMENT_DRIVER_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "SECOND_CONTROLLER_LOCATION"
+	Value  = "{0, 0x1F, 5}"
+	TokenType = Expression
+	TargetH = Yes
+	Help  = "Location of second IDE (SATA) controller (if any)."
+	Token = "ACOUSTIC_MANAGEMENT_DRIVER_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "NUMBER_OF_PORTS_ON_SECOND_CONTROLLER"
+	Value  = "2"
+	TokenType = Integer
+	TargetH = Yes
+	Help  = "Number of Ports on  second IDE (SATA) controller (if any)."
+	Token = "ACOUSTIC_MANAGEMENT_DRIVER_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "SECOND_CONTROLLER_COUNTS_BY_DEVICE"
+	Value  = "0"
+	TokenType = BOOLEAN
+	TargetH = Yes
+	Help  = "ON - Second controller increments the device no. only for ports after 0. OFF - Second controller increments like first controller."
+	Token = "ACOUSTIC_MANAGEMENT_DRIVER_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "ACOUSTIC_MANAGEMENT_SUPPORT"
+	Value  = "0"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Help  = "Keep this Token always OFF."
+	Lock = Yes
+	Token = "ACOUSTIC_MANAGEMENT_DRIVER_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "LOCAL_ACOUSTIC_SETUP"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Help  = "ON - Setup questions are in this module./OFF - Setup questions are with SATA Driver."
+	Token = "ACOUSTIC_MANAGEMENT_DRIVER_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "InitAcousticStrings,"
+	Parent  = "SetupStringInit"
+	InvokeOrder = AfterParent
+	Token = "LOCAL_ACOUSTIC_SETUP" "=" "1"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Acoustic.sdb"
+	Parent  = "SETUP_SDBS"
+	Token = "LOCAL_ACOUSTIC_SETUP" "=" "1"
+	Priority  = 30
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(ACOUSTIC_DIR)\Acoustic.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	Token = "LOCAL_ACOUSTIC_SETUP" "=" "1"
+	Priority  = 30
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Acoustic.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

@@ -1,0 +1,12 @@
+<component>
+    name = "IccPlatform"
+    category = ModulePart
+    LocalRoot = "Board\EM\MeWrapper\Icc\IccPlatform"
+    RefName = "IccPlatform"
+[files]
+"IccPlatform.sdl"
+"IccPlatform.dxs"
+"IccPlatform.mak"
+"IccPlatform.c"
+"IccPlatform.h"
+<endComponent>

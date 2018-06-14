@@ -1,0 +1,50 @@
+TOKEN
+	Name  = "CoreSrc_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Core Sources support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "PEI_PERFORMANCE"
+	Value  = "0"
+	Help  = "Enables/Disables PEI performance measurement API"
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "DXE_PERFORMANCE"
+	Value  = "0"
+	Help  = "Enables/Disables PEI performance measurement API"
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "USE_DXE_STATUS_CODE_INSTANCE_IN_SMM"
+	Value  = "0"
+	Help  = "To use DXE status code instance from SMM set this token to On.\If this token is Off, SMM instance is used.\Setting this token to On is not safe (calls outside of SMM) and should only be done for debug purposes. "
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "DEBUG_CODE" "=" "1"
+End
+
+ELINK
+	Name  = "/D EFI_DXE_PERFORMANCE"
+	Parent  = "GLOBAL_DEFINES"
+	Token = "DXE_PERFORMANCE" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D EFI_PEI_PERFORMANCE"
+	Parent  = "GLOBAL_DEFINES"
+	Token = "PEI_PERFORMANCE" "=" "1"
+	InvokeOrder = AfterParent
+End
+

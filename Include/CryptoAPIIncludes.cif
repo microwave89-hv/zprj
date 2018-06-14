@@ -1,0 +1,10 @@
+<component>
+	name = "Crypto API Includes"
+	category = ModulePart
+	LocalRoot = "Include\"
+	RefName = "CryptoIncludes"
+[files]
+"AmiCertificate.h"	
+"Protocol\AmiDigitalSignature.h"	
+"PPI\CryptoPPI.h"	
+<endComponent>

@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "EdkIIGlueSmmFirmwarePerformanceLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueSmmFirmwarePerformanceLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueSmmFirmwarePerformanceLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueSmmFirmwarePerformanceLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueSmmFirmwarePerformanceLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueSmmFirmwarePerformanceLib.mak to Project"
+	File  = "EdkIIGlueSmmFirmwarePerformanceLib.mak"
+End

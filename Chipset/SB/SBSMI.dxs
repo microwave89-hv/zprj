@@ -1,0 +1,84 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SB SMI/SBSMI.dxs 3     8/13/12 10:31a Victortu $
+//
+// $Revision: 3 $
+//
+// $Date: 8/13/12 10:31a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SB SMI/SBSMI.dxs $
+// 
+// 3     8/13/12 10:31a Victortu
+// [TAG]           None
+// [Category]      Improvement
+// [Description]   Implement BIOS Lock function.
+// [Files]         SBCspLib.h, SBDxe.c, SBSMI.c, SBSMI.dxs, SBSMI.sdl
+// 
+// 2     4/25/12 9:27a Victortu
+// [TAG]         None
+// [Category]    Improvement
+// [Description] Remove unnecessary dependence.
+// [Files]       AcpiModeEnable.dxs; SBSMI.dxs; SleepSmi.dxs
+// 
+// 1     2/08/12 8:31a Yurenlai
+// Intel Lynx Point/SB eChipset initially releases.
+// 
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:        SBSmi.dxs
+//
+// Description: This file is the dependency file for the South Bridge SMI 
+//              handler.
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+#include <token.h>
+
+#include <Protocol\SmmSwDispatch.h>
+
+#include <Edk\Foundation\Framework\Protocol\SmmIchnDispatch\SmmIchnDispatch.h>
+#include <ReferenceCode\Chipset\LynxPoint\Protocol\SmmIchnDispatchEx\SmmIchnDispatchEx.h>
+#include <ReferenceCode\Chipset\LynxPoint\Protocol\SmmIoTrapDispatch\SmmIoTrapDispatch.h>
+#if SB_PCIE_ERROR_LOG_SUPPORT
+#include <Protocol\GenericElog.h>
+#endif
+
+DEPENDENCY_START
+#if SB_PCIE_ERROR_LOG_SUPPORT
+    EFI_SM_ELOG_PROTOCOL_GUID AND
+#endif
+    EFI_SMM_SW_DISPATCH_PROTOCOL_GUID AND
+    EFI_SMM_IO_TRAP_DISPATCH_PROTOCOL_GUID AND
+    EFI_SMM_ICHN_DISPATCH_PROTOCOL_GUID AND
+    EFI_SMM_ICHN_DISPATCH_EX_PROTOCOL_GUID
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

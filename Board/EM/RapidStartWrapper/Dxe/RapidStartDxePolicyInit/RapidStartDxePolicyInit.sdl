@@ -1,0 +1,94 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartWrapper/RapidStartDxePolicyInit/RapidStartDxePolicyInit.sdl 1     10/15/12 4:40a Bensonlai $
+#
+# $Revision: 1 $
+#
+# $Date: 10/15/12 4:40a $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartWrapper/RapidStartDxePolicyInit/RapidStartDxePolicyInit.sdl $
+# 
+# 1     10/15/12 4:40a Bensonlai
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	[Category] Improvement
+# [Severity] Important
+# [Description] Rename all IFFS sting to Rapid Start.
+# [Files] Board\EM\RapidStartWrapper\*.*, ReferenceCode\RapidStart\*.*
+# 
+# [Category] Improvement
+# [Severity] Important
+# [Description] Implementation of the LOCK_DISABLE_RAPID_START_IF_NO_SSD
+# using EDKII.
+# [Files] Board\EM\RapidStartWrapper\Dxe\RapidStartDxePolicyInit\*.*
+# [Files]  		RapidStartDxePolicyInit.cif
+# RapidStartDxePolicyInit.sdl
+# RapidStartDxePolicyInit.mak
+# RapidStartDxePolicyInit.h
+# RapidStartDxePolicyInit.c
+# RapidStartDxePolicyInit.dxs
+# RapidStartDxePolicyInit.inf
+#
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name: RapidStartDxePolicyInit.sdl
+#
+# Description: SDL file for the RapidStartDxePolicyInit.
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+	Name  = "RapidStartDxePolicyInit_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable RapidStartDxePolicyInit support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "RapidStartDxePolicyInit_DIR"
+End
+
+MODULE
+	File  = "RapidStartDxePolicyInit.mak"
+	Help  = "Includes RapidStartDxePolicyInit.mak to Project"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\RapidStartDxePolicyInit.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

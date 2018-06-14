@@ -1,0 +1,93 @@
+TOKEN
+	Name  = "RTD3_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable RTD3 support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "ULT0RTD3_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable RTD3 support for Whitetip Mountain or Sawtooth Peak CRB"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "RTD3_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "BRRTD3_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable RTD3 support for Basking Ridge CRB"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "RTD3_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "RTD3FFRD_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable RTD3 support for FFRD SKU CRB"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "RTD3_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "INTEL_SSDTRTD3_DIR"
+End
+
+TOKEN
+	Name  = "INTEL_RTD3_ASL_FILE"
+	Value  = "$(INTEL_SSDTRTD3_DIR)\Ult0Rtd3.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "ULT0RTD3_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "INTEL_RTD3_ASL_FILE"
+	Value  = "$(INTEL_SSDTRTD3_DIR)\BRRtd3.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "BRRTD3_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "INTEL_RTD3_ASL_FILE"
+	Value  = "$(INTEL_SSDTRTD3_DIR)\Rtd3FFRD.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "RTD3FFRD_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "INTEL_RTD3_COMMON_ASL_FILE"
+	Value  = "$(INTEL_SSDTRTD3_DIR)\RTD3Common.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_RTD3_PCIE_ASL_FILE"
+	Value  = "$(INTEL_SSDTRTD3_DIR)\RTD3Pcie.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+MODULE
+	Help  = "Includes SsdtRtd3.mak to Project"
+	File  = "SsdtRtd3.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Ult0Rtd3.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+	Token = "RTD3_SUPPORT" "=" "1"
+End

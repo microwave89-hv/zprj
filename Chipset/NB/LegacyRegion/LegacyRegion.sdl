@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "NB_LegacyRegion_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable North Bridge LegacyRegion support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "LEGACY_REGION_DIR"
+End
+
+MODULE
+	Help  = "Includes LegacyRegion.mak to Project"
+	File  = "LegacyRegion.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\NBLegacyRegion.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

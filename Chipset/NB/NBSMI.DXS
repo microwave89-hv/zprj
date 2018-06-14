@@ -1,0 +1,76 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Chipset/NB SMI/NBSMI.DXS 2     10/14/12 12:16a Jeffch $
+//
+// $Revision: 2 $
+//
+// $Date: 10/14/12 12:16a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Chipset/NB SMI/NBSMI.DXS $
+// 
+// 2     10/14/12 12:16a Jeffch
+// [TAG]         None
+// [Severity]    Important
+// [Description] Follow MahoBay Update.
+// [Files]       NBSMI.c, NBSMI.Dxe
+// 
+// 1     2/08/12 4:35a Yurenlai
+// Intel Haswell/NB eChipset initially releases.
+// 
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:        NbSmi.dxs
+//
+// Description: This file is the dependency file for the North Bridge SMI 
+//              handler.
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+#include <token.h>
+#if defined(PI_SPECIFICATION_VERSION) && (PI_SPECIFICATION_VERSION >= 0x0001000A)
+#include <Protocol\SmmSwDispatch2.h>
+#include <Protocol\SmmSxDispatch2.h>
+#else
+#include <Protocol\SmmSwDispatch.h>
+#include <Protocol\SmmSxDispatch.h>
+#endif
+
+DEPENDENCY_START
+#if defined(PI_SPECIFICATION_VERSION) && (PI_SPECIFICATION_VERSION >= 0x0001000A)
+    EFI_SMM_SW_DISPATCH2_PROTOCOL_GUID AND
+    EFI_SMM_SX_DISPATCH2_PROTOCOL_GUID
+#else
+    EFI_SMM_SW_DISPATCH_PROTOCOL_GUID AND
+    EFI_SMM_SX_DISPATCH_PROTOCOL_GUID
+#endif
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

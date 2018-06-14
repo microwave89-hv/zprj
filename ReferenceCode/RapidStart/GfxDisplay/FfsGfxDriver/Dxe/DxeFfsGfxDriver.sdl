@@ -1,0 +1,85 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/DxeFfsGfxDriver/DxeFfsGfxDriver.sdl 1     10/15/12 5:02a Bensonlai $
+#
+# $Revision: 1 $
+#
+# $Date: 10/15/12 5:02a $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/DxeFfsGfxDriver/DxeFfsGfxDriver.sdl $
+# 
+# 1     10/15/12 5:02a Bensonlai
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	[Category] Improvement
+# [Severity] Important
+# [Description] Update Intel Rapid Start Graphics Driver for Shark Bay
+# Platform 5.0.1.1001, please increase your FV_BB_BLOCKS size if you
+# compile fail that caused by FV_BB size too small.
+# [Files] ReferenceCode\RapidStart\GfxDisplay\FfsGfxDriver\Pei\*.*,
+# ReferenceCode\RapidStart\GfxDisplay\FfsGfxDriver\Dxe\*.*
+#
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name: DxeFfsGfxDriver.sdl
+#
+# Description: SDL file for DxeFfsGfxDriver.
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+	Name  = "DxeFfsGfxDriver_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable FFS support in Project in DXE Phase"
+End
+
+MODULE
+	Help  = "Includes DxeFfsGfxDriver.mak to Project"
+	File  = "DxeFfsGfxDriver.mak"
+End
+
+PATH
+	Name  = "DxeFfsGfxDriver_PATH"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\DxeFfsGfxDriver.ffs"
+	Parent  = "FV_MAIN"
+ 	InvokeOrder = AfterParent
+End
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

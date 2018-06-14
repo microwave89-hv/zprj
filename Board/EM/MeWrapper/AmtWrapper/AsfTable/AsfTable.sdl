@@ -1,0 +1,24 @@
+TOKEN
+	Name  = "AsfTable_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AsfTable support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "AsfTable_DIR"
+End
+
+MODULE
+	Help  = "Includes AsfTable.mak to Project"
+	File  = "AsfTable.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AsfTable.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

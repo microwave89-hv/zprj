@@ -1,0 +1,13 @@
+<component>
+	name = "Intel DPTF"
+	category = eModule
+	LocalRoot = "ReferenceCode\AcpiTables\Dptf\"
+	RefName = "Dptf"
+[files]
+"Dptf.sdl"	
+"ReleaseNotes.chm"
+[parts]
+"DptfDxe"
+"DptfAcpiTables"
+"DptfGuidLib"
+<endComponent>

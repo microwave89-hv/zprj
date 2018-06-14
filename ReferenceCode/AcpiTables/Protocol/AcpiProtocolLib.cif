@@ -1,0 +1,14 @@
+<component>
+    name = "AcpiProtocolLib"
+    category = ModulePart
+    LocalRoot = "ReferenceCode\AcpiTables\Protocol\"
+    RefName = "AcpiProtocolLib"
+[files]
+"AcpiProtocolLib.sdl"
+"AcpiProtocolLib.mak"
+"AcpiProtocolLib.inf"
+"AcpiInfo\AcpiInfo.c"
+"AcpiInfo\AcpiInfo.h"
+"AcpiPlatformPolicy\AcpiPlatformPolicy.c"
+"AcpiPlatformPolicy\AcpiPlatformPolicy.h"
+<endComponent>

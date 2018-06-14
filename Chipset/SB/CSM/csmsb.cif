@@ -1,0 +1,8 @@
+<component>
+	name = "CSM SB-Generic"
+	category = ModulePart
+	LocalRoot = "Chipset\SB\CSM\"
+	RefName = "CSMSB"
+[parts]
+"LegacyInterrupt"
+<endComponent>

@@ -1,0 +1,33 @@
+TOKEN
+    Name  = OpalSecurity_SUPPORT
+    Value  = "1"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+    Help  = "Main switch to enable OpalSecurity support in Project"
+End
+
+TOKEN
+    Name  = "TPer_LOCK_ON_RESET"
+    Value  = "0"
+    Help  = "Issue eDrive Lock On Reset"
+    TokenType = Boolean
+    TargetH = Yes
+    TargetMAK = Yes
+End
+
+MODULE
+    Help  = "Includes OpalSecurity.mak to Project"
+    File  = "OpalSecurity.mak"
+End
+
+PATH
+    Name  = "OpalSecurity_DIR"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\OpalSecurity.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End

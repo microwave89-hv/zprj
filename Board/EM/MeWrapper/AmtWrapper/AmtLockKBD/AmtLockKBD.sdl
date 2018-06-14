@@ -1,0 +1,38 @@
+TOKEN
+	Name  = "AmtLockKBD_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable AmtInt16 support in Project"
+End
+
+MODULE
+	Help  = "Includes AmtInt16.mak to Project"
+	File  = "AmtLockKBD.mak"
+End
+
+PATH
+	Name  = "AmtLockKBD_DIR"
+End
+
+ELINK
+    Name  = "AMTINT09Proc"
+    Parent  = "CsmOemInterrupts"
+    ProcID  = 09h
+    SrcFile  = "Board\EM\MEWrapper\AmtWrapper\Dxe\AmtInt9.asm"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\AmtInt9.obj"
+    Parent  = "CSM_OEMINT_OBJS"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\AmtLockKBD.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End

@@ -1,0 +1,19 @@
+<component>
+	name = "AmtWrapper"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\AmtWrapper\"
+	RefName = "AmtWrapper"
+[files]
+"AmtWrapper.sdl"	
+[parts]
+"AmtWrapperDxe"
+"AmtSetup"
+"AmtPlatformPolicy"
+"AsfTable"
+"AmtWrapperProtocolLib"
+"AmtSmbios"
+"AmtPetAlert"
+"AmtStatusCode"
+"AmtLockKBD"
+"ASFVerbosity"
+<endComponent>

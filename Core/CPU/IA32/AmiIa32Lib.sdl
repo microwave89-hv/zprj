@@ -1,0 +1,19 @@
+TOKEN
+	Name  = "AmiIa32Lib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AmiIa32Lib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "AmiIa32Lib_DIR"
+End
+
+MODULE
+	Help  = "Includes AmiIa32Lib.mak to Project"
+	File  = "AmiIa32Lib.mak"
+End
+

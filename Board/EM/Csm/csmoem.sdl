@@ -1,0 +1,68 @@
+TOKEN
+	Name  = "CSM_OEM_SUPPORT"
+	Value  = "1"
+	Help  = "Enable/disable CSM OEM support."
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "CSM_OEM_BIN_FILE"
+	Value  = "$(BUILD_DIR)\csmoem.bin"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "CSM_OEM_DIR"
+End
+
+MODULE
+	File  = "csmoem.mak"
+End
+
+ELINK
+	Name  = "CsmOemInterrupts"
+	Segment  = "CSMOEM_CSEG"
+	mBODY  = "mBODY_ID_AND_TBL_CSM_ENTRY_NEAR"
+	mEND  = "mEND_TBL_CSM"
+	InvokeOrder = TableFunction
+	OutPOST = Yes
+End
+
+ELINK
+	Name  = "CsmOem16Functions"
+	Segment  = "CSMOEM_CSEG"
+	mBODY  = "mBODY_ID_AND_TBL_CSM_ENTRY_NEAR"
+	mEND  = "mEND_TBL_CSM"
+	InvokeOrder = TableFunction
+	OutPOST = Yes
+End
+
+ELINK
+	Name  = "CSM_OEMINT_OBJS"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "CSM_OEM16_OBJS"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name = "CSM_OEMSIG_OBJS"
+	InvokeOrder = ReplaceParent
+End
+
+OUTPUTREGISTER
+	Name  = "EKERNEL_POST"
+	Path  = "BOARD\EM\CSM\"
+	File  = "CSMKRNL.ASM"
+End
+
+SEGMENT
+	Name  = "CSMOEM_CSEG"
+	Format  = "SEGMENT PARA PUBLIC 'CODE' USE16"
+End
+

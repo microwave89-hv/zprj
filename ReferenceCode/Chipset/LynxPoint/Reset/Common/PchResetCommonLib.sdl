@@ -1,0 +1,97 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchResetCommonLib/PchResetCommonLib.sdl 2     1/11/13 12:47a Scottyang $
+#
+# $Revision: 2 $
+#
+# $Date: 1/11/13 12:47a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchResetCommonLib/PchResetCommonLib.sdl $
+# 
+# 2     1/11/13 12:47a Scottyang
+# [TAG]         EIP81593
+# [Category]    Improvement
+# [Description] Added new SDL token "COLD_RESET_WITH_POWER_CYCLE".
+# [Files]       SB.sdl,  SBGeneric.c,  PchResetCommon.c,
+# PchResetCommonLib.sdl
+# 
+# 1     2/08/12 9:06a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+        Name  = "PchResetCommonLib_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable PchUsbCommonLib support in Project"
+        TokenType = Boolean
+        TargetMAK = Yes
+        Master = Yes
+End
+
+PATH
+        Name  = "PchResetCommonLib_DIR"
+End
+
+MODULE
+        Help  = "Includes PchResetCommonLib.mak to Project"
+        File  = "PchResetCommonLib.mak"
+End
+
+ELINK
+        Name  = "PchResetCommonDxeLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$$(LIB_BUILD_DIR)\PchResetCommonDxeLib.lib"
+        Parent  = "PchResetCommonDxeLib_LIB"
+        InvokeOrder = AfterParent
+End
+
+ELINK
+        Name  = "PchResetCommonPeiLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$$(LIB_BUILD_DIR)\PchResetCommonPeiLib.lib"
+        Parent  = "PchResetCommonPeiLib_LIB"
+        InvokeOrder = AfterParent
+End
+
+                                        # [EIP81593]>
+ELINK
+	      Name  = "/D COLD_RESET_WITH_POWER_CYCLE"
+	      Parent  = "GLOBAL_DEFINES"
+	      InvokeOrder = AfterParent
+        Token = "COLD_RESET_WITH_POWER_CYCLE" "=" "1"
+End
+                                        # <[EIP81593]
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

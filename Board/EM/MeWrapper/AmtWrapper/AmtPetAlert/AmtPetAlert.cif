@@ -1,0 +1,14 @@
+<component>
+	name = "AmtPetAlert"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\AmtWrapper\AmtPetAlert\"
+	RefName = "AmtPetAlert"
+[files]
+"AmtPetAlert.sdl"	
+"AmtPetAlert.mak"	
+"AmtPetAlert.c"	
+"AmtPetAlert.h"	
+"AmtPetAlert.dxs"	
+"DevicePath.h"	
+"DevicePath.c"	
+<endComponent>

@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "CsmBlockIo_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable CsmBlockIo support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "CSMBLOCKIO_DIR"
+	Help  = "CSM BLOCK I/O source directory"
+End
+
+MODULE
+	Help  = "Includes CsmBlockIo.mak to Project"
+	File  = "biosblkio.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\biosblkio.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

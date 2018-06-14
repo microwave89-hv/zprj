@@ -1,0 +1,13 @@
+<component>
+	name = "AcpiFvi"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\AcpiTables\AcpiFvi\"
+	RefName = "AcpiFvi"
+[files]
+"AcpiFvi.sdl"	
+"AcpiFvi.mak"	
+"AcpiFvi.c"
+"AcpiFvi.dxs"
+"AcpiFvi.h"
+"AcpiFvi.inf"
+<endComponent>

@@ -1,0 +1,36 @@
+TOKEN
+	Name  = "EfiRegTableLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EfiRegTableLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EfiRegTableLib"
+	Value  = "$(BUILD_DIR)\EfiRegTableLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EfiRegTableLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EfiRegTableLib.mak to Project"
+	File  = "EfiRegTableLib.mak"
+End
+
+ELINK
+	Name  = "EfiRegTable_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\EfiRegTable.lib"
+	Parent  = "EfiRegTable_LIB"
+	InvokeOrder = AfterParent
+End

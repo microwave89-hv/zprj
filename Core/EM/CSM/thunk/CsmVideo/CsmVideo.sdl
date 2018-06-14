@@ -1,0 +1,58 @@
+TOKEN
+	Name  = "CsmVideo_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable CsmVideo support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "INT10_VESA_GO_SUPPORT"
+	Value  = "1"
+	Help  = "Enables/Disables support of the Graphics Output protocol using VESA INT10 extensions"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "INT10_VGA_GO_SUPPORT"
+	Value  = "0"
+	Help  = "Enables/Disables support of the Graphics Output protocol using standard VGA INT10 calls in 640x480 16 color mode.\If both VGA_GO_SUPPORT and VESA_GO_SUPPORT enabled, VGA calls will only be used if VESA extensions are not supported by the video card."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "INT10_SIMPLE_TEXT_SUPPORT"
+	Value  = "1"
+	Help  = "Enables/Disables support of the Simple Text Output protocol using text mode.\If VGA_GO_SUPPORT or VESA_GO_SUPPORT or both enabled, text mode will will only be used if neither VESA nor standard VGA graphical modes are supported"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "INT10_TRUST_EDID_INFORMATION"
+	Value  = "1"
+	Help  = "Some SSUs(Server Switch Units) return invalid EDID information, for these turn this switch off."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+
+PATH
+	Name  = "CsmVideo_DIR"
+End
+
+MODULE
+	Help  = "Includes CsmVideo.mak to Project"
+	File  = "CsmVideo.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CsmVideo.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

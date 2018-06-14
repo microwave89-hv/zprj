@@ -1,0 +1,15 @@
+<component>
+	name = "IdeSMART"
+	category = eModule
+	LocalRoot = "Core\EM\HddSmart\"
+	RefName = "IdeSMART"
+[files]
+"IdeSMART.sdl"	
+"IdeSMART.mak"	
+"IdeSMART.h"	
+"IdeSMART.c"	
+"IdeSMART.dxs"	
+"IdeSMART.uni"	
+"IdeSMART.chm"	
+"IdeSMART.sd"	
+<endComponent>

@@ -1,0 +1,11 @@
+<component>
+        name = "SmbiosFlashData"
+	category = ModulePart
+        LocalRoot = "Core\EM\SMBios\SmbiosFlashData\"
+        RefName = "SmbiosFlashData"
+[files]
+"\SmbiosFlashData.sdl"
+"\SmbiosFlashData.mak"
+"\SmbiosFlashData.asm"
+"\pad.txt"
+<endComponent>

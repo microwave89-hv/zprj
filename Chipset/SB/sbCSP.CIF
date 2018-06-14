@@ -1,0 +1,31 @@
+<component>
+	name = "Intel Pch SB Chipset"
+	category = ModulePart
+	LocalRoot = "Chipset\SB\"
+	RefName = "Intel Pch SB Chipset"
+[files]
+"SBGeneric.c"	
+"SBPEI.c"	
+"SBDxe.c"	
+"SBCspLib.h"	
+"RTC.h"	
+"SBRun.c"	
+"SBSmm.c"	
+"RRIORDMA.asl"	
+"GbE_OR.BIN"	
+"SB.ASL"	
+"IDE.ASL"	
+"SATA.ASL"	
+"SataOrom125.bin"	
+[parts]
+"SB PPI"
+"SB Protocols"
+"SmBus"
+"SmmChildDispatcher"
+"SmmChildDispatcher2"
+"AcpiModeEnable"
+"SleepSmi"
+"SBSMI"
+"PchWrap"
+"SataDriver"
+<endComponent>

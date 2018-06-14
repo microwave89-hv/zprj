@@ -1,0 +1,99 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/ISCT/IsctAcpiTables/Isct.sdl 1     9/02/12 11:18p Bensonlai $
+#
+# $Revision: 1 $
+#
+# $Date: 9/02/12 11:18p $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/ISCT/IsctAcpiTables/Isct.sdl $
+# 
+# 1     9/02/12 11:18p Bensonlai
+# Intel Smart Connect Technology initially releases.
+#
+#
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name: Isct.sdl
+#
+# Description: SDL file for Isct
+#
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+	Name  = "ISCT_SUPPORT"
+	Value  = "1"
+	Help  = "Always On Always Connected"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "ISCT_ASL_FILE"
+	Value  = "$(INTEL_ISCT_DIR)\Isct.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "INTEL_ISCT_DIR"
+End
+
+MODULE
+	Help  = "Includes Isct.mak to Project"
+	File  = "Isct.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Isct.sdb"
+	Parent  = "SETUP_SDBS"
+	Priority  = 40
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(INTEL_ISCT_DIR)\Isct.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 40
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Isct.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

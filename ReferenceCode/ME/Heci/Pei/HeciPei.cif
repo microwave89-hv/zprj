@@ -1,0 +1,14 @@
+<component>
+	name = "HeciPei"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Heci\Pei\"
+	RefName = "HeciPei"
+[files]
+"HeciPei.sdl"	
+"HeciPei.mak"	
+"HeciCore.c"	
+"HeciInit.c"	
+"HeciInit.dxs"	
+"HeciInit.h"	
+"HeciInit.inf"	
+<endComponent>

@@ -1,0 +1,33 @@
+<component>
+	name = "Core"
+	category = eCore
+	LocalRoot = "Core\"
+	RefName = "Core"
+[files]
+"Core.sdl"	
+"Core.mak"	
+"FV.mak"	
+"FFS.mak"	
+"Rules.mak"	
+"InitList.c"	
+"FloppyCtrl.ffs"	
+"FileSystem.ffs"	
+"FileSystemx64.ffs"	
+"Core.chm"	
+"Languages.mak"	
+[parts]
+"Build"
+"Include"
+"Library"
+"CORE_PEI"
+"CORE_DXE"
+"Runtime"
+"IdeBus"
+"Recovery"
+"IA32Core"
+"x64Core"
+"PciBus"
+"AmiBoardInfo"
+"PlatformToDriver"
+"EBC"
+<endComponent>

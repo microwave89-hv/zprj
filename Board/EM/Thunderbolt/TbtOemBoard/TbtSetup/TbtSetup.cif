@@ -1,0 +1,14 @@
+<component>
+	name = "TbtSetup"
+	category = ModulePart
+	LocalRoot = "Board\EM\Thunderbolt\TbtOemBoard\TbtSetup"
+	RefName = "TbtSetup"
+[files]
+"TbtSetup.sdl"	
+"TbtSetup.mak"	
+"TbtSetup.sd"	
+"TbtSetup.uni"	
+"TbtSetup.c"	
+"TbtSetup.h"	
+"TbtSetupReset.c"	
+<endComponent>

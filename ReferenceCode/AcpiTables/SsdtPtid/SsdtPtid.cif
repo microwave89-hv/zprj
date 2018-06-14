@@ -1,0 +1,10 @@
+<component>
+	name = "SsdtPtid"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\AcpiTables\SsdtPtid\"
+	RefName = "SsdtPtid"
+[files]
+"SsdtPtid.sdl"
+"SsdtPtid.mak"
+"Ptid.asl"
+<endComponent>

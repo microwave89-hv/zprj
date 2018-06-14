@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "Tcp_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Tcp4 and Tcp6 support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "Tcp_DIR"
+End
+
+MODULE
+	Help  = "Includes Tcp.mak to Project"
+	File  = "Tcp.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Tcp.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

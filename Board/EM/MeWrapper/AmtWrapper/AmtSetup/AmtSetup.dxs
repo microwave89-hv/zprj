@@ -1,0 +1,70 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/AmtWrapper/AmtSetup/AmtSetup.dxs 1     2/08/12 1:08a Klzhan $
+//
+// $Revision: 1 $
+//
+// $Date: 2/08/12 1:08a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/AmtWrapper/AmtSetup/AmtSetup.dxs $
+// 
+// 1     2/08/12 1:08a Klzhan
+// Initial Check in 
+// 
+// 1     2/25/11 1:44a Klzhan
+// Initial Check-in
+// 
+// 1     12/03/10 5:11a Klzhan
+// Initial Check-in.
+//
+//**********************************************************************
+//
+//<AMI_FHDR_START>
+//---------------------------------------------------------------------------
+// Name:		AMTSetup.dxs
+//
+// Description:	AMT TSE dependency file.
+//
+//---------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+#include <Protocol\Variable.h>
+#include "Protocol\AmtWrapper\AmtWrapper.h"
+
+#include EFI_PROTOCOL_DEFINITION (ActiveManagement)
+
+DEPENDENCY_START
+    EFI_VARIABLE_ARCH_PROTOCOL_GUID AND
+    EFI_VARIABLE_WRITE_ARCH_PROTOCOL_GUID AND
+    EFI_ACTIVE_MANAGEMENT_PROTOCOL_GUID AND
+    EFI_AMT_WRAPPER_PROTOCOL_GUID
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+

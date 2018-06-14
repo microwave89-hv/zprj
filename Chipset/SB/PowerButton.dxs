@@ -1,0 +1,76 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SMM/PowerButton/PowerButton.dxs 3     9/20/11 3:13p Markw $
+//
+// $Revision: 3 $
+//
+// $Date: 9/20/11 3:13p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SMM/PowerButton/PowerButton.dxs $
+// 
+// 3     9/20/11 3:13p Markw
+// [TAG]  		EIP67890
+// [Category]  	Spec Update
+// [Severity]  	Normal
+// [Description]  	Support power button handler in PI 1.1
+// 
+// [Files]  		PowerButton.c, PowerButton.mak, PowerButton.dxs
+// 
+// 2     7/08/09 7:56p Markw
+// Update headers.
+// 
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//---------------------------------------------------------------------------
+//
+// Name:		PowerButton.Dxs
+//
+// Description:	Dependency file for the power button handler driver
+//
+//---------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+
+#if PI_SPECIFICATION_VERSION >= 0x0001000a
+#include <Protocol\SmmPowerButtonDispatch2.h>
+#else
+#include <Protocol\SmmPowerButtonDispatch.h>
+#endif
+
+DEPENDENCY_START
+#if PI_SPECIFICATION_VERSION >= 0x0001000a
+    EFI_SMM_POWER_BUTTON_DISPATCH2_PROTOCOL_GUID
+#else
+    EFI_SMM_POWER_BUTTON_DISPATCH_PROTOCOL_GUID
+#endif
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

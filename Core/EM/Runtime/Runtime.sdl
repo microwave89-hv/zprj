@@ -1,0 +1,129 @@
+TOKEN
+	Name  = "Runtime_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Runtime support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "RTC_RUNTIME_SERVICES_SUPPORT"
+	Value  = "1"
+	Help  = "If ON includes in project CORE implementation of RTC \services (from TimeAndReset.c). \Set to OFF to use stand alone RTC driver."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "RESET_RUNTIME_SERVICES_SUPPORT"
+	Value  = "1"
+	Help  = "If ON includes in project CORE implementation of reset \services (from TimeAndReset.c). \Set to OFF to use stand alone reset driver."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NVRAM_MONOTONIC_COUNTER_SUPPORT"
+	Value  = "1"
+	Help  = "If ON includes in project CORE NVRAM-based implementation of \the monotonic counter services.\Set to OFF to use stand alone monotonic counter driver."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NVRAM_RECORD_CHECKSUM_SUPPORT"
+	Value  = "0"
+	Help  = "When this token is enabled, every NVRAM record is checksummed."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NVRAM_RT_GARBAGE_COLLECTION_SUPPORT"
+	Value  = "1"
+	Help  = "This token enables/disables support of the NVRAM garbage collection at runtime."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NO_MMIO_FLASH_ACCESS_DURING_UPDATE"
+	Value  = "0"
+	Help  = "This token should be set to 1 if flash part is not memory mapped while write enabled."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+PATH
+	Name  = "RUNTIME_DIR"
+End
+
+MODULE
+	Help  = "Includes Runtime.mak to Project"
+	File  = "Runtime.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Runtime.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "RuntimeInitialize"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "Runtime_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(RUNTIME_DIR)\Runtime$(ARCH).lib"
+	Parent  = "Runtime_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CpuIoDxeInit,"
+	Parent  = "RuntimeInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "RuntimeSmmInitialize"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "FlashDriverEntry,"
+	Parent  = "RuntimeSmmInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "TimeServInit,"
+	Parent  = "RuntimeSmmInitialize"
+	Token = "RTC_RUNTIME_SERVICES_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ResetServInit,"
+	Parent  = "RuntimeSmmInitialize"
+	Token = "RESET_RUNTIME_SERVICES_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "NvRamSmmEntry,"
+	Parent  = "FlashDriverEntry,"
+	InvokeOrder = AfterParent
+End
+

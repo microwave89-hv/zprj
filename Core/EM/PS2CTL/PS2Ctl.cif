@@ -1,0 +1,19 @@
+<component>
+	name = "PS2CTL"
+	category = ModulePart
+	LocalRoot = "Core\EM\PS2CTL\"
+	RefName = "PS2CTL"
+[files]
+"PS2Ctl.sdl"	
+"ps2kbd.c"	
+"ps2main.c"	
+"ps2ctl.h"	
+"kbc.h"	
+"kbc.c"	
+"ps2mouse.h"	
+"mouse.c"	
+"efismplpp.c"	
+"Names.c"	
+"hotkey.c"	
+"Ps2Ctl.chm"	
+<endComponent>

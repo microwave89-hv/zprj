@@ -1,0 +1,263 @@
+TOKEN
+	Name  = "IccSetup_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable ICC support in Project in DXE Phase"
+End
+
+MODULE
+	Help  = "Includes IccSetup.mak to Project"
+	File  = "IccSetup.mak"
+End
+
+PATH
+	Name  = "IccSetup_DIR"
+	Help  = "Icc Setup dir"
+End
+
+ELINK
+	Name  = "/I$(IccSetup_DIR)"
+	Parent  = "ICC_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\IccSetup.sdb"
+	Parent  = "SETUP_SDBS"
+	Priority  = 86
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(IccSetup_DIR)\IccSetupMenu.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 86
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(IccSetup_DIR)\IccSetupSubmenu.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 86
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "InitICCStrings,"
+	Parent  = "SetupStringInit"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_ICCMENU,IccMenuEntry),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_FORM1,IccSubmenuEntry),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_FORM2,IccSubmenuEntry),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_FORM3,IccSubmenuEntry),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_FORM4,IccSubmenuEntry),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_FORM5,IccSubmenuEntry),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_FORM6,IccSubmenuEntry),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_FORM7,IccSubmenuEntry),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_FORM8,IccSubmenuEntry),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_CHANGE_NOW1,IccAccept),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_CHANGE_NOW2,IccAccept),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_CHANGE_NOW3,IccAccept),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_CHANGE_NOW4,IccAccept),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_CHANGE_NOW5,IccAccept),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_CHANGE_NOW6,IccAccept),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_CHANGE_NOW7,IccAccept),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_CHANGE_NOW8,IccAccept),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_CHANGE_PERM1,IccAccept),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_CHANGE_PERM2,IccAccept),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_CHANGE_PERM3,IccAccept),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_CHANGE_PERM4,IccAccept),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_CHANGE_PERM5,IccAccept),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_CHANGE_PERM6,IccAccept),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_CHANGE_PERM7,IccAccept),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_CHANGE_PERM8,IccAccept),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_FREQ1,IccFreqChange),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_FREQ2,IccFreqChange),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_FREQ3,IccFreqChange),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_FREQ4,IccFreqChange),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_FREQ5,IccFreqChange),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_FREQ6,IccFreqChange),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_FREQ7,IccFreqChange),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,KEY_FREQ8,IccFreqChange),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+        Name = "$(BUILD_DIR)\IccLoadDefault.obj"
+        Parent = "AMITSE_Objects"
+        InvokeOrder = AfterParent
+End
+
+ELINK
+        Name = "IccSetupLoadDefault,"
+        Parent = "LoadSetupDefaults,"
+        InvokeOrder = AfterParent
+End

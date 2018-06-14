@@ -1,0 +1,22 @@
+<component>
+	name = "SMBIOS - Board"
+	category = eModule
+	LocalRoot = "Board\EM\SMBIOS\"
+	RefName = "SMBIOSBoard"
+[files]
+"SMBios.sdl"	
+"SmbiosGetFlashData32.ffs"	
+"SmbiosGetFlashData64.ffs"	
+"SMBios32.ffs"	
+"SMBios64.ffs"	
+"SMBiosFlashData.ffs"	
+"SmbiosBoard.c"	
+"SMBiosBoard.dxs"	
+"SMBiosBoard.mak"	
+"SMBiosBoard.chm"	
+"Smbrun.asm"	
+[parts]
+"SMBIOSProto"
+"SmbiosStaticData"
+"SmbiosDMIEditBoard"
+<endComponent>

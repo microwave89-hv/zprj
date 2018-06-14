@@ -1,0 +1,300 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/Platform/PlatformSetupInfo/PlatformSetupInfo.sd 2     3/26/12 4:10a Yurenlai $
+//
+// $Revision: 2 $
+//
+// $Date: 3/26/12 4:10a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/Platform/PlatformSetupInfo/PlatformSetupInfo.sd $
+// 
+// 2     3/26/12 4:10a Yurenlai
+// [TAG]  		EIP86219
+// [Category]  	New Feature
+// [Description]  	Add PCH information in SharkBay BIOS setup.
+// [Files]  		PlatformSetupInfo.c, PlatformSetupInfo.sd,
+// PlatformSetupInfo.uni
+// 
+// 1     2/24/12 1:02a Yurenlai
+// Add PlatformSetupInfo module part.
+// 
+//*************************************************************************
+
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:  PlatformSetupInfo.sd
+//
+// Description: Setup file for PlatformSetupInfo driver. It displays the 
+//          platform information and its Version String in a form of Main 
+//          tab of setup screen
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+#ifdef FORM_SET_TYPEDEF
+
+#endif
+
+
+#ifdef SETUP_DATA_DEFINITION
+// Put NVRAM data definitions here.
+// For example:	UINT8 Data1;
+// These definitions will be converted by the build process
+// to a definitions of SETUP_DATA fields.
+#endif
+
+#ifdef MAIN_FORM_SET
+
+  #ifdef FORM_SET_ITEM
+    //
+    // Define controls to be added to the main page of the formset
+    //
+
+    //
+    // CPU INFORMATION
+    //
+    SEPARATOR
+    SUBTITLE(STRING_TOKEN(STR_BOARD_CPU_FORM_SUBTITLE))
+
+    text 
+      help   = STRING_TOKEN(STR_BOARD_PROCESSOR_HELP),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_STRING),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_VALUE),
+      flags  = 0, key = 0;
+
+    text 
+      help   = STRING_TOKEN(STR_BOARD_PROCESSOR_VERSION_HELP),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_VERSION_STRING),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_VERSION_VALUE),
+      flags  = 0, key = 0;
+
+    text 
+      help   = STRING_TOKEN(STR_BOARD_PROCESSOR_SPEED_HELP),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_SPEED_STRING),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_SPEED_VALUE),
+      flags  = 0, key = 0;
+
+    text 
+      help   = STRING_TOKEN(STR_BOARD_PROCESSOR_ID_HELP),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_ID_STRING),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_ID_VALUE),
+      flags  = 0, key = 0;
+
+    text 
+      help   = STRING_TOKEN(STR_BOARD_PROCESSOR_STEPPING_HELP),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_STEPPING_STRING),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_STEPPING_VALUE),
+      flags  = 0, key = 0;
+/*
+    text 
+      help   = STRING_TOKEN(STR_BOARD_PROCESSOR_PACKAGE_HELP),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_PACKAGE_STRING),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_PACKAGE_VALUE),
+      flags  = 0, key = 0;
+*/
+    text 
+      help   = STRING_TOKEN(STR_BOARD_PROCESSOR_COUNT_HELP),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_COUNT_STRING),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_COUNT_VALUE),
+      flags  = 0, key = 0;
+
+    text 
+      help   = STRING_TOKEN(STR_BOARD_PROCESSOR_MICROCODE_HELP),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_MICROCODE_STRING),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_MICROCODE_VALUE),
+      flags  = 0, key = 0;
+
+    text 
+      help   = STRING_TOKEN(STR_BOARD_PROCESSOR_GT_HELP),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_GT_STRING),
+      text   = STRING_TOKEN(STR_BOARD_PROCESSOR_GT_VALUE),
+      flags  = 0, key = 0;
+
+    SEPARATOR
+#if defined(CSM_SUPPORT) && (CSM_SUPPORT != 0)
+    suppressif (PlatformInfo_PlatformFlavor == FlavorUpServer);
+      text
+        help   = STRING_TOKEN(STR_BOARD_IGFX_VBIOS_REV_HELP),
+        text   = STRING_TOKEN(STR_BOARD_IGFX_VBIOS_REV_NAME),
+        text   = STRING_TOKEN(STR_BOARD_IGFX_VBIOS_REV_VALUE),
+        flags  = 0,
+        key    = 0;
+    endif;
+#endif
+
+    text
+      help   = STRING_TOKEN(STR_BOARD_MRC_REV_HELP),
+      text   = STRING_TOKEN(STR_BOARD_MRC_REV_NAME),
+      text   = STRING_TOKEN(STR_BOARD_MRC_REV_VALUE),
+      flags  = 0,
+      key    = 0;
+
+    text 
+      help   = STRING_TOKEN(STR_BOARD_MEMORY_SIZE_HELP),
+      text   = STRING_TOKEN(STR_BOARD_MEMORY_SIZE_NAME),
+      text   = STRING_TOKEN(STR_BOARD_MEMORY_SIZE_VALUE),
+      flags  = 0,
+      key    = 0;
+
+    text
+      help   = STRING_TOKEN(STR_BOARD_MEMORY_FREQ_HELP),
+      text   = STRING_TOKEN(STR_BOARD_MEMORY_FREQ_NAME),
+      text   = STRING_TOKEN(STR_BOARD_MEMORY_FREQ_VALUE),
+      flags  = 0,
+      key    = 0;
+
+                                        // (EIP86219)>
+    //
+    // PCH INFORMATION
+    //
+    SEPARATOR
+    SUBTITLE(STRING_TOKEN(STR_BOARD_SB_INFORMATION))
+
+    text
+      help   = STRING_TOKEN(STR_BOARD_CHIP_SB_NAME_HELP),
+      text   = STRING_TOKEN(STR_BOARD_CHIP_SB_NAME),
+      text   = STRING_TOKEN(STR_BOARD_CHIP_SB_VALUE),
+      flags  = 0,
+      key    = 0;
+
+   text 
+      help    = STRING_TOKEN (STR_BOARD_CHIP_SB_SKU_HELP),
+      text    = STRING_TOKEN (STR_BOARD_CHIP_SB_SKU_NAME),
+      text    = STRING_TOKEN (STR_BOARD_CHIP_SB_SKU_VALUE),
+      flags   = 0, key = 0;
+
+    text
+      help   = STRING_TOKEN(STR_BOARD_CHIP_SB_REV_HELP),
+      text   = STRING_TOKEN(STR_BOARD_CHIP_SB_REV_NAME),
+      text   = STRING_TOKEN(STR_BOARD_CHIP_SB_REV_VALUE),
+      flags  = 0,
+      key    = 0;
+/*
+    text
+      help   = STRING_TOKEN(STR_BOARD_CHIP_SB_PACKAGE_HELP),
+      text   = STRING_TOKEN(STR_BOARD_CHIP_SB_PACKAGE_NAME),
+      text   = STRING_TOKEN(STR_BOARD_CHIP_SB_PACKAGE_VALUE),
+      flags  = 0,
+      key    = 0;
+*/
+                                        // <(EIP86219)
+
+#if defined (IntelTXT_SUPPORT) && IntelTXT_SUPPORT
+    text
+      help   = STRING_TOKEN(STR_BOARD_PLATFORM_TXT_HELP),
+      text   = STRING_TOKEN(STR_BOARD_PLATFORM_TXT_NAME),
+      text   = STRING_TOKEN(STR_BOARD_PLATFORM_TXT_VALUE),
+      flags  = 0,
+      key    = 0;
+#endif
+
+    text 
+      help   = STRING_TOKEN(STR_BOARD_LAN_PHY_REV_HELP),
+      text   = STRING_TOKEN(STR_BOARD_LAN_PHY_REV_STRING),
+      text   = STRING_TOKEN(STR_BOARD_LAN_PHY_REV_VALUE),
+      flags  = 0, key = 0;
+
+    //
+    // KSC EC INFORMATION
+    //
+    SEPARATOR
+#if defined CRB_EC_SUPPORT && CRB_EC_SUPPORT
+    suppressif (PlatformInfo_PlatformFlavor != FlavorMobile);
+      text
+        help   = STRING_TOKEN(STR_BOARD_CHIP_EC_REV_HELP),
+        text   = STRING_TOKEN(STR_BOARD_CHIP_EC_REV_NAME),
+        text   = STRING_TOKEN(STR_BOARD_CHIP_EC_REV_VALUE),
+        flags  = 0,
+        key    = 0;
+    endif;
+#endif
+
+#if defined (iME_SUPPORT) && iME_SUPPORT
+    suppressif (PlatformInfo_PlatformFlavor == FlavorUpServer);
+      text
+        help   = STRING_TOKEN(STR_BOARD_ME_FW_REV_HELP),
+        text   = STRING_TOKEN(STR_BOARD_ME_FW_REV_PROMPT),
+        text   = STRING_TOKEN(STR_BOARD_ME_FW_REV_VALUE),
+        flags  = 0,
+        key    = 0;
+
+      text
+        help   = STRING_TOKEN(STR_BOARD_ME_FW_SKU_HELP),
+        text   = STRING_TOKEN(STR_BOARD_ME_FW_SKU_PROMPT),
+        text   = STRING_TOKEN(STR_BOARD_ME_FW_SKU_VALUE),
+        flags  = 0,
+        key    = 0;
+    endif;
+#endif
+
+    //
+    // SPI Information
+    //
+    SEPARATOR
+    SUBTITLE(STRING_TOKEN(STR_SPI_CLK_FREQ))
+    text
+      help   = STRING_TOKEN(STR_SPI_DOFR_SUPPORT_HELP),
+      text   = STRING_TOKEN(STR_SPI_DOFR_SUPPORT),
+      text   = STRING_TOKEN(STR_SPI_DOFR_SUPPORT_VALUE),
+      flags  = 0,
+      key    = 0;
+
+    text
+      help   = STRING_TOKEN(STR_SPI_READ_CLOCK_FREQUENCY_HELP),
+      text   = STRING_TOKEN(STR_SPI_READ_CLOCK_FREQUENCY),
+      text   = STRING_TOKEN(STR_SPI_READ_CLOCK_FREQUENCY_VALUE),
+      flags  = 0,
+      key    = 0;
+
+    text
+      help   = STRING_TOKEN(STR_SPI_WRITE_CLOCK_FREQUENCY_HELP),
+      text   = STRING_TOKEN(STR_SPI_WRITE_CLOCK_FREQUENCY),
+      text   = STRING_TOKEN(STR_SPI_WRITE_CLOCK_FREQUENCY_VALUE),
+      flags  = 0,
+      key    = 0;
+
+    text
+      help   = STRING_TOKEN(STR_SPI_FAST_READ_FREQUENCY_HELP),
+      text   = STRING_TOKEN(STR_SPI_FAST_READ_FREQUENCY),
+      text   = STRING_TOKEN(STR_SPI_FAST_READ_FREQUENCY_VALUE),
+      flags  = 0,
+      key    = 0;   
+
+  #endif
+
+  #ifdef FORM_SET_GOTO
+    //
+    // Define goto commands for the forms defined in this file
+    //
+  #endif
+
+#endif
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

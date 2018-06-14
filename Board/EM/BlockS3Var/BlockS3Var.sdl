@@ -1,0 +1,29 @@
+TOKEN
+	Name  = "BlockS3Var_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable BlockS3Var support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "BLOCK_S3_VAR_DIR"
+End
+
+MODULE
+	Help  = "Includes BlockS3Var.mak to Project"
+	File  = "BlockS3Var.mak"
+End
+
+ELINK
+	Name  = "BLOCKED_S3_VAR_LIST"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "SetVariableS3Hook,"
+	Parent  = "SetVariableHook"
+	InvokeOrder = AfterParent
+End

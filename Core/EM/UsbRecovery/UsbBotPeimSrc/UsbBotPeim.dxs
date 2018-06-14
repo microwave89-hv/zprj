@@ -1,0 +1,106 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2006, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+//
+// $Header: /Alaska/SOURCE/Modules/USBRecovery/UsbBotPeimSrc/UsbBotPeim.dxs 4     7/10/08 6:38p Michaela $
+//
+// $Revision: 4 $
+//
+// $Date: 7/10/08 6:38p $
+//
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/USBRecovery/UsbBotPeimSrc/UsbBotPeim.dxs $
+// 
+// 4     7/10/08 6:38p Michaela
+// Updated to support OHCI controllers
+// 
+// 3     10/23/07 5:41p Ambikas
+// 
+// 2     8/17/07 4:12p Ambikas
+// 
+// 1     9/22/06 12:17p Sivagarn
+// - Included Recovery code in Source
+// 
+// 1     9/22/06 12:14p Sivagarn
+// - Initial checkin
+// - Included Recovery code in Source
+// 
+//
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//----------------------------------------------------------------------------
+//
+// Name:		UsbBotPeim.DXS
+//
+// Description:	This file is the dependency file for the USB BOT protocol PEIM
+//
+//----------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+/*++
+  This file contains a 'Sample Driver' and is licensed as such  
+  under the terms of your license agreement with Intel or your  
+  vendor.  This file may be modified by the user, subject to    
+  the additional terms of the license agreement                 
+--*/
+/*++
+
+Copyright (c)  1999 - 2002 Intel Corporation. All rights reserved
+This software and associated documentation (if any) is furnished
+under a license and may only be used or copied in accordance
+with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be
+reproduced, stored in a retrieval system, or transmitted in any
+form or by any means without the express written consent of
+Intel Corporation.
+
+
+Module Name:
+
+  UsbBotPeim.dxs
+
+Abstract:
+
+  Dependency expression file for Usb Bot PEIM.
+ PEI_USB_IO_PPI_GUID AND
+--*/  
+
+#include "pei.h"
+#include "ppi\LoadFile.h"
+#include "ppi\UsbIo.h"
+
+DEPENDENCY_START
+ EFI_PEI_FV_FILE_LOADER_GUID AND
+ EFI_PEI_BOOT_IN_RECOVERY_MODE_PEIM_PPI AND
+ EFI_PEI_PERMANENT_MEMORY_INSTALLED_PPI
+DEPENDENCY_END
+
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2006, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************

@@ -1,0 +1,17 @@
+<component>
+	name = "Secure Flash Pkg"
+	category = eModule
+	LocalRoot = "Core\EM\SecurityPkg\"
+	RefName = "SecureFlashMod"
+[files]
+"SecureMod.chm"	
+"SecureMod.sdl"	
+"SecureMod.mak"	
+[parts]
+"SecFlashUpd"
+"SecSMIFlash"
+"FWKey"
+"CryptoUtils"
+[dependOn]
+"CryptoPkg"
+<endComponent>

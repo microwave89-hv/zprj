@@ -1,0 +1,36 @@
+TOKEN
+	Name  = "MeLibDxe_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable MeLibDxe support in Project"
+End
+
+MODULE
+	Help  = "Includes MeLibDxe.mak to Project"
+	File  = "MeLibDxe.mak"
+End
+
+PATH
+	Name  = "MeLibDxe_DIR"
+	Help  = "Me Library file source directory"
+End
+
+ELINK
+	Name  = "MeLibDxe_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\MeLibDxe.lib"
+	Parent  = "MeLibDxe_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(MeLibDxe_DIR)"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End

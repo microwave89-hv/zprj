@@ -1,0 +1,11 @@
+<component>
+	name = "DxeKscLib"
+	category = ModulePart
+	LocalRoot = "Board\EM\Platform\Library\Dxe\DxeKscLib"
+	RefName = "DxeKscLib"
+[files]
+"DxeKscLib.sdl"	
+"DxeKscLib.mak"	
+"DxeKscLib.c"	
+"KscLib.h"	
+<endComponent>

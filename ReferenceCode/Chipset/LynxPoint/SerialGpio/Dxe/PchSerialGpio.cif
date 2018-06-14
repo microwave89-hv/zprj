@@ -1,0 +1,13 @@
+<component>
+	name = "PchSerialGpio"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\SerialGpio\Dxe"
+	RefName = "PchSerialGpio"
+[files]
+"PchSerialGpio.sdl"	
+"PchSerialGpio.mak"	
+"PchSerialGpio.c"	
+"PchSerialGpio.h"	
+"PchSerialGpio.dxs"	
+"PchSerialGpio.inf"	
+<endComponent>

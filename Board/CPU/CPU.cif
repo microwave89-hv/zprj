@@ -1,0 +1,13 @@
+<component>
+	name = "AMI Cpu PKG"
+	category = ModulePart
+	LocalRoot = "Board\CPU"
+	RefName = "AMI Cpu PKG"
+[parts]
+"CPU Board"
+"CPU Core"
+"CpuSpSMI"
+"AmiTxtDxe"
+"AmiTxtPei"
+"AmiCpuS3Pei"
+<endComponent>

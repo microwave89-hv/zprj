@@ -1,0 +1,78 @@
+//**********************************************************************//
+//**********************************************************************//
+//**                                                                  **//
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.         **//
+//**                                                                  **//
+//**                       All Rights Reserved.                       **//
+//**                                                                  **//
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **//
+//**                                                                  **//
+//**                       Phone: (770)-246-8600                      **//
+//**                                                                  **//
+//**********************************************************************//
+//**********************************************************************//
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SMBIOS/SmbiosDMIEditSupport/SmbiosDMIEdit.dxs 5     5/18/10 5:10p Davidd $
+//
+// $Revision: 5 $
+//
+// $Date: 5/18/10 5:10p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SMBIOS/SmbiosDMIEditSupport/SmbiosDMIEdit.dxs $
+// 
+// 5     5/18/10 5:10p Davidd
+// Added PnP function 52h commands 3 and 4 support - EIP 38010.
+// 
+// 4     1/28/09 11:51a Davidd
+// - Updated AMI header block
+// - New changes added to support DMIEdit data storage location in flash
+// selectable via SMBIOS_DMIEDIT_DATA_LOC SDL token
+// 
+// 3     3/29/07 6:01p Davidd
+// Changed the year in the AMI banner and adjust indentation to coding
+// standard.
+// 
+// 2     3/02/06 1:58p Davidd
+// Updated include path to SMBios.h. It has been moved to
+// Include\Protocol
+//
+//
+//**********************************************************************
+
+#if !defined(SMBIOS_DMIEDIT_DATA_LOC) || SMBIOS_DMIEDIT_DATA_LOC != 2
+#include <Protocol\SmbiosGetFlashDataProtocol.h>
+#include <Protocol\SmiFlash.h>
+#endif
+
+#include <token.h>
+
+#include <Protocol\SmmBase.h>
+#include <Protocol\LoadedImage.h>
+#include <Protocol\DevicePath.h>
+#include <Protocol\SmmSwDispatch.h>
+
+DEPENDENCY_START
+#if !defined(SMBIOS_DMIEDIT_DATA_LOC) || SMBIOS_DMIEDIT_DATA_LOC != 2
+    EFI_SMBIOS_FLASH_DATA_PROTOCOL_GUID AND
+    EFI_SMI_FLASH_GUID AND
+#endif
+    EFI_SMBIOS_PROTOCOL_GUID AND
+    EFI_SMM_BASE_PROTOCOL_GUID AND
+    EFI_SMM_SW_DISPATCH_PROTOCOL_GUID
+DEPENDENCY_END
+
+//**********************************************************************//
+//**********************************************************************//
+//**                                                                  **//
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.         **//
+//**                                                                  **//
+//**                       All Rights Reserved.                       **//
+//**                                                                  **//
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **//
+//**                                                                  **//
+//**                       Phone: (770)-246-8600                      **//
+//**                                                                  **//
+//**********************************************************************//
+//**********************************************************************//

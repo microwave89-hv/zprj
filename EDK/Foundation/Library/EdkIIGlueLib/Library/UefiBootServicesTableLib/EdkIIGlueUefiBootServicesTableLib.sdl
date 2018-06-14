@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueUefiBootServicesTableLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueUefiBootServicesTableLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueUefiBootServicesTableLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueUefiBootServicesTableLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueUefiBootServicesTableLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueUefiBootServicesTableLib.mak to Project"
+	File  = "EdkIIGlueUefiBootServicesTableLib.mak"
+End
+

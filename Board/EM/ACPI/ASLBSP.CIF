@@ -1,0 +1,10 @@
+<component>
+	name = "ASL - Board"
+	category = ModulePart
+	LocalRoot = "BOARD\EM\ACPI\"
+	RefName = "ASL_BOARD"
+[files]
+"\OEMRMISC.ASL"	
+"\oemDSDT.asl"	
+[parts]
+<endComponent>

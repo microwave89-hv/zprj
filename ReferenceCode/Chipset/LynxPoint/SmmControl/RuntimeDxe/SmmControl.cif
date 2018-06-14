@@ -1,0 +1,13 @@
+<component>
+	name = "SmmControl"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\SmmControl\RuntimeDxe"
+	RefName = "SmmControl"
+[files]
+"SmmControl.sdl"	
+"SmmControl.mak"	
+"SmmControlDriver.h"	
+"SmmControlDriver.c"	
+"SmmControl.dxs"	
+"SmmControl.inf"	
+<endComponent>

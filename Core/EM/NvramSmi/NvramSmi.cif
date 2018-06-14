@@ -1,0 +1,14 @@
+<component>
+	name = "NVRAM SMI"
+	category = eModule
+	LocalRoot = "Core\EM\NvramSmi"
+	RefName = "NvramSmi"
+[files]
+"NvramSmi.sdl"	
+"NvramSmi.mak"	
+"NvramSmi.c"	
+"NvramSmi.dxs"
+"NvramSmiPi1.dxs"
+"NvramSmiDxe.dxs"
+"NvramSmi.chm"	
+<endComponent>

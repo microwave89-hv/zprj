@@ -1,0 +1,20 @@
+<component>
+	name = "SmBus"
+	category = ModulePart
+	LocalRoot = "Chipset\SB\SmBus\"
+	RefName = "SmBus"
+[files]
+"SmBus.sdl"	
+"SmBus.mak"	
+"SmBusCommon.h"	
+"SmBusPei.h"	
+"SmBusDxe.h"	
+"SmBusCommon.c"	
+"SmBusPorting.c"	
+"SmBusPei.c"	
+"SmBusDxe.c"	
+"SmBusPciHooks.c"	
+"SmBusPei.dxs"	
+"SmBusDxe.dxs"	
+"SmBusSmm.dxs"	
+<endComponent>

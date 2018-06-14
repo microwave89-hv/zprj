@@ -1,0 +1,19 @@
+<component>
+	name = "SMM"
+	category = eModule
+	LocalRoot = "Core\EM\SMM"
+	RefName = "SMM"
+[files]
+"SMM.sdl"	
+"SmmPrivateShared.h"	
+"SmmHdr.equ"	
+"Smm.chm"	
+[parts]
+"SmmDispatcher"
+"SmmBase"
+"SmmCommunicate"
+"SmmProtocols"
+"SmmPiIncludes"
+"SmmPiProtocols"
+"PowerButton"
+<endComponent>

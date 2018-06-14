@@ -1,0 +1,19 @@
+<component>
+	name = "On Flash Block Description (APTIO) - Intel ME Update"
+	category = eModule
+	LocalRoot = "Core\EM\OFBD\MEUD\"
+	RefName = "OFBD_MEUD"
+[files]
+"MEUD.sdl"	
+"MEUD.mak"	
+"MEUD.h"	
+"MEUD.c"	
+"MEUD_MSG.c"	
+"MEUD.uni"	
+"MEUD.sd"	
+"InitMEUDString.c"	
+"MEUD.chm"	
+[parts]
+"CSP_MEUD"
+"AutoUpdate"
+<endComponent>

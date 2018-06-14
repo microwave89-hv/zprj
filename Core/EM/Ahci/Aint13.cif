@@ -1,0 +1,18 @@
+<component>
+	name = "AHCI Int13"
+	category = ModulePart
+	LocalRoot = "Core\eM\Ahci"
+	RefName = "AINT13"
+[files]
+"Aint13.sdl"	
+"Aint13.mak"	
+"Aint13.inf"	
+"AInt13.h"	
+"AInt13.c"	
+"AInt13.dxs"	
+[parts]
+"AHCI_INT13INIT_PROTOCOL"
+"AHCI_BINARY"
+"AHCI_INT13_CSP"
+"AhciInt13Smm"
+<endComponent>

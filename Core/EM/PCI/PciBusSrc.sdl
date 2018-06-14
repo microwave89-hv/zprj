@@ -1,0 +1,37 @@
+TOKEN
+	Name  = "PciBusSrc_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PciBusSrs support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "PCI_BUS_DEBUG_MESSAGES"
+	Value  = "0"
+	Help  = "A switch to enable PciBus Driver Debug messages over Serial Port."
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "DEBUG_CODE" "=" "1"
+End
+
+TOKEN
+	Name  = "PCI_BUS_SKIP_BRG_RECURSIVELY"
+	Value  = "0"
+	Help  = "A switch to Disable enumeration for all Bridge children if bridge set to be skipped from enumeration."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+MODULE
+	Help  = "Includes PciBusSrs.mak to Project"
+	File  = "PciBusSrc.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PciBusSrc.lib"
+	Parent  = "$(PCIBUS_DIR)\PciBusSrc$(ARCH).lib"
+	InvokeOrder = ReplaceParent
+End

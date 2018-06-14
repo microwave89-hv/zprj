@@ -1,0 +1,8 @@
+<component>
+	name = "SecSMIFlash Protocols"
+	category = ModulePart
+	LocalRoot = "INCLUDE\Protocol"
+	RefName = "SecSMIFlashProtocols"
+[files]
+"SecSmiFlash.h"	= "Protocols"
+<endComponent>

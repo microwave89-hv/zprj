@@ -1,0 +1,9 @@
+<component>
+	name = "ThunkLib Ia32"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\Library\ThunkLib\Ia32"
+	RefName = "ThunkLibIa32"
+[files]
+"x86Thunk.c"
+"Thunk16.asm"
+<endComponent>

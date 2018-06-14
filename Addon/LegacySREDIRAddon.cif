@@ -1,0 +1,8 @@
+<component>
+	name = "Legacy Sredir Binary"
+	category = ModulePart
+	LocalRoot = "Addon\"
+	RefName = "LSREDIR_BIN"
+[files]
+"Sredir.bin"	
+<endComponent>

@@ -1,0 +1,14 @@
+<component>
+	name = "WdtApp"
+	category = ModulePart
+	LocalRoot = "Chipset\SB\PchWrap\WdtApp"
+	RefName = "WdtApp"
+[files]
+"WdtApp.sdl"	
+[parts]
+"WdtAppDxe"
+"WdtAppPei"
+"WdtAppInclude"
+[parts]
+"WdtAppProtocolLib"
+<endComponent>

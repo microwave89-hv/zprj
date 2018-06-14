@@ -1,0 +1,67 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/SataController/SataController.sdl 1     2/08/12 9:15a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 2/08/12 9:15a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/SataController/SataController.sdl $
+# 
+# 1     2/08/12 9:15a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+        Name  = "SataController_SUPPORT"
+        Value  = "1"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        Master = Yes
+        Help  = "Main switch to enable SataController support in Project"
+End
+
+PATH
+        Name  = "SataController_DIR"
+        Help  = "SataController file source directory"
+End
+
+MODULE
+        File  = "SataController.mak"
+        Help  = "Includes SataController.mak to Project"
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\SataController.ffs"
+        Parent  = "FV_MAIN"
+        InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

@@ -1,0 +1,15 @@
+<component>
+	name = "UefiEfiIfrSupportLib"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Library\Dxe\UefiEfiIfrSupportLib\"
+	RefName = "UefiEfiIfrSupportLib"
+[files]
+"UefiEfiIfrSupportLib.sdl"	
+"UefiEfiIfrSupportLib.mak"	
+"UefiIfrCommon.c"	
+"UefiIfrForm.c"	
+"UefiIfrLibrary.h"	
+"UefiIfrOpCodeCreation.c"	
+"UefiIfrString.c"	
+"UefiEfiIfrSupportLib.inf"	
+<endComponent>

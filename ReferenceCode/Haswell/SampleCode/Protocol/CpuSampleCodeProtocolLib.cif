@@ -1,0 +1,11 @@
+<component>
+        name = "CpuSampleCodeProtocolLib"
+        category = ModulePart
+        LocalRoot = "ReferenceCode\Haswell\SampleCode\Protocol\"
+        RefName = "CpuSampleCodeProtocolLib"
+[files]
+"CpuSampleCodeProtocolLib.mak"        
+"CpuSampleCodeProtocolLib.sdl"
+"TxtOneTouchOp\TxtOneTouchOp.c"   
+"TxtOneTouchOp\TxtOneTouchOp.h"
+<endComponent>

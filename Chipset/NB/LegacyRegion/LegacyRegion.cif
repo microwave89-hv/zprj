@@ -1,0 +1,14 @@
+<component>
+	name = "LegacyRegion"
+	category = ModulePart
+	LocalRoot = "Chipset\NB\LegacyRegion\"
+	RefName = "NBLegacyRegion"
+[files]
+"LegacyRegion.sdl"	
+"LegacyRegion.mak"	
+"LegacyRegion.dxs"	
+"LegacyRegion.c"	
+[parts]
+"LEGACY_REGION_PROTOCOLS"
+"LEGACY_REGION_PROTOCOLS"
+<endComponent>

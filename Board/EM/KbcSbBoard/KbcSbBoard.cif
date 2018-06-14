@@ -1,0 +1,8 @@
+<component>
+	name = "KbcSouthBridge - LynxPoint"
+	category = ModulePart
+	LocalRoot = "Board\em\KbcSbBoard"
+	RefName = "KbcSbBoard"
+[files]
+"KbcSbBoard.c"
+<endComponent>

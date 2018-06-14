@@ -1,0 +1,40 @@
+TOKEN
+	Name  = "MiscFRAMEWORK_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable FRAMEWORK support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "MISCFRAMEWORK_DIR"
+End
+
+PATH
+	Name  = "MISCFRAMEWORK_SOURCE"
+	Path  = "$(MISCFRAMEWORK_DIR)"
+End
+
+MODULE
+	Help  = "Includes FRAMEWORK.mak to Project"
+	File  = "MiscFramework.mak"
+End
+
+ELINK
+	Name  = "MISCFRAMEWORK_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/I$(PROJECT_DIR)\MiscFramework"
+	Parent  = "MISCFRAMEWORK_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PROJECT_DIR)"
+	Parent  = "MISCFRAMEWORK_INCLUDES"
+	InvokeOrder = AfterParent
+End

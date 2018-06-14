@@ -1,0 +1,28 @@
+TOKEN
+	Name  = "TCG_DXE_PLATFORM_SUPPORT"
+	Value  = "1"
+	Help  = "Tcgdxe platform supprt"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+    Token = "TPM12Enabled" "!=" "0"
+End
+
+
+MODULE
+	Help  = "Includes TcgDxeplatform.mak to Project"
+	File  = "TcgDxeplatform.mak"
+End
+
+
+PATH
+	Name  = "TCG_DXE_PLATFORM_DIR"
+	Help  = ""
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TcgDxeplatform.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

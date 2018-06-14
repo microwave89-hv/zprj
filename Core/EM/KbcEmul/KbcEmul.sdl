@@ -1,0 +1,102 @@
+TOKEN
+    Name  = "EMUL6064_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable KBC Emulation support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+    Token = "AMIUSB_SUPPORT" "=" "1"
+End
+
+PATH
+    Name  = "KBCEMUL_DIR"
+End
+
+PATH
+    Name  = "KBC_SB_BOARD_DIR"
+    Path  = "Board\Em\KbcSbBoard\"
+End
+
+MODULE
+    Help  = "Includes Emul6064.mak into project"
+    File  = "KbcEmul.mak"
+End
+
+TOKEN
+    Name  = "UHCI_EMUL_SUPPORT"
+    Value  = "1"
+    Help  = "Switch to enable UHCI based Emulation support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "UHCI_EMUL_PCI_DEVICES"
+    Help  = "List of supported UHCI controllers in the following format: {dev1, ITF, SCC, BCC, offset}, {dev2, ITF, SCC, BCC, offset},...,{devN, ITF, SCC, BCC, offset}\dev represents the location of UHCI controller on PCI bus: dev = Bus << 8 + Dev << 3 + Func.\ITF represents the interface type of PCI device, for UHCI it must be 0.\SCC represents the sub class code of PCI device, for UHCI it must be 0x03.\BCC represents the base class code of PCI device, for UHCI it must be 0x0C.\offset represents the offset of legacy support register, for UHCI it must be 0xC0."
+    TokenType = Expression
+    TargetH = Yes
+    Token = "UHCI_EMUL_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "OHCI_EMUL_SUPPORT"
+    Value  = "0"
+    Help  = "Switch to enable OHCI based Emulation support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "OHCI_EMUL_PCI_DEVICES"
+    Help  = "List of supported OHCI controllers in the following format: {type1, dev1, addr1}, {type2, dev2, addr2},...,{typeN, devN, addrN}\type represents the device type of emulation device is PceDevice or FixedMemory.\dev represents the location of OHCI controller on PCI bus: dev = Bus << 8 + Dev << 3 + Func.\addr represents the address of emulation registers if type is FixedMemory."
+    TokenType = Expression
+    TargetH = Yes
+    Token = "OHCI_EMUL_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "ICH10_WORKAROUND"
+    Value  = "0"
+    Help  = "Switch to enable ICH10 Workaround. Emulation enabled and one of the USB controller disabled, We must clear the SMI status on disabled USB controller also"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "IRQ_EMUL_SUPPORT"
+    Value  = "1"
+    Help  = "Switch to enable software method of IRQ generation in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "SW_IRQ_GENERATION_REG"
+    Value  = "$(PM_BASE_ADDRESS)+0x70"
+    Help  = "Software IRQ generation regsiter from SB to generate the IRQ12 and IRQ1."
+    TokenType = Integer
+    TargetH = Yes
+    Token = "IRQ_EMUL_SUPPORT" "=" "1"
+    Token = "UHCI_EMUL_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "EMULATION_ACPI_ENABLE_DISPATCH"
+    Value  = "0"
+    Help  = "1-Emulation SMI's will be disabled in the USB controller."
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\KbcEmul.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+

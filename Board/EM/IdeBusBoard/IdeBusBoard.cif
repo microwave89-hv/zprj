@@ -1,0 +1,11 @@
+<component>
+	name = "IdeBusBoard"
+	category = ModulePart
+	LocalRoot = "Board\EM\IdeBusBoard\"
+	RefName = "IdeBusBoard"
+[files]
+"IdeBusBoard.c"	
+[parts]
+"IdeBusBoardProtocol"
+"IdeBusBoardProtocol"
+<endComponent>

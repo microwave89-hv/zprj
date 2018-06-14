@@ -1,0 +1,58 @@
+#****************************************************************************
+#****************************************************************************
+#**                                                                        **
+#**           (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                        **
+#**                          All Rights Reserved.                          **
+#**                                                                        **
+#**           5555 Oakbrook Parkway, Suite 200, Norcross, GA 30071         **
+#**                                                                        **
+#**                          Phone (770)-246-8600                          **
+#**                                                                        **
+#****************************************************************************
+#****************************************************************************
+#****************************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/Haswell/Intel Haswell Cpu RC PKG/Cpu Policy DXE/CpuPolicyDxe.sdl 1     2/07/12 3:56a Davidhsieh $
+#
+# $Revision: 1 $
+#
+# $Date: 2/07/12 3:56a $
+#
+#****************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/Haswell/Intel Haswell Cpu RC PKG/Cpu Policy DXE/CpuPolicyDxe.sdl $
+# 
+# 1     2/07/12 3:56a Davidhsieh
+# 
+# 1     5/06/11 6:06a Davidhsieh
+# First release
+# 
+#
+#****************************************************************************
+TOKEN
+	Name  = "CpuDxePolicy_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Cpu Pei init support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "CpuPolicyInitDxe_DIR"
+End
+
+MODULE
+	Help  = "Includes CpuPeiInit.mak to Project"
+	File  = "CpuPolicyDxe.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CpuPolicyDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

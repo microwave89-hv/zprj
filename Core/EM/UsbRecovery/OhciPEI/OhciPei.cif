@@ -1,0 +1,12 @@
+<component>
+	name = "OhciPei"
+	category = ModulePart
+	LocalRoot = "core\em\UsbRecovery\OhciPEI\"
+	RefName = "OhciPei"
+[files]
+"OhciPei.c"	
+"OhciPei.h"	
+"OhciPeiBoard.c"	
+[parts]
+"OHCI PPI"
+<endComponent>

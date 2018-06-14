@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueDxeDebugLibReportStatusCode_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueDxeDebugLibReportStatusCode support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueDxeDebugLibReportStatusCode_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueDxeDebugLibReportStatusCode.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueDxeDebugLibReportStatusCode_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueDxeDebugLibReportStatusCode.mak to Project"
+	File  = "EdkIIGlueDxeDebugLibReportStatusCode.mak"
+End
+

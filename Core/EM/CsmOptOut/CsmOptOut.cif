@@ -1,0 +1,15 @@
+<component>
+	name = "CsmOptOut"
+	category = eModule
+	LocalRoot = "Core\EM\CsmOptOut\"
+	RefName = "CsmOptOut"
+[files]
+"CsmOptOut.sdl"	
+"CsmOptOut.mak"	
+"CsmOptOut.c"	
+"CsmOptOutRuntime.c"	
+"CsmOptOutSetup.c"	
+"CsmOptOut.uni"	
+"CsmOptOut.sd"	
+"CsmOptOut.chm"	
+<endComponent>

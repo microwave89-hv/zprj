@@ -1,0 +1,28 @@
+TOKEN
+	Name  = "IntelSaSampleCodePpiLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable FrameworkPpiLib support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "IntelSaSampleCodePpiLib_DIR"
+End
+
+MODULE
+	Help  = "Includes IntelSaSampleCodePpiLib.mak to Project"
+	File  = "IntelSaSampleCodePpiLib.mak"
+End
+
+ELINK
+	Name  = "IntelSaSampleCodePpiLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\IntelSaSampleCodePpiLib.lib"
+	Parent  = "IntelSaSampleCodePpiLib_LIB"
+	InvokeOrder = AfterParent
+End

@@ -1,0 +1,12 @@
+<component>
+	name = "Image Verification Library"
+	category = ModulePart
+	LocalRoot = "Core\EM\SecurityPkg\ImageVerificationLib"
+	RefName = "ImageVerificationLib"
+[files]
+"ImageVerificationLib.sdl"	
+"ImageVerificationLib.mak"	
+"DxeImageVerificationLib.c"	
+"DxeImageVerificationLib.h"	
+"EfiImage.h"	
+<endComponent>

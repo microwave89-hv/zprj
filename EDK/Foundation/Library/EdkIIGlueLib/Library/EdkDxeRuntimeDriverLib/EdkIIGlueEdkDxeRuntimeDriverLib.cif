@@ -1,0 +1,13 @@
+<component>
+	name = "EdkIIGlueEdkDxeRuntimeDriverLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\EdkDxeRuntimeDriverLib"
+	RefName = "EdkIIGlueEdkDxeRuntimeDriverLib"
+[files]
+"EdkIIGlueEdkDxeRuntimeDriverLib.sdl"	
+"EdkIIGlueEdkDxeRuntimeDriverLib.mak"
+"EdkDxeRuntimeDriverLib.inf"	
+"Common\RuntimeLib.c"	
+"Common\RuntimeService.c"
+"RuntimeLibInternal.h"
+<endComponent>

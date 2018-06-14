@@ -1,0 +1,13 @@
+<component>
+	name = "RapidStartDxePolicyInit"
+	category = ModulePart
+	LocalRoot = "Board\EM\RapidStartWrapper\Dxe\RapidStartDxePolicyInit"
+	RefName = "RapidStartDxePolicyInit"
+[files]
+"RapidStartDxePolicyInit.sdl"	
+"RapidStartDxePolicyInit.mak"
+"RapidStartDxePolicyInit.h"	
+"RapidStartDxePolicyInit.c"	
+"RapidStartDxePolicyInit.dxs"
+"RapidStartDxePolicyInit.inf"
+<endComponent>

@@ -1,0 +1,21 @@
+<component>
+	name = "Serial Redirection"
+	category = eModule
+	LocalRoot = "Core\EM\Terminal\"
+	RefName = "Terminal"
+[files]
+"Terminal.sdl"	
+"Terminal.mak"	
+"TerminalSetupVar.h"	
+"TerminalSetup.c"	
+"InitTerminalStrings.c"	
+"Terminal.sd"	
+"Terminal.uni"	
+"Terminal.lib"	
+"Terminalx64.lib"	
+"Terminal.chm"	
+"TerminalBoard.h"	
+"TerminalAcpi.c"	
+[parts]
+"TerminalAmiSerial Protocol"
+<endComponent>

@@ -1,0 +1,23 @@
+<component>
+	name = "Intel Pch SB Board"
+	category = ModulePart
+	LocalRoot = "Board\SB\"
+	RefName = "Intel Pch SB Board"
+[files]
+"SB.sdl"	
+"SB.mak"	
+"SBSECInit.asm"	
+"SBPEIBoard.c"	
+"SBDXEBoard.c"	
+"SB.H"	
+"HDAVBTBL.h"	
+"SBPEI.dxs"	
+"SBDXE.dxs"	
+"SBRun.dxs"	
+"SBPeiDebugger.c"	
+"GetSetupData.c"	
+"SbSetupData.h"	
+"Sb.ssp"
+[parts]
+"SBSetup"
+<endComponent>

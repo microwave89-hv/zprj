@@ -1,0 +1,18 @@
+<component>
+	name = "CpuPpiLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\Ppi\"
+	RefName = "CpuPpiLib"
+[files]
+"CpuPpiLib.sdl"	
+"CpuPpiLib.mak"	
+"CpuPpiLib.inf"
+"Cache\Cache.c"
+"Cache\Cache.h"
+"CpuPlatformPolicy\CpuPlatformPolicy.c"
+"CpuPlatformPolicy\CpuPlatformPolicy.h"
+"TxtMemoryUnlocked\TxtMemoryUnlocked.c"
+"TxtMemoryUnlocked\TxtMemoryUnlocked.h"
+"TpmInitialized\TpmInitialized.c"
+"TpmInitialized\TpmInitialized.h"
+<endComponent>

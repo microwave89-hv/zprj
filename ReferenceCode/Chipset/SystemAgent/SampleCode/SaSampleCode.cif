@@ -1,0 +1,22 @@
+<component>
+	name = "SaSampleCode"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\SampleCode"
+	RefName = "SaSampleCode"
+[files]
+"Include\AcpiBuild.dsc"	
+"Protocol\IntelSaSampleCodeProtocolLib.inf"	
+"Protocol\PciEnumerationComplete.h"	
+"Tools\GenAcpiTable.exe"	
+"Include\Cpu.h"	
+"SaPolicyInit\Dxe\SaDxePolicyInit.c"	
+"SaPolicyInit\Dxe\SaDxePolicyInit.h"	
+"SaPolicyInit\Pei\SaPeiPolicyInit.c"	
+"SaPolicyInit\Pei\SaPeiPolicyInit.h"	
+"SaPolicyInit\Dxe\SaDxePolicyInit.inf"	
+"SaPolicyInit\Dxe\SaDxePolicyInit.dxs"	
+"SaPolicyInit\Pei\SaPeiPolicyInit.dxs"	
+"SaPolicyInit\Pei\SaPeiPolicyInit.inf"	
+[parts]
+"IntelSaSampleCodePpiLib"
+<endComponent>

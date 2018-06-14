@@ -1,0 +1,86 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Chipset/SystemAgentWrap/UpdateMemoryRecord/UpdateMemoryRecord.dxs 2     8/31/12 2:38a Yurenlai $
+//
+// $Revision: 2 $
+//
+// $Date: 8/31/12 2:38a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Chipset/SystemAgentWrap/UpdateMemoryRecord/UpdateMemoryRecord.dxs $
+// 
+// 2     8/31/12 2:38a Yurenlai
+// [TAG]           EIP99526
+// [Category]      Improvement
+// [Severity]      Important
+// [Description]   Fixed system hang at CKP 0x6A if
+// PI_SPECIFICATION_VERSION = 0x10000.
+// [Files]         UpdateMemoryRecord.dxs
+// 
+// 1     2/08/12 4:37a Yurenlai
+// Intel Haswell/NB eChipset initially releases.
+// 
+//*************************************************************************
+
+#if (PI_SPECIFICATION_VERSION < 0x10014)
+#include <Token.h>
+#include <protocol\SmbiosGetFlashDataProtocol.h>
+#define __AMIHOBS_H__
+#include <protocol\SmbiosDynamicData.h>
+#include <Protocol\Datahub.h>
+#if (EFI_SPECIFICATION_VERSION >= 0x0002000A)
+#include <Protocol/HiiDatabase.h>
+#else
+#include <Protocol/HII.h>
+#endif
+#define __EFI__H__
+#include <Protocol\Smbus.h>
+#include <SmbiosUpdateDataProtocol.h>
+#include <SaInfo\SaInfo.h>
+
+DEPENDENCY_START
+    EFI_SMBIOS_BOARD_PROTOCOL_GUID AND
+    EFI_DATA_HUB_PROTOCOL_GUID AND
+#if (EFI_SPECIFICATION_VERSION >= 0x0002000A)
+    EFI_HII_DATABASE_PROTOCOL_GUID AND
+#else
+    EFI_HII_PROTOCOL_GUID AND
+#endif
+    EFI_SA_INFO_PROTOCOL_GUID AND
+    EFI_SMBUS_HC_PROTOCOL_GUID AND
+    EFI_SMBIOS_PROTOCOL_GUID AND
+    EFI_SMBIOS_UPDATE_DATA_PROTOCOL_GUID
+DEPENDENCY_END
+#else
+DEPENDENCY_START
+    AFTER {0xEDA39402, 0xF375, 0x4496, 0x92, 0xD3, 0x83, 0xB4, 0x3C, 0xB8, 0xA7, 0x6A}
+DEPENDENCY_END
+#endif
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

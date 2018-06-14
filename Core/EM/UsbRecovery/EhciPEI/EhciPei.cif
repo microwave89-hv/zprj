@@ -1,0 +1,10 @@
+<component>
+	name = "EhciPei"
+	category = ModulePart
+	LocalRoot = "core\em\UsbRecovery\EhciPEI\"
+	RefName = "EhciPei"
+[files]
+"EhciPei.c"	
+"EhciPei.h"	
+"EhciPeiBoard.c"	
+<endComponent>

@@ -1,0 +1,71 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartProtocolLib/RapidStartProtocolLib.sdl 1     4/19/12 8:12a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 4/19/12 8:12a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartProtocolLib/RapidStartProtocolLib.sdl $
+# 
+# 1     4/19/12 8:12a Yurenlai
+# Initial check in.
+#
+#*************************************************************************
+TOKEN
+	Name  = RapidStartProtocolLib_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable RapidStartProtocolLib support in Project"
+End
+
+MODULE
+	Help  = "Includes RapidStartProtocolLib.mak to Project"
+	File  = "RapidStartProtocolLib.mak"
+End
+
+PATH
+	Name  = "RapidStartProtocolLib_DIR"
+End
+
+ELINK
+	Name  = "RapidStartProtocolLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\RapidStartProtocolLib.lib"
+	Parent  = "RapidStartProtocolLib_LIB"
+	InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

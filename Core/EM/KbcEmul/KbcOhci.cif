@@ -1,0 +1,9 @@
+<component>
+	name = "KbcOhci"
+	category = ModulePart
+	LocalRoot = "core\em\KbcEmul"
+	RefName = "KbcOhci"
+[files]
+"KbcOhci.c"	
+"KbcOhci.h"	
+<endComponent>

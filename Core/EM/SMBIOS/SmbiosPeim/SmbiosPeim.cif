@@ -1,0 +1,11 @@
+<component>
+	name = "SmbiosPeim"
+	category = ModulePart
+	LocalRoot = "Core\EM\SMBIOS\SmbiosPeim"
+	RefName = "SmbiosPeim"
+[files]
+"SmbiosPeim.sdl"	
+"SmbiosPeim.mak"
+"SmbiosPeim.dxs"	
+"SmbiosPei.c"	
+<endComponent>

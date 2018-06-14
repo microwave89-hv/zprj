@@ -1,0 +1,11 @@
+<component>
+    name = "SmmOemActivation"
+    category = ModulePart
+    LocalRoot = "Core\EM\OemActivation\"
+    RefName = "SmmOemActivation"
+[files]
+"SmmOemActivation.mak"
+"SmmOemActivation.sdl"
+"SmmOemActivation.c"
+"SmmOemActivation.dxs"
+<endComponent> 

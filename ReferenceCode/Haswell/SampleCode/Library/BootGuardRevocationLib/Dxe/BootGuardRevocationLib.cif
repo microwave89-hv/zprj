@@ -1,0 +1,11 @@
+<component>
+	name = "BootGuardRevocationLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\SampleCode\Library\BootGuardRevocationLib\Dxe"
+	RefName = "BootGuardRevocationLib"
+[files]
+"BootGuardRevocationLib.sdl"
+"BootGuardRevocationLib.mak"
+"BootGuardRevocationLib.c"
+"BootGuardRevocationLib.inf"
+<endComponent>

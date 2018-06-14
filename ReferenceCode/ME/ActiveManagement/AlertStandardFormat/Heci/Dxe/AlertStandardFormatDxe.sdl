@@ -1,0 +1,25 @@
+TOKEN
+	Name  = AlertStandardFormatDxe_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable AlertStandardFormatDxe support in Project"
+End
+
+MODULE
+	Help  = "Includes AlertStandardFormatDxe.mak to Project"
+	File  = "AlertStandardFormatDxe.mak"
+End
+
+PATH
+	Name  = "AlertStandardFormatDxe_DIR"
+	Help  = "AlertStandardFormatDxe files source directory"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AlertStandardFormatDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

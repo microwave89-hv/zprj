@@ -1,0 +1,76 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/SmartTimer/SmartTimer.sdl 2     11/19/13 7:36a Barretlin $
+#
+# $Revision: 2 $
+#
+# $Date: 11/19/13 7:36a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/SmartTimer/SmartTimer.sdl $
+# 
+# 2     11/19/13 7:36a Barretlin
+# [TAG]  		EIP141917
+# [Category]  	New Feature
+# [Description]  	Support SetTimer() with HPET Timer on Lynx Point
+# [Files]  		SB.sdl SBGeneric.c SBDxe.c SbHpet.h sbProtocal.cif
+# SamrtTimer.sdl
+# 
+# 1     2/08/12 9:17a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+	Name  = "SmartTimer_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SmartTimer support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Token = "HPET_PROTOCOL_SUPPORT" "=" "0"
+End
+
+PATH
+	Name  = "SmartTimer_DIR"
+End
+
+MODULE
+	Help  = "Includes SmartTimer to Project"
+	File  = "SmartTimer.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SmartTimer.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

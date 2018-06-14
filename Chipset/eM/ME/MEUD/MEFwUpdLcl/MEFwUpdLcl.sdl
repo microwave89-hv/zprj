@@ -1,0 +1,51 @@
+TOKEN
+    Name  = MEFwUpdLcl_SUPPORT
+    Value  = 0
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    Master = Yes
+    Help  = "Main switch to enable MEFwUpdLcl support in Project"
+End
+
+TOKEN
+    Name  = "MEFWUPDLCL_ON_SHARKBAY_PLATFORM"
+    Value  = "0"
+    TokenType = Boolean
+    TargetMAK = Yes
+End
+
+MODULE
+    Help  = "Includes MEFwUpdLcl.mak to Project"
+    File  = "MEFwUpdLcl.mak"
+End
+
+PATH
+    Name  = "MEFwUpdLcl_DIR"
+End
+
+TOKEN
+    Name  = "INTEL_FWUPDATE_LIB"
+    Value  = "$(MEFwUpdLcl_DIR)\IntelLib\FWUpdateLib.lib"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\MEFwUpdLcl.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "AutoMeudBeforeReflashHook,"
+    Parent = "OemBeforeFlashUpdateList" 
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "AutoMeudAfterReflashHook,"
+    Parent = "OemAfterFlashUpdateList" 
+    InvokeOrder = AfterParent
+    Priority = -100
+End

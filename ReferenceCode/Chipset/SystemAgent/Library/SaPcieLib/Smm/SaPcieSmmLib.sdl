@@ -1,0 +1,34 @@
+TOKEN
+        Name  = "SaPcieSmmLib_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable SaPcieSmmLib support in Project"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Master = Yes
+	    Token = "SaPcieLib_SUPPORT" "=" "1"
+#	    Token = "SA_PCIE_ASPM_IN_SMM" "=" "1"
+End
+
+
+PATH
+        Name  = "SaPcieSmmLib_DIR"
+	Help  = "SaPcieSmmLib file source directory"
+End
+
+MODULE
+        File  = "SaPcieSmmLib.mak"
+        Help  = "Includes SaPcieSmmLib.mak to Project"
+End
+
+ELINK
+        Name  = "SaPcieSmmLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\SaPcieSmmLib_Lib.lib"
+        Parent  = "SaPcieSmmLib_LIB"
+        InvokeOrder = AfterParent
+End

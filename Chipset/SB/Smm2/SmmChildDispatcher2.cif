@@ -1,0 +1,16 @@
+<component>
+	name = "SmmChildDispatcher2"
+	category = ModulePart
+	LocalRoot = "Chipset\SB\Smm2"
+	RefName = "SmmChildDispatcher2"
+[files]
+"SmmChildDispatcher2.mak"
+"SmmChildDispatcher2.sdl"
+"SmmChildDispatcher2.dxs"
+"SmiHandlerGeneric2.c"
+"SmiHandlerPorting2.c"
+"SmmChildDispatch2.h"
+"SmmChildDispatch2Main.c"
+"SmmChildDispatch2Protocol.c"
+"SmmChildDispatch2Protocol.h"
+<endComponent>

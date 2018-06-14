@@ -1,0 +1,34 @@
+TOKEN
+	Name  = "MeLibPpi_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable MeLibPpi support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "MeLibPpi_DIR"
+End
+
+MODULE
+	Help  = "Includes MeLibPpi.mak to Project"
+	File  = "MeLibPpi.mak"
+End
+
+ELINK
+	Name  = "MeLibPpi_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\MeLibPpi.lib"
+	Parent  = "MeLibPpi_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(MeLibPpi_DIR)"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End

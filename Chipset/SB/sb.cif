@@ -1,0 +1,12 @@
+<component>
+	name = "Intel PCH"
+	category = eChipset
+	LocalRoot = "Chipset\SB\"
+	RefName = "Intel Pch"
+[files]
+"ReleaseNotes.chm"	
+[parts]
+"Intel Pch SB Board"
+"Intel Pch SB Chipset"
+"Intel Pch SB Refcode"
+<endComponent>

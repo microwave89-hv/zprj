@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "Haswell_PowerMgmtDxe_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Cpu Pei init support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "PowerMgmtDxe_DIR"
+End
+
+MODULE
+	Help  = "Includes PowerMgmtDxe.mak to Project"
+	File  = "PowerMgmtDxe.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PowerMgmtDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

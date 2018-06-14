@@ -1,0 +1,17 @@
+<component>
+	name = "Intel Smart Connect Technology"
+	category = eModule
+	LocalRoot = "Board\EM\Isct"
+	RefName = "IsctPlatform"
+[files]
+"IsctPlatform.sdl"
+"IsctPlatform.chm"
+
+[parts]
+"IsctAcpiTables"
+"IsctPeiWakeReason"
+"IsctAcpi"
+"IsctSmm"
+"IsctGuidLib"
+"IsctProtocolLib"
+<endComponent>

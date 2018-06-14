@@ -1,0 +1,18 @@
+<component>
+	name = "MeLibDxe"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Library\MeKernel\Dxe\"
+	RefName = "MeLibDxe"
+[files]
+"MeLib.c"
+"MeLib.h"	
+"MeLibDxe.mak"	
+"MeLibDxe.sdl"	
+"MePolicyLib.c"	
+"MePolicyLib.h"	
+"MeLib.inf"
+"HeciMsgLib.c"
+"HeciMsgLib.h"
+"MbpDebugDumpDxe.c"
+"MePolicyDebugDumpDxe.c"
+<endComponent>

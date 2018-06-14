@@ -1,0 +1,8 @@
+<component>
+	name = "BOARD_MOD"
+	category = ModulePart
+	RefName = "BOARD_MOD"
+[files]
+"Board\ReportFV2.c"	
+"Board\Flash\SPI\ICHx\SPIFlash.c"
+<endComponent>

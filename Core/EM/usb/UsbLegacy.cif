@@ -1,0 +1,8 @@
+<component>
+	name = "UsbLegacy"
+	category = ModulePart
+	LocalRoot = "Core\EM\usb\"
+	RefName = "USB_LEGACY"
+[parts]
+"USBINT13"
+<endComponent>

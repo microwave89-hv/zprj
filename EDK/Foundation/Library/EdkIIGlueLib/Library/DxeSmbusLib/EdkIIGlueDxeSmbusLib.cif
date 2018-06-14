@@ -1,0 +1,13 @@
+<component>
+	name = "EdkIIGlueDxeSmbusLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\DxeSmbusLib"
+	RefName = "EdkIIGlueDxeSmbusLib"
+[files]
+"EdkIIGlueDxeSmbusLib.sdl"	
+"EdkIIGlueDxeSmbusLib.mak"
+"DxeSmbusLib.inf"	
+"DxeSmbusLib.c"	
+"SmbusLib.c"
+"DxeSmbusLibInternal.h"
+<endComponent>

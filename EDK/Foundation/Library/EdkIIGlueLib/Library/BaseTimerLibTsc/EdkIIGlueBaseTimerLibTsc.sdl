@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueBaseTimerLibTsc_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueBaseTimerLibTsc support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueBaseTimerLibTsc_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueBaseTimerLibTsc.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueBaseTimerLibTsc_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueBaseTimerLibTsc.mak to Project"
+	File  = "EdkIIGlueBaseTimerLibTsc.mak"
+End
+

@@ -1,0 +1,11 @@
+<component>
+	name = "Snp"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Common\Snp"
+	RefName = "Snp"
+[files]
+"Snp.sdl"	
+"Snp.mak"	
+"SnpDxeIa32.efi"	
+"SnpDxe.efi"	
+<endComponent>

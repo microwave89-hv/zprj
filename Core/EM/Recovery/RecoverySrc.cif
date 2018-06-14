@@ -1,0 +1,13 @@
+<component>
+	name = "Recovery Sources"
+	category = ModulePart
+	LocalRoot = "Core\EM\Recovery\"
+	RefName = "RecoverySrc"
+[files]
+"RecoverySrc.sdl"	
+"FsRecovery.c"	
+"RecoverySrc.mak"	
+"SerialRecovery.c"	
+"IdeRecovery.c"	
+"CapsuleRecovery.c"	
+<endComponent>

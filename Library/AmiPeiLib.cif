@@ -1,0 +1,10 @@
+<component>
+	name = "AmiPeiLib"
+	category = ModulePart
+	LocalRoot = "Library\"
+	RefName = "AmiPeiLib"
+[files]
+"\AmiPeiLib.sdl"	
+"\AmiPeiLib.mak"	
+"\PeiLib.c"	
+<endComponent>

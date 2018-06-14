@@ -1,0 +1,30 @@
+<component>
+	name = "CPU Core"
+	category = ModulePart
+	LocalRoot = "Core\CPU"
+	RefName = "CPU Core"
+[files]
+"CPU.h"	
+"CpuCspLib.c"	
+"CPUCspLib.h"	
+"CpuDxe.c"	
+"CpuDxe.dxs"	
+"CpuDxe.h"	
+"CpuPei.c"	
+"CpuPei.dxs"	
+"CpuPei.h"	
+"CpuPeiFuncs.c"	
+"CpuDxeFuncs.c"	
+"CpuPeiBeforeMem.c"	
+"CpuSmbios.c"	
+"MBIOSMAC.MAC"	
+"ResetVector.asm"	
+"Startup32.asm"	
+[parts]
+"CPU Hobs"
+"CpuPPIs"
+"CpuProtocols"
+"MicrocodeUpdate"
+"CpuTools"
+"MiscX64Lib"
+<endComponent>

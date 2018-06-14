@@ -1,0 +1,31 @@
+TOKEN
+	Name  = "MdesStatusCode_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable MeStatusCode support in Project"
+	TokenType = Boolean
+	TargetH = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "MdesStatusCode_DIR"
+End
+
+MODULE
+	Help  = "Includes MdesStatusCode.mak to Project"
+	File  = "MdesStatusCode.mak"
+End
+
+ELINK
+	Name  = "DXE(MdesBiosStatusCode),"
+	Parent  = "ReportMiscStatus"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "DXE(MdesBiosStatusCodeInit),"
+	Parent  = "StatusCodeInitialize"
+	InvokeOrder = AfterParent
+End
+

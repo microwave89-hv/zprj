@@ -1,0 +1,10 @@
+<component>
+	name = "MdesStatusCode"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\MdesStatusCode"
+	RefName = "MdesStatusCode"
+[files]
+"MdesStatusCode.sdl"	
+"MdesStatusCode.mak"	
+"MdesStatusCodeDxe.c"	
+<endComponent>

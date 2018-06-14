@@ -1,0 +1,28 @@
+TOKEN
+    Name  = "HashService_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable hash service support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+    Token = "CryptoAPI_SUPPORT" "=" "1"
+End
+
+PATH
+    Name  = "HashService_DIR"
+    Help  = "Path to PlatformToDriver Module in Project"
+End
+
+MODULE
+    Help  = "Includes HashService.mak to Project"
+    File  = "HashService.mak"
+End
+
+ELINK
+	Name  = "HashServiceEntryPoint,"
+	Parent  = "BdsEntryInitialize"
+	InvokeOrder = AfterParent
+End
+
+

@@ -1,0 +1,14 @@
+<component>
+	name = "RapidStartPei"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\RapidStart\Pei"
+	RefName = "RapidStartPei"
+[files]
+"RapidStartPei.sdl"
+"RapidStartPei.mak"
+"RapidStartPei.dxs"
+"RapidStartPei.c"
+"RapidStartAhci.c"
+"RapidStartAhci.h"
+"RapidStartPei.inf"
+<endComponent>

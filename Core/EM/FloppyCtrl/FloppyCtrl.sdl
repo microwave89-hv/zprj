@@ -1,0 +1,40 @@
+TOKEN
+	Name  = "FLOPPY_CTRL_SRC_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable FloppyCtrl sources in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Token = "FLOPPY_CTRL_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "FLOPPY_CTRL_DIR"
+End
+
+MODULE
+	Help  = "Includes FloppyCtrl.mak to Project"
+	File  = "FloppyCtrl.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\FloppyCtrl.ffs"
+	Parent  = "$(CORE_DIR)\FloppyCtrl.ffs"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "FDCPeimEntryPoint,"
+	Parent  = "RecoveryInitialize"
+	Token = "x64_BUILD" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = " "
+	Parent  = "$(BUILD_DIR)\FloppyCtrl.ffs"
+	Token = "x64_BUILD" "=" "1"
+	InvokeOrder = ReplaceParent
+End
+

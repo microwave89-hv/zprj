@@ -1,0 +1,9 @@
+<component>
+	name = "IntelPlatformPpi"
+	category = ModulePart
+	LocalRoot = "Board\EM\Platform\Include\Ppi"
+	RefName = "IntelPlatformPpi"
+[files]
+"IntelPlatformPpi.sdl"	
+"TcgPeiDone.h"	
+<endComponent>

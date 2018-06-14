@@ -1,0 +1,314 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Board/NBSetup/NBSetup.sdl 9     5/28/14 3:15a Dennisliu $
+#
+# $Revision: 9 $
+#
+# $Date: 5/28/14 3:15a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Board/NBSetup/NBSetup.sdl $
+# 
+# 9     5/28/14 3:15a Dennisliu
+# [TAG]           NONE
+# [Category]      Improvement
+# [Description]   Create a Token "DEFAULT_REFRESH_2X_POLICY" for customer
+# to decide the default value.
+# [Files]         NBSetup.sdl; NB.sd;
+# 
+# 8     12/31/13 1:53a Ireneyang
+# [TAG]         None
+# [Category]    Improvement
+# [Description] Some items belong to XTU, therefore, its callback
+#               funtion should be NB_MEMORY_TUNING_CALLBACK.
+# [Files]       NBSetup.sdl;
+# 
+# 7     7/31/13 2:29a Ireneyang
+# [TAG]         None
+# [Category]    BrugFix
+# [Symptom]     When adding XTU module, it would have building error.
+# [Description] Fix building error when adding XTU module.
+# [RootCause]   The original NB_SETUP_CALLBACK function only will be 
+#               build only when PERF_TUNE_SUPPORT is 0. However, CRID 
+#               is one of NB_SETUP_CALLBACK and it should be build 
+#               wheather PERF_TUNE_SUPPORT is 0 or 1. Others of 
+#               NB_SETUP_CALLBACK should still keep be build only 
+#               when PERF_TUNE_SUPPORT is 0. 
+# [Solution]    Divide others from original NB_SETUP_CALLBACK group to 
+#               an new NB_MEMORY_TUNING_CALLBACK and let them only be 
+#               build when PERF_TUNE_SUPPORT is 0. Keep CRID in 
+#               NB_SETUP_CALLBACK without any building condition. 
+# [Files]       NBSetup.sdl; NBSetup.c;
+# 
+# 6     7/09/13 4:02a Ireneyang
+# [TAG]         None
+# [Category]    Improvement
+# [Description] Add new feature CRID into SMBIOS Type88.
+# [Files]       NB.sd; NBSetup.c; NBSetup.sdl;
+# 
+# 5     5/23/13 11:47p Ireneyang
+# [TAG]         None
+# [Category]    Improvement
+# [Description] Fix Typo error.
+# [Files]       NB.sd; NBSetup.sdl;
+# 
+# 4     4/17/13 6:42a Ireneyang
+# [TAG]       NONE
+# [Category]  Improvement
+# [Severity]  Normal
+# [Symptom]   Create a Token "PRIMARY_DISPLAY_SG_DEFAULT_ENABLE" for
+#             customer to decide if primarydispay should set to SG 
+#             as default when SwitchableGraphics_SUPPORT is set to 1.
+# [Files]     NB.sd; NBSetup.sdl;
+# 
+# 3     12/24/12 2:56a Jeffch
+# [TAG]         None
+# [Category]    Bug Fix
+# [Description] Remove tRPab and fixed XTU build fail issue.
+# [Files]        NBPei.c; NBDxe.c; NB.sd;
+# 
+# 2     12/22/12 2:32a Jeffch
+# 
+# 1     2/08/12 4:33a Yurenlai
+# Intel Haswell/NB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+	Name  = "NB_SETUP_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable NBSetup support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "PRIMARY_DISPLAY_SG_DEFAULT_ENABLE"
+	Value  = "0"
+	Help  = "[1] : Default is SG for primarydisplay.  [0] : Default is Auto for primarydisplay."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+        Token = "SwitchableGraphics_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "DEFAULT_REFRESH_2X_POLICY"
+    Value  = "0"
+    Help  = "[1] : Default is Enabled.  [0] : Default is Disabled."
+    TokenType = Integer
+    TargetH = Yes
+End
+
+PATH
+	Name  = "NBSetup_DIR"
+End
+
+MODULE
+	Help  = "Includes NBSetup.mak to Project"
+	File  = "NBSetup.mak"
+End
+
+ELINK
+	Name  = "NbSetupCallbacks,"
+	Parent  = "NbConfigurationList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "InitNBStrings,"
+	Parent  = "SetupStringInit"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\NB.sdb"
+	Parent  = "SETUP_SDBS"
+	Priority  = 20
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(NBSetup_DIR)\NB.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 20
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "NBProcessEnterSetup,"
+	Parent  = "ProcessEnterSetup,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "NBSetupResetHook,"
+	Parent  = "PreSystemResetHook,"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "============================================="
+	TokenType = Expression
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, Default_SPD, NB_MEMORY_TUNING_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, Custom_SPD, NB_MEMORY_TUNING_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, XMP_SPD1, NB_MEMORY_TUNING_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, XMP_SPD2, NB_MEMORY_TUNING_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, NB_tCL_KEY, NB_MEMORY_TUNING_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, NB_tRCD_KEY, NB_MEMORY_TUNING_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, NB_tRP_KEY, NB_MEMORY_TUNING_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, NB_tRAS_KEY, NB_MEMORY_TUNING_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, NB_tWR_KEY, NB_MEMORY_TUNING_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, NB_tRFC_KEY, NB_MEMORY_TUNING_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, NB_tRRD_KEY, NB_MEMORY_TUNING_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, NB_tWTR_KEY, NB_MEMORY_TUNING_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, NB_tRTP_KEY, NB_MEMORY_TUNING_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, NB_tFAW_KEY, NB_MEMORY_TUNING_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, NB_tRC_KEY, NB_MEMORY_TUNING_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, NB_tCWL_KEY, NB_MEMORY_TUNING_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, NB_tREFI_KEY, NB_MEMORY_TUNING_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+End
+
+#ELINK
+#	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, NB_tRPab_KEY, NB_MEMORY_TUNING_CALLBACK),"
+#	Parent  = "SetupItemCallbacks"
+#	InvokeOrder = AfterParent
+#	Token = "PERF_TUNE_SUPPORT" "!=" "1"
+#End
+
+ELINK
+	Name  = "ITEM_CALLBACK(CHIPSET_FORM_SET_CLASS, 0, NB_CRID_KEY, NB_SETUP_CALLBACK),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

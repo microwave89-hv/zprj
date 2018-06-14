@@ -1,0 +1,65 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Board/SBPEI.dxs 1     2/08/12 8:22a Yurenlai $
+//
+// $Revision: 1 $
+//
+// $Date: 2/08/12 8:22a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Board/SBPEI.dxs $
+// 
+// 1     2/08/12 8:22a Yurenlai
+// Intel Lynx Point/SB eChipset initially releases.
+// 
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:        SBPEI.DXS
+//
+// Description: This file is the dependency file for the SB PEI
+//              driver
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+
+#include <pei.h>
+#include <ppi\CpuIo.h>
+#include <ppi\PciCfg2.h>
+#include <ppi\CspLibPpi.h>
+#include <Ppi\PchInit\PchInit.h>
+
+DEPENDENCY_START
+   EFI_PEI_CPU_IO_PPI_INSTALLED_GUID AND
+   EFI_PEI_PCI_CFG2_PPI_GUID AND
+   AMI_PEI_PCI_TABLE_INIT_PPI_GUID AND
+   PCH_INIT_PPI_GUID
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

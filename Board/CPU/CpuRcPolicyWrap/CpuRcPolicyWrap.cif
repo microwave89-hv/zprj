@@ -1,0 +1,11 @@
+<component>
+	name = "CpuRcPolicyWrap"
+	category = ModulePart
+	LocalRoot = "Board\Cpu\CpuRcPolicyWrap"
+	RefName = "CpuRcPolicyWrap"
+[files]
+"CpuRcPolicyWrap.sdl"	
+"CpuRcPolicyWrap.mak"	
+"CpuRcPolicyPei.c"	
+"CpuRcPolicyDxe.c"	
+<endComponent>

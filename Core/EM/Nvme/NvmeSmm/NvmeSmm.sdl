@@ -1,0 +1,35 @@
+TOKEN
+    Name  = "NvmeSmm_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable NvmeSmm  support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+    Token = "CSM_SUPPORT" "=" "1"
+    Token = "NVMEINT13_SUPPORT" "=" "1"
+End
+
+PATH
+    Name  = "NVME_SMM_DIR"
+End
+
+TOKEN
+    Name  = "NVME_INIT_SMM_SWSMI"
+    Value  = "0x45"
+    Help  = "Data to be written to SW SMI port to Init NVME Smm Data."
+    TokenType = Integer
+    TargetH = Yes
+End
+
+MODULE
+    Help  = "Includes NvmeSmm.mak to Project"
+    File  = "NvmeSmm.mak"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\NvmeSmm.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+

@@ -1,0 +1,37 @@
+TOKEN
+	Name  = "SaGuidLib_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable SaGuidLib support in Project"
+End
+
+MODULE
+	Help  = "Includes SaGuidLib.mak to Project"
+	File  = "SaGuidLib.mak"
+End
+
+PATH
+	Name  = "SaGuidLib_DIR"
+End
+
+ELINK
+	Name  = "/I$(SaGuidLib_DIR)"
+	Parent  = "INTEL_MCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(SaGuidLib_DIR)\AcpiVariable"
+	Parent  = "INTEL_MCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "SaGuidLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\SaGuidLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End

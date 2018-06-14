@@ -1,0 +1,28 @@
+TOKEN
+	Name  = "TxtOneTouchSupport"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch"
+End
+
+MODULE
+	Help  = "Includes TxtOneTouchDxe.mak into project"
+	File  = "TxtOneTouchDxe.mak"
+End
+
+PATH
+	Name  = "TxtOneTouchDxe_DIR"
+	Help  = "TxT DXE Policy Init directory"
+End
+
+
+ELINK
+	Name  = "$(BUILD_DIR)\TxtOneTouchDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

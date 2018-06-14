@@ -1,0 +1,9 @@
+<component>
+	name = "CMOS Build"
+	category = ModulePart
+	LocalRoot = "Core\EM\CmosManager\"
+	RefName = "CmosBuild"
+[files]
+"CmosManager.mak"	
+"Template.ssp"	
+<endComponent>

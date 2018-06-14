@@ -1,0 +1,12 @@
+<component>
+	name = "AHCI Int13 CSP-Template"
+	category = ModulePart
+	LocalRoot = "Chipset\eM\Ahci"
+	RefName = "AHCI_INT13_CSP"
+[files]
+"AHCIACC.ASM"	
+"HACCESS.EQU"	
+"AHCI.EQU"	
+"AINT13.EQU"	
+"AInt13Csp.c"	
+<endComponent>

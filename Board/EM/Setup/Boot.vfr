@@ -1,0 +1,255 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/BIN/Board/Setup/Boot.vfr 24    2/27/12 6:35p Artems $
+//
+// $Revision: 24 $
+//
+// $Date: 2/27/12 6:35p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Board/Setup/Boot.vfr $
+// 
+// 24    2/27/12 6:35p Artems
+// EIP 83602: Added MANUFACTURING flag to setup controls
+// 
+// 23    6/13/11 6:56p Artems
+// Added token to support zero boot timeout
+// 
+// 22    3/24/11 12:16p Felixp
+// Enhancement(EIP: 55918)
+// Workaround for defaults processing in TSE
+// There is a peculiar problem with the AMITSESETUP.AMISilentBoot
+// checkbox. 
+// The defaults for this control were not loaded in UEFI 2.1 mode.
+// The problem is caused by combination of factors: 
+//  - AMISilentBoot is a special variable (it holds internal TSE data); 
+//  - there are several ways to specify default value for a checkbox in
+// UEFI 2.1 VFR syntax
+//    (old method of using flags does not work for this special variable).
+// 
+// 21    11/18/10 5:46p Felixp
+// Flat Boot List support.
+//     Changes necessary to support Flat Boot List
+//      introduced in Core 4.6.4.1 are added. 
+// 
+// 20    2/24/10 11:53a Felixp
+// Fast Boot Control are removed. They are now part of the FastBoot
+// eModule.
+// 
+// 19    10/09/09 6:43p Felixp
+// UEFI 2.1 Support (the component is updated to support Framework and
+// UEFI 2.1 HII).
+// 
+// 18    6/30/09 11:42a Robert
+// Added Comment and updated parts for coding standards
+// 
+// 17    6/06/08 11:55a Felixp
+// Fast boot support is enabled
+// 
+// 16    1/31/08 11:51a Olegi
+// NumLock state added.
+// 
+// 15    10/30/07 10:42a Felixp
+// SYSTEM_ACCESS varstore declaration added
+// 
+// 14    9/05/07 5:26p Felixp
+// Changes needed for TSE from Core 4.6.2
+// 
+// 13    2/21/07 5:01p Felixp
+// ADD_BOOT_OPTION varstore updated
+// 
+// 12    12/29/06 2:38p Felixp
+// 
+// 11    10/08/06 11:34a Felixp
+// Minimum boot timeout changed from 0 to 1 second.
+// 
+// 10    12/12/05 8:59p Felixp
+// step for Timeout numeric added.
+// 
+// 9     11/08/05 5:11a Felixp
+// Update to be complient with TSE 1.15.1044
+// 
+// 8     11/07/05 10:54a Felixp
+// Support for boot with minimum configuration added
+// 
+// 7     10/19/05 2:07p Felixp
+// Support for custom varstores (in .sd files) added.
+// 
+// 6     9/06/05 6:20p Girim
+// Code cleanup.
+// 
+// 4     7/12/05 11:13a Felixp
+// workaround for VFR compiler bug in varstore handling
+// 
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//**********************************************************************
+//
+// Name:        Boot.vfr
+//
+// Description: 
+//  Setup script for the "Boot" top level setup screen
+//
+//**********************************************************************
+//<AMI_FHDR_END>
+
+#include "SetupPrivate.h"
+#define BOOT_FORM_SET
+#define FORM_SET_TYPEDEF
+#include <SetupDefinitions.h>
+#undef FORM_SET_TYPEDEF
+
+formset guid  = BOOT_FORM_SET_GUID,
+    title = STRING_TOKEN(STR_BOOT),
+    help = STRING_TOKEN(STR_BOOT_HELP),
+    class = BOOT_FORM_SET_CLASS,
+    subclass = 0,
+
+    SETUP_DATA_VARSTORE
+    SYSTEM_ACCESS_VARSTORE
+    BOOT_MANAGER_VARSTORE
+    TIMEOUT_VARSTORE
+    BOOT_ORDER_VARSTORE
+    NEW_BOOT_OPTION_VARSTORE
+    DEL_BOOT_OPTION_VARSTORE
+    LEGACY_DEV_INFO_VARSTORE
+    LEGACY_GROUP_INFO_VARSTORE
+    LEGACY_DEV_ORDER_VARSTORE
+    AMI_CALLBACK_VARSTORE
+    AMITSESETUP_VARSTORE
+
+    #define FORM_SET_VARSTORE
+    #include <SetupDefinitions.h>
+    #undef FORM_SET_VARSTORE
+
+    form
+        formid = AUTO_ID(BOOT_MAIN),
+        title = STRING_TOKEN(STR_BOOT);
+
+        SUBTITLE(STRING_TOKEN(STR_BOOT_CFG))
+
+        numeric varid = TIMEOUT.Value,
+            prompt = STRING_TOKEN(STR_BOOT_TIMEOUT),
+            help = STRING_TOKEN(STR_BOOT_TIMEOUT_HELP),
+#if SUPPORT_ZERO_BOOT_TIMEOUT
+            minimum = 0x0,
+#else
+            minimum = 0x1,
+#endif
+            maximum = 0xffff,
+            step = 1,
+            option text = STRING_TOKEN(STR_EMPTY), value = DEFAULT_BOOT_TIMEOUT, flags = DEFAULT | MANUFACTURING;
+        endnumeric;
+
+        oneof varid = SETUP_DATA.Numlock,
+            prompt = STRING_TOKEN(STR_CSM_BOOTUP_NUMLOCK),
+            help = STRING_TOKEN(STR_CSM_BOOTUP_NUMLOCK_HELP),
+            option text = STRING_TOKEN(STR_CSM_BOOTUP_NUMLOCK_ON), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;
+            option text = STRING_TOKEN(STR_CSM_BOOTUP_NUMLOCK_OFF), value = 0, flags = 0, key = 0;
+        endoneof;
+
+        SEPARATOR
+        checkbox varid = AMITSESETUP.AMISilentBoot,
+            prompt = STRING_TOKEN(STR_QUIET_BOOT),
+            help = STRING_TOKEN(STR_QUIET_BOOT_HELP),
+            flags = DEFAULT_QUIET_BOOT, // Flags behavior for checkbox is overloaded so that it equals a DEFAULT value.  1 = ON, 0 = off
+#if EFI_SPECIFICATION_VERSION>0x20000
+//Workaround for defaults processing in TSE.
+//There is a peculiar problem with this checkbox. 
+//The defaults for this control were not loaded in UEFI 2.1 mode.
+//The problem is caused by combination of factors: 
+// - AMISilentBoot is a special variable (it holds internal TSE data); 
+// - there are several ways to specify default value for a checkbox in UEFI 2.1 VFR syntax
+//   (old method of using flags does not work for this special variable).
+            option text = STRING_TOKEN(STR_EMPTY), value = DEFAULT_QUIET_BOOT, flags = DEFAULT | MANUFACTURING;
+#endif
+        endcheckbox;
+
+        #define FORM_SET_ITEM
+        #include <SetupDefinitions.h>
+        #undef FORM_SET_ITEM
+
+        SEPARATOR
+        SUBTITLE(STRING_TOKEN(STR_BOOT_ORDER_SUBTITLE))
+        suppressif ideqvallist BOOT_MANAGER.BootCount == 0xFFFF;
+            oneof varid = BOOT_ORDER.Value,
+                prompt = STRING_TOKEN(STR_BOOT_ORDER_X),
+                help = STRING_TOKEN(STR_BOOT_ORDER_HELP),
+                option
+                    text = STRING_TOKEN(STR_EMPTY),
+                    value = 0,
+                    flags = DEFAULT;
+                option
+                    text = STRING_TOKEN(STR_EMPTY),
+                    value = 1,
+                    flags = 0;
+            endoneof;
+        endif;
+
+#if !defined(GROUP_BOOT_OPTIONS_BY_TAG) || GROUP_BOOT_OPTIONS_BY_TAG==1
+        SEPARATOR
+        suppressif ideqvallist LEGACY_DEV_INFO.GroupCount == 0xFFFF;
+            goto BBS_ORDER_FORM,
+            prompt = STRING_TOKEN(STR_EMPTY),
+            help = STRING_TOKEN(STR_BBS_ORDER_HELP);
+        endif;
+#endif
+        #define FORM_SET_GOTO
+        #include <SetupDefinitions.h>
+        #undef FORM_SET_GOTO
+    endform;
+#if !defined(GROUP_BOOT_OPTIONS_BY_TAG) || GROUP_BOOT_OPTIONS_BY_TAG==1
+    form
+        formid = AUTO_ID(BBS_ORDER_FORM),
+        title = STRING_TOKEN(STR_BOOT);
+
+        suppressif ideqvallist LEGACY_GROUP_INFO.DeviceCount == 0xFFFF;
+            oneof
+                varid = LEGACY_DEV_ORDER.Value,
+                prompt = STRING_TOKEN(STR_BOOT_ORDER_X),
+                help = STRING_TOKEN(STR_BOOT_ORDER_HELP),
+                option
+                    text = STRING_TOKEN(STR_EMPTY),
+                    value = 0,
+                    flags = DEFAULT;
+                option
+                    text = STRING_TOKEN(STR_EMPTY),
+                    value = 1,
+                    flags = 0;
+            endoneof;
+        endif;
+    endform;
+#endif
+    #define FORM_SET_FORM
+    #include <SetupDefinitions.h>
+    #undef FORM_SET_FORM
+endformset;
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

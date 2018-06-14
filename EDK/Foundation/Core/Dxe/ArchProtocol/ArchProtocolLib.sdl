@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "ArchProtocolLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable ArchProtocolLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "ARCHPROTOCOLLIB"
+	Value  = "$(BUILD_DIR)\ArchProtocolLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "ArchProtocolLib_DIR"
+End
+
+MODULE
+	Help  = "Includes ArchProtocolLib.mak to Project"
+	File  = "ArchProtocolLib.mak"
+End
+

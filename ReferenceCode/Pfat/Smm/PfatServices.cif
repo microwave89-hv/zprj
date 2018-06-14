@@ -1,0 +1,22 @@
+<component>
+	name = "Intel PFAT Technology"
+	category = eModule
+	LocalRoot = "ReferenceCode\Pfat\Smm"
+	RefName = "PfatServices"
+	Rank = 40
+[files]
+"PfatServices.sdl"	
+"PfatServices.mak"	
+"PfatServices.h"	
+"PfatServices.dxs"	
+"PfatServices.c"	
+"PfatServices.inf"	
+"Pfat.chm"	
+[parts]
+"PfatBinary"
+"PfatFlashLib"
+"PfatPubKeysAndBuildPSL"
+"PfatCpuPolicyOverride"
+"PfatSetup"
+"PfatRecovery"
+<endComponent>

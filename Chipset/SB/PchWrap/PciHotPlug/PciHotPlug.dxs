@@ -1,0 +1,61 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/PchWrap/PciHotPlug/PciHotPlug.dxs 1     2/08/12 8:37a Yurenlai $
+//
+// $Revision: 1 $
+//
+// $Date: 2/08/12 8:37a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/PchWrap/PciHotPlug/PciHotPlug.dxs $
+// 
+// 1     2/08/12 8:37a Yurenlai
+// Intel Lynx Point/SB eChipset initially releases.
+// 
+//*************************************************************************
+
+//
+// Common for R8 and R9 codebase
+//
+#include "AutoGen.h"
+#include "DxeDepex.h"
+
+//
+// BUILD_WITH_GLUELIB is turned "on" in R8 codebase;
+// BUILD_WITH_GLUELIB is turned "off" in R9 codebase.
+//
+#ifdef BUILD_WITH_GLUELIB
+#include "EfiDepex.h"
+#endif
+
+DEPENDENCY_START
+  TRUE
+DEPENDENCY_END
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+

@@ -1,0 +1,7 @@
+<component>
+	name = "CmosManager_MOD"
+	category = ModulePart
+	RefName = "CmosManager_MOD"
+[files]
+"Core\EM\CmosManager\CmosBoard.c"	
+<endComponent>

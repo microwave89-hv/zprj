@@ -1,0 +1,105 @@
+//****************************************************************************
+//****************************************************************************
+//**                                                                        **
+//**             (C)Copyright 1985-2012, American Megatrends, Inc.          **
+//**                                                                        **
+//**                          All Rights Reserved.                          **
+//**                                                                        **
+//**             5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093          **
+//**                                                                        **
+//**                          Phone (770)-246-8600                          **
+//**                                                                        **
+//****************************************************************************
+//****************************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/SwitchableGraphics/Sg TPV/Sg nVidia API/Mxm30Dxe.dxs 2     9/09/12 11:12p Joshchou $
+//
+// $Revision: 2 $
+//
+// $Date: 9/09/12 11:12p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/SwitchableGraphics/Sg TPV/Sg nVidia API/Mxm30Dxe.dxs $
+// 
+// 2     9/09/12 11:12p Joshchou
+// [TAG]  		None
+// [Category]  	Improvement
+// [Description]  	Tpv module support for sharkbay.
+// [Files]  		MXM30.mak
+// Mxm30Dxe.dxs
+// Mxm30Dxe.c
+// Mxm30Efi.c
+// NBCIEfi.c
+// MxmInt15.asm
+// MXM30.cif
+// 
+// 2     4/11/12 4:07a Alanlin
+// Nvidia Optimus support when CSM module is disabled or CSM is never on
+// setup menu.
+// 
+// 1     6/27/11 5:25a Alanlin
+// [TAG]  		EIP61848
+// [Category]  	New Feature
+// [Description]  	Initial check-in.Integrated SwitchableGraphics Intel
+// Reference code 0.6.0
+// [Files]  		MXM30.cif
+// MXM30.sdl
+// MXM30.mak
+// Mxm30Dxe.dxs
+// Mxm30Dxe.c
+// Mxm30Efi.c
+// NBCIEfi.c
+// MxmInt15.asm
+// Mxm30ElkCreek4.mxm
+// Mxm30ElkCreekIII.mxm
+// 
+// 
+// 1     9/17/10 1:16p Alexp
+// [TAG]    	  EIP43103 
+// [Category]  Function Request
+// [Severity]	  Normal
+// [Symptom]    Initial check-in of SgTPV module
+// [RootCause] Request to implement SG reference code .
+// [Solution]	Initial check-in. 
+// [Files]	
+//         Mxm30.cif;*.sdl;*.mak;
+//         Mxm30Dxe.c;*.dxs 
+//         Mxm30efi.c
+//         MxmInt15.asm
+//         NbciEfi.c
+//         Mxm30ElkCreek3(4).mxm
+// 
+// 2     6/03/10 3:08p Alexp
+// 
+// 1     6/03/10 2:54p Alexp
+//
+//**********************************************************************
+#include <Token.h>
+#include <protocol\PciRootBridgeIo.h>
+#include <protocol\AcpiSupport.h>
+#if ( defined(CSM_SUPPORT) && (CSM_SUPPORT != 0) )
+#include <Protocol\CsmPlatform.h>
+#endif
+
+DEPENDENCY_START
+#if ( defined(CSM_SUPPORT) && (CSM_SUPPORT != 0) )
+    AMI_CSM_DRIVER_STARTED_GUID AND
+#endif
+    EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL_GUID AND
+    EFI_ACPI_SUPPORT_GUID
+DEPENDENCY_END
+
+//****************************************************************************
+//****************************************************************************
+//**                                                                        **
+//**             (C)Copyright 1985-2012, American Megatrends, Inc.          **
+//**                                                                        **
+//**                          All Rights Reserved.                          **
+//**                                                                        **
+//**             5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093          **
+//**                                                                        **
+//**                          Phone (770)-246-8600                          **
+//**                                                                        **
+//****************************************************************************
+//****************************************************************************

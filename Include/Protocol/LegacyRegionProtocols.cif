@@ -1,0 +1,10 @@
+<component>
+	name = "LegacyRegion Protocols"
+	category = ModulePart
+	LocalRoot = "Include\Protocol"
+	RefName = "LEGACY_REGION_PROTOCOLS"
+
+[files]
+"LegacyRegion.h"
+"LegacyRegion2.h"
+<endComponent>

@@ -1,0 +1,16 @@
+MODULE
+	Help  = "Includes TcgPeiplatform.mak to Project"
+	File  = "TcgPeiplatform.mak"
+End
+
+
+PATH
+	Name  = "TCG_PEI_PLATFORM_DIR"
+	Help  = ""
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TcgPeiplatform.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End

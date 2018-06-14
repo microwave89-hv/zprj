@@ -1,0 +1,67 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/IoTrap/IoTrap.sdl 1     2/08/12 8:44a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 2/08/12 8:44a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/IoTrap/IoTrap.sdl $
+# 
+# 1     2/08/12 8:44a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+        Name  = "IoTrap_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable IoTrap support in Project"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+	TargetH = Yes
+        Master = Yes
+End
+
+PATH
+        Name  = "IoTrap_DIR"
+End
+
+MODULE
+        File  = "IoTrap.mak"
+        Help  = "Includes IoTrap to Project"
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\IoTrap.ffs"
+        Parent  = "FV_MAIN"
+        InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

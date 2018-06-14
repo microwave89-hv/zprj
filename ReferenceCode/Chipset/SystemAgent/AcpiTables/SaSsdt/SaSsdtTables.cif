@@ -1,0 +1,19 @@
+<component>
+	name = "SaSsdtTables"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\AcpiTables\SaSsdt\"
+	RefName = "SaSsdtTables"
+[files]
+"IgdOGBDA.ASL"	
+"IgdOMOBF.ASL"	
+"IgdOpRn.ASL"	
+"IgdOSBCB.ASL"	
+"INTELGFX.ASL"	
+"Sa.asl"	
+"SaPcieDsm.asl"	
+"SaSsdt.asl"	
+"SaSsdt.inf"	
+"SaSsdt_Edk.inf"	
+"SaSsdtTables.mak"	
+"SaSsdtTables.sdl"	
+<endComponent>

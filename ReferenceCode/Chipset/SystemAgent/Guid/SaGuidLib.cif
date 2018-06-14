@@ -1,0 +1,19 @@
+<component>
+	name = "SaGuidLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\Guid\"
+	RefName = "SaGuidLib"
+[files]
+"SaGuidLib.sdl"	
+"SaGuidLib.mak"	
+"SaGuidLib.inf"	
+"AcpiVariable\AcpiVariable.h"	
+"SaAcpiTableStorage\SaAcpiTableStorage.h"	
+"SaAcpiTableStorage\SaAcpiTableStorage.c"	
+"SaDataHob\SaDataHob.h"	
+"SaDataHob\SaDataHob.c"	
+"SgAcpiTableStorage\SgAcpiTableStorage.h"	
+"SgAcpiTableStorage\SgAcpiTableStorage.c"	
+"SaSsdtTableStorage\SaSsdtTableStorage.c"	
+"SaSsdtTableStorage\SaSsdtTableStorage.h"	
+<endComponent>

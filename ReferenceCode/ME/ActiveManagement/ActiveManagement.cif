@@ -1,0 +1,14 @@
+<component>
+	name = "ActiveManagement"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\ActiveManagement\"
+	RefName = "ActiveManagement"
+[files]
+"ActiveManagement.sdl"	
+[parts]
+"AmtBootOptions"
+"AlertStandardFormat"
+"IdeRController"
+"PciSerial"
+"StartWatchDog"
+<endComponent>

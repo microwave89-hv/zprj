@@ -1,0 +1,114 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Chipset/NB SMI/NBSMI.SDL 1     2/08/12 4:35a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 2/08/12 4:35a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Chipset/NB SMI/NBSMI.SDL $
+# 
+# 1     2/08/12 4:35a Yurenlai
+# Intel Haswell/NB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+    Name  = "NBSMI_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable NB SMI support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "NB_ERROR_LOG_SUPPORT"
+    Value  = "1"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "ErrorLogging_SUPPORT" "=" "1"
+    Token = "IpmiLib_SUPPORT" "=" "1"
+    Token = "SmmRuntime_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "NB_PCIE_ERROR_LOG_SUPPORT"
+    Value  = "1"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "NB_ERROR_LOG_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "NB_ECC_ERROR_LOG_SUPPORT"
+    Value  = "1"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Token = "NB_ERROR_LOG_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "ECC_MULTI_BIT_TYPE_HANG"
+	Value  = "0"
+	TokenType = Boolean
+	TargetH = Yes
+        Token = "NB_ECC_ERROR_LOG_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "NB_SWSMI_IGFX_GET_SETUP"
+    Value  = "0xb0"
+    Help  = "Value to write into SMI command register to generate software SMI for NB"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetH = Yes
+    Range  = "0xB0 - 0xB6"
+End
+
+PATH
+    Name  = "NB_SMI_PATH"
+    Path  = "Chipset\NB"
+End
+
+MODULE
+    Help  = "Includes NBSMI.mak to Project"
+    File  = "NBSMI.mak"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\NBSMI.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

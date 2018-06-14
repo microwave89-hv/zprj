@@ -1,0 +1,59 @@
+TOKEN
+	Name  = "IntelSaGopDriver_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable IntelSaGopDriver support in Project"
+End
+
+PATH
+	Name  = "IntelSaGopDriver_DIR"
+End
+
+MODULE
+	Help  = "Includes IntelSaGopDriver.mak to Project"
+	File  = "IntelSaGopDriver.mak"
+End
+
+TOKEN
+	Name  = "====== Haswell ======"
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "OEM_INTEL_GOP_VBT_BIN_FILE"
+	Value  = "$(IntelSaGopDriver_DIR)\Haswell\Vbt.bin"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "OEM_INTEL_GOP_EFI_DRIVER_FILE"
+	Value  = "$(IntelSaGopDriver_DIR)\Haswell\IntelGopDriver.efi"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\IntelSaGopDriver.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\IntelGopDriver.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\BmpDummyName.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+
+

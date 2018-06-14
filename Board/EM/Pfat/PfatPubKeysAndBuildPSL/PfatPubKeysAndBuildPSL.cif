@@ -1,0 +1,19 @@
+<component>
+	name = "PfatPubKeysAndBuildPSL"
+	category = ModulePart
+	LocalRoot = "Board\EM\Pfat\PfatPubKeysAndBuildPSL"
+	RefName = "PfatPubKeysAndBuildPSL"
+[files]
+"PfatPubKeysAndBuildPSL.sdl"	
+"PfatPubKeysAndBuildPSL.mak"	
+"dummy.bin"	
+"PfatCertHeader.bin"
+"BuildPSL.bat"
+"BuildAmiPfatHeader.exe"
+"CutRom.exe"
+"keygen.exe"
+"PfatCryptoCon.exe"
+"PPB.exe"
+"psl2bin.exe"
+".VkeyExp"
+<endComponent>

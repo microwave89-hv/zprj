@@ -1,0 +1,22 @@
+<component>
+	name = "MeGuidLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Guid\"
+	RefName = "MeGuidLib"
+[files]
+"MeGuidLib.sdl"
+"MeGuidLib.mak"
+"MeGuidLib.inf"
+"AmtForcePushPetPolicy\AmtForcePushPetPolicy.h"	
+"AmtForcePushPetPolicy\AmtForcePushPetPolicy.c"	
+"ConsoleLock\ConsoleLock.h"	
+"ConsoleLock\ConsoleLock.c"	
+"MeBiosExtensionSetup\MeBiosExtensionSetup.c"	
+"MeBiosExtensionSetup\MeBiosExtensionSetup.h"	
+"MePlatformReadyToBoot\MePlatformReadyToBoot.c"
+"MePlatformReadyToBoot\MePlatformReadyToBoot.h"
+"MeDataHob\MeDataHob.c"
+"MeDataHob\MeDataHob.h"
+"MeSsdtTableStorage\MeSsdtTableStorage.c"
+"MeSsdtTableStorage\MeSsdtTableStorage.h"
+<endComponent>

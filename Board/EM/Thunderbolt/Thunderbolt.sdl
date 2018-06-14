@@ -1,0 +1,116 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+TOKEN
+	Name  = "Thunderbolt_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Thunderbolt support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+    Token = "HOTPLUG_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "Thunderbolt_CR_VERSION"
+	Value  = "16"
+	Help  = "Thunderbolt Spec Version for Cactus Ridge chip."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "Thunderbolt_RR_VERSION"
+	Value  = "10"
+	Help  = "Thunderbolt Spec Version for Redwood Ridge chip."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "Thunderbolt_FR_VERSION"
+	Value  = "11"
+	Help  = "Thunderbolt Spec Version for Falcon Ridge chip."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "Thunderbolt_WR_VERSION"
+	Value  = "10"
+	Help  = "Thunderbolt Spec Version for BDW-TBT-LP chip."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RC_VERSION"
+	Value  = "19"
+	Help  = "Thunderbolt RC Version."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TBT_INTEL_RC_CONFIG"
+	Value  = "1"
+	Help  = "If set, it means PCH and ACPI platform modules are using Intel RC"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+PATH
+	Name  = "Thunderbolt_DIR"
+End
+
+ELINK
+	Name  = "TBT_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/I$(Thunderbolt_DIR)"
+	Parent  = "TBT_INCLUDES"
+	InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

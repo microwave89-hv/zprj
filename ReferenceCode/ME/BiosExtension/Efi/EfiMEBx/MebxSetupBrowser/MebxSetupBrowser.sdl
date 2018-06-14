@@ -1,0 +1,34 @@
+TOKEN
+	Name  = "MebxSetupBrowser_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable IccOverClocking support in Project"
+	Token = "iAMT_SUPPORT" "=" "1"
+End
+
+MODULE
+	Help  = "Includes MebxSetupBrowser.mak to Project"
+	File  = "MebxSetupBrowser.mak"
+End
+
+PATH
+	Name  = "MebxSetupBrowser_DIR"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\MebxSetupBrowser.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "EFIMebxSetup_FILE_PATH"
+	Value  = "$(MebxSetupBrowser_DIR)\MebxSetupBrowser.efi"
+	TokenType = Expression
+	TargetMAK = Yes
+	Help  = "Mebx Setup Browser File name and path"
+End

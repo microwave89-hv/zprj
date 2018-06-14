@@ -1,0 +1,13 @@
+<component>
+	name = "EdkIIGlueUefiLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\UefiLib"
+	RefName = "EdkIIGlueUefiLib"
+[files]
+"EdkIIGlueUefiLib.sdl"	
+"EdkIIGlueUefiLib.mak"	
+"UefiLib.inf"
+"UefiLib.c"	
+"Console.c"
+"UefiNotTiano.c"
+<endComponent>

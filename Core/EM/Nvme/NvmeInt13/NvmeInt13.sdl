@@ -1,0 +1,48 @@
+TOKEN
+    Name  = "NVMEINT13_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable Sdio Int13 support in the project."
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+    Token = "CSM_SUPPORT" "=" "1"
+End
+
+PATH
+    Name  = "NVME_INT13_DIR"
+    Path  = "Core\EM\Nvme\NvmeInt13"
+End
+
+MODULE
+	Help  = "Includes NvmeInt13.mak"
+	File  = "NvmeInt13.mak"
+End
+
+TOKEN
+    Name  = "NVME_SWSMI"
+    Value  = "0x42"
+    Help  = "Data to be written to SW SMI port to invoke NVME SW SMI handler."
+    TokenType = Integer
+    TargetH = Yes
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\NvmeInt13.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+
+TOKEN
+	Name  = "NVMEI13_BIN"
+	Value  = "addon\NvmeI13.bin"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "$(NVME_INT13_DIR)\NvmeInt13.inf"
+	Parent  = "CSM_CUSTOM_INFS"
+	InvokeOrder = AfterParent
+End

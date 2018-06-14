@@ -1,0 +1,108 @@
+;	TITLE	HACCESS.EQU - Accessing HBA memory-mapped register
+;****************************************************************************
+;****************************************************************************
+;**                                                                        **
+;**             (C)Copyright 1985-2011, American Megatrends, Inc.          **
+;**                                                                        **
+;**                          All Rights Reserved.                          **
+;**                                                                        **
+;**                 5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093      **
+;**                                                                        **
+;**                          Phone (770)-246-8600                          **
+;**                                                                        **
+;****************************************************************************
+;****************************************************************************
+
+;****************************************************************************
+; $Header: /Alaska/SOURCE/Modules/AHCI/INT13/CSP/HACCESS.EQU 3     2/10/11 10:52a Rameshr $
+;
+; $Revision: 3 $
+;
+; $Date: 2/10/11 10:52a $
+;
+;****************************************************************************
+; Revision History
+; ----------------
+; $Log: /Alaska/SOURCE/Modules/AHCI/INT13/CSP/HACCESS.EQU $
+; 
+; 3     2/10/11 10:52a Rameshr
+; [TAG]  		EIP53704
+; [Category]  	Improvement
+; [Description]  	AMI headers update for Alaska Ahci Driver
+; [Files]  		AHCIACC.ASM
+; HACCESS.EQU
+; AHCI.EQU
+; AINT13.EQU
+; AInt13Csp.c
+; 
+; 2     5/28/08 9:43a Rameshraju
+; Updated the AMI Address.
+; 
+; 1     12/07/07 11:17a Olegi
+; 
+; 4     12/05/06 3:16a Iminglin
+; Remove useless.
+; 
+; 3     11/29/06 3:18a Iminglin
+; CSP modification.
+; 
+; 2     11/23/06 10:12p Iminglin
+; Default is for ICH7.
+; 
+; 1     6/09/05 11:29p Iminglin
+; Initialized version
+; 
+; 1     5/20/05 2:37a Iminglin
+; Intel AHCI source
+; 
+;****************************************************************************
+
+;-------------------------------------------------------------------------
+;
+; Input parameter in register CH to read/write memory-mapped registers.
+;
+;ACCESS_DATA	equ	0ADh
+;
+; Output parameter in register CH from read/write memory-mapped registers.
+; This data is checked for determining whether access is successful.
+;
+;DATA_ACCESSED	equ	0DAh		; Access is Successful
+					; Any other value -> error
+;
+;-------------------------------------------------------------------------
+; Function number used for common control routine to access memory-mapped
+; registers using any access method
+;
+;READ_BYTE	equ	00h	; Func# 00h for Read Byte Data
+;READ_WORD	equ	01h	; Func# 01h for Read Word Data
+;READ_DWORD	equ	02h	; Func# 02h for Read Dword Data
+;
+;WRITE_BYTE	equ	10h	; Func# 10h for Write Byte Data
+;WRITE_WORD	equ	11h	; Func# 11h for Write Word Data
+;WRITE_DWORD	equ	12h	; Func# 12h for Write Dword Data
+;
+;INIT_BYTE_ARRAY	equ	20h	; Func# 20h for Init Byte Array
+;INIT_WORD_ARRAY	equ	21h	; Func# 21h for Init Word Array
+;INIT_DWORD_ARRAY 	equ	22h	; Func# 22h for Init Dword Array
+;
+;-------------------------------------------------------------------------
+;
+;RW_FUNC_STRUC	struc
+;  bFunction	db	?	; Function#
+;  wPtrToRoutine	dw	?	; Offset of execution routine
+;RW_FUNC_STRUC	ends
+;-------------------------------------------------------------------------
+;****************************************************************************
+;****************************************************************************
+;**                                                                        **
+;**             (C)Copyright 1985-2011, American Megatrends, Inc.          **
+;**                                                                        **
+;**                          All Rights Reserved.                          **
+;**                                                                        **
+;**                 5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093      **
+;**                                                                        **
+;**                          Phone (770)-246-8600                          **
+;**                                                                        **
+;****************************************************************************
+;****************************************************************************
+

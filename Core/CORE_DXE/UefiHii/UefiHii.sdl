@@ -1,0 +1,15 @@
+TOKEN
+	Name  = "UefiHii_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable UefiHii support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "UefiHii_DIR"
+	Help  = "Path to UefiHii Module in Project"
+End
+

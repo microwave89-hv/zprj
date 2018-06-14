@@ -1,0 +1,11 @@
+<component>
+	name = "PeiDbgDbgrx64"
+	category = ModulePart
+	LocalRoot = "Core\EM\AMIDebugRx\binaries\PeiAMIDebugRx\x64\DBGR\"
+	RefName = "PeiDbgDbgrx64"
+[files]
+"PeiDbgDbgrx64.sdl"	
+"PeiDbgDbgrx64.mak"	
+"mindbgr.obj"	
+"PeiDbgDbgrx64.dxs"	
+<endComponent>

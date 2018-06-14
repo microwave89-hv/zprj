@@ -1,0 +1,17 @@
+<component>
+        name = "SMBIOS - Static Data"
+        category = ModulePart
+        LocalRoot = "Board\EM\SMBIOS\SMBiosStaticData"
+        RefName = "SmbiosStaticData"
+[files]
+"\SmbiosStaticData.sdl"
+"\SmbiosStaticData.mak"
+"\SmbiosStaticData.asm"
+"\SmbiosStaticDataEnd.asm"
+"\SMBDATA.MAC"
+"\SMBSTRUC.DEF"
+"\SMBMACRO.AID"
+"\Smbdesc.def"
+"\SMB.EQU"
+"\Smbhdr.equ"
+<endComponent>

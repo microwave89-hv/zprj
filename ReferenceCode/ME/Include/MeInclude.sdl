@@ -1,0 +1,9 @@
+PATH
+	Name  = "MeInclude_DIR"
+End
+
+ELINK
+	Name  = "/I$(MeInclude_DIR)"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End

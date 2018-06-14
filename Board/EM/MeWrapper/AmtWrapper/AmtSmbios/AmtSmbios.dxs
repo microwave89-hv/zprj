@@ -1,0 +1,70 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/AmtWrapper/AmtSmbios/AmtSmbios.dxs 1     2/08/12 1:09a Klzhan $
+//
+// $Revision: 1 $
+//
+// $Date: 2/08/12 1:09a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/AmtWrapper/AmtSmbios/AmtSmbios.dxs $
+// 
+// 1     2/08/12 1:09a Klzhan
+// Initial Check in 
+// 
+// 1     2/25/11 1:44a Klzhan
+// Initial Check-in
+// 
+// 1     12/03/10 5:11a Klzhan
+// Initial Check-in.
+//
+//**********************************************************************
+//
+//<AMI_FHDR_START>
+//---------------------------------------------------------------------------
+// Name:		AMTSmbios.dxs
+//
+// Description:	AMT Smbios dependency file.
+//
+//---------------------------------------------------------------------------
+//<AMI_FHDR_END>
+#include "EfiDepex.h"
+
+#include "Protocol\SmbiosGetFlashDataProtocol.h"
+#include EFI_PROTOCOL_DEFINITION (AmtPlatformPolicy)
+#include EFI_PROTOCOL_DEFINITION (Heci)
+#include EFI_PROTOCOL_DEFINITION (MePlatformPolicy)
+
+DEPENDENCY_START
+  EFI_SMBIOS_PROTOCOL_GUID AND
+  DXE_PLATFORM_AMT_POLICY_GUID AND
+  EFI_HECI_PROTOCOL_GUID AND
+  DXE_PLATFORM_ME_POLICY_GUID
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

@@ -1,0 +1,11 @@
+<component>
+	name = "SmmKscLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\SampleCode\Library\Ksc\Smm"
+	RefName = "SmmKscLib"
+[files]
+"SmmKscLib.sdl"
+"SmmKscLib.mak"
+"SmmKscLib.c"
+"SmmKscLib.inf"
+<endComponent>

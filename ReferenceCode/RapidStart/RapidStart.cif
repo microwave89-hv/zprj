@@ -1,0 +1,23 @@
+<component>
+	name = "Intel Rapid Start Technology"
+	category = eModule
+	LocalRoot = "ReferenceCode\RapidStart"
+	RefName = "RapidStart"
+[files]
+"RapidStart.sdl"	
+"ReleaseNotes.chm"	
+[parts]
+"RapidStartAcpiTables"
+"RapidStartPei"
+"RapidStartDxe"
+"RapidStartGuidLib"
+"RapidStartSmm"
+"RapidStartInclude"
+"RapidStartPpiLib"
+"RapidStartProtocolLib"
+"DxeFfsGfxDriver"
+"PeiGfxDriver"
+"GfxDisplayLibDxe"
+"GfxDisplayLibPei"
+"RapidStartWrapper"
+<endComponent>

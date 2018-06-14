@@ -1,0 +1,67 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2005, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**             6145-F Northbelt Pkwy, Norcross, GA 30071            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/BIN/Core/Modules/PciBus/PciRootBridge.dxs 3     4/28/09 3:49p Yakovlevs $
+//
+// $Revision: 3 $
+//
+// $Date: 4/28/09 3:49p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Core/Modules/PciBus/PciRootBridge.dxs $
+// 
+// 3     4/28/09 3:49p Yakovlevs
+// Changes related to AmiBoardInfo protocol and Multiplatform support.
+// 
+// 2     3/13/07 8:32p Yakovlevs
+// 
+// 1     3/12/07 12:08p Yakovlevs
+// 
+// 2     7/25/05 4:26p Markw
+// Add Variable services.
+//
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:	PciRootBridge_dxs
+//
+// Description:
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+#include <Protocol\Variable.h>
+#include <Protocol\CPU.h>
+#include <Protocol\AmiBoardInfo.h>
+DEPENDENCY_START
+    EFI_CPU_ARCH_PROTOCOL_GUID AND
+    EFI_VARIABLE_ARCH_PROTOCOL_GUID AND
+    EFI_VARIABLE_WRITE_ARCH_PROTOCOL_GUID AND
+    AMI_BOARD_INFO_PROTOCOL_GUID
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2005, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**             6145-F Northbelt Pkwy, Norcross, GA 30071            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

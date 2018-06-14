@@ -1,0 +1,15 @@
+<component>
+	name = "AmiBoardInfo"
+	category = ModulePart
+	LocalRoot = "Core\EM\BoardInfo"
+	RefName = "AmiBoardInfo"
+[files]
+"AmiBoardInfo.sdl"	
+"AmiBoardInfo.mak"	
+"AmiBoardInfo.c"	
+"AmiBoardInfo.dxs"	
+"PciBoard.c"	
+"AmiBoardInfo.chm"	
+[parts]
+"AmiBoardInfoIncludes"
+<endComponent>

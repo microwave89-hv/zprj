@@ -1,0 +1,13 @@
+<component>
+	name = "RapidStartSetup"
+	category = ModulePart
+	LocalRoot = "Board\EM\RapidStartWrapper\RapidStartSetup"
+	RefName = "RapidStartSetup"
+[files]
+"RapidStartSetup.sdl"	
+"RapidStartSetup.mak"	
+"RapidStartSetup.sd"	
+"RapidStartSetup.uni"	
+"RapidStartSetup.c"	
+"RapidStartSetup.h"	
+<endComponent>

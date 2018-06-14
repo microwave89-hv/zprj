@@ -1,0 +1,15 @@
+<component>
+	name = "MeLibPei"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Library\MeKernel\Pei\"
+	RefName = "MeLibPei"
+[files]
+"MeLibPei.sdl"	
+"MeLibPei.mak"	
+"MePolicyLibPei.c"	
+"MePolicyLibPei.h"
+"HeciMsgLibPei.c"	
+"HeciMsgLibPei.h"	
+"MeLibPei.h"	
+"MeLibPei.inf"	
+<endComponent>

@@ -1,0 +1,16 @@
+<component>
+	name = "IccSetup"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\Icc\IccSetup"
+	RefName = "IccSetup"
+[files]
+"IccSetup.mak"	
+"IccSetup.sdl"	
+"IccCallbacks.c"	
+"IccCallbacks.h"	
+"IccSetup.h"	
+"IccSetupMenu.sd"	
+"IccSetupSubmenu.sd"	
+"IccStrings.uni"	
+"IccLoadDefault.c"	
+<endComponent>

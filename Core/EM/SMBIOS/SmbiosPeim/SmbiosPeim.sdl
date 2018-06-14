@@ -1,0 +1,32 @@
+TOKEN
+    Name = "SmbiosPeim_SUPPORT"
+    Value = "1"
+    Help = "Main switch to enable SmbiosPeim support in Project"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    Master = Yes
+    Token = "SB_WAKEUP_TYPE_FN" "=" "1"
+End
+
+PATH
+    Name = "SMBIOS_PEIM_DIR"
+End
+
+MODULE
+    Help = "Includes SmbiosPeim.mak to Project"
+    File = "SmbiosPeim.mak"
+End
+
+ELINK
+    Name = "$(BUILD_DIR)\SmbiosPeim.ffs"
+    Parent = "FV_BB"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "$(BUILD_DIR)\SmbiosPeim.ffs"
+    Parent = "FT_FV_BB"
+    InvokeOrder = AfterParent
+    Token = "FtRecovery_SUPPORT" "=" "1"
+End

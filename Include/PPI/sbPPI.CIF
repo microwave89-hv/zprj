@@ -1,0 +1,8 @@
+<component>
+    name = "SB PPI"
+    category = ModulePart
+    LocalRoot = "INCLUDE\PPI"
+    RefName = "SB PPI"
+[files]
+"\SBPPI.h"
+<endComponent>

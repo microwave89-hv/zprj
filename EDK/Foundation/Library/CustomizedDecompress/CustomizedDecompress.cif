@@ -1,0 +1,12 @@
+<component>
+	name = "CustomizedDecompress"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Library\CustomizedDecompress\"
+	RefName = "CustomizedDecompress"
+[files]
+"CustomizedDecompress.c"	
+"CustomizedDecompress.h"	
+"CustomizedDecompress.sdl"	
+"CustomizedDecompress.mak"	
+"CustomizedDecompress.inf"	
+<endComponent>

@@ -1,0 +1,89 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/NVMe/NvmeSmm/NvmeSmm.dxs 2     9/23/14 2:33a Anandakrishnanl $
+//
+// $Revision: 2 $
+//
+// $Date: 9/23/14 2:33a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/NVMe/NvmeSmm/NvmeSmm.dxs $
+// 
+// 2     9/23/14 2:33a Anandakrishnanl
+// [TAG]  		EIP180861
+// [Category]  	Improvement
+// [Description]  	Add Legacy Boot support in Aptio 4.x Nvme driver - NON
+// PI 1.2 Support
+// [Files]  		NvmeBus.c
+// NvmeBus.h
+// NvmeSmm.c
+// NvmeSmm.h
+// NvmeSmm.dxs
+// NvmeSmm.sdl
+// 
+// 1     9/04/14 7:54a Anandakrishnanl
+// [TAG]  		EIP180861
+// [Category]  	Improvement
+// [Description]  	Legacy Boot support in Aptio 4.x Nvme driver
+// [Files]  		NvmeSmm.cif
+// NvmeSmm.mak
+// NvmeSmm.dxs
+// NvmeSmm.sdl
+// NvmeSmm.c
+// NvmeSmm.h
+// NvmeDef.h
+// 
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:	    NvmeSmm.dxs
+//
+// Description:	This file is the dependency file for the NvmeSmm driver
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+
+#if defined(PI_SPECIFICATION_VERSION) && (PI_SPECIFICATION_VERSION >= 0x00010014)
+#include <Protocol\SmmBase2.h>
+#include <Protocol\SmmSwDispatch2.h>
+#else
+#include <Protocol\SmmBase.h>
+#include <Protocol\SmmSwDispatch.h>
+#endif
+
+DEPENDENCY_START
+#if defined(PI_SPECIFICATION_VERSION) && (PI_SPECIFICATION_VERSION >= 0x00010014)
+    EFI_SMM_BASE2_PROTOCOL_GUID AND
+    EFI_SMM_SW_DISPATCH2_PROTOCOL_GUID
+#else
+    EFI_SMM_BASE_PROTOCOL_GUID AND
+    EFI_SMM_SW_DISPATCH_PROTOCOL_GUID
+#endif
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2014, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

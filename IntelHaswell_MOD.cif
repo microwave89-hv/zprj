@@ -1,0 +1,7 @@
+<component>
+	name = "IntelHaswell_MOD"
+	category = ModulePart
+	RefName = "IntelHaswell_MOD"
+[files]
+"Board\CPU\TxtDxe\AmiTxtInfoHook.c"	
+<endComponent>

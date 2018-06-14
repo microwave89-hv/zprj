@@ -1,0 +1,91 @@
+## @file
+#  Component description file for the SPI Runtime driver.
+#
+#@copyright
+#  Copyright (c)  2004 - 2012 Intel Corporation. All rights reserved
+#  This software and associated documentation (if any) is furnished
+#  under a license and may only be used or copied in accordance
+#  with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be
+#  reproduced, stored in a retrieval system, or transmitted in any
+#  form or by any means without the express written consent of
+#  Intel Corporation.
+#
+#  This file contains a 'Sample Driver' and is licensed as such
+#  under the terms of your license agreement with Intel or your
+#  vendor.  This file may be modified by the user, subject to
+#  the additional terms of the license agreement
+#
+
+[defines]
+BASE_NAME            = PchSpiRuntime
+FILE_GUID            = C194C6EA-B68C-4981-B64B-9BD271474B20
+COMPONENT_TYPE       = RT_DRIVER
+
+[sources.common]
+  PchSpi.h
+  PchSpi.c
+  ../Common/SpiCommon.c
+
+#
+# Edk II Glue Driver Entry Point
+#
+  EdkIIGlueDxeDriverEntryPoint.c
+
+
+[includes.common]
+  .
+  ../Common
+  $(EDK_SOURCE)/Foundation/Efi
+  $(EDK_SOURCE)/Foundation/Include
+  $(EDK_SOURCE)/Foundation/Efi/Include
+  $(EDK_SOURCE)/Foundation/Framework/Include
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)/Include
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)/Include/Library
+#
+# EDK II Glue Library utilizes some standard headers from EDK
+#
+  $(EFI_SOURCE)
+  $(EDK_SOURCE)/Foundation
+  $(EDK_SOURCE)/Foundation/Framework
+  $(EDK_SOURCE)/Foundation/Include/IndustryStandard
+  $(EDK_SOURCE)/Foundation/Core/Dxe
+  $(EDK_SOURCE)/Foundation/Include/Pei
+  $(EDK_SOURCE)/Foundation/Library/Dxe/Include
+  $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include
+  $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include/Library
+
+[libraries.common]
+  EdkIIGlueBaseIoLibIntrinsic
+  EdkIIGlueBaseMemoryLib
+  EdkIIGlueSmmRuntimeDxeReportStatusCodeLib
+  EdkIIGlueEdkDxeRuntimeDriverLib
+  EdkIIGlueDxeDebugLibReportStatusCode
+  EdkIIGlueUefiBootServicesTableLib
+  EdkIIGlueUefiRuntimeServicesTableLib
+  EdkIIGlueDxeMemoryAllocationLib
+  EdkIIGlueDxeServicesTableLib
+  EdkProtocolLib
+  $(PROJECT_PCH_FAMILY)ProtocolLib
+  PchDxeRuntimePciLibPciExpress
+  PchPlatformLib
+  EfiScriptLib
+
+[nmake.common]
+  IMAGE_ENTRY_POINT = _ModuleEntryPoint
+  DPX_SOURCE        = PchSpi.dxs
+#
+# Module Entry Point
+#
+  C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_MODULE_ENTRY_POINT__=InstallPchSpi
+  C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_SET_VIRTUAL_ADDRESS_MAP_EVENT_HANDLER__=PchSpiVirtualAddressChangeEvent
+  C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_BASE_IO_LIB_INTRINSIC__ \
+                       -D __EDKII_GLUE_BASE_MEMORY_LIB__ \
+                       -D __EDKII_GLUE_SMM_RUNTIME_DXE_REPORT_STATUS_CODE_LIB__ \
+                       -D __EDKII_GLUE_EDK_DXE_RUNTIME_DRIVER_LIB__ \
+                       -D __EDKII_GLUE_DXE_DEBUG_LIB_REPORT_STATUS_CODE__ \
+                       -D __EDKII_GLUE_UEFI_BOOT_SERVICES_TABLE_LIB__ \
+                       -D __EDKII_GLUE_UEFI_RUNTIME_SERVICES_TABLE_LIB__ \
+                       -D __EDKII_GLUE_DXE_MEMORY_ALLOCATION_LIB__ \
+                       -D __EDKII_GLUE_DXE_SERVICES_TABLE_LIB__

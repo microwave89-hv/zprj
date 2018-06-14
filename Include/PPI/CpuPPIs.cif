@@ -1,0 +1,9 @@
+<component>
+	name = "CpuPPIs"
+	category = ModulePart
+	LocalRoot = "Include\ppi\"
+	RefName = "CpuPPIs"
+[files]
+"CPUPolicy.h"	
+"AmiEarlyBistPpi.h"	
+<endComponent>

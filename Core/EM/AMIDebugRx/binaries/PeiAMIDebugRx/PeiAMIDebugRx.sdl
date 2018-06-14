@@ -1,0 +1,44 @@
+TOKEN
+	Name  = "PeiDebugModule_SUPPORT"
+	Value  = "1"
+	Help  = "Master SDL token of the Module depends on PeiDebugger_SUPPORT SDL token"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+	Lock = Yes
+	Token = "PeiDebugger_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "DBG_PI_INT_SUPPORT"
+	Value  = "0"
+	TokenType = Integer
+End
+
+TOKEN
+	Name  = "DBG_PI_INT_SUPPORT"
+	Value  = "1"
+	Token = "PI_SPECIFICATION_VERSION" ">=" "0x5B"
+	TokenType = Integer
+End
+
+TOKEN
+	Name  = "PEI_DBG_CFLAGS"
+	Value  = "/nologo /c /O1 /W3 /WX /DALASKA_SUPPORT"
+	Token = "DBG_PI_INT_SUPPORT" "=" "0"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "PEI_DBG_CFLAGS"
+	Value  = "/nologo /c /O1 /W3 /WX /DALASKA_SUPPORT /D EFI_SPECIFICATION_VERSION=$(EFI_SPECIFICATION_VERSION) /D PI_SPECIFICATION_VERSION=$(PI_SPECIFICATION_VERSION)"
+	Token = "DBG_PI_INT_SUPPORT" "=" "1"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "PeiAMIDebugRx_DIR"
+End
+

@@ -1,0 +1,12 @@
+<component>
+	name = "IsctProtocolLib"
+	category = ModulePart
+	LocalRoot = "Board\EM\Isct\Protocol"
+	RefName = "IsctProtocolLib"
+[files]
+"IsctProtocolLib.inf"
+"IsctProtocolLib.mak"
+"IsctProtocolLib.sdl"
+"IsctNvsArea\IsctNvsArea.h"
+"IsctNvsArea\IsctNvsArea.c"
+<endComponent>

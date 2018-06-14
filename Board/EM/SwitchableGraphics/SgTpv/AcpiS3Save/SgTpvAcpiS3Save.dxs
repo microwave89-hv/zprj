@@ -1,0 +1,68 @@
+//****************************************************************************
+//****************************************************************************
+//**                                                                        **
+//**             (C)Copyright 1985-2012, American Megatrends, Inc.          **
+//**                                                                        **
+//**                          All Rights Reserved.                          **
+//**                                                                        **
+//**             5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093          **
+//**                                                                        **
+//**                          Phone (770)-246-8600                          **
+//**                                                                        **
+//****************************************************************************
+//****************************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/SwitchableGraphics/Sg TPV/Sg Acpi S3 Save/SgTpvAcpiS3Save.dxs 2     9/09/12 10:53p Joshchou $
+//
+// $Revision: 2 $
+//
+// $Date: 9/09/12 10:53p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/SwitchableGraphics/Sg TPV/Sg Acpi S3 Save/SgTpvAcpiS3Save.dxs $
+// 
+// 2     9/09/12 10:53p Joshchou
+// [TAG]  		None
+// [Category]  	Improvement
+// [Description]  	Tpv module support for sharkbay.
+// [Files]  		SgTpvAcpiS3Save.mak
+// SgTpvAcpiS3Save.c
+// SgTpvAcpiS3Save.dxs
+// 
+// 1     6/27/11 5:27a Alanlin
+// [TAG]  		EIP61848
+// [Category]  	New Feature
+// [Description]  	Initial check-in.Integrated SwitchableGraphics Intel
+// Reference code 0.6.0
+// [Files]  		SgTpvAcpiS3Save.cif
+// SgTpvAcpiS3Save.sdl
+// SgTpvAcpiS3Save.mak
+// SgTpvAcpiS3Save.c
+// SgTpvAcpiS3Save.dxs
+// 
+// 
+// 
+//**********************************************************************
+#include <Protocol\GlobalNvsArea\GlobalNvsArea.h>
+#include <protocol\AcpiSupport.h>
+
+DEPENDENCY_START
+  EFI_ACPI_SUPPORT_GUID             AND
+  EFI_GLOBAL_NVS_AREA_PROTOCOL_GUID 
+DEPENDENCY_END
+
+
+//****************************************************************************
+//****************************************************************************
+//**                                                                        **
+//**             (C)Copyright 1985-2012, American Megatrends, Inc.          **
+//**                                                                        **
+//**                          All Rights Reserved.                          **
+//**                                                                        **
+//**             5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093          **
+//**                                                                        **
+//**                          Phone (770)-246-8600                          **
+//**                                                                        **
+//****************************************************************************
+//****************************************************************************

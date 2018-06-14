@@ -1,0 +1,32 @@
+TOKEN
+	Name  = "INTELSENSORHUB_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to support Intel SensorHub in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Token = "PCH_SKU" "=" "1"
+End
+
+PATH
+	Name  = "INTEL_SSDTSENSORHUB_DIR"
+End
+
+TOKEN
+	Name  = "INTEL_SENSORHUB_ASL_FILE"
+	Value  = "$(INTEL_SSDTSENSORHUB_DIR)\SsdtSensorHub.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+MODULE
+	Help  = "Includes SsdtSensorHub.mak to Project"
+	File  = "SsdtSensorHub.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SENSORHUB.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

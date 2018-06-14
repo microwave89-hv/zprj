@@ -1,0 +1,11 @@
+<component>
+	name = "OEM Password Checking"
+	category = ModulePart
+	LocalRoot = "Core\EM\OFBD\OEMPWDCK\"
+	RefName = "OFBD_OEMPWDCK"
+[files]
+"OEMPwdCk.sdl"	
+"OEMPwdCk.mak"	
+"OEMPwdCk.c"	
+"OEMPwdCk.h"	
+<endComponent>

@@ -1,0 +1,51 @@
+TOKEN
+    Name  = SECURE_FLASH_SUPPORT
+    Value  = "1"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    Master = Yes
+    Help  = "Main switch to enable Security Flash in Project"
+    Token = "SecSMIFlash_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "OFBD_SECUREFLASH_LIB"
+    Value  = "$(BUILD_DIR)\OfbdSecureFlash.lib"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "[OFBD Security Update]"
+    Help  = "See detail description in each token's help box."
+    TokenType = Expression
+    Lock = Yes
+End
+
+PATH
+    Name  = "OFBD_SECURE_FLASH_DIR"
+End
+
+MODULE
+	Help  = "Includes SecureFlash.mak to Project"
+	File  = "SecureFlash.mak"
+End
+
+ELINK
+    Name  = "$(OFBD_SECUREFLASH_LIB)"
+    Parent  = "OFBDLISTLIB"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "ASFUEntry,"
+    Parent  = "OFBDPartsList"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ASFUInSmm,"
+    Parent  = "OFBDInSmmFuncList"
+    InvokeOrder = AfterParent
+End

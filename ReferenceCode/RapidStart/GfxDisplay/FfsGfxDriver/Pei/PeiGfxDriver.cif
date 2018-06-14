@@ -1,0 +1,12 @@
+<component>
+	name = "PeiGfxDriver"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\RapidStart\GfxDisplay\FfsGfxDriver\Pei\"
+	RefName = "PeiGfxDriver"
+[files]
+"PeiGfxDriver.efi"
+"PeiGfxDriver.dxs"
+"PeiGfxDriver.mak"
+"PeiGfxDriver.sdl"
+"PeiGfxDriver.inf"
+<endComponent>

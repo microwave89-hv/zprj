@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "PrintLibLite_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PrintLibLite support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "PRINTLIBLITE"
+	Value  = "$(BUILD_DIR)\PrintLibLite.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "PrintLibLite_DIR"
+End
+
+MODULE
+	Help  = "Includes PrintLibLite.mak to Project"
+	File  = "PrintLibLite.mak"
+End
+

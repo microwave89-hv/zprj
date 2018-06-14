@@ -1,0 +1,76 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SmmChildDispatcher/SmmChildDispatcher.dxs 2     4/25/12 9:35a Victortu $
+//
+// $Revision: 2 $
+//
+// $Date: 4/25/12 9:35a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SmmChildDispatcher/SmmChildDispatcher.dxs $
+// 
+// 2     4/25/12 9:35a Victortu
+// [TAG]         None
+// [Category]    Improvement
+// [Description] Reprogram SMM ChildDispatcher drivers.
+// [Files]       SmiHandlerGeneric.c; SmiHandlerPorting.c;
+// SmiHandlerGeneric2.c; SmmChildDispatch2Main.c; SmmChildDispatcher2.mak;
+// SmmChildDispatcher2.sdl; SmmChildDispatch.h; SmmChildDispatchMain.c;
+// SmmChildDispatchProtocol.c; SmmChildDispatcher.dxs;
+// PchSmiDispatcher.sdl
+// 
+// 1     2/08/12 8:27a Yurenlai
+// Intel Lynx Point/SB eChipset initially releases.
+// 
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:        SmmChildDispatcher.DXS
+//
+// Description: This file contains the dependency expression for the SMM
+//              Child Dispatcher driver
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+
+#include <token.h>
+
+#include <Protocol\SmmBase.h>
+#if INTEL_RC_SMI_DISPATCHER_SUPPORT
+#include <Protocol\SmmSwDispatch.h>
+#endif
+
+DEPENDENCY_START
+#if INTEL_RC_SMI_DISPATCHER_SUPPORT
+    EFI_SMM_SW_DISPATCH_PROTOCOL_GUID AND
+#endif
+    EFI_SMM_BASE_PROTOCOL_GUID
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

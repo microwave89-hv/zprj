@@ -1,0 +1,107 @@
+TOKEN
+	Name  = "CSPLIB_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable CSP Library support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "CSP_LIBRARY"
+	Value  = "1"
+	Help  = "Build as library"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "AMICSPLib"
+	Value  = "$$(LIB_BUILD_DIR)\AmiCSPLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "CSP_LIB_MAJOR_VER"
+	Value  = "00"
+	Help  = "CSP Library Major Version Number.\ DO NOT CHANGE THIS VALUE"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "CSP_LIB_MINOR_VER"
+	Value  = "17"
+	Help  = "CSP Library Minor Version Number.\ DO NOT CHANGE THIS VALUE"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "BIOS_TAG"
+	Value  = "$(PROJECT_TAG)$(PROJECT_MAJOR_VERSION)$(PROJECT_MINOR_VERSION)"
+	Help  = "BIOS Tag inserted into Firmware ID structure.\9 characters. \5 characters of project tag followed by 3 characters of project version and terminating zero"
+	TokenType = Expression
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FW_VERSION_GUID"
+	Value  = "{0xb5c59087, 0xfeac, 0x4b41, {0x9d, 0x80, 0x79, 0xb, 0xa5, 0xaa, 0x7, 0xf}}"
+	Help  = "FW Version GUID inserted into Firmware ID structure.\FW version has to be overridden for every project."
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "GUID"
+End
+
+MODULE
+	Help  = "Includes CSPLib.mak to Project"
+	File  = "CspLib.mak"
+End
+
+ELINK
+	Name  = "CSP_LIB_CIF_FILES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CspLibDxe.ffs"
+	Parent  = "FV_MAIN"
+	Help  = "CSP Library DXE Component"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I $(BUILD_DIR) "
+	Parent  = "CFLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CspLibPei_Init,"
+	Parent  = "PeiCoreInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "RuntimeShadowRamWrite"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\fid.ffs"
+	Parent  = "FV_BB"
+	Token = "CORE_COMBINED_VERSION" ">=" "0x40280"
+	InvokeOrder = AfterParent
+End
+

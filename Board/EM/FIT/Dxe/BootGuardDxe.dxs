@@ -1,0 +1,71 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2013, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/FIT/Dxe/BootGuardDxe.dxs 1     2/25/13 1:11a Bensonlai $
+//
+// $Revision: 1 $
+//
+// $Date: 2/25/13 1:11a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/FIT/Dxe/BootGuardDxe.dxs $
+// 
+// 1     2/25/13 1:11a Bensonlai
+// [TAG]  		EIP114386
+// [Category]  	Spec Update
+// [Severity]  	Important
+// [Description]  	[SBY] Ultrabook for Shark Bay Platform - : Boot Guard
+// for 4th Gen Intel Core Processor based on Mobile U-Processor Line -
+// BIOS Writer's Guide - Rev 0.8.1
+// [Files]  		BootGuardDxe.cif
+// BootGuardDxe.c
+// BootGuardDxe.h
+// BootGuardDxe.sdl
+// BootGuardDxe.dxs
+// BootGuardDxe.mak
+//
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:  BootGuardDxe.dxs
+//
+// Description:	Dependency expression file for BootGuardDxe Driver.
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+
+#include "AutoGen.h"
+#include "DxeDepex.h"
+#if defined (BUILD_WITH_GLUELIB) || defined (BUILD_WITH_EDKII_GLUE_LIB)
+#include "EfiDepex.h"
+#include EFI_ARCH_PROTOCOL_DEFINITION (Variable)
+#endif
+
+DEPENDENCY_START
+    EFI_VARIABLE_ARCH_PROTOCOL_GUID
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2013, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

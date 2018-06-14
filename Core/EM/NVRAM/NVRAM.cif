@@ -1,0 +1,14 @@
+<component>
+	name = "NVRAM"
+	category = ModulePart
+	LocalRoot = "Core\EM\NVRAM\"
+	RefName = "NVRAM"
+[files]
+"NVRAM.chm"	
+"NVRAM.sdl"	
+"NVRAM.mak"	
+"NVRAM.h"	
+"NVRAMRead.c"	
+"NVRAMPEI.c"	
+"NVRAMDXE.c"	
+<endComponent>

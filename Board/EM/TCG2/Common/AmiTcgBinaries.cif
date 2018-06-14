@@ -1,0 +1,12 @@
+<component>
+	name = "AmiTcgBinaries"
+	category = ModulePart
+	LocalRoot = "Board\EM\TCG2\Common"
+	RefName = "AmiTcgBinaries"
+[files]
+"TcgBins.sdl"	
+"TcgBins.mak"	
+"TPM32BIN.bin"
+"LEGX16.bin"
+"MPTPM.bin"
+<endComponent>

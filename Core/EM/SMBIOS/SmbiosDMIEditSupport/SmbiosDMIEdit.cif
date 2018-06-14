@@ -1,0 +1,14 @@
+<component>
+	name = "SmbiosDMIEdit"
+	category = ModulePart
+	LocalRoot = "Core\EM\SMBios\SmbiosDMIEditSupport"
+	RefName = "SmbiosDMIEdit"
+[files]
+"SmbiosDMIEdit.sdl"	
+"SmbiosDMIEdit.mak"	
+"SmbiosDMIEdit.dxs"	
+"SmbiosDMIEdit.h"	
+"SmbiosDMIEdit.c"	
+"SmbiosDMIEditFunc.c"	
+"SmbiosNvramFunc.c"	
+<endComponent>

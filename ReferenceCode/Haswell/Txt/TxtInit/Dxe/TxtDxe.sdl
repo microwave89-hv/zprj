@@ -1,0 +1,27 @@
+TOKEN
+	Name  = "TxtDxe_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TXT DXE init support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "TxtDxe_DIR"
+	Help  = "TXT DXE source directory"
+End
+
+MODULE
+	Help  = "Includes TXTDXE.mak into project"
+	File  = "TXTDXE.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TxtDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+                       

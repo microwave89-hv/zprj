@@ -1,0 +1,37 @@
+TOKEN
+	Name  = DptfGuidLib_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable DptfGuidLib support in Project"
+End
+
+MODULE
+	Help  = "Includes DptfGuidLib.mak to Project"
+	File  = "DptfGuidLib.mak"
+End
+
+PATH
+	Name  = "INTEL_DPTF_GUIDLIB_DIR"
+End
+
+TOKEN
+	Name  = "DptfGuidLib_LIB"
+	Value  = "$(BUILD_DIR)\DptfGuidLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "/I$(INTEL_DPTF_GUIDLIB_DIR)"
+	Parent  = "DPTF_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_DPTF_GUIDLIB_DIR)\AcpiTableStorage"
+	Parent  = "DPTF_INCLUDES"
+	InvokeOrder = AfterParent
+End

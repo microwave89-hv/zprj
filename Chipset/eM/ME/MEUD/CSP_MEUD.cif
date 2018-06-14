@@ -1,0 +1,14 @@
+<component>
+	name = "CSP : ME 8.0 Firmware Update"
+	category = ModulePart
+	LocalRoot = "\Chipset\eM\ME\MEUD"
+	RefName = "CSP_MEUD"
+[files]
+"CSP_MEUD.c"	
+"CSP_MEUD.h"	
+"CSP_MEUD.sdl"	
+"CSP_MEUD.mak"	
+[parts]
+"MEFwUpdLcl"
+"MeFwCapsule"
+<endComponent>

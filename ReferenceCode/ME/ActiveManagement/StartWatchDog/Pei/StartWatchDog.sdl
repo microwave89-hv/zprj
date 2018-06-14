@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "StartWatchDog_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable StartWatchDog support in Project"
+End
+
+MODULE
+	Help  = "Includes StartWatchDog.mak to Project"
+	File  = "StartWatchDog.mak"
+End
+
+PATH
+	Name  = "StartWatchDog_DIR"
+	Help  = "iAMT Heci Pei file source directory"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\StartWatchDog.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End

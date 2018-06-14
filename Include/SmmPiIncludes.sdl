@@ -1,0 +1,11 @@
+TOKEN
+	Name  = "SMM_PI_INCLUDES_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SMM Includes support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Token = "PI_SPECIFICATION_VERSION" ">=" "0x1000A"
+End

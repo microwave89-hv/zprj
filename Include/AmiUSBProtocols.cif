@@ -1,0 +1,15 @@
+<component>
+	name = "AmiUSBProtocols"
+	category = ModulePart
+	LocalRoot = "Include"
+	RefName = "AmiUSBProtocols"
+[files]
+"Protocol\AmiUsbController.h"
+"Protocol\UsbIo.h"	
+"Protocol\UsbHC.h"	
+"Protocol\UsbPolicy.h"	
+"Protocol\Emul6064Trap.h"	
+"Protocol\Emul6064KbdInput.h"	
+"Protocol\Emul6064MsInput.h"	
+"Protocol\AmiUsbCCID.h"	
+<endComponent>

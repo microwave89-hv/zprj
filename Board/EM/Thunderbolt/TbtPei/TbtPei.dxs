@@ -1,0 +1,66 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/Thunderbolt/TbtPei/TbtPei.dxs 1     1/10/13 4:55a Barretlin $
+//
+// $Revision: 1 $
+//
+// $Date: 1/10/13 4:55a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/Thunderbolt/TbtPei/TbtPei.dxs $
+// 
+// 1     1/10/13 4:55a Barretlin
+// Change SS path and update module for Thunderbolt Spec 1.6 for Cactus
+// Ridge chip and Thunderbolt Spec 0.5 for Redwood Ridge chip
+// 
+// 2     3/05/12 1:21a Barretlin
+// [TAG]  		EIP83266
+// [Category]  	Spec Update
+// [Description]  	Specificatoin Update 0.90
+// [Files]  		TbtSetup.sdl
+// TbtSetup.sd
+// TbtSetup.uni
+// TbtSetup.cif
+// TbtOemBoard.h
+// TbtOemLib.c
+// TbtOemLib.h
+// TbtSmm.c
+// TbtPei..
+// 
+//**********************************************************************
+#include <token.h>
+#include <ppi\CpuIo.h>
+#include <PPI\stall.h>
+#include <ppi\ReadOnlyVariable.h>
+
+DEPENDENCY_START
+  EFI_PEI_CPU_IO_PPI_INSTALLED_GUID AND
+  EFI_PEI_READ_ONLY_VARIABLE_PPI_GUID AND
+  EFI_PEI_STALL_PPI_GUID 
+DEPENDENCY_END
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

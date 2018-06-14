@@ -1,0 +1,24 @@
+<component>
+	name = "PeiMain"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Core\Pei\"
+	RefName = "PeiMain"
+[files]
+"PeiMain.inf"	
+"BootMode\BootMode.c"	
+"Dependency\dependency.c"	
+"Dependency\dependency.h"	
+"Dispatcher\Dispatcher.c"	
+"FwVol\FwVol.c"	
+"Hob\Hob.c"	
+"Ia32\SwitchCoreStacks.asm"	
+"Image\Image.c"	
+"Include\PeiCore.h"	
+"Memory\MemoryServices.c"	
+"PeiMain\PeiMain.c"	
+"Ppi\Ppi.c"	
+"Reset\Reset.c"	
+"Security\Security.c"	
+"StatusCode\StatusCode.c"	
+"DebugMask\DebugMask.c"	
+<endComponent>

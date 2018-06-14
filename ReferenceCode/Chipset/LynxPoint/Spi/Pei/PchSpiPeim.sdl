@@ -1,0 +1,67 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchSpiPeim/PchSpiPeim.sdl 1     2/08/12 9:23a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 2/08/12 9:23a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchSpiPeim/PchSpiPeim.sdl $
+# 
+# 1     2/08/12 9:23a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+        Name  = "PchSpiPeim_SUPPORT"
+        Value  = "1"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        Master = Yes
+        Help  = "Main switch to enable PchSpiPeim support in Project"
+End
+
+PATH
+        Name  = "PchSpiPeim_DIR"
+        Help  = "PchSpiPeim file source directory"
+End
+
+MODULE
+        File  = "PchSpiPeim.mak"
+        Help  = "Includes PchSpiPeim.mak to Project"
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\PchSpiPeim.ffs"
+        Parent  = "FV_BB"
+        InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

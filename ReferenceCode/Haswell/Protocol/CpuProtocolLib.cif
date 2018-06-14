@@ -1,0 +1,27 @@
+<component>
+	name = "CpuProtocolLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\Protocol\"
+	RefName = "CpuProtocolLib"
+[files]
+"CpuProtocolLib.sdl"	
+"CpuProtocolLib.mak"	
+"CpuProtocolLib.inf"	
+"CpuInfo\CpuInfo.c"
+"CpuInfo\CpuInfo.h"
+"CpuPlatformPolicy\CpuPlatformPolicy.c"
+"CpuPlatformPolicy\CpuPlatformPolicy.h"
+"CpuPlatformPolicy\CpuPmConfig.h"
+"MpService\MpService.c"
+"MpService\MpService.h"
+"Pfat\Pfat.c"
+"Pfat\Pfat.h"
+"PiMpService\PiMpService.c"
+"PiMpService\PiMpService.h"
+"PowerMgmtInitDone\PowerMgmtInitDone.c"
+"PowerMgmtInitDone\PowerMgmtInitDone.h"
+"PpmGlobalNvsArea\PpmGlobalNvsArea.c"
+"PpmGlobalNvsArea\PpmGlobalNvsArea.h"
+"SmmThunk\SmmThunk.c"
+"SmmThunk\SmmThunk.h"
+<endComponent>

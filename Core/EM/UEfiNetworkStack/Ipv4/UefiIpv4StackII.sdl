@@ -1,0 +1,11 @@
+TOKEN
+	Name  = "UefiIpv4StackII_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable UefiIpv4StackII support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+

@@ -1,0 +1,32 @@
+TOKEN
+	Name  = "PfatBinary_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable PfatBinary support in Project"
+End
+
+PATH
+	Name  = "PfatBinary_DIR"
+	Help  = "PfatServices Driver files source directory"
+End
+
+MODULE
+	Help  = "Includes PfatBinary.mak to Project"
+	File  = "PfatBinary.mak"
+End
+
+TOKEN
+	Name  = "PfatBinary"
+	Value  = "$(PfatBinary_DIR)\PfatBinary.bin"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PfatBinary.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

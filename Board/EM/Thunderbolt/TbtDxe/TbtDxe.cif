@@ -1,0 +1,14 @@
+<component>
+	name = "TbtDxe"
+	category = ModulePart
+	LocalRoot = "Board\EM\Thunderbolt\TbtDxe\"
+	RefName = "TbtDxe"
+[files]
+"TbtDxe.sdl"	
+"TbtDxe.mak"	
+"TbtDxe.c"	
+"TbtDxe.dxs"	
+"TbtGpe.asl"	
+"TbtDxeLib.c"	
+"TbtDxeLib.h"	
+<endComponent>

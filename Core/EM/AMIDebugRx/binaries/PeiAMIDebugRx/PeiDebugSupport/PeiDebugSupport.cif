@@ -1,0 +1,23 @@
+<component>
+	name = "PeiDebugSupport"
+	category = ModulePart
+	LocalRoot = "Core\em\AMIDebugRx\binaries\PeiAMIDebugRx\PeiDebugSupport\"
+	RefName = "PeiDebugSupport"
+[files]
+"PeiDebugSupport.sdl"	
+"PeiDebugSupport.mak"	
+"PeiDebugSupport.dxs"	
+"PeiDebugSupport.obj"	
+"PeiDebugSupport_PI_1_1.obj"
+"relocdbg.obj"	
+"relocdbg_PI_1_1.obj"	
+"Emptyrelocdbgidt.obj"	
+"AmiDebugPort.obj"	
+"DebugPortUsb.obj"	
+"CopyDbgXPortUsb.obj"	
+"EmptyNotify.obj"	
+"PeiDbgSupportX64.obj"	
+"PeiDbgSupportX64_PI_1_1.obj"
+"emptyX64idt.obj"	
+"DbgrHelp.c"	
+<endComponent>

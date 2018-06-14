@@ -1,0 +1,84 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/OFBD/OFBD.dxs 4     3/16/11 10:39p Terrylin $
+//
+// $Revision: 4 $
+//
+// $Date: 3/16/11 10:39p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/OFBD/OFBD.dxs $
+// 
+// 4     3/16/11 10:39p Terrylin
+// Correct Copyright information.
+// 
+// 3     3/16/11 10:13p Terrylin
+// [TAG]  		EIP51285
+// [Category]  	Improvement
+// [Description]  	Fill the description of each file for user more
+// clearly.
+// [Files]  		OFBD.mak
+// OFBD.dxs
+// OFBD.c
+// OFBD.h
+// 
+// 2     4/01/10 3:22a Lawrencechang
+// Add dependency for USB.
+// 
+// 1     4/13/09 5:46a Lawrencechang
+// Initial check-in.
+// 
+// 1     5/11/07 1:47p Felixp
+//
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:	OFBD_dxs
+//
+// Description: Dependency expression for OFBD driver.
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+
+#include <Token.h>
+#include <Protocol/SmmBase.h>
+#include <Protocol/SmmSwDispatch.h>
+#if defined(AMIUSB_SUPPORT) && AMIUSB_SUPPORT == 1
+#include <Protocol/AmiUsbController.h>
+#endif
+
+DEPENDENCY_START
+#if defined(AMIUSB_SUPPORT) && AMIUSB_SUPPORT == 1
+  EFI_USB_PROTOCOL_GUID AND
+#endif
+  EFI_SMM_BASE_PROTOCOL_GUID AND
+  EFI_SMM_SW_DISPATCH_PROTOCOL_GUID
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

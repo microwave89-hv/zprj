@@ -1,0 +1,481 @@
+TOKEN
+	Name  = "AMIUSB_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AMI USB support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "USB_DRIVER_MAJOR_VER"
+	Value  = "8"
+	Help  = "USB driver major version"
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "USB_DRIVER_MINOR_VER"
+	Value  = "10"
+	Help  = "USB driver minor version"
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "USB_DRIVER_BUILD_VER"
+	Value  = "36"
+	Help  = "USB driver build version"
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "UHCI_SUPPORT"
+	Value  = "1"
+	Help  = "Enable/Disable UHCI controller(s)."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "OHCI_SUPPORT"
+	Value  = "1"
+	Help  = "Enable/Disable OHCI controller(s)"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "EHCI_SUPPORT"
+	Value  = "1"
+	Help  = "Enable/Disable EHCI controller(s)"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "XHCI_SUPPORT"
+	Value  = "1"
+	Help  = "Enable/Disable xHCI controller(s)"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USB_HOTPLUG_FDD"
+	Value  = "0"
+	Help  = "Includes the support for USB hot plug floppy drive."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USB_HOTPLUG_HDD"
+	Value  = "0"
+	Help  = "Includes the support for USB hot plug hard drive."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USB_HOTPLUG_CDROM"
+	Value  = "0"
+	Help  = "Includes the support for USB hot plug CD-ROM drive."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "HIDE_USB_SUPPORT_SETUP_QUESTION"
+	Value  = "1"
+	Help  = "This setup item is for debug only. Switch to Hide/Un-hide USB Support setup question."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USB_LEGACY_PLATFORM_SUPPORT"
+	Value  = "1"
+	Help  = "Includes the USB Legacy options and keypress monitor implementation."
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "KEYMONFILTER_SUPPORT" "!=" "0"
+End
+
+TOKEN
+	Name  = "KBC_EMULATION_8MSTD_OVERRIDE"
+	Value  = "25"
+	Help  = "This token is designed to work around the problems for the projects that have the actual KBC hardware enabled and at the same time  enable KBC emulation.\For these projects there is a high probability of racing conditions between IRQ1 handler and USB keyboard SMI handler. It was found the problem could be solved by 'slowing down' the 8ms TD schedule.\By default 8ms is changed to 25ms. This change may depend on the execution time of SMI dispatcher (number of SMI handlers, size of SMI code, cachability of SMM area, etc.)."
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "8..64"
+End
+
+TOKEN
+	Name  = "KEY_REPEAT_DELAY"
+	Value  = "2"
+	Help  = "This value is for the offset of the aTypematicRateDelayTable. aTypematicRateDelayTable is based on 8ms periodic interrupt. If the periodic interrupt is more than 8ms , modify this token for the proper delay between KeyRepeat action. To calculate the delay between Key repeat action PeriodicTime Interrupt Interval * aTypematicRateDelayTable[KEY_REPEAT_DELAY]"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0..3"
+End
+
+TOKEN
+	Name  = "KEY_REPEAT_INITIAL_DELAY"
+	Value  = "6"
+	Help  = "This value is for the offset of the aTypematicRateDelayTable. aTypematicRateDelayTable is based on 8ms periodic interrupt. If the periodic interrupt is more than 8ms , modify this token for the proper initial delay for KeyRepeat action.To calculate the initial delay for the Key repeat action PeriodicTime Interrupt Interval * aTypematicRateDelayTable[KEY_REPEAT_INITIAL_DELAY]"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "4..7"
+End
+
+TOKEN
+	Name = "USB_KEYREPEAT_INTERVAL"
+	Value = "0"
+	Help = "0-Use default key repeat interval 8ms. 1-Use key repeat interval 16ms."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USB_EHCI_HANDOFF_SUPPORT"
+	Value  = "1"
+	Help  = "Switch to enable EHCI hand-off"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "XHCI_EVENT_SERVICE_MODE"
+	Value  = "0"
+	Help  = "This token controlls xHCI event service mode.\0 - Use periodic timer SMI.\1 - Use xHCI hardware SMI.\2 - Both periodic timer SMI and se xHCI hardware SMI."
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0..2"
+End
+
+TOKEN
+	Name  = "USB_XHCI_EXT_HW_SMI_PINS"
+	Value  = "255"
+	Help  = "List of xHCI GPI bit offset in the following format: GPI0, GPI1,...,GPIN.\Use 0xFF (255) to ignore the settings."
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "0..31"
+	Token = "XHCI_EVENT_SERVICE_MODE" "!=" "0"
+End
+
+TOKEN
+	Name  = "USB_S5_WAKEUP_SUPPORT"
+	Value  = "0"
+	Help  = "Support USB S5 wakeup function."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USB_DIFFERENTIATE_IDENTICAL_DEVICE_NAME"
+	Value  = "0"
+	Help  = "If enabled the USB Device name string is prefixed with U1-,U2-... for each USB device to differentiate the Devices with same Device name Strings."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USB_BAD_DEVICES"
+	Help  = "List the non-compliant USB devices, please refer to the gUsbBadDeviceTable in usbport.c."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "HIDE_USB_HISPEED_SUPPORT_SETUP_QUESTION"
+	Value  = "1"
+	Help  = "Switch to Hide/Un-hide USB HiSpeed Support setup question."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_USB_EMUL6064_OPTION"
+	Value  = "1"
+	Help  = "Default value of the I/O port 60h/64h emulation support option"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USB_RUNTIME_DRIVER_IN_SMM"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "EXTERNAL_USB_CONTROLLER_SUPPORT"
+	Value  = "1"
+	Help  = "Support external USB controllers."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USB_OHCI_HANDOFF_SUPPORT"
+	Value  = "0"
+	Help  = "Switch to enable OHCI hand-off workaround"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USB_CONTROLLERS_WITH_RMH"
+	Help  = "List of USB controllers that have integrated USB 2.0 Rate Matching Hubs (RMH) in the following format: {vid1, did1}, {vid2, did2}"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "HIDE_USB_XHCI_LEGACY_SUPPORT_SETUP_QUESTION"
+	Value  = "1"
+	Help  = "This setup item is for debug only. Switch to Hide/Un-hide USB XHCI Legacy Support setup question."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+    Name  = "USB_SETUP_VARIABLE_RUNTIME_ACCESS"
+    Value  = "0"
+    Help  = "Set Runtime attribute for the setup variables used by USB driver."
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+TOKEN
+	Name  = "USB_CONTROLLERS_INITIAL_DELAY_LIST"
+	Help  = "List of USB controllers which need to delay for stabilization in the following format: {vid1, did1, delay time1(ms)}, {vid2, did2, delay time2(ms)}"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_XHCI_HANDOFF_OPTION"
+	Value  = "1"
+	Help  = "Default value of the XHCI Hand-off option."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "USB_STORAGE_DEVICE_RMB_CHECK"
+	Value = "1"
+	Help = "RMB bit returned by inquiry command indicate whether device media is removable.\Off: Always set mass storage devices RemovableMedia.\On: Check RMB status from inquiry data. \"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+PATH
+	Name  = "USBPORTING_DIR"
+End
+
+PATH
+	Name  = "UHCD_DIR"
+	Path  = "core\em\usb"
+End
+
+PATH
+	Name  = "USBRT_DIR"
+	Path  = "core\em\usb\rt"
+	Help  = "AMI USB runtime files source directory"
+End
+
+PATH
+	Name  = "USB_SETUP_DIR"
+	Path  = "core\em\usb\setup"
+End
+
+PATH
+	Name  = "USB_SB_DIR"
+	Path  = "chipset\sb\usb"
+End
+
+MODULE
+	Help  = "Includes uhcd.mak into project"
+	Path  = "$(UHCD_DIR)"
+	File  = "uhcd.mak"
+End
+
+MODULE
+	Help  = "Includes usbrt.mak into project"
+	Path  = "$(USBRT_DIR)"
+	File  = "usbrt.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\usb.sdb"
+	Parent  = "SETUP_SDBS"
+	Priority  = 30
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(USB_SETUP_DIR)\usb.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 30
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\uhcd.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\usbrt.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "InitUSBStrings,"
+	Parent  = "SetupStringInit"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "UsbAcpiEnableCallBack,"
+	Parent  = "AcpiEnableCallbackList"
+	Token = "USB_RUNTIME_DRIVER_IN_SMM" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "USB_DEV_DELAYED_DRIVER_LIST"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "USB_DEV_DRIVER_LIST"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "USB_DEV_EFI_DRIVER_LIST"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "USBHIDFillDriverEntries,"
+	Parent  = "USB_DEV_DELAYED_DRIVER_LIST"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "USBMassFillDriverEntries,"
+	Parent  = "USB_DEV_DELAYED_DRIVER_LIST"
+	Token = "USB_DEV_MASS" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "USBCCIDFillDriverEntries,"
+	Parent  = "USB_DEV_DELAYED_DRIVER_LIST"
+	Token = "USB_DEV_CCID" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "USBHubFillDriverEntries,"
+	Parent  = "USB_DEV_DRIVER_LIST"
+	Token = "USB_DEV_HUB" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "BusFillDriverEntries,"
+	Parent  = "USB_DEV_DRIVER_LIST"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "USBHIDFillDriverEntries,"
+	Parent  = "USB_DEV_DRIVER_LIST"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "USBMassFillDriverEntries,"
+	Parent  = "USB_DEV_DRIVER_LIST"
+	Token = "USB_DEV_MASS" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "USBCCIDFillDriverEntries,"
+	Parent  = "USB_DEV_DRIVER_LIST"
+	Token = "USB_DEV_CCID" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "UsbBusInit,"
+	Parent  = "USB_DEV_EFI_DRIVER_LIST"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "UsbHidInit,"
+	Parent  = "USB_DEV_EFI_DRIVER_LIST"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "UsbMassInit,"
+	Parent  = "USB_DEV_EFI_DRIVER_LIST"
+	Token = "USB_DEV_MASS" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "UsbCCIDInit,"
+	Parent  = "USB_DEV_EFI_DRIVER_LIST"
+	Token = "USB_DEV_CCID" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CheckKeyBoardBufferForSpecialChars"
+	Help  = "This is a list of OEM KBD routines that consumes KBD buffer to handle some input chanracters differently. \The child eLink can be in following format:Functionname(DEV_INFO    fpDevInfo, UINT8   *fpBuffer)"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS, 0, USB_DEVICES_ENABLED_REFRESH_KEY, UpdateUSBStrings),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name = "{{ 0xEC87D643, 0xEBA4, 0x4BB5, 0xA1, 0xE5, 0x3F, 0x3E, 0x36, 0xB2, 0x0D, 0xA9 }, {'U','s','b','M','a','s','s','D','e','v','N','u','m'}},"
+	Parent = "AMITSE_DYNAMICPARSING_HANDLE_SUPPRESS_LIST"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name = "{{ 0xEC87D643, 0xEBA4, 0x4BB5, 0xA1, 0xE5, 0x3F, 0x3E, 0x36, 0xB2, 0x0D, 0xA9 }, {'U','s','b','M','a','s','s','D','e','v','V','a','l','i','d'}},"
+	Parent = "AMITSE_DYNAMICPARSING_HANDLE_SUPPRESS_LIST"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name = "{{ 0xEC87D643, 0xEBA4, 0x4BB5, 0xA1, 0xE5, 0x3F, 0x3E, 0x36, 0xB2, 0x0D, 0xA9 }, {'U','s','b','S','u','p','p','o','r','t'}},"
+	Parent = "AMITSE_DYNAMICPARSING_HANDLE_SUPPRESS_LIST"
+	InvokeOrder = AfterParent
+End

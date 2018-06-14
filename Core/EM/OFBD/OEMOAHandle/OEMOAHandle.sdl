@@ -1,0 +1,56 @@
+TOKEN
+	Name  = "OEM_OA_DATA_HANDLE_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable OEM OA Data Handle support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "OEMOAHANDLELIB"
+	Value  = "$(BUILD_DIR)\OEMOAHANDLE.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "[OEM OA Data Handle Sample Code Section]"
+	Help  = "See detail description in each token's help box."
+	TokenType = Expression
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "OEM_OA_DATA_HANDLE_SAMPLE_TEST"
+	Value  = "1"
+	Help  = "Test OEM OA Data Handle Function"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "OEM_OA_DATA_HANDLE_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "OFBD_OEM_OA_HANDLE_DIR"
+End
+
+MODULE
+	Help  = "Includes OemOAHandle.mak to Project"
+	File  = "OemOAHandle.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\OEMOAHANDLE.lib"
+	Parent  = "OFBDLISTLIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OemOAHandleEntry,"
+	Parent  = "OFBDPartsList"
+	Token = "OEM_OA_DATA_HANDLE_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+

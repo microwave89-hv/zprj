@@ -1,0 +1,42 @@
+TOKEN
+	Name  = "AmtStatusCode_SUPPORT"
+	Value  = "0"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable AmtStatusCode support in Project"
+End
+
+MODULE
+	Help  = "Includes AmtStatusCode.mak to Project"
+	File  = "AmtStatusCode.mak"
+End
+
+PATH
+	Name  = "AmtStatusCode_DIR"
+End
+
+ELINK
+	Name  = "AmtStatusCode,"
+	Parent  = "ReportMiscStatus"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "AmtStatusInit,"
+	Parent  = "StatusCodeInitialize"
+	InvokeOrder = AfterParent
+End
+
+#ELINK
+#	Name  = "SmmAmtStatusCode,"
+#	Parent  = "SmmReportMiscStatus"
+#	InvokeOrder = AfterParent
+#End
+
+#ELINK
+#	Name  = "SmmAmtStatusInit,"
+#	Parent  = "SmmStatusCodeInitialize"
+#	InvokeOrder = AfterParent
+#End

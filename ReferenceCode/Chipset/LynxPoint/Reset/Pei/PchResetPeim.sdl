@@ -1,0 +1,67 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchResetPeim/PchResetPeim.sdl 1     2/08/12 9:05a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 2/08/12 9:05a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchResetPeim/PchResetPeim.sdl $
+# 
+# 1     2/08/12 9:05a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+        Name  = "PchResetPeim_SUPPORT"
+        Value = "1"
+        Help  = "Main switch to enable PchInitPeim support in Project"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        Master = Yes
+End
+
+PATH
+        Name  = "PchResetPeim_DIR"
+End
+
+MODULE
+        File  = "PchResetPeim.mak"
+        Help  = "Includes PchResetPeim.mak to Project"
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\PchResetPeim.ffs"
+        Parent  = "FV_BB"
+        InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

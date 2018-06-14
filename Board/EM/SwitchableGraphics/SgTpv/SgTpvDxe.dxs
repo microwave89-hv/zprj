@@ -1,0 +1,88 @@
+//****************************************************************************
+//****************************************************************************
+//**                                                                        **
+//**             (C)Copyright 1985-2012, American Megatrends, Inc.          **
+//**                                                                        **
+//**                          All Rights Reserved.                          **
+//**                                                                        **
+//**             5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093          **
+//**                                                                        **
+//**                          Phone (770)-246-8600                          **
+//**                                                                        **
+//****************************************************************************
+//****************************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/SwitchableGraphics/Sg TPV/SgTpvDxe.dxs 2     9/09/12 11:15p Joshchou $
+//
+// $Revision: 2 $
+//
+// $Date: 9/09/12 11:15p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/SwitchableGraphics/Sg TPV/SgTpvDxe.dxs $
+// 
+// 2     9/09/12 11:15p Joshchou
+// [TAG]  		EIPNone
+// [Category]  	New Feature
+// [Description]  	Tpv module support for sharkbay.
+// [Files]  		SgTpv.sdl
+// SgTpv.mak
+// SgTpvPei.c
+// SgTpvPei.dxs
+// SgTpvDxe.c
+// SgTpvDxe.dxs
+// SgTpv.cif
+// 
+// 1     6/27/11 5:25a Alanlin
+// [TAG]  		EIP61848
+// [Category]  	New Feature
+// [Description]  	Initial check-in.Integrated SwitchableGraphics Intel
+// Reference code 0.6.0
+// [Files]  		SgTpv.cif
+// SgTpv.sdl
+// SgTpv.mak
+// SgTpvPei.c
+// SgTpvPei.dxs
+// SgTpvDxe.c
+// SgTpvDxe.dxs
+// 
+// 2     3/30/11 10:27p Alanlin
+// 
+// 1     9/17/10 1:12p Alexp
+// [TAG]    	  EIP43103 
+// [Category]  Function Request
+// [Severity]	  Normal
+// [Symptom]    Initial check-in of SgTPV module
+// [RootCause] Request to implement SG reference code .
+// [Solution]	Initial check-in. 
+// [Files]	
+//         SgTpv.cif;*.sdl;*.mak;
+//         SgTpvPei.c;*.dxs;
+//         SgTpvDxe.c;*.dxs  
+// 
+//**********************************************************************
+
+#include "EfiDepex.h"
+#include EFI_PROTOCOL_DEPENDENCY (SaPlatformPolicy)
+#include EFI_PROTOCOL_DEPENDENCY (PciIo)
+
+DEPENDENCY_START
+  DXE_PLATFORM_SA_POLICY_GUID       AND
+  EFI_PCI_IO_PROTOCOL_GUID
+DEPENDENCY_END
+
+
+//****************************************************************************
+//****************************************************************************
+//**                                                                        **
+//**             (C)Copyright 1985-2012, American Megatrends, Inc.          **
+//**                                                                        **
+//**                          All Rights Reserved.                          **
+//**                                                                        **
+//**             5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093          **
+//**                                                                        **
+//**                          Phone (770)-246-8600                          **
+//**                                                                        **
+//****************************************************************************
+//****************************************************************************

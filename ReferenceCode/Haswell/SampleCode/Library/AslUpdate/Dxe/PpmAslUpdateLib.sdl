@@ -1,0 +1,29 @@
+TOKEN
+	Name  = PpmAslUpdateLib_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable AslUpdateLib support in Project"
+End
+
+MODULE
+	Help  = "Includes PpmAslUpdateLib.mak to Project"
+	File  = "PpmAslUpdateLib.mak"
+End
+
+PATH
+	Name  = "PpmAslUpdateLib_DIR"
+End
+
+ELINK
+	Name  = "PpmAslUpdateLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PpmAslUpdateLib.lib"
+	Parent  = "PpmAslUpdateLib_LIB"
+	InvokeOrder = AfterParent
+End

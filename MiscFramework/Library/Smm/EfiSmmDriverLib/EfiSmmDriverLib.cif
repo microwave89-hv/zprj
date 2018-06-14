@@ -1,0 +1,12 @@
+<component>
+	name = "EfiSmmDriverLib"
+	category = ModulePart
+	LocalRoot = "MiscFramework\Library\Smm\EfiSmmDriverLib"
+	RefName = "EfiSmmDriverLib"
+[files]
+"EfiSmmDriverLib.sdl"	
+"EfiSmmDriverLib.mak"	
+"SmmDriverLib.c"	
+"LibGlobals.c"
+"debug.c"
+<endComponent>

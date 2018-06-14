@@ -1,0 +1,24 @@
+<component>
+	name = "Uhcd"
+	category = ModulePart
+	LocalRoot = "core\em\usb"
+	RefName = "UHCD"
+[files]
+"\uhcd.c"	
+"\amiusbhc.c"	
+"\usbbus.c"	
+"\efiusbkb.c"	
+"\tree.c"	
+"\efiusbkb.h"	
+"\usbsrc.sdl"	
+"\usbbus.h"	
+"\tree.h"	
+"\efiusbmass.c"	
+"\efiusbms.c"	
+"\efiusbccid.c"	
+"\efiusbpoint.c"	
+"\efiusbhid.c"	
+"\componentname.c"	
+"\usbmisc.c"	
+"\componentname.h"	
+<endComponent>

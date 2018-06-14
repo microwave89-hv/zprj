@@ -1,0 +1,9 @@
+<component>
+	name = "CSP : Intel ICHx SPI - Source"
+	category = ModulePart
+	LocalRoot = "Board\Flash\SPI\ICHx"
+	RefName = "ICHX_SPI_CSP_SOURCE"
+[files]
+"ICHxSpi.sdl"	
+"SPIFlash.c"	
+<endComponent>

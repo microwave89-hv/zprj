@@ -1,0 +1,149 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1987-2013, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/Haswell/AMI Cpu PKG/AMI TXT DXE/AmiTxtInfoSetup.sd 2     1/17/14 4:02a Crystallee $
+//
+// $Revision: 2 $
+//
+// $Date: 1/17/14 4:02a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log:
+//
+//
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//---------------------------------------------------------------------------
+// Name:	AmiTxtInfoSetup.sd.sd
+//
+// Description:	Setup definition for Intel Txt Info.
+//
+//---------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+#ifdef SETUP_DATA_DEFINITION
+/***********************************************************/
+/* Put NVRAM data definitions here.
+/* For example:	UINT8 Data1;
+/* These definitions will be converted by the build process
+/* to a definitions of SETUP_DATA fields.
+/***********************************************************/
+//    UINT8   XDBit;
+#endif
+
+//---------------------------------------------------------------------------
+#if defined(VFRCOMPILE) && !defined(CONTROLS_ARE_DEFINED)
+#define CONTROL_DEFINITION
+#endif
+//---------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------
+#ifdef CONTROL_DEFINITION
+
+#endif //#ifdef CONTROL_DEFINITION
+
+#ifdef CONTROLS_WITH_DEFAULTS
+
+#endif //#ifdef CONTROLS_WITH_DEFAULTS
+
+#ifdef ADVANCED_FORM_SET
+
+    #ifndef SUPPRESS_GRAYOUT_ENDIF
+        #define SUPPRESS_GRAYOUT_ENDIF endif;
+    #endif
+
+    #ifdef FORM_SET_TYPEDEF        
+      
+    #endif
+
+    #ifdef FORM_SET_VARSTORE
+
+    #endif
+
+    #ifdef FORM_SET_ITEM
+        //	Define controls to be added to the main page of the formset
+    #endif
+
+    #ifdef FORM_SET_GOTO
+        // Define goto commands for the forms defined in this file
+		goto CPUTXT_FORM_ID, 
+        prompt = STRING_TOKEN(STR_CPUTXT_FORM),
+        help = STRING_TOKEN(STR_CPUTXT_HELP);
+    #endif
+
+    #ifdef FORM_SET_FORM
+
+
+    // Define forms
+    form formid = AUTO_ID(CPUTXT_FORM_ID),
+     title = STRING_TOKEN(STR_CPUTXT_FORM);
+ 
+     SUBTITLE(STRING_TOKEN(STR_CPUTXT_FORM))
+     SEPARATOR
+ 
+     text 
+       help   = STRING_TOKEN(STR_CPUTXT_CHIP_FUSE_HELP),
+       text   = STRING_TOKEN(STR_CPUTXT_CHIP_FUSE_STRING),
+       text   = STRING_TOKEN(STR_CPUTXT_CHIP_FUSE_VALUE);
+
+     text 
+       help   = STRING_TOKEN(STR_CPUTXT_CHIP_SUPPORT_HELP),
+       text   = STRING_TOKEN(STR_CPUTXT_CHIP_SUPPORT_STRING),
+       text   = STRING_TOKEN(STR_CPUTXT_CHIP_SUPPORT_VALUE);
+
+     text
+       help   = STRING_TOKEN(STR_CPUTXT_CPU_SUPPORT_HELP),
+       text   = STRING_TOKEN(STR_CPUTXT_CPU_SUPPORT_STRING),
+       text   = STRING_TOKEN(STR_CPUTXT_CPU_SUPPORT_VALUE);
+
+     text 
+       help   = STRING_TOKEN(STR_CPUTXT_ERROR_CODE_HELP),
+       text   = STRING_TOKEN(STR_CPUTXT_ERROR_CODE_STRING),
+       text   = STRING_TOKEN(STR_CPUTXT_ERROR_CODE_VALUE);
+
+	 text 
+       help   = STRING_TOKEN(STR_CPUTXT_CLASS_CODE_HELP),
+       text   = STRING_TOKEN(STR_CPUTXT_CLASS_CODE_STRING),
+       text   = STRING_TOKEN(STR_CPUTXT_CLASS_CODE_VALUE);
+
+	 text
+       help   = STRING_TOKEN(STR_CPUTXT_MAJOR_CODE_HELP),
+       text   = STRING_TOKEN(STR_CPUTXT_MAJOR_CODE_STRING),
+       text   = STRING_TOKEN(STR_CPUTXT_MAJOR_CODE_VALUE);
+
+	 text
+       help   = STRING_TOKEN(STR_CPUTXT_MINOR_CODE_HELP),
+       text   = STRING_TOKEN(STR_CPUTXT_MINOR_CODE_STRING),
+       text   = STRING_TOKEN(STR_CPUTXT_MINOR_CODE_VALUE); 
+
+    endform;    
+    #endif
+#endif
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1987-2013, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

@@ -1,0 +1,12 @@
+<component>
+	name = MebxSetupBrowser
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\BiosExtension\Efi\EfiMEBx\MebxSetupBrowser\"
+	RefName = "MebxSetupBrowser"
+[files]
+"MebxSetupBrowser.dxs"
+"MebxSetupBrowser.inf"
+"MebxSetupBrowser.mak"
+"MebxSetupBrowser.efi"
+"MebxSetupBrowser.sdl"
+<endComponent>

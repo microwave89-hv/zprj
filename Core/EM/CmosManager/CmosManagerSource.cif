@@ -1,0 +1,11 @@
+<component>
+	name = "CMOS Source"
+	category = ModulePart
+	LocalRoot = "Core\EM\CmosManager\"
+	RefName = "CmosSource"
+[files]
+"CmosManager.c"	
+"CmosAccess.c"	
+"CmosTables.c"	
+"CmosManagerHob.c"	
+<endComponent>

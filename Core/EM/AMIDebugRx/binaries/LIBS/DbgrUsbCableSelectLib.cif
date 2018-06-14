@@ -1,0 +1,10 @@
+<component>
+	name = "DbgrUsbCableSelectLib"
+	category = ModulePart
+	LocalRoot = "Core\EM\AMIDebugRx\binaries\LIBS\"
+	RefName = "DbgrUsbCableSelectLib"
+[files]
+"\DbgrUsbCableSelectLib.mak"	
+"\UsbCableSelect.c"	
+"\DbgrUsbCableSelectLib.sdl"	
+<endComponent>

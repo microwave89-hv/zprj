@@ -1,0 +1,22 @@
+<component>
+	name = "Board"
+	category = eBoard
+	LocalRoot = "Board\"
+	RefName = "Board"
+[files]
+"Board.sdl"	
+"Board.mak"	
+"OEMPort.c"	
+"Oem.sd"	
+"Oem.uni"	
+"OemSetup.c"	
+"OemPei.c"	
+"OemPei.dxs"	
+"OemDxe.c"	
+"OemDxe.dxs"	
+"Oem.h"	
+"ReportFV2.c"
+"Board.chm"	
+[parts]
+"Setup"
+<endComponent>

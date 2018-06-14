@@ -1,0 +1,82 @@
+//**********************************************************************//
+//**********************************************************************//
+//**                                                                  **//
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **//
+//**                                                                  **//
+//**                       All Rights Reserved.                       **//
+//**                                                                  **//
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **//
+//**                                                                  **//
+//**                       Phone: (770)-246-8600                      **//
+//**                                                                  **//
+//**********************************************************************//
+//**********************************************************************//
+//**********************************************************************//
+// $Header: /Alaska/BIN/Modules/SMBIOS/SmbiosDMIEdit/SmbiosDMIEditBoard.dxs 4     6/28/12 8:14p Davidd $
+//
+// $Revision: 4 $
+//
+// $Date: 6/28/12 8:14p $
+//**********************************************************************//
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Modules/SMBIOS/SmbiosDMIEdit/SmbiosDMIEditBoard.dxs $
+// 
+// 4     6/28/12 8:14p Davidd
+// Select SMM_BASE_PROTOCOL_GUID depending on PI_SPECIFICATION_VERSION
+// 
+// 3     6/02/09 4:50p Davidd
+// Updated AMI headers (EIP 22180)
+// 
+// 2     3/29/07 5:27p Davidd
+// Changed the year in the AMI banner and adjust indentation to coding
+// standard.
+// 
+// 1     8/10/05 11:31a Davidd
+// Initial checkin. To be used with SMBIOS Core ALPHA_01.04.
+// 
+// 1     8/10/05 11:18a Davidd
+// New SmbiosDMIEditBoard component.
+//
+//**********************************************************************//
+
+#include <token.h>
+
+#include <Protocol\SmbiosGetFlashDataProtocol.h>
+#if PI_SPECIFICATION_VERSION < 0x0001000A  
+#include <Protocol\SmmBase.h>
+#else
+#include <Protocol\SmmBase2.h>
+#endif
+#include <Protocol\LoadedImage.h>
+#include <Protocol\DevicePath.h>
+#include <Protocol\SmmSwDispatch.h>
+#include <Protocol\SmiFlash.h>
+
+DEPENDENCY_START
+#if !defined(SMBIOS_DMIEDIT_DATA_LOC) || SMBIOS_DMIEDIT_DATA_LOC != 2
+    EFI_SMBIOS_FLASH_DATA_PROTOCOL_GUID AND
+    EFI_SMI_FLASH_GUID AND
+#endif
+#if PI_SPECIFICATION_VERSION < 0x0001000A  
+    EFI_SMM_BASE_PROTOCOL_GUID AND
+#else
+    EFI_SMM_BASE2_PROTOCOL_GUID AND
+#endif
+    EFI_SMM_SW_DISPATCH_PROTOCOL_GUID AND
+    EFI_SMBIOS_PROTOCOL_GUID
+DEPENDENCY_END
+
+//**********************************************************************//
+//**********************************************************************//
+//**                                                                  **//
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **//
+//**                                                                  **//
+//**                       All Rights Reserved.                       **//
+//**                                                                  **//
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **//
+//**                                                                  **//
+//**                       Phone: (770)-246-8600                      **//
+//**                                                                  **//
+//**********************************************************************//
+//**********************************************************************//

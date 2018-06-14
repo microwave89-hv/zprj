@@ -1,0 +1,15 @@
+<component>
+	name = "RapidStartPeiLib"
+	category = ModulePart
+	LocalRoot = "Board\EM\RapidStartWrapper\Library\RapidStartPlatformLib\Pei"
+	RefName = "RapidStartPeiLib"
+[files]
+"RapidStartPeiLib.sdl"
+"RapidStartPeiLib.mak"
+"RapidStartPeiLib.c"
+"RapidStartPeiLib.h"
+"RapidStartPeiLib.inf"
+"RapidStartPeiLib.lib"
+"PeiCryptLib.lib"
+"OpensslLib.lib"
+<endComponent>

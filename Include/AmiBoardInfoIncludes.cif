@@ -1,0 +1,8 @@
+<component>
+	name = "AmiBoardInfoIncludes"
+	category = ModulePart
+	LocalRoot = "Include\"
+	RefName = "AmiBoardInfoIncludes"
+[files]
+"Protocol\AmiBoardInfo.h"	
+<endComponent>

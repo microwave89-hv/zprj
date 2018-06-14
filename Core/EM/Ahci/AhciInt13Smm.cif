@@ -1,0 +1,15 @@
+<component>
+    name = "AhciInt13Smm"
+    category = ModulePart
+    LocalRoot = "Core\eM\Ahci"
+    RefName = "AhciInt13Smm"
+[files]
+"AhciInt13Smm.sdl"
+"AhciInt13Smm.h"
+"AhciInt13Dxe.c"
+"AhciInt13Dxe.dxs"
+"AhciInt13Smm.c"
+"AhciInt13Smm.dxs"
+"AhciInt13Smm.mak"
+<endComponent>
+

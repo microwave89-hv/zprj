@@ -1,0 +1,55 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+//*************************************************************************
+//*************************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/IntelPfat/PfatCpuPolicyOverride/PfatCpuPolicyOverride.dxs 2     9/25/12 6:16p Fredericko $Revision: 
+//
+// $Date:
+// 
+//
+//
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name: PfatCpuPolicyOverride.dxs
+//
+// Description: PfatCpuPolicyOverride dependency file
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+
+#include "AutoGen.h"
+#include "PeimDepex.h"
+#if defined (BUILD_WITH_GLUELIB) || defined (BUILD_WITH_EDKII_GLUE_LIB)
+#include "EfiDepex.h"
+#include EFI_PPI_DEPENDENCY (Variable)
+#endif
+
+DEPENDENCY_START
+   PEI_READ_ONLY_VARIABLE_ACCESS_PPI_GUID
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

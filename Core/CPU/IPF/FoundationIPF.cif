@@ -1,0 +1,24 @@
+<component>
+	name = "FoundationIPF"
+	category = ModulePart
+	LocalRoot = "Core\CPU\IPF\"
+	RefName = "FoundationIPF"
+[files]
+"FoundationIPF.sdl"	
+"FoundationIPF.mak"	
+"SwitchStack.s"	
+"asm.h"	
+"efijump.h"	
+"ia_64gen.h"	
+"PeCoffLoaderEx.c"	
+"PeCoffLoaderEx.h"	
+"PerformancePrimitives.s"	
+"pioflush.s"	
+"processor.c"	
+"setjmp.s"	
+"Processor.h"	
+"SwitchToCacheMode.c"	
+"IpfCpuCore.s"	
+"IpfCpuCore.i"	
+
+<endComponent>

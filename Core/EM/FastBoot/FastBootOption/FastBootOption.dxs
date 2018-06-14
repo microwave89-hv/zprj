@@ -1,0 +1,66 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2007, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**             6145-F Northbelt Pkwy, Norcross, GA 30071            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/PTT/FastBootOption/FastBootOption.dxs 1     10/30/12 4:22a Bibbyyeh $
+//
+// $Revision: 1 $
+//
+// $Date: 10/30/12 4:22a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/PTT/FastBootOption/FastBootOption.dxs $
+// 
+// 1     10/30/12 4:22a Bibbyyeh
+// [TAG]           EIP105177
+// [Category]      New Feature
+// [Description]   Report pseudo boot option for Windows 'Boot To Device'
+// support
+// [Files]         FastBootOption.cif FastBootOption.sdl
+// FastBootOption.mak FastBootOption.h FastBootOption.c
+// FastBootOptionBds.c FastBootOption.dxs
+// 
+// 
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//---------------------------------------------------------------------------
+//
+// Name:        FastBootOption.DXS
+//
+// Description: Dependency expression for FastBootOption driver.
+//
+//---------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+#include <Protocol/PciRootBridgeIo.h>
+
+
+DEPENDENCY_START
+  EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL_GUID 
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2007, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**             6145-F Northbelt Pkwy, Norcross, GA 30071            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

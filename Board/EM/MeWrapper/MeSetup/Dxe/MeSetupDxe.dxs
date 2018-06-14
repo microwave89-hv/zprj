@@ -1,0 +1,68 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+//**********************************************************************
+//
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/MeWrapper/MeSetup/Dxe/MeSetupDxe.dxs 1     2/07/13 2:04a Klzhan $
+//
+// $Revision: 1 $
+//
+// $Date: 2/07/13 2:04a $
+//
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/MeWrapper/MeSetup/Dxe/MeSetupDxe.dxs $
+// 
+// 1     2/07/13 2:04a Klzhan
+// [TAG]  		EIP114344
+// [Category]  	Improvement
+// [Description]  	Create a setup item for TPM Device Selection
+// [Files]  		MeSetupDxe.cif
+// MeSetupDxe.c
+// MeSetupDxe.h
+// MeSetupDxe.sdl
+// MeSetupDxe.dxs
+// MeSetupDxe.mak
+// 
+//
+//**********************************************************************
+#include "AutoGen.h"
+#include "DxeDepex.h"
+#if defined (BUILD_WITH_GLUELIB) || defined (BUILD_WITH_EDKII_GLUE_LIB)
+#include "EfiDepex.h"
+
+#include EFI_PROTOCOL_DEFINITION (Heci)
+#include EFI_ARCH_PROTOCOL_DEFINITION (Variable)
+#include EFI_PROTOCOL_DEFINITION (PchReset)
+
+#endif
+
+DEPENDENCY_START
+    EFI_HECI_PROTOCOL_GUID AND
+    PCH_RESET_PROTOCOL_GUID AND
+    EFI_VARIABLE_ARCH_PROTOCOL_GUID
+DEPENDENCY_END
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

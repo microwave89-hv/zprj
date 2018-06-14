@@ -1,0 +1,386 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+#*************************************************************************
+# $Header: /Alaska/SOURCE/Modules/Thunderbolt/TbtOemBoard/TbtSetup/TbtSetup.sdl 9     5/19/14 7:40a Barretlin $
+#
+# $Revision: 9 $
+#
+# $Date: 5/19/14 7:40a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Thunderbolt/TbtOemBoard/TbtSetup/TbtSetup.sdl $
+# 
+# 9     5/19/14 7:40a Barretlin
+# [TAG]  		EIP165410
+# [Category]  	Improvement
+# [Description]  	Support Thunderbolt AIC at NB PCIE slot
+# [Files]  		TbtPei.c TbtDxe.c TbtGpe.asl TbtSmm.c TbtOemBoard.c
+# TbtOemLib.c TbtOemLib.h TbtSetup.sdl TbtSetup.sd TbtSetup.uni
+# TbtSetupReset.c
+# 
+# 8     5/19/14 7:19a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Using setup item choose return value of _RMV method in
+# ASL code
+# [Files]  		TbtDxe.c TbtGpe.asl TbtOemBoard.c TbtOemBoard.h TbtSetup.sd
+# TbtSetup.sdl TbtSetup.uni
+# 
+# 7     2/10/14 1:30p Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	remove useless policy item and setup item
+# [Files]  		TbtOemBoard.h TbtOemBoard.c TbSetup.sdl TbtSetup.sd
+# TbtSetup.uni TbtSmm.c
+# 
+# 6     1/05/14 2:13p Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	New Feature
+# [Description]  	Support Thunderbolt feature Enable/Disable in run time
+# Support dynamic Thunderbolt AIC location in run time
+# [Files]  		TbtSetup.sdl TbtSetup.sd TbtSetup.uni TbtSetupReset.c
+# 
+# 5     6/17/13 4:25a Barretlin
+# [TAG]  		EIP126581
+# [Category]  	Improvement
+# [Description]  	add new AIC support setup item and change
+# TBWakeupSupport name
+# [Files]  		TbtSetup.sdl TbtSetup.sd TbtSetup.uni
+# 
+# 4     5/06/13 12:06a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Fix clone ACPI setup item fail
+# [Files]  		TbtSetup.sdl
+# 
+# 3     3/21/13 6:00a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Clone PCIE prot swap setup item and set disable by
+# default
+# [Files]  		TbtSetup.sdl TbtSetup.sd TbtSetup.uni
+# 
+# 2     1/10/13 5:11a Barretlin
+# 
+# 1     1/10/13 4:57a Barretlin
+# Change SS path and update module for Thunderbolt Spec 1.6 for Cactus
+# Ridge chip and Thunderbolt Spec 0.5 for Redwood Ridge chip
+# 
+# 11    12/12/12 4:47a Barretlin
+# [TAG]  		None
+# [Category]  	New Feature
+# [Description]  	Add Thunderbolt TSE Setup Reset Hook
+# [Files]  		TbtSetup.sdl TbtSetup.mak TbtSetup.cif TbtSetupReset.c
+# 
+# 10    10/27/12 6:16a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Create new setup item for thunderbolt POC handling
+# [Files]  		TbtSetup.sdl TbtSetup.sd TbtSetup.uni
+# 
+# 9     8/20/12 5:16a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Fix IO resource workaround broken in 4C 2port case
+# [Files]  		TbtSmm.c TbtOemBoard.c TbtOemBoard.h TbtSetup.sdl
+# TbtSetup.sd TbtSetup.uni
+# 
+# 8     8/17/12 8:53a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Add IO resource workaround for Thunderbolt Spec1.1
+# Because new spec has removed IO resource for Thunderbolt device
+# [Files]  		TbtSmm.c TbtOemBoard.c TbtOemBoard.h TbtSetup.sdl
+# TbtSetup.sd TbtSetup.uni
+# 
+# 7     7/31/12 3:28a Barretlin
+# [TAG]  		EIP91119
+# [Category]  	Improvement
+# [Description]  	Resolution for enable/disable Thunderbolt device option
+# rom at POST time
+# [Files]  		TbtDxe.c TbtOemBoard.c TbtOemBoard.h TbtOemBoard.sdl
+# TbtSetup.sdl TbtSetup.sd TbtSetup.uni
+# 
+# 6     5/22/12 10:05a Barretlin
+# [TAG]  		EIP90650
+# [Category]  	Spec Update
+# [Description]  	Specificatoin Update 0.94 - The default value of
+# OPTIONAL workaround for devices that don't support surprise-removal
+# should be disable.
+# [Files]  		TbtSmm.c TbtOemBoard.c TbtOemBoard.h
+# TbtSetup.sdl TbtSetup.sd TbtSetup.uni
+# 
+# 5     5/20/12 10:42p Barretlin
+# [TAG]  		EIP90169
+# [Category]  	Spec Update
+# [Description]  	Specificatoin Update 0.93 - BIOS should stall wake
+# process for approximately 2.5 seconds to ensure
+# completeness of TBT link to all endpoint devices.
+# [Files]  		TbtSetup.sdl
+# 
+# 4     3/05/12 1:11a Barretlin
+# [TAG]  		EIP83266
+# [Category]  	Spec Update
+# [Description]  	Specificatoin Update 0.90
+# [Files]  		TbtSetup.sdl
+# TbtSetup.sd
+# TbtSetup.uni
+# TbtSetup.cif
+# TbtOemBoard.h
+# TbtOemLib.c
+# TbtOemLib.h
+# TbtSmm.c
+# TbtPei..
+# 
+# 2     2/19/12 11:52p Wesleychen
+# Add new setup item "SmiNotifyEnabled".
+# 
+# 1     12/08/11 4:09a Wesleychen
+# Thunderbolt eModule initially releases.
+# 
+#*************************************************************************
+TOKEN
+	Name  = "Tbt_Setup"
+	Value  = "1"
+	Help  = "Main switch to enable Tbt Setup support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_TBT_ENABLE"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_TB_WAKE_UP_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_TBT_AIC_SUPPORT"
+	Value  = "0"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_TBT_AIC_SUPPORT"
+	Value  = "0"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_TBT_AIC_LOCATION"
+	Value  = "$(TBT_UP_PORT_FUNC) + 0x20"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_DEV" "!=" "0x1C"
+End
+
+TOKEN
+	Name  = "DEFAULT_TBT_AIC_LOCATION"
+	Value  = "$(TBT_UP_PORT_FUNC)"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_DEV" "=" "0x1C"
+End
+
+TOKEN
+	Name  = "DEFAULT_TBT_HANDLE_POC"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_TB_SMI_NOTIFY_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "DEFAULT_TBT_WAK_DELAY"
+	Value = "2500"
+	Help = "The delay time for wakup in ms.\0: Disable\500 = 500ms\1000 = 1 sec"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+
+TOKEN
+	Name  = "DEFAULT_TBT_SWSMI_DELAY"
+	Value  = "0"
+	Help  = "This delay time for TBT SwSMI in ms. \0 = Disable; 1 = 1ms; 1000 = 1sec ..."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_SKIP_TBT_OPTIONROM"
+	Value  = "1"
+	Help  = "Enable:1 / Disable:0  skip Thunderbolt Device Option Rom"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_TBT_RMV_RETURN_VALUE"
+	Value  = "0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TBT_NVM"
+	Value  = "17"
+	Help  = "Thunderbolt Host Router EEEPROM Version. for IO source workaround using."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_TBT_IO_RESOURCE_SUPPORT"
+	Value  = "0"
+	Help  = "Enable:1 / Disable:0 IO resource for Thunderbolt Device"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DISABLE_PCIE_ROOT_PORT_SWAP"
+	Value  = "1"
+	Help  = "Disable Intel RC PCI Express root port swap function."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DISABLE_PCIE_ROOT_PORT_SWAP"
+	Value  = "0"
+	Help  = "Disable Intel RC PCI Express root port swap function."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "TBT_PCIE_PORT_SWAP_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "DISABLE_PCIE_ROOT_PORT_SWAP"
+	Value  = "0"
+	Help  = "Disable Intel RC PCI Express root port swap function. MahoBay platform has no this setup item."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "DESKTOP_306AX" "=" "1"
+End
+
+TOKEN
+	Name  = "DISABLE_PCIE_ROOT_PORT_SWAP"
+	Value  = "0"
+	Help  = "Disable Intel RC PCI Express root port swap function. ChiefRiver platform has no this setup item."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "MOBILE_306AX" "=" "1"
+End
+
+PATH
+	Name  = "TbtSetup_DIR"
+End
+
+MODULE
+	Help  = "Includes TbtSetup.mak to Project"
+	File  = "TbtSetup.mak"
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\TbtSetup.sdb"
+        Parent  = "SETUP_SDBS"
+        Priority  = 40
+        Help  = "Includes generic TBT setup screens to the project"
+        InvokeOrder = AfterParent
+End
+
+ELINK
+        Name  = "$(TbtSetup_DIR)\TbtSetup.sd"
+        Parent  = "SETUP_DEFINITIONS"
+        Priority  = 40
+        InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(TbtSetup_DIR)"
+	Parent  = "TBT_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name = "-i $(TbtSetup_DIR)"
+	Parent = "SETUP_VFR_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "InitiTbtInfo,"
+	Parent  = "SetupStringInit"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "TbtProcessEnterSetup,"
+	Parent  = "ProcessEnterSetup,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "TbtSetupResetHook,"
+	Parent  = "PreSystemResetHook,"
+	InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

@@ -1,0 +1,56 @@
+TOKEN
+    Name  = "CPUSPSMI_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable IDESMM support in Project"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "SW_SMI_SAVE_MSR"
+    Value  = "0x56"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "SW_SMI_RESTORE_MSR"
+    Value  = "0x57"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "SW_SMI_ENABLE_SMM_FEATURE"
+    Value  = "0x58"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "SW_SMI_S3_RESTORE_MSR_FROM_SDL"
+    Value  = "0x59"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetH = Yes
+End
+
+PATH
+    Name  = "CPUSPSMI_DIR"
+End
+
+MODULE
+    Help  = "Includes CpuSpSmi.mak to Project"
+    File  = "CpuSpSmi.mak"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\CpuSpSmi.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End

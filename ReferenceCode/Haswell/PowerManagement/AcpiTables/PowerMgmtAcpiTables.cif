@@ -1,0 +1,19 @@
+<component>
+	name = "PowerManagementAcpiTables"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\PowerManagement\AcpiTables\"
+	RefName = "PowerManagementAcpiTables"
+[files]
+"PowerMgmtAcpiTables.sdl"	
+"PowerMgmtAcpiTables.mak"	
+"PowerMgmtAcpiTables.inf"	
+"Ssdt\ApCst.asl"	
+"Ssdt\ApIst.asl"	
+"Ssdt\ApTst.asl"	
+"Ssdt\Cpu0Cst.asl"	
+"Ssdt\Cpu0Ist.asl"	
+"Ssdt\Cpu0Tst.asl"	
+"Ssdt\CpuPm.asl"	
+"Ssdt\LakeTiny.asl"
+"Ssdt\Ctdp.asl"
+<endComponent>

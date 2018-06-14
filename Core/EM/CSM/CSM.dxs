@@ -1,0 +1,62 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**           5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093      **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Core/csm.dxs 18    4/09/13 9:25a Olegi $
+//
+// $Revision: 18 $
+//
+// $Date: 4/09/13 9:25a $
+//**********************************************************************
+
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:	CSM.DXS
+//
+// Description:	AMI CSM dependency file.
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+#include <Protocol/LegacyRegion.h>
+#include <Protocol/LegacyInterrupt.h>
+#include <Protocol/Legacy8259.h>
+#include <Protocol/Cpu.h>
+#include <Protocol/CsmPlatform.h>
+#include <Protocol/Variable.h>
+#include <Protocol/AmiBoardInfo.h>
+
+DEPENDENCY_START
+  EFI_LEGACY_INTERRUPT_PROTOCOL_GUID      AND 
+  EFI_LEGACY_REGION_PROTOCOL_GUID         AND 
+  EFI_LEGACY_8259_PROTOCOL_GUID           AND
+  EFI_CPU_ARCH_PROTOCOL_GUID              AND
+  EFI_VARIABLE_ARCH_PROTOCOL_GUID         AND
+  AMI_BOARD_INFO_PROTOCOL_GUID            AND
+  EFI_VARIABLE_WRITE_ARCH_PROTOCOL_GUID
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**           5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093      **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

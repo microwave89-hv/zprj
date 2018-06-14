@@ -1,0 +1,50 @@
+TOKEN
+	Name  = "AcpiAslWrap_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Ref code AcpiAsl Wrap support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "AcpiAslWrap_DIR"
+End
+
+ELINK
+	Name  = "/I$(AcpiAslWrap_DIR)"
+	Parent  = "ACPI_PLATFORM_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+#ELINK
+#	Name  = "$(AcpiAslWrap_DIR)\PlatformPS2Wake.ASL"
+#	Parent  = "INTEL_GENERIC_ASL"
+#	Token = "CRB_SIO_SUPPORT" "=" "0"
+#	InvokeOrder = AfterParent
+#End
+
+ELINK
+	Name  = "$(AcpiAslWrap_DIR)\PlatformEC.asl"
+	Parent  = "INTEL_EC_ASL"
+	Token = "PlatformAcpiTables_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(AcpiAslWrap_DIR)\PlatformDock.asl"
+	Parent  = "INTEL_GENERIC_ASL"
+	InvokeOrder = AfterParent
+	Token = "FACP_FLAG_DCK_CAP" "=" "0"
+	Token = "CRB_EC_SUPPORT" "=" "1"
+End
+
+
+ELINK
+	Name  = "$(AcpiAslWrap_DIR)\PlatformExternal.asl"
+	Parent  = "INTEL_GENERIC_ASL"
+	InvokeOrder = AfterParent
+    Priority  = 10
+End

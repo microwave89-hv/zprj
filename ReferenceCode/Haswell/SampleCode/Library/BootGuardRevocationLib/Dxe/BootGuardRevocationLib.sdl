@@ -1,0 +1,29 @@
+TOKEN
+	Name  = BootGuardRevocationLib_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable BootGuardRevocationLib support in Project"
+End
+
+MODULE
+	Help  = "Includes BootGuardRevocationLib.mak to Project"
+	File  = "BootGuardRevocationLib.mak"
+End
+
+PATH
+	Name  = "BootGuardRevocationLib_DIR"
+End
+
+ELINK
+	Name  = "BootGuardRevocationLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\BootGuardRevocationLib.lib"
+	Parent  = "BootGuardRevocationLib_LIB"
+	InvokeOrder = AfterParent
+End

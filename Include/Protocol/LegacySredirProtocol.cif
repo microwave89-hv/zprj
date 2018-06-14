@@ -1,0 +1,8 @@
+<component>
+	name = "Legacy Sredir Protocol"
+	category = ModulePart
+	LocalRoot = "Include\Protocol\"
+	RefName = "LEGACY_SREDIR_PROTOCOL"
+[files]
+"\LegacySredir.h"	
+<endComponent>

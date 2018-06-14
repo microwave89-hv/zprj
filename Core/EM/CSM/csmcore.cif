@@ -1,0 +1,23 @@
+<component>
+	name = "CSM Core"
+	category = ModulePart
+	LocalRoot = "Core\EM\CSM"
+	RefName = "CSMCORE"
+[files]
+"CSM.mak"	
+"CSM.dxs"	
+"CSM.h"	
+"CsmOpROM.c"	
+"BiosData.h"	
+"CSM.c"	
+"CsmHwInfo.c"	
+"PciInterrupts.c"	
+"PciInfo.asm"	
+"OemPir.dat"	
+"CsmBsp.c"	
+"CsmLib.c"	
+"CsmSimpleIn.c"	
+[parts]
+"THUNK"
+"CSM_OEM_HOOKS"
+<endComponent>

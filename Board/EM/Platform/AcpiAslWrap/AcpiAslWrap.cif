@@ -1,0 +1,12 @@
+<component>
+	name = "AcpiAslWrap"
+	category = ModulePart
+	LocalRoot = "Board\EM\Platform\AcpiAslWrap\"
+	RefName = "AcpiAslWrap"
+[files]
+"AcpiAslWrap.sdl"	
+"PlatformPS2Wake.asl"	
+"PlatformEC.asl"	
+"PlatformDock.asl"
+"PlatformExternal.asl"
+<endComponent>

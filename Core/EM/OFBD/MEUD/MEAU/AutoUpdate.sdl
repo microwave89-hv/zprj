@@ -1,0 +1,103 @@
+TOKEN
+	Name  = "ME_AUTO_UPDATE_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable ReFlash support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "MEAUPD_DIR"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AutoUpdate.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+MODULE
+	Help  = "Includes ReFlash.mak to Project"
+	File  = "AutoUpdate.mak"
+End
+
+TOKEN
+	Name  = "REFLASH_UPDATE_ME"
+	Value  = "1"
+	Help  = "Enables/Disables update of the NVRAM flash area.\When REFLASH_INTERACTIVE is on and REFLASH_UPDATE_NVRAM_CONTROL is on\this value can be overriden by the user using setup option."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DIRECT_FW_UPDATE"
+	Value  = "1"
+	Help  = "1 = Support Direct ME FW Update , 0 = ME FW full image updated."
+	TokenType = Boolean
+	TargetH = Yes
+        Token = "REFLASH_UPDATE_ME" "=" "1"
+End
+
+TOKEN
+	Name  = "REFLASH_UPDATE_GBE"
+	Value  = "1"
+	Help  = "Enables/Disables update of the NVRAM flash area.\When REFLASH_INTERACTIVE is on and REFLASH_UPDATE_NVRAM_CONTROL is on\this value can be overriden by the user using setup option."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "REFLASH_UPDATE_MEDS"
+	Value  = "1"
+	Help  = "Enables/Disables update of the NVRAM flash area.\When REFLASH_INTERACTIVE is on and REFLASH_UPDATE_NVRAM_CONTROL is on\this value can be overriden by the user using setup option."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "REFLASH_UPDATE_FORCE"
+	Value  = "1"
+	Help  = "Enables/Disables update of the NVRAM flash area.\When REFLASH_INTERACTIVE is on and REFLASH_UPDATE_NVRAM_CONTROL is on\this value can be overriden by the user using setup option."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+        Name  = "ME_UPDATE_BINARY_SIZE"
+        Value  = "8"
+        TokenType = Integer
+        TargetH = Yes
+        Help  = "Size in MB of Image."
+End
+
+TOKEN
+    Name  = "ME_UPDATE_BINARY_FILE"
+    Value  = "$(MEAUPD_DIR)\MERegion.BIN"
+    Help  = "Eaglelake BIOS Authenticated Code Module - Production/Release Version."
+    TokenType = File
+    TargetMAK = Yes
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\MERegion.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+
+TOKEN
+    Name  = "IMAGE_ME_FW_VERSION"
+    Value  = "{{2},{2},{0},{5}}"
+    TokenType = Expression
+    TargetH = Yes
+    Help  = "ME version, {Major, Minor, Patch, Build}."
+End
+
+TOKEN
+    Name  = "ME_UPDATE_DOWNGRADE"
+    Value  = "1"
+    TokenType = Boolean
+    TargetH = Yes
+    Help  = "Set to 1, System will auto-update ME even the image in BIOS is old version."
+End

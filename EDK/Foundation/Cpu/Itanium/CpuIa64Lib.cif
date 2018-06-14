@@ -1,0 +1,12 @@
+<component>
+	name = "CpuIa64Lib"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Cpu\Itanium\"
+	RefName = "CpuIa64Lib"
+[files]
+"CpuIa64Lib.sdl"	
+"CpuIa64Lib.mak"	
+"Include\CpuIa64.h"	
+"CpuIa64Lib\IPF\CpuIa64.s"	
+"CpuIa64Lib\CpuIA64Lib.inf"	
+<endComponent>

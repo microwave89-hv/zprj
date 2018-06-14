@@ -1,0 +1,45 @@
+TOKEN
+	Name  = "CpuInitDxe_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Cpu Pei init support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "REQUEST_EBDA_SIZE"
+	Value  = "0x1000"
+	Help  = "Default value 0x1000. If we need to use EBDA, please change the token value to 0x2000. For example, Using mini-pcie card."
+	TokenType = Integer
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "CpuInitDxe_DIR"
+End
+
+MODULE
+	Help  = "Includes CpuPeiInit.mak to Project"
+	File  = "CpuInitDxe.mak"
+End
+
+ELINK
+	Name  = "CpuInitDxe_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/I$(CpuInitDxe_DIR)"
+	Parent  = "CpuInitDxe_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CpuInitDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

@@ -1,0 +1,12 @@
+<component>
+	name = "MePeiPolicyInit"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\MePlatformPolicy\Pei"
+	RefName = "MePeiPolicyInit"
+[files]
+"MePeiPolicyInit.c"	
+"MePeiPolicyInit.h"	
+"MePeiPolicyInit.sdl"	
+"MePeiPolicyInit.mak"
+"MePeiPolicyInit.dxs"
+<endComponent>

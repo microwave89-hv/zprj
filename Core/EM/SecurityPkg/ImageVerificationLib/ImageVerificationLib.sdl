@@ -1,0 +1,109 @@
+TOKEN
+	Name  = "ImageVerification_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Crypto library support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "ENABLE_IMAGE_EXEC_POLICY_OVERRIDE"
+	Value  = "0"
+	Help  = "Enable user override of Image Execution policy"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ENABLE_IMAGE_EXEC_POLICY_OVERRIDE"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "DEBUG_MODE" "=" "1"    
+End
+
+TOKEN
+	Name  = "LOAD_FROM_FV"
+	Value  = "0"
+	Help  = "Load image from Internal FV. Possible options:\0-ALWAYS_EXECUTE; 1-NEVER_EXECUTE; 2-ALLOW_EXECUTE_ON_SECURITY_VIOLATION;\3-DEFER_EXECUTE_ON_SECURITY_VIOLATION; 4-DENY_EXECUTE_ON_SECURITY_VIOLATION; 5-QUERY_USER_ON_SECURITY_VIOLATION"
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+	Range	= "Supported options: 0"
+End
+
+TOKEN
+	Name  = "LOAD_FROM_OROM"
+	Value  = "4"
+	Help  = "Load image from Option ROM"
+	TokenType = Integer
+	TargetH = Yes
+	Range	= "Supported options: 3,4,5"
+End
+
+TOKEN
+	Name  = "LOAD_FROM_REMOVABLE_MEDIA"
+	Value  = "4"
+	Help  = "Load image from Removable Media"
+	TokenType = Integer
+	TargetH = Yes
+	Range	= "Supported options: 3,4,5"
+End
+
+TOKEN
+	Name  = "LOAD_FROM_FIXED_MEDIA"
+	Value  = "4"
+	Help  = "Load image from Fixed Media"
+	TokenType = Integer
+	TargetH = Yes
+	Range	= "Supported options: 3,4,5"
+End
+
+TOKEN
+	Name  = "INSTALL_DUMMY_SECURITY_PROTOCOL"
+	Value  = "0"
+	Help  = "When this token is 'on', the Core publishes dummy instance of the security protocol.\The security protocol is one of the architectural protocols and as such must be available.\The default value is 'on'.  \Set to 'off' if project includes driver that publishes the security protocol.\"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+    Name  = "LOAD_UNSIGNED_EMBEDDED_SHELL"
+    Value  = "0"
+    Help  = "Load Shell from Internal FV"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "LOAD_UNSIGNED_EMBEDDED_SHELL"
+    Value  = "1"
+    TokenType = Boolean
+    TargetH = Yes
+    Token = "DEBUG_MODE" "=" "1"
+End
+
+TOKEN
+	Name  = "IMAGEVERIFY_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\ImageVerificationLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "ImageVerificationLib_DIR"
+	Help  = "Path to Crypto library Module in Project"
+End
+
+MODULE
+	Help  = "Includes ImageVerificationLib.mak to Project"
+	File  = "ImageVerificationLib.mak"
+End
+
+ELINK
+    Name  = "InstallSecurityArchProtocol,"
+    Parent  = "DxeCoreInitialize"
+    InvokeOrder = AfterParent
+End

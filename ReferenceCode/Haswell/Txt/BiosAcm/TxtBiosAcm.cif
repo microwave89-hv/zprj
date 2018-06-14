@@ -1,0 +1,14 @@
+<component>
+	name = "TxtBiosAcm"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\Txt\BiosAcm"
+	RefName = "TxtBiosAcm"
+[files]
+"TxtBiosAcm.sdl"	
+"TxtBiosAcm.mak"	
+"HSW_BIOSAC_DBG_Rev1_5.BIN"	
+"HSW_BIOSAC_PRO_Rev1_5.BIN"
+"HSW_BIOSAC_PRO_NPW_Rev1_5.BIN"
+"TxtBiosAcm.inf"	
+"makefile.new"	
+<endComponent>

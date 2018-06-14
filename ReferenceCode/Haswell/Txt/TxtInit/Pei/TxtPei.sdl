@@ -1,0 +1,86 @@
+TOKEN
+	Name  = "TxtPei_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TXT Pei init support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "TxtPei_DIR"
+	Help  = "TXT PEI source directory"
+End
+
+TOKEN
+	Name  = "TXT_TOOL_DIR"
+	Value  = "$(TXT_DIR)\Tools"
+	Help  = "TXT tools directory"
+	TokenType = Expression
+	TargetMAK = Yes
+	TargetH = Yes
+END
+
+TOKEN
+	Name  = "AP_GUID"
+	Value  = "D1E59F50-E8C3-4545-BF61-11F002233C97"
+	Help  = "GUID of AP initialization file."
+	TokenType = Expression
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "AP_FIXUP_FILE"
+	Value  = "$(TXT_TOOL_DIR)\Apfixup.txt"
+	Help  = "Name of AP FFS fixup table file."
+	TokenType = Expression
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "AP_OFFSET"
+	Value  = "$(FV_BB_BLOCKS)*$(FLASH_BLOCK_SIZE)"
+	Help  = "End-of-file offset of AP initialization file."
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+MODULE
+	Help  = "Includes TXTPEI.mak into project"
+	File  = "TXTPEI.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\txtpeiap.ffs"
+	Parent  = "FV_BB"
+	Priority  = -2000
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "TYPE:HOLE LOCATION:0xfffff000"
+	Parent  = "$(BUILD_DIR)\txtpeiap.ffs"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TxtPei.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "TXT_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/I$(TxtPei_DIR)"
+	Parent  = "TXT_INCLUDES"
+	InvokeOrder = AfterParent
+End

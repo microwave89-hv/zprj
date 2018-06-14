@@ -1,0 +1,40 @@
+TOKEN
+    Name  = "FastBootOption_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable FastBootOption support in Project"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+    Token = "CORE_COMBINED_VERSION" ">=" "0x040281"
+End
+
+
+PATH
+    Name  = "FastBootOption_DIR"
+End
+
+MODULE
+    Help  = "Includes FastBootOption.mak to Project"
+    File  = "FastBootOption.mak"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\FastBootOption.ffs"
+    Parent  = "FV_MAIN"
+    Token = "FastBootOption_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "RemoveFastBootOption,"
+    Parent  = "ReadBootOptions,"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "SetBootNextBootOption,"
+    Parent  = "SaveBootOptions,"
+    InvokeOrder = BeforeParent
+End

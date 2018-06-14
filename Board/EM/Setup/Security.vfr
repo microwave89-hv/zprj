@@ -1,0 +1,168 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/BIN/Board/Setup/Security.vfr 19    3/08/11 12:09p Felixp $
+//
+// $Revision: 19 $
+//
+// $Date: 3/08/11 12:09p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Board/Setup/Security.vfr $
+// 
+// 19    3/08/11 12:09p Felixp
+// Bug fix (EIP 55443):  Password length restriction message is updated 
+// to work properly during language switch.
+// 
+// 18    6/11/10 12:23p Felixp
+// AMI_CALLBACK_VARSTORE added
+// 
+// 17    2/24/10 11:52a Felixp
+// Information about expected password length is added.
+// 
+// 16    12/08/09 12:19p Oleksiyy
+// EIP 31784: PASSWORD_MIN_SIZE token added to Setup.sdl and Security.vfr.
+// 
+// 15    10/09/09 6:43p Felixp
+// UEFI 2.1 Support (the component is updated to support Framework and
+// UEFI 2.1 HII).
+// 
+// 14    6/30/09 2:33p Robert
+// comment corrections
+// 
+// 13    6/30/09 11:42a Robert
+// Added Comment and updated parts for coding standards
+//
+// 12    9/05/07 5:26p Felixp
+// IDE Security changed removed (will be added with the future Core/Board
+// labels).
+//
+// 8     12/22/05 7:12p Robert
+// Added new strings for the security page so that it has a better
+// description of what setting the passwords will do
+//
+// 7     11/08/05 5:11a Felixp
+// Update to be complient with TSE 1.15.1044
+//
+// 6     10/19/05 2:07p Felixp
+// Support for custom varstores (in .sd files) added.
+//
+// 5     9/06/05 6:20p Girim
+// Added support for distinguishing the Admin and User Passwords and Code
+// cleanup.
+//
+// 3     7/12/05 11:13a Felixp
+// workaround for VFR compiler bug in varstore handling
+//
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//**********************************************************************
+// Name:        Security.vfr
+//
+// Description: 
+//  Setup script for the "Security" top level setup screen
+//**********************************************************************
+//<AMI_FHDR_END>
+
+#include "SetupPrivate.h"
+#define SECURITY_FORM_SET
+#define FORM_SET_TYPEDEF
+#include <SetupDefinitions.h>
+#undef FORM_SET_TYPEDEF
+
+formset guid  = SECURITY_FORM_SET_GUID,
+    title = STRING_TOKEN(STR_SECURITY),
+    help = STRING_TOKEN(STR_SECURITY_HELP),
+    class = SECURITY_FORM_SET_CLASS,
+    subclass = 0,
+
+    SETUP_DATA_VARSTORE
+    SYSTEM_ACCESS_VARSTORE
+    AMITSESETUP_VARSTORE
+    AMI_CALLBACK_VARSTORE
+
+    #define FORM_SET_VARSTORE
+    #include <SetupDefinitions.h>
+    #undef FORM_SET_VARSTORE
+
+    form formid = AUTO_ID(SECURITY_MAIN),
+        title = STRING_TOKEN(STR_SECURITY);
+
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_BANNER_ONE))
+
+        SEPARATOR
+
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_BANNER_TWO))
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_BANNER_THREE))
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_BANNER_FOUR))
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_BANNER_FIVE))
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_BANNER_SIX))
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_BANNER_SEVEN))
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_BANNER_EIGHT))
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_BANNER_NINE))
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_BANNER_TEN))
+        INVENTORY(STRING_TOKEN(STR_MIN_PASSWORD_LENGTH_NAME),STRING_TOKEN(STR_MIN_PASSWORD_LENGTH__VALUE))
+        INVENTORY(STRING_TOKEN(STR_MAX_PASSWORD_LENGTH_NAME),STRING_TOKEN(STR_MAX_PASSWORD_LENGTH__VALUE))
+
+        SEPARATOR
+        SEPARATOR
+
+        grayoutif  ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+            password varid = AMITSESETUP.AdminPassword,
+                prompt = STRING_TOKEN(STR_ADMIN_PASSWORD),
+                help = STRING_TOKEN(STR_ADMIN_PASSWORD_HELP),
+                flags = 0,
+                minsize = PASSWORD_MIN_SIZE,
+                maxsize = PASSWORD_MAX_SIZE,
+                encoding = 1,
+            endpassword;
+        endif;  // grayout
+
+        password varid = AMITSESETUP.UserPassword,
+            prompt = STRING_TOKEN(STR_USER_PASSWORD),
+            help = STRING_TOKEN(STR_USER_PASSWORD_HELP),
+            flags = 0,
+            minsize = PASSWORD_MIN_SIZE,
+            maxsize = PASSWORD_MAX_SIZE,
+            encoding = 1,
+        endpassword;
+
+        #define FORM_SET_ITEM
+        #include <SetupDefinitions.h>
+        #undef FORM_SET_ITEM
+        #define FORM_SET_GOTO
+        #include <SetupDefinitions.h>
+        #undef FORM_SET_GOTO
+    endform;
+    #define FORM_SET_FORM
+    #include <SetupDefinitions.h>
+    #undef FORM_SET_FORM
+endformset;
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

@@ -1,0 +1,57 @@
+TOKEN
+	Name  = "AmtWrapperDxe_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AMT Wrapper DXE support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "AmtWrapperDxe_DIR"
+End
+
+MODULE
+	Help  = "Includes AmtWrapperDxe.mak to Project"
+	File  = "AmtWrapperDxe.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmtWrapperDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "SREDIR_DISPLAY_MODE"
+	Value  = "0"
+	Help  = "0:Legacy Redirection by Setup Setting\1:Force Legacy Redirection to 80x24\2:Force Legacy Redirection to 80x25"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 - 2"
+End
+
+ELINK
+	Name  = "{0x8086,0x1C3A},"
+	Parent  = "InvalidPciComDeviceList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{0x8086,0x1C3B},"
+	Parent  = "InvalidPciComDeviceList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{0x8086,0x1E3A},"
+	Parent  = "InvalidPciComDeviceList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{0x8086,0x1E3B},"
+	Parent  = "InvalidPciComDeviceList"
+	InvokeOrder = AfterParent
+End

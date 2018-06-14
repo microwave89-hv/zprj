@@ -1,0 +1,88 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SataDriver/SataDriver.sdl 3     1/10/13 8:28a Scottyang $
+#
+# $Revision: 3 $
+#
+# $Date: 1/10/13 8:28a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SataDriver/SataDriver.sdl $
+# 
+# 3     1/10/13 8:28a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Create token for SataDriver path.
+# [Files]  		SataDriver.sdl, SataDriver.mak
+# 
+# 2     7/02/12 10:15a Victortu
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Set SataDriver_SUPPORT enabled by default.
+# [Files]         SataDriver.sdl
+# 
+# 1     2/08/12 8:37a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+	Name  = SataDriver_SUPPORT
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable SataDriver support in Project"
+End
+
+MODULE
+	Help  = "Includes SataDriver.mak to Project"
+	File  = "SataDriver.mak"
+End
+
+PATH
+	Name  = "SataDriver_DIR"
+	Help  = "Sata Uefi Raid Driver."
+End
+
+TOKEN
+	Name  = "OEM_SATA_EFI_DRIVER_FILE"
+	Value  = "$(SataDriver_DIR)\SataDriver.efi"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SataDriver.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

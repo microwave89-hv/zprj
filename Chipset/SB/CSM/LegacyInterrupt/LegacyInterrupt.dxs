@@ -1,0 +1,65 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**           5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093      **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Chipset/SouthBridge/LegacyInterrupt.dxs 5     1/12/10 11:51a Olegi $
+//
+// $Revision: 5 $
+//
+// $Date: 1/12/10 11:51a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/CSM/Generic/Chipset/SouthBridge/LegacyInterrupt.dxs $
+// 
+// 5     1/12/10 11:51a Olegi
+// Copyright message updated.
+// 
+// 4     4/27/07 5:21p Olegi
+// CSM.CHM preparations.
+// 
+// 3     8/23/05 11:51a Girim
+// Updated Copyright Year
+// 
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:	LegacyInterrupt.dxs
+//
+// Description:	Legacy Interrupt dependency file
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+
+#include <Protocol\PciRootBridgeIo.h>
+#include <Protocol\BootScriptSave.h>
+
+DEPENDENCY_START
+    EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL_GUID AND
+    EFI_BOOT_SCRIPT_SAVE_GUID
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**           5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093      **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

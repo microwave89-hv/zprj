@@ -1,0 +1,8 @@
+<component>
+	name = "AmiTcgPlatformPpi"
+	category = ModulePart
+	LocalRoot = "Include\PPI"
+	RefName = "AmiTcgPlatformPpi"
+[files]
+"AmiTcgPlatformPpi.h"
+<endComponent>

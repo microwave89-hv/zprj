@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueBasePeCoffGetEntryPointLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueBasePeCoffGetEntryPointLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueBasePeCoffGetEntryPointLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueBasePeCoffGetEntryPointLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueBasePeCoffGetEntryPointLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueBasePeCoffGetEntryPointLib.mak to Project"
+	File  = "EdkIIGlueBasePeCoffGetEntryPointLib.mak"
+End
+

@@ -1,0 +1,13 @@
+<component>
+	name = "PchSpiSmm"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Spi\Smm"
+	RefName = "PchSpiSmm"
+[files]
+"PchSpiSmm.sdl"	
+"PchSpiSmm.mak"	
+"PchSpi.c"	
+"PchSpi.h"	
+"PchSpi.dxs"	
+"PchSpiSmm.inf"	
+<endComponent>

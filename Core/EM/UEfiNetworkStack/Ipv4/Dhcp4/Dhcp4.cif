@@ -1,0 +1,11 @@
+<component>
+	name = "Dhcp4"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Ipv4\Dhcp4"
+	RefName = "Dhcp4"
+[files]
+"Dhcp4.sdl"	
+"Dhcp4.mak"	
+"Dhcp4DxeIa32.efi"	
+"Dhcp4Dxe.efi"	
+<endComponent>

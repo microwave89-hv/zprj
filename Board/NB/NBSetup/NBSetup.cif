@@ -1,0 +1,13 @@
+<component>
+	name = "NBSetup"
+	category = ModulePart
+	LocalRoot = "Board\NB\NBSetup"
+	RefName = "NBSetup"
+[files]
+"NBSetup.sdl"	
+"NBSetup.mak"	
+"NB.sd"	
+"NB.uni"	
+"NBSetup.c"	
+"NBSetupReset.c"	
+<endComponent>

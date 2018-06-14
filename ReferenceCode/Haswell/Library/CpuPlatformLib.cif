@@ -1,0 +1,12 @@
+<component>
+	name = "CpuPlatformLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\Library\"
+	RefName = "CpuPlatformLib"
+[files]
+"CpuPlatformLib.sdl"	
+"CpuPlatformLib.mak"	
+"CpuPlatformLib\CpuPlatformLib.inf"	
+"CpuPlatformLib\CpuPlatformLibrary.c"	
+"CpuPlatformLib\CpuPlatformLibrary.h"
+<endComponent>

@@ -1,0 +1,13 @@
+<component>
+	name = "Intel System Agent"
+	category = eChipset
+	LocalRoot = "Chipset\NB\"
+	RefName = "Intel System Agent"
+[files]
+"ReleaseNotes.chm"
+[parts]
+"Intel SystemAgent NB Board"
+"Intel SystemAgent NB Chipset"
+"Intel SystemAgent NB Refcode"
+"IntelSaGopDriver"
+<endComponent>

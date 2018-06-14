@@ -1,0 +1,37 @@
+TOKEN
+	Name  = "CpuInitPei_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Cpu Pei init support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "CpuInitPei_DIR"
+End
+
+MODULE
+	Help  = "Includes CpuInitPei.mak to Project"
+	File  = "CpuInitPei.mak"
+End
+
+ELINK
+	Name  = "CpuInitPei_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/I$(CpuInitPei_DIR)"
+	Parent  = "CpuInitPei_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CpuInitPei.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End
+

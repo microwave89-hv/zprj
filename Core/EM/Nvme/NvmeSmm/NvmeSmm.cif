@@ -1,0 +1,13 @@
+<component>
+	name = "NvmeSmm"
+	category = ModulePart
+	LocalRoot = "Core\EM\Nvme\NvmeSmm\"
+	RefName = "NvmeSmm"
+[files]
+"NvmeSmm.mak"	
+"NvmeSmm.dxs"	
+"NvmeSmm.sdl"	
+"NvmeSmm.c"	
+"NvmeSmm.h"	
+"NvmeDef.h"
+<endComponent>

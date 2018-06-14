@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGluePeiMemoryAllocationLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\PeiMemoryAllocationLib"
+	RefName = "EdkIIGluePeiMemoryAllocationLib"
+[files]
+"EdkIIGluePeiMemoryAllocationLib.sdl"	
+"EdkIIGluePeiMemoryAllocationLib.mak"
+"PeiMemoryAllocationLib.inf"	
+"MemoryAllocationLib.c"	
+<endComponent>

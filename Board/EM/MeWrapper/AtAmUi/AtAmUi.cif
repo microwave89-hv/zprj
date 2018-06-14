@@ -1,0 +1,14 @@
+<component>
+	name = "AtAmUi"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\AtAmUi\"
+	RefName = "AtAmUi"
+[files]
+"AtAmUi.dxs"	
+"AtAmUi.mak"	
+"AtAmUi.sdl"	
+"AtAmUi.c"
+"AtAmUi.h"	
+"AtAmUiString.c"
+"AtAmUiString.h"
+<endComponent>

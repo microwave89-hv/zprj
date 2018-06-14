@@ -1,0 +1,96 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2013, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/FIT/Pei/BootGuardTPMPei/BootGuardTPMPei.sdl 3     10/29/13 5:18a Bensonlai $
+#
+# $Revision: 3 $
+#
+# $Date: 10/29/13 5:18a $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/FIT/Pei/BootGuardTPMPei/BootGuardTPMPei.sdl $
+# 
+# 3     10/29/13 5:18a Bensonlai
+# 
+# 2     9/06/13 6:10a Bensonlai
+# [TAG]  		EIP135513
+# [Category]  	Improvement
+# [Description]  	Support the TPM1.2 for WHCK test
+# 
+# 1     6/04/13 5:15a Bensonlai
+# [TAG]  		EIP125148
+# [Category]  	Spec Update
+# [Severity]  	Normal
+# [Description]  	[SBY ULT] Boot Guard for 4th Gen Intel Core Processor
+# based on Mobile U-Processor Line - BIOS Writer's Guide - Rev 1.0
+# [Files]  		BootGuardTPMPei.cif
+# BootGuardTPMPei.c
+# BootGuardTPMPei.h
+# BootGuardTPMPei.sdl
+# BootGuardTPMPei.mak
+#
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name: BootGuardTPMPei.sdl
+#
+# Description: SDL file for BootGuardTPMPei
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+        Name = "BootGuardTPMPei_SUPPORT"
+        Value = "1"
+        Help = "Main switch to enable BootGuardTPMPei support in Project"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        Master = Yes
+        Token = "TCG_SUPPORT" "=" "1"
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+PATH
+        Name = "BootGuardTPMPei_PATH"
+End
+
+MODULE
+        File = "BootGuardTPMPei.mak"
+        Help = "Includes BootGuardTPMPei.mak to Project"
+End
+
+TOKEN
+        Name = "MEASURE_CRTM_VERSION_PEI_FUNCTION"
+        Value = "BootGuardMeasureCRTMVersion"
+        Help = "Function to measure crtm version. Input:EFI_PEI_SERVICES **. AMI function Modified Pcr 0"
+        TokenType = Expression
+        TargetH = Yes
+End
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2013, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

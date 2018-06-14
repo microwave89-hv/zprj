@@ -1,0 +1,13 @@
+<component>
+	name = "FloppyCtrl"
+	category = ModulePart
+	LocalRoot = "Core\EM\FloppyCtrl\"
+	RefName = "FloppyCtrl"
+[files]
+"FloppyCtrl.sdl"	
+"FloppyCtrl.mak"	
+"FloppyCtrl.h"	
+"FloppyCtrl.c"	
+"Names.c"	
+"FloppyCtrlPei.dxs"	
+<endComponent>

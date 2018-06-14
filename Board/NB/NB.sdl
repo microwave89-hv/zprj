@@ -1,0 +1,1223 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2015, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Board/NB.sdl 23    7/02/15 2:48a Dennisliu $
+#
+# $Revision: 23 $
+#
+# $Date: 7/02/15 2:48a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Board/NB.sdl $
+# 
+# 23    7/02/15 2:48a Dennisliu
+# [TAG]  		EIP221317
+# [Category]  	Improvement
+# [Description]  	[SharkBay] S3 Security Technical Advisories
+# [Files]  		Board\NB\NB.sdl
+# 
+# 22    11/07/13 3:37a Ireneyang
+# [TAG]         None
+# [Category]    Improvement
+# [Description] Remove "AMI_SA_ECC_DIMM_ERROR" for EIP#138347. 
+# [Solution]    It's fixed in RC1.7.0.
+# [Files]       NB.sdl; MrcCrosser.c;
+# 
+# 21    10/29/13 12:04p Ireneyang
+# 
+# 20    10/29/13 11:55a Ireneyang
+# [TAG]         EIP139301
+# [Category]    BugFix
+# [Description] Hanging issue when moving ECC Dimm form channel B 
+#               dimm 1 to channel A dimm 0.
+# [Solution]    Fix MRC code form Intel Patch. (This will be fixed
+#               in next version RC code.)
+# [Files]       MrcCrosser.c; NB.sdl;
+# 
+# 19    5/22/13 6:42a Ireneyang
+# [TAG]         None
+# [Category]    Improvement
+# [Description] Add Token SG_GPIO_SUPPORT for GpioSupport.
+# [Files]       NB.sdl; NBPEI.c;
+# 
+# 18    3/14/13 4:15a Ireneyang
+# [TAG]          None
+# [Severity]     Improvement
+# [Description]  Increase "PEI_MIN_MEMORY_SIZE" to "0x4000000" for PFAT
+#                and Recovery. 
+# [Files]        NB.sdl;
+# 
+# 17    2/25/13 4:25a Ireneyang
+# [TAG]  	 EIP115090
+# [Category]  	 Improvement
+# [Description]  Memory data hasn't been cleared after running MRC base
+#                memory test.
+# [Files]  	 NB.sdl;  NBPEI.c;
+# 
+# 16    1/14/13 6:12a Jeffch
+# [TAG]          None
+# [Severity]     Spec update
+# [Description]  Create Iedsize token for  SA RC 0.90.
+# [Files]        NB.sdl;
+# 
+# 15    11/08/12 7:04a Jeffch
+# 
+# 14    10/30/12 7:17a Jeffch
+# [TAG]          None
+# [Severity]     Important
+# [Description]  Update SA RC 0.72.
+# [Files]        NB.sdl; NBDXEboard.c
+# 
+# 13    10/14/12 11:41a Jeffch
+# [TAG]          None
+# [Severity]     Important
+# [Description]  Follow SA RC 0.71.
+# [Files]       Nb.sdl
+# 
+# 12    10/14/12 12:50a Jeffch
+# [TAG]          None
+# [Severity]     Important
+# [Description]  Follow Update by Mahobay.
+# [Files]        NB.sdl, NB.mak.c; NBDXEBoard.c; NB.sdl
+# 
+# 11    9/26/12 9:28a Yurenlai
+# [TAG]          EIP101495
+# [Category]     Improvement
+# [Severity]     Important
+# [Description]  Initialize SSID of B0:D3:F0 and B0:D2:F0/F1.
+# [Files]        NB.h, NB.sdl, NBPEI.c
+# 
+# 10    8/14/12 4:26a Yurenlai
+# [TAG]          None
+# [Severity]     Important
+# [Description]  Change for SystemAgent RefCode Revision: 0.6.1.
+# [Files]        NB.sdl, NB.sd, NBCSP.CIF, NBDxe.c, NB.ASL, SaAudio.asl 
+# 
+# 9     7/27/12 8:46a Yurenlai
+# [TAG]          None
+# [Category]     Improvement
+# [Description]  IGfx Fource Disable Support.
+# [Files]        GetSetupData.c, NB.sdl, NB.sd, NB.uni, NbSetupData.h,
+#                NBDxe.c, NBPEI.c
+# 
+# 8     6/14/12 5:19a Yurenlai
+# [TAG]          None
+# [Category]     Improvement
+# [Description]  Support token to disable PEG 0 ~ 2.
+# [Description]  NB.sdl, NB.sd, NB.ASL, HOST_BUS.ASL
+# 
+# 7     4/26/12 3:00a Yurenlai
+# [TAG]          None
+# [Category]     Improvement
+# [Severity]     Important
+# [Description]  Adjust Intel System Agent module the Setup item and
+#                Policy.
+# [Description]  GetSetupData.c, NB.sdl, NB.sd, NB.uni, NBDxe.c,
+#                NBPEI.c, NBSetup.c, NBSetupReset.c, NbSetupData.h
+# 
+# 6     4/05/12 2:15a Yurenlai
+# [TAG]  	 EIP87103
+# [Category]  	 Spec Update
+# [Severity]  	 Important
+# [Description]  Add token NB_IOTRAP_SMI_ADDRESSE for SystemAgent
+#                RefCode Revision: 0.5.5.
+# [Files]  	 Nb.sdl
+# 
+# 5     4/05/12 2:03a Yurenlai
+# [TAG]          None
+# [Category]     Improvement
+# [Description]  Add HD Audio device router.
+# [Files]        Nb.sdl
+# 
+# 4     3/08/12 10:32p Yurenlai
+# [TAG]          None
+# [Category]     Improvement
+# [Description]  Change VBIOS the files name.
+#                Notice : This hsm_Vbios.bin and hsd_Vbios.bin is dummy
+#                files.
+# [Files]        Nb.sdl, hsm_VBios.bin, hsd_VBios.bin, NBCSP.CIF
+# 
+# 3     2/23/12 10:14p Yurenlai
+# 
+# [TAG]          None
+# [Category]     Improvement
+# [Description]  If you want to test IGD, please replace into correct
+#                VBIOS.
+# [Files]        Nb.sdl, NBCSP.CIF
+# 
+# 2     2/23/12 6:57a Yurenlai
+# [TAG]          None
+# [Category]     Improvement
+# [Description]  Change VBIOS the file name.
+#                Notice : This hsm_Vbios.dat file is false. 
+# [Files]        Nb.sdl, hsm_Vbios.dat, NBCSP.CIF
+# 
+# 1     2/08/12 4:32a Yurenlai
+# Intel Haswell/NB eChipset initially releases.
+#
+#*************************************************************************
+PCIDEVICE
+	Title  = "Host Bridge"
+	Bus  = 00h
+	Dev  = 00h
+	Fun  = 00h
+	BridgeBus  = 00h
+	ASLfile  = "$(INTEL_ACPI_ASL_DIR)\HOST_BUS.ASL"
+	ASLdeviceName  = "PCI0"
+	DeviceType = OnBoard
+	PCIBusSize = PciEx
+	PCIBridge = Yes
+	ROMMain = No
+End
+
+PCIDEVICE
+	Title  = "P.E.G. Root Port D1F0"
+	Bus  = 00h
+	Dev  = 01h
+	Fun  = 00h
+	BridgeBus  = 02h
+	GPEbit  = 09h
+	SleepNum  = 04h
+	IntA = 	LNKA; 16
+	IntB = 	LNKB; 17
+	IntC = 	LNKC; 18
+	IntD = 	LNKD; 19
+	Token = "RC_PEG_0" "=" "1"
+	DeviceType = OnBoard
+	PCIBusSize = PciEx
+	PCIBridge = Yes
+End
+
+PCIDEVICE
+	Title  = "P.E.G. Root Port D1F1"
+	Bus  = 00h
+	Dev  = 01h
+	Fun  = 01h
+	BridgeBus  = 0ah
+	GPEbit  = 09h
+	SleepNum  = 04h
+	Token = "RC_PEG_1" "=" "1"
+	DeviceType = OnBoard
+	PCIBusSize = PciEx
+	PCIBridge = Yes
+End
+
+PCIDEVICE
+	Title  = "P.E.G. Root Port D1F2"
+	Bus  = 00h
+	Dev  = 01h
+	Fun  = 02h
+	BridgeBus  = 0bh
+	GPEbit  = 09h
+	SleepNum  = 04h
+	Token = "RC_PEG_2" "=" "1"
+	DeviceType = OnBoard
+	PCIBusSize = PciEx
+	PCIBridge = Yes
+End
+
+PCIDEVICE
+	Title  = "P.E.G. Port Slot x16"
+	Bus  = 02h
+	Dev  = 00h
+	Slot  = 010h
+	GPEbit  = 09h
+	SleepNum  = 04h
+	IntA = 	LNKA; 16
+	IntB = 	LNKB; 17
+	IntC = 	LNKC; 18
+	IntD = 	LNKD; 19
+	Token = "RC_PEG_0" "=" "1"
+	DeviceType = Slot
+	PCIBusSize = PciEx
+End
+
+PCIDEVICE
+	Title  = "P.E.G. Port Slot x8"
+	Bus  = 0ah
+	Dev  = 00h
+	Slot  = 011h
+	GPEbit  = 09h
+	SleepNum  = 04h
+	IntA = 	LNKB; 17
+	IntB = 	LNKC; 18
+	IntC = 	LNKD; 19
+	IntD = 	LNKA; 16
+	Token = "RC_PEG_1" "=" "1"
+	DeviceType = Slot
+	PCIBusSize = PciEx
+End
+
+PCIDEVICE
+	Title  = "P.E.G. Port Slot x4"
+	Bus  = 0bh
+	Dev  = 00h
+	Slot  = 012h
+	GPEbit  = 09h
+	SleepNum  = 04h
+	IntA = 	LNKC; 18
+	IntB = 	LNKD; 19
+	IntC = 	LNKA; 16
+	IntD = 	LNKB; 17
+	Token = "RC_PEG_2" "=" "1"
+	DeviceType = Slot
+	PCIBusSize = PciEx
+End
+
+PCIDEVICE
+	Title  = "I.G.F.X."
+	Bus  = 00h
+	Dev  = 02h
+	Fun  = 00h
+	ROMFile  = "Chipset\NB\hsw_VBios.dat"
+	DeviceID  = 0402h
+	VendorID  = 08086h
+	IntA = 	LNKA; 16
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	OptionROM = Yes
+	CompressedROM = Yes
+End
+
+PCIDEVICE
+	Title  = "I.G.D., Fun#1"
+	Bus  = 00h
+	Dev  = 02h
+	Fun  = 01h
+	Disable = Yes
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	ROMMain = No
+End
+
+PCIDEVICE
+	Title  = "SA HDA Device"
+	Bus  = 00h
+	Dev  = 03h
+	Fun  = 00h
+	DeviceID  = 0c0ch
+	VendorID  = 08086h
+	IntA = 	LNKA; 16
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+End
+
+PCIDEVICE
+	Title  = "SA Thermal Device"
+	Bus  = 00h
+	Dev  = 04h
+	Fun  = 00h
+	GPEbit  = 09h
+	SleepNum  = 04h
+	ASLdeviceName  = "B0D4"
+	IntA = 	LNKA; 16
+	IntB = 	LNKB; 17
+	IntC = 	LNKC; 18
+	IntD = 	LNKD; 19
+	DeviceType = OnBoard
+	PCIBusSize = PciEx
+	ROMMain = No
+End
+
+TOKEN
+	Name  = "NB_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Template - NorthBridge support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "PEI_MRC_BASE_MEMORY_TEST_ENABLE"
+	Value  = "0"
+	Help  = "Enable/Disable Mrc base memory test."
+	TokenType = Boolean
+	TargetH = Yes
+	Range  = "On - Off"
+End
+
+TOKEN
+	Name  = "NB_TEMPLATE_VER"
+	Value  = "0005"
+	Help  = "North Bridge Template Version Number.\ DO NOT CHANGE THIS VALUE"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "NB_NUMBER_OF_HOST_BRG"
+	Value  = "1"
+	Help  = "Provides Number of virtual HOST Bridges within the System.\If System covers more than one PCI segment it will nedd more than one HOST bridge; "
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ROOT_BRIDGE_COUNT"
+	Value  = "1"
+	Help  = "Indicates how many root bridges (peer to peer) are in the system."
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NB_DEBUG_MESSAGE"
+	Value  = "1"
+	Help  = "Enables/disables debug message in NB module"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "DEBUG_MODE" "!=" "0"
+End
+
+TOKEN
+	Name  = "INCLUDE_NB_ASM_FILE_IN_SEC"
+	Value  = "1"
+	Help  = "Includes an ASM file and an eLink in SEC build process for NB code modification:"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "ENABLE_NB_DMI_GEN2_IN_SEC"
+	Value  = "0"
+	Help  = "Enabel an NB DMI GEN2 in SEC program."
+	TokenType = Boolean
+	TargetEQU = Yes
+End
+
+TOKEN
+	Name  = "NB_IGFX_FORCE_DISABLE_SUPPORT"
+	Value  = "0"
+	Help  = "Enable/Disable IGfx Fource Disable Support."
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "RC_PEG_0"
+	Value  = "1"
+	Help  = "Set to 'On' if PEG Port #0  phisically enabled and connected on the board"
+	TokenType = Boolean
+	TargetH = Yes
+	Range  = "On - Off"
+End
+
+TOKEN
+	Name  = "RC_PEG_1"
+	Value  = "1"
+	Help  = "Set to 'On' if PEG Port #1  phisically enabled and connected on the board"
+	TokenType = Boolean
+	TargetH = Yes
+	Range  = "On - Off"
+	Token = "RC_PEG_0" "=" "1"
+End
+
+TOKEN
+	Name  = "RC_PEG_2"
+	Value  = "1"
+	Help  = "Set to 'On' if PEG Port #2  phisically enabled and connected on the board"
+	TokenType = Boolean
+	TargetH = Yes
+	Range  = "On - Off"
+	Token = "RC_PEG_0" "=" "1"
+	Token = "RC_PEG_1" "=" "1"
+End
+
+TOKEN
+	Name  = " "
+	TokenType = Integer
+End
+
+TOKEN
+	Name  = "=============== NB Specific Tokens =============="
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "TSEG_SIZE"
+	Value  = "0x800000"
+	Help  = "Size of SMM TSEG area used (in bytes) \Default size 1MB."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IED_SIZE"
+	Value  = "0x400000"
+	Help  = "Size of IED region in bytes \Default size 4MB."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PCIEX_BASE_ADDRESS"
+	Value  = "0xF8000000"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PEBS"
+	Value  = "$(PCIEX_BASE_ADDRESS)"
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "PCIEX_LENGTH"
+	Value  = "0x4000000"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "0x4000000, 0x8000000, 0x10000000"
+	Token = "PCIEX_BASE_ADDRESS" "=" "0xF8000000"
+End
+
+TOKEN
+	Name  = "PCIEX_LENGTH"
+	Value  = "0x8000000"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "0x4000000, 0x8000000, 0x10000000"
+	Token = "PCIEX_BASE_ADDRESS" "=" "0xF0000000"
+End
+
+TOKEN
+	Name  = "PCIEX_LENGTH"
+	Value  = "0x10000000"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "0x4000000, 0x8000000, 0x10000000"
+	Token = "PCIEX_BASE_ADDRESS" "=" "0xE0000000"
+End
+
+TOKEN
+	Name  = "PCIEX_LENGTH_BIT_SETTING"
+	Value  = "0x4"
+	Help  = "PCI 0:0:0:60 PCIEXBAR bits [2:0] - PCI express size, 0x0 is 256MB, 0x2 is 128MB, 0x4 is 64MB"
+	TokenType = Integer
+	TargetEQU = Yes
+	Token = "PCIEX_LENGTH" "=" "0x04000000"
+End
+
+TOKEN
+	Name  = "PCIEX_LENGTH_BIT_SETTING"
+	Value  = "0x2"
+	Help  = "PCI 0:0:0:60 PCIEXBAR bits [2:0] - PCI express size, 0x0 is 256MB, 0x2 is 128MB, 0x4 is 64MB"
+	TokenType = Integer
+	TargetEQU = Yes
+	Token = "PCIEX_LENGTH" "=" "0x08000000"
+End
+
+TOKEN
+	Name  = "PCIEX_LENGTH_BIT_SETTING"
+	Value  = "0x0"
+	Help  = "PCI 0:0:0:60 PCIEXBAR bits [2:0] - PCI express size, 0x0 is 256MB, 0x2 is 128MB, 0x4 is 64MB"
+	TokenType = Integer
+	TargetEQU = Yes
+	Token = "PCIEX_LENGTH" "=" "0x10000000"
+End
+
+TOKEN
+	Name  = "PELN"
+	Value  = "$(PCIEX_LENGTH)"
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "PCI_REGISTER_MAX"
+	Value  = "4096"
+	Help  = "Contains the maximum value of PCI register that can be accessed. \ Enabled only when PCI config memory access is enabled"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PCIEX_BASE_ADDRESS" "!=" "0"
+End
+
+TOKEN
+	Name  = "PCI_REGISTER_MAX"
+	Value  = "256"
+	Help  = "Contains the maximum value of PCI register that can be accessed. \ Enabled only when PCI config memory access is disabled"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "PCIEX_BASE_ADDRESS" "=" "0"
+End
+
+TOKEN
+	Name  = "NCPU"
+	Value  = "8"
+	Help  = "NOTE: If systen has one HT cpu the value has to be 2 and so on...\"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Range  = "1- number of cpu in the system "
+End
+
+TOKEN
+	Name  = "LAPB"
+	Value  = "$(LOCAL_APIC_BASE)"
+	Help  = "Local APIC Base Address"
+	TokenType = Expression
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "CPU_MAX_MEMORY_SIZE"
+	Value  = "0x100000000"
+	Help  = "Maximum memory size addressable by the CPU"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PEI_MIN_MEMORY_SIZE"
+	Value  = "0x4000000"
+	Help  = "Minimum memory required for PEI currently 64 MB"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "MEMORY_ARRAY_NUM"
+	Value  = "1"
+	Help  = "No of Memory Array"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DIMM1_SMBUS_ADDRESS"
+	Value  = "0A0h"
+	Help  = "DIMM Socket 0 - Channel A"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DIMM2_SMBUS_ADDRESS"
+	Value  = "0A2h"
+	Help  = "DIMM Socket 1 - Channel A"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DIMM3_SMBUS_ADDRESS"
+	Value  = "0A4h"
+	Help  = "DIMM Socket 0 - Channel B"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DIMM4_SMBUS_ADDRESS"
+	Value  = "0A6h"
+	Help  = "DIMM Socket 1 - Channel B"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NB_EP_BASE_ADDRESS"
+	Value  = "0FED19000h"
+	Help  = "\(G)MCH Egress Port Base Address (D0:F0:Rx40). 4KB non-Conflicting Address Space Required."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NB_DERAM_BASE_ADDRESS"
+	Value  = "0xFED80000"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NB_GDXC_BASE_ADDRESS"
+	Value  = "0xFED84000"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "EGPB"
+	Value  = "$(NB_EP_BASE_ADDRESS)"
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "NB_MCH_BASE_ADDRESS"
+	Value  = "0FED10000h"
+	Help  = "\(G)MCH Memory Mapped Register Range Base Address (D0:F0:Rx48). 16KB non-Conflicting Address Space Required."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "MCHB"
+	Value  = "$(NB_MCH_BASE_ADDRESS)"
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "NB_DMI_BASE_ADDRESS"
+	Value  = "0FED18000h"
+	Help  = "\Root Complex Register Range Base Address (D0:F0:Rx68). 4KB non-Conflicting Address Space Required."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NB_VTD_BASE_ADDRESS"
+	Value  = "0FED90000h"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "VTD_LENGTH"
+	Value  = "0x4000"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "VTBS"
+	Value  = "$(NB_VTD_BASE_ADDRESS)"
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "VTLN"
+	Value  = "$(VTD_LENGTH)"
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "NB_TEMP_MMIO_BASE"
+	Value  = "0xFE800000"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NB_TEMP_MMIO_SIZE"
+	Value  = "0x400000"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NB_IOTRAP_SMI_ADDRESSE"
+	Value  = "0x2100"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = " "
+	TokenType = Integer
+End
+
+TOKEN
+	Name  = "=============== IGFX Setup data Type Tokens =============="
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "IGFX_LCD_PANEL_TYPE"
+	Value  = "0x80"
+	Help  = "IGFX LCD panel type"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IGFX_LCD_PANEL_SCALING"
+	Value  = "0x81"
+	Help  = "IGFX LCD panel scaling type"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IGFX_BOOT_TYPE"
+	Value  = "0x82"
+	Help  = "IGFX boot type"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IGFX_BACKLIGHT_TYPE"
+	Value  = "0x83"
+	Help  = "IGFX Get Inverter Type and Polarity for Backlight type"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IGFX_LFP_PANEL_COLOR_DEPTH_TYPE"
+	Value  = "0x84"
+	Help  = "IGFX LFP Panel Color Depth type"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IGFX_EDP_ACTIVE_LFP_CONFIG_TYPE"
+	Value  = "0x85"
+	Help  = "IGFX Active LCD flat panel(LFP) config type"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IGFX_PRIMARY_DISPLAY_TYPE"
+	Value  = "0x86"
+	Help  = "IGFX Primary Display config type"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IGFX_DISPLAY_PIPE_B_TYPE"
+	Value  = "0x87"
+	Help  = "IGFX Display Pipe B device type"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IGFX_SDVO_PANEL_TYPE"
+	Value  = "0x88"
+	Help  = "IGFX SDVO Panel type"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = " "
+	TokenType = Integer
+End
+
+TOKEN
+	Name  = "=============== CMOS Configuration =============="
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "NB_CMOS_IFFS_SCRAMBLER_SEED"
+	Value  = "0x80"
+	Help  = "iFFS scrambler seed use 2 bytes CMOS REG[80 ~ 81]."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = " "
+	TokenType = Integer
+End
+
+TOKEN
+	Name  = "====== UEFI based Configuration ======"
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "OFFSET_14"
+	Value  = "15"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_14"
+	Value  = "14"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_15"
+	Value  = "16"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "OFFSET_15"
+	Value  = "15"
+	Help  = "Offset 0 based in UEFI 2.1 and 1 based in UEFI 2.0"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = " "
+	TokenType = Integer
+End
+
+TOKEN
+	Name  = "=============== NB PCI DEVICES SSID TABLE =============="
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "NB_PCI_DEVICES_SSID_TABLE"
+	Value  = "{NB_BUS_DEV_FUN, -1}, {NB_IGD_BUS_DEV_FUN, -1}, {NB_IGD_BUS_DEV_FUN1, -1}, {NB_HDA_BUS_DEV_FUN, -1}, {NB_PCIEBRNx16_BUS_DEV_FUN, -1}, {NB_PCIEBRNx8_BUS_DEV_FUN, -1}, {NB_PCIEBRNx4_BUS_DEV_FUN, -1}"
+	Help  = "List of PCI device's Sub-System ID in the following format:\{Device#1 Bus/Device/Function, Device#1 Sub-ID}, {Device#2 Bus/Device/Function, Device#2 Sub-ID}...\The format of the PCI bus/device/function is followed by EFI_PCI_CONFIGURATION_ADDRESS.\If the value of Sub-ID is -1, that means BIOS will use PCI Vendor-ID and Device-ID instead.\The last structure {-1, -1} is end of the table, don't remove it!"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = " "
+	TokenType = Integer
+End
+
+TOKEN
+	Name  = "=============== PCH SKU LPC Device ID for NB HIDE IGFX =============="
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "NBCSPLib"
+	Value  = "$$(LIB_BUILD_DIR)\AmiNbCSPLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "=============== SHADOW RAM SETTING =============="
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "NB_F0000_PAM0"
+	Value  = "0"
+	TokenType = Integer
+        TargetH = Yes
+        Range  = "0 - 3"
+        Help  = "0: Didable. 1: Read Only. 2: Write Only. 3: R/W Enable."
+End
+
+TOKEN
+	Name  = "NB_E0000_PAM5"
+	Value  = "0"
+	TokenType = Integer
+        TargetH = Yes
+        Range  = "0 - 3"
+        Help  = "0: Didable. 1: Read Only. 2: Write Only. 3: R/W Enable."
+End
+
+TOKEN
+	Name  = "NB_E8000_PAM6"
+	Value  = "0"
+	TokenType = Integer
+        TargetH = Yes
+        Range  = "0 - 3"
+        Help  = "0: Didable. 1: Read Only. 2: Write Only. 3: R/W Enable."
+End
+
+TOKEN
+	Name  = "=============== SG GPIO Support =============="
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "SG_GPIO_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable GpioSupport for SG. 1: TRUE 0:FALSE"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+        TargetH = Yes
+End
+
+TOKEN
+	Name  = " "
+	TokenType = Expression
+End
+
+PATH
+	Name  = "NB_BOARD_DIR"
+	Path  = "Board\NB"
+End
+
+PATH
+	Name  = "NB_CHIPSET_DIR"
+	Path  = "Chipset\NB"
+End
+
+MODULE
+	Help  = "Includes NB.mak to Project"
+	File  = "NB.mak"
+End
+
+ELINK
+	Name  = "/D DIMM_SLOT_NUM=4"
+	Parent  = "CFLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MEM_INIT_FV_BB)"
+	Parent  = "FV_BB"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "$(NB_CHIPSET_DIR)\NB.asl"
+	Parent  = "INTEL_GENERIC_ASL"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "\_SB.PCI0.NPTS(Arg0)"
+	Parent  = "ASL_PTS"
+	Help  = "Include North Bridge Specific Function at PTS.\Arg0 is a sleep state the System is targeted for."
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "\_SB.PCI0.NWAK(Arg0)"
+	Parent  = "ASL_WAK"
+	Help  = "Include North Bridge Specific Function at WAK.\Arg0 is a sleep state the System is resuming from. "
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(NB_BOARD_DIR)"
+	Parent  = "$(GLOBAL_DEFINES)"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(NB_CHIPSET_DIR)"
+	Parent  = "$(GLOBAL_DEFINES)"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SECNB_EarlyInit"
+	Parent  = "GainestownSecRcEntry"
+	Help  = "NB Early Init in SEC (before Cache as memory enabling)"
+	SrcFile  = "Board\NB\NBSECInit.ASM"
+	Token = "INCLUDE_NB_ASM_FILE_IN_SEC" "=" "1"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\NBPEI.ffs"
+	Parent  = "FV_BB"
+	Help  = "Template NB PEI component"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\NBDXE.ffs"
+	Parent  = "FV_MAIN"
+	Help  = "Template NB DXE component"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D PLATFORM_PCIEX_BASE_ADDRESS=$(PCIEX_BASE_ADDRESS)"
+	Parent  = "CFLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D EDKII_GLUE_PciExpressBaseAddress=$(PCIEX_BASE_ADDRESS)"
+	Parent  = "CFLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D PLATFORM_PCIEX_LENGTH=$(PCIEX_LENGTH)"
+	Parent  = "CFLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\NBSECInit.OBJ"
+	Parent  = "ADDON_SEC_CORE_OBJ_FILES"
+	Token = "INCLUDE_NB_ASM_FILE_IN_SEC" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "NBINT15"
+	Parent  = "CsmOemInterrupts"
+	ProcID  = 015h
+	SrcFile  = "$(NB_BOARD_DIR)\nbint15.asm"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\nbint15.obj"
+	Parent  = "CSM_OEMINT_OBJS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(NB_BOARD_DIR)\Nb.ssp"
+	Parent  = "ADDON_SSP_FILES"
+	Token = "CMOS_MANAGER_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "NbAcpiEnabled,"
+	Parent  = "AcpiEnableCallbackList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "NbAcpiDisabled,"
+	Parent  = "AcpiDisableCallbackList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "NbRuntimeShadowRamWrite,"
+	Parent  = "RuntimeShadowRamWrite"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CheckPeiFvCopyToRam,"
+	Parent  = "PeiRamBootList"
+	Token = "PeiRamBootSupport" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "NBGetPlatformHandle,"
+	Parent  = "CSM_GET_PLATFORM_HANDLE_FUNCTIONS"
+	Token = "CSM_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OEM_PCI_DEVICE_CALLBACK(0, 0, NBProtectedPciDevice),"
+	Parent  = "OEM_SKIP_PCI_DEVICE"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OEM_PCI_DEVICE_CALLBACK(0, 0, NBProgramPciDevice),"
+	Parent  = "OEM_PROGRAM_PCI_DEVICE"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OEM_PCI_DEVICE_CALLBACK(0, 0, NBUpdatePciDeviceAttributes),"
+	Parent  = "OEM_PCI_ATTRIBUTES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "MEM_INIT_FV_BB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "NbConfigurationList"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK   # [ EIP221317 ]
+    Name  = '{L"MrcS3Resume", {0x87f22dcb, 0x7304, 0x4105, 0xbb, 0x7c, 0x31, 0x71, 0x43, 0xcc, 0xc2, 0x3b}},'
+    Parent  = "BLOCKED_S3_VAR_LIST"
+    InvokeOrder = AfterParent
+End
+
+ELINK   # [ EIP221317 ]
+    Name  = '{L"PegGen3PresetSearchData", {0xe1e2a446, 0x365, 0x4c65,  0x91, 0x9c, 0x03, 0x71, 0xc3, 0xf9, 0xf5, 0xff}},'
+    Parent  = "BLOCKED_S3_VAR_LIST"
+    InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2015, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

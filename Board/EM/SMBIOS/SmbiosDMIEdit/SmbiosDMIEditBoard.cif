@@ -1,0 +1,17 @@
+<component>
+	name = "SmbiosDMIEditBoard"
+	category = ModulePart
+	LocalRoot = "Board\EM\SMBIOS\SmbiosDMIEdit"
+	RefName = "SmbiosDMIEditBoard"
+[files]
+"SmbiosDMIEditBoard.sdl"	
+"SmbiosDMIEditBoard.mak"	
+"SmbiosDMIEditBoard.dxs"	
+"SmbiosDMIEditBoard.c"	
+"SmbiosDMIEdit32.obj"	
+"SmbiosDMIEdit64.obj"	
+"SmbiosDMIEditFunc32.obj"	
+"SmbiosDMIEditFunc64.obj"	
+"SmbiosDMIEditBoard.c32"	
+"SmbiosDMIEditBoard.c64"	
+<endComponent>

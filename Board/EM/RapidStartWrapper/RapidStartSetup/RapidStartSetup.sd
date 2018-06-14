@@ -1,0 +1,367 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartWrapper/RapidStartSetup/RapidStartSetup.sd 4     1/15/13 4:46a Bensonlai $
+//
+// $Revision: 4 $
+//
+// $Date: 1/15/13 4:46a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartWrapper/RapidStartSetup/RapidStartSetup.sd $
+// 
+// 4     1/15/13 4:46a Bensonlai
+// [TAG]  		EIP112263
+// [Category]  	Bug Fix
+// [Severity]  	Normal
+// [Symptom]  	[RapidStart] Instant-on can't work
+// [RootCause]  	Intel reference code can't work on AMI base.
+// [Solution]  	Modified the PeiGfxDriver.dxs and RapidStartDxe.dxs for
+// AMI code
+// [Files]  		RapidStartDxePolicyInit.c, RapidStartSetup.uni,
+// RapidStartSetup.sdl, RapidStartSetup.sd, PeiGfxDriver.dxs,
+// RapidStartDxe.dxs
+// 
+// 3     1/13/13 7:49a Bensonlai
+// [TAG]  		EIPNone
+// [Category]  	Improvement
+// [Description]  	Disabling the RapidStart while STAT mode in the IDE
+// mode
+// [Files]  		RapidStartDxePolicyInit.c, RapidStartDxePolicyInit.h,
+// RapidStartDxePolicyInit.mak, RapidStartSetup.c, RapidStartSetup.mak,
+// RapidStartSetup.sd, RapidStartSetup.sdl
+// 
+// 2     12/27/12 1:17a Bensonlai
+// [TAG]  		EIP110680
+// [Category]  	New Feature
+// [Description]  	When iRST application is run under OS, and change
+// timer.
+// BIOS should update the changed to Setup option as well.
+// [Files]  		Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.c
+// Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.h
+// Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.mak
+// Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.dxs
+// Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.sdl
+// Board\EM\RapidStartWrapper\Smm\RapidStartWrapperSmm.cif
+// Board\EM\RapidStartWrapper\AcpiTables\RapidStartWrapperAcpiTables.cif
+// Board\EM\RapidStartWrapper\AcpiTables\RapidStartWrapperAcpiTables.sdl
+// Board\EM\RapidStartWrapper\AcpiTables\Ssdt\RapidStartWrapper.asl
+// Board\EM\RapidStartWrapper\RapidStartSetup\RapidStartSetup.sd
+// 
+// 1     10/15/12 4:42a Bensonlai
+// [TAG]  		None
+// [Category]  	Improvement
+// [Description]  	[Category] Improvement
+// [Severity] Important
+// [Description] Rename all IFFS sting to Rapid Start.
+// [Files] Board\EM\RapidStartWrapper\*.*, ReferenceCode\RapidStart\*.*
+// [Files]  		RapidStartSetup.cif
+// RapidStartSetup.sdl
+// RapidStartSetup.mak
+// RapidStartSetup.sd
+// RapidStartSetup.uni
+// RapidStartSetup.c
+// RapidStartSetup.h
+// RapidStartSetupReset.c
+//
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name: RapidStartSetup.sd
+//
+// Description: Create the setup item for RapidStart.
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+
+#ifndef SATA_MODE_IDE
+#define SATA_MODE_IDE         0
+#endif
+
+#ifndef SATA_MODE_AHCI
+#define SATA_MODE_AHCI        1
+#endif
+
+#ifndef SATA_MODE_RAID
+#define SATA_MODE_RAID        2
+#endif
+
+#ifdef SETUP_DATA_DEFINITION
+/***********************************************************/
+/* Put NVRAM data definitions here.
+/* For example: UINT8 Data1;
+/* These definitions will be converted by the build process
+/* to a definitions of SETUP_DATA fields.
+/***********************************************************/
+
+  UINT8         RapidStartEnabled;
+  UINT8         EntryOnS3RtcWake;
+  UINT16        S3WakeTimerMin;
+  UINT8         EntryOnS3CritBattWake;
+  UINT8         CritBattWakeThreshold;
+  UINT8         ActivePageThresholdSupport;
+  UINT32        ActivePageThresholdSize;
+  UINT8         RapidStartLock;
+  UINT8         RapidStartHybridHardDisk;
+  UINT8         RapidStartDisplaySaveRestore;
+  UINT8         RapidStartDisplayType;
+#endif
+
+#if defined(VFRCOMPILE) && !defined(CONTROLS_ARE_DEFINED)
+#define CONTROL_DEFINITION
+#endif
+//---------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------
+#ifdef CONTROL_DEFINITION
+
+#define RAPIDSTART_ONEOF_RAPIDSTARTENABLED\
+       oneof varid   = SETUP_DATA.RapidStartEnabled,\
+         prompt      = STRING_TOKEN(STR_RAPIDSTART_SUPPORT_PROMPT),\
+         help        = STRING_TOKEN(STR_RAPIDSTART_SUPPORT_HELP),\
+         option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+         option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  RESET_REQUIRED, key = 0;\
+       endoneof;
+
+#define RAPIDSTART_ONEOF_ENTRYONS3RTCWAKE\
+       oneof varid   = SETUP_DATA.EntryOnS3RtcWake,\
+         prompt      = STRING_TOKEN(STR_S3_RTC_WAKE_PROMPT),\
+         help        = STRING_TOKEN(STR_S3_RTC_WAKE_SUPPORT_HELP),\
+         option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+         option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+       endoneof;
+
+#define RAPIDSTART_ONEOF_S3WAKETIMERMIN\
+       numeric varid = SETUP_DATA.S3WakeTimerMin,\
+         prompt      = STRING_TOKEN(STR_S3_WAKE_TIMER_MIN_PROMPT),\
+         help        = STRING_TOKEN(STR_S3_WAKE_TIMER_MIN_SUPPORT_HELP),\
+         flags       = RESET_REQUIRED,\
+         minimum     = 0,\
+         maximum     = 120,\
+         step        = 1,\
+         default     = 10,\
+       endnumeric;
+
+#define RAPIDSTART_ONEOF_ENTRYONS3CRITBATTWAKE\
+       oneof varid   = SETUP_DATA.EntryOnS3CritBattWake,\
+         prompt      = STRING_TOKEN(STR_CRIT_BATT_WAKE_PROMPT),\
+         help        = STRING_TOKEN(STR_CRIT_BATT_WAKE_HELP),\
+         option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+         option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  RESET_REQUIRED, key = 0;\
+       endoneof;
+
+#define RAPIDSTART_ONEOF_ACTIVEPAGETHRESHOLDSUPPORT\
+       oneof varid   = SETUP_DATA.ActivePageThresholdSupport,\
+         prompt      = STRING_TOKEN(STR_ACT_PAGE_SUPPORT_PROMPT),\
+         help        = STRING_TOKEN(STR_ACT_PAGE_SUPPORT_HELP),\
+         option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+         option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  RESET_REQUIRED, key = 0;\
+       endoneof;
+
+#define RAPIDSTART_ONEOF_ACTIVEPAGETHRESHOLDSIZE\
+       numeric varid   = SETUP_DATA.ActivePageThresholdSize,\
+         prompt      = STRING_TOKEN(STR_ACT_PAGE_SIZE_PROMPT),\
+         help        = STRING_TOKEN(STR_ACT_PAGE_SIZE_HELP),\
+         flags       = RESET_REQUIRED,\
+         minimum     = 0,\
+         maximum     = 65535,\
+         step        = 1,\
+         default     = 0,\
+       endnumeric;
+
+#define RAPIDSTART_ONEOF_CRITBATTWAKETHRESHOLD\
+       numeric varid = SETUP_DATA.CritBattWakeThreshold,\
+         prompt      = STRING_TOKEN (STR_CRIT_BAT_WAK_THRHLD),\
+         help        = STRING_TOKEN (STR_CRIT_BAT_WAK_THRHLD_HELP),\
+         flags       = RESET_REQUIRED,\
+         minimum     = 0,\
+         maximum     = 100,\
+         step        = 1,\
+         default     = 10,\
+       endnumeric;
+
+#define RAPIDSTART_ONEOF_RAPIDSTARTPARSTATUSSTRING\
+      text\
+        help   = STRING_TOKEN(STR_EMPTY_STRING),\
+        text   = STRING_TOKEN(STR_RAPIDSTART_PAR_STATUS_PROMPT),\
+        text   = STRING_TOKEN(STR_EMPTY_STRING),\
+        flags  = 0,\
+        key    = 0;\
+
+#define RAPIDSTART_ONEOF_RAPIDSTARTHYBRIDHARDDISK\
+       oneof varid   = SETUP_DATA.RapidStartHybridHardDisk,\
+         prompt      = STRING_TOKEN(STR_HYBRID_HARD_DISK_SUPPORT_PROMPT),\
+         help        = STRING_TOKEN(STR_HYBRID_HARD_DISK_SUPPORT_HELP),\
+         option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+         option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  RESET_REQUIRED, key = 0;\
+       endoneof;
+
+#define RAPIDSTART_ONEOF_RAPIDSTARTDISPLAYSAVERESTORE\
+       oneof varid   = SETUP_DATA.RapidStartDisplaySaveRestore,\
+         prompt      = STRING_TOKEN(STR_DISPLAY_SAVE_RESTORE_PROMPT),\
+         help        = STRING_TOKEN(STR_DISPLAY_SAVE_RESTORE_HELP),\
+         option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+         option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  RESET_REQUIRED, key = 0;\
+       endoneof;
+
+#define RAPIDSTART_ONEOF_RAPIDSTARTDISPLAYTYPE\
+       oneof varid   = SETUP_DATA.RapidStartDisplayType,\
+         prompt      = STRING_TOKEN(STR_DISPLAY_TYPE_PROMPT),\
+         help        = STRING_TOKEN(STR_DISPLAY_TYPE_HELP),\
+         option text = STRING_TOKEN(STR_BIOS_SAVE_RESTORE_HELP), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+         option text = STRING_TOKEN(STR_DESKTOP_SAVE_RESTORE_TYPE_HELP), value = 1, flags =  RESET_REQUIRED, key = 0;\
+       endoneof;
+
+#ifdef SB_ONEOF_SATAINTERFACEMODE
+#undef SB_ONEOF_SATAINTERFACEMODE
+#define SB_ONEOF_SATAINTERFACEMODE\
+  grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;\
+  suppressif ideqval SETUP_DATA.PchSata == 0;\
+    oneof varid    = SETUP_DATA.SataInterfaceMode,\
+      prompt       = STRING_TOKEN (STR_SATA_MODE_SELECTION_PROMPT),\
+      help         = STRING_TOKEN (STR_SATA_MODE_SELECTION_HELP),\
+      option text  = STRING_TOKEN (STR_SATA_IDE), value = SATA_MODE_IDE, flags = RESET_REQUIRED | INTERACTIVE, key = AUTO_ID(KEY_IDE);\
+      option text  = STRING_TOKEN (STR_SATA_AHCI), value = SATA_MODE_AHCI, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = AUTO_ID(KEY_AHCI);\
+      option text  = STRING_TOKEN (STR_SATA_RAID), value = SATA_MODE_RAID, flags = RESET_REQUIRED, key = AUTO_ID(KEY_RAID);\
+    endoneof;\
+  SUPPRESS_GRAYOUT_ENDIF
+#endif
+
+#endif // CONTROL_DEFINITION
+//---------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------
+#ifdef CONTROLS_WITH_DEFAULTS
+    RAPIDSTART_ONEOF_RAPIDSTARTENABLED
+    RAPIDSTART_ONEOF_ENTRYONS3RTCWAKE
+    RAPIDSTART_ONEOF_S3WAKETIMERMIN
+    RAPIDSTART_ONEOF_ENTRYONS3CRITBATTWAKE
+    RAPIDSTART_ONEOF_CRITBATTWAKETHRESHOLD
+    RAPIDSTART_ONEOF_ACTIVEPAGETHRESHOLDSUPPORT
+    RAPIDSTART_ONEOF_ACTIVEPAGETHRESHOLDSIZE
+    RAPIDSTART_ONEOF_RAPIDSTARTPARSTATUSSTRING
+    RAPIDSTART_ONEOF_RAPIDSTARTHYBRIDHARDDISK
+    RAPIDSTART_ONEOF_RAPIDSTARTDISPLAYSAVERESTORE
+    RAPIDSTART_ONEOF_RAPIDSTARTDISPLAYTYPE
+#endif // CONTROLS_WITH_DEFAULTS
+//---------------------------------------------------------------------------
+
+
+//**********************************************************************
+//                  Advanced - RAPIDSTART Configuration Form
+//**********************************************************************
+
+#ifdef ADVANCED_FORM_SET
+
+#ifdef FORM_SET_TYPEDEF
+  #include <RapidStartSetup.h>
+#endif
+
+  #ifndef SUPPRESS_GRAYOUT_ENDIF //old Core
+    #define SUPPRESS_GRAYOUT_ENDIF endif;
+  #endif
+
+  #ifdef FORM_SET_GOTO
+  // Define goto commands for the forms defined in this file
+    goto RAPIDSTART_FORM_ID,
+    prompt  = STRING_TOKEN(STR_RAPIDSTART_FORM),
+    help    = STRING_TOKEN(STR_RAPIDSTART_FORM_HELP);
+  #endif
+
+  #ifdef FORM_SET_FORM
+  // Define forms
+   #ifndef RAPIDSTART_FORM_SETUP
+   #define RAPIDSTART_FORM_SETUP
+    form formid = AUTO_ID(RAPIDSTART_FORM_ID),
+    title       = STRING_TOKEN(STR_RAPIDSTART_FORM);
+
+      grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER OR
+                ideqval SETUP_DATA.RapidStartLock == 1;
+        RAPIDSTART_ONEOF_RAPIDSTARTENABLED
+      endif;
+
+      SEPARATOR
+
+      suppressif ideqval SETUP_DATA.RapidStartEnabled == 0;
+        RAPIDSTART_ONEOF_RAPIDSTARTPARSTATUSSTRING
+      endif;
+
+      grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+      suppressif ideqval SETUP_DATA.RapidStartEnabled == 0;
+        RAPIDSTART_ONEOF_ENTRYONS3RTCWAKE
+      SUPPRESS_GRAYOUT_ENDIF
+
+      grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+      suppressif ideqval SETUP_DATA.RapidStartEnabled == 0 OR ideqval SETUP_DATA.EntryOnS3RtcWake == 0;
+        RAPIDSTART_ONEOF_S3WAKETIMERMIN
+      SUPPRESS_GRAYOUT_ENDIF
+
+#if defined CRB_EC_SUPPORT && CRB_EC_SUPPORT == 1
+      grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+      suppressif ideqval SETUP_DATA.RapidStartEnabled == 0;
+        RAPIDSTART_ONEOF_ENTRYONS3CRITBATTWAKE
+      SUPPRESS_GRAYOUT_ENDIF
+
+      grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+      suppressif ideqval SETUP_DATA.RapidStartEnabled == 0 OR ideqval SETUP_DATA.EntryOnS3CritBattWake == 0;
+        RAPIDSTART_ONEOF_CRITBATTWAKETHRESHOLD
+      SUPPRESS_GRAYOUT_ENDIF
+#endif
+
+      grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+      suppressif ideqval SETUP_DATA.RapidStartEnabled == 0;
+        RAPIDSTART_ONEOF_ACTIVEPAGETHRESHOLDSUPPORT
+      SUPPRESS_GRAYOUT_ENDIF
+
+      grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+      suppressif ideqval SETUP_DATA.RapidStartEnabled == 0 OR ideqval SETUP_DATA.ActivePageThresholdSupport == 0;
+        RAPIDSTART_ONEOF_ACTIVEPAGETHRESHOLDSIZE
+      SUPPRESS_GRAYOUT_ENDIF
+
+      grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+      suppressif ideqval SETUP_DATA.RapidStartEnabled == 0;
+        RAPIDSTART_ONEOF_RAPIDSTARTHYBRIDHARDDISK
+      SUPPRESS_GRAYOUT_ENDIF
+
+      grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+      suppressif ideqval SETUP_DATA.RapidStartEnabled == 0;
+        RAPIDSTART_ONEOF_RAPIDSTARTDISPLAYSAVERESTORE
+      SUPPRESS_GRAYOUT_ENDIF
+
+      grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+      suppressif ideqval SETUP_DATA.RapidStartEnabled == 0 OR ideqval SETUP_DATA.RapidStartDisplaySaveRestore == 0;
+        RAPIDSTART_ONEOF_RAPIDSTARTDISPLAYTYPE
+      SUPPRESS_GRAYOUT_ENDIF
+
+    endform;
+   #endif // RAPIDSTART_FORM_SETUP
+  #endif // FORM_SET_FORM
+
+#endif // ADVANCED_FORM_SET
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

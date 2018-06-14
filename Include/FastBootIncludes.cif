@@ -1,0 +1,8 @@
+<component>
+	name = "FastBoot Includes"
+	category = ModulePart
+	LocalRoot = "Include"
+	RefName = "FastBootIncludes"
+[files]
+"FastBoot.h"	
+<endComponent>

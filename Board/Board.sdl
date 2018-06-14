@@ -1,0 +1,351 @@
+TOKEN
+	Name  = "PROJECT_MAJOR_VERSION"
+	Value  = "0"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PROJECT_MINOR_VERSION"
+	Value  = "01"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "AMI_ROM"
+	Value  = "$(PROJECT_TAG)$(PROJECT_MAJOR_VERSION)$(PROJECT_MINOR_VERSION).rom"
+	Help  = "File name of the BIOS rom image"
+	TokenType = Expression
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "valid file name"
+End
+
+TOKEN
+	Name  = "PROJECT_TAG"
+	Value  = "0AMI_"
+	TokenType = Expression
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "Board_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Board support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "FLASH_SIZE"
+	Value  = "0x100000"
+	Help  = "Size of the Flash Device in bytes"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FV_MAIN_BASE"
+	Value  = "0xFFF20000"
+	Help  = "Base Address of the FV_MAIN"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "From: 4G - FLASH_SIZE To: 4G"
+End
+
+TOKEN
+	Name  = "FV_MAIN_BLOCKS"
+	Value  = "12"
+	Help  = "Number of Blocks occupied by the FV_MAIN"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "From: 1  To :FLASH_SIZE/FLASH_BLOCK_SIZE-1"
+End
+
+TOKEN
+	Name  = "NVRAM_SIZE"
+	Value  = "$(FLASH_BLOCK_SIZE) * $(NVRAM_BLOCKS)"
+	Help  = "Size of NVRAM area"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "From: 1 To: FLASH_SIZE - FV_MAIN_BLOCKS*FLASH_BLOCK_SIZE"
+End
+
+TOKEN
+	Name  = "NVRAM_ADDRESS"
+	Value  = "0xFFF00000"
+	Help  = "Starting address of the NVRAM flash area"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "From: 4G - FLASH_SIZE To: 4G"
+End
+
+TOKEN
+	Name  = "NVRAM_BACKUP_ADDRESS"
+	Value  = "0xFFF10000"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "FAULT_TOLERANT_NVRAM_UPDATE" "=" "1"
+End
+
+TOKEN
+	Name  = "NVRAM_BLOCKS"
+	Value  = "1"
+	Help  = "Number of Blocks occupied by the NVRAM"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "From: 1  To :FLASH_SIZE/FLASH_BLOCK_SIZE-1"
+End
+
+TOKEN
+	Name  = "FV_BB_BASE"
+	Value  = "0xFFFE0000"
+	Help  = "Base Address of the FV_BB"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "From: 4G - FLASH_SIZE To: 4G"
+End
+
+TOKEN
+	Name  = "FV_BB_BLOCKS"
+	Value  = "2"
+	Help  = "Number of Blocks occupied by the FV_BB"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "From: 1  To :FLASH_SIZE/FLASH_BLOCK_SIZE-1"
+End
+
+TOKEN
+	Name  = "S4_WAKE_FROM_RTC_SUPPORTED"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "REMOTE_POWER_ON_SUPPORTED"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PROJECT_BUILD_NUMBER_IN_TITLE_SUPPORTED"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SUPPORTED_LANGUAGES"
+	Value  = "$(DEFAULT_LANGUAGE)"
+	Help  = "Space separated list of names of the language that the firmware can support.\Each name is in $(<lang-name>) format.\<lang-name> is either one of the names defined in Core/Languages.mak or SDL token name\NOTE: the language names must be separated by a single space."
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_LANGUAGE"
+	Value  = "$(ENGLISH)"
+	Help  = "Name of the default system language in $(<lang-name>) format.\<lang-name> is one of the names defined in Core/Languages.mak.\"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_BOOT_TIMEOUT"
+	Value  = "1"
+	Help  = "Number of seconds that the firmware will wait before initiating the original default boot selection. \A value of 0 indicates that the default boot selection is to be initiated immediately on boot. \A value of 65535(0xFFFF) indicates that firmware will wait for user input before booting. \This means the default boot selection is not automatically started by the firmware."
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-65535"
+End
+
+TOKEN
+	Name  = "DEFAULT_QUIET_BOOT"
+	Value  = "0"
+	Help  = "Default value of the Quiet Boot option"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "Recovery_Time_Delay"
+	Value  = "15"
+	Help  = "Loop count to calculate the delay for Atapi Recovery"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ON_BOARD_LAN"
+	Value  = "1"
+	Help  = "Main Token to enable ANY (Tekoa, Ekron, ICH7 Internal...)ON BOARD LAN ChipSupport in Project."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ROM_IMAGE_SIZE"
+	Value  = "$(FLASH_SIZE)"
+	Help  = "Size of the final ROM image file.\By default defined as $(FLASH_SIZE)."
+	TokenType = Integer
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "FLASH_BASE"
+	Value  = "0xffffffff - $(FLASH_SIZE) + 1"
+	Help  = "Flash part base address"
+	TokenType = Integer
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "SUPPORT_ZERO_BOOT_TIMEOUT"
+	Value  = "0"
+	Help  = "Enables or disables possibility to set boot timeout to 0"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+PATH
+	Name  = "BOARD_DIR"
+End
+
+MODULE
+	Help  = "Includes Board.mak to Project"
+	File  = "Board.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Oem.sdb"
+	Parent  = "SETUP_SDBS"
+	Priority  = 10
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BOARD_DIR)\Oem.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 10
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ReportFV2Pei,"
+	Parent  = "PeiCoreInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "InitBoardStrings,"
+	Parent  = "SetupStringInit"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\OemDxe.ffs"
+	Parent  = "FV_MAIN"
+	Help  = "OEM DXE component"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\OemPei.ffs"
+	Parent  = "FV_BB"
+	Help  = "OEM PEI component"
+	Disable = Yes
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "IsRecovery"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "NoConfigChanges"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "IsMfgMode"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "IsResetConfigMode"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "IsDefaultConfigMode"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "IsCtrlHomePressed,"
+	Parent  = "IsRecovery"
+	Help  = "Ctr+Home detection"
+	Token = "KBC_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ReportFV2PeiAfterMem,"
+	Parent  = "PeiCoreMemoryInstalled"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ProcessFvBeforePublishing"
+	Help  = "Called before publishing FV"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK   
+	Name  = "ProcessNestedFvBeforePublishing"
+	Help  = "Called before publishing Nested FV"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "ProcessDxeFvInDxeIpl"
+	Help  = "Called for the DXE accessible FV's from the ReportFvDxeIpl"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\RomLayout.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End
+

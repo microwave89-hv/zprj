@@ -1,0 +1,27 @@
+<component>
+	name = "SmmPiProtocols"
+	category = ModulePart
+	LocalRoot = "Include\Protocol\"
+	RefName = "SmmPiProtocols"
+[files]
+"SmmPiProtocols.sdl"
+"SmmBase2.h"	
+"SmmAccess2.h"	
+"SmmControl2.h"	
+"SmmCommunication.h"
+"SmmCpu.h"	
+"SmmCpuIo2.h"	
+"SmmPciRootBridgeIo.h"
+"SmmReadyToLock.h"	
+"DxeSmmReadyToLock.h"	
+"SmmStatusCode.h"	
+"SmmSwDispatch2.h"	
+"SmmSxDispatch2.h"	
+"SmmPowerButtonDispatch2.h"	
+"SmmStandbyButtonDispatch2.h"	
+"SmmUsbDispatch2.h"	
+"SmmGpiDispatch2.h"	
+"SmmPeriodicTimerDispatch2.h"	
+"SmmIoTrapDispatch2.h"
+"AmiInternalSmmComm.h"
+<endComponent>

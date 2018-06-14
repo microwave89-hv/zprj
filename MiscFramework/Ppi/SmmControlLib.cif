@@ -1,0 +1,11 @@
+<component>
+	name = "SmmControlLib"
+	category = ModulePart
+	LocalRoot = "MiscFramework\Ppi"
+	RefName = "SmmControlLib"
+[files]
+"SmmControl\SmmControl.c"
+"SmmControl\SmmControl.h"
+"SmmControlLib.sdl"
+"SmmControlLib.mak"
+<endComponent>

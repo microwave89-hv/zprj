@@ -1,0 +1,66 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/PEI Ram Boot/PeiRamBoot.dxs 2     7/18/12 3:39a Calvinchen $
+//
+// $Revision: 2 $
+//
+// $Date: 7/18/12 3:39a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/PEI Ram Boot/PeiRamBoot.dxs $
+// 
+// 2     7/18/12 3:39a Calvinchen
+// Added changes for AMD AGESA V5.
+// 
+// 1     10/27/10 2:48a Calvinchen
+// Initial Check-in.
+// 
+// 
+//**********************************************************************
+#include <pei.h>
+#include <token.h>
+#include "ppi\CpuIo.h"
+#include "ppi\PciCfg.h"
+#include "ppi\ReadOnlyVariable.h"
+#include "ppi\Stall.h"
+#ifdef AMDV5_SUPPORT
+#define AGESA_MEM_PPI_GUID \
+{ 0x8ba51c1c, 0x4b30, 0x47df, 0xa4, 0x4e, 0x22, 0x53, 0xe1, 0xa5, 0xd4, 0x2 }
+#endif
+
+DEPENDENCY_START
+#ifdef AMDV5_SUPPORT
+   AGESA_MEM_PPI_GUID AND
+#endif
+   EFI_PEI_CPU_IO_PPI_INSTALLED_GUID AND
+   EFI_PEI_READ_ONLY_VARIABLE_PPI_GUID AND
+   EFI_PEI_PCI_CFG_PPI_INSTALLED_GUID  AND
+   EFI_PEI_STALL_PPI_GUID
+DEPENDENCY_END
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

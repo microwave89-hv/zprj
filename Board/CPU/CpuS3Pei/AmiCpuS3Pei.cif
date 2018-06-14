@@ -1,0 +1,11 @@
+<component>
+	name = "AMI CPU S3 Pei"
+	category = ModulePart
+	LocalRoot = "Board\Cpu\CpuS3Pei"
+	RefName = "AmiCpuS3Pei"
+[files]
+"AmiCpuS3Pei.sdl"
+"AmiCpuS3Pei.mak"
+"AmiCpuS3Pei.c"
+"AmiCpuS3Pei.dxs"
+<endComponent>

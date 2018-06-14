@@ -1,0 +1,11 @@
+<component>
+	name = "Mnp"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Common\Mnp"
+	RefName = "Mnp"
+[files]
+"Mnp.sdl"	
+"Mnp.mak"	
+"MnpDxeIa32.efi"
+"MnpDxe.efi"	
+<endComponent>

@@ -1,0 +1,25 @@
+<component>
+	name = "ME"
+	category = eModule
+	LocalRoot = "ReferenceCode\ME"
+	RefName = "ME"
+[files]
+"ME.sdl"	
+[parts]
+"MeHeci"
+"MeGuidLib"
+"MeInclude"
+"MeProtocolLib"
+"MeLibPpi"
+"MeSampleCode"
+"MeLibrary"
+"MeFwDowngrade"
+"BiosExtension"
+"ActiveManagement"
+"PchMeUma"
+"AntiTheft"
+"MeWrapper"
+"AmtWrapper"
+"PttSmm"
+"MeAcpiTableSsdt"
+<endComponent>

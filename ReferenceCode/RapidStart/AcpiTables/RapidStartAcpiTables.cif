@@ -1,0 +1,11 @@
+<component>
+	name = "RapidStartAcpiTables"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\RapidStart\AcpiTables"
+	RefName = "RapidStartAcpiTables"
+[files]
+"RapidStartAcpiTables.sdl"
+"RapidStartAcpiTables.mak"
+"RapidStartAcpiTables.inf"
+"Ssdt\RapidStart.asl"
+<endComponent>

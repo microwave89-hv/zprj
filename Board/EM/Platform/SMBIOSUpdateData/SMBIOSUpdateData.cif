@@ -1,0 +1,12 @@
+<component>
+	name = "SMBIOSUpdateData"
+	category = ModulePart
+	LocalRoot = "Board\EM\Platform\SMBIOSUpdateData"
+	RefName = "SMBIOSUpdateData"
+[files]
+"SMBIOSUpdateData.sdl"	
+"SMBIOSUpdateData.mak"	
+"SMBIOSUpdateData.dxs"	
+"SMBIOSUpdateData.c"	
+"SmbiosUpdateDataProtocol.h"	
+<endComponent>

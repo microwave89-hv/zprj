@@ -1,0 +1,18 @@
+<component>
+	name = "MiscFramework"
+	category = eModule
+	LocalRoot = "MiscFramework\"
+	RefName = "MiscFramework"
+[files]
+"MiscFramework.sdl"	
+"MiscFramework.mak"	
+"Efi.h"	
+"TcgAcpi.h"	
+[parts]
+"EfiRegTableLib"
+"ProtocolLib"
+"FrameworkPpiLib"
+"FrameworkGuidLib"
+"SmmControlLib"
+"EfiSmmDriverLib"
+<endComponent>

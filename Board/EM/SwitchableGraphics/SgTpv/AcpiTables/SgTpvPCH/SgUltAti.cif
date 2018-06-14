@@ -1,0 +1,11 @@
+<component>
+	name = "AtiUlt"
+	category = ModulePart
+	LocalRoot = "Board\EM\SwitchableGraphics\SgTpv\AcpiTables\SgTpvPCH"
+	RefName = "AtiSGULT"
+[files]
+"AtiSSDTPCH.asl"	
+"ATdGPUPCH.asl"	
+"ATiGPUPCH.asl"	
+"ATiGDmiscPCH.asl"	
+<endComponent>

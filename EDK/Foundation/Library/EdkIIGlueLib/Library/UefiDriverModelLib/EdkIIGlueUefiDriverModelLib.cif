@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueUefiDriverModelLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\UefiDriverModelLib"
+	RefName = "EdkIIGlueUefiDriverModelLib"
+[files]
+"EdkIIGlueUefiDriverModelLib.sdl"	
+"EdkIIGlueUefiDriverModelLib.mak"
+"UefiDriverModelLib.inf"	
+"UefiDriverModelLib.c"	
+<endComponent>

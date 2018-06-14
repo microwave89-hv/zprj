@@ -1,0 +1,98 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartWrapper/RapidStartDxeLib/RapidStartDxeLib.sdl 1     10/15/12 4:41a Bensonlai $
+#
+# $Revision: 1 $
+#
+# $Date: 10/15/12 4:41a $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartWrapper/RapidStartDxeLib/RapidStartDxeLib.sdl $
+# 
+# 1     10/15/12 4:41a Bensonlai
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	[Category] Improvement
+# [Severity] Important
+# [Description] Rename all IFFS sting to Rapid Start.
+# [Files] Board\EM\RapidStartWrapper\*.*, ReferenceCode\RapidStart\*.*
+# 
+# [Files]  		RapidStartDxeLib.cif
+# RapidStartDxeLib.sdl
+# RapidStartDxeLib.mak
+# RapidStartDxeLib.c
+# RapidStartDxeLib.h
+# RapidStartDxeLib.inf
+#
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name: RapidStartDxeLib.sdl
+#
+# Description: SDL file for the RapidStartDxeLib.
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+	Name  = "RapidStartDxeLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable RapidStartDxeLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "RapidStartDxeLib_DIR"
+End
+
+MODULE
+	Help  = "Includes RapidStartDxeLib.mak to Project"
+	File  = "RapidStartDxeLib.mak"
+End
+
+ELINK
+	Name  = "RapidStartDxeLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\RapidStartDxeLib.lib"
+	Parent  = "RapidStartDxeLib_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(RapidStartDxeLib_DIR)"
+	Parent  = "RAPIDSTART_INCLUDES"
+	InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

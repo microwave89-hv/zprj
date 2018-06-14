@@ -1,0 +1,28 @@
+TOKEN
+	Name  = "SmmControlLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SmmControlLib support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "SmmControlLib_DIR"
+End
+
+MODULE
+	Help  = "Includes SmmControlLib.mak to Project"
+	File  = "SmmControlLib.mak"
+End
+
+ELINK
+	Name  = "SmmControlLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$$(LIB_BUILD_DIR)\SmmControlLib.lib"
+	Parent  = "SmmControlLib_LIB"
+	InvokeOrder = AfterParent
+End

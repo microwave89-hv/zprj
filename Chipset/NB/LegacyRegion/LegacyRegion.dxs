@@ -1,0 +1,83 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2004, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**             6145-F Northbelt Pkwy, Norcross, GA 30071            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Chipset/LegacyRegion/LegacyRegion.dxs 1     4/02/13 6:27a Ireneyang $
+//
+// $Revision: 1 $
+//
+// $Date: 4/02/13 6:27a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Chipset/LegacyRegion/LegacyRegion.dxs $
+// 
+// 1     4/02/13 6:27a Ireneyang
+// Support CSM Label 80.
+// 
+// 2     12/26/12 6:01a Abelwu
+// Support PI 1.x
+// 
+// 1     12/25/12 3:03a Abelwu
+// Move Legacy Region from CSM to NB eChipset
+// 
+// 1     12/20/12 12:35p Olegi
+// 
+// 4     4/27/07 5:21p Olegi
+// CSM.CHM preparations.
+// 
+// 3     5/01/06 2:22p Olegi
+// 
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:	LegacyRegion.dxs
+//
+// Description:	Legacy Region dependency file
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+
+#include <Token.h>
+#include <Protocol\PciRootBridgeIo.h>
+#include <Protocol\Cpu.h>
+#if defined(PI_SPECIFICATION_VERSION)&&(PI_SPECIFICATION_VERSION>=0x0001000A)
+#include <Protocol\S3SaveState.h>
+#else
+#include <Protocol\BootScriptSave.h>
+#endif
+
+DEPENDENCY_START
+    EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL_GUID AND
+    EFI_CPU_ARCH_PROTOCOL_GUID AND
+#if defined(PI_SPECIFICATION_VERSION)&&(PI_SPECIFICATION_VERSION>=0x0001000A)
+    EFI_S3_SAVE_STATE_PROTOCOL_GUID
+#else
+    EFI_BOOT_SCRIPT_SAVE_GUID
+#endif
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2004, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**             6145-F Northbelt Pkwy, Norcross, GA 30071            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

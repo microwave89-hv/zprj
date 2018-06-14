@@ -1,0 +1,12 @@
+<component>
+	name = "WdtPei"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Wdt\Pei\"
+	RefName = "WdtPei"
+[files]
+"WdtPei.sdl"
+"WdtPei.dxs"
+"WdtPei.mak"
+"WdtPei.c"
+"WdtPeim.inf"
+<endComponent>

@@ -1,0 +1,98 @@
+TOKEN
+	Name  = "TdtWrapper_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TdtWrapper support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Token = "AT_SUPPORT" "=" "1"
+End
+
+
+PATH
+	Name  = "TdtWrapper_DIR"
+End
+
+MODULE
+	Help  = "Includes TdtWrapper.mak to Project"
+	File  = "TdtWrapper.mak"
+End
+ELINK
+	Name  = "$(BUILD_DIR)\TdtWrapper.sdb"
+	Parent  = "SETUP_SDBS"
+	Priority  = 30
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(TdtWrapper_DIR)\TdtSetup.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 30
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TdtWrapper.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+
+TOKEN
+	Name  = "EXPECTED_FLASH_UPDATE_TIME"
+	Value  = "300"
+	Help  = "Expected Flash update time in seconds. 0 - Disable"
+	TokenType = Integer
+	Token = "OFBD_SUPPORT" "=" "1"
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TDT_FLASH_UPDATE_ERROR_MESSAGE_1"
+	Value  = "DTimer of Anti-Theft Technology is less than the expected time to perform the flash update."
+	TokenType = Expression
+	TargetH = Yes
+	Token = "EXPECTED_FLASH_UPDATE_TIME" "!=" "0"
+	Token = "OFBD_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "TDT_FLASH_UPDATE_ERROR_MESSAGE_2"
+	Value  = "BIOS can not be updated at this time and please reconnect to Internet."
+	TokenType = Expression
+	TargetH = Yes
+	Token = "EXPECTED_FLASH_UPDATE_TIME" "!=" "0"
+	Token = "OFBD_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "TDTOFBDLIB"
+	Value  = "$(BUILD_DIR)\TDTOFBDLIB.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TDTOFBDLIB.lib"
+	Parent  = "OFBDLISTLIB"
+	Token = "EXPECTED_FLASH_UPDATE_TIME" "!=" "0"
+	InvokeOrder = AfterParent
+	Token = "OFBD_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "TDTOfbdEntry,"
+	Parent  = "OFBDPartsList"
+	Token = "EXPECTED_FLASH_UPDATE_TIME" "!=" "0"
+	Token = "OFBD_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "TDTOfbdInSmmEntry,"
+	Parent  = "OFBDInSmmFuncList"
+	Token = "EXPECTED_FLASH_UPDATE_TIME" "!=" "0"
+	Token = "OFBD_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End

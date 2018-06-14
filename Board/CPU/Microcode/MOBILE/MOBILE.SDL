@@ -1,0 +1,921 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2008, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30071           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+#****************************************************************************
+# $Header: /Alaska/SOURCE/CPU/Intel/NehalemMicrocode/MOBILE/MOBILE.SDL 80    2/22/17 3:05a Davidhsieh $
+#
+# $Revision: 80 $
+#
+# $Date: 2/22/17 3:05a $
+#
+#****************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/CPU/Intel/NehalemMicrocode/MOBILE/MOBILE.SDL $
+# 
+# 80    2/22/17 3:05a Davidhsieh
+# [TAG]  		EIP319448
+# [Category]  	Spec Update
+# [Severity]  	Important
+# [Description]  	
+# Updated Intel(R)  Haswell C0 Stepping(306C3) version 22
+# Updated Intel(R)  Broadwell-H G0 Stepping(40671) version 17
+# Updated Intel(R)  Haswell Perf Halo C0 Stepping(40661) version 17
+# Updated Intel(R)  Haswell ULT C0/D0 Stepping(40651) version 20
+# Updated Intel(R)  Broadwell E0/F0 Stepping(306D4) version 25
+# 
+# [Files]  		MOBILE.SDL
+# Mobile.CIF
+# 
+# 79    10/04/16 1:38p Artems
+# [TAG]  		EIP295177
+# [Category]  	Improvement
+# [Description]  	[Aptio4_MCU] Intel NB Processors Microcode Update
+# MOB_P_77/MOB_B_90
+# [Files]  		MOBILE.SDL
+# Mobile.CIF
+# 
+# 78    6/17/16 4:09p Artems
+# [TAG]  		EIP275143
+# [Category]  	Improvement
+# [Description]  	Updated Intel(R) Haswell Processor C-0 Stepping version
+# 21
+# [Files]  		MOBILE.SDL
+# Mobile.CIF
+# 
+# 77    5/17/16 2:17p Artems
+# [TAG]  		EIP268478
+# [Category]  	Improvement
+# [Description]  	M32306C3_00000020.TXT | Assembly format, Revision
+# 00000020 | C-0 (Haswell) 
+# M7240651_0000001F.TXT | Assembly format, Revision 0000001F | C-0
+# (Haswell ULT) 
+# M7240651_0000001F.TXT | Assembly format, Revision 0000001F | D-0
+# (Haswell ULT)
+# 
+# [Files]  		MOBILE.SDL
+# Mobile.CIF
+# 
+# 76    2/26/16 2:01p Artems
+# [TAG]  		EIP258108
+# [Category]  	Improvement
+# [Description]  	[Aptio4_MCU]Intel DT Processors Microcode Update
+# MOB_P_67
+# [Files]  		MOBILE.SDL
+# Mobile.CIF
+# 
+# 75    8/14/15 5:31p Artems
+# [TAG]  		EIP233803
+# [Description]  	Updated Arrandale Processor C-2 Stepping version 0F
+# [Files]  		MOBILE.SDL
+# Mobile.CIF
+# 
+# 74    8/10/15 4:25p Artems
+# [TAG]  		EIP232434
+# [Description]  	Updated Arrandale Processor K-0 Stepping version 05
+# [Files]  		MOBILE.SDL
+# Mobile.CIF
+# 
+# 73    8/05/15 11:57a Artems
+# [TAG]  		EIP231326
+# [Description]  	Updated Clarksfield Processor B-1 Stepping version 08
+# [Files]  		MOBILE.SDL
+# Mobile.CIF
+# 
+# 72    7/17/15 6:07p Artems
+# [TAG]  		EIP229101
+# [Description]  	Updated Broadwell-H Processor G-0 Stepping version 12
+# [Files]  		MOBILE.SDL
+# Mobile.CIF
+# 
+# 71    6/17/15 5:42p Artems
+# [TAG]  		EIP223845
+# [Description]  	Updated Broadwell Processor E-0, F-0 Stepping version
+# 21
+# Updated Broadwell-H Processor G-0 Stepping version 11
+# [Files]  		MOBILE.SDL
+# Mobile.CIF
+# 
+# 70    5/14/15 5:09p Artems
+# [TAG]  		EIP217911
+# [Category]  	Improvement
+# [Description]  	Updated Broadwell-H Processor G-0 Stepping version 10
+# [Files]  		MOBILE.SDL
+# Mobile.CIF
+# 
+# 69    5/07/15 3:54p Artems
+# 
+# 68    5/07/15 3:22p Artems
+# 
+# 67    3/17/15 5:29p Artems
+# Updated IvyBridge Processor E-1, L-1 Stepping version 1C
+# 
+# 66    1/12/15 6:22p Artems
+# Mobile
+# Updated Haswell processor( 306CX) C-0 stepping to version 1D
+# 
+# 65    7/21/14 3:13p Craigv
+# Updated Haswell ULT C-0, D-0 (40651) to version 1C.
+# 
+# 64    7/21/14 2:49p Craigv
+# Updated Haswell Perf Halo C-0 (30661) to version 12.
+# Updated Haswell C-0 (306C3) to version 1C.
+# 
+# 63    6/23/14 11:59a Craigv
+# Updated Haswell Perf Halo (40661) to version 10.
+# Updated Haswell ULT C-0, D-0 (40651) to version 18. 
+# Updated Haswell C-0 (306C3) to version 1A.
+# Updated Ivy Bridge E-1, L-1 (306A9) to version 1B.
+# 
+# 62    5/29/14 12:34p Craigv
+# Updated Haswell C-0 (306C3) to version 19.
+# 
+# 61    10/16/13 11:54a Markw
+# Remove non-production from Haswell Perf Halo C-0 (40661).
+# 
+# 60    10/14/13 4:00p Craigv
+# Updated Haswell Processor C-0 (306C3) to version 00000017.
+# Updated Haswell ULT C-0, D-0 (40651) to version 00000017.
+# Updated Haswell Perf Halo C-0 (40661) to version 0000000F.
+# 
+# 59    8/20/13 4:15p Craigv
+# Updated Intel Haswell C-0 (306C3) to version 00000016.
+# Updated Intel Haswell ULT C-0 (40651) to version 00000016.
+# 
+# 58    7/26/13 4:36p Craigv
+# Updated Intel Haswell Perf Halo Processor C-0 (40661) to version
+# 0000000E.
+# 
+# 56    7/18/13 11:30a Craigv
+# Updated Intel Haswell C-0 (306C3) to version 00000012.
+# Updated Intel Haswell ULT C-0 (40651) to version 00000015.
+# 
+# 55    7/15/13 7:32p Markw
+# Fix production settings for newly added microcode.
+# 
+# 54    7/15/13 12:17p Craigv
+# Updated Intel Clarksfield B-1 (106E5) to version 00000006.
+# Added Intel Arrandale C-2 (20652) version 0000000E.
+# Added Intel Arrandale K-0 (20655) version 00000004.
+# 
+# 53    7/02/13 1:54p Craigv
+# Updated Haswell C-0 (306C3) to version 00000010.
+# Updated Haswell ULT C-0 (40651) to version 00000014.
+# 
+# 52    6/26/13 7:36p Craigv
+# Updated Ivy Bridge (306A9) E-1, L-1, N-0 to version 00000019.
+# Updated Sandy Bridge (206A7) D-2, J-1 to version 00000029.
+# 
+# 51    5/20/13 2:59p Craigv
+# Added Intel Haswell Perf Halo C-0 Stepping (M3240661) version 000A.
+# 
+# 50    5/07/13 12:02p Craigv
+# Updated Intel(R) Haswell ULT C-0 (40651) to version 010.
+# 
+# 49    4/17/13 5:39p Craigv
+# Updated Intel(R) Haswell ULT C-0 (40651) to version 00A.
+# 
+# 48    3/27/13 2:26p Markw
+# Update Haswell ULT C-0 (40651) to version 8.
+# 
+# 47    3/25/13 7:04p Craigv
+# Updated Haswell ULT (40651) C-0 to version 006.
+# 
+# 46    3/22/13 11:30a Craigv
+# Update Haswell C-0 (306C3) to version 008.
+# 
+# 45    2/06/13 11:30a Markw
+# Update help string.
+# 
+# 44    2/05/13 12:38p Craigv
+# Update Haswell ULT C-0 (40651) to version 5.
+# Update Haswell C-0 (306C3) to version 7.
+# 
+# 43    1/28/13 11:41a Craigv
+# Update Haswell C-0 (306C3) to version 6.
+# 
+# 42    1/17/13 11:44a Craigv
+# Update Intel(R) Ivy Bridge Processor E-1, L-1 (306A9) to version 17.
+# 
+# 41    1/08/13 3:14p Markw
+# Update Haswell ULT C-1 (40651) to version 2.
+# Update Haswell C-0 (306C3) to version 4.
+# 
+# 40    12/14/12 12:06p Craigv
+# Update Haswell ULT B-0 (40650) to version FFFF_000B.
+# 
+# 39    12/04/12 11:18a Craigv
+# Update Haswell ULT B-0 (40650) to version FFFF_000A.
+# 
+# 38    11/16/12 4:31p Craigv
+# Update Intel(R) Ivy Bridge Processor E-1, L-1, N-0 (306A9) to version
+# 16
+# 
+# 37    10/30/12 4:01p Craigv
+# Update Haswell ULT B-0 (40650) to version FFFF_0009
+# 
+# 36    10/24/12 10:43a Craigv
+# Update Haswell Perf Halo B-0 (40660) to version FFFF_0011.
+# Update Haswell B-0 (306C2) to version FFFF_0006.
+# 
+# 35    9/07/12 3:58p Craigv
+#  Update Intel(R) Ivy Bridge Processor E-1, L-1, N-0 (306A9) to version
+# 15
+# 
+# 34    8/27/12 11:48a Craigv
+# Update Haswell ULT B-0 (40650) to version FFFF_0007
+# 
+# 33    8/14/12 12:59p Craigv
+# Update Haswell Perf Halo B-0 (40660) to version FFFF_000B.
+# 
+# 32    8/13/12 7:31p Craigv
+# Update Intel(R) Ivy Bridge Processor E-1, L-1, N-0 (306A9) to version
+# 13
+# 
+# 31    7/20/12 11:19a Markw
+# Update Haswell A-0 (306C1) to version FFFF_000D.
+# Update Haswell B-0 (306C2) to version FFFF_0003.
+# Update Haswell ULT B-0 (40650) to version FFFF_0004.
+# 
+# 30    7/09/12 10:16a Markw
+# Fix default of Haswell B-0 to be disabled.
+# 
+# 29    7/06/12 5:56p Markw
+# 
+# 28    7/06/12 5:22p Craigv
+# Added Haswell processor B-0 Stepping version FFFF000A
+# 
+# 27    5/22/12 12:30p Markw
+# Add revision 25 changes back into file.
+# 
+# 26    5/21/12 7:06p Craigv
+# Update Intel(R) Sandy Bridge Processor D-2, J-1 (206A7) to version 28
+# Update Intel(R) Ivy Bridge Processor E-1 and L-1 and N-0 (306A9) to
+# version 12
+# 
+# 25    4/24/12 10:52a Markw
+# Add NON_PRODUCTION_MICROCODE dependency to Haswell A-0.
+# Rearrange processor tokens to have the later CPUs earlier in the list.
+# 
+# 24    4/23/12 10:42a Craigv
+# Added Haswell processor A-0 Stepping version FFFF000D
+# 
+# 23    4/17/12 3:00p Craigv
+# Update Intel(R) Ivy Bridge Processor E-1 and L-1 (306A9) to version 12.
+# 
+# 22    3/26/12 1:50p Craigv
+# Update Intel(R) Sandy Bridge Processor D-2, J-1 (206A7) to version 26.
+# 
+# 21    2/29/12 10:55a Craigv
+# Update Intel(R) Ivy Bridge Processor E-0 and L-0 (306A8) to version 10.
+# Update Intel(R) Ivy Bridge Processor E-1 and L-1 (306A9) to version 10.
+# 
+# 20    2/02/12 2:30p Markw
+# Update Intel(R) Ivy Bridge Processor E-0 and L-0 (306A8) to version C.
+# Update Intel(R) Ivy Bridge Processor E-1 and L-1 (306A9) to version C.
+# 
+# 19    1/19/12 5:24p Markw
+# Update Intel(R) Ivy Bridge Processor E-0 and L-0 (306A8) to version A.
+# Update Intel(R) Ivy Bridge Processor E-1 and L-1 (306A9) to version A.
+# 
+# 18    1/17/12 1:44p Markw
+# Update Intel(R) Ivy Bridge Processor E-0 (306A8) to version 8.
+# 
+# 17    1/09/12 5:47p Markw
+# Update Ivy Bridge E-1 (306A9) to Version 8.
+# 
+# 16    12/06/11 4:20p Markw
+# Update Intel(R) Ivy Bridge Processor E-0 (306A8) to version 7.
+# 
+# 15    11/09/11 12:23p Markw
+# Update Intel(R) Sandy Bridge Processor D-2, J-1 (206A7) to version 25.
+# 
+# 14    10/11/11 3:58p Markw
+# Update Intel(R) Sandy Bridge Processor D-2, J-1 (206A7) to version 23.
+# 
+# 13    9/28/11 6:45p Markw
+# Update Intel(R) Ivy Bridge Processor C-0 (306A4) to version 7.
+# Update Intel(R) Ivy Bridge Processor K-0 (306A5) to version 7.
+# 
+# 12    8/29/11 2:46p Markw
+# Update Intel(R) Ivy Bridge Processor C-0 (306A4) to version 5.
+# 
+# 11    8/09/11 10:34a Markw
+# Update Intel(R) Sandy Bridge Processor D-2, J-1 (206A7) to version 1B.
+# 
+# 10    7/12/11 10:59a Markw
+# Update Intel(R) Sandy Bridge Processor D-2, J-1 (206A7) to version 1A.
+# 
+# 9     6/03/11 11:58a Markw
+# Update Intel(R) Sandy Bridge Processor D-2, J-1 (206A7) to version 18.
+# Update Intel(R) Ivy Bridge Processor B-0 (306A2) to version 8.
+# 
+# 8     4/27/11 6:35p Markw
+# Update Intel(R) Sandy Bridge Processor D2, J1 (206A7) to version 17.
+# 
+# 7     3/07/11 6:55p Markw
+# Update Intel(R) Sandy Bridge Processor D2, J1 (206A7) to version 12.
+# 
+# 6     1/03/11 7:10p Markw
+# Update Intel(R) Sandy Bridge Processor D2, J1 (206A7) to version 12.
+# 
+# 5     11/30/10 10:54a Markw
+# Updated help string 206A3 is for both C0 and P0.
+# 
+# 4     11/30/10 10:50a Markw
+# Update Intel(R) Sandy Bridge Processor D0 (206A5) to version 7.
+# Update Intel(R) Sandy Bridge Processor D1 (206A6) to version 28.
+# Update Intel(R) Sandy Bridge Processor D2, J1 (206A7) to version D.
+# 
+# 3     6/15/10 1:07p Fasihm
+# Add Sandy Bridge stepping A0, B2, C0 (206AX) microcode.
+# 
+# 2     11/24/09 1:02p Markw
+# Remove incorrect dependency.
+# 
+# 1     9/29/09 2:51p Markw
+# 
+#****************************************************************************
+
+TOKEN
+	Name  = "MOBILE"
+	Value  = "0"
+	Help  = "Master Mobile CPU uCode Enable"
+	TokenType = Boolean
+	Master = Yes
+	Range  = "On-Off"
+End
+
+TOKEN
+    Name  = "MOBILE_4067X"
+    Value = "0"
+    Help  = "Intel(R) Broadwell-H"
+    TokenType = Boolean
+End
+
+TOKEN
+	Name  = "MOBILE_4066X"
+	Value = "0"
+	Help  = "Intel(R) Haswell Perf Halo"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "MOBILE_4065X"
+	Value = "0"
+	Help  = "Intel(R) Haswell ULT"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "MOBILE_306DX"
+	Value  = "0"
+    Help = "Intel(R) Broadwell"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "MOBILE_306CX"
+	Value = "0"
+	Help  = "Intel(R) Haswell"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "MOBILE_306AX"
+	Value  = "0"
+    Help = "Intel(R) Ivy Bridge"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "MOBILE_206AX"
+	Value  = "0"
+    Help = "Intel(R) Sandy Bridge"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "MOBILE_2065X"
+	Value  = "0"
+    Help = "Intel(R) Arrandale Processor"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "MOBILE_106FX"
+	Value  = "0"
+    Help = "Intel(R) Auburndale Processor"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "MOBILE_106EX"
+	Value  = "0"
+	Help  = "Intel(R) Clarksfield Processor"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "MOBILE_M1320650"
+	Value  = "1"
+	Help  = "Intel(R) Arrandale Processor A0."
+	TokenType = Boolean
+	Token = "MOBILE_2065X" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M1320651"
+	Value  = "1"
+	Help  = "Intel(R) Arrandale Processor C0 Stepping."
+	TokenType = Boolean
+	Token = "MOBILE_2065X" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M1220652"
+	Value  = "1"
+	Help  = "Intel(R) Arrandale Processor C-2 Stepping."
+	TokenType = Boolean
+	Token = "MOBILE_2065X" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M9220655"
+	Value  = "1"
+	Help  = "Intel(R) Arrandale Processor K-0 Stepping."
+	TokenType = Boolean
+	Token = "MOBILE_2065X" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M13106F1"
+	Value  = "1"
+	Help  = "Intel(R) Auburndale Processor."
+	TokenType = Boolean
+	Token = "MOBILE_106FX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+
+TOKEN
+	Name  = "MOBILE_M13106E5"
+	Value  = "1"
+	Help  = "Intel(R) Clarksfield Processor."
+	TokenType = Boolean
+	Token = "MOBILE_106EX" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M13106E3"
+	Value  = "1"
+	Help  = "Intel(R) Clarksfield Processor."
+	TokenType = Boolean
+	Token = "MOBILE_106EX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M12206A0"
+	Value  = "1"
+	Help  = "Intel(R) Sandy Bridge Processor A0"
+	TokenType = Boolean
+	Token = "MOBILE_206AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M12206A2"
+	Value  = "1"
+	Help  = "Intel(R) Sandy Bridge Processor B2"
+	TokenType = Boolean
+	Token = "MOBILE_206AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M12206A3"
+	Value  = "1"
+	Help  = "Intel(R) Sandy Bridge Processor C0, P0"
+	TokenType = Boolean
+	Token = "MOBILE_206AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M12206A5"
+	Value  = "1"
+	Help  = "Intel(R) Sandy Bridge Processor D0"
+	TokenType = Boolean
+	Token = "MOBILE_206AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M12206A6"
+	Value  = "1"
+	Help  = "Intel(R) Sandy Bridge Processor D1"
+	TokenType = Boolean
+	Token = "MOBILE_206AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M12206A7"
+	Value  = "1"
+	Help  = "Intel(R) Sandy Bridge Processor D2, J1"
+	TokenType = Boolean
+	Token = "MOBILE_206AX" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M12306A2"
+	Value  = "1"
+	Help  = "Intel(R) Ivy Bridge Processor B-0"
+	TokenType = Boolean
+	Token = "MOBILE_306AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M12306A4"
+	Value  = "1"
+	Help  = "Intel(R) Ivy Bridge Processor C-0"
+	TokenType = Boolean
+	Token = "MOBILE_306AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M12306A5"
+	Value  = "1"
+	Help  = "Intel(R) Ivy Bridge Processor K-0"
+	TokenType = Boolean
+	Token = "MOBILE_306AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M12306A8"
+	Value  = "1"
+	Help  = "Intel(R) Ivy Bridge E-0 and L-0"
+	TokenType = Boolean
+	Token = "MOBILE_306AX" "=" "1"
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M12306A9"
+	Value  = "1"
+	Help  = "Intel(R) Ivy Bridge E-1, L-1, and N-0"
+	TokenType = Boolean
+	Token = "MOBILE_306AX" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M32306C1"
+	Value  = "1"
+	Help  = "Intel(R) Haswell Processor A-0 Stepping"
+	TokenType = Boolean
+	Token = "MOBILE_306CX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M32306C2"
+	Value  = "1"
+	Help  = "Intel(R) Haswell Processor B-0 Stepping"
+	TokenType = Boolean
+	Token = "MOBILE_306CX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_MF2306D2"
+	Value  = "1"
+	Help  = "Intel(R) Broadwell Processor C-0"
+	TokenType = Boolean
+	Token = "MOBILE_306DX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_MC0306D3"
+	Value  = "1"
+	Help  = "Intel(R) Broadwell Processor D-0"
+	TokenType = Boolean
+	Token = "MOBILE_306DX" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_MC0306D4"
+	Value  = "1"
+	Help  = "Intel(R) Broadwell Processor E-0,F-0"
+	TokenType = Boolean
+	Token = "MOBILE_306DX" "=" "1" 
+End
+
+TOKEN
+	Name  = "MOBILE_M32306C3"
+	Value  = "1"
+	Help  = "Intel(R) Haswell C-0"
+	TokenType = Boolean
+	Token = "MOBILE_306CX" "=" "1" 
+End
+
+TOKEN
+	Name  = "MOBILE_M7240650"
+	Value  = "1"
+	Help  = "Intel(R) Haswell ULT B-0"
+	TokenType = Boolean
+	Token = "MOBILE_4065X" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M7240651"
+	Value  = "1"
+	Help  = "Intel(R) Haswell ULT C-0"
+	TokenType = Boolean
+	Token = "MOBILE_4065X" "=" "1" 
+End
+
+TOKEN
+	Name  = "MOBILE_M3240660"
+	Value  = "1"
+	Help  = "Intel(R) Haswell Perf Halo Processor B-0 Stepping"
+	TokenType = Boolean
+	Token = "MOBILE_4066X" "=" "1" 
+	Token = "NON_PRODUCTION_MICROCODE" "=" "1"
+End
+
+TOKEN
+	Name  = "MOBILE_M3240661"
+	Value  = "1"
+	Help  = "Intel(R) Haswell Perf Halo Processor C-0 Stepping"
+	TokenType = Boolean
+	Token = "MOBILE_4066X" "=" "1" 
+End
+
+TOKEN
+    Name  = "MOBILE_M2240671"
+    Value  = "1"
+    Help  = "Intel(R) Broadwell-H Processor G-0"
+    TokenType = Boolean
+	Token = "MOBILE_4067X" "=" "1" 
+End
+
+PATH
+	Name  = "MICROCODE_MOBILE_DIR"
+End
+
+ELINK
+	Name  = "$(Intel_Mobile)"
+	Parent  = "MICROCODE_FILES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M1320650_FFFF0008.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Arrandale Processor"
+	Token = "MOBILE_M1320650" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M1320651_FFFF000F.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Arrandale Processor C0 Stepping"
+	Token = "MOBILE_M1320651" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M1220652_0000000F.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Arrandale Processor C-2 Stepping"
+	Token = "MOBILE_M1220652" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M9220655_00000005.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Arrandale Processor K-0 Stepping"
+	Token = "MOBILE_M9220655" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M13106F1_FFFF0007.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Auburndale Processor"
+	Token = "MOBILE_M13106F1" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M13106E5_00000008.PDB"
+	Parent  = "$(Intel_Mobile)"      
+	Help  = "Intel(R) Clarksfield Processor B-1"
+	Token = "MOBILE_M13106E5" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M13106E3_FFFF0006.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Clarksfield Processor"
+	Token = "MOBILE_M13106E3" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M12206A0_00000024.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Sandy Bridge A0"
+	Token = "MOBILE_M12206A0" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M12206A2_00000026.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Sandy Bridge B2"
+	Token = "MOBILE_M12206A2" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M12206A3_00000008.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Sandy Bridge C0, P0"
+	Token = "MOBILE_M12206A3" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M12206A5_00000007.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Sandy Bridge D0"
+	Token = "MOBILE_M12206A5" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M12206A6_00000028.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Sandy Bridge D-1"
+	Token = "MOBILE_M12206A6" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M12206A7_00000029.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Sandy Bridge D-2, J-1"
+	Token = "MOBILE_M12206A7" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M12306A2_00000008.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Ivy Bridge B-0"
+	Token = "MOBILE_M12306A2" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M12306A4_00000007.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Ivy Bridge C-0"
+	Token = "MOBILE_M12306A4" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M12306A5_00000007.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Ivy Bridge K-0"
+	Token = "MOBILE_M12306A5" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M12306A8_00000010.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Ivy Bridge E-0 and L-0"
+	Token = "MOBILE_M12306A8" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M12306A9_0000001C.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Ivy Bridge E-1, L-1, and N-0"
+	Token = "MOBILE_M12306A9" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M32306C1_FFFF0013.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Haswell Processor A-0"
+	Token = "MOBILE_M32306C1" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M32306C2_FFFF0006.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Haswell Processor B-0"
+	Token = "MOBILE_M32306C2" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M32306C3_00000022.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Haswell C-0"
+	Token = "MOBILE_M32306C3" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M7240650_FFFF000B.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Haswell ULT Processor B-0 Stepping"
+	Token = "MOBILE_M7240650" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M7240651_00000020.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Haswell ULT C-0, D-0"
+	Token = "MOBILE_M7240651" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M3240660_FFFF0011.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Haswell Perf Halo Processor B-0 Stepping"
+	Token = "MOBILE_M3240660" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\M3240661_00000017.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Haswell Perf Halo Processor C-0 Stepping"
+	Token = "MOBILE_M3240661" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\MF2306D2_FFFF0009.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Broadwell C-0"
+	Token = "MOBILE_MF2306D2" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\MC0306D3_FFFF0010.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Broadwell D-0"
+	Token = "MOBILE_MC0306D3" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(MICROCODE_MOBILE_DIR)\MC0306D4_00000025.PDB"
+	Parent  = "$(Intel_Mobile)"
+	Help  = "Intel(R) Broadwell E-0,F-0"
+	Token = "MOBILE_MC0306D4" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(MICROCODE_MOBILE_DIR)\M2240671_00000017.PDB"
+    Parent  = "$(Intel_Mobile)"
+    Help  = "Intel(R) Broadwell-H Processor G-0"
+    Token = "MOBILE_M2240671" "=" "1"
+    InvokeOrder = AfterParent
+End

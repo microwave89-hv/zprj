@@ -1,0 +1,588 @@
+TOKEN
+    Name  = "ME_ROM_IMAGE_BUILD_SUPPORT"
+    Value  = "1"
+    TokenType = Boolean
+    TargetMAK = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "SELECT_BUILD_PLATFORM"
+    Value  = "2"
+    Help  = "0:User define\1:Desktop\2:Mobile & ULT\3:WorkStation"
+    TokenType = Integer
+    TargetMAK = Yes
+    Range  = "0-4"
+End
+
+TOKEN
+    Name  = " "
+    TokenType = Integer
+End
+
+TOKEN
+    Name  = "====== Desktop SKU Build ======"
+    TokenType = Expression
+End
+
+TOKEN
+    Name  = "Q87_SKU"
+    Value  = "1"
+    Help  = "On/Off build this image."
+    TokenType = Boolean
+    TargetMAK = Yes
+    Token = "SELECT_BUILD_PLATFORM" "=" "1"
+End
+
+TOKEN
+    Name  = "Q87_SKU_BUILD_SET"
+    Value  = "$(Me_Q87_Xml) 1 Q87"
+    Help  = "FitcBuild <MeXmlFile> <MeFwSelect> <MeFwSku> <FlashCount> <FlashSize1> <FlashSize2>\<MeFwSelect>:0 = 1.5MB ME Firmware, 1 = 5MB ME Firmware.\<MeFwSku>:Z87_SKU, Z85_SKU, Q87_SKU, H87_SKU, Q85_SKU, B85_SKU, H81_SKU.\<MeFwSku>:Use Xml file need give a name, this name do not use XXXX_SKU.\<FlashCount>:1 = One image, 2 = Two image.\<FlashSize1>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB.\<FlashSize2>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB."
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "Q87_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(Q87_SKU_BUILD_SET)"
+    Parent = "FITC_BUILD_RULES"
+    InvokeOrder = AfterParent
+    Token = "Q87_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(Q87_SKU_BUILD_SET) && $(BUILD_PSL_SET)"
+    Parent = "FITC_BUILD_PFAT_RULES"
+    InvokeOrder = AfterParent
+    Token = "Q87_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = "Me_Q87_Xml"
+    Value  = "$(ROM_IMAGE_DIR)\\XmlFiles\\Q87_8Mx2.xml"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "Q87_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = "H87_SKU"
+    Value  = "1"
+    Help  = "On/Off build this image."
+    TokenType = Boolean
+    TargetMAK = Yes
+    Token = "SELECT_BUILD_PLATFORM" "=" "1"
+End
+
+TOKEN
+    Name  = "H87_SKU_BUILD_SET"
+    Value  = "$(Me_H87_Xml) 0 H87"
+    Help  = "FitcBuild <MeXmlFile> <MeFwSelect> <MeFwSku> <FlashCount> <FlashSize1> <FlashSize2>\<MeFwSelect>:0 = 1.5MB ME Firmware, 1 = 5MB ME Firmware.\<MeFwSku>:Z87_SKU, Z85_SKU, Q87_SKU, H87_SKU, Q85_SKU, B85_SKU, H81_SKU.\<MeFwSku>:Use Xml file need give a name, this name do not use XXXX_SKU.\<FlashCount>:1 = One image, 2 = Two image.\<FlashSize1>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB.\<FlashSize2>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB."
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "H87_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(H87_SKU_BUILD_SET)"
+    Parent = "FITC_BUILD_RULES"
+    InvokeOrder = AfterParent
+    Token = "H87_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(H87_SKU_BUILD_SET) && $(BUILD_PSL_SET)"
+    Parent = "FITC_BUILD_PFAT_RULES"
+    InvokeOrder = AfterParent
+    Token = "H87_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = "Me_H87_Xml"
+    Value  = "$(ROM_IMAGE_DIR)\\XmlFiles\\H87_8Mx1.xml"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "H87_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = " "
+    TokenType = Integer
+End
+
+TOKEN
+    Name  = "====== Mobile SKU Build ======"
+    TokenType = Expression
+End
+
+TOKEN
+    Name  = "Lava Canyon FITC Settings - QM86"
+    TokenType = Integer
+End
+
+TOKEN
+    Name  = "HM86_SKU"
+    Value  = "1"
+    Help  = "On/Off build this image."
+    TokenType = Boolean
+    TargetMAK = Yes
+    Token = "SELECT_BUILD_PLATFORM" "=" "2"
+    Token = "LVC_BOARD" "=" "1"
+End
+
+TOKEN
+    Name  = "HM86_SKU_BUILD_SET"
+    Value  = "$(Me_HM86_Xml) 0 HM86 2"
+    Help  = "FitcBuild <MeXmlFile> <MeFwSelect> <MeFwSku> <FlashCount> <FlashSize1> <FlashSize2>\<MeFwSelect>:0 = 1.5MB ME Firmware, 1 = 5MB ME Firmware.\<MeFwSku>:QM87_SKU, HM87_SKU, HM86_SKU.\<MeFwSku>:Use Xml file need give a name, this name do not use XXXX_SKU.\<FlashCount>:1 = One image, 2 = Two image.\<FlashSize1>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB.\<FlashSize2>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB."
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "HM86_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(HM86_SKU_BUILD_SET)"
+    Parent = "FITC_BUILD_RULES"
+    InvokeOrder = AfterParent
+    Token = "HM86_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(HM86_SKU_BUILD_SET) && $(BUILD_PSL_SET)"
+    Parent = "FITC_BUILD_PFAT_RULES"
+    InvokeOrder = AfterParent
+    Token = "HM86_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = "Me_HM86_Xml"
+    Value  = "$(ROM_IMAGE_DIR)\\XmlFiles\\HM86_8Mx2.xml"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "HM86_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = "QM87 Settings"
+    TokenType = Integer
+End
+
+TOKEN
+    Name  = "QM87_SKU"
+    Value  = "1"
+    Help  = "On/Off build this image."
+    TokenType = Boolean
+    TargetMAK = Yes
+    Token = "SELECT_BUILD_PLATFORM" "=" "2"
+End
+
+TOKEN
+    Name  = "QM87_SKU_BUILD_SET"
+    Value  = "$(Me_QM87_Xml) 1 QM87"
+    Help  = "FitcBuild <MeXmlFile> <MeFwSelect> <MeFwSku> <FlashCount> <FlashSize1> <FlashSize2>\<MeFwSelect>:0 = 1.5MB ME Firmware, 1 = 5MB ME Firmware.\<MeFwSku>:QM87_SKU, HM87_SKU, HM86_SKU.\<MeFwSku>:Use Xml file need give a name, this name do not use XXXX_SKU.\<FlashCount>:1 = One image, 2 = Two image.\<FlashSize1>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB.\<FlashSize2>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB."
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "QM87_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(QM87_SKU_BUILD_SET)"
+    Parent = "FITC_BUILD_RULES"
+    InvokeOrder = AfterParent
+    Token = "QM87_SKU" "=" "1"
+
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(QM87_SKU_BUILD_SET) && $(BUILD_PSL_SET)"
+    Parent = "FITC_BUILD_PFAT_RULES"
+    InvokeOrder = AfterParent
+    Token = "QM87_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = "Me_QM87_Xml"
+    Value  = "$(ROM_IMAGE_DIR)\\XmlFiles\\QM87_8Mx2.xml"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "QM87_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = "HM87 Settings"
+    TokenType = Integer
+End
+
+TOKEN
+    Name  = "HM87_SKU"
+    Value  = "1"
+    Help  = "On/Off build this image."
+    TokenType = Boolean
+    TargetMAK = Yes
+    Token = "SELECT_BUILD_PLATFORM" "=" "2"
+End
+
+TOKEN
+    Name  = "HM87_SKU_BUILD_SET"
+    Value  = "$(Me_HM87_Xml) 0 HM87"
+    Help  = "FitcBuild <MeXmlFile> <MeFwSelect> <MeFwSku> <FlashCount> <FlashSize1> <FlashSize2>\<MeFwSelect>:0 = 1.5MB ME Firmware, 1 = 5MB ME Firmware.\<MeFwSku>:QM87_SKU, HM87_SKU, HM86_SKU.\<MeFwSku>:Use Xml file need give a name, this name do not use XXXX_SKU.\<FlashCount>:1 = One image, 2 = Two image.\<FlashSize1>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB.\<FlashSize2>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB."
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "HM87_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(HM87_SKU_BUILD_SET)"
+    Parent = "FITC_BUILD_RULES"
+    InvokeOrder = AfterParent
+    Token = "HM87_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(HM87_SKU_BUILD_SET) && $(BUILD_PSL_SET)"
+    Parent = "FITC_BUILD_PFAT_RULES"
+    InvokeOrder = AfterParent
+    Token = "HM87_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = "Me_HM87_Xml"
+    Value  = "$(ROM_IMAGE_DIR)\\XmlFiles\\HM87_8Mx2.xml"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "HM87_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = "WNC Board Settings"
+    TokenType = Integer
+End
+
+TOKEN
+    Name  = "WNC_HM87_SKU"
+    Value  = "1"
+    Help  = "On/Off build this image."
+    TokenType = Boolean
+    TargetMAK = Yes
+    Token = "SELECT_BUILD_PLATFORM" "=" "2"
+    Token = "WNC_BOARD" "=" "1"
+End
+
+TOKEN
+    Name  = "WNC_HM87_SKU_BUILD_SET"
+    Value  = "$(Me_WNC_HM87_Xml) 0 WNC_HM87"
+    Help  = "FitcBuild <MeXmlFile> <MeFwSelect> <MeFwSku> <FlashCount> <FlashSize1> <FlashSize2>\<MeFwSelect>:0 = 1.5MB ME Firmware, 1 = 5MB ME Firmware.\<MeFwSku>:QM87_SKU, HM87_SKU, WNC_HM87_SKU, HM86_SKU.\<MeFwSku>:Use Xml file need give a name, this name do not use XXXX_SKU.\<FlashCount>:1 = One image, 2 = Two image.\<FlashSize1>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB.\<FlashSize2>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB."
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "WNC_HM87_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(WNC_HM87_SKU_BUILD_SET)"
+    Parent = "FITC_BUILD_RULES"
+    InvokeOrder = AfterParent
+    Token = "WNC_HM87_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(WNC_HM87_SKU_BUILD_SET) && $(BUILD_PSL_SET)"
+    Parent = "FITC_BUILD_PFAT_RULES"
+    InvokeOrder = AfterParent
+    Token = "WNC_HM87_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = "Me_WNC_HM87_Xml"
+    Value  = "$(ROM_IMAGE_DIR)\\XmlFiles\\WNC_HM87_8Mx2.xml"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "WNC_HM87_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = " "
+    TokenType = Integer
+End
+
+TOKEN
+    Name  = "====== WorkStation SKU Build ======"
+    TokenType = Expression
+End
+
+TOKEN
+    Name  = "C226_SKU"
+    Value  = "1"
+    Help  = "On/Off build this image."
+    TokenType = Boolean
+    TargetMAK = Yes
+    Token = "SELECT_BUILD_PLATFORM" "=" "3"
+End
+
+TOKEN
+    Name  = "C226_SKU_BUILD_SET"
+    Value  = "$(Me_C226_Xml) 1 C226"
+    Help  = "FitcBuild <MeXmlFile> <MeFwSelect> <MeFwSku> <FlashCount> <FlashSize1> <FlashSize2>\<MeFwSelect>:0 = 1.5MB ME Firmware, 1 = 5MB ME Firmware.\<MeFwSku>:C222_SKU, C223_SKU, C224_SKU, C226_SKU.\<MeFwSku>:Use Xml file need give a name, this name do not use XXXX_SKU.\<FlashCount>:1 = One image, 2 = Two image.\<FlashSize1>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB.\<FlashSize2>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB."
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "C226_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(C226_SKU_BUILD_SET)"
+    Parent = "FITC_BUILD_RULES"
+    InvokeOrder = AfterParent
+    Token = "C226_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(C226_SKU_BUILD_SET) && $(BUILD_PSL_SET)"
+    Parent = "FITC_BUILD_PFAT_RULES"
+    InvokeOrder = AfterParent
+    Token = "C226_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = "Me_C226_Xml"
+    Value  = "$(ROM_IMAGE_DIR)\\XmlFiles\\C226_8Mx2.xml"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "C226_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = " "
+    TokenType = Integer
+End
+
+TOKEN
+    Name  = "====== ULT SKU Build ======"
+    TokenType = Expression
+End
+
+TOKEN
+    Name  = "ULT_ME_1_5_SKU"
+    Value  = "1"
+    Help  = "On/Off build this image."
+    TokenType = Boolean
+    TargetMAK = Yes
+    Token = "SELECT_BUILD_PLATFORM" "=" "2"
+End
+
+TOKEN
+    Name  = "ULT_ME_1_5_SKU_BUILD_SET"
+    Value  = "$(Me_1_5_ULT_Xml) 2 ULT_ME_1_5"
+    Help  = "FitcBuild <MeXmlFile> <MeFwSelect> <SkuName>."
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "ULT_ME_1_5_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(ULT_ME_1_5_SKU_BUILD_SET)"
+    Parent = "FITC_BUILD_RULES"
+    InvokeOrder = AfterParent
+    Token = "ULT_ME_1_5_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(ULT_ME_1_5_SKU_BUILD_SET) && $(BUILD_PSL_SET)"
+    Parent = "FITC_BUILD_PFAT_RULES"
+    InvokeOrder = AfterParent
+    Token = "ULT_ME_1_5_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = "Me_1_5_ULT_Xml"
+    Value  = "$(ROM_IMAGE_DIR)\\XmlFiles\\ULT_ME_1_5.xml"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "ULT_ME_1_5_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = "ULT_ME_5_SKU"
+    Value  = "1"
+    Help  = "On/Off build this image."
+    TokenType = Boolean
+    TargetMAK = Yes
+    Token = "SELECT_BUILD_PLATFORM" "=" "2"
+End
+
+TOKEN
+    Name  = "ULT_ME_5_SKU_BUILD_SET"
+    Value  = "$(Me_5_ULT_Xml) 3 ULT_ME_5"
+    Help  = "FitcBuild <MeXmlFile> <MeFwSelect> <MeFwSku> <FlashCount> <FlashSize1> <FlashSize2>\<MeFwSelect>:0 = 1.5MB ME Firmware, 1 = 5MB ME Firmware.\<MeFwSku>:QM87_SKU, HM87_SKU, HM86_SKU.\<MeFwSku>:Use Xml file need give a name, this name do not use XXXX_SKU.\<FlashCount>:1 = One image, 2 = Two image.\<FlashSize1>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB.\<FlashSize2>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB."
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "ULT_ME_5_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(ULT_ME_5_SKU_BUILD_SET)"
+    Parent = "FITC_BUILD_RULES"
+    InvokeOrder = AfterParent
+    Token = "ULT_ME_5_SKU" "=" "1"
+
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(ULT_ME_5_SKU_BUILD_SET) && $(BUILD_PSL_SET)"
+    Parent = "FITC_BUILD_PFAT_RULES"
+    InvokeOrder = AfterParent
+    Token = "ULT_ME_5_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = "Me_5_ULT_Xml"
+    Value  = "$(ROM_IMAGE_DIR)\\XmlFiles\\ULT_ME_5.xml"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "ULT_ME_5_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = "ULT_FFDR_ME_1_5_SKU"
+    Value  = "1"
+    Help  = "On/Off build this image."
+    TokenType = Boolean
+    TargetMAK = Yes
+    Token = "SELECT_BUILD_PLATFORM" "=" "2"
+	Token = "BHB_BOARD" "=" "1"
+End
+
+TOKEN
+    Name  = "ULT_ME_1_5_FFRD_SKU_BUILD_SET"
+    Value  = "$(Me_1_5_FFDR_ULT_Xml) 2 ULT_FFRD_ME_1_5"
+    Help  = "FitcBuild <MeXmlFile> <MeFwSelect> <SkuName>."
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "ULT_FFDR_ME_1_5_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(ULT_ME_1_5_FFRD_SKU_BUILD_SET)"
+    Parent = "FITC_BUILD_RULES"
+    InvokeOrder = AfterParent
+    Token = "ULT_FFDR_ME_1_5_SKU" "=" "1"
+End
+
+ELINK
+    Name = "&& $(FITC_BUILD_SET) $(ULT_ME_1_5_FFRD_SKU_BUILD_SET) && $(BUILD_PSL_SET)"
+    Parent = "FITC_BUILD_PFAT_RULES"
+    InvokeOrder = AfterParent
+    Token = "ULT_FFDR_ME_1_5_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = "Me_1_5_FFDR_ULT_Xml"
+    Value  = "$(ROM_IMAGE_DIR)\\XmlFiles\\ULT_FFRD_ME_1_5.xml"
+    TokenType = File
+    TargetMAK = Yes
+    Token = "ULT_FFDR_ME_1_5_SKU" "=" "1"
+End
+
+TOKEN
+    Name  = " "
+    TokenType = Integer
+End
+
+TOKEN
+    Name  = "====== ME BIOS Extension ======"
+    TokenType = Expression
+End
+
+TOKEN
+    Name  = "ROMIMAGE_PRIVATE_MEBX"
+    Value  = "1"
+    Help  = "On/Off Use ROM Image provide MEBX."
+    TokenType = Boolean
+    TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "EFIMebx_FILE_PATH"
+	Value  = "$(ROM_IMAGE_DIR)\ME_BIOS_Extension\Mebx.efi"
+	TokenType = Expression
+	TargetMAK = Yes
+	Help  = "Mebx File name and path"
+    Token = "ROMIMAGE_PRIVATE_MEBX" "=" "1"
+    Token = "EFIMebx_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "EFIMebxSetup_FILE_PATH"
+	Value  = "$(ROM_IMAGE_DIR)\ME_BIOS_Extension\MebxSetupBrowser.efi"
+	TokenType = Expression
+	TargetMAK = Yes
+	Help  = "Mebx Setup Browser File name and path"
+    Token = "ROMIMAGE_PRIVATE_MEBX" "=" "1"
+    Token = "MebxSetupBrowser_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = " "
+    TokenType = Integer
+End
+
+TOKEN
+    Name  = "====== Fitc Build Configuration ======"
+    TokenType = Expression
+End
+
+PATH
+    Name  = "ROM_IMAGE_DIR"
+End
+
+ELINK
+    Name = "FITC_BUILD_RULES"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name = "@ECHO ====== ROM Image Fitc Build Start ======"
+    Parent = "FITC_BUILD_RULES"
+    InvokeOrder = BeforeParent
+End
+
+ELINK
+    Name = "FITC_BUILD_PFAT_RULES"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name = "@ECHO ====== ROM Image Build Fitc and PFAT ROM Start ======"
+    Parent = "FITC_BUILD_PFAT_RULES"
+    InvokeOrder = BeforeParent
+End
+
+ELINK
+        Name = "&& $(BUILD_BIOS_MAP_SET)"
+        Parent = "FITC_BUILD_PFAT_RULES"
+        InvokeOrder = BeforeParent
+End
+
+TOKEN
+    Name  = "FITC_BUILD_BATCH"
+    Value  = "$(ROM_IMAGE_DIR)\\FitcBuild.bat"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+TOKEN
+        Name  = "FITC_OUTIMAGE_MAP_FILE"
+        Value  = "$(ROM_IMAGE_DIR)\Build\OutImage.map"
+        TokenType = Expression
+        TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "FITC_BUILD_SET"
+    Value  = "$(FITC_BUILD_BATCH) $(ROM_IMAGE_DIR) $(AMI_ROM) $(FITC_OUTIMAGE_MAP_FILE)"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+MODULE
+    Help  = "Includes RomImage to Project"
+    File  = "RomImage.mak"
+End
+

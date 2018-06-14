@@ -1,0 +1,19 @@
+<component>
+	name = "USB"
+	category = eModule
+	LocalRoot = "board\em\usb\"
+	RefName = "USB"
+[files]
+"usb.sdl"	
+"usbport.c"	
+"usb.chm"	
+[parts]
+"USBRT"
+"UHCD"
+"FRAMEWORK"
+"AmiUSBProtocols"
+"USB_SETUP"
+"USB_LEGACY"
+"USB_SB"
+"AmiUsbLib"
+<endComponent>

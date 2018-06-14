@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueBasePostCodeLibDebug"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\BasePostCodeLibDebug"
+	RefName = "EdkIIGlueBasePostCodeLibDebug"
+[files]
+"EdkIIGlueBasePostCodeLibDebug.sdl"	
+"EdkIIGlueBasePostCodeLibDebug.mak"
+"BasePostCodeLibDebug.inf"	
+"PostCode.c"	
+<endComponent>

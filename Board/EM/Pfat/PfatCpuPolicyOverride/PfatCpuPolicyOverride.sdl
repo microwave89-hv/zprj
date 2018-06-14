@@ -1,0 +1,98 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/IntelPfat/PfatCpuPolicyOverride/PfatCpuPolicyOverride.sdl 3     10/02/12 4:12p Fredericko $
+#
+# $Revision: 3 $
+#
+# $Date: 10/02/12 4:12p $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/IntelPfat/PfatCpuPolicyOverride/PfatCpuPolicyOverride.sdl $
+# 
+# 3     10/02/12 4:12p Fredericko
+# BIOS_SVN token added
+# 
+# 2     9/25/12 6:16p Fredericko
+# 
+# 1     9/17/12 4:47p Fredericko
+# Initial Check in for PfatCpuPolicyOverride
+#
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name: PfatCpuPolicyOverride.sdl
+#
+# Description: SDL file for PfatCpuPolicyOverride
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+	Name  = "PFAT_CPU_POLICY_OVERRIDE_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PFAT_CPU_POLICY_OVERRIDE_SUPPORT support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+MODULE
+	Help  = "Includes PfatCpuPolicyOverride.mak to Project"
+	File  = "PfatCpuPolicyOverride.mak"
+End
+
+PATH
+	Name  = "PFAT_CPU_POLICY_OVERRIDE_PATH"
+End
+
+TOKEN
+	Name  = "PFAT_COUNT"
+	Value  = "2"
+	Help  = ""
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BIOS_SVN"
+	Value  = "9502720"
+	Help  = "This token must to be decimal because Intel's PPB.exe only supported decimal. The definition is 0x910000(9502720) in PEI_CPU_PLATFORM_POLICY_PPI_REVISION_5."
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PfatCpuPolicyOverride.ffs"
+	Parent  = "FV_BB"
+ 	InvokeOrder = AfterParent
+End
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

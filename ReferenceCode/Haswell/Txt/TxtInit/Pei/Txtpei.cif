@@ -1,0 +1,19 @@
+<component>
+	name = "TxtPei"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\Txt\TxtInit\Pei\"
+	RefName = "TxtPei"
+[files]
+"TxtPei.sdl"	
+"TxtPei.mak"	
+"TxtPei.c"	
+"TxtPeiLib.c"	
+"TxtPeiLib.h"	
+"TxtPei.dxs"	
+"TxtPei.inf"
+"Ia32\TxtPeiBsp.asm"
+"Ia32\TxtPeiAp.asm16"
+"Ia32\TxtPeiAp.inf"
+"Ia32\TxtPeiApV7.inf"
+"Ia32\makefile.new"
+<endComponent>

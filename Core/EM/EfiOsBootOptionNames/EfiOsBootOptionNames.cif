@@ -1,0 +1,14 @@
+<component>
+	name = "EFI OS BootOptionNames"
+	category = eModule
+	LocalRoot = "Core\EM\EfiOsBootOptionNames\"
+	RefName = "EfiOsBootOptionNames"
+[files]
+"EfiOsBootOptionNames.sdl"	
+"EfiOsBootOptionNames.mak"	
+"EfiOsBootOptionNames.chm"
+"EfiOsBootOptionNames.sd"
+"EfiOsBootOptionNames.uni"
+"EfiOsBootOptionNames.c"	
+"EfiOsBootOrder.c"	
+<endComponent>

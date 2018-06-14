@@ -1,0 +1,12 @@
+<component>
+	name = "SgAcpiTablesPeg"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\AcpiTables\SwitchableGraphics\Peg\"
+	RefName = "SgAcpiTablesPeg"
+[files]
+"SgAcpiTablesPeg.sdl"	
+"SgAcpiTablesPeg.mak"	
+"SgAcpiTables.inf"
+"SgDgpu.asl"
+"SgSsdt.asl"
+<endComponent>

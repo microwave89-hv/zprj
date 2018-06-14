@@ -1,0 +1,111 @@
+#****************************************************************************
+#****************************************************************************
+#**                                                                        **
+#**           (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                        **
+#**                          All Rights Reserved.                          **
+#**                                                                        **
+#**           5555 Oakbrook Parkway, Suite 200, Norcross, GA 30071         **
+#**                                                                        **
+#**                          Phone (770)-246-8600                          **
+#**                                                                        **
+#****************************************************************************
+#****************************************************************************
+#****************************************************************************
+# $Header: /Alaska/SOURCE/Modules/NvramSmi/NvramSmi.sdl 5     11/07/12 5:41p Oleksiyy $
+#
+# $Revision: 5 $
+#
+# $Date: 11/07/12 5:41p $
+#
+#****************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/NvramSmi/NvramSmi.sdl $
+# 
+# 5     11/07/12 5:41p Oleksiyy
+# [TAG]  		EIP98678
+# [Category]  	Improvement
+# [Description]  	GetVariable()  response slow. Added token to process
+# only SetVariable through SMI.
+# [Files]  		NvramSmi.c, NvramSmi.sdl and NVRAM.mak
+# 
+# 4     5/22/12 3:46p Oleksiyy
+# [TAG]  		EIP89155
+# [Category]  	Improvement
+# [Description]  	Implementing review comments
+# [Files]  		NvraSmi.c and NvramSmi.sdl
+# 
+# 3     5/08/12 5:54p Oleksiyy
+# [TAG]  		EIP89155
+# [Category]  	Improvement
+# [Description]  	NVRAM SMI module does not boot in PI 1.2
+# [Files]  		NvramSmi.c, NvramSmi.sdl and NvramSmi.dxs
+# 
+# 2     1/10/12 5:26p Oleksiyy
+# [TAG]  		EIP80096
+# [Category]  	Bug Fix
+# [Severity]  	Normal
+# [Symptom]  	EFI Shell 'time' command hangs on Rose City CRB with label
+# 15 BIOS
+# [RootCause]  	Memory overwriten if too long VariableLength parameter is
+# passed to GatVariable function in NvramSmi.c.
+# [Solution]  	Check for too long VariableLength parameter is added to
+# GatVariable function in NvramSmi.c. too long VariableLength parameter
+# is added to GatVariable function in NvramSmi.c.
+# [Files]  		NvramSmi.c, NvramSmi.sdl
+# 
+# 1     11/11/11 3:41p Oleksiyy
+# Initial CheckIn
+# 
+# 1     11/11/11 3:33p Oleksiyy
+# 
+# 2     8/12/11 12:19p Alexp
+# 
+# 1     6/10/11 1:01p Alexp
+# 
+#
+#****************************************************************************
+TOKEN
+	Name  = "NvramSmiSupport"
+	Value  = "1"
+	Help  = "Main switch to enable NVRAM SMI support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "NVRAM_SMI_FULL_PROTECTION"
+	Value  = "0"
+	Help  = "Switch to enable full SMI protection. If ON all NVRAM services will be handled through SMIs (maximum protection but slowest speed). If OFF only SetVariable will processed through SMI (minimum requirement for Secure Flash)."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+    Name  = "NVRAM_START_SMI_SERVICES_GUID"
+    Value  = "{0x3aa83745, 0x9454, 0x4f7a, 0xa7, 0xc0, 0x90, 0xdb, 0xd0, 0x2f, 0xab, 0x8e}"
+    Help  = "This guid is used to register callback on which NVRAM services will transfered to SMI. (By default it is BDS_CONNECT_DRIVERS_PROTOCOL_GUID"
+    TokenType = Expression
+    TargetH = Yes
+End
+
+PATH
+	Name  = "NvramSmi_DIR"
+End
+
+MODULE
+	Help  = "Includes NvramSmi.mak to Project"
+	File  = "NvramSmi.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\NvramSmi.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

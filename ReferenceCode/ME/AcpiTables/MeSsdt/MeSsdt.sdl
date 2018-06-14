@@ -1,0 +1,31 @@
+TOKEN
+	Name  = "MeSsdt_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable MeSsdt support in Project"
+End
+
+MODULE
+	Help  = "Includes MeSsdt.mak to Project"
+	File  = "MeSsdt.mak"
+End
+
+PATH
+	Name  = "MeSsdt_DIR"
+End
+
+TOKEN
+	Name  = "INTEL_MESSDT_ASL_FILE"
+	Value  = "$(MeSsdt_DIR)\MeSsdt.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\MeSsdt.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

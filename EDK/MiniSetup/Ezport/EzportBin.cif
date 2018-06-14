@@ -1,0 +1,17 @@
+<component>
+	name = "TSE Sytle Binary - Ezport"
+	category = ModulePart
+	LocalRoot = "EDK\MiniSetup\Ezport"
+	RefName = "EzportBin"
+[files]
+"EzportBin.sdl"	
+"TseStyle.lib"	
+"TseStylex64.lib"	
+"StyleStr.uni"	
+"StyleTokens.c"	
+"HotkeyBin.h"	
+"HotkeyBin.c"	
+"EzportBin.mak"	
+"HotclickBin.h"	
+"HotclickBin.c"	
+<endComponent>

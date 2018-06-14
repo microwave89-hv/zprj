@@ -1,0 +1,48 @@
+TOKEN
+	Name  = "UINT13_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable USB Int13 support in the project."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Token = "CSM_SUPPORT" "=" "1"
+	Token = "USB_RUNTIME_DRIVER_IN_SMM" "=" "1"
+End
+
+TOKEN
+	Name  = "USB_I13_DRIVER_VERSION"
+	Value  = "1"
+	Help  = "Driver version. Reported in DriverBinding protocol."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+PATH
+	Name  = "UINT13_DIR"
+End
+
+MODULE
+	Help  = "Includes usbint13.mak into project"
+	Path  = "$(UINT13_DIR)"
+	File  = "usbint13.mak"
+End
+
+ELINK
+	Name  = "$(UINT13_DIR)\usbint13.inf"
+	Parent  = "CSM_CUSTOM_INFS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\usbint13.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CollectUsbBbsDevices,"
+	Parent  = "CollectBootDevices,"
+	InvokeOrder = BeforeParent
+End
+

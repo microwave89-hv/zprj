@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueSmmFirmwarePerformanceLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\SmmFirmwarePerformanceLib"
+	RefName = "EdkIIGlueSmmFirmwarePerformanceLib"
+[files]
+"EdkIIGlueSmmFirmwarePerformanceLib.sdl"	
+"EdkIIGlueSmmFirmwarePerformanceLib.mak"	
+"EdkIIGlueSmmFirmwarePerformanceLib.inf"	
+"EdkIIGlueSmmPerformanceLib.c"	
+<endComponent>

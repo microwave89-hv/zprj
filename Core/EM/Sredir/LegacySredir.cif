@@ -1,0 +1,19 @@
+<component>
+	name = "Legacy Serial Redirection"
+	category = eModule
+	LocalRoot = "Core\EM\Sredir\"
+	RefName = "LEGACYSREDIR"
+[files]
+"LegacySredir.mak"	
+"LegacySredir.sdl"	
+"LegacySredir.dxs"	
+"LegacySredir.c"	
+"LegacySmmSredir.c"	
+"LegacySredir.chm"	
+"SerialBootCall.asm"	
+"SredirBootFail.asm"	
+[parts]
+"LSREDIR_BOARD"
+"LSREDIR_BIN"
+"LEGACY_SREDIR_PROTOCOL"
+<endComponent>

@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "AT_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TDT support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "AT_DIR"
+	Help  = "TDT Driver files source directory"
+End
+
+ELINK
+	Name  = "/I$(AT_DIR)"
+	Parent  = "AT_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "AT_INCLUDES"
+	InvokeOrder = ReplaceParent
+End

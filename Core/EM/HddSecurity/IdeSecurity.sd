@@ -1,0 +1,525 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2014, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/HddSecurity/IdeSecurity.sd 17    1/30/14 9:16a Divyac $
+//
+// $Revision: 17 $
+//
+// $Date: 1/30/14 9:16a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/HddSecurity/IdeSecurity.sd $
+// 
+// 17    1/30/14 9:16a Divyac
+// [TAG]  		EIP152490
+// [Category]  	Improvement
+// [Description]  	Resolved the build Error in HddSecurity module when
+// enabling DISPLAY_MASTER_PASSWORD sdl token 
+// [Files]  		IdeSecurity.sd
+// 
+// 16    12/06/13 8:49a Divyac
+// [TAG]  		EIP143275 
+// [Category]  	Improvement
+// [Description]  	Aptio 4.x - Gray out option for the user password when
+// the HDD is in frozen state
+// [Files]  		IdeSecurity.c, IdeSecurity.uni
+// 
+// 15    6/13/12 9:12a Anandakrishnanl
+// [TAG]  		EIP92050
+// [Category]  	Bug Fix
+// [Severity]  	Minor
+// [Symptom]  	In setup, Hdd Security User and Master password status
+// string displayed as Set or Not Set instead of Installed or Not
+// Installed.
+// [RootCause]  	In setup, Hdd Security User and Master password status
+// string displayed as Set or Not Set instead of Installed or Not
+// Installed.
+// [Solution]  	Changed the sd and UNI string tokens to be unique to
+// Module
+// [Files]  		IdeSecuirty.sd
+// IdeSecuirty.uni
+// 
+// 14    1/03/12 1:42a Jittenkumarp
+// [TAG]  		EIP78274 
+// [Category]  	Bug Fix
+// [Symptom]  	When the the token ALL_HDD_SAME_PW is set to 1 and no HDD
+// is connected to SUT, Set User Password and Set Master Password links
+// are displayed in security page.
+// [RootCause]  	When  ALL_HDD_SAME_PW token is 1 ,not checking the
+// presence of hard disk.
+// [Solution]  	When  ALL_HDD_SAME_PW token is 1,checking  harddisk is
+// present or not and if not present suppress the links.
+// [Files]  		IdeSecurity.sd
+// 
+// 13    10/21/11 4:12a Rameshr
+// [TAG]  		EIP69247
+// [Category]  	Bug Fix
+// [Severity]  	Minor
+// [Symptom]  	Several IdeSecurity.sdl tokens are not working properly
+// [RootCause]  	Several IdeSecurity.sdl tokens are not working properly
+// [Solution]  	Removed unwanted SDL token and verified all the SDL token
+// function.
+// [Files]  		IdeSecurity.c, IdeSecurity.sdl, IdeSecurity.sdl
+// 
+// 12    2/01/11 3:48a Rameshr
+// [TAG] - EIP 52221
+// [Category]- BUG FIX
+// [Severity]- Minor
+// [Symptom] - Under Aptio4.6.4.1, the HddSecurity "4.6.3_HddSecurity_016"
+// will build failed. 
+// [RootCause]- Goto Form error in UEFI2.0
+// [Solution] - Moved Goto Form inside the FormSet.
+// [Files] - IdeSecurity.sd
+// 
+// 11    1/20/11 12:22a Rameshr
+// [TAG] - EIP 52221
+// [Category]- BUG FIX
+// [Severity]- Minor
+// [Symptom] - Under Aptio4.6.4.1, the HddSecurity "4.6.3_HddSecurity_016"
+// will build failed. 
+// [RootCause]- All the Control Items included in the main formset also.
+// [Solution] - moved the whole #ifdef FORM_SET_VARSTORE section outside
+// of the #ifdef SECURITY_FORM_SET 
+// [Files] - IdeSecurity.sd
+// 
+// 10    1/10/11 12:52a Rameshr
+// [TAG]  		EIP48180
+// [Category]  	Improvement
+// [Description]  	Update the IdeSecurity eModule to utilize Setup
+// Customization
+// [Files]  		IdeSecurity.sd
+// 
+// 8     8/27/10 2:27p Yul
+// [TAG]    	EIP40151
+// [Category]	NEW FEATURE
+// [Description]	If system has two HDDs, User need set two HDDs password
+// separately with master and user password.
+// We want to simply the procedure, if user set master or user password,
+// it will set two HDDs with same password.
+// While un-lock the HDD password, user just need input one Master/User
+// password to un-lock HDD.
+// [Files]		HddPassword.c
+// 		HddPassword.sdl
+// 		IdeSecurity.sd
+// 		IdeSecurity.uni
+// Same as v7. No code update.			
+// 
+// 7     8/27/10 10:01a Yul
+// EIP 40151 - One Master/User password for all attach HDDs
+// 
+// 6     4/13/10 10:29a Davidd
+// Removed setup questions when SETUP_SAME_SYS_HDD_PW is on. They are not
+// used in this case.
+// 
+// 5     3/26/10 5:44p Krishnakumarg
+// UEFI2.1 compliance change. EIP#34744
+// 
+// 4     12/09/09 12:18p Krishnakumarg
+// EIP 31797 : IDE Security API documentation. Added comments whereever
+// possible and modified files for coding standard
+// 
+// 3     7/27/09 3:30p Pats
+// EIP 22925: Request to set HDD password length by token.
+// Solution: Changed definitions for IDEUserPassword and IDEMasterPassword
+// to use the token value instead of 32.
+// 
+// 
+// 2     8/12/08 10:30a Fasihm
+// Added the Manufacturing flag to all the setup questions.
+// 
+// 1     28/02/08 6:40p Anandakrishnanl
+// Created new HddSecurity module.  Isolated IdeSecurity and IdeSmm from
+// IdeBus driver to be compatable with the AHCI Bus driver.
+// 
+// 1     10/23/07 4:18p Felixp
+
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//**********************************************************************
+// Name:        IdeSecurity.sd
+//
+// Description: Ide Security in Setup.
+//**********************************************************************
+//<AMI_FHDR_END>
+
+#ifdef FORM_SET_VARSTORE
+    varstore IDE_SECURITY_CONFIG,
+    key = IDE_SECURITY_HD_1_KEY_ID,
+    name = IDESecDev,
+    guid = IDE_SECURITY_CONFIG_GUID;
+#endif
+
+#if defined(VFRCOMPILE) && !defined(CONTROLS_ARE_DEFINED)
+#define CONTROL_DEFINITION
+#endif
+
+#ifdef CONTROL_DEFINITION
+
+#if (SETUP_SAME_SYS_HDD_PW != 1)
+    #if ALL_HDD_SAME_PW
+        #define IDE_SECURITY_GET_USER_PASSWORD\
+            suppressif ideqvallist IDE_SECURITY_CONFIG.Count == 0;\
+            password varid  = IDE_SECURITY_CONFIG.IDEUserPassword,\
+                    prompt      = STRING_TOKEN(STR_IDE_USER_PASSWORD),\
+                    help        = STRING_TOKEN(STR_IDE_USER_PASSWORD_HELP),\
+                    flags       = 0,\
+                    key         = 0,\
+                    minsize     = 0,\
+                    maxsize     = IDE_PASSWORD_LENGTH,\
+                    encoding    = 1,\
+            endpassword;\
+            endif;
+        #define IDE_SECURITY_GET_MASTER_PASSWORD\
+            suppressif ideqvallist IDE_SECURITY_CONFIG.Count == 0;\
+            password varid  = IDE_SECURITY_CONFIG.IDEMasterPassword,\
+                    prompt      = STRING_TOKEN(STR_IDE_MASTER_PASSWORD),\
+                    help        = STRING_TOKEN(STR_IDE_MASTER_PASSWORD_HELP),\
+                    flags       = 0,\
+                    key         = 0,\
+                    minsize     = 0,\
+                    maxsize     = IDE_PASSWORD_LENGTH,\
+                    encoding    = 1,\
+            endpassword;\
+            endif;
+
+        #define IDE_SECURITY_GET_IDE_USER_PASSWORD
+        #define IDE_SECURITY_GET_IDE_MASTER_PASSWORD
+
+    #else 
+        #define IDE_SECURITY_GET_USER_PASSWORD
+        #define IDE_SECURITY_GET_MASTER_PASSWORD
+
+        #define IDE_SECURITY_GET_IDE_USER_PASSWORD\
+            password varid  = IDE_SECURITY_CONFIG.IDEUserPassword,\
+                    prompt      = STRING_TOKEN(STR_IDE_USER_PASSWORD),\
+                    help        = STRING_TOKEN(STR_IDE_USER_PASSWORD_HELP),\
+                    flags       = 0,\
+                    key         = 0,\
+                    minsize     = 0,\
+                    maxsize     = IDE_PASSWORD_LENGTH,\
+                    encoding    = 1,\
+            endpassword;\
+    
+        #define IDE_SECURITY_GET_IDE_MASTER_PASSWORD\
+            password varid  = IDE_SECURITY_CONFIG.IDEMasterPassword,\
+                    prompt      = STRING_TOKEN(STR_IDE_MASTER_PASSWORD),\
+                    help        = STRING_TOKEN(STR_IDE_MASTER_PASSWORD_HELP),\
+                    flags       = 0,\
+                    key         = 0,\
+                    minsize     = 0,\
+                    maxsize     = IDE_PASSWORD_LENGTH,\
+                    encoding    = 1,\
+            endpassword;\
+
+    #endif
+
+    #define IDE_SECURITY_CONFIG_COUNT\
+        text\
+            help   = STRING_TOKEN(STR_EMPTY),\
+            text   = STRING_TOKEN(STR_HDD_SECURITY_CONFIG),\
+            text   = STRING_TOKEN(STR_EMPTY),\
+            flags  = 0,\
+            key    = 0;\
+
+    #define IDE_SECURITY_CONFIG_SUPPORTED\
+        text\
+            help   = STRING_TOKEN(STR_EMPTY),\
+            text   = STRING_TOKEN(STR_SEC_SUPPORTED),\
+            text   = STRING_TOKEN(STR_YES),\
+            flags  = 0,\
+            key    = 0;\
+
+    #define IDE_SECURITY_CONFIG_NOT_SUPPORTED\
+        text\
+            help   = STRING_TOKEN(STR_EMPTY),\
+            text   = STRING_TOKEN(STR_SEC_SUPPORTED),\
+            text   = STRING_TOKEN(STR_NO),\
+            flags  = 0,\
+            key    = 0;\
+    
+
+    #define IDE_SECURITY_CONFIG_ENABLED\
+        text\
+            help   = STRING_TOKEN(STR_EMPTY),\
+            text   = STRING_TOKEN(STR_SEC_ENABLED),\
+            text   = STRING_TOKEN(STR_YES),\
+            flags  = 0,\
+            key    = 0;\
+
+    #define IDE_SECURITY_CONFIG_NOT_ENABLED\
+        text\
+            help   = STRING_TOKEN(STR_EMPTY),\
+            text   = STRING_TOKEN(STR_SEC_ENABLED),\
+            text   = STRING_TOKEN(STR_NO),\
+            flags  = 0,\
+            key    = 0;\
+    
+  
+    #define IDE_SECURITY_CONFIG_LOCKED\
+        text\
+            help   = STRING_TOKEN(STR_EMPTY),\
+            text   = STRING_TOKEN(STR_SEC_LOCKED),\
+            text   = STRING_TOKEN(STR_YES),\
+            flags  = 0,\
+            key    = 0;\
+    
+
+    #define IDE_SECURITY_CONFIG_NOT_LOCKED\
+        text\
+            help   = STRING_TOKEN(STR_EMPTY),\
+            text   = STRING_TOKEN(STR_SEC_LOCKED),\
+            text   = STRING_TOKEN(STR_NO),\
+            flags  = 0,\
+            key    = 0;\
+    
+    #define IDE_SECURITY_CONFIG_FROZEN\
+        text\
+            help   = STRING_TOKEN(STR_EMPTY),\
+            text   = STRING_TOKEN(STR_SEC_FROZEN),\
+            text   = STRING_TOKEN(STR_YES),\
+            flags  = 0,\
+            key    = 0;\
+    
+    #define IDE_SECURITY_CONFIG_NOT_FROZEN\
+        text\
+            help   = STRING_TOKEN(STR_EMPTY),\
+            text   = STRING_TOKEN(STR_SEC_FROZEN),\
+            text   = STRING_TOKEN(STR_NO),\
+            flags  = 0,\
+            key    = 0;\
+    
+    #define IDE_SECURITY_CONFIG_USER_PASSWORD_STATUS\
+        text\
+            help   = STRING_TOKEN(STR_EMPTY),\
+            text   = STRING_TOKEN(STR_IDE_USER_PASSWORD_STS),\
+            text   = STRING_TOKEN(STR_HDDS_INSTALLED),\
+            flags  = 0,\
+            key    = 0;\
+
+    #define IDE_SECURITY_CONFIG_USER_PASSWORD_STATUS_NOT_INSTALLED\
+        text\
+            help   = STRING_TOKEN(STR_EMPTY),\
+            text   = STRING_TOKEN(STR_IDE_USER_PASSWORD_STS),\
+            text   = STRING_TOKEN(STR_NOT_HDDS_INSTALLED),\
+            flags  = 0,\
+            key    = 0;\
+
+    #define IDE_SECURITY_CONFIG_MASTER_PASSWORD_STATUS\
+        text\
+            help   = STRING_TOKEN(STR_EMPTY),\
+            text   = STRING_TOKEN(STR_IDE_MASTER_PASSWORD_STS),\
+            text   = STRING_TOKEN(STR_HDDS_INSTALLED),\
+            flags  = 0,\
+            key    = 0;\
+
+    #define IDE_SECURITY_CONFIG_MASTER_PASSWORD_STATUS_NOT_INSTALLED\
+        text\
+            help   = STRING_TOKEN(STR_EMPTY),\
+            text   = STRING_TOKEN(STR_IDE_MASTER_PASSWORD_STS),\
+            text   = STRING_TOKEN(STR_NOT_HDDS_INSTALLED),\
+            flags  = 0,\
+            key    = 0;\
+
+#else
+
+        #define IDE_SECURITY_GET_USER_PASSWORD
+        #define IDE_SECURITY_GET_MASTER_PASSWORD
+        #define IDE_SECURITY_CONFIG_COUNT
+        #define IDE_SECURITY_CONFIG_SUPPORTED
+        #define IDE_SECURITY_CONFIG_NOT_SUPPORTED
+        #define IDE_SECURITY_CONFIG_ENABLED
+        #define IDE_SECURITY_CONFIG_NOT_ENABLED
+        #define IDE_SECURITY_CONFIG_LOCKED
+        #define IDE_SECURITY_CONFIG_NOT_LOCKED
+        #define IDE_SECURITY_CONFIG_FROZEN
+        #define IDE_SECURITY_CONFIG_NOT_FROZEN
+        #define IDE_SECURITY_CONFIG_USER_PASSWORD_STATUS
+        #define IDE_SECURITY_CONFIG_USER_PASSWORD_STATUS_NOT_INSTALLED
+        #define IDE_SECURITY_CONFIG_MASTER_PASSWORD_STATUS
+        #define IDE_SECURITY_CONFIG_MASTER_PASSWORD_STATUS_NOT_INSTALLED
+        #define IDE_SECURITY_GET_IDE_USER_PASSWORD
+        #define IDE_SECURITY_GET_IDE_MASTER_PASSWORD
+#endif
+#endif
+
+
+#ifdef CONTROLS_WITH_DEFAULTS
+        IDE_SECURITY_GET_USER_PASSWORD
+        IDE_SECURITY_GET_MASTER_PASSWORD
+        IDE_SECURITY_CONFIG_COUNT
+        IDE_SECURITY_CONFIG_SUPPORTED
+        IDE_SECURITY_CONFIG_NOT_SUPPORTED
+        IDE_SECURITY_CONFIG_ENABLED
+        IDE_SECURITY_CONFIG_NOT_ENABLED
+        IDE_SECURITY_CONFIG_LOCKED
+        IDE_SECURITY_CONFIG_NOT_LOCKED
+        IDE_SECURITY_CONFIG_FROZEN
+        IDE_SECURITY_CONFIG_NOT_FROZEN
+        IDE_SECURITY_CONFIG_USER_PASSWORD_STATUS
+        IDE_SECURITY_CONFIG_USER_PASSWORD_STATUS_NOT_INSTALLED
+        IDE_SECURITY_CONFIG_MASTER_PASSWORD_STATUS
+        IDE_SECURITY_CONFIG_MASTER_PASSWORD_STATUS_NOT_INSTALLED
+        IDE_SECURITY_GET_IDE_USER_PASSWORD
+        IDE_SECURITY_GET_IDE_MASTER_PASSWORD
+#endif //#ifdef CONTROLS_WITH_DEFAULTS
+
+#if (SETUP_SAME_SYS_HDD_PW != 1)
+    #ifdef SECURITY_FORM_SET
+
+        #if EFI_SPECIFICATION_VERSION > 0x20000
+            #ifndef SUPPRESS_GRAYOUT_ENDIF //old Core
+            #define SUPPRESS_GRAYOUT_ENDIF endif;
+            #endif
+        #endif
+    
+  
+        #ifdef FORM_SET_ITEM
+            SEPARATOR
+
+            #if ALL_HDD_SAME_PW
+
+                grayoutif ideqvallist IDE_SECURITY_CONFIG.Frozen == 1;
+                    IDE_SECURITY_GET_USER_PASSWORD
+                endif;
+
+                #if DISPLAY_MASTER_PASSWORD
+                    grayoutif  ideqval IDE_SECURITY_CONFIG.ShowMaster == 0 OR ideqval IDE_SECURITY_CONFIG.Frozen == 1;
+                        IDE_SECURITY_GET_MASTER_PASSWORD
+                    endif;
+                #endif
+            #endif
+        #endif
+
+        #ifdef FORM_SET_GOTO
+            SEPARATOR
+
+            suppressif ideqvallist IDE_SECURITY_CONFIG.Count == 0;
+                IDE_SECURITY_CONFIG_COUNT
+            endif;
+
+            suppressif ideqvallist IDE_SECURITY_CONFIG.Count == 0xFFFF;
+                goto      IDE_SECURITY_FORM,
+                prompt  = STRING_TOKEN(STR_EMPTY),
+                help    = STRING_TOKEN(STR_IDE_SECURITY_HELP);
+            endif;
+      
+        #endif
+     
+        #ifdef FORM_SET_FORM
+    
+        form
+        formid = AUTO_ID(IDE_SECURITY_FORM),
+        title = STRING_TOKEN(STR_IDE_SECURITY_HD);
+    
+#if !ALL_HDD_SAME_PW
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_HDD_PWD_DESC))
+        SEPARATOR
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_HDD_BANNER_ONE))
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_HDD_BANNER_TWO))
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_HDD_BANNER_THREE))
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_HDD_BANNER_FOUR))
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_HDD_BANNER_FIVE))
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_HDD_BANNER_SIX))
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_HDD_BANNER_SEVEN))
+        SUBTITLE(STRING_TOKEN(STR_SECURITY_HDD_BANNER_EIGHT))
+
+#endif      
+        SEPARATOR
+        SUBTITLE(STRING_TOKEN(STR_HDD_PASSWORD_CONFIG))
+        SEPARATOR
+
+        suppressif ideqvallist IDE_SECURITY_CONFIG.Supported == 0;
+            IDE_SECURITY_CONFIG_SUPPORTED
+        endif;
+
+        suppressif ideqvallist IDE_SECURITY_CONFIG.Supported == 1;
+            IDE_SECURITY_CONFIG_NOT_SUPPORTED
+        endif;
+
+        suppressif ideqvallist IDE_SECURITY_CONFIG.Enabled == 0;
+            IDE_SECURITY_CONFIG_ENABLED
+        endif;
+    
+        suppressif ideqvallist IDE_SECURITY_CONFIG.Enabled == 1;
+            IDE_SECURITY_CONFIG_NOT_ENABLED
+        endif;
+
+        suppressif ideqvallist IDE_SECURITY_CONFIG.Locked == 0;
+            IDE_SECURITY_CONFIG_LOCKED
+        endif;
+
+        suppressif ideqvallist IDE_SECURITY_CONFIG.Locked == 1;
+            IDE_SECURITY_CONFIG_NOT_LOCKED
+        endif;
+
+        suppressif ideqvallist IDE_SECURITY_CONFIG.Frozen == 0;
+            IDE_SECURITY_CONFIG_FROZEN
+        endif;
+
+        suppressif ideqvallist IDE_SECURITY_CONFIG.Frozen == 1;
+            IDE_SECURITY_CONFIG_NOT_FROZEN
+        endif;
+    
+        suppressif ideqvallist IDE_SECURITY_CONFIG.UserPasswordStatus == 0;
+            IDE_SECURITY_CONFIG_USER_PASSWORD_STATUS
+        endif;
+
+        suppressif ideqvallist IDE_SECURITY_CONFIG.UserPasswordStatus == 1;
+            IDE_SECURITY_CONFIG_USER_PASSWORD_STATUS_NOT_INSTALLED
+        endif;
+
+        suppressif ideqvallist IDE_SECURITY_CONFIG.MasterPasswordStatus == 0;
+            IDE_SECURITY_CONFIG_MASTER_PASSWORD_STATUS
+        endif;
+
+        suppressif ideqvallist IDE_SECURITY_CONFIG.MasterPasswordStatus == 1;
+            IDE_SECURITY_CONFIG_MASTER_PASSWORD_STATUS_NOT_INSTALLED
+        endif;
+
+        SEPARATOR
+    
+        #if !ALL_HDD_SAME_PW
+            grayoutif ideqvallist IDE_SECURITY_CONFIG.Frozen == 1;
+                IDE_SECURITY_GET_IDE_USER_PASSWORD
+            endif;
+            #if DISPLAY_MASTER_PASSWORD
+                grayoutif  ideqval IDE_SECURITY_CONFIG.ShowMaster == 0 OR ideqval IDE_SECURITY_CONFIG.Frozen == 1;
+                    IDE_SECURITY_GET_IDE_MASTER_PASSWORD
+                endif;
+            #endif
+        #endif
+
+        endform;
+        
+        #endif
+    #endif
+#endif
+
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2014, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

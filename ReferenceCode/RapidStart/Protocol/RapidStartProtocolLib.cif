@@ -1,0 +1,18 @@
+<component>
+	name = "RapidStartProtocolLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\RapidStart\Protocol\"
+	RefName = "RapidStartProtocolLib"
+[files]
+"RapidStartProtocolLib.inf"
+"RapidStartProtocolLib.mak"
+"RapidStartProtocolLib.sdl"
+"DxeGfxProtocol\DxeGfxProtocol.c"
+"DxeGfxProtocol\DxeGfxProtocol.h"
+"RapidStartPlatformPolicy\RapidStartPlatformPolicy.c"	
+"RapidStartPlatformPolicy\RapidStartPlatformPolicy.h"	
+"RapidStartInfo\RapidStartInfo.c"
+"RapidStartInfo\RapidStartInfo.h"
+"RapidStartGlobalNvsArea\RapidStartGlobalNvsArea.c"
+"RapidStartGlobalNvsArea\RapidStartGlobalNvsArea.h"
+<endComponent>

@@ -1,0 +1,56 @@
+TOKEN
+	Name  = "OEMCMD_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable OEM CMD Checking support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "OEMCMDLIB"
+	Value  = "$(BUILD_DIR)\OEMCMD.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "[OEM CMD Checking Sample Code Section]"
+	Help  = "See detail description in each token's help box."
+	TokenType = Expression
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "OEM_CMD_CHECKING_SAMPLE_TEST"
+	Value  = "1"
+	Help  = "Test OEM CMD CHECKING Function"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "OEMCMD_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "OFBD_OEMCMD_DIR"
+End
+
+MODULE
+	Help  = "Includes OEMCMD.mak to Project"
+	File  = "OEMCMD.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\OEMCMD.lib"
+	Parent  = "OFBDLISTLIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OEMCMDEntry,"
+	Parent  = "OFBDPartsList"
+	Token = "OEMCMD_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+

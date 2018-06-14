@@ -1,0 +1,11 @@
+<component>
+	name = "DxeRuntimePciLibPciExpress"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Library\DxeRuntimePciLibPciExpress"
+	RefName = "DxeRuntimePciLibPciExpress"
+[files]
+"DxeRuntimePciLibPciExpress.sdl"	
+"DxeRuntimePciLibPciExpress.mak"	
+"DxeRuntimePciLibPciExpress.c"
+"DxeRuntimePciLibPciExpress.inf"
+<endComponent>

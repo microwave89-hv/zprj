@@ -1,0 +1,20 @@
+TOKEN
+	Name  = "Tpm2PttLibrary_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "This driver will work for Intel FTPM only"
+End
+
+PATH
+	Name  = "Tpm2PttLibrary_DIR"
+	Help  = "Path"
+End
+
+
+MODULE
+	Help  = "Includes Tpm2PttLibrary.mak to Project"
+	File  = "Tpm2PttLibrary.mak"
+End

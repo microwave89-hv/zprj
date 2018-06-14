@@ -1,0 +1,13 @@
+<component>
+	name = "UefiNetworkStack II"
+	category = eModule
+	LocalRoot = "Core\EM\UEfiNetworkStack"
+	RefName = "UefiNetworkStack II"
+[files]
+"UefiNetworkStackII.sdl"
+"UefiNetworkStackII.chm"
+[parts]
+"UefiCommonNetworkStack II"
+"UefiIpv4Stack II"
+"UefiIpv6Stack II"
+<endComponent>

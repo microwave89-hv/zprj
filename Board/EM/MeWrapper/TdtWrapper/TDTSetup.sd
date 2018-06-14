@@ -1,0 +1,161 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+//**********************************************************************
+//
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/MeWrapper/TdtWrapper/TDTSetup.sd 4     9/27/12 4:56a Klzhan $
+//
+// $Revision: 4 $
+//
+// $Date: 9/27/12 4:56a $
+//
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/MeWrapper/TdtWrapper/TDTSetup.sd $
+// 
+// 4     9/27/12 4:56a Klzhan
+// [TAG]  		EIP102254
+// [Category]  	Spec Update
+// [Severity]  	Important
+// [Description]  	Update ME RC 0.7
+// [Files]  		TDTWrapper.dxs
+// TDTWrapper.c
+// TDTWrapper.mak
+// TDTWrapper.sdl
+// TDTSetup.sd
+// TDTSetup.uni
+// TdtCallback.h
+// TDTWrapper.cif
+// 
+// 3     9/19/12 6:31a Klzhan
+// Set AT to default enabled.
+// 
+// 2     4/24/12 12:33a Klzhan
+// Update modulepart to latest
+// 
+// 1     2/08/12 1:07a Klzhan
+// Initial Check in 
+// 
+// 2     4/20/11 10:51p Klzhan
+// Improvement : Gray out Suspend item when system is not enroll.
+// 
+// 1     2/25/11 1:40a Klzhan
+// Initial Check-in
+// 
+// 1     12/03/10 5:09a Klzhan
+// Initial Check-in.
+// 
+//
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//----------------------------------------------------------------------------
+//
+// Name:            TdtSetup.sd
+//
+// Description:     Setup menu for Tdt.
+//
+//----------------------------------------------------------------------------
+//<AMI_FHDR_END>
+//**********************************************************************
+#ifdef SETUP_DATA_DEFINITION
+/***********************************************************/
+/* Put NVRAM data definitions here.
+/* For example:	UINT8 Data1;
+/* These definitions will be converted by the build process
+/* to a definitions of SETUP_DATA fields.
+/***********************************************************/
+  UINT8       Tdt;
+  UINT8       TdtConfig;
+  UINT8       TdtEnterSuspendState;
+
+#endif
+
+#ifdef ADVANCED_FORM_SET
+  #ifdef FORM_SET_ITEM
+  // Define controls to be added to the main page of the formset
+
+  #endif
+
+#ifdef FORM_SET_TYPEDEF
+
+#include "TdtCallback.h"
+
+#endif
+
+#ifdef FORM_SET_VARSTORE
+  varstore TDT_VOLATILE_SETUP_DATA, 
+    key =  AUTO_ID(TDT_VOLATILE_SETUP_DATA_VAR),
+    name = TdtAdvancedSetupDataVar,
+    guid = TDT_VOLATILE_SETUP_DATA_GUID;
+
+#endif            
+
+  #ifdef FORM_SET_GOTO
+  // Define goto commands for the forms defined in this file
+    goto TDT_FORM_ID,
+
+      prompt  = STRING_TOKEN(STR_TDT_FORM),
+      help    = STRING_TOKEN(STR_TDT_FORM_HELP);
+  #endif
+
+  #ifdef FORM_SET_FORM
+  // Define forms
+   #ifndef TDT_FORM_SETUP
+   #define TDT_FORM_SETUP
+
+      form formid = AUTO_ID(TDT_FORM_ID),
+      title     = STRING_TOKEN(STR_TDT_FORM_TITLE);
+    
+      SEPARATOR
+      SUBTITLE(STRING_TOKEN(STR_ITDT_SUBTITLE))
+      SEPARATOR
+
+        grayoutif ideqval TDT_VOLATILE_SETUP_DATA.TdtEnroll == 1 OR ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+        	oneof varid = SETUP_DATA.TdtConfig,
+        		prompt   = STRING_TOKEN(STR_TDT_CONFIG_PROMPT),
+    		    help     = STRING_TOKEN(STR_TDT_CONFIG_HELP),
+    		    option text = STRING_TOKEN(STR_TDT_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;
+    		    option text = STRING_TOKEN(STR_TDT_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;
+    	    endoneof;
+        endif;
+
+        grayoutif ideqval TDT_VOLATILE_SETUP_DATA.TdtEnroll == 0 OR ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+        oneof varid = SETUP_DATA.TdtEnterSuspendState,
+    		prompt   = STRING_TOKEN(STR_TDT_SUSPEND_PROMPT),
+		    help     = STRING_TOKEN(STR_TDT_SUSPEND_HELP),
+		    option text = STRING_TOKEN(STR_TDT_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;
+		    option text = STRING_TOKEN(STR_TDT_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;
+        endoneof;
+        endif;      
+
+      endform;
+    #endif // TDT_FORM_SETUP
+  #endif //End FORM_SET_FORM
+
+#endif //End ADVANCED_FORM_SET
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

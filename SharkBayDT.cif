@@ -1,0 +1,11 @@
+<component>
+	name = "SharkBayDT"
+	category = Flavor
+	RefName = "SharkBayDT"
+[files]
+"ReleaseNotes.chm"	
+[parts]
+"BOARD_MOD"
+"CORE_MOD"
+"EM_MOD"
+<endComponent>

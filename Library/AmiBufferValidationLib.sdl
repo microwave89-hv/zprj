@@ -1,0 +1,16 @@
+TOKEN
+	Name  = "AmiBufferValidationLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AmiBufferValidationLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+MODULE
+	Help  = "Includes AmiBufferValidationLib.mak to Project"
+	File  = "AmiBufferValidationLib.mak"
+End
+

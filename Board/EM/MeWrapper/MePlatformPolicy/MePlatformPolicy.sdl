@@ -1,0 +1,24 @@
+TOKEN
+        Name  = "MePlatformPolicy_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable MePlatformPolicy support in Project"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        Master = Yes
+End
+
+PATH
+        Name  = "MePlatformPolicy_DIR"
+End
+
+MODULE
+        Help  = "Includes MePlatformPolicy.mak to Project"
+        File  = "MePlatformPolicy.mak"
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\MePlatformPolicy.ffs"
+        Parent  = "FV_MAIN"
+        InvokeOrder = AfterParent
+End

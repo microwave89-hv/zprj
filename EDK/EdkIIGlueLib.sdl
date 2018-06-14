@@ -1,0 +1,188 @@
+TOKEN
+	Name  = "EdkIIGlueLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EDKIIGLUE_DEFAULTS"
+	Value  = "$(BUILD_DEFAULTS) FAMILY_RULES=$(EDK_DIR)\EdkIIGlueRules.mak"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "TIANO_RELEASE_VERSION"
+	Value  = "0x00080006"
+	Help  = "Release version of this EDK (0x00080006 - R8.6)"
+	TokenType = Integer
+	TargetMAK = Yes
+	Range  = "0x00080005, 0x00080006"
+End
+
+PATH
+	Name  = "EDK_DIR"
+End
+
+PATH
+	Name  = "EDK_SOURCE"
+	Path  = "$(EDK_DIR)"
+End
+
+
+PATH
+	Name  = "EdkIIGlueLib_DIR"
+        Path  = "$(EDK_DIR)\Foundation\Library\EdkIIGlueLib\"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueLib.mak to Project"
+	File  = "EdkIIGlueLib.mak"
+End
+
+ELINK
+	Name  = "EdkIIGlueLib_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/I$(EdkIIGlueLib_DIR)\EntryPoints"
+	Parent  = "EdkIIGlueLib_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EdkIIGlueLib_DIR)\Include"
+	Parent  = "EdkIIGlueLib_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EdkIIGlueLib_DIR)\Include\Common"
+	Parent  = "EdkIIGlueLib_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EdkIIGlueLib_DIR)\Include\$(PROCESSOR)"
+	Parent  = "EdkIIGlueLib_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EdkIIGlueLib_DIR)\Include\Library"
+	Parent  = "EdkIIGlueLib_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EdkIIGlueLib_DIR)\Include\Pcd"
+	Parent  = "EdkIIGlueLib_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "EDK_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+#ELINK
+#	Name  = "$(EDK_INCLUDES)"
+#	Parent  = "EdkIIGlueLib_INCLUDES"
+#	InvokeOrder = AfterParent
+#End
+
+ELINK
+	Name  = "/I$(EDK_SOURCE)\Foundation\Framework"
+	Parent  = "EDK_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EDK_SOURCE)\Foundation\Efi"
+	Parent  = "EDK_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EDK_SOURCE)\Foundation"
+	Parent  = "EDK_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EDK_SOURCE)\Foundation\Efi"
+	Parent  = "EDK_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EDK_SOURCE)\Foundation\Include"
+	Parent  = "EDK_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EDK_SOURCE)\Foundation\Include\$(PROCESSOR)"
+	Parent  = "EDK_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EDK_SOURCE)\Foundation\Efi\Include"
+	Parent  = "EDK_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EDK_SOURCE)\Foundation\Framework\Include"
+	Parent  = "EDK_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EDK_SOURCE)\Foundation\Include\IndustryStandard"
+	Parent  = "EDK_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EDK_SOURCE)\Foundation\Core\Dxe"
+	Parent  = "EDK_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EDK_SOURCE)\Foundation\Include\Pei"
+	Parent  = "EDK_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EDK_SOURCE)\Foundation\Library\Pei\Include"
+	Parent  = "EDK_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EDK_SOURCE)\Foundation\Library\Dxe\Include"
+	Parent  = "EDK_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EDK_SOURCE)\Foundation\Library\Dxe\Include\$(PROCESSOR)"
+	Parent  = "EDK_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(EDK_SOURCE)\Foundation\Cpu\Pentium\Include"
+	Parent  = "EDK_INCLUDES"
+	InvokeOrder = AfterParent
+End
+

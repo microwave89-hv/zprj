@@ -1,0 +1,9 @@
+<component>
+	name = "S3Common"
+	category = ModulePart
+	LocalRoot = "Include\"
+	RefName = "S3Common"
+[files]
+"Protocol\S3SaveState.h"
+"Protocol\S3SmmSaveState.h"
+<endComponent>

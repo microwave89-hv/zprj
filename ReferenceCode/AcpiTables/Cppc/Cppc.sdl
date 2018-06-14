@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "CPPC_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable CPPC supppory in Project"
+End
+
+PATH
+	Name  = "INTEL_CPPC_DIR"
+	Help  = "Intel DPTF source directory"
+End
+
+ELINK
+	Name  = "CPPC_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "/I$(INTEL_CPPC_DIR)"
+    Parent  = "CPPC_INCLUDES"
+    InvokeOrder = AfterParent
+End

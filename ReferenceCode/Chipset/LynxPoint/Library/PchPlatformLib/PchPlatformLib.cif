@@ -1,0 +1,13 @@
+<component>
+	name = "PchPlatformLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Library\PchPlatformLib"
+	RefName = "PchPlatformLib"
+[files]
+"PchPlatformLib.mak"	
+"PchPlatformLib.sdl"	
+"PchPlatformLibrary.h"	
+"PchPlatformLibrary.c"	
+"PchPlatformLib.inf"	
+"IobpAccess.c"	
+<endComponent>

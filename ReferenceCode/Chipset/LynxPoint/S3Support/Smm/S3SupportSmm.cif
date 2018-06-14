@@ -1,0 +1,13 @@
+<component>
+	name = "S3SupportSmm"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\S3Support\Smm"
+	RefName = "S3SupportSmm"
+[files]
+"S3SupportSmm.sdl"	
+"S3SupportSmm.mak"	
+"S3SupportSmm.c"	
+"S3SupportSmm.h"	
+"S3SupportSmm.dxs"	
+"S3SupportSmm.inf"	
+<endComponent>

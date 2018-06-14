@@ -1,0 +1,129 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/Projects/Intel/Haswell/LynxPoint_SharkBay-DT_Crb_1AQQW/CRB/CRB.sd 2     1/11/13 3:23a Wesleychen $
+//
+// $Revision: 2 $
+//
+// $Date: 1/11/13 3:23a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/Projects/Intel/Haswell/LynxPoint_SharkBay-DT_Crb_1AQQW/CRB/CRB.sd $
+// 
+// 2     1/11/13 3:23a Wesleychen
+// Clone  "SETUP_DATA.AcpiSleepState" and change its default value to "S3
+// only".
+// 
+// 1     2/12/12 10:38p Victortu
+// Intel SharkBay CRB initially releases.
+// 
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:    CRB.sd
+//
+// Description: Chipset Reference Board setup form
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+
+#ifdef SETUP_DATA_DEFINITION
+//---------------------------------------------------------------------------
+// Put NVRAM data definitions here.
+// For example: UINT8 Data1;
+// These definitions will be converted by the build process
+// to a definitions of SETUP_DATA fields.
+//---------------------------------------------------------------------------
+    UINT8   CRBTest;
+
+#endif
+
+#if defined(VFRCOMPILE) && !defined(CONTROLS_ARE_DEFINED)
+#define CONTROL_DEFINITION
+#endif
+
+#ifdef CONTROL_DEFINITION
+
+#define CRB_CHECKBOX_CRBTEST\
+       checkbox varid  = SETUP_DATA.CRBTest,\
+         prompt = STRING_TOKEN(STR_CRBTEST_PROMPT),\
+         help = STRING_TOKEN(STR_CRBTEST_HELP),\
+         flags   = 1|RESET_REQUIRED,\
+       endcheckbox;
+
+#ifdef ACPI_ONEOF_ACPISLEEPSTATE
+#undef ACPI_ONEOF_ACPISLEEPSTATE
+#define ACPI_ONEOF_ACPISLEEPSTATE\
+       oneof varid  = SETUP_DATA.AcpiSleepState,\
+         prompt = STRING_TOKEN(STR_ACPI_SLEEP_PROMPT),\
+         help = STRING_TOKEN(STR_ACPI_SLEEP_HELP),\
+         option text = STRING_TOKEN(STR_ACPI_SLEEP_NO), value = 0, flags = RESET_REQUIRED;\
+         option text = STRING_TOKEN(STR_ACPI_SLEEP_S1), value = 1, flags = RESET_REQUIRED;\
+         option text = STRING_TOKEN(STR_ACPI_SLEEP_S3), value = 2, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;\
+         option text = STRING_TOKEN(STR_ACPI_SLEEP_AUTO), value = 3, flags = RESET_REQUIRED;\
+       endoneof;
+#endif // ACPI_ONEOF_ACPISLEEPSTATE
+
+#endif // CONTROL_DEFINITION
+
+#ifdef CONTROLS_WITH_DEFAULTS
+    CRB_CHECKBOX_CRBTEST
+#endif // CONTROLS_WITH_DEFAULTS
+//---------------------------------------------------------------------------
+//                ADVANCED - CRB Configuration Form
+//---------------------------------------------------------------------------
+#ifdef CRB_SETUP_DISPLAY
+#ifdef ADVANCED_FORM_SET
+    #ifdef FORM_SET_ITEM
+    // Define controls to be added to the main page of the formset
+    #endif
+
+
+
+    #ifdef FORM_SET_GOTO
+    // Define goto commands for the forms defined in this file
+        goto CRB_FORM_ID, 
+            prompt = STRING_TOKEN(STR_CRB_FORM),
+            help = STRING_TOKEN(STR_CRB_FORM_HELP);
+    #endif
+
+    #ifdef FORM_SET_FORM
+    // Define forms
+        form formid = AUTO_ID(CRB_FORM_ID),
+            title = STRING_TOKEN(STR_CRB_FORM);
+
+            CRB_CHECKBOX_CRBTEST
+
+        endform;  // CRB_FORM_ID
+
+    #endif  // FORM_SET_FORM
+
+#endif  // ADVANCED_FORM_SET
+#endif  // CRB_SETUP_DISPLAY
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

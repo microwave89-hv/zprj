@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueBaseTimerLibTsc"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\BaseTimerLibTsc"
+	RefName = "EdkIIGlueBaseTimerLibTsc"
+[files]
+"EdkIIGlueBaseTimerLibTsc.sdl"	
+"EdkIIGlueBaseTimerLibTsc.mak"	
+"BaseTimerLibTsc.inf"	
+"TimerLibTsc.c"	
+<endComponent>

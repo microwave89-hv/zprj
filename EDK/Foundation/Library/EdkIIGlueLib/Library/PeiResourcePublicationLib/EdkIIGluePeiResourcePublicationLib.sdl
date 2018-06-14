@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGluePeiResourcePublicationLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGluePeiResourcePublicationLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGluePeiResourcePublicationLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGluePeiResourcePublicationLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGluePeiResourcePublicationLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGluePeiResourcePublicationLib.mak to Project"
+	File  = "EdkIIGluePeiResourcePublicationLib.mak"
+End
+

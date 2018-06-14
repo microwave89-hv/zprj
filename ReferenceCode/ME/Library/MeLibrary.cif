@@ -1,0 +1,22 @@
+<component>
+	name = "MeLibrary"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Library\"
+	RefName = "MeLibrary"
+[files]
+"MeLibrary.sdl"
+"MeKernel\include\CoreBiosMsg.h"	
+"MeKernel\include\MkhiMsgs.h"	
+"MeKernel\include\MeAccess.h"	
+"MeKernel\include\MeChipset.h"	
+"MeKernel\include\MeChipsetLib.h"
+"MeKernel\include\MeState.h"
+"AMT\Include\Amt.h"
+"PttHeci\Include\PttHeciLib.h"
+[parts]
+"MeKernelLibrary"
+"AmtLibrary"
+"AtLibrary"
+"PttLibrary"
+"PttHeciDxeLib"
+<endComponent>

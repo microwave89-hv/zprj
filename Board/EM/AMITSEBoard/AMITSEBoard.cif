@@ -1,0 +1,15 @@
+<component>
+	name = "AMITSE - Board"
+	category = ModulePart
+	LocalRoot = "Board\Em\AMITSEBoard"
+	RefName = "AMITSEBoard"
+[files]
+"AMITSEBoard.sdl"	
+"AMITSEBoard.mak"	
+"OEMLogo.c"	
+"OemkeyHook.c"	
+"TseBoard.c"	
+"TseOem.h"	
+"TseOem.uni"	
+"OemTokens.c"	
+<endComponent>

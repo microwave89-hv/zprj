@@ -1,0 +1,112 @@
+TOKEN
+	Name  = "x64_BUILD"
+	Value  = "0"
+	Help  = "Main switch to enable x64 support in Project\DO REBUILD ALL AFTER CHANGING THIS SWITCH!!!"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "GLOBAL_DEFINES_x64"
+	Value  = "/DEFIx64 /DEFIX64"
+	Help  = "Global x64-specific macro definitions. Added to CFLAGSx64 and AFLAGSx64"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "CC"
+	Value  = "$(SILENT)$(CCX64DIR)\CL"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "LINK"
+	Value  = "$(SILENT)$(CCX64DIR)\LINK"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "LIBEXE"
+	Value  = "$(SILENT)$(CCX64DIR)\LINK /LIB"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "CCPEI"
+	Value  = "$(SILENT)$(CCX86DIR)\CL"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "LINKPEI"
+	Value  = "$(SILENT)$(CCX86DIR)\LINK"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "LIBEXEPEI"
+	Value  = "$(SILENT)$(CCX86DIR)\LINK /LIB"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "CFLAGSx64"
+	Value  = "/GS- $(GLOBAL_DEFINES_x64)"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "ASMx64"
+	Value  = "$(SILENT)$(CCX64DIR)\ML64"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "AFLAGSx64"
+	Value  = "$(GLOBAL_DEFINES_x64) /Cp"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "LFLAGSx64"
+	Value  = "/MACHINE:AMD64"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "CP"
+	Value  = "$(SILENT)$(CCX64DIR)\CL /nologo /EP"
+	Help  = "C preprocessor"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "x64Core_DIR"
+End
+
+ELINK
+	Name  = "x64"
+	Parent  = "IA32"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(x64Core_DIR)\x64rules.mak"
+	Parent  = "$(IA32Core_DIR)\IA32rules.mak"
+	InvokeOrder = ReplaceParent
+End
+

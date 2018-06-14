@@ -1,0 +1,12 @@
+<component>
+	name = "FastBootSMI"
+	category = ModulePart
+	LocalRoot = "CORE\EM\FastBoot\"
+	RefName = "FastBootSMI"
+[files]
+"FastBootSMI.sdl"
+"FastBootSMI.c"
+"FastBootSMI.dxs"
+"FastBootSMI.mak"
+<endComponent>
+

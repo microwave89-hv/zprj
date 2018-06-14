@@ -1,0 +1,15 @@
+<component>
+	name = "PciHostBridge"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\PciHostBridge\Dxe\"
+	RefName = "PciHostBridge"
+[files]
+"PciHostBridge.sdl"	
+"PciHostBridge.mak"	
+"PciHostBridge.c"	
+"PciHostBridge.h"	
+"PciHostBridge.dxs"	
+"PciRootBridgeIo.c"	
+"PciRootBridge.h"
+"PciHostBridge.inf"	
+<endComponent>

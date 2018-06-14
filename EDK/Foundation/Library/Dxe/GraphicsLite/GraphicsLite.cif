@@ -1,0 +1,18 @@
+<component>
+	name = "GraphicsLite"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Library\Dxe\GraphicsLite\"
+	RefName = "GraphicsLite"
+[files]
+"GraphicsLite.sdl"	
+"GraphicsLite.mak"	
+"Graphics.c"	
+"Print.c"	
+"Print.h"	
+"Graphics.inf"	
+[parts]
+"GraphicsLiteAscii"
+"GraphicsLiteUnicode"
+"GraphicsLiteAscii"
+"GraphicsLiteUnicode"
+<endComponent>

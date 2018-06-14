@@ -1,0 +1,95 @@
+TOKEN
+	Name  = "CPU_MODULE_CREATE_SMBIOS_TABLES"
+	Value  = "1"
+	Help  = "Enable for CPU Module. Also, disable token PROCESSOR_INFO.\Disable for SMBIOS module.\\\"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CPU_CACHE_L4_DISPLAY_IN_SMBIOS"
+	Value  = "0"
+	Help  = "The SMBIOS will display L4, if CPU support."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMBIOS_TYPE_4_PROC_FAMILY"
+	Value  = "0"
+	Help  = "0 - Autodetect\0xce - Intel Core i3\0xcd - Intel Core i5\0xc6 - Intel Core i7\0xb3 - Intel Xeon"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-ff"
+End
+
+TOKEN
+	Name  = "SMBIOS_TYPE_4_PROC_UPGRADE"
+	Value  = "0x24"
+	Help  = "0x21 - Mobile - Socket rPGA988B\0x22 - Mobile - Socket BGA1023\0x23 - Mobile - Socket LGA1224\0x24 - DT - Socket LGA1155 \0x25 - EN - Socket LGA1356\0x26 - EP  - Socket LGA2011\"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-ff"
+End
+
+TOKEN
+	Name  = "SMBIOS_TYPE_4_MAX_SPEED"
+	Value  = "0"
+	Help  = "Value in MHz."
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-ffff"
+End
+
+TOKEN
+	Name  = "SMBIOS_TYPE_4_ASSET_TAG"
+	Value  = "Fill By OEM"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMBIOS_TYPE_4_PART_NUMBER"
+	Value  = "Fill By OEM"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMBIOS_TYPE_4_SOCKET_DESIGINTATION_SOCKET_0"
+	Value  = "SOCKET 0"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMBIOS_TYPE_7_L1_SOCKET_DESIGNATION"
+	Value  = "CPU Internal L1"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMBIOS_TYPE_7_L2_SOCKET_DESIGNATION"
+	Value  = "CPU Internal L2"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMBIOS_TYPE_7_L3_SOCKET_DESIGNATION"
+	Value  = "CPU Internal L3"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMBIOS_TYPE_7_L4_SOCKET_DESIGNATION"
+	Value  = "CPU Internal L4"
+	TokenType = Expression
+	TargetH = Yes
+	Token = "CPU_CACHE_L4_DISPLAY_IN_SMBIOS" "=" "1"
+End
+

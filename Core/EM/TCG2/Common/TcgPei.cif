@@ -1,0 +1,18 @@
+<component>
+	name = "TcgPei"
+	category = ModulePart
+	LocalRoot = "Core\EM\TCG2\Common"
+	RefName = "TcgPei"
+[files]
+"TcgPei.mak"	
+"TisPei.c"	
+"TcgPei.dxs"	
+"TcgTisPei.c"	
+"xTcgPei.c"	
+"TcgTcmPei.c"	
+"EMpTcmPei.c"	
+"TcgCRBPei.c"	
+"TcgPei.sdl"	
+[parts]
+"TcgPeiAfterMem"
+<endComponent>

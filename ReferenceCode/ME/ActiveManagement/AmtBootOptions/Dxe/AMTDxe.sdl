@@ -1,0 +1,29 @@
+TOKEN
+	Name  = "AMTDxe_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable AMT Dxe support in Project"
+End
+MODULE
+	Help  = "Includes AMTDxe.mak to Project"
+	File  = "AMTDxe.mak"
+End
+
+PATH
+	Name  = "AMTDxe_DIR"
+	Help  = "AMT Driver files source directory"
+End
+
+PATH
+	Name  = "AMTDxe_SOURCE"
+	Help  = "AMT Driver files source directory"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AMTDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

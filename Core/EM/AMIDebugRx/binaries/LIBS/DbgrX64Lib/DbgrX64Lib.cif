@@ -1,0 +1,11 @@
+<component>
+	name = "DbgrX64Lib"
+	category = ModulePart
+	LocalRoot = "Core\EM\AMIDebugRx\binaries\LIBS\DbgrX64Lib\"
+	RefName = "DbgrX64Lib"
+[files]
+"DbgrX64Lib.sdl"	
+"DbgrX64Lib.mak"	
+"DbgrX64Lib.lib"
+"AsmDbgrx64Libs.h"
+<endComponent>

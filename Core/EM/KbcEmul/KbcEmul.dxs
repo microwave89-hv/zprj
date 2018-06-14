@@ -1,0 +1,71 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/KbcEmulation/ALASKA/KBCEMUL/KbcEmul.dxs 3     2/10/11 12:56a Rameshr $
+//
+// $Revision: 3 $
+//
+// $Date: 2/10/11 12:56a $
+//
+//****************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/KbcEmulation/ALASKA/KBCEMUL/KbcEmul.dxs $
+// 
+// 3     2/10/11 12:56a Rameshr
+// [TAG]  		EIP53687
+// [Category]  	Improvement
+// [Description]  	AMI headers update for KbcEmulation Module 
+// [Files]  		KbcEmul.mak,KbcEmul.dxs,KbcEmul.c,KbcEmul.h,KbcEmulLib.h,Kbc
+// EmulLib.c,Kbc.h,KbcDevEmul.h,Kbccore.c,Legacykbc.c,Legacykbd.c,LegacyMo
+// use.c,VirtualKbc.c,VirtualKbd.c,VirtualMouse.c,Ap4x.h,Ap4x.c,KbcUhci.c,
+// KbcUhci.h,KbcEmulIrq.c, KbcOhci.c, Kbcohci.h
+// 
+// 2     6/30/09 11:27a Rameshr
+// Coding Standard and File header updated.
+// 
+// 1     12/14/07 10:26a Rameshraju
+// Initial Check-in
+//****************************************************************************
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:        KbcEmul.dxs
+//
+// Description: DXS file for the Kbc Emulation
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+#include <Protocol/SmmBase.h>
+#include <Protocol/SmmUsbDispatch.h>
+#include <Protocol/PciRootBridgeIo.h>
+
+DEPENDENCY_START
+    EFI_SMM_BASE_PROTOCOL_GUID AND
+    EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL_GUID AND
+    EFI_SMM_USB_DISPATCH_PROTOCOL_GUID
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

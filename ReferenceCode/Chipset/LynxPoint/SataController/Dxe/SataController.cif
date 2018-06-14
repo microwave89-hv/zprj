@@ -1,0 +1,13 @@
+<component>
+	name = "SataController"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\SataController\Dxe"
+	RefName = "SataController"
+[files]
+"SataController.sdl"	
+"SataController.mak"	
+"SataController.c"	
+"SataController.h"	
+"SataControllerName.c"	
+"SataController.inf"	
+<endComponent>

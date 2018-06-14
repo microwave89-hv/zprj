@@ -1,0 +1,44 @@
+TOKEN
+    Name  = "AuthVariable_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable AuthVariable support in Project"
+    TokenType = Boolean
+    TargetH = Yes
+    TargetMAK = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "USER_MODE_POLICY_OVERRIDE"
+    Value  = "1"
+    Help  = "Ignore Variable Authentication rules until AuthVarLock(ready to boot) event\A back door for Administrative Users to modify Secure Variables from Key Management Setup Page"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+PATH
+    Name  = "AuthVariable_DIR"
+    Help  = "Path to AuthVariable Module in Project"
+End
+
+MODULE
+    Help  = "Includes AuthVariable.mak to Project"
+    File  = "AuthVariable.mak"
+End
+
+
+ELINK
+    Name  = "PhysicalUserPresenceDetect"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "AuthVarAdminUserPresent,"
+    InvokeOrder = AfterParent
+    Parent = PhysicalUserPresenceDetect
+End
+
+ELINK
+    Name  = "OemReadOnlyVariableList"
+    InvokeOrder = ReplaceParent
+End

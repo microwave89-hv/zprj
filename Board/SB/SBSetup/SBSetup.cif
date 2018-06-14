@@ -1,0 +1,12 @@
+<component>
+	name = "SBSetup"
+	category = ModulePart
+	LocalRoot = "Board\SB\SBSetup"
+	RefName = "SBSetup"
+[files]
+"SBSetup.sdl"	
+"SBSetup.mak"	
+"SB.sd"	
+"SB.uni"	
+"SBSetup.c"	
+<endComponent>

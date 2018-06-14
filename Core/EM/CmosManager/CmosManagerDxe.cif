@@ -1,0 +1,9 @@
+<component>
+	name = "CMOS DXE"
+	category = ModulePart
+	LocalRoot = "Core\EM\CmosManager\"
+	RefName = "CmosDxe"
+[files]
+"CmosManagerDxe.c"	
+"CmosManagerDxe.h"	
+<endComponent>

@@ -1,0 +1,11 @@
+<component>
+	name = "OEM NVRAM/Setup Variable Preserve"
+	category = ModulePart
+	LocalRoot = "Core\EM\OFBD\OEMSETUP\"
+	RefName = "OFBD_OEMSETUP"
+[files]
+"OEMSETUP.sdl"	
+"OEMSETUP.mak"	
+"OEMSETUP.h"	
+"OEMSETUP.c"	
+<endComponent>

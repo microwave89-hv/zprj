@@ -1,0 +1,13 @@
+<component>
+	name = "Cpu Policy PEI"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\SampleCode\CpuPolicyInit\Pei"
+	RefName = "Cpu Policy Pei"
+[files]
+"CpuPolicyPei.sdl"	
+"CpuPolicyPei.mak"	
+"CpuPolicyInitPei.c"	
+"CpuPolicyInitPei.h"	
+"CpuPolicyInitPei.dxs"	
+"CpuPolicyInitPei.inf"	
+<endComponent>

@@ -1,0 +1,15 @@
+<component>
+	name = "CMOS Board"
+	category = ModulePart
+	LocalRoot = "Core\EM\CmosManager\"
+	RefName = "CmosBoard"
+[files]
+"CmosBoard.sdl"	
+"CmosBoard.ssp"	
+"CmosBoard.c"	
+"CmosBoard.h"	
+"CmosSetup.sd"
+"CmosSetup.uni"
+[parts]
+"CmosMessages"
+<endComponent>

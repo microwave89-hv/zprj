@@ -1,0 +1,20 @@
+<component>
+	name = "CpuInitPei"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\CpuInit\Pei"
+	RefName = "CpuInitPei"
+[files]
+"CpuInitPeim.c"
+"CachePeim.c"
+"CpuInitPeim.h"
+"PfatInit.c"
+"PfatInit.h"
+"CpuOcInit.c"
+"CpuOcInit.h"
+"CpuInitPeim.dxs"
+"CpuInitPeim.inf"
+"CpuInitPei.mak"
+"CpuInitPei.sdl"
+"Ia32\Cpu.asm"  
+"BootGuardInit.c"
+<endComponent>

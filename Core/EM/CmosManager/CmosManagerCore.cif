@@ -1,0 +1,12 @@
+<component>
+	name = "CMOS Core"
+	category = ModulePart
+	LocalRoot = "Core\EM\CmosManager\"
+	RefName = "CmosCore"
+[files]
+[parts]
+"CmosInterfaces"
+"CmosSource"
+"CmosIncludes"
+"CmosBuild"
+<endComponent>

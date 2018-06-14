@@ -1,0 +1,79 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/NvramSmi/NvramSmi.dxs 4     5/08/12 5:54p Oleksiyy $
+//
+// $Revision: 4 $
+//
+// $Date: 5/08/12 5:54p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/NvramSmi/NvramSmi.dxs $
+// 
+// 4     5/08/12 5:54p Oleksiyy
+// [TAG]  		EIP89155
+// [Category]  	Improvement
+// [Description]  	NVRAM SMI module does not boot in PI 1.2
+// [Files]  		NvramSmi.c, NvramSmi.sdl and NvramSmi.dxs
+// 
+// 3     4/04/12 5:26p Oleksiyy
+// [TAG]  		EIP86730
+// [Category]  	Improvement
+// [Description]  	Update chm file for NvramSmi module - Header
+// description added.
+// [Files]  		NvramSmi.dxs, NvramSmiDxe.dxs and NvramSmi.mak.
+// 
+// 2     12/09/11 4:02p Oleksiyy
+// [TAG]  		EIP77762 
+// [Category]  	Improvement
+// [Description]  	Create a initial label for a created NvramSmi eModule.
+// [Files]  		All files in eModule.
+// 
+// 1     11/11/11 3:41p Oleksiyy
+// Initial CheckIn
+// 
+// 1     11/11/11 3:33p Oleksiyy
+// 
+// 1     8/11/11 7:08p Alexp
+// 
+//
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:	NvramSMI_dxs
+//
+// Description: Dependency expression for the NvramSmi module.
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+#include <Protocol/SmmSwDispatch.h>
+DEPENDENCY_START
+  EFI_SMM_SW_DISPATCH_PROTOCOL_GUID AND
+  {0xc35f952, 0x5791, 0x4667, 0xad, 0xe4, 0x1c, 0xfd, 0xa8, 0x37, 0x72, 0x2d}
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

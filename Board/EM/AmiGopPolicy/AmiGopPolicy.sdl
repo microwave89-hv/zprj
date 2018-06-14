@@ -1,0 +1,268 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/AmiGopPolicy/AmiGopPolicy.sdl 5     12/18/12 11:02p Josephlin $
+#
+# $Revision: 5 $
+#
+# $Date: 12/18/12 11:02p $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/AmiGopPolicy/AmiGopPolicy.sdl $
+# 
+# 5     12/18/12 11:02p Josephlin
+# [TAG]  		EIP108311
+# [Category]  	Improvement
+# [Description]  	Create eLINK "OemGopEdidOverrideGetEdidList" for easy
+# to implement EdidOverrideProtocol in project.
+# [Files]  		AmiGopPolicy.c
+# AmiGopPolicy.sdl
+# AmiGopPolicy.mak
+# AmiGopPolicyLib.c
+# 
+# 4     7/26/12 7:30a Josephlin
+# Update File Header.
+# 
+# 3     7/25/12 5:29a Josephlin
+# [TAG]  		EIP93957
+# [Category]  	Improvement
+# [Description]  	Added ELINK for sd and uni file overriding. This would
+# be more flexible then we are using token.
+# [Files]  		AmiGopPolicy.sdl
+# 
+# 2     7/23/12 3:32a Josephlin
+# 1. Added input argument SetupData for eLink OemGopSwitchHookList.
+# 2. Created token "AmiGopPolicySetupFile" and "AmiGopPolicySetupString"
+# for override sd and uni file.
+# 3. Rename AmiGopPolicyCallback to AmiGopSwitchCallback in case user
+# confuse.
+# 
+# 1     6/29/12 3:44a Josephlin
+# [TAG]  		EIP91970
+# [Category]  	New Feature
+# [Description]  	Initial Release for Display Switch with UEFI GOP driver
+# support.
+# [Files]  		AmiGopPolicy.cif
+# AmiGopPolicy.c
+# AmiGopPolicy.h
+# AmiGopPolicy.mak
+# AmiGopPolicy.sd
+# AmiGopPolicy.sdl
+# AmiGopPolicy.uni
+# AmiGopPolicyLib.c
+# AmiGopPolicySetup.c
+# 
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name:         AmiGopPolicy.sdl
+#
+# Description:	AmiGopPolicy parameters file.
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+	Name  = "AmiGopPolicy"
+	Value  = "1"
+	Help  = "Main Switch to Enable AmiGopPolicy in Platform"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "OEM_EDID_OVERRIDE_PROTOCOL_SUPPORT"
+	Value  = "0"
+	Help  = "If set, Include EDID Override Protocol support in Project."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "AmiGopPolicySetupData"
+	Value  = "$(AMI_GOP_POLICY_SD_FILE)"
+	TokenType = File
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "AmiGopPolicySetupString"
+	Value  = "$(AMI_GOP_POLICY_UNI_FILE)"
+	TokenType = File
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "AMIGOPPOLICY_DIR"
+End
+
+MODULE
+	File  = "AmiGopPolicy.mak"
+End
+
+ELINK
+	Name  = "AMI_GOP_POLICY_SD_FILE"
+	Help  = "AmiGopPolicy Setup Data file. Note: This eLink only permit to include one file."
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "AMI_GOP_POLICY_UNI_FILE"
+	Help  = "AmiGopPolicy Setup Data file. Note: This eLink only permit to include one file."
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(AMIGOPPOLICY_DIR)\AmiGopPolicy.sd"
+	Parent  = "AMI_GOP_POLICY_SD_FILE"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(AMIGOPPOLICY_DIR)\AmiGopPolicy.uni"
+	Parent  = "AMI_GOP_POLICY_UNI_FILE"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ConnectAmiGopPolicyConOut,"
+	Parent  = "ConnectVgaConOut,"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmiGopPolicy.sdb"
+	Parent  = "SETUP_SDBS"
+    Priority  = 90
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(AmiGopPolicySetupData)"
+	Parent  = "SETUP_DEFINITIONS"
+    Priority  = 90
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "InitAmiGopPolicyStrings,"
+	Parent  = "SetupStringInit"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "AmiGopPolicyEntryPoint,"
+	Parent  = "BdsEntryInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OemGopDeviceCheckList"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "AmiDefaultGopDeviceCheck,"
+	Parent  = "OemGopDeviceCheckList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OemGopSwitchHookList"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "AmiDefaultGopSwitchFunction,"
+	Parent  = "OemGopSwitchHookList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OemGopEdidOverrideGetEdidList"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "AmiDefaultGopEdidOverrideGetEdid,"
+	Parent  = "OemGopEdidOverrideGetEdidList"
+	Token  = "OEM_EDID_OVERRIDE_PROTOCOL_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,AGP_KEY_0,AmiGopSwitchCallback),"
+    Parent = "SetupItemCallbacks"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,AGP_KEY_1,AmiGopSwitchCallback),"
+    Parent = "SetupItemCallbacks"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,AGP_KEY_2,AmiGopSwitchCallback),"
+    Parent = "SetupItemCallbacks"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,AGP_KEY_3,AmiGopSwitchCallback),"
+    Parent = "SetupItemCallbacks"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,AGP_KEY_4,AmiGopSwitchCallback),"
+    Parent = "SetupItemCallbacks"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,AGP_KEY_5,AmiGopSwitchCallback),"
+    Parent = "SetupItemCallbacks"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,AGP_KEY_6,AmiGopSwitchCallback),"
+    Parent = "SetupItemCallbacks"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,AGP_KEY_7,AmiGopSwitchCallback),"
+    Parent = "SetupItemCallbacks"
+    InvokeOrder = AfterParent
+End
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

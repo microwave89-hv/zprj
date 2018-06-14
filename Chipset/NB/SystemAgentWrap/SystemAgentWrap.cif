@@ -1,0 +1,12 @@
+<component>
+	name = "SystemAgentWrap"
+	category = ModulePart
+	LocalRoot = "Chipset\NB\SystemAgentWrap\"
+	RefName = "SystemAgentWrap"
+[files]
+"SystemAgentWrap.sdl"	
+[parts]
+"MiscSubclass"
+"UpdateMemoryRecord"
+"LegacyRegion2"
+<endComponent>

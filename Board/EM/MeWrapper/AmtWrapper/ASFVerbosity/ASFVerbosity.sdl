@@ -1,0 +1,78 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/AmtWrapper/ASF Verbosity/ASFVerbosity.sdl 1     2/08/12 1:10a Klzhan $
+#
+# $Revision: 1 $
+#
+# $Date: 2/08/12 1:10a $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/AmtWrapper/ASF Verbosity/ASFVerbosity.sdl $
+# 
+# 1     2/08/12 1:10a Klzhan
+# Initial Check in 
+# 
+# 1     2/25/11 1:44a Klzhan
+# Initial Check-in
+# 
+# 1     12/03/10 5:10a Klzhan
+# Initial Check-in.
+# 
+# 1     10/05/25 5:56p Klzhan
+# Initial Check-in with RC 0.71.
+#
+#**********************************************************************
+
+TOKEN
+    Name  = "ASF_VERB_SUPPORT"
+    Value  = "1"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+End
+
+PATH
+    Name  = "ASF_VWEBOSITY_DIR"
+End
+
+MODULE
+    Help  = "Includes AMTSetup.mak to Project"
+    File  = "ASFVerbosity.mak"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\ASFVerbosity.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

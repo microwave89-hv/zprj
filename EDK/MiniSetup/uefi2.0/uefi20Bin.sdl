@@ -1,0 +1,21 @@
+TOKEN
+	Name  = "UEFI_2_0_BIN_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable UEFI 2.0 sources support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+PATH
+	Name  = "UEFISRC_DIR"
+End
+
+ELINK
+	Name  = "$(UEFISRC_DIR)\Uefi20Local$(ARCH).lib"
+	Parent  = "MINISETUPLIB"
+	Priority  = 20
+	InvokeOrder = AfterParent
+End

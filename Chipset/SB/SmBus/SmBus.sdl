@@ -1,0 +1,61 @@
+TOKEN
+    Name  = "SmBus_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable SmBus support in Project"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    Master = Yes
+    Token = "PI_SPECIFICATION_VERSION" ">=" "0x10000"
+End
+
+TOKEN
+    Name  = "SMBUS_BLINDING_PROTOCOL_SUPPORT"
+    Value  = "1"
+    Help  = "On - SMBus EFI 1.1 driver support."
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+TOKEN
+	Name  = "PCH_SPD_WRITE_DISABLE"
+	Value  = "1"
+	Help  = "0: Turn off SPD Write Disable.\1: Turn on SPD Write Disable."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+PATH
+    Name  = "SmBus_DIR"
+End
+
+MODULE
+    Help  = "Includes SmBus.mak to Project"
+    File  = "SmBus.mak"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\SmBusPei.ffs"
+    Parent  = "FV_BB"
+    Help  = "Template Smbus PEI component"
+    InvokeOrder = AfterParent
+End
+
+#ELINK
+#    Name  = "$(BUILD_DIR)\SmBusDxe.ffs"
+#    Parent  = "FV_MAIN"
+#    Help  = "Template Smbus DXE component"
+#    InvokeOrder = AfterParent
+#End
+
+ELINK
+    Name  = "OEM_PCI_DEVICE_CALLBACK(0, 0, SmBusProtectedPciDevice),"
+    Parent  = "OEM_SKIP_PCI_DEVICE"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\AMISmBusLib.lib"
+    Parent  = "PCIBUSSRCLIB"
+    InvokeOrder = AfterParent
+End

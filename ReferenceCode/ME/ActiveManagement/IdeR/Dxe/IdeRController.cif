@@ -1,0 +1,13 @@
+<component>
+	name = "IdeRController"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\ActiveManagement\IdeR\Dxe\"
+	RefName = "IdeRController"
+[files]
+"IdeRController.sdl"	
+"IdeRController.mak"	
+"IdeRController.c"	
+"IdeRControllerName.c"	
+"IdeRController.h"	
+"IdeRController.inf"	
+<endComponent>

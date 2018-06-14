@@ -1,0 +1,10 @@
+PATH
+	Name  = "AlertStandardFormatCommon_DIR"
+	Help  = "AlertStandardFormat files source directory"
+End
+
+ELINK
+	Name  = "/I$(AlertStandardFormatCommon_DIR)"
+	Parent  = "AlertStandardFormat_INCLUDES"
+	InvokeOrder = AfterParent
+End

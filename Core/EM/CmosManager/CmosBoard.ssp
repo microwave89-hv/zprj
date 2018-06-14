@@ -1,0 +1,171 @@
+// This AMI Setup Script Processor (SSP) file contains setup items that
+// are related to the CMOS Manager.
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+// $Header: /Alaska/SOURCE/Modules/CMOS Manager/CMOS Board/CmosBoard.ssp 6     6/15/10 2:22p Michaela $
+//
+// $Revision: 6 $
+//
+// $Date: 6/15/10 2:22p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/CMOS Manager/CMOS Board/CmosBoard.ssp $
+// 
+// 6     6/15/10 2:22p Michaela
+// 
+// 5     7/29/09 9:54a Michaela
+// updates Aptio Enhancement EIP 22205
+// (no code changes)
+// 
+// 4     6/15/09 5:09p Michaela
+// 
+// 3     6/02/09 3:25p Michaela
+// For label: 4.6.3_CMOSMGR_11
+// 
+// 2     2/06/09 2:05p Michaela
+// MKF_DEFINE_TCG_CMOS_REGISTERS was not used for 
+// conditional TPM register declarations
+// 
+// 1     11/25/08 3:08p Michaela
+// Added for project specific porting
+// 
+// 4     11/07/08 5:14p Michaela
+// Updated to make CMOS manager available in all phases 
+// of the boot process:
+// 
+// A CMOS API Pointer is maintained in CMOS and accessible
+// via provided macros in C and assembly source.
+// 
+// 3     3/25/08 3:16p Michaela
+// Several tokens are now only conditionally predefined
+// 
+// 2     2/29/08 9:34p Michaela
+// - Added recovery path policy
+// - fixed other minor bugs
+// 
+// 1     2/22/08 2:29p Michaela
+// 
+// 1     2/04/08 6:00p MichaelA $
+// Created
+// 
+//***************************************************************************
+
+
+//---------------------------------------------------------------------------
+// CMOS manager starts auto-assigning at 0x40
+//
+// This is a typical CMOS usage arrangement.  
+// (Note: these locations are not currently reserverd by default.)
+//---------------------------------------------------------------------------
+//
+// 0x00..0x3F   Legacy CMOS area, used by CSM
+// 0x40..0x7F   OEM/ODM
+// 0x80..0xBF   Chipset
+// 0xC0..0xFF   Core+Technologies
+//
+// This is the format of a CMOS token defintion:  
+//---------------------------------------------------------------------------
+// NvramField
+//  OptionBits = integer    // how many bits to use
+//  [Default = integer]     // "optimal" value in assembler format "xxxh"
+//  [CheckSum = YES | NO]   // include = YES
+//  [Location = cmos address, clobber mask]
+// EndNvramField
+
+
+//---------------------------------------------------------------------------
+//
+// Here we pre-define currently known, project-independent, locations. 
+//
+// Note: These definitions should be updated/deleleted as modules
+//       begin to integrate CMOS manager.
+//
+//       *CMOS manager will not complain on duplicate names, unless there
+//        is a mask or location conflict.
+//
+//---------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+// CMOS Checksum Location
+//----------------------------------------------------------------------------
+// Declare the CMOS checksum location as a non-checksummed value, that spans 
+// 2 bytes.  The checksum will include only those CMOS addresses that have 
+// been explicitly declared with Checksum = YES.  
+//
+//    * All non-checksummed addresses appear in the NonChecksumTable macros 
+//      in SspData.h)
+//
+//    * The checksum will be computed/used for the entire range of managed, 
+//      checksummed, CMOS.
+
+NvramField (CMOS_CHECKSUM_HIGH)
+	OptionBits  = 8
+    Default     = 00h
+	Checksum    = NO
+    Location    = 040h, 0FFh
+EndNvramField
+
+NvramField (CMOS_CHECKSUM_LOW)
+	OptionBits  = 8
+    Default     = 00h
+	Checksum    = NO
+    Location    = 041h, 0FFh
+EndNvramField
+
+
+
+
+//----------------------------------------------------------------------------
+// Reserve 32-Bit CMOS API Pointer
+//----------------------------------------------------------------------------
+
+NvramField (CMOS_API_BYTE3)
+	OptionBits  = 8
+    Managed     = NO
+    Location    = 042h, 0FFh
+EndNvramField
+
+NvramField (CMOS_API_BYTE2)
+	OptionBits  = 8
+    Managed     = NO
+    Location    = 043h, 0FFh
+EndNvramField
+
+NvramField (CMOS_API_BYTE1)
+	OptionBits  = 8
+    Managed     = NO
+    Location    = 044h, 0FFh
+EndNvramField
+
+NvramField (CMOS_API_BYTE0)
+	OptionBits  = 8
+    Managed     = NO
+    Location    = 045h, 0FFh
+EndNvramField
+
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

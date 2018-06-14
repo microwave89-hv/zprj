@@ -1,0 +1,61 @@
+TOKEN
+	Name  = "TPM20CRB_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TCG support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "TPM20_CRBLIB"
+	Help  = "Tcg Directory"
+End
+
+MODULE
+	Help  = "Includes TCG.mak to Project"
+	File  = "Tpm20CRBLib.mak"
+End
+
+TOKEN
+	Name = "FTpmPlatformProfile"
+	Value = "0"
+	Help  = "Set to 0 for Intel PTT and 1 for AMD PSP device"
+	TokenType = BOOLEAN
+	TargetMAK = Yes
+	TargetH	  = Yes
+END
+
+TOKEN
+	Name  = "TPM20_CRBBASE"
+	Value  = "0x0FED70000"
+	Help  = "Start of Mem I/O region dedicated for TPM access"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FWTPM20LIBx32"
+	Value  = " $(BUILD_DIR)\IA32\Tpm2PttLibrary.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "x64_BUILD" "=" "1"
+End
+
+TOKEN
+	Name  = "FWTPM20LIBx32"
+	Value  = " $(BUILD_DIR)\Tpm2PttLibrary.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "x64_BUILD" "=" "0"
+End
+
+TOKEN
+	Name  = "FWTPM20LIBx64"
+	Value  = "$(BUILD_DIR)\Tpm2PttLibrary.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End

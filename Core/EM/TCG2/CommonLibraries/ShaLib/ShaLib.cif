@@ -1,0 +1,10 @@
+<component>
+	name = "ShaLib"
+	category = ModulePart
+	LocalRoot = "Core\EM\TCG2\CommonLibraries\ShaLib"
+	RefName = "ShaLib"
+[files]
+"ShaLib.sdl"	
+"ShaLibPei.lib"	
+"ShaLib.lib"	
+<endComponent>

@@ -1,0 +1,27 @@
+TOKEN
+	Name  = "SmBusMemoryDown_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SmBusMemoryDown support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Token = "PchSmbusDxe_SUPPORT" "=" "1"
+	Token = "MRC_MEMORY_DOWN_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "SMBUS_MEMORYDOWN_DIR"
+End
+
+MODULE
+	Help  = "Includes SmBusMemoryDown.mak to Project"
+	File  = "SmBusMemoryDown.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SmBusMemoryDown.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

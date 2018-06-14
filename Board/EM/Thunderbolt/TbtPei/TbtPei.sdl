@@ -1,0 +1,35 @@
+TOKEN
+	Name  = TbtPei_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable TbtPei support in Project"
+End
+
+MODULE
+	Help  = "Includes TbtPei.mak to Project"
+	File  = "TbtPei.mak"
+End
+
+PATH
+	Name  = "TbtPei_DIR"
+End
+
+ELINK
+	Name  = "/I$(TbtPei_DIR)"
+	Parent  = "TBT_PEI_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "TBT_PEI_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TbtPei.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End

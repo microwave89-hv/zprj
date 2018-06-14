@@ -1,0 +1,14 @@
+<component>
+	name = "PchSmbusArpDisabled"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Smbus\Pei"
+	RefName = "PchSmbusArpDisabled"
+[files]
+"PchSmbusArpDisabled.sdl"	
+"PchSmbusArpDisabled.mak"	
+"PchSmbusEntry.c"	
+"PchSmbus.h"	
+"PchSmbusArpdisabled.c"	
+"PchSmbus.dxs"	
+"PchSmbusArpDisabled.inf"	
+<endComponent>

@@ -1,0 +1,9 @@
+<component>
+	name = "CryptoPkg"
+	category = eModule
+	LocalRoot = "Core\EM\CryptoPkg\"
+	RefName = "CryptoPkg"
+[parts]
+"CryptoAPI"
+"CryptoLIB"
+<endComponent>

@@ -1,0 +1,11 @@
+<component>
+	name = "OEM CMD Checking"
+	category = ModulePart
+	LocalRoot = "Core\EM\OFBD\OEMCMD\"
+	RefName = "OFBD_OEMCMD"
+[files]
+"OEMCMD.sdl"	
+"OEMCMD.mak"	
+"OEMCMD.h"	
+"OEMCMD.c"	
+<endComponent>

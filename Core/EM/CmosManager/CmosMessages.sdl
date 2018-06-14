@@ -1,0 +1,100 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2010, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+#
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/CMOS Manager/CMOS Board/CMOS Messages/CmosMessages.sdl 2     6/15/10 2:22p Michaela $
+#
+# $Revision: 2 $
+#
+# $Date: 6/15/10 2:22p $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/CMOS Manager/CMOS Board/CMOS Messages/CmosMessages.sdl $
+# 
+# 2     6/15/10 2:22p Michaela
+# 
+#**********************************************************************
+#<AMI_FHDR_START>
+#-----------------------------------------------------------------------
+#
+# Name:         CmosMessages.sdl
+#
+# Description:  This AMI SDL file defines CMOS message-related information.
+#
+#-----------------------------------------------------------------------
+#<AMI_FHDR_END>
+#
+
+MODULE
+	Help  = "Includes CmosMessages.mak to Project"
+	File  = "CmosMessages.mak"
+    Token = "CMOS_SETUP_SUPPORT" "=" "1"
+    Token = "CMOS_MESSAGES_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CmosMessages.obj"
+	Parent  = "AMITSE_Objects"
+	InvokeOrder = AfterParent
+    Token = "CMOS_SETUP_SUPPORT" "=" "1"
+    Token = "CMOS_MESSAGES_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "$(CMOS_MANAGER_DIR)\CmosMessages.c"
+	Parent  = "TSE_STRING_CONSUMERS_LIST"
+	InvokeOrder = AfterParent
+    Token = "CMOS_SETUP_SUPPORT" "=" "1"
+    Token = "CMOS_MESSAGES_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "-i $(CMOS_MANAGER_DIR)"
+	Parent  = "TSE_UNI_INCLUDE_PATH"
+	InvokeOrder = AfterParent
+    Token = "CMOS_SETUP_SUPPORT" "=" "1"
+    Token = "CMOS_MESSAGES_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CmosMessages.sdb"
+	Parent  = "TSE_SDBS"
+	InvokeOrder = AfterParent
+    Token = "CMOS_SETUP_SUPPORT" "=" "1"
+    Token = "CMOS_MESSAGES_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "CmosMgrProcessConInAvailability,"
+	Parent  = "ProcessConInAvailability,"
+	InvokeOrder = AfterParent
+    Token = "CMOS_SETUP_SUPPORT" "=" "1"
+    Token = "CMOS_MESSAGES_SUPPORT" "=" "1"
+End
+
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2010, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

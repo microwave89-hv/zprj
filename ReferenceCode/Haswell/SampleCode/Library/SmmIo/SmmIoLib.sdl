@@ -1,0 +1,25 @@
+TOKEN
+	Name  = SmmIoLib_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable SmmIoLib support in Project"
+End
+
+TOKEN
+	Name  = "SmmIoLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\SmmIoLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+MODULE
+	Help  = "Includes SmmIoLib.mak to Project"
+	File  = "SmmIoLib.mak"
+End
+
+PATH
+	Name  = "SmmIoLib_DIR"
+End

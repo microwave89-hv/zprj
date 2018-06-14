@@ -1,0 +1,65 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2014, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/AHCI/INT13/AhciInt13Smm.dxs 1     11/25/14 12:09a Kapilporwal $Revision:
+//
+// $Date: 11/25/14 12:09a $Log: /Alaska/SOURCE/Modules/AHCI/INT13/AhciInt13Smm.dxs $
+// 
+// 
+//
+//****************************************************************************
+
+//<AMI_FHDR_START>
+//****************************************************************************
+//
+// Name:    AhciInt13Smm.dxs
+//
+// Description: 
+//    Dependency expression for the AhciInt13Smm component
+//****************************************************************************
+//<AMI_FHDR_END>
+
+#if defined(PI_SPECIFICATION_VERSION)&&(PI_SPECIFICATION_VERSION>=0x0001000A)&&(CORE_COMBINED_VERSION>=0x4028B)
+#include<Protocol/SmmBase2.h>
+#include<Protocol/SmmSwDispatch2.h>
+#include<Protocol/SmmCpu.h>
+#else
+#include <Protocol/SmmSwDispatch.h>
+#include <Protocol/SmmBase.h>
+#endif
+
+DEPENDENCY_START
+#if defined(PI_SPECIFICATION_VERSION)&&(PI_SPECIFICATION_VERSION>=0x0001000A)&&(CORE_COMBINED_VERSION>=0x4028B)
+    EFI_SMM_BASE2_PROTOCOL_GUID AND
+    EFI_SMM_SW_DISPATCH2_PROTOCOL_GUID AND
+    EFI_SMM_CPU_PROTOCOL_GUID
+#else
+    EFI_SMM_BASE_PROTOCOL_GUID AND
+    EFI_SMM_SW_DISPATCH_PROTOCOL_GUID
+#endif
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2014, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

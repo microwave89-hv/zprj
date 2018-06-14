@@ -1,0 +1,11 @@
+<component>
+	name = "AmtWrapperProtocolLib"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\AmtWrapper\Protocol"
+	RefName = "AmtWrapperProtocolLib"
+[files]
+"AmtWrapperProtocolLib.sdl"	
+"AmtWrapperProtocolLib.mak"	
+"AmtWrapper\AmtWrapper.h"	
+"AmtWrapper\AmtWrapper.c"	
+<endComponent>

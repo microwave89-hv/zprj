@@ -1,0 +1,9 @@
+<component>
+	name = "PttLibrary Include"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Me\Library\Ptt\Include"
+	RefName = "PttLibInc"
+[files]
+"PttHciDeviceLib.h"
+"PttHciRegs.h"
+<endComponent>

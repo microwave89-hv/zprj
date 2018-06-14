@@ -1,0 +1,13 @@
+<component>
+	name = "IntelSaGopSetup"
+	category = ModulePart
+	LocalRoot = "Chipset\NB\GOP\IntelSaGopSetup"
+	RefName = "IntelSaGopSetup"
+[files]
+"IntelSaGopSetup.sdl"	
+"IntelSaGopSetup.mak"	
+"IntelSaGopSetup.sd"	
+"IntelSaGopSetup.uni"	
+"IntelSaGopSetup.c"	
+"IntelSaGopSetup.h"	
+<endComponent>

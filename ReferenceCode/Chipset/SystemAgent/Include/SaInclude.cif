@@ -1,0 +1,21 @@
+<component>
+	name = "SaInclude"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\Include\"
+	RefName = "SaInclude"
+[files]
+"SaInclude.sdl"	
+"SaAccess.h"	
+"SaBuildFlags.h"
+"SaCommonDefinitions.h"	
+"SaRegs.h"	
+"SaPcieVersion.h"
+"DmaRemappingTable.h"	
+"SaPciExpressLib.h"
+"IntelSaPeiLib.dsc"	
+"IntelSaSsdtAcpiTables.dsc"
+"IntelSaAcpiTables.dsc"	
+"IntelSaDxe.dsc"	
+"IntelSaDxeLib.dsc"	
+"IntelSaPei.dsc"	
+<endComponent>

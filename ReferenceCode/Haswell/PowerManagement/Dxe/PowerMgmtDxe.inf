@@ -1,0 +1,114 @@
+## @file
+#  Component description file for Power Management module
+#
+#@copyright
+#  Copyright (c)  1999 - 2013 Intel Corporation. All rights reserved
+#  This software and associated documentation (if any) is furnished
+#  under a license and may only be used or copied in accordance
+#  with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be
+#  reproduced, stored in a retrieval system, or transmitted in any
+#  form or by any means without the express written consent of
+#  Intel Corporation.
+#
+#  This file contains an 'Intel Peripheral Driver' and uniquely
+#  identified as "Intel Reference Module" and is
+#  licensed for Intel CPUs and chipsets under the terms of your
+#  license agreement with Intel or your vendor.  This file may
+#  be modified by the user, subject to additional terms of the
+#  license agreement
+#
+
+[defines]
+BASE_NAME            = PowerMgmtDxe
+FILE_GUID            = f7731b4c-58a2-4df4-8980-5645d39ece58
+COMPONENT_TYPE       = BS_DRIVER
+
+[sources.common]
+  PowerMgmtinit.h
+  PowerMgmtinit.c
+  PowerMgmtCommon.h
+  PerformanceStates.c
+  IdleStates.c
+  PowerLimits.c
+  Thermal.c
+  MiscFunctions.c
+
+#
+# Edk II Glue Driver Entry Point
+#
+ EdkIIGlueDxeDriverEntryPoint.c
+
+[includes.common]
+  .
+  $(EDK_SOURCE)/Foundation
+  $(EDK_SOURCE)/Foundation/Core/Dxe
+  $(EDK_SOURCE)/Foundation/Efi
+  $(EDK_SOURCE)/Foundation/Efi/Include
+  $(EDK_SOURCE)/Foundation/Framework
+  $(EDK_SOURCE)/Foundation/Framework/Include
+  $(EDK_SOURCE)/Foundation/Include
+  $(EDK_SOURCE)/Foundation/Include/IndustryStandard
+  $(EDK_SOURCE)/Foundation/Include/Pei
+  $(EDK_SOURCE)/Foundation/Library/Dxe/Include
+  $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include
+  $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Library/BaseLib
+  $(EFI_SOURCE)
+  $(EFI_SOURCE)/Framework
+  $(EFI_SOURCE)/Include
+  $(EFI_SOURCE)/Include/IndustryStandard
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)/Include
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)/Include/Library
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/Include
+  $(EFI_SOURCE)/$(PROJECT_CPU_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_CPU_ROOT)/Include
+  $(EFI_SOURCE)/$(PROJECT_CPU_ROOT)/Include/Library
+#
+# Typically the sample code referenced will be available in the code base already
+# So keep this include at the end to defer to the source base definition
+# and only use the sample code definition if source base does not include these files.
+#
+  $(EFI_SOURCE)/$(PROJECT_CPU_ROOT)/SampleCode
+  $(EFI_SOURCE)/$(PROJECT_CPU_ROOT)/SampleCode/Include
+
+[libraries.common]
+  CpuGuidLib
+  CpuProtocolLib
+  DxeAslUpdateLib
+  EfiProtocolLib
+  EdkFrameworkProtocolLib
+  EdkIIGlueBaseLib
+  EdkIIGlueBaseIoLibIntrinsic
+  EdkIIGlueBaseMemoryLib
+  EdkIIGlueDxeMemoryAllocationLib
+  EdkIIGlueDxeDebugLibReportStatusCode
+  EdkIIGlueDxeReportStatusCodeLib
+  EdkIIGlueUefiBootServicesTableLib
+  EdkIIGlueUefiRuntimeServicesTableLib
+  EdkIIGlueUefiDevicePathLib
+  EfiScriptLib
+  EdkProtocolLib
+  CpuPlatformLib
+  EfiCommonLib
+
+[libraries.ia32,libraries.x64]
+  CpuIa32Lib
+
+[nmake.common]
+  IMAGE_ENTRY_POINT = _ModuleEntryPoint
+  DPX_SOURCE        = PowerMgmtDxe.dxs
+#
+# Module Entry Point
+#
+ C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_MODULE_ENTRY_POINT__=InitializePowerManagement
+ C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_BASE_LIB__ \
+                      -D __EDKII_GLUE_BASE_IO_LIB_INTRINSIC__ \
+                      -D __EDKII_GLUE_BASE_MEMORY_LIB__ \
+                      -D __EDKII_GLUE_DXE_MEMORY_ALLOCATION_LIB__ \
+                      -D __EDKII_GLUE_DXE_DEBUG_LIB_REPORT_STATUS_CODE__ \
+                      -D __EDKII_GLUE_DXE_REPORT_STATUS_CODE_LIB__ \
+                      -D __EDKII_GLUE_UEFI_BOOT_SERVICES_TABLE_LIB__ \
+                      -D __EDKII_GLUE_UEFI_RUNTIME_SERVICES_TABLE_LIB__ \
+                      -D __EDKII_GLUE_UEFI_DEVICE_PATH_LIB__

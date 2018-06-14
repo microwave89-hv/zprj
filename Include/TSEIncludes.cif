@@ -1,0 +1,9 @@
+<component>
+	name = "TSE Includes"
+	category = ModulePart
+	LocalRoot = "Include\"
+	RefName = "TSEIncludes"
+[files]
+"Protocol\AMIPostMgr.h"	
+"AMIVfr.h"	
+<endComponent>

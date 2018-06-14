@@ -1,0 +1,37 @@
+TOKEN
+	Name  = "SmbiosFlashData_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SmbiosFlashData support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Token = "SmbiosDMIEdit_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FLASHDATA_SIZE"
+	Value  = "2048"
+	Help  = "SMBIOS Flash Data size."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+PATH
+	Name  = "SMBIOS_FLASHDATA_DIR"
+End
+
+MODULE
+	Help  = "Includes SmbiosFlashData.mak to Project"
+	File  = "SmbiosFlashData.Mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SmbiosFlashData.ffs"
+	Parent  = "$(SMBIOS_DIR)\SmbiosFlashData.ffs"
+	InvokeOrder = ReplaceParent
+	Token = "SMBIOS_DMIEDIT_DATA_LOC" "!=" "2"
+End
+

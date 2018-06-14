@@ -1,0 +1,77 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/GfxDisplayLibDxe/GfxDisplayLibDxe.sdl 1     9/26/12 3:51a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 9/26/12 3:51a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/GfxDisplayLibDxe/GfxDisplayLibDxe.sdl $
+# 
+# 1     9/26/12 3:51a Yurenlai
+# [TAG]           None
+# [Category]      Improvement
+# [Severity]      Important
+# [Description]   Update Intel Rapid Start Technology Framework Reference
+# Code Beta Version 0.7.0.
+# [Description]   ReferenceCode\RapidStart\*.*, RapidStartPeiLib.h
+# 
+#*************************************************************************
+TOKEN
+        Name  = "GfxDisplayLibDxe_SUPPORT"
+        Value  = "1"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        Master = Yes
+        Help  = "Main switch to enable GfxDisplayLibDxe support in Project"
+End
+
+PATH
+        Name  = "GfxDisplayLibDxe_DIR"
+        Help  = "GfxDisplayLibDxe file source directory"
+End
+
+MODULE
+        File  = "GfxDisplayLibDxe.mak"
+        Help  = "Includes GfxDisplayLibDxe.mak to Project"
+End
+
+ELINK
+        Name  = "GfxDisplayLibDxe_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\GfxDisplayLibDxe.lib"
+        Parent  = "GfxDisplayLibDxe_LIB"
+        InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

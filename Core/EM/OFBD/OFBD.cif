@@ -1,0 +1,24 @@
+<component>
+	name = "On Flash Block Description (APTIO)"
+	category = eModule
+	LocalRoot = "Core\EM\OFBD\"
+	RefName = "OFBD_eModule"
+[files]
+"OFBD.sdl"	
+"OFBD.mak"	
+"OFBD.dxs"	
+"OFBD.c"	
+"OFBD.h"	
+"OFBD_Help.chm"	
+[parts]
+"OFBD_DEFCFG"
+"OFBD_OEMCMD"
+"OFBD_STDEC"
+"OFBD_OEMROMID"
+"OFBD_OEMPWDCK"
+"OFBD_OEMSETUP"
+"OFBD_OEMROMHOLE"
+"OFBD_CLEANERRORLOG"
+"OFBD_OA_DATA_HANDLE"
+"OFBD_BATTERYCHECK"
+<endComponent>

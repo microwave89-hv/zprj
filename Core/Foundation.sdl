@@ -1,0 +1,19 @@
+TOKEN
+	Name  = "Foundation_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Foundation support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "Foundation_DIR"
+End
+
+MODULE
+	Help  = "Includes Foundation.mak to Project"
+	File  = "Foundation.mak"
+End
+

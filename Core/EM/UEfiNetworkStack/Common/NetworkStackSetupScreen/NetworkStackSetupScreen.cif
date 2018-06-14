@@ -1,0 +1,13 @@
+<component>
+	name = "NetworkStackSetupScreen"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Common\NetworkStackSetupScreen\"
+	RefName = "NetworkStackSetupScreen"
+[files]
+"NetworkStackSetupScreen.sdl"	
+"NetworkStackSetupScreen.mak"	
+"NetworkStackSetupScreen.uni"	
+"NetworkStackSetupScreen.h"	
+"NetworkStackSetupScreen.sd"	
+"NetworkStackSetupScreen.c"	
+<endComponent>

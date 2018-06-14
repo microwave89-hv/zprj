@@ -1,0 +1,12 @@
+<component>
+	name = "AlertStandardFormat"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\ActiveManagement\AlertStandardFormat\Heci\"
+	RefName = "AlertStandardFormat"
+[files]
+"AlertStandardFormat.sdl"	
+[parts]
+"AlertStandardFormatCommon"
+"AlertStandardFormatDxe"
+"AlertStandardFormatPei"
+<endComponent>

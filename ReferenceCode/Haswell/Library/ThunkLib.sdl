@@ -1,0 +1,26 @@
+TOKEN
+	Name  = ThunkLib_SUPPORT
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable ThunkLib support in Project"
+End
+
+TOKEN
+	Name  = "ThunkLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\ThunkLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "ThunkLib_DIR"
+End
+
+MODULE
+	Help  = "Includes ThunkLib.mak to Project"
+	File  = "ThunkLib.mak"
+End
+

@@ -1,0 +1,18 @@
+<component>
+	name = "CpuS3Peim"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\CpuS3\Pei"
+	RefName = "CpuS3Peim"
+[files]
+"CpuAsm.asm"
+"CpuS3Peim.c"
+"CpuS3Peim.dxs"
+"CpuS3Peim.inf"
+"CpuS3Peim.mak"
+"CpuS3Peim.sdl"
+"Microcode.c"
+"MpCommon.h"
+"MtrrSync.c"
+"MpFuncs.asm"
+"MpEqu.inc"
+<endComponent>

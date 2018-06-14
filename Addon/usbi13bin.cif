@@ -1,0 +1,8 @@
+<component>
+	name = "USB INT13 16-bit Binary"
+	category = ModulePart
+	LocalRoot = "Addon"
+	RefName = "USB_I13_BINARY"
+[files]
+"UI13.bin"	
+<endComponent>

@@ -1,0 +1,15 @@
+<component>
+	name = "PchUsb"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Usb\Pei"
+	RefName = "PchUsb"
+[files]
+"PchUsb.sdl"	
+"PchUsb.mak"	
+"PchUsb.dxs"	
+"PchEhci.c"	
+"PchEhci.h"	
+"PchUsb.c"	
+"PchUsb.h"	
+"PchUsb.inf"	
+<endComponent>

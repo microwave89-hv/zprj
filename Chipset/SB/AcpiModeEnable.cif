@@ -1,0 +1,12 @@
+<component>
+	name = "AcpiModeEnable"
+	category = ModulePart
+	LocalRoot = "Chipset\SB"
+	RefName = "AcpiModeEnable"
+[files]
+"AcpiModeEnable.sdl"	
+"AcpiModeEnable.mak"	
+"AcpiModeEnable.c"	
+"AcpiModeEnable.dxs"	
+"AcpiModeEnable.h"	
+<endComponent>

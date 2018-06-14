@@ -1,0 +1,92 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchSpiCommonLib/PchSpiCommonLib.sdl 1     2/08/12 9:22a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 2/08/12 9:22a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchSpiCommonLib/PchSpiCommonLib.sdl $
+# 
+# 1     2/08/12 9:22a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+        Name  = "PchSpiCommonLib_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable PchSpiCommonLib support in Project"
+        TokenType = Boolean
+        TargetMAK = Yes
+        Master = Yes
+End
+
+PATH
+        Name  = "PchSpiCommonLib_DIR"
+End
+
+MODULE
+        Help  = "Includes PchSpiCommonLib.mak to Project"
+        File  = "PchSpiCommonLib.mak"
+End
+
+ELINK
+        Name  = "PchSpiCommonDxeLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\PchSpiCommonDxeLib.lib"
+        Parent  = "PchSpiCommonDxeLib_LIB"
+        InvokeOrder = AfterParent
+End
+
+ELINK
+        Name  = "PchSpiCommonPeiLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\PchSpiCommonPeiLib.lib"
+        Parent  = "PchSpiCommonPeiLib_LIB"
+        InvokeOrder = AfterParent
+End
+
+ELINK
+        Name  = "PchSpiCommonSmmLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\PchSpiCommonSmmLib.lib"
+        Parent  = "PchSpiCommonSmmLib_LIB"
+        InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

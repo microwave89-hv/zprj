@@ -1,0 +1,7 @@
+<component>
+	name = "NvramSmi_MOD"
+	category = ModulePart
+	RefName = "NvramSmi_MOD"
+[files]
+"Core\EM\NvramSmi\NvramSmi.c"
+<endComponent>

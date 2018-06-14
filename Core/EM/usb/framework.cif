@@ -1,0 +1,16 @@
+<component>
+	name = "Framework"
+	category = ModulePart
+	LocalRoot = "core\em\usb\"
+	RefName = "FRAMEWORK"
+[files]
+"\uhcd.mak"	
+"\uhcd.h"	
+"\rt\usbdef.h"	
+"\rt\amidef.h"	
+"\uhcd.dxs"	
+"\rt\amiusb.dxs"	
+"\rt\usbrt.mak"	
+"\rt\amiusb.h"	
+"\rt\amiusbrtCCID.h"
+<endComponent>

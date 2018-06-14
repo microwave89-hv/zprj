@@ -1,0 +1,18 @@
+<component>
+	name = "Pei AMI Debug Rx"
+	category = ModulePart
+	LocalRoot = "Core\em\AMIDebugRx\binaries\PeiAMIDebugRx\"
+	RefName = "PeiAMIDebugRx"
+[files]
+"PeiAMIDebugRx.sdl"	
+[parts]
+"PeiDbgMain"
+"PeiDbgIDT"
+"PeiDbgPort"
+"PeiDbgDbgr"
+"PeiDbgXport"
+"PeiDebugSupport"
+"INC"
+"PeiDbgDbgrx64"
+"PeiDbgXportx64"
+<endComponent>

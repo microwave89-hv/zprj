@@ -1,0 +1,78 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/ISCT/IsctPlatform.sdl 2     9/26/12 2:14a Bensonlai $
+#
+# $Revision: 2 $
+#
+# $Date: 9/26/12 2:14a $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/ISCT/IsctPlatform.sdl $
+# 
+# 2     9/26/12 2:14a Bensonlai
+# [TAG]  		None
+# [Category]  	Improvement
+# [Files]  		IsctPlatform.sdl
+# IsctPlatform.chm
+# 
+# 1     9/02/12 11:17p Bensonlai
+# Intel Smart Connect Technology initially releases.
+#
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name: IsctPlatform.sdl
+#
+# Description: SDL file for IsctPlatform
+#
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+	Name  = "ISCT_PLATFORM_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable ISCT support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "ISCT_PLATFORM_DIR"
+End
+
+ELINK
+	Name  = "/D ISCT_FLAG"
+	Parent  = "GLOBAL_DEFINES"
+	InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

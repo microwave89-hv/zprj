@@ -1,0 +1,237 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStart.sdl 5     4/18/13 1:14a Bensonlai $
+#
+# $Revision: 5 $
+#
+# $Date: 4/18/13 1:14a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStart.sdl $
+# 
+# 5     4/18/13 1:14a Bensonlai
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Removing the debug mode for the ELINK of
+# RAPID_START_ON_MEMORY_INSTALLED.
+# 
+# 4     10/15/12 5:47a Bensonlai
+# [Category] Improvement
+# [Severity] Important
+# [Description] Rename all IFFS sting to Rapid Start.
+# [Files] Board\EM\RapidStartWrapper\*.*, ReferenceCode\RapidStart\*.*
+# 
+# 3     9/26/12 3:45a Yurenlai
+# [TAG]           None
+# [Category]      Improvement
+# [Severity]      Important
+# [Description]   Enable iFFS Zero Page function.
+# [Description]   RapidStart.sdl 
+# 
+# 2     8/14/12 7:50a Yurenlai
+# [TAG]         None
+# [Category]    Improvement
+# [Severity]    Important
+# [Description] Support ASLPREPROCESS_FLAG to include Iintel RC flags.
+# [Description] RapidStart.sdl, RapidStartSmm.sdl
+# 
+# 1     4/19/12 7:50a Yurenlai
+# Initial check in.
+#
+#*************************************************************************
+TOKEN
+	Name  = "RapidStart_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable RapidStart support in Project"
+End
+
+TOKEN
+	Name  = "TRIM_ON_RESUME"
+	Value  = "0"
+	TargetMAK = Yes
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "ON_MEMORY_INSTALLED"
+	Value  = "1"
+	TargetMAK = Yes
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "ON_START_PPI_INSTALLED"
+	Value  = "1"
+	TargetMAK = Yes
+	TokenType = Boolean
+	Token = "ON_MEMORY_INSTALLED" "=" "1"
+End
+
+TOKEN
+	Name  = "NO_SMRAM_INTEGRITY_CHECK"
+	Value  = "0"
+	TargetMAK = Yes
+	TokenType = Boolean
+        Help = "RapidStart reference code uses SHA256 algorithm in Crypto library from UDK2010 source code for SMRAM integrity check."
+End
+
+TOKEN
+	Name  = "WHOLE_MEMORY_CHECK"
+	Value  = "0"
+	TargetMAK = Yes
+	TokenType = Boolean
+        Help = "This function is only for debug. It will increase RapidStart Entry and Resume time significantly because it calculates whole memory CRC32 value by dividing to several memory chunks. By default each memory chunk is 1MB size."
+End
+
+TOKEN
+	Name  = "FFS_ME7_SUPPORT"
+	Value  = "0"
+	TargetMAK = Yes
+	TokenType = Boolean
+        Help = "This function is only for debug. It will increase RapidStart Entry and Resume time significantly because it calculates whole memory CRC32 value by dividing to several memory chunks. By default each memory chunk is 1MB size."
+End
+
+TOKEN
+	Name  = "FFS_PERF_MON"
+	Value  = "0"
+	TargetMAK = Yes
+	TokenType = Boolean
+        Help = "RapidStart performance data logging support"
+End
+
+TOKEN
+	Name  = "FFS_USE_OLD_ACPI_VARIABLE_SET"
+	Value  = "1"
+	TargetMAK = Yes
+	TokenType = Boolean
+        Help = "From RC 0.8.0.0, build switch RapidStart_USE_OLD_ACPI_VARIABLE_SET is added into the reference code for backward compatibility with platform code base comes with old ACPI_VARIABLE_SET structure."
+End
+
+TOKEN
+	Name  = "FFS_SCAN_ZERO_PAGE"
+	Value  = "1"
+	TargetMAK = Yes
+	TokenType = Boolean
+	Help = "Enable/Disable Rapid Start scen zero page."
+End
+
+ELINK
+	Name  = "INTEL_IRST_RC_FLAGS"
+	Help  = "iRST Reference Code command line options of the compiler"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(INTEL_IRST_RC_FLAGS)"
+	Parent  = "GLOBAL_DEFINES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D RAPID_START_FLAG"
+	Parent  = "INTEL_IRST_RC_FLAGS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D RAPID_START_TRIM_ON_RESUME"
+	Parent  = "INTEL_IRST_RC_FLAGS"
+	InvokeOrder = AfterParent
+        Token = "TRIM_ON_RESUME" "=" "1"
+End
+
+ELINK
+	Name  = "/D RAPID_START_ON_MEMORY_INSTALLED"
+	Parent  = "INTEL_IRST_RC_FLAGS"
+	InvokeOrder = AfterParent
+        Token = "ON_MEMORY_INSTALLED" "=" "1"
+End
+
+ELINK
+	Name  = "/D RAPID_START_ON_START_PPI_INSTALLED"
+	Parent  = "INTEL_IRST_RC_FLAGS"
+	InvokeOrder = AfterParent
+        Token = "ON_START_PPI_INSTALLED" "=" "1"
+End
+
+ELINK
+	Name  = "/D RAPID_START_NO_SMRAM_INTEGRITY_CHECK"
+	Parent  = "INTEL_IRST_RC_FLAGS"
+	InvokeOrder = AfterParent
+        Token = "NO_SMRAM_INTEGRITY_CHECK" "=" "1"
+End
+
+ELINK
+	Name  = "/D RAPID_START_WHOLE_MEMORY_CHECK"
+	Parent  = "INTEL_IRST_RC_FLAGS"
+	InvokeOrder = AfterParent
+        Token = "WHOLE_MEMORY_CHECK" "=" "1"
+End
+
+ELINK
+	Name  = "/D RAPID_START_PERF_MON"
+	Parent  = "INTEL_IRST_RC_FLAGS"
+	InvokeOrder = AfterParent
+        Token = "FFS_PERF_MON" "=" "1"
+End
+
+ELINK
+	Name  = "/D RAPID_START_USE_OLD_ACPI_VARIABLE_SET"
+	Parent  = "INTEL_IRST_RC_FLAGS"
+	InvokeOrder = AfterParent
+        Token = "FFS_USE_OLD_ACPI_VARIABLE_SET" "=" "1"
+End
+
+ELINK
+	Name  = "/D RAPID_START_SCAN_ZERO_PAGE"
+	Parent  = "INTEL_IRST_RC_FLAGS"
+	InvokeOrder = AfterParent
+	Token = "FFS_SCAN_ZERO_PAGE" "=" "1"
+End
+
+PATH
+	Name  = "RapidStart_DIR"
+End
+
+ELINK
+	Name  = "RAPIDSTART_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/I$(RapidStart_DIR)"
+	Parent  = "RAPIDSTART_INCLUDES"
+	InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

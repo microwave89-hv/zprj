@@ -1,0 +1,14 @@
+<component>
+	name = "SmBiosMemory"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\SmbiosMemory\Dxe\"
+	RefName = "SmBiosMemory"
+[files]
+"SmBiosMemory.sdl"	
+"SmBiosMemory.mak"	
+"SmbiosMemory.c"	
+"SmbiosMemory.h"	
+"SmbiosMemory.dxs"	
+"SmbiosMemoryStrings.uni"
+"SmBiosMemory.inf"	
+<endComponent>

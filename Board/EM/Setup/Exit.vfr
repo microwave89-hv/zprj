@@ -1,0 +1,212 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**             6145-F Northbelt Pkwy, Norcross, GA 30071            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/BIN/Board/Setup/Exit.vfr 16    10/09/09 6:43p Felixp $
+//
+// $Revision: 16 $
+//
+// $Date: 10/09/09 6:43p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Board/Setup/Exit.vfr $
+// 
+// 16    10/09/09 6:43p Felixp
+// UEFI 2.1 Support (the component is updated to support Framework and
+// UEFI 2.1 HII).
+// 
+// 15    6/30/09 2:33p Robert
+// comment corrections
+// 
+// 14    6/30/09 11:42a Robert
+// Added Comment and updated parts for coding standards
+//
+// 13    2/05/09 3:54p Felixp
+// Enhancement(EIP 13637): TSE Binary 4.6.2_TSE_1_27_1118_BETA or newer
+// required.
+//     Page layout is updated to support for SETUP_SHOW_ALL_BBS_DEVICES
+// TSE SDL token.
+//     SETUP_SHOW_ALL_BBS_DEVICES SDL token controls legacy (BBS) devices
+// listed
+//     in the "Boot Override" section of the "Exit" page.
+//     When this token is enabled, all BBS devices will be listed.
+//     When this token is disabled, only first device from every BBS group
+// will be listed.
+//     The token is disabled by default.
+//
+// 10    2/28/07 7:34p Felixp
+// STR_EFI_SHELL_HELP token updated to specify Shell file names for
+// different build modes
+//
+// 8     1/12/06 9:50a Felixp
+// Support for start up of the shell from the filesystem
+//
+// 7     10/19/05 2:07p Felixp
+// Support for custom varstores (in .sd files) added.
+//
+// 6     10/05/05 7:10p Felixp
+// support for system reset
+//
+// 5     9/01/05 11:41a Girim
+// Added Help strings in the Exit Menu.
+//
+// 3     7/12/05 11:13a Felixp
+// workaround for VFR compiler bug in varstore handling
+//
+//**********************************************************************
+//<AMI_FHDR_START>
+//**********************************************************************
+//
+// Name:    Exit.vfr
+//
+// Description: 
+//  Setup script for the "Exit" top level setup screen
+//
+//**********************************************************************
+//<AMI_FHDR_END>
+
+#include "SetupPrivate.h"
+#define EXIT_FORM_SET
+#define FORM_SET_TYPEDEF
+#include <SetupDefinitions.h>
+#undef FORM_SET_TYPEDEF
+
+formset guid = EXIT_FORM_SET_GUID,
+    title = STRING_TOKEN(STR_EXIT),
+    help = STRING_TOKEN(STR_EXIT_HELP),
+    class = EXIT_FORM_SET_CLASS, subclass = 0,
+
+    SETUP_DATA_VARSTORE
+    AMI_CALLBACK_VARSTORE
+    BOOT_MANAGER_VARSTORE
+    BOOT_NOW_COUNT_VARSTORE
+    EFI_SHELL_VARSTORE
+
+    #define FORM_SET_VARSTORE
+    #include <SetupDefinitions.h>
+    #undef FORM_SET_VARSTORE
+
+    form formid = AUTO_ID(EXIT_MAIN),
+        title = STRING_TOKEN(STR_EXIT);
+
+    suppressif ideqval AMI_CALLBACK.Value == SAVE_AND_EXIT_VALUE;
+        goto EXIT_MAIN,
+            prompt = STRING_TOKEN(STR_SAVE_EXIT),
+            help = STRING_TOKEN(STR_SAVE_EXIT_HELP);
+    endif;
+
+    suppressif ideqval AMI_CALLBACK.Value == DISCARD_AND_EXIT_VALUE;
+        goto EXIT_MAIN,
+            prompt = STRING_TOKEN(STR_DISCARD_EXIT),
+            help = STRING_TOKEN(STR_DISCARD_EXIT_HELP);
+    endif;
+
+    suppressif ideqval AMI_CALLBACK.Value == SAVE_AND_RESET_VALUE;
+        goto EXIT_MAIN,
+            prompt = STRING_TOKEN(STR_SAVE_RESET),
+            help = STRING_TOKEN(STR_SAVE_RESET_HELP);
+    endif;
+
+    suppressif ideqval AMI_CALLBACK.Value == DISCARD_AND_RESET_VALUE;
+        goto EXIT_MAIN,
+            prompt = STRING_TOKEN(STR_DISCARD_RESET),
+            help = STRING_TOKEN(STR_DISCARD_RESET_HELP);
+    endif;
+
+    SEPARATOR
+    SUBTITLE(STRING_TOKEN(STR_SAVE_TITLE))
+    suppressif ideqval AMI_CALLBACK.Value == SAVE_VALUE;
+        goto EXIT_MAIN,
+            prompt = STRING_TOKEN(STR_SAVE),
+            help = STRING_TOKEN(STR_SAVE_HELP);
+    endif;
+
+    suppressif ideqval AMI_CALLBACK.Value == DISCARD_VALUE;
+        goto EXIT_MAIN,
+            prompt = STRING_TOKEN(STR_DISCARD),
+            help = STRING_TOKEN(STR_DISCARD_HELP);
+    endif;
+
+    SEPARATOR
+    suppressif ideqval AMI_CALLBACK.Value == RESTORE_DEFAULTS_VALUE;
+        goto EXIT_MAIN,
+            prompt = STRING_TOKEN(STR_RESTORE_DEFAULTS),
+            help = STRING_TOKEN(STR_RESTORE_DEFAULTS_HELP);
+    endif;
+
+    suppressif ideqval AMI_CALLBACK.Value == SAVE_USER_DEFAULTS_VALUE;
+        goto EXIT_MAIN,
+            prompt = STRING_TOKEN(STR_SAVE_USER_DEFAULTS),
+            help = STRING_TOKEN(STR_SAVE_USER_DEFAULTS_HELP);
+    endif;
+
+    suppressif ideqval AMI_CALLBACK.Value == RESTORE_USER_DEFAULTS_VALUE;
+        goto EXIT_MAIN,
+            prompt = STRING_TOKEN(STR_RESTORE_USER_DEFAULTS),
+            help = STRING_TOKEN(STR_RESTORE_USER_DEFAULTS_HELP);
+    endif;
+
+    SEPARATOR
+    SUBTITLE(STRING_TOKEN(STR_BOOT_OPTIONS))
+#if SETUP_SHOW_ALL_BBS_DEVICES
+    suppressif ideqvallist BOOT_NOW_COUNT.BootCount == 0xFFFF;
+#else
+    suppressif ideqvallist BOOT_MANAGER.BootCount == 0xFFFF;
+#endif.
+        goto EXIT_MAIN,
+            prompt = STRING_TOKEN(STR_EMPTY),
+            help = STRING_TOKEN(STR_EMPTY);
+    endif;
+
+#if !Shell_SUPPORT
+    SEPARATOR
+    suppressif ideqvallist EFI_SHELL.Value == 1;
+        goto EXIT_MAIN,
+            prompt = STRING_TOKEN(STR_EFI_SHELL),
+#if EFI64
+            help = STRING_TOKEN(STR_EFI_SHELL_HELP_IPF);
+#elif EFIx64
+            help = STRING_TOKEN(STR_EFI_SHELL_HELP_X64);
+#else
+            help = STRING_TOKEN(STR_EFI_SHELL_HELP);
+#endif
+    endif;
+#endif
+
+        #define FORM_SET_ITEM
+        #include <SetupDefinitions.h>
+        #undef FORM_SET_ITEM
+        #define FORM_SET_GOTO
+        #include <SetupDefinitions.h>
+        #undef FORM_SET_GOTO
+    endform;
+
+    #define FORM_SET_FORM
+    #include <SetupDefinitions.h>
+    #undef FORM_SET_FORM
+endformset;
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**             6145-F Northbelt Pkwy, Norcross, GA 30071            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

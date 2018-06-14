@@ -1,0 +1,12 @@
+<component>
+        name = "MeFwDowngrade"
+        category = ModulePart
+        LocalRoot = "ReferenceCode\ME\FwUpdate\MeFwDowngrade\Dxe\"
+        RefName = "MeFwDowngrade"
+[files]
+"MeFwDowngrade.sdl"
+"MeFwDowngrade.mak"
+"MeFwDowngrade.c"
+"MeFwDowngrade.dxs"
+"MeFwDowngrade.inf"
+<endComponent>

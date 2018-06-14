@@ -1,0 +1,9 @@
+<component>
+	name = "XhciPei"
+	category = ModulePart
+	LocalRoot = "core\em\UsbRecovery\XhciPEI\"
+	RefName = "XhciPei"
+[files]
+"XhciPei.c"	
+"XhciPei.h"	
+<endComponent>

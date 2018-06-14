@@ -1,0 +1,31 @@
+<component>
+	name = "Intel FIT"
+	category = eModule
+	Rank = 39
+	LocalRoot = "Board\EM\FIT"
+	RefName = "FIT"
+[files]
+"Fit.chm"	
+"Fit.sdl"	
+"Fit.mak"	
+"FitTable.asm"	
+"ReserveBpmTable.bin"	
+"ReserveKmTable.bin"	
+"Boot_Guard_ACM_Rev1_1_PC_ES.bin"	
+"Boot_Guard_ACM_Rev1_2_PC_QS.bin"	
+"Boot_Guard_ACM_Rev1_2_PV_QS.bin"	
+"ReserveBootGuardFvMainHashKey.bin"	
+"ReserveBootGuardSigningServer.bin"	
+"FITUtil.exe"	
+"CryptoCon.exe"	
+"CutRom.exe"	
+"BpmKmGen.exe"	
+"keygen.exe"	
+"ReBuildFIT.bat"	
+[parts]
+"BootGuardPei"
+"BootGuardDxe"
+"BootGuardTPMPei"
+"FitHook"
+"BootGuardTPM2Dxe"
+<endComponent>

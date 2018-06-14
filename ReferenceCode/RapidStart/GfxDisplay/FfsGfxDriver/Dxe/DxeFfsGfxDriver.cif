@@ -1,0 +1,11 @@
+<component>
+	name = "DxeFfsGfxDriver"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\RapidStart\GfxDisplay\FfsGfxDriver\Dxe\"
+	RefName = "DxeFfsGfxDriver"
+[files]
+"DxeFfsGfxDriver.efi"
+"DxeFfsGfxDriver.inf"
+"DxeFfsGfxDriver.mak"
+"DxeFfsGfxDriver.sdl"
+<endComponent>

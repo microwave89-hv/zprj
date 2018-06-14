@@ -1,0 +1,13 @@
+<component>
+	name = "AmtLockKBD"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\AmtWrapper\AmtLockKBD\"
+	RefName = "AmtLockKBD"
+[files]
+"AmtLockKBD.sdl"	
+"AmtLockKBD.mak"	
+"AmtLockKBD.c"	
+"AmtLockKBD.h"	
+"AmtLockKBD.dxs"	
+"AmtInt9.asm"	
+<endComponent>

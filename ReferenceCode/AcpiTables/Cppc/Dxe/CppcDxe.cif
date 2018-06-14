@@ -1,0 +1,13 @@
+<component>
+	name = "CppcDxe"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\AcpiTables\Cppc\Dxe\"
+	RefName = "CppcDxe"
+[files]
+"CppcDxe.sdl"	
+"CppcDxe.mak"	
+"Cppc.c"	
+"Cppc.dxs"	
+"Cppc.h"	
+"Cppc.inf"	
+<endComponent>

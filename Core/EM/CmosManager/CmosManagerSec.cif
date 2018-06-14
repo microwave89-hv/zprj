@@ -1,0 +1,8 @@
+<component>
+	name = "CMOS SEC"
+	category = ModulePart
+	LocalRoot = "Core\EM\CmosManager\"
+	RefName = "CmosSec"
+[files]
+"CmosManagerSec.asm"	
+<endComponent>

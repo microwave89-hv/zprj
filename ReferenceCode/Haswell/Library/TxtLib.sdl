@@ -1,0 +1,32 @@
+TOKEN
+	Name  = TxtLib_SUPPORT
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable TxtLib support in Project"
+End
+
+TOKEN
+	Name  = "TxtLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\TxtLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "TxtLib_DIR"
+End
+
+ELINK
+	Name  = "/I$(TxtLib_DIR)\TxtLib"
+	Parent  = "PROJECT_CPU_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+MODULE
+	Help  = "Includes TxtLib.mak to Project"
+	File  = "TxtLib.mak"
+End
+

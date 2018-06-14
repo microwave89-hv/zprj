@@ -1,0 +1,84 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/PeiGfxDriver/PeiGfxDriver.sdl 1     10/15/12 4:56a Bensonlai $
+#
+# $Revision: 1 $
+#
+# $Date: 10/15/12 4:56a $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/PeiGfxDriver/PeiGfxDriver.sdl $
+# 
+# 1     10/15/12 4:56a Bensonlai
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	[Category] Improvement
+# [Severity] Important
+# [Description] Update Intel Rapid Start Graphics Driver for Shark Bay
+# Platform 5.0.1.1001, please increase your FV_BB_BLOCKS size if you
+# compile fail that caused by FV_BB size too small.
+# [Files] ReferenceCode\RapidStart\GfxDisplay\FfsGfxDriver\Pei\*.*,
+# ReferenceCode\RapidStart\GfxDisplay\FfsGfxDriver\Dxe\*.*
+#
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name: PeiGfxDriver.sdl
+#
+# Description: SDL file for PeiGfxDriver.
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+	Name  = "PeiGfxDriver_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PeiGfxDriver support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+MODULE
+	Help  = "Includes PeiGfxDriver.mak to Project"
+	File  = "PeiGfxDriver.mak"
+End
+
+PATH
+	Name  = "PeiGfxDriver_PATH"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PeiGfxDriver.ffs"
+	Parent  = "FV_BB"
+ 	InvokeOrder = AfterParent
+End
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

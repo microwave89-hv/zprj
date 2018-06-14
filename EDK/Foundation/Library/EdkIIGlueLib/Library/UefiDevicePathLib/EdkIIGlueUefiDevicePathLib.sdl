@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueUefiDevicePathLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueUefiDevicePathLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueUefiDevicePathLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueUefiDevicePathLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueUefiDevicePathLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueUefiDevicePathLib.mak to Project"
+	File  = "EdkIIGlueUefiDevicePathLib.mak"
+End
+

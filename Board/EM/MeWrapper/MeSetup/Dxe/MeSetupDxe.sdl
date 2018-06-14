@@ -1,0 +1,27 @@
+
+TOKEN
+        Name  = "ME_SETUP_DXE_SUPPORT"
+        Value  = "1"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Master = Yes
+        Help  = "Main switch to enable MeSetupDxe support in DXE Phase"
+        Token = "IntelPTT_SUPPORT" "=" "1"
+End
+
+MODULE
+        File  = "MeSetupDxe.mak"
+        Help  = "Includes MeSetupDxe.mak to Project"
+End
+
+PATH
+        Name  = "ME_SETUP_DXE_PATH"
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\MeSetupDxe.ffs"
+        Parent  = "FV_MAIN"
+        InvokeOrder = AfterParent
+End

@@ -1,0 +1,10 @@
+<component>
+	name = "Anti-Theft"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\At\"
+	RefName = "AntiTheft"
+[files]
+"At.sdl"	
+[parts]
+"AtAmDxe"
+<endComponent>

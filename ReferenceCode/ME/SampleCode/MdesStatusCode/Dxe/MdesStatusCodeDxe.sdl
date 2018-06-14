@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "MDES_STATUSCODE_DRV_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable IccOverClocking support in Project"
+End
+
+MODULE
+	Help  = "Includes MebxSetupBrowser.mak to Project"
+	File  = "MdesStatusCodeDxe.mak"
+End
+
+PATH
+	Name  = "MdesStatusCodeDrv_DIR"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\MdesStatusCodeDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

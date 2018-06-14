@@ -1,0 +1,101 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartWrapper/RapidStartPeiLib/RapidStartPeiLib.sdl 1     10/15/12 4:41a Bensonlai $
+#
+# $Revision: 1 $
+#
+# $Date: 10/15/12 4:41a $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartWrapper/RapidStartPeiLib/RapidStartPeiLib.sdl $
+# 
+# 1     10/15/12 4:41a Bensonlai
+# [TAG]  		EIPNone
+# [Category]  	Improvement
+# [Description]  	[Category] Improvement
+# [Severity] Important
+# [Description] Rename all IFFS sting to Rapid Start.
+# [Files] Board\EM\RapidStartWrapper\*.*, ReferenceCode\RapidStart\*.*
+# [Files]  		RapidStartPeiLib.cif
+# RapidStartPeiLib.sdl
+# RapidStartPeiLib.mak
+# RapidStartPeiLib.c
+# RapidStartPeiLib.h
+# RapidStartPeiLib.inf
+# RapidStartPeiLib.lib
+# PeiCryptLib.lib
+# OpensslLib.lib
+#
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name: RapidStartPeiLib.sdl
+#
+# Description: SDL file for the RapidStart Peim library
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+	Name  = "RapidStartPeiLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable RapidStartPeiLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "RapidStartPeiLib_DIR"
+End
+
+MODULE
+	Help  = "Includes RapidStartPeiLib.mak to Project"
+	File  = "RapidStartPeiLib.mak"
+End
+
+ELINK
+	Name  = "RapidStartPeiLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\RapidStartPeiLib.lib"
+	Parent  = "RapidStartPeiLib_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(RapidStartPeiLib_DIR)"
+	Parent  = "RAPIDSTART_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

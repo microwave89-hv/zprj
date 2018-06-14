@@ -1,0 +1,8 @@
+<component>
+	name = "UsbIoPpi"
+	category = ModulePart
+	LocalRoot = "Include\Ppi\"
+	RefName = "UsbIoPpi"
+[files]
+"UsbIo.h"	
+<endComponent>

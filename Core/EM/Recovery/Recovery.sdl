@@ -1,0 +1,235 @@
+TOKEN
+	Name  = "Recovery_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Recovery support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "RECOVERY_DEVICE_ORDER"
+	Value  = "CAPSULE, BLOCK, SERIAL"
+	Help  = "Defines order in which devices will be searched \for the recovery image."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FAT_RECOVERY_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+    Name  = "SEARCH_FAT_PATH"
+    Value = "0"
+    Help = "If ON, a path may be specified in the token RECOVERY_ROM. \For FAT file system only."
+    TokenType = BOOLEAN
+    TargetH = Yes
+End
+
+TOKEN
+	Name  = "NTFS_RECOVERY_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "EXT_RECOVERY_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CD_RECOVERY_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ATAPI_RECOVERY_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SERIAL_RECOVERY_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ATA_RECOVERY_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "RECOVERY_SCAN_RETRIES"
+	Value  = "3"
+	Help  = "Number of times to scan all recovery devices before reporting error"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "RECOVERY_ROM"
+	Value  = "$(AMI_ROM)"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "RECOVERY_IMAGE_SIZE"
+	Value  = "$(FLASH_SIZE)"
+	Help  = "This is the size of the recovery file used in the build process"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+PATH
+	Name  = "Recovery_DIR"
+End
+
+MODULE
+	Help  = "Includes Recovery.mak to Project"
+	File  = "Recovery.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Recovery.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "RECOVERYLIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(Recovery_DIR)\Recovery.lib"
+	Parent  = "RECOVERYLIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "RecoveryInitialize"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "CapsuleDeviceRecoveryEntry,"
+	Parent  = "RecoveryInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "BlockDeviceRecoveryEntry,"
+	Parent  = "RecoveryInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SerialRecoveryPeimEntry,"
+	Parent  = "RecoveryInitialize"
+	Token = "SERIAL_RECOVERY_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "Atapi_RecoveryPeimEntry,"
+	Parent  = "RecoveryInitialize"
+	Token = "ATAPI_RECOVERY_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "Ata_RecoveryPeimEntry,"
+	Parent  = "RecoveryInitialize"
+	Token = "ATA_RECOVERY_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OemGetFileListFromPrimaryVolumeFunction"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "AmiGetFileListFromPrimaryVolume"
+	Parent  = "OemGetFileListFromPrimaryVolumeFunction"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OemGetFileListFromFatVolumeFunction"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "AmiGetFileListFromFatVolume"
+	Parent  = "OemGetFileListFromFatVolumeFunction"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OemGetFileListFromNtfsVolumeFunction"
+	InvokeOrder = ReplaceParent
+    Token = "NTFS_RECOVERY_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "AmiGetFileListFromNtfsVolume"
+	Parent  = "OemGetFileListFromNtfsVolumeFunction"
+	InvokeOrder = AfterParent
+    Token = "NTFS_RECOVERY_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "OemGetFileListFromExtVolumeFunction"
+	InvokeOrder = ReplaceParent
+    Token = "EXT_RECOVERY_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "AmiGetFileListFromExtVolume"
+	Parent  = "OemGetFileListFromExtVolumeFunction"
+	InvokeOrder = AfterParent
+    Token = "EXT_RECOVERY_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "OemIsValidFileFunction"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "AmiIsValidFile"
+	Parent  = "OemIsValidFileFunction"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OemGetRecoveryFileInfoFunction"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "AmiGetRecoveryFileInfo"
+	Parent  = "OemGetRecoveryFileInfoFunction"
+	InvokeOrder = AfterParent
+End

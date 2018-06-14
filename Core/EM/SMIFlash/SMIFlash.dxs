@@ -1,0 +1,103 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SMIFlash/SMIFlash.dxs 7     11/02/12 7:13a Calvinchen $
+//
+// $Revision: 7 $
+//
+// $Date: 11/02/12 7:13a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SMIFlash/SMIFlash.dxs $
+// 
+// 7     11/02/12 7:13a Calvinchen
+// [TAG]  		EIP64328
+// [Category]  	Improvement
+// [Description]  	Improvement: 
+//  1. (EIP64328) Update modules to be compliant with PI 1.2 and UEFI
+// 2.3.1 specifications. 
+// BugFix: 
+//  1. (EIP100950) Fix the attribute of Win8 Debug Variable been changed
+// after restored. 
+//  2. (EIP98199) The #### in Boot#### should be upper case. 
+// [Files]  		SMIFlash.mak
+// SMIFlash.dxs
+// SMIFlash.c
+// SMIFlash.chm
+// SMIFlashLinks.c
+// SMIFlashDxe.dxs
+// SMIFlash.cif
+// 
+// 6     12/14/10 3:51a Klzhan
+// Remove dependency of USB protocol.
+// USB might be remove in some Mobile when FAST_BOOT is on.
+// 
+// 5     4/07/10 1:56a Rameshr
+// USB K/B and USB M/S should be stopped during flashing BIOS.
+// EIP 37130
+// 
+// 4     12/21/09 4:41a Klzhan
+// 
+// 3     5/22/09 8:19p Felixp
+// SmiFlash module is updated to replace Flash library calls with the
+// calls to new Core 4.6.3.6 Flash Protocol .
+// 
+// 2     5/11/07 1:47p Felixp
+//
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:   SMIFlash_dxs
+//
+// Description: This file is the dependency file for the SMIFlash driver.
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+
+#include <Token.h>
+#if PI_SPECIFICATION_VERSION >= 0x1000A
+#include <Protocol/SmmBase2.h>
+#include <Protocol/SmmSwDispatch2.h>
+#else
+#include <Protocol/SmmBase.h>
+#include <Protocol/SmmSwDispatch.h>
+#endif
+#include <Protocol/FlashProtocol.h>
+
+DEPENDENCY_START
+#if PI_SPECIFICATION_VERSION >= 0x1000A
+  EFI_SMM_BASE2_PROTOCOL_GUID AND
+  EFI_SMM_SW_DISPATCH2_PROTOCOL_GUID AND
+#else
+  EFI_SMM_BASE_PROTOCOL_GUID AND
+  EFI_SMM_SW_DISPATCH_PROTOCOL_GUID AND
+#endif
+  FLASH_SMM_PROTOCOL_GUID
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

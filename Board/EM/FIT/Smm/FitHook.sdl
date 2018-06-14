@@ -1,0 +1,94 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2013, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**     5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093            **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/FIT/Smm/FitHook.sdl 2     7/26/13 1:18a Bensonlai $
+#
+# $Revision: 2 $
+#
+# $Date: 7/26/13 1:18a $
+#
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/FIT/Smm/FitHook.sdl $
+# 
+# 2     7/26/13 1:18a Bensonlai
+#
+# 1     7/03/13 10:06p Bensonlai
+# [TAG]  		EIP128151
+# [Category]  	Improvement
+# [Description]  	Implement an option(/b) to flash FV_DATA region uisng
+# AFU flash utility.
+# [Files]  		FitHook.cif
+# FitHook.c
+# FitHook.sdl
+# FitHook.mak
+#
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name:	FitHook.sdl
+#
+# Description: SDL file for FitHook
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+        Name  = "FIT_HOOK_SUPPORT"
+        Value  = "1"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Master = Yes
+        Help = "Main switch to enable FitHook support in Project"
+End
+
+MODULE
+    Help  = "Includes FitHook.mak to Project"
+    File  = "FitHook.mak"
+End
+
+PATH
+    Name  = "FIT_HOOK_PATH"
+End
+
+ELINK
+    Name   = "AppendFvDataToAFU_UpdateBlockTypeId,"
+    Parent = "SMIFlashEndHandlerList"
+    InvokeOrder = AfterParent
+End
+
+TOKEN
+    Name  = "FIT_HOOK_LIB"
+    Value = "$(BUILD_DIR)\FitHook.lib"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+ELINK
+    Name   = "$(BUILD_DIR)\FitHook.lib"
+    Parent = "PRESERVE_LIB"
+    InvokeOrder = AfterParent
+End
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2013, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**     5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093            **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************

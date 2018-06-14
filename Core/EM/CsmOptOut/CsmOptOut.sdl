@@ -1,0 +1,124 @@
+TOKEN
+	Name  = "CsmOptOut_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+    Token = "CSM_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "CSM_OPTOUT_MODULE_REVISION"
+	Value  = "4"
+	Help  = "Version of Csm Optout module interfaces"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "OLD_OPROM_POLICY_SUPPORT"
+	Value  = "1"
+	Help  = "If set, implement old style option ROM support for other devices where UEFI signifies both legacy and UEFI option ROMs.  If disabled, provide options for UEFI only, Legacy only, or both."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_CSM_LAUNCH_POLICY"
+	Value  = "1"
+	Help  = "Controls default value of CSM Launch Policy setup control\1 - Launch CSM, 0 - Do not launch CSM"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_BOOT_OPTION_FILTERING_POLICY"
+	Value  = "0"
+	Help  = "Controls default value of Boot Option Filter setup control"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 - Both UEFI and Legacy boot options enabled, 1 - Only Legacy boot options enabled , 2 - Only UEFI boot options enabled"
+End
+
+TOKEN
+	Name  = "DEFAULT_PXE_OPROM_POLICY"
+	Value  = "1"
+	Help  = "Default value of Launch PXE OpROM policy setup control"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 - Do not launch, 1 - Launch UEFI OpROM only, 2 - Launch Legacy OpROM only, 3 - Launch Legacy before UEFI, 4 - Launch Legacy after UEFI"
+End
+
+TOKEN
+	Name  = "DEFAULT_MASS_STORAGE_OPROM_POLICY"
+	Value  = "1"
+	Help  = "Default value of Launch Storage OpROM policy setup control"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 - Do not launch, 1 - Launch UEFI OpROM only, 2 - Launch Legacy OpROM only, 3 - Launch Legacy before UEFI, 4 - Launch Legacy after UEFI"
+End
+
+TOKEN
+	Name  = "DEFAULT_VIDEO_OPROM_POLICY"
+	Value  = "2"
+	Help  = "Default value of Launch Video OpROM policy setup control"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 - Do not launch, 1 - Launch UEFI OpROM only, 2 - Launch Legacy OpROM only, 3 - Launch Legacy before UEFI, 4 - Launch Legacy after UEFI"
+End
+
+PATH
+	Name  = "CsmOptOut_DIR"
+End
+
+MODULE
+	Help  = "Includes CsmOptOut.mak to Project"
+	File  = "CsmOptOut.mak"
+End
+
+ELINK
+	Name  = "$(CsmOptOut_DIR)\CsmOptOut.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 80
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CsmOptOut.sdb"
+	Parent  = "SETUP_SDBS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CsmOptOutFilter,"
+	Parent  = "BootOptionBootDeviceFilteringFunctions"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CsmOptOutEntry,"
+	Parent  = "BdsEntryInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CsmOptOutRuntimeEntry,"
+	Parent  = "NvRamSmmEntry,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OemCheckUefiOpromPolicyList"
+	Help  = "List of callback functions to be called to determine if UEFI Oprom should be executed"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(BOOT_FORM_SET_CLASS,0,CSM_OPT_OUT_LAUNCH_KEY,CsmOptOutLaunchCallback),"
+    Parent  = "SetupItemCallbacks"
+    InvokeOrder = AfterParent
+End
+

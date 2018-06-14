@@ -1,0 +1,66 @@
+TOKEN
+    Name  = "IDESMM_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable IDESMM support in Project"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    Master = Yes
+    Token = "HDD_SECURITY_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "SW_SMI_HDD_PASSWORD_SAVE"
+    Value  = "0D0h"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "SW_SMI_HDD_UNLOCK_PASSWORD"
+    Value  = "0D1h"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "SW_SMI_HDD_PASSWORD_REMOVE"
+    Value  = "0D2h"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "SW_SMI_HDD_MISC_SMM_FEATURES"
+    Value  = "0D3h"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "SW_SMI_AHCI_LOCATE_AHCI_SMM"
+    Value  = "0D4h"
+    TokenType = Integer
+    TargetEQU = Yes
+    TargetH = Yes
+End
+
+PATH
+    Name  = "IDESMM_DIR"
+End
+
+MODULE
+    Help  = "Includes IDESMM.mak to Project"
+    File  = "IDESMM.mak"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\IDESMM.ffs"
+    Parent  = "FV_MAIN"
+    Token = "IDESMM_SUPPORT" "=" "1"
+    InvokeOrder = AfterParent
+End

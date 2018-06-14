@@ -1,0 +1,14 @@
+<component>
+	name = "Thunderbolt"
+	category = eModule
+	LocalRoot = "Board\EM\Thunderbolt\"
+	RefName = "Thunderbolt"
+[files]
+"Thunderbolt.sdl"	
+"ReleaseNotes.chm"	
+[parts]
+"TbtPei"
+"TbtDxe"
+"TbtSmm"
+"TbtOemBoard"
+<endComponent>

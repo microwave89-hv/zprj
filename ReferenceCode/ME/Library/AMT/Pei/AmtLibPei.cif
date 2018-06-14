@@ -1,0 +1,13 @@
+<component>
+	name = "AmtLibPei"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Library\AMT\Pei\"
+	RefName = "AmtLibPei"
+[files]
+"AmtLibPei.sdl"	
+"AmtLibPei.mak"	
+"AmtPolicyLibPei.c"	
+"AmtPolicyLibPei.h"
+"AmtLibPei.h"	
+"AmtLibPei.inf"	
+<endComponent>

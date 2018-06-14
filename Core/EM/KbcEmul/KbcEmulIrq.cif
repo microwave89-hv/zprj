@@ -1,0 +1,8 @@
+<component>
+	name = "KbcEmulIrq"
+	category = ModulePart
+	LocalRoot = "core\em\KbcEmul"
+	RefName = "KbcEmulIrq"
+[files]
+"KbcEmulIrq.c"	
+<endComponent>

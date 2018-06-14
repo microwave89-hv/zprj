@@ -1,0 +1,13 @@
+<component>
+	name = "IntelPlatformProtocolLib"
+	category = ModulePart
+	LocalRoot = "Board\EM\Platform\Library"
+	RefName = "IntelPlatformProtocolLib"
+[files]
+"IntelPlatformProtocolLib.sdl"	
+"IntelPlatformProtocolLib.mak"	
+"Protocol\GlobalNvsArea\GlobalNvsArea.h"	
+"Protocol\GlobalNvsArea\GlobalNvsArea.c"	
+[parts]
+"DxeKscLib"
+<endComponent>

@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "Udp6_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Udp6 support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "Udp6_DIR"
+End
+
+MODULE
+	Help  = "Includes Udp6.mak to Project"
+	File  = "Udp6.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Udp6.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

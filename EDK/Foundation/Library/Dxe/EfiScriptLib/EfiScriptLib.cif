@@ -1,0 +1,11 @@
+<component>
+	name = "EfiScriptLib"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Library\Dxe\EfiScriptLib\"
+	RefName = "EfiScriptLib"
+[files]
+"EfiScriptLib.sdl"	
+"EfiScriptLib.mak"	
+"EfiScriptLib.c"	
+"EfiScriptLib.inf"	
+<endComponent>

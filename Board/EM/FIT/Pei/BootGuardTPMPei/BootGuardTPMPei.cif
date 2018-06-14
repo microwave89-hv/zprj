@@ -1,0 +1,11 @@
+<component>
+	name = "BootGuardTPMPei"
+	category = ModulePart
+	LocalRoot = "Board\EM\FIT\Pei\BootGuardTPMPei"
+	RefName = "BootGuardTPMPei"
+[files]
+"BootGuardTPMPei.c"
+"BootGuardTPMPei.h"
+"BootGuardTPMPei.sdl"
+"BootGuardTPMPei.mak"
+<endComponent>

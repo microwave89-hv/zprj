@@ -1,0 +1,14 @@
+<component>
+	name = "PchSmbusLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Library\PchSmbusLib\"
+	RefName = "PchSmbusLib"
+[files]
+"PchSmbusLib.sdl"	
+"PchSmbusLib.mak"	
+"Common\PchSmbusComLib.cif"	
+"Common\PchSmbusLib.c"	
+[parts]
+"PchSmbusDxeLib"
+"PchSmbusPeiLib"
+<endComponent>

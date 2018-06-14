@@ -1,0 +1,315 @@
+TOKEN
+	Name  = "SecureMod_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Token = "CryptoAPI_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "SECURE_FLASH_MODULE_REVISION"
+	Value  = "17"
+	Help  = "Version of Secure Flash module interfaces"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CREATE_FWCAPSULE"
+	Value  = "1"
+	Help  = "Mode selector for creating of digitally signed Aptio FW Capsule, to be used for Protected Flash Updates including Recovery.\0 - Enable Secure Flash interfaces, but skip FW Capsule signing;\1 - Create Aptio FW Capsule;\2 - Skip final FW Capsule signing process, e.g to hand off this task to signing server."
+	TokenType = Integer
+	TargetMAK = Yes
+	Range  = "0-1-2"
+End
+
+TOKEN
+	Name  = "====FWCAPSULE FORMAT TUNE-UP===="
+	Value  = "=============================="
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "FWCAPSULE_FILE_FORMAT"
+	Value  = "1"
+	Help  = "0 - Include Aptio FW Signature Block inside the BIOS ROM as a ROM Hole Ffs.\1 - FW Signature Block is attached on top of BIOS Image."
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FWCAPSULE_CERT_FORMAT"
+	Value  = "0"
+	Help  = "0 - FwCapsule Hdr includes UEFI RSA2048_SHA256 certificates\1 - PKCS#7 Certificate. Signing keys delivered in PKCS#12 .pfx and X.509.cer"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "UNSIGNED_BIOS_ROM"
+	Value  = "$(AMI_ROM)"
+	Help  = "File name of the BIOS image to be signed."
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "FWCAPSULE_FILE_NAME"
+	Value  = "$(PROJECT_TAG).ROM"
+	Help  = "Signed BIOS file name. FwCapsule Hdr with Signature embedded inside the BIOS.ROM.\Note!!!Default Recovery image name is provided by RECOVERY_ROM"
+	TokenType = Expression
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "FWCAPSULE_FILE_FORMAT" "=" "0"
+End
+
+TOKEN
+	Name  = "FWCAPSULE_FILE_NAME"
+	Value  = "$(PROJECT_TAG).CAP"
+	Help  = "Signed BIOS file name. Aptio FwCapsule Hdr is attached on top of BIOS.ROM.\Note!!!Default Recovery image name is provided by RECOVERY_ROM"
+	TokenType = Expression
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "FWCAPSULE_FILE_FORMAT" "=" "1"
+End
+
+TOKEN
+	Name  = "FWCAPSULE_IMAGE_ALLIGN"
+	Value  = "4096"
+	Help  = "FW Capsule file size alignment"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "Min FW Capsule file size allignment is 512"
+End
+
+TOKEN
+	Name  = "FWCAPSULE_MAX_HDR_SIZE"
+	Value  = "4096"
+	Help  = "Maximum Size of the embedded FW Capsule Header"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "Min FW Capsule Header size is 2048"
+End
+
+TOKEN
+	Name  = "FWCAPSULE_IMAGE_SIZE"
+	Value = "$(FLASH_SIZE)+0x4000"
+	Help  = "This is the max size of the signed Recovery image with attached 16kb FwCapsule Hdr"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FWSIG_SIGNHDR"
+	Value  = "0"
+	Help  = "FwCapsule Hdr Signature Calculation scheme\0-FwSig Cert signs hash of Rom Image and RomMap, FwRoot signs full FwSig Certificate. Fixed in Labels 0-008\1-Add FwCap hdr into a FwSig signature calculation, FwRoot signs FwSig certificate. Supported from Label 009"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FWSIG_PADDING"
+	Value  = "1"
+	Help  = "RSA Signature padding scheme.\0-PKCS1v1.5, 1-PSS (default for Secure Flash Module labels 0 to 009), 2-xx reserved"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FWKEY_FILE_FORMAT"
+	Value  = "1"
+	Help  = "Data format of Root FW Key FFS inside BIOS RTU (FV_BB).\0-n-modulus of RSA2048 key, 1-SHA256 Hash of RSA2048 n-modulus, 2-x.509 DER Certificate key, 3-xx reserved"
+	TokenType = Integer
+	TargetMAK = Yes
+    Token = "FWCAPSULE_CERT_FORMAT" "=" "0"
+End
+
+TOKEN
+	Name  = "FWKEY_FILE_FORMAT"
+	Value  = "2"
+	Lock = Yes
+	Help  = "Don't change the value."
+	TokenType = Integer
+	TargetMAK = Yes
+	Token = "FWCAPSULE_CERT_FORMAT" "=" "1"
+End
+
+TOKEN
+	Name = "FWKEY_FILE_REPLACE"
+	Value = "1"
+	Help = "Directive to Cryptocon.exe to replace existing Root Platform Key inside BIOS.ROM with the Key used to sign FwCapsule"
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "ROM_LAYOUT_EX"
+	Value  = "$(BUILD_DIR)\RomLayoutEx.bin"
+	Help  = "Name of the extended rom map file used to sign ROM image"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "CRYPTCON"
+	Value  = "$(SILENT)CryptoCon.exe"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "CRYPTCON"
+	Value  = "$(SILENT)CryptoCon.exe -@"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "BRIEF" "=" "1"
+End
+
+TOKEN
+	Name  = "CRYPTKEYGEN"
+	Value  = "$(SILENT)keygen.exe"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "SecureMod_DIR"
+End
+
+MODULE
+	File  = "SecureMod.mak"
+	Token = "CREATE_FWCAPSULE" "!=" "0"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\FwCapsuleHdr.ffs"
+	Parent  = "FV_MAIN"
+	Token = "CREATE_FWCAPSULE" "!=" "0"
+	Token = "LZMA_SUPPORT" "=" "0"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\FwCapsuleHdr.ffs"
+	Parent  = "FV_MAIN_OUTSIDE_NESTED"
+	Token = "CREATE_FWCAPSULE" "!=" "0"
+	Token = "LZMA_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CRYPTOCON_CMDLINE"
+	InvokeOrder = ReplaceParent
+	Help  = "Cryptocon.exe command line to create signed FwCapsule"
+End
+
+ELINK
+	Name  = "CRYPTOCON_CMDLINE_SIG"
+	InvokeOrder = ReplaceParent
+	Help  = "Cryptocon.exe command line to create signed FwCapsule"
+End
+
+ELINK
+	Name  = "CRYPTOCON_CMDLINE_MAP"
+	InvokeOrder = ReplaceParent
+	Help  = "Cryptocon.exe command line to prepare embedded signature block FwCapsule"
+End
+
+ELINK
+	Name  = "-c $(FWrootKey) -k $(FWpriv)"
+	Parent  = "CRYPTOCON_CMDLINE"
+	Token = "FWCAPSULE_CERT_FORMAT" "=" "0"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "-c2 -x $(FWpriv),$(FW_PFX_Password)"
+	Parent  = "CRYPTOCON_CMDLINE"
+	Token = "FWCAPSULE_CERT_FORMAT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "-n"
+	Parent  = "CRYPTOCON_CMDLINE"
+	Help  = "-n ia a directive to replace Platform Root Key embedded inside BIOS.ROM with the Key used to sign new FwCapsule"
+	Token = "FWKEY_FILE_REPLACE" "=" "1"
+	Token = "FWCAPSULE_CERT_FORMAT" "=" "0"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "-n -k $(FWpub)"
+	Parent  = "CRYPTOCON_CMDLINE"
+	Token = "FWKEY_FILE_REPLACE" "=" "1"
+	Token = "FWCAPSULE_CERT_FORMAT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "-m -r $(ROM_LAYOUT_EX)"
+	Parent  = "CRYPTOCON_CMDLINE_MAP"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "-y"
+	Parent  = "CRYPTOCON_CMDLINE_MAP"
+	Token = "FWCAPSULE_FILE_FORMAT" "=" "0"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "-l $(FWCAPSULE_IMAGE_ALLIGN)"
+	Parent  = "CRYPTOCON_CMDLINE_MAP"
+	Token = "FWCAPSULE_FILE_FORMAT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "-q"
+	Parent  = "CRYPTOCON_CMDLINE_MAP"
+	Help  = "Extended FwCapsule Hdr Signature Calculation scheme"
+	Token = "FWCAPSULE_CERT_FORMAT" "=" "0"
+	Token = "FWSIG_SIGNHDR" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "-p"
+	Parent  = "CRYPTOCON_CMDLINE_MAP"
+	Help  = "RSA-PSS Signature padding scheme. (Default - PKCS#1v1.5)"
+	Token = "FWCAPSULE_CERT_FORMAT" "=" "0"
+	Token = "FWSIG_PADDING" "=" "1"
+	Token = "FWSIG_SIGNHDR" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "-p"
+	Parent  = "CRYPTOCON_CMDLINE_MAP"
+	Token = "FWCAPSULE_CERT_FORMAT" "=" "0"
+	Token = "FWSIG_SIGNHDR" "=" "0"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(CRYPTOCON_CMDLINE) -f $(UNSIGNED_BIOS_ROM) -o $(FWCAPSULE_FILE_NAME)"
+	Parent  = "CRYPTOCON_CMDLINE_SIG"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(CRYPTOCON_CMDLINE) -f $(UNSIGNED_BIOS_ROM) -o $(UNSIGNED_BIOS_ROM)"
+	Parent  = "CRYPTOCON_CMDLINE_MAP"
+	InvokeOrder = AfterParent
+End

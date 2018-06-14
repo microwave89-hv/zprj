@@ -1,0 +1,21 @@
+<component>
+	name = "CORE_PEI Source Framework (EDK)"
+	category = ModulePart
+	LocalRoot = "Core\CORE_PEI\CORE_PEI_FRAMEWORK"
+	RefName = "CORE_PEISrcFramework_EDK"
+[files]
+"BootMode.c"	
+"dependency.c"	
+"dependency.h"	
+"Dispatcher.c"	
+"FwVol.c"	
+"Hob.c"	
+"Image.c"	
+"MemoryServices.c"	
+"PeiCore.h"	
+"PeiMain.c"	
+"Ppi.c"	
+"Reset.c"	
+"Security.c"	
+"StatusCode.c"	
+<endComponent>

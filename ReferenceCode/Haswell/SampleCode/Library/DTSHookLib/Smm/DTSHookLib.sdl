@@ -1,0 +1,25 @@
+TOKEN
+	Name  = DTSHookLib_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable DTSHookLib support in Project"
+End
+
+TOKEN
+	Name  = "DTSHookLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\DTSHookLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+MODULE
+	Help  = "Includes DTSHookLib.mak to Project"
+	File  = "DTSHookLib.mak"
+End
+
+PATH
+	Name  = "DTSHookLib_DIR"
+End

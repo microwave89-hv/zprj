@@ -1,0 +1,77 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+//
+// $Header: /Alaska/BIN/Board/OemPei.dxs 3     2/15/11 4:27p Artems $
+//
+// $Revision: 3 $
+//
+// $Date: 2/15/11 4:27p $
+//
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Board/OemPei.dxs $
+// 
+// 3     2/15/11 4:27p Artems
+// Replaced TABs with spaces
+// 
+// 2     6/25/09 6:09p Robert
+// Updated Comments and function headers
+// 
+// 1     6/13/06 4:53p Sivagarn
+// Initial Checkin
+// 
+//**********************************************************************
+
+
+//<AMI_FHDR_START>
+//----------------------------------------------------------------------------
+//
+// Name:        OEMPEI.DXS
+//
+// Description: This file is the dependency file for the OEM PEI
+//              driver
+//
+//----------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+
+
+#include <pei.h>
+#include "ppi\CpuIo.h"
+#include "ppi\PciCfg.h"
+#include "ppi\SBPPI.h"
+#include "ppi\CspLibPpi.h"
+
+DEPENDENCY_START
+   EFI_PEI_CPU_IO_PPI_INSTALLED_GUID AND
+   EFI_PEI_PCI_CFG_PPI_INSTALLED_GUID AND
+   AMI_PEI_SBINIT_POLICY_PPI_GUID AND
+   AMI_PEI_PCI_TABLE_INIT_PPI_GUID
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

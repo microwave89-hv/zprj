@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueDxeSmbusLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueDxeSmbusLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueDxeSmbusLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueDxeSmbusLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueDxeSmbusLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueDxeSmbusLib.mak to Project"
+	File  = "EdkIIGlueDxeSmbusLib.mak"
+End
+

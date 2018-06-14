@@ -1,0 +1,33 @@
+TOKEN
+	Name  = "Smbios131_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Smbios type 131 support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "Smbios131_DIR"
+	Help  = "AMT Smbios file source directory"
+End
+
+MODULE
+	Help  = "Includes AmtSmbios.mak to Project"
+	File  = "Smbios131.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Smbios131.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "SetupSupportItem"
+	Value  = "0xF"
+	Help  = "Set BIOS Setup Item exist or not. Bit0 = Vt-d, Bit1 = Txt, Bit2 = ME, Bit3 = VTx"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0 - 2"
+End

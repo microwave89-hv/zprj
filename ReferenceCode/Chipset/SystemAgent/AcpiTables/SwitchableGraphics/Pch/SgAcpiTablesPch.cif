@@ -1,0 +1,12 @@
+<component>
+	name = "SgAcpiTablesPch"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\AcpiTables\SwitchableGraphics\Pch\"
+	RefName = "SgAcpiTablesPch"
+[files]
+"SgAcpiTablesPch.sdl"	
+"SgAcpiTablesPch.mak"	
+"SgAcpiTablesPch.inf"
+"SgDgpuPch.asl"
+"SgSsdtPch.asl"	
+<endComponent>

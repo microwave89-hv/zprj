@@ -1,0 +1,115 @@
+TOKEN
+    Name  = MeFwCapsule_SUPPORT
+    Value  = 1
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    Help  = "Main switch to enable MeFwCapsule support in Project"
+    Master = Yes
+    Token = "MEFwUpdLcl_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "ME_BIN_FILE"
+    Value  = "$(ROM_IMAGE_DIR)\ME\ME9.1_5M_Production.BIN"
+    TokenType = Expression
+    TargetH = Yes
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "ME_FW_IMAGE_VERSION"
+    Value  = "{9, 1, 25, 1005}"
+    TokenType = Expression
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FV_MEFWCAP_SIZE"
+    Value  = "0x400000"
+    TokenType = Integer
+    TargetH = Yes
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "BIOS_MEFW_CAPSULE_FILE"
+    Value  = "BIOSMEFW.CAP"
+    Help  = "File name of the BIOS + ME FW image to be signed."
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "MEFW_CAPSULE_FILE"
+    Value  = "MEFW.CAP"
+    Help  = "File name of the ME FW image to be signed."
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+MODULE
+    Help  = "Includes MeFwCapsule.mak to Project"
+    File  = "MeFwCapsule.mak"
+End
+
+PATH
+    Name  = "MeFwCapsule_DIR"
+End
+
+TOKEN
+    Name  = "UNSIGNED_MEFW_CAPSULE"
+    Value  = "$(BUILD_DIR)\FV_MEFWCAP.fv"
+    Help  = "File name of the BIOS image to be signed."
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "CRYPTOCON_CMDLINE_MEFWCAP"
+    Value  = "-c $(FWrootKey) -k $(FWpriv) -n -y -l $(FWCAPSULE_MAX_HDR_SIZE) -q -r2"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "FV_MEFWCAP_BASE"
+    Value  = "0xFFFFFFFF-$(FV_MEFWCAP_SIZE)+1"
+    Help  = "Number of Block used for ROMHOLE"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FV_MEFWCAP_BLOCK_SIZE"
+    Value  = "0x1000"
+    Help  = "Size of Block used for ROMHOLE"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FV_MEFWCAP_NUMBER_OF_BLOCK"
+    Value  = "$(FV_MEFWCAP_SIZE) / $(FV_MEFWCAP_BLOCK_SIZE)"
+    Help  = "Number of Block used for ROMHOLE"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "FWCAPSULE_IMAGE_SIZE"
+    Value  = "$(FLASH_SIZE)+$(FWCAPSULE_MAX_HDR_SIZE)+$(FV_MEFWCAP_SIZE)"
+    TokenType = Integer
+    TargetH = Yes
+    Token = "MeFwCapsule_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\MeFwCapsulePei.ffs"
+    Parent  = "FV_BB"
+    #Priority = 10
+    InvokeOrder = AfterParent
+End

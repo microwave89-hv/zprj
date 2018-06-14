@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EfiProtocolLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EfiProtocolLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EFIPROTOCOLLIB"
+	Value  = "$(BUILD_DIR)\EfiProtocolLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EfiProtocolLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EfiProtocolLib.mak to Project"
+	File  = "EfiProtocolLib.mak"
+End
+

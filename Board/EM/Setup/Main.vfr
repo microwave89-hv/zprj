@@ -1,0 +1,239 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/BIN/Board/Setup/Main.vfr 20    2/15/11 4:33p Artems $
+//
+// $Revision: 20 $
+//
+// $Date: 2/15/11 4:33p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Board/Setup/Main.vfr $
+// 
+// 20    2/15/11 4:33p Artems
+// Replaced TABs with spaces
+// 
+// 19    9/07/10 11:05p Felixp
+// Minor fix: Spelling error (EIP 39919)
+// 
+// 18    6/11/10 12:22p Felixp
+// AMI_CALLBACK_VARSTORE added
+// 
+// 17    6/09/10 10:54p Felixp
+// Setup Customization Support. Hidden form with list of all controls is
+// added.
+// The form is used to generate defaults.
+// 
+// 16    2/24/10 11:52a Felixp
+// UEFI Specification Compliancy Level information is added.
+// 
+// 15    10/09/09 6:43p Felixp
+// UEFI 2.1 Support (the component is updated to support Framework and
+// UEFI 2.1 HII).
+// 
+// 14    6/30/09 11:42a Robert
+// Added Comment and updated parts for coding standards
+// 
+// 13    9/26/06 8:57a Felixp
+// Language selection control is enabled
+// 
+// 12    8/18/06 11:20a Felixp
+// 
+// 11    11/21/05 7:32p Felixp
+// multi-language support removed
+// 
+// 10    10/19/05 2:07p Felixp
+// Support for custom varstores (in .sd files) added.
+// 
+// 9     10/03/05 6:33p Felixp
+// Access Mode is displayed
+// 
+// 8     9/06/05 6:19p Girim
+// Code cleanup.
+// 
+// 7     7/19/05 10:06p Girim
+// Moved the Memory to NBSetup.c
+// 
+// 5     7/12/05 11:13a Felixp
+// workaround for VFR compiler bug in varstore handling
+// 
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//**********************************************************************
+//
+// Name:        Main.vfr
+//
+// Description: 
+//  Setup script for the "Main" top level setup screen
+//
+//**********************************************************************
+//<AMI_FHDR_END>
+
+#include "SetupPrivate.h"
+#define MAIN_FORM_SET
+#define FORM_SET_TYPEDEF
+#include <SetupDefinitions.h>
+#undef FORM_SET_TYPEDEF
+
+formset guid  = MAIN_FORM_SET_GUID,
+    title     = STRING_TOKEN(STR_MAIN),
+    help      = STRING_TOKEN(STR_MAIN_HELP),
+    class     = MAIN_FORM_SET_CLASS,
+    subclass  = 0,
+
+    SETUP_DATA_VARSTORE
+    LANGUAGE_VARSTORE
+    LANGUAGE_CODES_VARSTORE
+    SYSTEM_ACCESS_VARSTORE
+    AMI_CALLBACK_VARSTORE
+
+    #define FORM_SET_VARSTORE
+    #include <SetupDefinitions.h>
+    #undef FORM_SET_VARSTORE
+
+    form formid = AUTO_ID(MAIN_MAIN), // MAIN
+        title = STRING_TOKEN(STR_MAIN);
+
+        SUBTITLE(STRING_TOKEN(STR_BIOS))
+        INVENTORY(STRING_TOKEN(STR_BIOS_VENDOR_NAME),STRING_TOKEN(STR_BIOS_VENDOR_VALUE))
+        INVENTORY(STRING_TOKEN(STR_BIOS_CORE_VERSION_NAME),STRING_TOKEN(STR_BIOS_CORE_VERSION_VALUE))
+        INVENTORY(STRING_TOKEN(STR_BIOS_COMPLIANCY_NAME),STRING_TOKEN(STR_BIOS_COMPLIANCY_VALUE))
+        INVENTORY(STRING_TOKEN(STR_BIOS_VERSION_NAME),STRING_TOKEN(STR_BIOS_VERSION_VALUE))
+        INVENTORY(STRING_TOKEN(STR_BIOS_DATE_NAME),STRING_TOKEN(STR_BIOS_DATE_VALUE))
+
+
+        #define FORM_SET_ITEM
+        #include <SetupDefinitions.h>
+        #undef FORM_SET_ITEM
+        #define FORM_SET_GOTO
+        #include <SetupDefinitions.h>
+        #undef FORM_SET_GOTO
+
+        SEPARATOR
+        suppressif ideqval LANGUAGE_CODES.Value == 0xFFFF;
+            oneof varid   = LANGUAGE.Value,
+                prompt    = STRING_TOKEN(STR_LANGUAGE_PROMPT),
+                help      = STRING_TOKEN(STR_LANGUAGE_HELP),
+                option
+                    text  = STRING_TOKEN(STR_EMPTY),
+                    value = 0,
+                    flags = DEFAULT;
+                option
+                    text  = STRING_TOKEN(STR_EMPTY),
+                    value = 1,
+                    flags = 0;
+            endoneof;
+        endif;
+
+        SEPARATOR
+        date 
+            year varid  = Date.Year,
+                prompt  = STRING_TOKEN(STR_DATE),
+                help    = STRING_TOKEN(STR_DATE_HELP),
+                minimum = 2005,
+                maximum = 2099,
+                step    = 1,
+                default = 2005,
+            month varid = Date.Month,
+                prompt  = STRING_TOKEN(STR_DATE),
+                help    = STRING_TOKEN(STR_DATE_HELP),
+                minimum = 1,
+                maximum = 12,
+                step    = 1,
+                default = 1,
+            day varid   = Date.Day,
+                prompt  = STRING_TOKEN(STR_DATE),
+                help    = STRING_TOKEN(STR_DATE_HELP),
+                minimum = 1,
+                maximum = 31,
+                step    = 1,
+                default = 1,
+        enddate;
+
+        time
+            hour varid  = Time.Hours,
+                prompt  = STRING_TOKEN(STR_TIME),
+                help    = STRING_TOKEN(STR_TIME_HELP),
+                minimum = 0,
+                maximum = 23,
+                step    = 1, default = 0,
+            minute varid = Time.Minutes,
+                prompt  = STRING_TOKEN(STR_TIME),
+                help    = STRING_TOKEN(STR_TIME_HELP),
+                minimum = 0,
+                maximum = 59,
+                step    = 1,
+                default = 0,
+            second varid = Time.Seconds,
+                prompt  = STRING_TOKEN(STR_TIME),
+                help    = STRING_TOKEN(STR_TIME_HELP),
+                minimum = 0,
+                maximum = 59,
+                step    = 1,
+                default = 0,
+        endtime;
+
+        SEPARATOR
+        suppressif  ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_ADMIN;
+            text 
+                help   = STRING_TOKEN(STR_EMPTY),
+                text   = STRING_TOKEN(STR_ACCESS_LEVEL),
+                text   = STRING_TOKEN(STR_ACCESS_USER),
+                flags  = 0,
+                key    = 0;
+        endif;
+        suppressif  ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+            text 
+                help   = STRING_TOKEN(STR_EMPTY),
+                text   = STRING_TOKEN(STR_ACCESS_LEVEL),
+                text   = STRING_TOKEN(STR_ACCESS_ADMIN),
+                flags  = 0,
+                key    = 0;
+        endif;
+
+        // "suppress if TRUE" is not supported by the Framework VFR Compiler
+        suppressif NOT ideqval SYSTEM_ACCESS.Access == 0x55;
+            goto MAIN_HIDDEN, 
+                prompt = STRING_TOKEN(STR_EMPTY),
+                help = STRING_TOKEN(STR_EMPTY);
+        endif;
+    endform;
+    #define FORM_SET_FORM
+    #include <SetupDefinitions.h>
+    #undef FORM_SET_FORM
+
+    form formid = AUTO_ID(MAIN_HIDDEN), // MAIN
+        title = STRING_TOKEN(STR_EMPTY);
+    #define CONTROLS_WITH_DEFAULTS
+    #include <SetupDefinitions.h>
+    #undef CONTROLS_WITH_DEFAULTS
+    endform;
+endformset;
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

@@ -1,0 +1,20 @@
+TOKEN
+	Name  = "MeWrapper_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable ME Wrapper support in Project"
+	Token = "iME_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "MeWrapper_DIR"
+End
+
+ELINK
+	Name  = "/I$(MeWrapper_DIR)"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End

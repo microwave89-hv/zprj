@@ -1,0 +1,40 @@
+TOKEN
+	Name  = SgTpv_SUPPORT
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable SgTpv support in Project"
+End
+
+TOKEN
+	Name  = "EFI_PEI_END_OF_SG_TPV_PPI_GUID"
+	Value  = "{0xc81aa794, 0xdf62, 0x4a39, 0xaf, 0xf6, 0xa6, 0x8c, 0x9, 0xe2, 0x3b, 0xdd}"
+	Help  = "End of SG TPV PPI GUID"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+PATH
+	Name  = SgTpv_DIR
+	Help  = "Path to SgTpv Module in Project"
+End
+
+MODULE
+	Help  = "Includes SgTpv.mak to Project"
+	File  = "SgTpv.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SgTpvPei.ffs"
+	Parent  = "$(BUILD_DIR)\SaInitPeim.ffs"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SgTpvDxe.ffs"
+	Parent  = "$(BUILD_DIR)\SaInitDxe.ffs"
+	InvokeOrder = BeforeParent
+End

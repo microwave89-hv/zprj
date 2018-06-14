@@ -1,0 +1,28 @@
+<component>
+	name = "IntelPchPpiLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Ppi\"
+	RefName = "IntelPchPpiLib"
+[files]
+"IntelPchPpiLib.inf"	
+"IntelPchPpiLib.sdl"	
+"IntelPchPpiLib.mak"	
+"Spi\Spi.h"	
+"Spi\Spi.c"	
+"PchInit\PchInit.h"	
+"PchInit\PchInit.c"	
+"PchPeiInitDone\PchPeiInitDone.c"	
+"PchPeiInitDone\PchPeiInitDone.h"	
+"PchUsbPolicy\PchUsbPolicy.c"	
+"PchUsbPolicy\PchUsbPolicy.h"	
+"PchDmiTcVcMap\PchDmiTcVcMap.c"	
+"PchDmiTcVcMap\PchDmiTcVcMap.h"	
+"PchPlatformPolicy\PchPlatformPolicy.c"	
+"PchPlatformPolicy\PchPlatformPolicy.h"	
+"Wdt\Wdt.h"	
+"Wdt\Wdt.c"	
+"PchReset\PchReset.h"	
+"PchReset\PchReset.c"	
+"SmmControl\SmmControl.c"	
+"SmmControl\SmmControl.h"	
+<endComponent>

@@ -1,0 +1,32 @@
+TOKEN
+	Name  = "PTID_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SsdtPtid support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "INTEL_SSDTPTID_DIR"
+End
+
+TOKEN
+	Name  = "INTEL_PTID_ASL_FILE"
+	Value  = "$(INTEL_SSDTPTID_DIR)\ptid.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+MODULE
+	Help  = "Includes SsdtPtid.mak to Project"
+	File  = "SsdtPtid.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PTID.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+	Token = "PTID_SUPPORT" "=" "1"
+End

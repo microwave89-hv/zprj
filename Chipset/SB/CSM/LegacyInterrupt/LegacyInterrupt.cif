@@ -1,0 +1,11 @@
+<component>
+	name = "LegacyInterrupt"
+	category = ModulePart
+	LocalRoot = "Chipset\SB\CSM\LegacyInterrupt\"
+	RefName = "LegacyInterrupt"
+[files]
+"\LegacyInterrupt.sdl"	
+"\LegacyInterrupt.mak"	
+"\LegacyInterrupt.c"	
+"\LegacyInterrupt.dxs"	
+<endComponent>

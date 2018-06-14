@@ -1,0 +1,22 @@
+<component>
+	name = "Post Time Tuning"
+	category = eModule
+	LocalRoot = "Core\EM\FastBoot\"
+	RefName = "FastBoot"
+[files]
+"FastBoot.sdl"	
+"FastBoot.mak"	
+"FastBootRuntime.c"	
+"FastBootTseHook.c"	
+"FastBoot.c"	
+"PTT.chm"	
+"FastBoot.sd"	
+"FastBoot.uni"	
+"FastBootDxe.c"	
+[parts]
+"FastBootPei"
+"FastBootProtocol"
+"FastBootIncludes"
+"FastBootSMI"
+"FastBootOption"
+<endComponent>

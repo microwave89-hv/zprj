@@ -1,0 +1,13 @@
+<component>
+	name = "MEAU"
+	category = ModulePart
+	LocalRoot = "Core\EM\OFBD\MEUD\MEAU"
+	RefName = "AutoUpdate"
+[files]
+"AutoUpdate.sdl"	
+"AutoUpdate.mak"	
+"AutoUpdate.c"	
+"AutoUpdate.dxs"	
+"AutoUpdate.h"	
+"MERegion.bin"	
+<endComponent>

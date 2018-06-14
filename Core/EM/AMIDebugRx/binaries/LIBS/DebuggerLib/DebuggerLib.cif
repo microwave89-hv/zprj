@@ -1,0 +1,13 @@
+<component>
+	name = "DebuggerLib"
+	category = ModulePart
+	LocalRoot = "Core\EM\AMIDebugRx\binaries\LIBS\DebuggerLib\"
+	RefName = "DebuggerLib"
+[files]
+"DebuggerLib.sdl"	
+"DebuggerLib.mak"	
+"DebuggerLib.lib"	
+"DebuggerLibX64.lib"	
+"DebuggerLib_PI_1_1.lib"	
+"DebuggerLibX64_PI_1_1.lib"	
+<endComponent>

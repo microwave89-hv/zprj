@@ -1,0 +1,42 @@
+TOKEN
+    Name  = "AmtPlatformPolicy_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable AmtPlatformPolicy support in Project"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    Master = Yes
+End
+
+PATH
+    Name  = "AmtPlatformPolicy_DIR"
+End
+
+MODULE
+    Help  = "Includes AmtPlatformPolicy.mak to Project"
+    File  = "AmtPlatformPolicy.mak"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\AmtPlatformPolicy.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+
+TOKEN
+    Name = "USB_PROVISION_DEFAULT_WITHOUT_AMT"
+    Value = "0"
+    Help = "If set to 1, usb provision is functional when AMT disable"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "SW_SMI_POST_COMPLETE"
+    Value  = "0xBB"
+    Help  = "Value to be written into SMI command register \to set POST Complete flag for indicating that the POST is complete"
+    TokenType = Integer
+    TargetH = Yes
+    Range  = "0-0xff"
+End
+

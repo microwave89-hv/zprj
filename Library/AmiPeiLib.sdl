@@ -1,0 +1,28 @@
+TOKEN
+	Name  = "AmiPeiLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AmiPeiLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+MODULE
+	Help  = "Includes AmiPeiLib.mak to Project"
+	File  = "AmiPeiLib.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmiPeiLib.lib"
+	Parent  = "$(LIBRARY_DIR)\AmiPeiLib$(ARCH)$(DBG).lib"
+	InvokeOrder = ReplaceParent
+End
+
+TOKEN
+	Name  = "MAX_PEI_PERF_LOG_ENTRIES"
+	Value  = "28"
+    Help = "Maximum allowed number of PEI performance management entries in log database"
+	TokenType = Integer
+	TargetH = Yes
+End

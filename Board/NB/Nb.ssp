@@ -1,0 +1,80 @@
+// This AMI Setup Script Processor (SSP) file contains setup items that
+// are related to the CMOS Manager.
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Board/Nb.ssp 1     2/08/12 4:33a Yurenlai $
+//
+// $Revision: 1 $
+//
+// $Date: 2/08/12 4:33a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Board/Nb.ssp $
+// 
+// 1     2/08/12 4:33a Yurenlai
+// Intel Haswell/NB eChipset initially releases.
+// 
+//*************************************************************************
+
+//---------------------------------------------------------------------------
+// CMOS manager starts auto-assigning at 0x40
+//
+// This is a typical CMOS usage arrangement.  
+// (Note: these locations are not currently reserverd by default.)
+//---------------------------------------------------------------------------
+//
+// 0x00..0x3F   Legacy CMOS area, used by CSM
+// 0x40..0x7F   OEM/ODM
+// 0x80..0xBF   Chipset
+// 0xC0..0xFF   Core+Technologies
+//
+// This is the format of a CMOS token defintion:  
+//---------------------------------------------------------------------------
+// NvramField (TOKEN_NAME)
+//  OptionBits = integer                    // how many bits to use
+//  [Default = integer]                     // assembler format "xxxh"
+//  [CheckSum = YES | NO]                   // include=YES | exclude=NO
+//  [Location = cmos address, clobber mask] // CMOS register, size/offset
+// EndNvramField
+
+
+//-----------------------------------------------------------------
+// TODO: Check if all 8 bits are needed for each of these locations
+//-----------------------------------------------------------------
+
+
+NvramField (NB_SSP_IFFS_SCRAMBLER_SEED)
+    OptionBits = 16                              
+    Default = 0000h                               
+    CheckSum = NO                              
+    Location = MKF_NB_CMOS_IFFS_SCRAMBLER_SEED, 0FFFFh  
+EndNvramField
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+

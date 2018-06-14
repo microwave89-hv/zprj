@@ -1,0 +1,82 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+//
+// $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SmBus/SmBusDxe.dxs 1     6/06/12 8:00a Victortu $
+//
+// $Revision: 1 $
+//
+// $Date: 6/06/12 8:00a $
+//
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SmBus/SmBusDxe.dxs $
+// 
+// 1     6/06/12 8:00a Victortu
+// Implement EFI_PEI_SMBUS2_PPI Support.
+// 
+// 4     6/17/11 5:55p Artems
+// EIP 53378: Replaced tabs with spaces, formatted to follow coding
+// standard
+// 
+// 3     1/27/11 9:48p Abelwu
+// Supports SMBUS Protocol in early DXE phase. (EIP#40778)
+// 
+// 2     10/16/09 7:25p Artems
+// Updated copyright header
+// 
+// 1     1/09/09 6:53p Artems
+// New implementation of SMBus EIP 16730
+// 
+// 4     7/24/07 12:33p Sivagarn
+// Copyright year update
+// 
+//
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//----------------------------------------------------------------------------
+//
+// Name:        SmBusDxe.DXS
+//
+// Description: This file is the dependency file for the Smbus DXE
+//              driver
+//
+//----------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+
+#include <Protocol\PciRootBridgeIo.h>
+
+DEPENDENCY_START
+    EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL_GUID
+DEPENDENCY_END
+
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+

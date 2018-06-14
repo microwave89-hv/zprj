@@ -1,0 +1,32 @@
+TOKEN
+	Name  = BootGuardLib_SUPPORT
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable BootGuardLib support in Project"
+End
+
+TOKEN
+	Name  = "BootGuardLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\BootGuardLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "BootGuardLib_DIR"
+End
+
+ELINK
+	Name  = "/I$(BootGuardLib_DIR)\BootGuardLib"
+	Parent  = "PROJECT_CPU_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+MODULE
+	Help  = "Includes BootGuardLib.mak to Project"
+	File  = "BootGuardLib.mak"
+End
+

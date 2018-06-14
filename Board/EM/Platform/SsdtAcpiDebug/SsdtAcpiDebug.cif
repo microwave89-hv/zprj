@@ -1,0 +1,10 @@
+<component>
+	name = "SsdtAcpiDebug"
+	category = ModulePart
+	LocalRoot = "Board\EM\Platform\SsdtAcpiDebug"
+	RefName = "SsdtAcpiDebug"
+[files]
+"SsdtAcpiDebug.sdl"
+"SsdtAcpiDebug.mak"
+"SsdtAcpiDebug.asl"
+<endComponent>

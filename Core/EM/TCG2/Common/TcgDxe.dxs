@@ -1,0 +1,110 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**     5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/TCG2/Common/TcgDxe/TcgDxe.dxs 1     4/21/14 2:16p Fredericko $
+//
+// $Revision: 1 $
+//
+// $Date: 4/21/14 2:16p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/TCG2/Common/TcgDxe/TcgDxe.dxs $
+// 
+// 1     4/21/14 2:16p Fredericko
+// 
+// 1     10/08/13 12:03p Fredericko
+// Initial Check-In for Tpm-Next module
+// 
+// 1     7/10/13 5:51p Fredericko
+// [TAG]  		EIP120969
+// [Category]  	New Feature
+// [Description]  	TCG (TPM20)
+// 
+// 7     3/19/12 6:31p Fredericko
+// Changes for Tcg Performance Metrics Improvement. 
+// Files Changed: Tcg.sdl, TcgMisc.h, TcgDxe.c, TcgCommon.c, TcgCommon.h, 
+// AmiTcgPlatformPeiLib.c, AmiTcgPlatformDxe.c, TcgDxe.dxs
+// 
+// 6     5/20/10 8:59a Fredericko
+// Included File Header
+// Updated AMI copyright header
+// 
+// 5     4/30/09 6:17p Fredericko
+// Updated Header Date
+// 
+// 4     4/30/09 5:34p Fredericko
+// AMI company Header Address changes
+// 
+// 3     2/05/09 5:25p Fredericko
+// To build without EDK changed includes in Tcgdxe.dxs file
+// 
+// 2     3/06/07 12:59p Fasihm
+// Added dependencies.
+// 
+// 1     6/20/06 5:58p Andriyn
+// 
+//**********************************************************************
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:  TcgDxe.dxs
+//
+// Description: 
+//  TcgDxe dependency file
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+
+//<AMI_FHDR_START>
+//---------------------------------------------------------------------------
+// Name:		TCGDXE.dxs
+//
+// Description:	Dependency expression for TCGPEI component. 
+//
+//---------------------------------------------------------------------------
+//<AMI_FHDR_END>
+#include <Token.h>
+#include <Protocol\Variable.h>
+#include <Protocol\CpuIo.h>
+#if (PI_SPECIFICATION_VERSION < 0x00010000) 
+#include <Protocol\FirmwareVolume.h>
+#else
+#include <Protocol\FirmwareVolume2.h>
+#endif
+
+
+DEPENDENCY_START
+  EFI_VARIABLE_ARCH_PROTOCOL_GUID AND
+  EFI_CPU_IO_PROTOCOL_GUID  AND
+#if (PI_SPECIFICATION_VERSION < 0x00010000) 
+  EFI_FIRMWARE_VOLUME_PROTOCOL_GUID
+#else
+  EFI_FIRMWARE_VOLUME2_PROTOCOL_GUID
+#endif
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**     5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

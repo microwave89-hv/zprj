@@ -1,0 +1,77 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**     5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093            **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/IntelPfat/Pfatflashlib/HandlePfatLegacy/HandlePfatLegacy.sdl 2     11/19/12 5:30p Fredericko $
+#
+# $Revision: 2 $
+#
+# $Date: 11/19/12 5:30p $
+#
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/IntelPfat/Pfatflashlib/HandlePfatLegacy/HandlePfatLegacy.sdl $
+# 
+# 2     11/19/12 5:30p Fredericko
+# 
+# 1     11/02/12 8:23p Fredericko
+# [TAG]  		EIP105153
+# [Files]  		HandlePfatLegacy.cif
+# HandlePfatLegacy.sdl
+# HandlePfatLegacy.mak
+# HandlePfatLegacy.c
+# 
+# 
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name:	HandlePfatLegacy.sdl
+#
+# Description:	SDL file for HandlePfatLegacy
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+TOKEN
+	Name  = "HandlePfatLegacy_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable HandlePfatLegacy support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "HandlePfatLegacy_DIR"
+	Help  = "HandlePfatLegacy files source directory"
+End
+
+MODULE
+	Help  = "Includes HandlePfatLegacy.mak to Project"
+	File  = "HandlePfatLegacy.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\HandlePfatLegacy.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**     5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093            **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************

@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EfiIfrSupportLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EfiIfrSupportLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EFIIFRSUPPORTLIB"
+	Value  = "$(BUILD_DIR)\EfiIfrSupportLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EfiIfrSupportLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EfiIfrSupportLib.mak to Project"
+	File  = "EfiIfrSupportLib.mak"
+End
+

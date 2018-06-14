@@ -1,0 +1,6 @@
+
+PATH
+	Name  = "PS2Ctl_DIR"
+	Help  = "PS/2 Controller source directory"
+End
+

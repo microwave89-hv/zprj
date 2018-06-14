@@ -1,0 +1,87 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/HddSmart/IdeSMART.dxs 7     12/22/11 4:33a Lavanyap $
+//
+// $Revision: 7 $
+//
+// $Date: 12/22/11 4:33a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/HddSmart/IdeSMART.dxs $
+// 
+// 7     12/22/11 4:33a Lavanyap
+// [TAG]  		EIP77259
+// [Category]  	Improvement
+// [Description]  	Included rollbacked check-ins from ver 4, 5 and made it
+// compatible with core 4.6.5.3.
+// [Files]  		IdeSMART.c, IdeSMART.h, IdeSMART.mak, IdeSMART.uni,
+// IdeSMART.dxs
+// 
+// 6     3/17/11 10:37a Krishnakumarg
+// [TAG] - EIP 55534
+// [Category]- Defect
+// [Symptom] - Component HddSmart not labeled for CORE 4.6.4.1
+// [Solution] - IdeSmart is updated for Core 4.6.4.1
+// [Files] - IdeSmart.c,Idesmart.h,IdeSmart.mak,IdeSmart.dxs,IdeSmart.uni,
+// IdeSmart.chm
+// 
+// 3     5/07/10 11:32a Krishnakumarg
+// Updated the AMI header
+// 
+// 2     3/26/10 5:39p Krishnakumarg
+// UEFI2.1 compliance change EIP#34744.
+// 
+// 1     7/03/08 5:19p Anandakrishnanl
+// Added IdeSmart Module after removing IdeSmart.c from Idebus Src Module
+// 
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//---------------------------------------------------------------------------
+//
+// Name:        IdeSMART.DXS
+//
+// Description:	This file is the dependency file for the IdeSmart driver
+//
+//---------------------------------------------------------------------------
+//<AMI_FHDR_END>
+#if EFI_SPECIFICATION_VERSION > 0x20000
+#include "Protocol\HiiString.h"
+#else
+#include <Protocol/HII.h>
+#endif
+
+DEPENDENCY_START
+#if EFI_SPECIFICATION_VERSION > 0x20000
+   EFI_HII_STRING_PROTOCOL_GUID
+#else
+   EFI_HII_PROTOCOL_GUID
+#endif
+DEPENDENCY_END
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

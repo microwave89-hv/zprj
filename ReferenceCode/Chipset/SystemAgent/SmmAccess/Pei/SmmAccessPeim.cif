@@ -1,0 +1,13 @@
+<component>
+	name = "SmmAccessPeim"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\SmmAccess\Pei"
+	RefName = "SmmAccessPeim"
+[files]
+"SmmAccessPeim.sdl"
+"SmmAccessPeim.mak"
+"SmmAccessPeim.c"
+"SmmAccessPeim.h"
+"SmmAccessPeim.dxs"
+"SmmAccess.inf"
+<endComponent>

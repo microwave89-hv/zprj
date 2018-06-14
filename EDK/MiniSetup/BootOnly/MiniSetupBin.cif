@@ -1,0 +1,13 @@
+<component>
+	name = "TSE Binary - BootOnly"
+	category = ModulePart
+	LocalRoot = "EDK\MiniSetup\BootOnly"
+	RefName = "MinisetupBin"
+[files]
+"MiniSetupBin.sdl"
+"MiniSetupBin.mak"
+"hiistring21.c"	
+"hiistring20.c"	
+"MiniSetupLocal.lib"	
+"MiniSetupLocalx64.lib"	
+<endComponent>

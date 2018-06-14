@@ -1,0 +1,11 @@
+<component>
+	name = "Sg Acpi S3 Save"
+	category = ModulePart
+	LocalRoot = "Board\EM\SwitchableGraphics\SgTpv\AcpiS3Save"
+	RefName = "SgTpvAcpiS3Save"
+[files]
+"SgTpvAcpiS3Save.sdl"	
+"SgTpvAcpiS3Save.mak"	
+"SgTpvAcpiS3Save.c"	
+"SgTpvAcpiS3Save.dxs"	
+<endComponent>

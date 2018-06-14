@@ -1,0 +1,11 @@
+<component>
+	name = "Arp"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Common\Arp"
+	RefName = "Arp"
+[files]
+"Arp.sdl"	
+"Arp.mak"	
+"ArpDxeIa32.efi"	
+"ArpDxe.efi"	
+<endComponent>

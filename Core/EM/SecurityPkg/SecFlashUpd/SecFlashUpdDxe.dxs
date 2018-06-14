@@ -1,0 +1,58 @@
+//****************************************************************************
+//****************************************************************************
+//**                                                                        **
+//**             (C)Copyright 1985-2014, American Megatrends, Inc.          **
+//**                                                                        **
+//**                          All Rights Reserved.                          **
+//**                                                                        **
+//**             5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093          **
+//**                                                                        **
+//**                          Phone (770)-246-8600                          **
+//**                                                                        **
+//****************************************************************************
+//****************************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SecureFlashPkg/FlashUpdate/SecFlashUpdDxe.dxs 4     3/18/14 3:01p Alexp $
+//
+// $Revision: 4 $
+//
+// $Date: 3/18/14 3:01p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SecureFlashPkg/FlashUpdate/SecFlashUpdDxe.dxs $
+// 
+// 4     3/18/14 3:01p Alexp
+// set 2014 in file hdr & ftr
+// 
+// 3     11/10/11 4:38p Alexp
+// 1. UpdateAutoFlash() updates the AutoFlash Variable installed by
+// ReFlash driver in Recovery/Flash Update flows
+// 2. Issue FlashReadyToLock Event notification based on the Flash Update
+// policy.
+// 
+// 2     7/20/11 7:16p Alexp
+// remove dependency on Capsule module
+// 
+// 1     7/01/11 4:39p Alexp
+// 
+//**********************************************************************
+#include <Protocol/AmiDigitalSignature.h>
+
+DEPENDENCY_START
+  AMI_DIGITAL_SIGNATURE_PROTOCOL_GUID
+DEPENDENCY_END
+
+//****************************************************************************
+//****************************************************************************
+//**                                                                        **
+//**             (C)Copyright 1985-2014, American Megatrends, Inc.          **
+//**                                                                        **
+//**                          All Rights Reserved.                          **
+//**                                                                        **
+//**             5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093          **
+//**                                                                        **
+//**                          Phone (770)-246-8600                          **
+//**                                                                        **
+//****************************************************************************
+//****************************************************************************

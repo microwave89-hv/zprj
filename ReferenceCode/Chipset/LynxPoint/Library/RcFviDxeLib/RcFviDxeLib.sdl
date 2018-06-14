@@ -1,0 +1,73 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchLib/RcFviDxeLib/RcFviDxeLib.sdl 1     2/08/12 8:50a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 2/08/12 8:50a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchLib/RcFviDxeLib/RcFviDxeLib.sdl $
+# 
+# 1     2/08/12 8:50a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+# 
+# 
+#*************************************************************************
+TOKEN
+        Name  = "RcFviDxeLib_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable RcFviDxeLib support in Project"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Master = Yes
+End
+
+PATH
+        Name  = "RcFviDxeLib_DIR"
+End
+
+MODULE
+        File  = "RcFviDxeLib.mak"
+        Help  = "Includes RcFviDxeLib.mak to Project"
+End
+
+ELINK
+        Name  = "RcFviDxeLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\RcFviDxeLib_Lib.lib"
+        Parent  = "RcFviDxeLib_LIB"
+        InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

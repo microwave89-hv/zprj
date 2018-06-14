@@ -1,0 +1,14 @@
+<component>
+	name = "PchGuidLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Guid\"
+	RefName = "PchGuidLib"
+[files]
+"PchGuidLib.sdl"	
+"PchGuidLib.mak"	
+"PchGuidLib.inf"	
+"ChipsetInitHob\ChipsetInitHob.c"
+"ChipsetInitHob\ChipsetInitHob.h"
+"S3SupportHob\S3SupportHob.c"
+"S3SupportHob\S3SupportHob.h"
+<endComponent>

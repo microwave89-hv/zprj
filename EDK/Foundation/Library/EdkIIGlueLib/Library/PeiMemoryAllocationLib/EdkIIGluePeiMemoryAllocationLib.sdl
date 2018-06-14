@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGluePeiMemoryAllocationLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGluePeiMemoryAllocationLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGluePeiMemoryAllocationLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGluePeiMemoryAllocationLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGluePeiMemoryAllocationLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGluePeiMemoryAllocationLib.mak to Project"
+	File  = "EdkIIGluePeiMemoryAllocationLib.mak"
+End
+

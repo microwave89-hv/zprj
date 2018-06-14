@@ -1,0 +1,9 @@
+<component>
+	name = "PchSmbusPeiLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Library\PchSmbusLib\Pei\"
+	RefName = "PchSmbusPeiLib"
+[files]
+"PchSmbusLib.h"	
+"PchSmbusLibPei.inf"	
+<endComponent>

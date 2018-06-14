@@ -1,0 +1,30 @@
+TOKEN
+	Name  = "SmmAccess_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SmmAccess support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+	Token = "SMM_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "SmmAccess_DIR"
+End
+
+MODULE
+	Help  = "Includes SmmAccess to Project"
+	File  = "SmmAccess.mak"
+End
+
+ELINK
+	Name  = "SmmAccess"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SmmAccess.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

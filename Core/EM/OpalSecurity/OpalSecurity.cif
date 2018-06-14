@@ -1,0 +1,14 @@
+<component>
+        name = "OpalSecurity"
+        category = eModule
+        LocalRoot = "core\em\OpalSecurity\"
+        RefName = "OpalSecurity"
+[files]
+"OpalSecurity.sdl"    
+"OpalSecurity.mak"    
+"OpalSecurity.c"    
+"OpalSecurity.h"    
+"IDEOpalSec.c"    
+"AHCIOpalSec.c"    
+"OpalSecurity.chm"    
+<endComponent>

@@ -1,0 +1,11 @@
+<component>
+	name = "PchSataDriver"
+	category = ModulePart
+	LocalRoot = "Chipset\SB\SataDriver\"
+	RefName = "SataDriver"
+[files]
+"SataDriver.sdl"
+"SataDriver.mak"
+"SataDriver.dxs"
+"SataDriver.efi"
+<endComponent>

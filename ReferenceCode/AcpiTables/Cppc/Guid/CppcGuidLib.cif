@@ -1,0 +1,12 @@
+<component>
+	name = "CppcGuidLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\AcpiTables\Cppc\Guid\"
+	RefName = "CppcGuidLib"
+[files]
+"CppcGuidLib.sdl"	
+"CppcGuidLib.mak"	
+"CppcGuidLib.inf"	
+"AcpiTableStorage\CppcAcpiTableStorage.c"	
+"AcpiTableStorage\CppcAcpiTableStorage.h"	
+<endComponent>

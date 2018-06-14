@@ -1,0 +1,39 @@
+TOKEN
+  Name  = "SaInitPeim_SUPPORT"
+  Value = "1"
+  Help  = "Main switch to enable SaInitPeim support in Project"
+  TokenType = Boolean
+  TargetEQU = Yes
+  TargetMAK = Yes
+  Master = Yes
+End
+
+TOKEN
+	Name  = "SA_DEBUG_INFO"
+	Value  = "1"
+	TokenType = Boolean
+	Range  = "0-1 "
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "/D SA_DEBUG_FLAG"
+	Parent  = "INTEL_SA_RC_FLAGS"
+	Token = "SA_DEBUG_INFO" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+PATH
+  Name  = "SaInitPeim_DIR"
+End
+
+MODULE
+  File  = "SaInitPeim.mak"
+  Help  = "Includes SaInitPeim.mak to Project"
+End
+
+ELINK
+  Name  = "$(BUILD_DIR)\SaInitPeim.ffs"
+  Parent  = "FV_BB"
+  InvokeOrder = AfterParent
+End

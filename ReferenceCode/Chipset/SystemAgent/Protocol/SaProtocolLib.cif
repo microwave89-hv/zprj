@@ -1,0 +1,26 @@
+<component>
+	name = "SaProtocolLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\Protocol\"
+	RefName = "SaProtocolLib"
+[files]
+"SaProtocolLib.sdl"	
+"SaProtocolLib.mak"	
+"MemInfo\MemInfo.c"	
+"MemInfo\MemInfo.h"	
+"IgdOpRegion\IgdOpRegion.c"	
+"IgdOpRegion\IgdOpRegion.h"	
+"IntelSaProtocolLib.inf"	
+"SaPlatformPolicy\SaPlatformPolicy.c"	
+"SaPlatformPolicy\SaPlatformPolicy.h"	
+"SaInfo\SaInfo.h"	
+"SaInfo\SaInfo.c"	
+"BdatAccess\BdatAccess.h"	
+"BdatAccess\BdatAccess.c"	
+"PlatformGopPolicy\PlatformGopPolicy.c"	
+"PlatformGopPolicy\PlatformGopPolicy.h"	
+"SaGlobalNvsArea\SaGlobalNvsArea.c"	
+"SaGlobalNvsArea\SaGlobalNvsArea.h"	
+"GopComponentName2\GopComponentName2.c"	
+"GopComponentName2\GopComponentName2.h"	
+<endComponent>

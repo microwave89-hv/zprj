@@ -1,0 +1,14 @@
+<component>
+	name = "TSE Binary - Advanced TSE"
+	category = ModulePart
+	LocalRoot = "EDK\MiniSetup\TseAdvanced"
+	RefName = "TseAdvancedBin"
+[files]
+"TseAdvancedBin.sdl"	
+"TseAdvanced.lib"	
+"TseAdvancedx64.lib"	
+"TseAdvancedBin.mak"	
+"Mouse.c"	
+"AddDelBootDrvOpts.sd"	
+"AddDelBootDrvOpts.uni"	
+<endComponent>

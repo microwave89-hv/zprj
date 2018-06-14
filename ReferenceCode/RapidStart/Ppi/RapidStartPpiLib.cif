@@ -1,0 +1,14 @@
+<component>
+	name = "RapidStartPpiLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\RapidStart\Ppi\"
+	RefName = "RapidStartPpiLib"
+[files]
+"RapidStartPpiLib.inf"
+"RapidStartPpiLib.sdl"
+"RapidStartPpiLib.mak"
+"PeiGfxPpi\PeiGfxPpi.c"
+"PeiGfxPpi\PeiGfxPpi.h"
+"RapidStart\RapidStart.h"
+"RapidStart\RapidStart.c"
+<endComponent>

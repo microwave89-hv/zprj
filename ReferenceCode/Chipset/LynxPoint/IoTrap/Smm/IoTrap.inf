@@ -1,0 +1,92 @@
+## @file
+#  Component description file for the IoTrap BS_DRIVER
+#
+#@copyright
+#  Copyright (c)  2006 - 2012 Intel Corporation. All rights reserved
+#  This software and associated documentation (if any) is furnished
+#  under a license and may only be used or copied in accordance
+#  with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be
+#  reproduced, stored in a retrieval system, or transmitted in any
+#  form or by any means without the express written consent of
+#  Intel Corporation.
+#
+#  This file contains a 'Sample Driver' and is licensed as such
+#  under the terms of your license agreement with Intel or your
+#  vendor.  This file may be modified by the user, subject to
+#  the additional terms of the license agreement
+#
+
+[defines]
+BASE_NAME            = IoTrap
+FILE_GUID            = 2374EDDF-F203-4fc0-A20E-61BAD73089D6
+COMPONENT_TYPE       = BS_DRIVER
+
+[sources.common]
+  IoTrap.c
+  IoTrap.h
+#
+# Edk II Glue Driver Entry Point
+#
+  EdkIIGlueSmmDriverEntryPoint.c
+
+[libraries.common]
+  EdkIIGlueBaseLib
+  EdkIIGlueBaseIoLibIntrinsic
+  EdkIIGlueBaseMemoryLib
+  EdkIIGlueBasePciLibPciExpress
+  EdkIIGlueDxeMemoryAllocationLib
+  EdkIIGlueDxeServicesTableLib
+  EdkIIGlueSmmRuntimeDxeReportStatusCodeLib
+  EdkIIGlueDxeDebugLibReportStatusCode
+  EdkIIGlueUefiLib
+  EdkIIGlueUefiBootServicesTableLib
+  EdkIIGlueUefiRuntimeServicesTableLib
+  EdkIIGlueUefiDevicePathLib
+  EdkFrameworkProtocolLib
+  EdkProtocolLib
+  $(PROJECT_PCH_FAMILY)ProtocolLib
+  EfiScriptLib
+
+[includes.common]
+  $(EDK_SOURCE)/Foundation/Include
+  $(EDK_SOURCE)/Foundation/Efi/Include
+  $(EDK_SOURCE)/Foundation/Framework/Include
+  $(EDK_SOURCE)/Foundation/Efi
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)/Include
+#
+# EDK II Glue Library utilizes some standard headers from EDK
+#
+  $(EFI_SOURCE)
+  $(EDK_SOURCE)/Foundation
+  $(EDK_SOURCE)/Foundation/Framework
+  $(EDK_SOURCE)/Foundation/Include/IndustryStandard
+  $(EDK_SOURCE)/Foundation/Core/Dxe
+  $(EDK_SOURCE)/Foundation/Include/Pei
+  $(EDK_SOURCE)/Foundation/Library/Dxe/Include
+  $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include
+#
+# Typically the sample code referenced will be available in the code base already
+# So keep this include at the end to defer to the source base definition
+# and only use the sample code definition if source base does not include these files.
+#
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)/SampleCode
+
+[nmake.common]
+  IMAGE_ENTRY_POINT = _ModuleEntryPoint
+  DPX_SOURCE        = IoTrapDepex.dxs
+#
+# Module Entry Point
+#
+  C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_MODULE_ENTRY_POINT__=InstallIoTrap
+  C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_BASE_LIB__ \
+                       -D __EDKII_GLUE_BASE_MEMORY_LIB__ \
+                       -D __EDKII_GLUE_DXE_MEMORY_ALLOCATION_LIB__ \
+                       -D __EDKII_GLUE_DXE_SERVICES_TABLE_LIB__ \
+                       -D __EDKII_GLUE_SMM_RUNTIME_DXE_REPORT_STATUS_CODE_LIB__ \
+                       -D __EDKII_GLUE_DXE_DEBUG_LIB_REPORT_STATUS_CODE__ \
+                       -D __EDKII_GLUE_UEFI_LIB__ \
+                       -D __EDKII_GLUE_UEFI_BOOT_SERVICES_TABLE_LIB__ \
+                       -D __EDKII_GLUE_UEFI_RUNTIME_SERVICES_TABLE_LIB__ \
+                       -D __EDKII_GLUE_UEFI_DEVICE_PATH_LIB__

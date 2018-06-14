@@ -1,0 +1,28 @@
+TOKEN
+	Name  = "FrameworkPpiLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable FrameworkPpiLib support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "FrameworkPpiLib_DIR"
+End
+
+MODULE
+	Help  = "Includes FrameworkPpiLib.mak to Project"
+	File  = "FrameworkPpiLib.mak"
+End
+
+ELINK
+	Name  = "FrameworkPpiLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\FrameworkPpiLib.lib"
+	Parent  = "FrameworkPpiLib_LIB"
+	InvokeOrder = AfterParent
+End

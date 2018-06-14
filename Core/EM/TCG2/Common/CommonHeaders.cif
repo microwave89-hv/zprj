@@ -1,0 +1,19 @@
+<component>
+	name = "CommonHeaders"
+	category = ModulePart
+	LocalRoot = "Core\EM\TCG2\Common"
+	RefName = "CommonHeaders"
+[files]
+"TCGMisc.h"	
+"TcgPrivate.h"	
+"TcgPrivate.c"	
+[parts]
+"TcgService_PPI"
+"TcgService_Protocol"
+"TpmDevice_PPI"
+"TpmDevice_Protocol"
+"AmiTcgPlatformProtocol"
+"AmiTpmClearOnRollbackProtocol"
+"Tpm20Includes"
+"AmiTcgPlatformPpi"
+<endComponent>

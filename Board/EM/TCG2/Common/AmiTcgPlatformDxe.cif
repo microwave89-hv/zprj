@@ -1,0 +1,15 @@
+<component>
+	name = "AmiTcgPlatformDxe"
+	category = ModulePart
+	LocalRoot = "Board\EM\TCG2\Common"
+	RefName = "AmiTcgPlatformDxe"
+[files]
+"AmiTcgPlatformDxe.sdl"	
+"AmiTcgPlatformDxe.mak"	
+"AmiTcgPlatformDxe.c"	
+"AmiTcgPlatformDxe.h"	
+"AmiTcgPlatformDxe.dxs"	
+"AmiTcgPlatformDxeLib.h"	
+"AmiTcgPlatformDxeLib.c"	
+"AmiTcgPlatformDxeString.uni"	
+<endComponent>

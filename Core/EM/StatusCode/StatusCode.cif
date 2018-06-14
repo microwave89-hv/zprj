@@ -1,0 +1,17 @@
+<component>
+	name = "StatusCode"
+	category = eModule
+	LocalRoot = "Core\EM\StatusCode\"
+	RefName = "StatusCode"
+[files]
+"StatusCode.mak"	
+"StatusCode.sdl"	
+"StatusCodePei.c"
+"StatusCodeDxe.c"
+"StatusCodeCommon.c"
+"StatusCodeInt.h"	
+"SerialStatusCode.c"	
+"StatusCodeMap.c"
+"StatusCode.chm"	
+"StatusCodeRuntime.c"	
+<endComponent>

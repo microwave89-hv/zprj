@@ -1,0 +1,39 @@
+TOKEN
+	Name  = RestoreSpecialBootOptions_SUPPORT
+	Value  = "1"
+	TokenType = Boolean
+	Master = Yes
+	Help  = "Main switch to enable RestoreSpecialBootOptions support in Project"
+End
+
+PATH
+	Name  = "RestoreSpecialBootOptions_DIR"
+End
+
+MODULE
+	Help  = "Includes RestoreSpecialBootOptions.mak to Project"
+	File  = "RestoreSpecialBootOptions.mak"
+End
+
+ELINK
+	Name = "RestoreSpecialOrphanBootOptions,"
+	Parent = "PreProcessBootOptions,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name = "RESTORED_BOOT_OPTION_NAMES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name = 'L"USB Entry for Windows To Go",'
+	Parent = "RESTORED_BOOT_OPTION_NAMES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name = 'L"USB Entry for Windows To Go Logo Test",'
+	Parent = "RESTORED_BOOT_OPTION_NAMES"
+	InvokeOrder = AfterParent
+End

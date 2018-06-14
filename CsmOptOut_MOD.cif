@@ -1,0 +1,7 @@
+<component>
+	name = "CsmOptOut_MOD"
+	category = ModulePart
+	RefName = "CsmOptOut_MOD"
+[files]
+"Core\EM\CsmOptOut\CsmOptOut.sd"	
+<endComponent>

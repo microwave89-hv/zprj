@@ -1,0 +1,685 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2013, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SecureBoot_WIN8/SecureBootMod.sd 51    3/09/15 5:05p Alexp $
+//
+// $Revision: 51 $
+//
+// $Date: 3/09/15 5:05p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SecureBoot_WIN8/SecureBootMod.sd $
+// 
+// 51    3/09/15 5:05p Alexp
+// 1. Implement User prompt to install Secure Boot key defaults 
+//     while switching of Secure Boot mode from Custom to Standard 
+//     (per Windows8+ Hardware Certification requirements).
+//     Add callback on SECURE_BOOT_MODE_CHANGE_KEY
+// 2. EIP#200639: When the token DEFAULT_PROVISION_SECURE_VARS enable,
+//     the secure boot status is Not Active when first enter setup.
+//   [Resolution] Issue SystemReset after initial Secure Boot provisioning
+// 3. EIP#201422: set SecVariables_SUPPORT = 0, code will build fail
+// 
+// 50    4/07/14 2:47p Alexp
+// Add Hii event SECURE_BOOT_MENU_REFRESH on entering of Secure Boot menu
+// The callback to this event refreshes the state of internal Secure Boot
+// setup flags.
+// UpdateSecureVariableBrowserInfo()
+// 
+// 49    12/05/13 9:05a Alexp
+// don't hide Secure Boot menu if in User mode. Instead - keep all
+// controls greyed out
+// 
+// 48    8/15/13 10:08a Alexp
+// add DBT controls
+// 
+// 47    7/26/13 3:34p Alexp
+// 1. Add dbt dialogs on Key Management page
+// 2. Image Execution policies options are enabled according to defaults
+// in SDL
+// 
+
+// 46    6/22/13 12:22p Alexp
+// Made Image Execution page depend on ENABLE_IMAGE_EXEC_POLICY_OVERRIDE
+// 
+// 45    5/17/13 5:50p Alexp
+// add separator
+// 
+// 44    3/22/13 5:00p Alexp
+// Put Key Management sub-menu in front of Image Executin Policy.
+// 
+// 43    3/21/13 1:16p Alexp
+// Update help strings 
+// 
+// 42    2/08/13 4:52p Alexp
+// EIP#114350:Need the Token for SecureBootMode default value
+// 
+// 41    12/06/12 7:32p Alexp
+// Update Key Management page layout
+// 
+// 40    12/04/12 11:23a Alexp
+// Revert the change in #39- do not introduce SETUP_DATA.SecureBootSupport
+// Mudules that had reference to this field must change to use generic
+// UEFI SecureBoot variable
+// 
+// 39    11/29/12 11:10a Alexp
+// Include dummy variable to the SetupData structure in case it's
+// referenced by external modules (e.g. old labels of TCG)
+// SETUP_DATA.SecureBootSupport;
+// 
+// 38    11/19/12 4:40p Alexp
+// Fix for Win8 SecureBoot logo requirement: restore Secure Boot state
+// across flash updates.
+// Move all secure boot Setup settings to a separate varsore variable. 
+// Preserve var across re-flash
+// 
+// 37    10/22/12 3:53p Alexp
+// Fix interactive menus for Set/Append Key operations
+// 
+// 36    9/18/12 3:51p Alexp
+// 
+// 35    9/10/12 2:06p Alexp
+// Link SDL defined defaults for Image Exec Policy settings
+// 
+// 34    9/07/12 5:12p Alexp
+// Remove dependency on newer Cores:CORE_COMBINED_VERSION  >= 0x4028a
+// Win8 compliant BIOS must have upgraded Core components and Tse 
+// 
+// 33    9/04/12 12:40p Alexp
+// Change dependency on from Efi Generic Variable: SetupMode to custom
+// Variable: SECURE_VAR_INSTALL
+// Needed to display proper Goto Control symbol in TSE 
+// 
+// 32    8/30/12 2:05p Alexp
+// Add warning label and steps to overcome Vfr coompatibility issues on
+// older Cores with EfiSpec version less then 2.1
+// 
+// 31    8/29/12 5:24p Alexp
+// Fix Display issues with Core 4.6.5.4+ 
+// Changed oneof parameters in SecureBootSupport.
+// 
+// 30    8/28/12 3:46p Alexp
+// 
+// 29    8/27/12 6:51p Alexp
+// DEFAULT_SECURE_BOOT_ENABLE changes behavior of SecureBoot Option. 
+// If set to 0 - Secure Boot will be kept disabled if in Setup Mode
+// 
+// 28    8/27/12 10:46a Alexp
+// SecureBoot Supprt value made dependent on System State = User Mode and
+// Default Provisioning.
+// User should not be able to Enable Secure Boot if Keys are not
+// provisioned.
+// 
+// 27    8/23/12 5:43p Alexp
+// Add user selection for supported file formats in Append SecureBoot
+// operations
+// 
+// 26    8/15/12 4:48p Alexp
+// 1. Modify Secure Boot page controls. Hide all controls under new
+// sub-page 
+// 2. Refrash Secure Boot Setup screens upon user load Defaults/Previous
+// values
+// 3. 
+// 
+// 25    7/30/12 10:59a Alexp
+// 
+// 24    7/27/12 2:00p Alexp
+//  Execution Policy page. Made "User Query" visible only if System is in
+//  Setup mode
+// 
+// 
+// 22    7/25/12 6:34p Alexp
+// Update Secure Boot page layout
+//   1. Security Page
+//     1.3 Replaced standalone SecureBootMode Option to an added value in
+// Secure Boot list (on/off/custom)
+//     1.4 Display SecureBootMode Standard/Custom Status
+//   2. Key Management Page
+//     2.1 Add Append Certificate Options along with Append from File
+//          New functions append new Certificates from different types of
+// input Certs (x509, RSA2048 & SHA256) and Signature List blobs
+//     2.2 Use single Save to files option for all Sec Variables
+//     2.3 Set Variable Option gets a Key from a File Browser or a Factory
+// Default storage.
+// 
+// 21    5/15/12 9:43a Alexp
+// EIP:89280. When secure boot enable with secure flash disable, in
+// Security page of setup menu same items will exist twice
+// FIX: modify rules to suppress lines for installed Variables
+// 
+// 20    4/27/12 3:52p Alexp
+// 
+// 19    4/23/12 5:25p Alexp
+// Update Key Management Setup page. 
+// -Added "Default Key Provisioning" switch
+// -reuse help strings for custom Secure Boot key options  
+// 
+// 18    4/10/12 6:52p Alexp
+// change control order
+// 
+// 17    3/22/12 10:51a Alexp
+// change Secure Boot default to Enabled
+// 
+// 16    3/09/12 3:57p Alexp
+// [EIP#82334]-TSE Text Verification test failed
+//  -fixed misspelled messages
+// - Win8 Logo requirement: add new Setup switch- Secure Boot mode to
+//    toggle between Standard and Custom
+// -changed Security page layout
+// 
+// 14    2/15/12 1:57p Alexp
+// Disable "Key Delete" controls if DEFAULT_PROVISION_SECURE_VARS is set 
+// 
+// 13    2/14/12 7:34p Alexp
+// disable unused controlls when DEFAULT_PROVISION_SECURE_VARS is set
+// 
+// 12    11/10/11 2:16p Alexp
+// exclude all HII callback forms based on "EFI_SPECIFICATION_VERSION"
+// ">=" "0x2000A
+// 
+// 11    11/08/11 5:58p Alexp
+// 
+// 10    11/07/11 6:26p Alexp
+// Add Key Management controls to add/get/append and delete Secure
+// Variables from the Setup page
+// 
+// 9     11/03/11 6:30p Alexp
+// SecureBootMod.c(sdl, .sd, .uni) Change the appearance of Secure Boot
+// items on Setup Security page. Added information on currently installed
+// Secure Variables.
+// 
+// 8     8/22/11 5:19p Alexp
+// restored CallBack notification method to set Manufacturing defaults
+// from TSE SetupPage
+// 
+// 7     8/18/11 4:51p Alexp
+// replaced dynamic removed callback events to static Setup Option
+// 
+// 6     8/05/11 3:15p Alexp
+// re-arranged setup page
+// 
+// 5     7/18/11 9:57a Alexp
+// rearranged Security Setup page
+// 
+// 4     7/01/11 3:35p Alexp
+// Made changes to comply with older VfrCompilers (pre 4.6.5.)
+// 
+// 3     6/30/11 4:25p Alexp
+// add dependency on SecureVariable module with OEM defined default
+// variables for PK-KEK-db-dbx
+// if present will add setup control to provision default Secure Variables
+// 
+// 2     6/30/11 3:56p Alexp
+// removed comments
+// 
+// 1     6/30/11 3:47p Alexp
+// 
+// 
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//----------------------------------------------------------------------------
+//
+// Name:        SecureBootMod.sd
+//
+// Description:    
+//
+//----------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+#ifdef SETUP_DATA_DEFINITION
+/***********************************************************/
+/* Put NVRAM data definitions here.
+/* For example:    UINT8 Data1;
+/* These definitions will be converted by the build process
+/* to a definitions of SETUP_DATA fields.
+/***********************************************************/
+#endif
+
+#ifdef SECURITY_FORM_SET
+
+#ifdef FORM_SET_TYPEDEF
+	#include "SecureBootMod.h"
+#endif
+  #ifdef FORM_SET_VARSTORE
+    varstore SECURE_BOOT_SETUP_VAR,
+        key   = AUTO_ID(SECURE_BOOT_SETUP_ID),
+        name  = SecureBootSetup,
+        guid  = SECURITY_FORM_SET_GUID;
+    varstore SECURE_VAR_INSTALL_VAR,
+        key   = AUTO_ID(SECURE_VAR_INSTALL_ID),
+        name  = SecureVarPresent,
+        guid  = SECURITY_FORM_SET_GUID;
+    varstore SETUP_MODE_VAR,
+        key   = AUTO_ID(SETUP_MODE_ID),
+        name  = SetupMode,
+        guid  = {0x8BE4DF61,0x93CA,0x11d2,0xAA,0xD,0x0,0xE0,0x98,0x03,0x2B,0x8C};
+    varstore SECURE_BOOT_VAR,
+        key   = AUTO_ID(SECURE_BOOT_ID),
+        name  = SecureBoot,
+        guid  = {0x8BE4DF61,0x93CA,0x11d2,0xAA,0xD,0x0,0xE0,0x98,0x03,0x2B,0x8C};
+  #endif
+
+  #ifdef FORM_SET_ITEM
+  #endif
+
+  #ifdef FORM_SET_GOTO
+
+    SEPARATOR
+    //
+    // Define goto commands for the forms defined in this file
+    //
+    //
+    // Define goto commands for the forms defined in this file
+    //
+    goto SECURE_BOOT_SUBMENU_FORM_ID,
+    prompt  = STRING_TOKEN(SECURE_BOOT_MENU_FORM_TITLE),
+    help    = STRING_TOKEN(SECURE_BOOT_MENU_FORM_HELP),
+    flags   = INTERACTIVE, key = AUTO_ID(SECURE_BOOT_MENU_REFRESH);
+
+  #endif
+
+  #ifdef FORM_SET_FORM
+    //
+    // Define forms
+    //
+    form formid = AUTO_ID(SECURE_BOOT_SUBMENU_FORM_ID),
+    title     = STRING_TOKEN(SECURE_BOOT_MENU_FORM_TITLE);
+
+        SEPARATOR
+        suppressif  ideqval SETUP_MODE_VAR.Value == 1;
+            text 
+                help   = STRING_TOKEN(STR_EMPTY),
+                text   = STRING_TOKEN(STR_PLATFORM_MODE),
+                text   = STRING_TOKEN(STR_USER),
+                flags  = 0,
+                key    = 0;
+        endif;
+        suppressif  ideqval SETUP_MODE_VAR.Value == 0;
+            text 
+                help   = STRING_TOKEN(STR_EMPTY),
+                text   = STRING_TOKEN(STR_PLATFORM_MODE),
+                text   = STRING_TOKEN(STR_SETUP),
+                flags  = 0,
+                key    = 0;
+        endif;
+        suppressif  ideqval SECURE_BOOT_VAR.Value == 1;
+            text 
+                help   = STRING_TOKEN(STR_EMPTY),
+                text   = STRING_TOKEN(STR_PLATFORM_SECURE_MODE),
+                text   = STRING_TOKEN(STR_INACTIVE),
+                flags  = 0,
+                key    = 0;
+        endif;
+        suppressif  ideqval SECURE_BOOT_VAR.Value == 0;
+            text 
+                help   = STRING_TOKEN(STR_EMPTY),
+                text   = STRING_TOKEN(STR_PLATFORM_SECURE_MODE),
+                text   = STRING_TOKEN(STR_ACTIVE),
+                flags  = 0,
+                key    = 0;
+        endif;
+        //
+        // Define controls to be added to the main page of the formset
+        //
+//!!!!!!!!!!!
+// WARNING: On older Aptio Core versions (< 4.6.5.0) VfrCompiler may generate errors in SecureBootMod.sd due to incompatible syntax of `questionid' and 
+//          `INTERRACTIVE' constructions. User may need to upgrade Aptio Core support for EFI_SPECIFICATION version to 2.1 (SDL:0x2000A) or edit this SecureBootMod.sd to 
+//          remove unsupported keywords e.g. remove `INTERACTIVE' in `one of' structures and add `, key=0' instead. Also remove `questioned' from `oneof' constructions .
+//          Note that above mentioned fixes will disable some of the Secure Boot page functionality
+//!!!!!!!!!!!
+        SEPARATOR
+        grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+            oneof varid  = SECURE_BOOT_SETUP_VAR.SecureBootSupport,
+                questionid = AUTO_ID(SECURE_BOOT_SUPPORT_CHANGE_KEY),
+                prompt = STRING_TOKEN(STR_SECURE_BOOT_ENABLE),
+                help = STRING_TOKEN(STR_SECURE_BOOT_HELP),
+                default = DEFAULT_SECURE_BOOT_ENABLE,
+                option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | INTERACTIVE;
+                option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = MANUFACTURING | RESET_REQUIRED | INTERACTIVE;
+            endoneof;
+            oneof varid  = SECURE_BOOT_SETUP_VAR.SecureBootMode,
+                questionid = AUTO_ID(SECURE_BOOT_MODE_CHANGE_KEY),
+                prompt = STRING_TOKEN(STR_SECURE_BOOT_MODE),
+                help = STRING_TOKEN(STR_SECURE_BOOT_MODE_HELP),
+                default = DEFAULT_SECURE_BOOT_MODE,
+                option text = STRING_TOKEN(SECURE_BOOT_STANDARD), value = 0, flags = MANUFACTURING | RESET_REQUIRED | INTERACTIVE;//, key = 0;
+                option text = STRING_TOKEN(SECURE_BOOT_CUSTOM), value = 1, flags = RESET_REQUIRED | INTERACTIVE;//, key = 0;
+            endoneof;
+        endif;
+        //
+        // Define goto commands for the forms defined in this file
+        //
+         suppressif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER OR ideqval SECURE_BOOT_SETUP_VAR.SecureBootMode == 0;
+            goto SECURE_KEY_MANAGEMENT_FORM_ID,
+            prompt  = STRING_TOKEN(STR_KEY_MANAGEMENT_TITLE),
+            help    = STRING_TOKEN(STR_KEY_MANAGEMENT_HELP),
+            flags   = INTERACTIVE, key = AUTO_ID(KEY_MANAGEMENT_MENU_REFRESH);
+     #if (defined(ENABLE_IMAGE_EXEC_POLICY_OVERRIDE) && ENABLE_IMAGE_EXEC_POLICY_OVERRIDE == 1)
+            goto IMAGE_EXEC_POLICY_FORM_ID,
+            prompt  = STRING_TOKEN(IMAGE_EXEC_POLICY_FORM_TITLE),
+            help    = STRING_TOKEN(IMAGE_EXEC_POLICY_FORM_HELP);
+     #endif   
+        endif;
+    endform;
+
+    form formid = AUTO_ID(SECURE_KEY_MANAGEMENT_FORM_ID),
+    title     = STRING_TOKEN(STR_KEY_MANAGEMENT_TITLE);
+
+        oneof varid  = SECURE_BOOT_SETUP_VAR.DefaultKeyProvision,
+            questionid = AUTO_ID(KEY_PROVISION_CHANGE_KEY),
+            prompt = STRING_TOKEN(STR_DEFAULT_KEY_PROVISION_MODE),
+            help = STRING_TOKEN(STR_KEY_PROVISION_MODE_HELP),
+     #if (defined(DEFAULT_PROVISION_SECURE_VARS) && DEFAULT_PROVISION_SECURE_VARS == 1)
+            option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | INTERACTIVE;
+            option text = STRING_TOKEN(STR_ENABLED), value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED | INTERACTIVE;
+     #else
+        #if defined(SET_SECURE_VARS) && SET_SECURE_VARS
+            option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED | INTERACTIVE;
+            option text = STRING_TOKEN(STR_ENABLED), value = 1,  flags = RESET_REQUIRED | INTERACTIVE;
+        #else
+            option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED | INTERACTIVE;
+        #endif
+     #endif
+
+        endoneof;
+        //
+        // Define goto commands for the forms defined in this file
+        //
+        SEPARATOR
+        suppressif  ideqval SECURE_VAR_INSTALL_VAR.PK == 0 OR ideqval SECURE_BOOT_SETUP_VAR.DefaultKeyProvision == 1;
+            goto SECURE_KEY_MANAGEMENT_FORM_ID,
+            prompt  = STRING_TOKEN(STR_FORCE_SETUP_MODE),
+            help    = STRING_TOKEN(STR_FORCE_SETUP_MODE_HELP),
+            flags   = INTERACTIVE, key = AUTO_ID(FORCE_SETUP_KEY);
+        endif;
+    #if defined(SET_SECURE_VARS) && SET_SECURE_VARS
+        suppressif  ideqval SECURE_VAR_INSTALL_VAR.PK == 1 AND ideqval SECURE_BOOT_SETUP_VAR.DefaultKeyProvision == 0;
+            goto SECURE_KEY_MANAGEMENT_FORM_ID,
+            prompt  = STRING_TOKEN(STR_FORCE_DEFAULT_MODE),
+            help    = STRING_TOKEN(STR_FORCE_DEFAULT_MODE_HELP),
+            flags   = INTERACTIVE, key = AUTO_ID(FORCE_DEFAULT_KEY);
+        endif;
+    #endif // SET_SECURE_VARS
+        grayoutif ideqval SECURE_VAR_INSTALL_VAR.PK == 0 AND ideqval SECURE_VAR_INSTALL_VAR.KEK == 0 AND ideqval SECURE_VAR_INSTALL_VAR.DB == 0 AND ideqval SECURE_VAR_INSTALL_VAR.DBX == 0;
+            goto SECURE_KEY_MANAGEMENT_FORM_ID,
+            prompt  = STRING_TOKEN(STR_GET_ALL_VARS),
+            help    = STRING_TOKEN(STR_GET_PK_HELP),
+            flags   = INTERACTIVE, key = AUTO_ID(GET_PK_KEY);
+        endif;
+        SEPARATOR   
+        suppressif  NOT ideqval SECURE_VAR_INSTALL_VAR.PK == 0;
+            text 
+                help   = STRING_TOKEN(STR_EMPTY),
+                text   = STRING_TOKEN(STR_MANAGE_PK),
+                text   = STRING_TOKEN(STR_NOT_INSTALLED),
+                flags  = 0,
+                key    = 0;
+        endif;
+        suppressif  NOT ideqval SECURE_VAR_INSTALL_VAR.PK == 1;
+            text 
+                help   = STRING_TOKEN(STR_EMPTY),
+                text   = STRING_TOKEN(STR_MANAGE_PK),
+                text   = STRING_TOKEN(STR_INSTALLED),
+                flags  = 0,
+                key    = 0;
+        endif;
+
+        grayoutif ideqval SECURE_VAR_INSTALL_VAR.PK == 0;
+            goto SECURE_KEY_MANAGEMENT_FORM_ID,
+            prompt  = STRING_TOKEN(STR_DELETE_PK),
+            help    = STRING_TOKEN(STR_DELETE_PK_HELP),
+            flags   = INTERACTIVE, key = AUTO_ID(DELETE_PK_KEY);
+        endif;
+        goto SECURE_KEY_MANAGEMENT_FORM_ID,
+        prompt  = STRING_TOKEN(STR_SET_PK),
+        help    = STRING_TOKEN(STR_APPEND_KEK_ENTRY_HELP),
+        flags   = INTERACTIVE, key = AUTO_ID(SET_PK_KEY);
+
+       SEPARATOR   
+        
+       suppressif NOT ideqval SECURE_VAR_INSTALL_VAR.KEK == 0;
+            text 
+                help   = STRING_TOKEN(STR_EMPTY),
+                text   = STRING_TOKEN(STR_MANAGE_KEK),
+                text   = STRING_TOKEN(STR_NOT_INSTALLED),
+                flags  = 0,
+                key    = 0;
+        endif;
+        suppressif NOT ideqval SECURE_VAR_INSTALL_VAR.KEK == 1;
+            text 
+                help   = STRING_TOKEN(STR_EMPTY),
+                text   = STRING_TOKEN(STR_MANAGE_KEK),
+                text   = STRING_TOKEN(STR_INSTALLED),
+                flags  = 0,
+                key    = 0;
+        endif;
+
+        grayoutif ideqval SECURE_VAR_INSTALL_VAR.KEK == 0;
+            goto SECURE_KEY_MANAGEMENT_FORM_ID,
+            prompt  = STRING_TOKEN(STR_DELETE_KEK),
+            help    = STRING_TOKEN(STR_DELETE_PK_HELP),
+            flags   = INTERACTIVE, key = AUTO_ID(DELETE_KEK_KEY);
+        endif;
+
+        goto SECURE_KEY_MANAGEMENT_FORM_ID,
+        prompt  = STRING_TOKEN(STR_SET_KEK),
+        help    = STRING_TOKEN(STR_APPEND_KEK_ENTRY_HELP),
+        flags   = INTERACTIVE, key = AUTO_ID(SET_KEK_KEY);
+
+        goto SECURE_KEY_MANAGEMENT_FORM_ID,
+        prompt  = STRING_TOKEN(STR_APPEND_KEK_ENTRY),
+        help    = STRING_TOKEN(STR_APPEND_KEK_ENTRY_HELP),
+        flags   = INTERACTIVE, key = AUTO_ID(APPEND_KEK_KEY);
+            
+        suppressif NOT ideqval SECURE_VAR_INSTALL_VAR.DB == 0;
+            text 
+                help   = STRING_TOKEN(STR_EMPTY),
+                text   = STRING_TOKEN(STR_MANAGE_DB),
+                text   = STRING_TOKEN(STR_NOT_INSTALLED),
+                flags  = 0,
+                key    = 0;
+        endif;
+        suppressif NOT ideqval SECURE_VAR_INSTALL_VAR.DB == 1;
+            text 
+                help   = STRING_TOKEN(STR_EMPTY),
+                text   = STRING_TOKEN(STR_MANAGE_DB),
+                text   = STRING_TOKEN(STR_INSTALLED),
+                flags  = 0,
+                key    = 0;
+        endif;
+
+        grayoutif ideqval SECURE_VAR_INSTALL_VAR.DB == 0;
+            goto SECURE_KEY_MANAGEMENT_FORM_ID,
+            prompt  = STRING_TOKEN(STR_DELETE_DB),
+            help    = STRING_TOKEN(STR_DELETE_PK_HELP),
+            flags   = INTERACTIVE, key = AUTO_ID(DELETE_DB_KEY);
+        endif;
+
+        goto SECURE_KEY_MANAGEMENT_FORM_ID,
+        prompt  = STRING_TOKEN(STR_SET_DB),
+        help    = STRING_TOKEN(STR_APPEND_KEK_ENTRY_HELP),
+        flags   = INTERACTIVE, key = AUTO_ID(SET_DB_KEY);
+
+        goto SECURE_KEY_MANAGEMENT_FORM_ID,
+        prompt  = STRING_TOKEN(STR_APPEND_DB_ENTRY),
+        help    = STRING_TOKEN(STR_APPEND_KEK_ENTRY_HELP),
+        flags   = INTERACTIVE, key = AUTO_ID(APPEND_DB_KEY);
+
+       suppressif NOT ideqval SECURE_VAR_INSTALL_VAR.DBX == 0;
+            text 
+                help   = STRING_TOKEN(STR_EMPTY),
+                text   = STRING_TOKEN(STR_MANAGE_DBX),
+                text   = STRING_TOKEN(STR_NOT_INSTALLED),
+                flags  = 0,
+                key    = 0;
+        endif;
+        suppressif NOT ideqval SECURE_VAR_INSTALL_VAR.DBX == 1;
+            text 
+                help   = STRING_TOKEN(STR_EMPTY),
+                text   = STRING_TOKEN(STR_MANAGE_DBX),
+                text   = STRING_TOKEN(STR_INSTALLED),
+                flags  = 0,
+                key    = 0;
+        endif;
+
+        grayoutif ideqval SECURE_VAR_INSTALL_VAR.DBX == 0;
+            goto SECURE_KEY_MANAGEMENT_FORM_ID,
+            prompt  = STRING_TOKEN(STR_DELETE_DBX),
+            help    = STRING_TOKEN(STR_DELETE_PK_HELP),
+            flags   = INTERACTIVE, key = AUTO_ID(DELETE_DBX_KEY);
+        endif;
+
+        goto SECURE_KEY_MANAGEMENT_FORM_ID,
+        prompt  = STRING_TOKEN(STR_SET_DBX),
+        help    = STRING_TOKEN(STR_APPEND_KEK_ENTRY_HELP),
+        flags   = INTERACTIVE, key = AUTO_ID(SET_DBX_KEY);
+
+        goto SECURE_KEY_MANAGEMENT_FORM_ID,
+        prompt  = STRING_TOKEN(STR_APPEND_DBX_ENTRY),
+        help    = STRING_TOKEN(STR_APPEND_KEK_ENTRY_HELP),
+        flags   = INTERACTIVE, key = AUTO_ID(APPEND_DBX_KEY);
+
+       suppressif NOT ideqval SECURE_VAR_INSTALL_VAR.DBT == 0;
+            text 
+                help   = STRING_TOKEN(STR_EMPTY),
+                text   = STRING_TOKEN(STR_MANAGE_DBT),
+                text   = STRING_TOKEN(STR_NOT_INSTALLED),
+                flags  = 0,
+                key    = 0;
+        endif;
+        suppressif NOT ideqval SECURE_VAR_INSTALL_VAR.DBT == 1;
+            text 
+                help   = STRING_TOKEN(STR_EMPTY),
+                text   = STRING_TOKEN(STR_MANAGE_DBT),
+                text   = STRING_TOKEN(STR_INSTALLED),
+                flags  = 0,
+                key    = 0;
+        endif;
+
+        grayoutif ideqval SECURE_VAR_INSTALL_VAR.DBT == 0;
+            goto SECURE_KEY_MANAGEMENT_FORM_ID,
+            prompt  = STRING_TOKEN(STR_DELETE_DBT),
+            help    = STRING_TOKEN(STR_DELETE_PK_HELP),
+            flags   = INTERACTIVE, key = AUTO_ID(DELETE_DBT_KEY);
+        endif;
+
+        goto SECURE_KEY_MANAGEMENT_FORM_ID,
+        prompt  = STRING_TOKEN(STR_SET_DBT),
+        help    = STRING_TOKEN(STR_APPEND_KEK_ENTRY_HELP),
+        flags   = INTERACTIVE, key = AUTO_ID(SET_DBT_KEY);
+
+        goto SECURE_KEY_MANAGEMENT_FORM_ID,
+        prompt  = STRING_TOKEN(STR_APPEND_DBT_ENTRY),
+        help    = STRING_TOKEN(STR_APPEND_KEK_ENTRY_HELP),
+        flags   = INTERACTIVE, key = AUTO_ID(APPEND_DBT_KEY);
+
+    endform;
+
+#if (defined(ENABLE_IMAGE_EXEC_POLICY_OVERRIDE) && ENABLE_IMAGE_EXEC_POLICY_OVERRIDE == 1)
+    form formid = AUTO_ID(IMAGE_EXEC_POLICY_FORM_ID),
+    title     = STRING_TOKEN(IMAGE_EXEC_POLICY_FORM_TITLE);
+
+        oneof varid  = SECURE_BOOT_SETUP_VAR.Load_from_FV,
+            prompt = STRING_TOKEN(STR_LOAD_FROM_FV),
+            help = STRING_TOKEN(STR_LOAD_FROM_HELP),
+            option text = STRING_TOKEN(ALWAYS_ENABLED), value = 0,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;
+        endoneof;
+
+        oneof varid  = SECURE_BOOT_SETUP_VAR.Load_from_OROM,
+            prompt = STRING_TOKEN(STR_LOAD_FROM_OROM),
+            help = STRING_TOKEN(STR_LOAD_FROM_HELP),
+            default = LOAD_FROM_OROM,
+#if (LOAD_FROM_OROM == 0 )
+            option text = STRING_TOKEN(ALWAYS_ENABLED), value = 0,  flags = RESET_REQUIRED, key = 0;
+#endif
+#if (LOAD_FROM_OROM < 2 )
+            option text = STRING_TOKEN(ALWAYS_DISABLED), value = 1, flags = RESET_REQUIRED, key = 0;
+#endif
+#if (LOAD_FROM_OROM < 3 )
+            option text = STRING_TOKEN(ALLOW_EXECUTE_ON_SECURITY_VIOLATION), value = 2, flags = RESET_REQUIRED, key = 0;
+#endif
+#if (LOAD_FROM_OROM < 4 )
+            option text = STRING_TOKEN(DEFER_EXECUTE_ON_SECURITY_VIOLATION), value = 3, flags = RESET_REQUIRED, key = 0;
+#endif
+#if (LOAD_FROM_OROM < 5 )
+            option text = STRING_TOKEN(DENY_EXECUTE_ON_SECURITY_VIOLATION), value = 4, flags = MANUFACTURING | RESET_REQUIRED, key = 0;
+#endif
+            option text = STRING_TOKEN(QUERY_USER_ON_SECURITY_VIOLATION), value = 5, flags = RESET_REQUIRED, key = 0;
+        endoneof;
+
+        oneof varid  = SECURE_BOOT_SETUP_VAR.Load_from_REMOVABLE_MEDIA,
+            prompt = STRING_TOKEN(STR_LOAD_FROM_REMOVABLE_MEDIA),
+            help = STRING_TOKEN(STR_LOAD_FROM_HELP),
+            default = LOAD_FROM_REMOVABLE_MEDIA,
+#if (LOAD_FROM_REMOVABLE_MEDIA == 0 )
+            option text = STRING_TOKEN(ALWAYS_ENABLED), value = 0,  flags = RESET_REQUIRED, key = 0;
+#endif
+#if (LOAD_FROM_REMOVABLE_MEDIA < 2 )
+            option text = STRING_TOKEN(ALWAYS_DISABLED), value = 1, flags = RESET_REQUIRED, key = 0;
+#endif
+#if (LOAD_FROM_REMOVABLE_MEDIA < 3 )
+            option text = STRING_TOKEN(ALLOW_EXECUTE_ON_SECURITY_VIOLATION), value = 2, flags = RESET_REQUIRED, key = 0;
+#endif
+#if (LOAD_FROM_REMOVABLE_MEDIA < 4 )
+            option text = STRING_TOKEN(DEFER_EXECUTE_ON_SECURITY_VIOLATION), value = 3, flags = RESET_REQUIRED, key = 0;
+#endif
+#if (LOAD_FROM_REMOVABLE_MEDIA < 5 )
+            option text = STRING_TOKEN(DENY_EXECUTE_ON_SECURITY_VIOLATION), value = 4, flags = MANUFACTURING | RESET_REQUIRED, key = 0;
+#endif
+            option text = STRING_TOKEN(QUERY_USER_ON_SECURITY_VIOLATION), value = 5, flags = RESET_REQUIRED, key = 0;
+        endoneof;
+
+        oneof varid  = SECURE_BOOT_SETUP_VAR.Load_from_FIXED_MEDIA,
+            prompt = STRING_TOKEN(STR_LOAD_FROM_FIXED_MEDIA),
+            help = STRING_TOKEN(STR_LOAD_FROM_HELP),
+            default = LOAD_FROM_FIXED_MEDIA,
+#if (LOAD_FROM_FIXED_MEDIA == 0 )
+            option text = STRING_TOKEN(ALWAYS_ENABLED), value = 0,  flags = RESET_REQUIRED, key = 0;
+#endif
+#if (LOAD_FROM_FIXED_MEDIA < 2 )
+            option text = STRING_TOKEN(ALWAYS_DISABLED), value = 1, flags = RESET_REQUIRED, key = 0;
+#endif
+#if (LOAD_FROM_FIXED_MEDIA < 3 )
+            option text = STRING_TOKEN(ALLOW_EXECUTE_ON_SECURITY_VIOLATION), value = 2, flags = RESET_REQUIRED, key = 0;
+#endif
+#if (LOAD_FROM_FIXED_MEDIA < 4 )
+            option text = STRING_TOKEN(DEFER_EXECUTE_ON_SECURITY_VIOLATION), value = 3, flags = RESET_REQUIRED, key = 0;
+#endif
+#if (LOAD_FROM_FIXED_MEDIA < 5 )
+            option text = STRING_TOKEN(DENY_EXECUTE_ON_SECURITY_VIOLATION), value = 4, flags = MANUFACTURING | RESET_REQUIRED, key = 0;
+#endif
+            option text = STRING_TOKEN(QUERY_USER_ON_SECURITY_VIOLATION), value = 5, flags = RESET_REQUIRED, key = 0;
+        endoneof;
+
+    endform;
+#endif
+  #endif
+
+#endif // SECURITY_FORM_SET
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2013, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

@@ -1,0 +1,78 @@
+/**
+
+Copyright (c)  2005-2013 Intel Corporation. All rights reserved
+This software and associated documentation (if any) is furnished
+under a license and may only be used or copied in accordance
+with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be
+reproduced, stored in a retrieval system, or transmitted in any
+form or by any means without the express written consent of
+Intel Corporation.
+
+
+Module Name:
+
+  MemInit.dxs
+
+Abstract:
+
+  Dependency expression file for Memory Init PEIM.
+  
+**/  
+
+//
+// Common for R8 and R9 codebase
+//
+#include "AutoGen.h"
+#include "PeimDepex.h"
+
+//
+// BUILD_WITH_GLUELIB and BUILD_WITH_EDKII_GLUE_LIB are both "defined" in R8 codebase;
+// BUILD_WITH_EDKII_GLUE_LIB is defined in Edk-Dev-Snapshot-20070228 and later version
+// BUILD_WITH_GLUELIB and BUILD_WITH_EDKII_GLUE_LIB are "not defined" in R9 codebase.
+//
+#if defined (BUILD_WITH_GLUELIB) || defined (BUILD_WITH_EDKII_GLUE_LIB)
+#include "EfiDepex.h"
+
+#include EFI_PPI_DEPENDENCY (PlatformMemoryRange)
+#include EFI_PPI_DEPENDENCY (BaseMemoryTest)
+#include EFI_PPI_DEPENDENCY (Variable)
+#include EFI_PPI_DEPENDENCY (PlatformMemorySize)
+#include EFI_PPI_DEPENDENCY (Smbus)
+#include EFI_PPI_DEPENDENCY (SaPlatformPolicy)
+#include EFI_PPI_DEPENDENCY (CpuPlatformPolicy)
+#include EFI_PPI_DEPENDENCY (SaPeiInit)
+#include EFI_PPI_CONSUMER   (BootMode)
+#include EFI_PPI_DEPENDENCY (Wdt)
+#include EFI_PPI_DEPENDENCY (PchMeUma)
+
+#ifdef TXT_SUPPORT_FLAG
+#include EFI_PPI_DEFINITION (TxtMemoryUnlocked)
+#include EFI_PPI_DEPENDENCY (Stall)
+// #include "ppi\TcgPeiDone.h"
+#endif // TXT_SUPPORT_FLAG
+#ifdef RAPID_START_FLAG
+#include EFI_PPI_DEPENDENCY (RapidStart)
+#endif
+#endif
+
+DEPENDENCY_START
+#ifdef TXT_SUPPORT_FLAG
+  PEI_TXT_MEMORY_UNLOCKED_PPI_GUID        AND
+  PEI_STALL_PPI_GUID                      AND
+#endif // TXT_SUPPORT_FLAG
+  PEI_PLATFORM_MEMORY_RANGE_PPI_GUID      AND
+  PEI_BASE_MEMORY_TEST_GUID               AND  
+  PEI_MASTER_BOOT_MODE_PEIM_PPI           AND
+  PEI_READ_ONLY_VARIABLE_ACCESS_PPI_GUID  AND
+  PEI_PLATFORM_MEMORY_SIZE_PPI_GUID       AND
+  PEI_SMBUS_PPI_GUID                      AND
+  SA_PLATFORM_POLICY_PPI_GUID             AND
+  PEI_CPU_PLATFORM_POLICY_PPI_GUID        AND
+  WDT_PPI_GUID                            AND
+  PCH_ME_UMA_PPI_GUID                     AND
+#ifdef RAPID_START_FLAG
+  RAPID_START_PPI_GUID                    AND
+#endif
+  SA_PEI_INIT_PPI_GUID
+DEPENDENCY_END

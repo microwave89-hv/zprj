@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "UefiPxeBc_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable UefiPxeBc support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "UefiPxeBc_DIR"
+End
+
+MODULE
+	Help  = "Includes UefiPxeBc.mak to Project"
+	File  = "UefiPxeBc.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\UefiPxeBc.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

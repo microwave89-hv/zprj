@@ -1,0 +1,11 @@
+<component>
+	name = "IsctSmm"
+	category = ModulePart
+	LocalRoot = "Board\EM\Isct\Smm"
+	RefName = "IsctSmm"
+[files]
+"IsctSmm.c"
+"IsctSmm.dxs"
+"IsctSmm.sdl"
+"IsctSmm.mak"
+<endComponent>

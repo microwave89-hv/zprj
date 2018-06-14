@@ -1,0 +1,59 @@
+TOKEN
+	Name  = "RsdpPlus_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable RsdpPlus support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "RsdpPlus_DIR"
+	Path  = "Board\EM\RsdpPlus"
+End
+
+MODULE
+	Help  = "Includes RsdpPlus.mak to Project"
+	File  = "RsdpPlus.mak"
+End
+
+ELINK
+	Name  = "UpdateShadow,"
+	Parent  = "BeforeEfiBootLaunchHook,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "EraseShadow,"
+	Parent  = "AfterEfiBootLaunchHook,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ManageShadowRamEntryPoint,"
+	Parent  = "DxeCoreInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "RsdpPlusEntryPoint,"
+	Parent  = "UpdateShadow,"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "UpdateE000ShadowRamHook"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "UpdateF000ShadowRamHook"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "EraseShadowAfterEfiBoot,"
+	Parent  = "ReturnNormalMode"
+	InvokeOrder = AfterParent
+End

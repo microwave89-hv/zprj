@@ -1,0 +1,41 @@
+TOKEN
+	Name  = "EcPs2Kbd_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "SB_DEV_NUMBER"
+	Value  = "0x1f"
+	Help  = "South Bridge (LPC Bridge) PCI Device Number"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SB_FUN_NUMBER"
+	Value  = "0x00"
+	Help  = "South Bridge (LPC Bridge) PCI Function Number"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+PATH
+	Name  = "ECPS2KBD_DIR"
+End
+
+MODULE
+	Help  = "Includes EcPs2Kbd.MAK into BUILD PROCESS"
+	File  = "EcPs2Kbd.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\EcPs2Kbd.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

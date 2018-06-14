@@ -1,0 +1,12 @@
+<component>
+	name = "MeKernelLibrary"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Me\Library\MeKernel\"
+	RefName = "MeKernelLibrary"
+[files]
+"MeKernelLibrary.sdl"
+[parts]
+"MeChipsetLib"
+"MeLibDxe"
+"MeLibPei"
+<endComponent>

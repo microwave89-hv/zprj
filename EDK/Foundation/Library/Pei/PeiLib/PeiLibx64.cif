@@ -1,0 +1,15 @@
+<component>
+	name = "PeiLibx64"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Library\Pei\PeiLib\"
+	RefName = "PeiLibx64"
+[files]
+"x64\PeCoffLoaderEx.c"	
+"x64\PerformancePrimitives.c"	
+"x64\Processor.c"	
+"x64\EfiJump.h"	
+"x64\PeCoffLoaderEx.h"	
+"x64\ProcessorAsms.Asm"	
+"x64\PeiServicePointer.c"	
+"x64\Math.c"	
+<endComponent>

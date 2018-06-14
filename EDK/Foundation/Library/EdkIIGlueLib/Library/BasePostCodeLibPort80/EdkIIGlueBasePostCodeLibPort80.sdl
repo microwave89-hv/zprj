@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueBasePostCodeLibPort80_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueBasePostCodeLibPort80 support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueBasePostCodeLibPort80_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueBasePostCodeLibPort80.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueBasePostCodeLibPort80_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueBasePostCodeLibPort80.mak to Project"
+	File  = "EdkIIGlueBasePostCodeLibPort80.mak"
+End
+

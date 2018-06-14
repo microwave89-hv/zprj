@@ -1,0 +1,87 @@
+TOKEN
+	Name  = PowerManagementAcpiTables_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable PowerManagementAcpiTables support in Project"
+End
+
+MODULE
+	Help  = "Includes PowerMgmtAcpiTables.mak to Project"
+	File  = "PowerMgmtAcpiTables.mak"
+End
+
+PATH
+	Name  = "PPMACPI_DIR"
+End
+
+TOKEN
+	Name  = "INTEL_CPUPPM_ASL_FILE"
+	Value  = "$(PPMACPI_DIR)\Ssdt\CpuPm.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_CPU0IST_ASL_FILE"
+	Value  = "$(PPMACPI_DIR)\Ssdt\Cpu0Ist.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_APIST_ASL_FILE"
+	Value  = "$(PPMACPI_DIR)\Ssdt\ApIst.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_CPU0CST_ASL_FILE"
+	Value  = "$(PPMACPI_DIR)\Ssdt\Cpu0Cst.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_CPU0TST_ASL_FILE"
+	Value  = "$(PPMACPI_DIR)\Ssdt\Cpu0Tst.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_APCST_ASL_FILE"
+	Value  = "$(PPMACPI_DIR)\Ssdt\ApCst.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_APTST_ASL_FILE"
+	Value  = "$(PPMACPI_DIR)\Ssdt\ApTst.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_LAKETINY_ASL_FILE"
+	Value  = "$(PPMACPI_DIR)\Ssdt\LakeTiny.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_CTDP_ASL_FILE"
+	Value  = "$(PPMACPI_DIR)\Ssdt\Ctdp.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PPMACPI.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

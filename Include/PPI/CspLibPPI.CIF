@@ -1,0 +1,9 @@
+<component>
+	name = "CSP Library PPIs"
+	category = ModulePart
+	LocalRoot = "INCLUDE\PPI"
+	RefName = "CSP Library PPIs"
+[files]
+"\CspLibPPI.h"	
+"\FwVersion.h"	
+<endComponent>

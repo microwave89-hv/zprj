@@ -1,0 +1,11 @@
+<component>
+	name = "MeAslUpdateLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\SampleCode\Library\AslUpdate\Dxe"
+	RefName = "MeAslUpdateLib"
+[files]
+"MeAslUpdateLib.sdl"	
+"MeAslUpdateLib.mak"	
+"DxeAslUpdateLib.c"	
+"AslUpdateLib.inf"	
+<endComponent>

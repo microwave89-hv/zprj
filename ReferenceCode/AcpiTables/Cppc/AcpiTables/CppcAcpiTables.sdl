@@ -1,0 +1,53 @@
+TOKEN
+	Name  = "CppcAcpiTables_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable CppcAcpiTables support in Project"
+End
+
+MODULE
+	Help  = "Includes CppcAcpiTables.mak to Project"
+	File  = "CppcAcpiTables.mak"
+End
+
+PATH
+	Name  = "INTEL_CPPC_ACPI_TABLE_DIR"
+End
+
+TOKEN
+	Name  = "INTEL_CPC_ASL_FILE"
+	Value  = "$(INTEL_CPPC_ACPI_TABLE_DIR)\Cpc.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_CPPC_ASL_FILE"
+	Value  = "$(INTEL_CPPC_ACPI_TABLE_DIR)\Cppc.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_PCCT_ASL_FILE"
+	Value  = "$(INTEL_CPPC_ACPI_TABLE_DIR)\Pcct.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "CPPC_ASL_COMPILER"
+	Value  = "$(INTEL_CPPC_DIR)\iasl.exe"
+	Help  = "ASL Optimizing Compiler version 20120711-32 [Jul 11 2012]"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CppcAcpiTables.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

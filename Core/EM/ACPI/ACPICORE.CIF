@@ -1,0 +1,23 @@
+<component>
+	name = "ACPI - Core"
+	category = ModulePart
+	LocalRoot = "Core\EM\ACPI\"
+	RefName = "ACPI_CORE"
+[files]
+"AcpiCore.c"	
+"AcpiCore.h"	
+"mptable.c"	
+"mptable.h"	
+"MpPciIrq.asm"	
+"AcpiS3.h"	
+"Aml.c"	
+"AmlChild.c"	
+"AmlNamespace.c"	
+"AmlOption.c"	
+"AmlString.c"	
+"AcpiSdt.c"	
+"AcpiSdtPrivate.h"	
+[parts]
+"ASL_CORE"
+"AtadSmi"
+<endComponent>

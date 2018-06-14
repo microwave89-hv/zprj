@@ -1,0 +1,31 @@
+TOKEN
+	Name  = "ACPIDEBUG_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SsdtAcpiDebug support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "INTEL_SSDTACPIDEBUG_DIR"
+End
+
+TOKEN
+	Name  = "INTEL_ACPIDEBUG_ASL_FILE"
+	Value  = "$(INTEL_SSDTACPIDEBUG_DIR)\SsdtAcpiDebug.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+MODULE
+	Help  = "Includes SsdtAcpiDebug.mak to Project"
+	File  = "SsdtAcpiDebug.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\ACPIDEBUG.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

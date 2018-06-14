@@ -1,0 +1,14 @@
+<component>
+	name = "PchSmbusDxe"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Smbus\Dxe"
+	RefName = "PchSmbusDxe"
+[files]
+"PchSmbusDxe.sdl"	
+"PchSmbusDxe.mak"	
+"PchSmbus.h"	
+"PchSmbusArp.c"	
+"PchSmbusEntry.c"	
+"PchSmbus.dxs"	
+"PchSmbusDxe.inf"	
+<endComponent>

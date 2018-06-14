@@ -1,0 +1,13 @@
+<component>
+	name = "UefiIpv6Stack II"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Ipv6"
+	RefName = "UefiIpv6Stack II"
+[files]
+"UefiIpv6StackII.sdl"	
+[parts]
+"Dhcp6"
+"Ip6"
+"Mtftp6"
+"Udp6"
+<endComponent>

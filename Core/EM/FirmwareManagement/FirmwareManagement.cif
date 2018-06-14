@@ -1,0 +1,10 @@
+<component>
+    name = "FirmwareManagement"
+    category = ModulePart
+    LocalRoot = "Core\EM\FirmwareManagement"
+    RefName = "FirmwareManagement"
+[files]
+"FirmwareManagement.sdl"  
+"FirmwareManagement.mak"  
+"FirmwareManagement.c"    
+<endComponent>

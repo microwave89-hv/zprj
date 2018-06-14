@@ -1,0 +1,137 @@
+## @file
+#  Component description file for SystemAgent Initialization driver
+#
+#@copyright
+#  Copyright (c)  1999 - 2013 Intel Corporation. All rights reserved
+#  This software and associated documentation (if any) is furnished
+#  under a license and may only be used or copied in accordance
+#  with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be
+#  reproduced, stored in a retrieval system, or transmitted in any
+#  form or by any means without the express written consent of
+#  Intel Corporation.
+#
+#  This file contains a 'Sample Driver' and is licensed as such
+#  under the terms of your license agreement with Intel or your
+#  vendor.  This file may be modified by the user, subject to
+#  the additional terms of the license agreement
+#
+##
+
+[defines]
+BASE_NAME            = SaInit
+FILE_GUID            = DE23ACEE-CF55-4fb6-AA77-984AB53DE811
+COMPONENT_TYPE       = BS_DRIVER
+
+[sources.common]
+  SaInit.h
+  SaInit.c
+  LegacyRegion.h
+  LegacyRegion.c
+  Vtd.c
+  Vtd.h
+  IgdOpRegion.h
+  IgdOpRegion.c
+  GraphicsInit.h
+  GraphicsInit.c
+  PciExpressInit.h
+  PciExpressInit.c
+  PcieComplex.c
+  PcieComplex.h
+  AudioInit.c
+  AudioInit.h
+  SaFvi.c
+  SwitchableGraphicsInit.c
+  SwitchableGraphicsInit.h
+
+#
+# Edk II Glue Driver Entry Point
+#
+  EdkIIGlueDxeDriverEntryPoint.c
+
+[includes.common]
+  .
+  ../Common
+  $(EDK_SOURCE)/Foundation
+  $(EDK_SOURCE)/Foundation/Efi
+  $(EDK_SOURCE)/Foundation/Library
+  $(EDK_SOURCE)/Foundation/Efi/Include
+  $(EDK_SOURCE)/Foundation/core/Dxe
+  $(EDK_SOURCE)/Foundation/Include
+  $(EDK_SOURCE)/Foundation/Include/IndustryStandard
+  $(EDK_SOURCE)/Foundation/Framework
+  $(EDK_SOURCE)/Foundation/Framework/Include
+  $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include
+  $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include/pcd
+  $(EDK_SOURCE)/Foundation/Library/Dxe/Include
+  $(EDK_SOURCE)/Foundation/Cpu/Pentium/Include
+  $(EDK_SOURCE)/Foundation/Library/Dxe/UefiEfiIfrSupportLib
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/Include
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/Protocol
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/$(PROJECT_SA_MRC)/Pei/Source/Include
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/Library/SaPcieLib/Common
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)/Include
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)/Include/Library
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)/Protocol
+  $(EFI_SOURCE)/$(PROJECT_CPU_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_CPU_ROOT)/Include
+  $(EFI_SOURCE)/$(PROJECT_CPU_ROOT)/Include/Library
+  $(EFI_SOURCE)
+  $(EFI_SOURCE)/../MdePkg/Include
+
+#
+# Typically, the sample code referenced will be available in the code base already.
+# So, keep this include at the end to defer to the source base definition
+# and only use the sample code definition if source base does not include these files.
+#
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/SampleCode
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/SampleCode/Include
+
+[libraries.common]
+  EfiProtocolLib
+  EdkGuidLib
+  EfiCommonLib
+  EfiScriptLib
+  EdkIIGlueBaseLib
+  EdkIIGlueBaseIoLibIntrinsic
+  EdkIIGlueBaseMemoryLib
+  EdkIIGlueBasePciExpressLib
+  EdkIIGlueDxeReportStatusCodeLib
+  EdkIIGlueDxeDebugLibReportStatusCode
+  EdkIIGlueUefiBootServicesTableLib
+  EdkIIGlueUefiRuntimeServicesTableLib
+  EdkIIGlueDxeServicesTableLib
+  EdkIIGlueDxeHobLib
+  EdkIIGlueUefiLib
+  EdkIIGlueBasePciLibPciExpress
+  $(PROJECT_SA_FAMILY)ProtocolLib
+  $(PROJECT_PCH_FAMILY)ProtocolLib
+  RcFviDxeLib
+  PchPlatformLib
+  UefiEfiIfrSupportLib
+  SaGuidLib
+  EdkProtocolLib
+  CpuPlatformLib
+#
+# Comment out SaPcieDxeLib if ASPM initialization in DXE phase was not supported
+#
+  SaPcieDxeLib
+
+[nmake.common]
+  IMAGE_ENTRY_POINT = _ModuleEntryPoint
+  DPX_SOURCE = SaInit.dxs
+
+  C_FLAGS = $(C_FLAGS)  -D"__EDKII_GLUE_MODULE_ENTRY_POINT__=SaInitEntryPoint" \
+                        -D __EDKII_GLUE_BASE_IO_LIB_INTRINSIC__ \
+                        -D __EDKII_GLUE_BASE_LIB__ \
+                        -D __EDKII_GLUE_BASE_MEMORY_LIB__ \
+                        -D __EDKII_GLUE_DXE_REPORT_STATUS_CODE_LIB__ \
+                        -D __EDKII_GLUE_DXE_SERVICES_TABLE_LIB__ \
+                        -D __EDKII_GLUE_DXE_DEBUG_LIB_REPORT_STATUS_CODE__ \
+                        -D __EDKII_GLUE_UEFI_BOOT_SERVICES_TABLE_LIB__\
+                        -D __EDKII_GLUE_UEFI_RUNTIME_SERVICES_TABLE_LIB__ \
+                        -D __EDKII_GLUE_DXE_HOB_LIB__ \
+                        -D __EDKII_GLUE_BASE_PCI_LIB_PCI_EXPRESS__ \
+                        -D __EDKII_GLUE_UEFI_LIB__

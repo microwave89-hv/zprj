@@ -1,0 +1,178 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+// $Header: /Alaska/BIN/Board/Oem.sd 13    11/01/11 4:29p Artems $
+//
+// $Revision: 13 $
+//
+// $Date: 11/01/11 4:29p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Board/Oem.sd $
+// 
+// 13    11/01/11 4:29p Artems
+// EIP 71380: CSM opt-out feature support. Legacy OpROM policy moved into
+// CSM opt-out module
+// 
+// 12    7/19/11 4:59p Felixp
+// [TAG]  		EIP64103
+// [Category]  	New Feature
+// [Description]  	Setup control to enable/disable execution of the Legacy
+// Option ROM for video devices 
+// is extended to support "Enable if no GOP on the handle" option.
+// [Files]  		Board.sdl
+// Oem.sd
+// Oem.uni
+// OemDxe.c
+// 
+// 11    7/13/11 2:23p Felixp
+// [TAG]  		EIP64103
+// [Category]  	New Feature
+// [Description]  	Setup control to enable/disable execution of the Legacy
+// Option ROM for video devices is implemented.
+// [Files]  		Board.sdl
+// Oem.sd
+// Oem.uni
+// OemDxe.c
+// 
+// 10    12/06/10 7:26p Artems
+// EIP 48170, added Setup Customization infrastructure
+// 
+// 9     6/25/09 6:09p Robert
+// Updated Comments and function headers
+// 
+// 7     8/13/08 6:02p Fasihm
+// Added the Manufacturing flag to the setup questions.
+// 
+// 6     12/17/07 3:43p Felixp
+// Setup option to enable/disable mass storage OpROM execution added
+// 
+// 5     7/09/07 4:51p Felixp
+// Default value for the PXE boot option changed from 0 to
+// DEFAULT_PXE_BOOT_OPTION SDL token
+// 
+// 4     11/03/06 10:56a Felixp
+// OEM specific setup items commented out
+// 
+// 3     7/17/06 7:20p Felixp
+// #if CSM_SUPPORT added so that module builds without CSM
+// 
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//----------------------------------------------------------------------------
+//
+// Name:		Board.sd
+//
+// Description:	Template Board Setup options
+//
+//----------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+#ifdef SETUP_DATA_DEFINITION
+/***********************************************************/
+/* Put NVRAM data definitions here.
+/* For example:	UINT8 Data1;
+/* These definitions will be converted by the build process
+/* to a definitions of SETUP_DATA fields.
+/***********************************************************/
+/*  UINT8       OnboardVGA;
+  UINT8       OnboardLAN;
+  UINT8       OnboardLAN2;*/
+#endif
+
+#if defined(VFRCOMPILE) && !defined(CONTROLS_ARE_DEFINED)
+#define CONTROL_DEFINITION
+#endif
+
+#ifdef CONTROL_DEFINITION
+
+
+#endif //#ifdef CONTROL_DEFINITION
+
+#ifdef CONTROLS_WITH_DEFAULTS
+
+
+#endif //#ifdef CONTROLS_WITH_DEFAULTS
+
+
+//**********************************************************************
+//                  ADVANCED - Onboard Devices Form
+//**********************************************************************
+
+#ifdef ADVANCED_FORM_SET
+/*
+  #ifdef FORM_SET_ITEM
+  // Define controls to be added to the main page of the formset
+  #endif
+
+  #ifdef FORM_SET_GOTO
+  // Define goto commands for the forms defined in this file
+    goto ONBOARD_DEVICE_FORM_ID, 
+      prompt  = STRING_TOKEN(STR_ONBOARD_DEVICE_FORM),
+      help    = STRING_TOKEN(STR_ONBOARD_DEVICE_FORM_HELP);
+  #endif
+
+  #ifdef FORM_SET_FORM
+  // Define forms
+    form formid = AUTO_ID(ONBOARD_DEVICE_FORM_ID),
+    title     = STRING_TOKEN(STR_ONBOARD_DEVICE_FORM);
+
+    SEPARATOR
+    SUBTITLE(STRING_TOKEN(STR_ONBOARD_DEVICE_SUBTITLE))
+
+    checkbox varid  = SETUP_DATA.OnboardVGA,
+        prompt      = STRING_TOKEN(STR_ONBOARD_VGA_PROMPT),
+        help        = STRING_TOKEN(STR_ONBOARD_VGA_PROMPT_HELP),
+        flags       = 1 | MANUFACTURING, // Flags behavior for checkbox is overloaded so that it equals a DEFAULT value.  1 = ON, 0 = off
+    endcheckbox;
+
+    checkbox varid  = SETUP_DATA.OnboardLAN,
+        prompt      = STRING_TOKEN(STR_ONBOARD_LAN_PROMPT),
+        help        = STRING_TOKEN(STR_ONBOARD_LAN_PROMPT_HELP),
+        flags       = 1 | MANUFACTURING, // Flags behavior for checkbox is overloaded so that it equals a DEFAULT value.  1 = ON, 0 = off
+    endcheckbox;
+
+    checkbox varid  = SETUP_DATA.OnboardLAN2,
+        prompt      = STRING_TOKEN(STR_ONBOARD_LAN2_PROMPT),
+        help        = STRING_TOKEN(STR_ONBOARD_LAN2_PROMPT_HELP),
+        flags       = 1 | MANUFACTURING, // Flags behavior for checkbox is overloaded so that it equals a DEFAULT value.  1 = ON, 0 = off
+    endcheckbox;
+
+    SEPARATOR
+    endform;
+  #endif
+*/
+  #ifdef FORM_SET_ITEM
+
+
+  #endif //FORM_SET_ITEM
+
+#endif // ADVANCED_FORM_SET
+
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

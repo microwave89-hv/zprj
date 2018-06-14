@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueUefiRuntimeServicesTableLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\UefiRuntimeServicesTableLib"
+	RefName = "EdkIIGlueUefiRuntimeServicesTableLib"
+[files]
+"EdkIIGlueUefiRuntimeServicesTableLib.sdl"	
+"EdkIIGlueUefiRuntimeServicesTableLib.mak"
+"UefiRuntimeServicesTableLib.inf"	
+"UefiRuntimeServicesTableLib.c"	
+<endComponent>

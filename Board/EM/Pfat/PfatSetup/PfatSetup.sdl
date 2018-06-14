@@ -1,0 +1,85 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/IntelPfat/PfatSetup/PfatSetup.sdl 1     9/17/12 4:49p Fredericko $
+#
+# $Revision: 1 $
+#
+# $Date: 9/17/12 4:49p $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/IntelPfat/PfatSetup/PfatSetup.sdl $
+# 
+# 1     9/17/12 4:49p Fredericko
+# Added PfatSetup Module-part
+#
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name: PfatSetup.sdl
+#
+# Description: SDL file for PfatSetup
+#
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+	Name  = "PFAT_SETUP_SUPPORT"
+	Value  = "1"
+	Help  = "Always On Always Connected"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "PFAT_SETUP_PATH"
+End
+
+MODULE
+	Help  = "Includes PfatSetup.mak to Project"
+	File  = "PfatSetup.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PfatSetup.sdb"
+	Parent  = "SETUP_SDBS"
+	Priority  = 40
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(PFAT_SETUP_PATH)\PfatSetup.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 40
+	InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

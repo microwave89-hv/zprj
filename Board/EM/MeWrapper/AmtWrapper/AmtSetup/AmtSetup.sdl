@@ -1,0 +1,107 @@
+TOKEN
+	Name  = "iAMT_Setup"
+	Value  = "1"
+	Help  = "Main switch to enable iAMT Setup support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "AMT_SETUP_DIR"
+End
+
+MODULE
+	Help  = "Includes AmtSetup.mak to Project"
+	File  = "AmtSetup.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmtSetup.sdb"
+	Parent  = "SETUP_SDBS"
+	Priority  = 30
+	Help  = "Includes generic iAMT setup screens to the project"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(AMT_SETUP_DIR)\AmtSetup.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 30
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "iAMTProcessProceedToBootHook,"
+	Parent  = "ProcessProceedToBoot,"
+	Help  = "iAMT hook into TSE for TSE specific functions "
+	Token = "iAMT_SUPPORT" "=" "1"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "iAMTProcessEnterSetupHook,"
+	Parent  = "PostManagerHandShakeHook,"
+	Help  = "iAMT hook into TSE for TSE specific functions "
+	Token = "iAMT_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmtSetup.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmtTseFunc.obj"
+	Parent  = "AMITSE_Objects"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "AMTSETUP_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "iAMTProcessConInAvailabilityHook,"
+	Parent  = "ProcessConInAvailability,"
+	Help  = "iAMT hook into TSE for TSE specific functions "
+	Token = "iAMT_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+
+ELINK
+    Name  = "AMTBypassPasswordCheck,"
+    Parent  = "ProcessConInAvailabilityHook,"
+    Priority  = 0
+    InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "AMT_SMIFLASH_LIB"
+	Value  = "$(BUILD_DIR)\AmtSetup.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmtSetup.lib"
+	Parent  = "PRESERVE_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PreserveMEBXSyncData,"
+	Parent  = "SMIFlashPreUpdateList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "RestoreMEBXSyncData,"
+	Parent  = "SMIFlashEndUpdateList"
+	InvokeOrder = AfterParent
+End

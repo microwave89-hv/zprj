@@ -1,0 +1,11 @@
+<component>
+	name = "TbtPei"
+	category = ModulePart
+	LocalRoot = "Board\EM\Thunderbolt\TbtPei\"
+	RefName = "TbtPei"
+[files]
+"TbtPei.sdl"	
+"TbtPei.mak"	
+"TbtPei.c"	
+"TbtPei.dxs"	
+<endComponent>

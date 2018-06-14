@@ -1,0 +1,12 @@
+<component>
+	name = "RapidStartWrapperSmm"
+	category = ModulePart
+	LocalRoot = "Board\EM\RapidStartWrapper\Smm"
+	RefName = "RapidStartWrapperSmm"
+[files]
+"RapidStartWrapperSmm.c"
+"RapidStartWrapperSmm.h"
+"RapidStartWrapperSmm.mak"
+"RapidStartWrapperSmm.dxs"
+"RapidStartWrapperSmm.sdl"
+<endComponent>

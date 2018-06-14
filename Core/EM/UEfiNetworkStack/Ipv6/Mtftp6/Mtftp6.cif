@@ -1,0 +1,11 @@
+<component>
+	name = "Mtftp6"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Ipv6\Mtftp6"
+	RefName = "Mtftp6"
+[files]
+"Mtftp6.sdl"	
+"Mtftp6.mak"	
+"Mtftp6Dxe.efi"	
+"Mtftp6DxeIa32.efi"	
+<endComponent>

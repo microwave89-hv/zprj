@@ -1,0 +1,68 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartPei/RapidStartPei.sdl 1     4/19/12 7:50a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 4/19/12 7:50a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartPei/RapidStartPei.sdl $
+# 
+# 1     4/19/12 7:50a Yurenlai
+# Initial check in.
+#
+#*************************************************************************
+TOKEN
+	Name  = "RapidStartPei_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable iFFS support in PEI Phase"
+End
+
+MODULE
+	Help  = "Includes RapidStartPei.mak to Project"
+	File  = "RapidStartPei.mak"
+End
+
+PATH
+	Name  = "RapidStartPei_DIR"
+	Help  = "RapidStartPei dir"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\RapidStartPei.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

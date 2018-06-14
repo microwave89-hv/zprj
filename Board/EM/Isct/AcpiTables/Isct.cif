@@ -1,0 +1,12 @@
+<component>
+	name = "IsctAcpiTables"
+	category = ModulePart
+	LocalRoot = "Board\EM\Isct\AcpiTables"
+	RefName = "IsctAcpiTables"
+[files]
+"Isct.sdl"
+"Isct.mak"
+"Isct.sd"
+"Isct.uni"
+"Isct.asl"
+<endComponent>

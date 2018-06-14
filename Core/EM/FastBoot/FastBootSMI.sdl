@@ -1,0 +1,40 @@
+TOKEN
+	Name  = "FAST_BOOT_SMI_SUPPORT"
+	Value  = "0"
+	Help  = "Switch to enable FastBootSMI in the project."
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "FAST_BOOT_ENABLE_SWSMI"
+	Value  = "0xDB"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FAST_BOOT_DISABLE_SWSMI"
+	Value  = "0xDC"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+PATH
+	Name  = "FastBootSMI_DIR"
+End
+
+MODULE
+	Help  = "Includes FastBootSMI.mak to Project"
+	File  = "FastBootSMI.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\FastBootSMI.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

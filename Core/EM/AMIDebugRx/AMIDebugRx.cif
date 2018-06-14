@@ -1,0 +1,11 @@
+<component>
+	name = "AMI Debug Rx"
+	category = eModule
+	Rank = 46
+	LocalRoot = "Core\em\AMIDebugRx\"
+	RefName = "AMIDebugRx"
+[files]
+"AMIDebugRx.sdl"	
+[parts]
+"DebugRx"
+<endComponent>

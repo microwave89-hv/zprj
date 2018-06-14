@@ -1,0 +1,8 @@
+<component>
+	name = "AHCI 16-bit Binary"
+	category = ModulePart
+	LocalRoot = "Addon"
+	RefName = "AHCI_BINARY"
+[files]
+"AI13.bin"	
+<endComponent>

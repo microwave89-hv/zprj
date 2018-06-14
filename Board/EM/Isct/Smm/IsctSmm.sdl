@@ -1,0 +1,78 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/ISCT/IsctSmm/IsctSmm.sdl 1     9/02/12 11:19p Bensonlai $
+#
+# $Revision: 1 $
+#
+# $Date: 9/02/12 11:19p $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/ISCT/IsctSmm/IsctSmm.sdl $
+# 
+# 1     9/02/12 11:19p Bensonlai
+# Intel Smart Connect Technology initially releases.
+#
+#
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name: IsctSmm.sdl
+#
+# Description: SDL file for IsctSmm
+#
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+	Name  = "IsctSmm_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable IsctSmm support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "IsctSmm_DIR"
+End
+
+MODULE
+	File  = "IsctSmm.mak"
+	Help  = "Includes IsctSmm.mak to Project"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\IsctSmm.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

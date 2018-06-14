@@ -1,0 +1,259 @@
+//
+//	TITLE	TEMPLATE.SSP -- SETUP UTILITY CORE TEMPLATE
+//
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+// $Header: /Alaska/SOURCE/Modules/CMOS Manager/CMOS Core/CMOS Build/Template.ssp 6     6/15/10 2:26p Michaela $
+//
+// $Revision: 6 $
+//
+// $Date: 6/15/10 2:26p $
+//***************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/CMOS Manager/CMOS Core/CMOS Build/Template.ssp $
+// 
+// 6     6/15/10 2:26p Michaela
+// 
+// 5     9/17/09 10:04a Michaela
+// TokenInclude must be empty string for Aptio projects
+// 
+// 4     7/29/09 10:01a Michaela
+// updates Aptio Enhancement EIP 22205
+// (no code changes)
+// 
+// 3     6/15/09 5:12p Michaela
+// 
+// 2     2/06/09 1:58p Michaela
+// updated to set first managed register location
+// 
+// 1     2/22/08 2:29p Michaela
+//
+// 1     2/04/08 6:00p MichaelA $
+// Added to CmosManager Module from Core8 Implementation
+// -- Removed: Setup Engine Template Language Elements
+// -- Modified: EquInclude and TokenInclude
+//
+//
+//***************************************************************************
+// Previous History:
+//***************************************************************************
+// 1     4/23/03 2:37p Anandj
+// Moved from BSP\SETUP
+// 
+// 2     10/11/01 3:59p Juand
+// Added a word to store the offset of the beginning of the file
+// SETUPDB.ASM after the $MPT signarute for AMIBCP.  This word was deleted
+// accidentally.
+//
+// 7     9/05/01 2:40p Kevinm
+// Removed Q_DISPLAY_TYPE.  This question is not currently supported by
+// the BIOS.
+//
+// 6     8/24/01 3:56p Kevinm
+// Removed Unattended Start functionality.
+//
+// 5     7/17/01 4:51p Kevinm
+//
+// 4     6/12/01 2:37p Chrism
+// Comment out Boot_Speed setup question.  Has no purpose anymore.
+//
+// 3     6/04/01 3:17p Kevinm
+// Modified for BBS 3.1.
+//
+// 2     5/30/01 3:40p Radhikas
+//
+// 1     5/25/01 2:15p Anandj
+// First check in for CORE data base
+//
+// 5     5/16/01 10:37a Davidd
+// Roll back to previous version.
+//
+// 3     5/03/01 1:40p Juand
+// Removed EquInclude "build\\makeflag.equ".  MAKEFLAG.EQU is already
+// included in CORE.SSP.  This was causing the BIOS not to build in some
+// systems.
+//
+// 2     4/09/01 4:01p Juand
+// Changed to new style headers.
+// Moved CPU related setup questions to CPU.SSP
+//
+// 9     8/31/00 4:37p Olegi
+// Q_QUICK_BOOT moved out of MKF_SILENT_BOOT condition
+//
+// 8     8/31/00 11:39a Olegi
+// SIO related group is included only with LEGACY_FREE off.
+//
+// 7     8/25/00 10:26a Olegi
+// Q_EXTERNAL_CACHE has been added
+//
+// 6     8/24/00 6:58p Olegi
+// Q_INITIAL_DISPLAY made dependent on MKF_SILENT_BOOT
+//
+// 5     8/21/00 3:53p Olegi
+// equates.equ is included
+//
+// 2     6/02/00 5:34p Olegi
+// USB related questions appear only if USB_SUPPORT is on,
+// Silent Boot related questions appear only if SILENT_BOOT is on.
+//
+// 3     2/24/00 12:08p Juand
+// BBS related changes.
+//
+// 2     12/01/99 11:26a Debkumar
+// Incorporated changes for BBS (from the BBS development done for other
+// major OEMs). Files changed are CF.ASM, RM.ASM, UI.ASM, INT19.ASM,
+// GS1.ASM, HI.ASM, HD.ASM, INT13ISR.ASM, BOOTEXT.ASM, JMP.ASM, DIM.ASM,
+// BUS.ASM, DIM.DAT, DIM.EQU, BIOSDATA.DAT, CORE.SSP, CORE.ASD,
+// TEMPLATE.SSP, TEMPLATE.ASD. The new files are BBS.DAT, IPLDT.INC.
+// Known Limitations: 1) BOOTEXT.ASM should be made generic to reorganize
+// the available boot options in setup. 2) Runtime BBS functions.
+//
+//***************************************************************************
+
+EquInclude "Build\\Token.equ"
+TokenInclude ""
+
+//---------------------------------------------------------------------------
+// General Language Elements
+//---------------------------------------------------------------------------
+
+Description = "Setup Engine Template Definitions"
+LanguageVersion = 2
+
+
+// Largest supported address is 0xFF, which is 0x100 locations
+NvramSize = MKF_MAX_MANAGED_CMOS_ADDRESS
+
+// First register that CMOS Manager will manage
+// (If not specified, the FirstRegister default value is 0x10)
+FirstRegister = MKF_FIRST_MANAGED_CMOS_ADDRESS
+
+//---------------------------------------------------------------------------
+// Setup Engine Template Language Elements
+//---------------------------------------------------------------------------
+
+
+//---------------------------------------------------------------------------
+// Control Database Language Elements
+//---------------------------------------------------------------------------
+
+// FIRST LEVEL (will contain only menuitems)
+ControlGroup (G_ROOT)
+	// EMPTY (Controls Filled in by respective SSP files in fixed order)
+EndControlGroup
+
+
+//---------------------------------------------------------------------------
+// Control Database Language Elements
+//---------------------------------------------------------------------------
+
+
+
+//---------------------------------------------------------------------------
+// Other Sections
+//---------------------------------------------------------------------------
+
+StartSourceCode ("SETUPDB.ASM")
+" "
+"	TITLE	SETUPDB.ASM -- Setup Database"
+" "
+";----------------------------------------------------------------------------"
+";	INCLUDE FILES"
+";----------------------------------------------------------------------------"
+" "
+"	INCLUDE SETUPEXT.INC"
+"	INCLUDE TOKENEQU.EQU"
+" "
+";----------------------------------------------------------------------------"
+";	SETSVR_CSEG  S E G M E N T  STARTS"
+";----------------------------------------------------------------------------"
+"SETSVR_CSEG SEGMENT PARA PUBLIC 'CODE'"
+"	ASSUME	CS:SETSVR_CSEG"
+";----------------------------------------------------------------------------"
+"	PUBLIC  _SETUPDB_SETSVR_CSEG_STARTS"
+"_SETUPDB_SETSVR_CSEG_STARTS LABEL BYTE"
+";----------------------------------------------------------------------------"
+" "
+"	BYTE '$MPT'			; Signature for the Setup Master"
+"					; Pointer Table"
+"	dw offset _SETUPDB_SETSVR_CSEG_STARTS	;Refernce point."
+" "
+";----------------------------------------------------------------------------"
+" "
+EndSourceCode
+
+StartSourceCode ("TOKENEQU.ASM")
+" "
+"	TITLE	TOKENEQU.ASM -- NVRAM TOKEN VALUES"
+" "
+";----------------------------------------------------------------------------"
+" "
+"	PUBLIC	STR_RESERVED"
+"STR_RESERVED	EQU	0FFFFh"
+" "
+";----------------------------------------------------------------------------"
+";	RUN_CSEG  S E G M E N T  STARTS"
+";----------------------------------------------------------------------------"
+"RUN_CSEG SEGMENT PARA PUBLIC 'CODE'"
+"	ASSUME	CS:RUN_CSEG"
+";----------------------------------------------------------------------------"
+"	PUBLIC  _TOKENEQU_RUN_CSEG_STARTS"
+"_TOKENEQU_RUN_CSEG_STARTS LABEL BYTE"
+";----------------------------------------------------------------------------"
+" "
+EndSourceCode
+
+
+//---------------------------------------------------------------------------
+// Internal CMOS Manager non-volatile status
+//
+//---------------------------------------------------------------------------
+
+NvramField ( CMOS_MGR_BATTERY_BAD )
+	OptionBits  = 1
+	Managed     = NO
+EndNvramField
+
+NvramField ( CMOS_MGR_CHECKSUM_BAD )
+	OptionBits  = 1
+	Managed     = NO
+EndNvramField
+
+NvramField ( CMOS_MGR_DEFAULTS_LOADED )
+	OptionBits  = 1
+	Managed     = NO
+EndNvramField
+
+NvramField ( CMOS_MGR_FIRST_BOOT_DETECTED )
+	OptionBits  = 1
+	Managed     = NO
+EndNvramField
+
+
+
+//---------------------------------------------------------------------------
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

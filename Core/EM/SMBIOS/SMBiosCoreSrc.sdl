@@ -1,0 +1,33 @@
+TOKEN
+	Name  = "SMBIOS_CORE_SRC_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SMBIOS  support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+	Token = "SMBIOS_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "SMBIOS_CORE_SRC_DIR"
+End
+
+MODULE
+	Help  = "Includes SMBios.mak to Project"
+	File  = "SMBios.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SMBios32.ffs"
+	Parent  = "$(SMBIOS_DIR)\SMBios32.ffs"
+	InvokeOrder = ReplaceParent
+	Token = "x64_BUILD" "=" "0"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SMBios64.ffs"
+	Parent  = "$(SMBIOS_DIR)\SMBios64.ffs"
+	InvokeOrder = ReplaceParent
+	Token = "x64_BUILD" "=" "1"
+End
+

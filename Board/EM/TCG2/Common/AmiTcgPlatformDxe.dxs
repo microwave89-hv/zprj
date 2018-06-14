@@ -1,0 +1,82 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//*************************************************************************
+// $Header: /Alaska/SOURCE/Modules/TCG2/Common/AmiTcgPlatform/AmiTcgPlatformDxe/AmiTcgPlatformDxe.dxs 1     4/21/14 2:17p Fredericko $
+//
+// $Revision: 1 $
+//
+// $Date: 4/21/14 2:17p $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/TCG2/Common/AmiTcgPlatform/AmiTcgPlatformDxe/AmiTcgPlatformDxe.dxs $
+// 
+// 1     4/21/14 2:17p Fredericko
+// 
+// 1     10/08/13 12:04p Fredericko
+// Initial Check-In for Tpm-Next module
+// 
+// 1     7/10/13 5:55p Fredericko
+// [TAG]  		EIP120969
+// [Category]  	New Feature
+// [Description]  	TCG (TPM20)
+// 
+// 3     7/25/11 3:44a Fredericko
+// [TAG]  		EIP65177
+// [Category]  	Spec Update
+// [Severity]  	Minor
+// [Description]  	Tcg Ppi Spec ver 1.2 update
+// 
+// 2     3/29/11 2:27p Fredericko
+// [TAG]        EIP 54642
+// [Category] Improvement
+// [Description] 1. Checkin Files related to TCG function override 
+// 2. Include TCM and TPM auto detection
+// [Files] Affects all TCG files
+//
+//
+// 
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:	AmiTcgPlatformDxe.dxs
+//
+// Description:	Dependency file for AmiTcgPlatformDxe
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+#include "TcgService.h"
+#include <Token.h>
+
+DEPENDENCY_START
+#if defined(TCGPPISPEC_1_2_SUPPORT)&&(TCGPPISPEC_1_2_SUPPORT==1)
+    EFI_TCG_PROTOCOL_GUID  AND
+    AMI_BIOSPPI_FLAGS_MANAGEMENT_GUID
+#else
+    EFI_TCG_PROTOCOL_GUID
+#endif
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**     5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

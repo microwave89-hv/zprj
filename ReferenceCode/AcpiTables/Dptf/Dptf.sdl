@@ -1,0 +1,26 @@
+TOKEN
+	Name  = Dptf_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable Dptf support in Project"
+End
+
+PATH
+	Name  = "INTEL_DPTF_DIR"
+	Help  = "Intel DPTF source directory"
+End
+
+ELINK
+	Name  = "DPTF_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "/I$(INTEL_DPTF_DIR)"
+    Parent  = "DPTF_INCLUDES"
+    InvokeOrder = AfterParent
+End

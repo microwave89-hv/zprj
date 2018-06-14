@@ -1,0 +1,13 @@
+<component>
+	name = "PowerMgmtS3"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\PowerManagement\Smm"
+	RefName = "PowerMgmtS3"
+[files]
+"PowerMgmtS3.mak"
+"PowerMgmtS3.sdl"
+"PowerMgmtS3.inf"
+"PowerMgmtS3.c"
+"PowerMgmtS3.dxs"
+"PowerMgmtS3.h"
+<endComponent>

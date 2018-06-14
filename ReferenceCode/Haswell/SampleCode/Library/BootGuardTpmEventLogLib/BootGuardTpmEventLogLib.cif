@@ -1,0 +1,11 @@
+<component>
+	name = "BootGuardTpmEventLogLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\SampleCode\Library\BootGuardTpmEventLogLib"
+	RefName = "BootGuardTpmEventLogLib"
+[files]
+"BootGuardTpmEventLogLib.sdl"
+"BootGuardTpmEventLogLib.mak"
+"BootGuardTpmEventLogLib.c"
+"BootGuardTpmEventLogLib.h"
+<endComponent>

@@ -1,0 +1,16 @@
+<component>
+	name = "Recovery"
+	category = ModulePart
+	LocalRoot = "Core\EM\Recovery\"
+	RefName = "Recovery"
+[files]
+"Recovery.sdl"	
+"Recovery.mak"	
+"Recovery.c"	
+"Recovery.h"	
+"Recovery.dxs"	
+"RecoveryCsp.h"	
+[parts]
+"ReFlash"
+"RecoveryPpi"
+<endComponent>

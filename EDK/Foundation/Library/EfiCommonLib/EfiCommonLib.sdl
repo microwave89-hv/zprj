@@ -1,0 +1,31 @@
+TOKEN
+	Name  = "EfiCommonLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EfiCommonLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EFICOMMONLIB"
+	Value  = "$$(LIB_BUILD_DIR)\EfiCommonLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EfiCommonLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EfiCommonLib.mak to Project"
+	File  = "EfiCommonLib.mak"
+End
+
+ELINK
+	Name  = "/D SUPPORT_DEPRECATED_PCI_CFG_PPI"
+	Parent  = "GLOBAL_DEFINES"
+	InvokeOrder = AfterParent
+End

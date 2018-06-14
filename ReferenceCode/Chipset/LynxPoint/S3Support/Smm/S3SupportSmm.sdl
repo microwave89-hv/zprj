@@ -1,0 +1,57 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2015, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/S3Support/Smm/S3SupportSmm.sdl 1     5/21/15 3:01a Dennisliu $Revision:
+#
+# $Date: 5/21/15 3:01a $Log:
+# 
+#*************************************************************************
+TOKEN
+        Name  = "S3SupportSmm_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable S3SupportSmm support in Project"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        Master = Yes
+End
+
+PATH
+        Name  = "S3SupportSmm_DIR"
+End
+
+MODULE
+        Help  = "Includes S3SupportSmm.mak to Project"
+        File  = "S3SupportSmm.mak"
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\S3SupportSmm.ffs"
+        Parent  = "FV_MAIN"
+        InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2015, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

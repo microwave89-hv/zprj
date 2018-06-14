@@ -1,0 +1,11 @@
+<component>
+	name = "CMOS Messages"
+	category = ModulePart
+	LocalRoot = "Core\EM\CmosManager\"
+	RefName = "CmosMessages"
+[files]
+"CmosMessages.sdl"	
+"CmosMessages.mak"	
+"CmosMessages.c"	
+"CmosMessages.uni"	
+<endComponent>

@@ -1,0 +1,32 @@
+TOKEN
+	Name  = "MicrocodeUpdate_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Microcode Update support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+	Token = "Microcode_SUPPORT" "=" "1"
+	Token = "CSM_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "MICROCODEUPDATE_PATH"
+End
+
+MODULE
+	Help  = "Includes MicorcodeUpdate.mak to Project"
+	File  = "MicrocodeUpdate.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\MicrocodeUpdate.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = " "
+	Parent  = "$(BUILD_DIR)\MicrocodeUpdate.ffs"
+	Token = "AMI_DEBUGGER_SUPPORT" "=" "1"
+	InvokeOrder = ReplaceParent
+End

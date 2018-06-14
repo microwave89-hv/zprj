@@ -1,0 +1,12 @@
+<component>
+	name = "TseDefaultBootOrder"
+	category = eModule
+	LocalRoot = "Core\EM\TseDefaultBootOrder\"
+	RefName = "TseDefaultBootOrder"
+[files]
+"TseDefaultBootOrder.sdl"	
+"TseDefaultBootOrder.mak"	
+"TseDefaultBootOrder.c"	
+"TseDefaultBootOrder.h"	
+"TseDefaultBootOrder.chm"	
+<endComponent>

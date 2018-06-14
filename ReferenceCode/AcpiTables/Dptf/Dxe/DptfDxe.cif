@@ -1,0 +1,13 @@
+<component>
+	name = "DptfDxe"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\AcpiTables\Dptf\Dxe\"
+	RefName = "DptfDxe"
+[files]
+"DptfDxe.sdl"	
+"DptfDxe.mak"	
+"Dptf.c"	
+"Dptf.dxs"	
+"Dptf.h"	
+"Dptf.inf"	
+<endComponent>

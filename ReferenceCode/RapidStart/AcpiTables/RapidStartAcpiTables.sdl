@@ -1,0 +1,91 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartAcpiTables/RapidStartAcpiTables.sdl 3     11/20/12 2:22a Bensonlai $
+#
+# $Revision: 3 $
+#
+# $Date: 11/20/12 2:22a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartAcpiTables/RapidStartAcpiTables.sdl $
+# 
+# 3     11/20/12 2:22a Bensonlai
+# [TAG]  		EIP107013
+# [Category]  	Improvement
+# [Description]  	Update Shark Bay Rapid Start Reference Code Version
+# 0.8.0.0
+# [Files]  		RapidStartAcpiTables.sdl
+# RapidStartAcpiTables.mak
+# RapidStartAcpiTables.inf
+# Ssdt\RapidStart.asl
+# RapidStartAcpiTables.cif
+# 
+# 2     10/15/12 5:46a Bensonlai
+# [Category] Improvement
+# [Severity] Important
+# [Description] Rename all IFFS sting to Rapid Start.
+# [Files] Board\EM\RapidStartWrapper\*.*, ReferenceCode\RapidStart\*.*
+# 
+# 1     4/19/12 7:50a Yurenlai
+# Initial check in.
+#
+#*************************************************************************
+TOKEN
+	Name  = "RapidStartAcpiTables_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable RapidStart ACPI tables in Project"
+End
+
+MODULE
+	Help  = "Includes RapidStartAcpiTables.mak to Project"
+	File  = "RapidStartAcpiTables.mak"
+End
+
+PATH
+	Name  = "RapidStartAcpiTables_DIR"
+End
+
+TOKEN
+	Name  = "INTEL_RAPIDSTART_ASL_FILE"
+	Value  = "$(RapidStartAcpiTables_DIR)\Ssdt\RapidStart.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\RapidStartAcpiTables.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

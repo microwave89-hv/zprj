@@ -1,0 +1,10 @@
+<component>
+	name = "Runtime"
+	category = ModulePart
+	LocalRoot = "Core\EM\Runtime\"
+	RefName = "Runtime"
+[files]
+"Runtime.sdl"	
+"Runtime.mak"	
+"Runtime.dxs"	
+<endComponent>

@@ -1,0 +1,646 @@
+TOKEN
+	Name  = "TCG2Support"
+	Value  = "1"
+	Help  = "Enable or Disable TCG_generic support"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "SecurityChipMode"
+	Value  = "7"
+	Help  = "4-bit Bit 0 Sets Discreet TPM 2.0, Bit 1 sets Ftpm, Bit 2 sets TPM 1.2, BIT3 reserved"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TPM12Enabled"
+	Value  = "($(SecurityChipMode) & 0x4)"
+	Help  = "TPM 1.2 Support Enabled"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TPM20Enabled"
+	Value  = "($(SecurityChipMode) & 0x1)"
+	Help  = "TPM 20 enabled"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FTPM20Enabled"
+	Value  = "($(SecurityChipMode) & 0x2)"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCG_SIZE"
+	Value  = "010000h"
+	Help  = "Size of Dxecore to measure"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCG_LEGACY"
+	Value  = "0"
+	Help  = "Main switch to enable Tcg Legacy support in Project."
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCGPPISPEC_1_2_SUPPORT"
+	Value  = "1"
+	Help  = "This will enable TCG Ppi spec 1.2 support. The default is 1.0 support since most O.S. will support released version 1.0."
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USE_BIOS_IMAGE_AS_CRTM"
+	Value  = "0"
+	Help  = "Requires controlled access to BIOS region on the Flash PART. Easily achieved with secureboot."
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "WORD_ACCESS_SMI_PORT"
+	Value  = "0"
+	Help  = "This will cause 16 bit read and write to the TPM SMI port required for some AMD platforms"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "StartupCmd_SelfTest_State"
+	Value  = "1"
+	Help  = " 1 - Send TPM startup and Selftest before Mem. 0 Send  selftest and Startup After Mem Init"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "TCG_LEGACY" "=" "0"
+End
+
+TOKEN
+	Name  = "StartupCmd_SelfTest_State"
+	Value  = "0"
+	Help  = "Always send selftest and Startup Command after Mem if TCG_LEGACY is enabled"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+	Token = "TCG_LEGACY" "=" "1"
+End
+
+TOKEN
+	Name  = "TPM_DRIVER_WAIT"
+	Value  = "005h"
+	Help  = "Delay count for TPM wait loop. Default is 50us. Please dont change to less than 2 (4us)."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DELAY_AMOUNT"
+	Value  = "010"
+	Help  = "Delay amount for TPM wait loop. Default is 5us. Please dont change to less than 2 (2us)."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "OVERRIDE_TCG_ASL"
+	Value  = "0"
+	Help  = "Allow override of TCG ASL files"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "Stack_Work_Around"
+	Value  = "0"
+	Help  = "Allows for working around binaries that don't return correctly when called into"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PMBASE_RTC_WKAround"
+	Value  = "1"
+	Help  = "Calling into some TPM binaries via legacy IO might cause RTC status to be set."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCG_DEBUG_MODE"
+	Value  = "1"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Lock = Yes
+	Token = "DEBUG_MODE" "=" "1"
+	Token = "x64_BUILD" "=" "0"
+End
+
+TOKEN
+	Name  = "SET_LIFETIME_PPLOCK"
+	Value  = "0"
+	Help  = "Main switch to set lifetime lock to TCG physical presence. Once set this is not revertible"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USE_ZERO_SEPARATOR"
+	Value  = "0"
+	Help  = "Enable this bit to use a separator value of zeros"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TPMID"
+	Value  = "PNP0C31"
+	Help  = "Device ID of the TPM device. This ID will show up in ACPI structure"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "TCG_LEGACY" "=" "0"
+End
+
+TOKEN
+	Name  = "CTPMID"
+	Value  = "PNP0C31"
+	Help  = "Compatible Device ID of the TPM device. This ID will show up in _CID object"
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "TCG_LEGACY" "=" "0"
+End
+
+TOKEN
+	Name  = "CID_SUPPORT"
+	Value  = "0"
+	Help  = "Enable optional ACPI compatiblity support in TPM ASL"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TPM_IOMEMBASE"
+	Value  = "0FED40000h"
+	Help  = "Start of Mem I/O region dedicated for TPM access"
+	TokenType = Expression
+	TargetEQU = Yes
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "PORT_TPM_IOMEMBASE"
+	Value  = "0xFED40000h"
+	Help  = "Start of Mem I/O region dedicated for TPM access"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCG_PCCLIENT_SPEC"
+	Value  = "0"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TPM_IOMEMSZ"
+	Value  = "5000h"
+	Help  = "Size of Mem I/O region dedicated for TPM access"
+	TokenType = Expression
+	TargetEQU = Yes
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "TPM_IOBASE"
+	Value  = "600h"
+	Help  = "Define IOBase for Legacy support. Should not be zero if TCG_Legacy is enabled"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TPM_IOBASE_MAX"
+	Value  = "6FFh"
+	Help  = "Define IOBase for Legacy support. Should not be zero if TCG_Legacy is enabled"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TPM_IOBASE2"
+	Value  = "7Eh"
+	Help  = "I/O registers used to configure the TPM and programm to use\TPM_IOBASE I/O range"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TPM_IOBASE2_DATA"
+	Value  = "7Fh"
+	Help  = "I/O registers used to configure the TPM and programm to use\TPM_IOBASE I/O range"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TPM_IOSZ"
+	Value  = "0FFh"
+	Help  = "Size of the IO range with base TPM_IOBASE"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCGSMIPORT"
+	Value  = "$(SW_SMI_IO_ADDRESS)"
+	Help  = "IO port used to generate software SMI."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCGSMIDATAPORT"
+	Value  = "$(SW_SMI_IO_ADDRESS)+1"
+	Help  = "IO port used to generate software SMI."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PPI_OFFSET"
+	Value  = "035h"
+	Help  = "Ppi SMI Value"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMIA"
+	Value  = "$(TCGSMIPORT)"
+	Help  = "Add a name of smiport for asl using"
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "SMIB"
+	Value  = "$(TCGSMIDATAPORT)"
+	Help  = "Add a name of smiport for asl using"
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "OFST"
+	Value  = "$(PPI_OFFSET)"
+	Help  = "Add a name of smiport for asl using"
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "PARTIALLY_MEASURE_FVMAIN"
+	Value  = "0"
+	Help  = "Enable this token to make the TPM measure part of FVMAIN. This is useful to reduce the amount of time used for hashing FVMAIN."
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCG_FV_MAIN_SIZE"
+	Value  = "0x180000"
+	Help  = "Size of FV_MAIN to Measure."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "PARTIALLY_MEASURE_FVMAIN" "=" "1"
+End
+
+TOKEN
+	Name  = "TCG_CONVENTIONAL_BIOS_6_1"
+	Value  = "1"
+	Help  = "Enable this token to send the TcgStartup_DISABLE commmand if Bootmode is recovery"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCG_MOR"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TPM_PASSWORD_AUTHENTICATION"
+	Value  = "0"
+	Help  = "1 - If a pasword is set, it will be required for TPM state change. 0 - No password reqired."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CONFIRM_SETUP_CHANGE"
+	Value  = "0"
+	Help  = "1 - A Setup change to TPM State requires confirmation (same as OS change). 0 - Setup change not confirmed."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "LOG_EV_EFI_ACTION"
+	Value  = "0"
+	Help  = "Switch to LOG TPM events of type EV_ACTION"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCG_CLEAR_REQUEST_KEY"
+	Value  = "SCAN_F12"
+	Help  = "Set to one of the defined constants from EFI_SIMPLE_TEXT_INPUT protocol. When you change the Key, Change the message string in the tcgstring.uni"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCG_CONFIGURATION_ACCEPT_KEY"
+	Value  = "SCAN_F10"
+	Help  = "Set to one of the defined constants from EFI_SIMPLE_TEXT_INPUT protocol. When you change the Key, Change the message string in the tcgstring.uni"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCG_CONFIGURATION_IGNORE_KEY"
+	Value  = "SCAN_ESC"
+	Help  = "Set to one of the defined constants from EFI_SIMPLE_TEXT_INPUT protocol. When you change the Key, Change the message string in the tcgstring.uni"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DSDT_GUID"
+	Value  = "{0x11D8AC35,0xFB8A,0x44d1,0x8D,0x09,0x0B,0x56,0x06,0xD3,0x21,0xB9}"
+	Help  = "GUID for DSDT..PORTING...VERIFY VALUE MATCHES WITH ACTUAL DSDT_GUID"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "GUID"
+End
+
+TOKEN
+	Name  = "MEMORY_ONLY_RESET_CONTROL_GUID"
+	Value  = "{0xe20939be, 0x32d4, 0x41be, 0xa1, 0x50, 0x89, 0x7f, 0x85, 0xd4, 0x98, 0x29}"
+	Help  = "Industry standard guid for MOR"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "GUID"
+End
+
+TOKEN
+	Name  = "CRTM_GUID"
+	Value  = "{0x546BFB1E,0x1D0C,0x4055,0xA4,0xAD,0x4E,0xF4,0xBF,0x17,0xB8,0x3A}"
+	Help  = "GUID for CRTM..PORTING..."
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "GUID"
+End
+
+TOKEN
+	Name  = "AMI_OS_PPI_CONFIRMATION_OVERRIDE_GUID"
+	Value  = "{0x5f171f5f, 0x8385, 0x4086, 0xa6, 0x9b, 0x1f, 0xcf, 0x6, 0xae, 0x4a, 0x3d}"
+	Help  = "GUID for Overriding TCG Physical Presence Locking"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "GUID"
+End
+
+TOKEN
+	Name  = "AMI_BIOSPPI_FLAGS_MANAGEMENT_GUID"
+	Value  = "{0xe9008d70, 0x2a4e, 0x47ea, 0x8e, 0xc4, 0x72, 0xe2, 0x57, 0x67, 0xe5, 0xef}"
+	Help  = "GUID for OEM protocol to reading persistent BIOS TPM Management flags. See Ppi section 2 table 1"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "GUID"
+End
+
+TOKEN
+	Name  = "TRST"
+	Value  = "2"
+	Help  = "Platform transition for PPI request under O.S. 0: None 1: Shutdown 2: Reboot 3: OS Vendor Specific"
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+	Range  = "0 - 4"
+End
+
+TOKEN
+	Name  = "TCG_PLATFORM_CLASS"
+	Value  = "0"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCG_BIOS_TYPE_INTERFACE"
+	Value  = "3"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCG_BIOS_TYPE_MAPPING"
+	Value  = "2"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCG_SPEC_VERSION_MAJOR"
+	Value  = "1"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCG_SPEC_VERSION_MINOR"
+	Value  = "2"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TCG_SPEC_ERRATA"
+	Value  = "1"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name = "AUTO_ACCEPT_PPI"
+	Value = "1"
+	Help = "Use this token for PreProduction WHCK TESTING. If Enabled PPi Requests will be automatically executed without use interaction"
+	TokenType = Boolean
+	TargetH = Yes
+END
+
+TOKEN
+	Name  = "TCMF"
+	Value  = "0"
+	Help  = "TPM ASL update Variable"
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TMF1"
+	Value  = "0"
+	Help  = "TPM ASL update Variable"
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TMF2"
+	Value  = "0"
+	Help  = "TPM ASL update Variable"
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TMF3"
+	Value  = "0"
+	Help  = "TPM ASL update Variable"
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "tcgLibLite"
+	Value  = "$(BUILD_DIR)\tcgLibLite.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "TTPF"
+	Value  = "1"
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TTDP"
+	Value  = "0"
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PTTHciSmm_SUPPORT"
+	Value  = "0"
+	Help  = " 1 - Send TPM startup and Selftest before Mem. 0 Send  selftest and Startup After Mem Init"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+PATH
+	Name  = "TCG_DIR"
+	Help  = "Tcg Directory"
+End
+
+ELINK
+	Name  = "PasswordAuthentication,"
+	Parent  = "MinisetupDriverEntryHook,"
+	Token = "TPM_PASSWORD_AUTHENTICATION" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D PTT_FLAG"
+	Parent  = "GLOBAL_DEFINES"
+	InvokeOrder = AfterParent
+End
+

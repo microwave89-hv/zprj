@@ -1,0 +1,9 @@
+<component>
+    name = "NB PPI"
+    category = ModulePart
+    LocalRoot = "INCLUDE\PPI"
+    RefName = "NB PPI"
+[files]
+"\NBPPI.h"
+"\BaseMemoryTest.h" 
+<endComponent>

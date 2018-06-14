@@ -1,0 +1,735 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchAcpiTables/PchAcpiTables.sdl 5     11/07/13 3:10a Littleyan $
+#
+# $Revision: 5 $
+#
+# $Date: 11/07/13 3:10a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchAcpiTables/PchAcpiTables.sdl $
+# 
+# 5     11/07/13 3:10a Littleyan
+# [TAG]           EIP142529
+# [Category]  	SPEC Update
+# [Description]  	PCH RC update to 1.7.0
+# [Files]  		PchAcpiTables.sdl PchXhci.asl PchPciExpressHelpersLib.h
+#                 PchRegsThermal.h PchPciExpressHelpersLibrary.c
+#                 PchPm.c PchRootPorts.c PchInitPeim.c
+#                 PchSmmSx.c PchPcieSmm.c PchInfo.h
+#                 PchS3Peim.c SerialIoDevices.asl Sensor.asl
+# 
+# 4     9/13/13 9:03a Barretlin
+# [TAG]  		EIP132976
+# [Category]  	Improvement
+# [Description]  	fix after plugging USB key on Rear USB3_1(TOP)
+# port(HS03) , there's no remove and save item in bot right corner
+# [Files]  		PchAcpiTables.sdl PchXhci.asl
+# 
+# 3     5/24/13 2:48a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Set token for OEM to change PchEhxi1.asl and
+# PchEhxi2.asl. 
+# [Files]  		PchAcpiTables.sdl, PchEhci1.asl, PchEhci2.asl
+# 
+# 2     5/06/13 8:14a Scottyang
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Set token for OEM easy to modify.
+# [Files]  		PchAcpiTables.sdl
+# PchXhci.asl
+# 
+# 1     2/08/12 8:39a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+        Name  = PchAcpiTables_SUPPORT
+        Value  = "1"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        Master = Yes
+        Help  = "Main switch to enable PchAcpiTables support in Project"
+End
+
+TOKEN
+        Name      = "EHC1_PR01_UPC"
+        Value     = "0xFF,0x00,0x00,0x00"
+        Help      = "HS01's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC1_PR01_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00,0x00, 0x00, 0x00, 0x00, 0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS01's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC1_PR11_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS01's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC1_PR11_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xE1, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS01's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC1_PR12_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS01's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC1_PR12_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xE1, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS01's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC1_PR13_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS01's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC1_PR13_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xE1, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS01's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC1_PR14_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS01's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC1_PR14_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xE1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS01's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC1_PR15_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS01's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC1_PR15_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS01's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC1_PR16_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS01's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC1_PR16_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS01's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC1_PR17_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS01's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC1_PR17_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS01's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC1_PR18_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS01's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC1_PR18_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS01's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC2_PR01_UPC"
+        Value     = "0xFF,0x00,0x00,0x00"
+        Help      = "HS01's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC2_PR01_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00,0x00, 0x00, 0x00, 0x00, 0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS01's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC2_PR11_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS01's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC2_PR11_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xE1, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS01's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC2_PR12_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS01's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC2_PR12_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xE1, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS01's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC2_PR13_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS01's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC2_PR13_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xE1, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS01's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC2_PR14_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS01's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC2_PR14_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xE1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS01's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC2_PR15_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS01's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC2_PR15_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS01's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC2_PR16_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS01's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "EHC2_PR16_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS01's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS01_UPC"
+        Value     = "0xFF,0x03,0x00,0x00"
+        Help      = "HS01's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS01_PLD"
+        Value     = "0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00, 0x69, 0x0C, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS01's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS02_UPC"
+        Value     = "0xFF,0x03,0x00,0x00"
+        Help      = "HS02's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS02_PLD"
+        Value     = "0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00, 0x69, 0x0C, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS02's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name  = "HS03_INTERNAL"
+        Value  = "1"
+        TokenType = Boolean
+        TargetH = Yes
+        Help  = "1: HS03 is internal port./0: HS03 is external port."
+End
+
+TOKEN
+        Name      = "HS03_UPC"
+        Value     = "0xFF,0x03,0x00,0x00"
+        Help      = "HS03's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS03_PLD"
+        Value     = "0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00, 0x71, 0x0C, 0x80, 0x01, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS03's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS04_UPC"
+        Value     = "0xFF,0x03,0x00,0x00"
+        Help      = "HS04's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS04_PLD"
+        Value     = "0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00, 0x71, 0x0C, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS04's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS05_UPC"
+        Value     = "0xFF,0x00,0x00,0x00"
+        Help      = "HS05's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS05_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x69, 0x0C, 0x80, 0x02, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS05's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS06_UPC"
+        Value     = "0xFF,0x00,0x00,0x00"
+        Help      = "HS06's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS06_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x69, 0x0C, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS06's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS07_UPC"
+        Value     = "0xFF,0x00,0x00,0x00"
+        Help      = "HS07's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS07_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x71, 0x0C, 0x80, 0x03, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS07's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS08_UPC"
+        Value     = "0xFF,0x00,0x00,0x00"
+        Help      = "HS08's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS08_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x71, 0x0C, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS08's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS09_UPC"
+        Value     = "0xFF,0x03,0x00,0x00"
+        Help      = "HS09's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS09_PLD"
+        Value     = "0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00, 0x71, 0x0C, 0x80, 0x04, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS09's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS10_UPC"
+        Value     = "0xFF,0x03,0x00,0x00"
+        Help      = "HS10's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS10_PLD"
+        Value     = "0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00, 0x71, 0x0C, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS10's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS11_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS11's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS11_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS11's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS12_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS12's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS12_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS12's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS13_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS13's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS13_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS13's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS14_UPC"
+        Value     = "0xFF,0xFF,0x00,0x00"
+        Help      = "HS14's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS14_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS14's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS15_UPC"
+        Value     = "0x00,0x00,0x00,0x00"
+        Help      = "HS15's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "HS15_PLD"
+        Value     = "0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "HS15's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP1_UPC"
+        Value     = "0xFF,0x03,0x00,0x00"
+        Help      = "SSP1's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP1_PLD"
+        Value     = "0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00, 0x69, 0x0C, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00"
+        Help      = "SSP1's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP1_PR3"
+        Value     = "0x01"
+        TokenType = Integer
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP2_UPC"
+        Value     = "0xFF,0x03,0x00,0x00"
+        Help      = "SSP2's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP2_PLD"
+        Value     = "0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00, 0x69, 0x0C, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00"
+        Help      = "SSP2's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP2_PR3"
+        Value     = "0x02"
+        TokenType = Integer
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP3_UPC"
+        Value     = "0xFF,0x03,0x00,0x00"
+        Help      = "SSP3's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP3_PLD"
+        Value     = "0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00, 0x71, 0x0C, 0x80, 0x01, 0x00, 0x00, 0x00, 0x00"
+        Help      = "SSP3's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP3_PR3"
+        Value     = "0x04"
+        TokenType = Integer
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP4_UPC"
+        Value     = "0xFF,0x03,0x00,0x00"
+        Help      = "SSP4's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP4_PLD"
+        Value     = "0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00, 0x71, 0x0C, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00"
+        Help      = "SSP4's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP4_PR3"
+        Value     = "0x08"
+        TokenType = Integer
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP5_UPC"
+        Value     = "0xFF,0x03,0x00,0x00"
+        Help      = "SSP5's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP5_PLD"
+        Value     = "0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00, 0x71, 0x0C, 0x80, 0x04, 0x00, 0x00, 0x00, 0x00"
+        Help      = "SSP5's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP5_PR3"
+        Value     = "0x10"
+        TokenType = Integer
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP6_UPC"
+        Value     = "0xFF,0x03,0x00,0x00"
+        Help      = "SSP6's Usb Port Capabilities"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP6_PLD"
+        Value     = "0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00, 0x71, 0x0C, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00"
+        Help      = "SSP6's Physical Location Description"
+        TokenType = Expression
+        TargetH   = Yes
+End
+
+TOKEN
+        Name      = "SSP6_PR3"
+        Value     = "0x20"
+        TokenType = Integer
+        TargetH   = Yes
+End
+
+PATH
+        Name  = "PchAcpiTables_DIR"
+End
+
+ELINK
+        Name  = "$(PchAcpiTables_DIR)\Pch.asl"
+        Parent  = "INTEL_GENERIC_ASL"
+        Priority  = 1
+        InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

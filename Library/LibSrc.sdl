@@ -1,0 +1,10 @@
+TOKEN
+	Name  = "LibSrc_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Library Sources support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+

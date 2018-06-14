@@ -1,0 +1,11 @@
+<component>
+	name = "FastBootPei"
+	category = ModulePart
+	LocalRoot = "Core\EM\FastBoot"
+	RefName = "FastBootPei"
+[files]
+"FastBootPei.mak"
+"FastBootPei.c"	
+"FastBootPei.dxs"	
+<endComponent>
+

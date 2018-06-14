@@ -1,0 +1,117 @@
+## @file
+#  Component description file for TXTDXE module
+#
+#@copyright
+#  Copyright (c)  1999 - 2012 Intel Corporation. All rights reserved
+#  This software and associated documentation (if any) is furnished
+#  under a license and may only be used or copied in accordance
+#  with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be
+#  reproduced, stored in a retrieval system, or transmitted in any
+#  form or by any means without the express written consent of
+#  Intel Corporation.
+#
+#  This file contains a 'Sample Driver' and is licensed as such
+#  under the terms of your license agreement with Intel or your
+#  vendor.  This file may be modified by the user, subject to
+#  the additional terms of the license agreement
+#
+
+
+[defines]
+BASE_NAME            = TxtDxe
+FILE_GUID            = FF917E22-A228-448d-BDAA-68EFCCDDA5D3
+COMPONENT_TYPE       = BS_DRIVER
+
+[sources.common]
+  TxtDxe.c
+  TxtDxeLib.c
+  TxtDxeOem.c
+  X64/TxtDxeBsp.asm
+  X64/TxtDxeAp.asm
+
+#
+# Edk II Glue Driver Entry Point
+#
+ EdkIIGlueDxeDriverEntryPoint.c
+
+[includes.common]
+  .
+  ./X64
+  $(EFI_SOURCE)/$(PROJECT_CPU_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_CPU_ROOT)/Include
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/Include
+  $(EDK_SOURCE)/Foundation
+  $(EDK_SOURCE)/Foundation/Efi
+  $(EDK_SOURCE)/Foundation/Framework
+  $(EDK_SOURCE)/Foundation/Include
+  $(EDK_SOURCE)/Foundation/Efi/Include
+  $(EDK_SOURCE)/Foundation/Framework/Include
+  $(EDK_SOURCE)/Foundation/Framework/Protocol
+  $(EDK_SOURCE)/Foundation/Include/IndustryStandard
+  $(EDK_SOURCE)/Foundation/Core/Dxe
+  $(EDK_SOURCE)/Foundation/Library/Dxe/Include
+  $(EDK_SOURCE)/Sample/Include
+
+#
+# Edk II Glue Library, some hearder are included by R9 header so have to include
+#
+
+ $(EFI_SOURCE)
+ $(EFI_SOURCE)/Framework
+ $(EDK_SOURCE)/Foundation
+ $(EDK_SOURCE)/Foundation/Framework
+ $(EDK_SOURCE)/Foundation/Include/IndustryStandard
+ $(EDK_SOURCE)/Foundation/Core/Dxe
+ $(EDK_SOURCE)/Foundation/Include/Pei
+ $(EDK_SOURCE)/Foundation/Library/Dxe/Include
+ $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include
+#
+# Typically the sample code referenced will be available in the code base already
+# So keep this include at the end to defer to the source base definition
+# and only use the sample code definition if source base does not include these files.
+#
+ $(EFI_SOURCE)/$(PROJECT_CPU_ROOT)/SampleCode
+
+[libraries.common]
+  EfiGuidLib
+  EdkFrameworkProtocolLib
+  EdkProtocolLib
+  EfiScriptLib
+  CpuGuidLib
+  CpuProtocolLib
+  EdkIIGlueBaseLib
+  EdkIIGlueBaseMemoryLib
+  EdkIIGlueBasePciLibPciExpress
+  EdkIIGlueDxeReportStatusCodeLib
+  EdkIIGlueDxeServicesTableLib
+  EdkIIGlueDxeDebugLibReportStatusCode
+  EdkIIGlueUefiBootServicesTableLib
+  EdkIIGlueUefiRuntimeServicesTableLib
+  EdkIIGlueUefiLib
+  EdkIIGlueDxeHobLib
+  CpuProtocolLib
+
+#
+# Typically the sample code referenced will be available in the code base already
+# So keep this include at the end to defer to the source base definition
+# and only use the sample code definition if source base does not include these files.
+#
+  CpuSampleProtocolLib
+
+[nmake.common]
+  IMAGE_ENTRY_POINT = _ModuleEntryPoint
+  DPX_SOURCE        = TxtDxe.dxs
+#
+# Module Entry Point
+#
+ C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_MODULE_ENTRY_POINT__=DriverEntry
+ C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_BASE_LIB__ \
+                      -D __EDKII_GLUE_BASE_MEMORY_LIB__ \
+                      -D __EDKII_GLUE_DXE_REPORT_STATUS_CODE_LIB__ \
+                      -D __EDKII_GLUE_DXE_SERVICES_TABLE_LIB__ \
+                      -D __EDKII_GLUE_DXE_DEBUG_LIB_REPORT_STATUS_CODE__ \
+                      -D __EDKII_GLUE_UEFI_BOOT_SERVICES_TABLE_LIB__ \
+                      -D __EDKII_GLUE_UEFI_RUNTIME_SERVICES_TABLE_LIB__
+ C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_UEFI_LIB__ \
+                      -D __EDKII_GLUE_DXE_HOB_LIB__

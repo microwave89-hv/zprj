@@ -1,0 +1,14 @@
+<component>
+    name = "IsctGuidLib"
+    category = ModulePart
+    LocalRoot = "Board\EM\Isct\Guid"
+    RefName = "IsctGuidLib"
+[files]
+"IsctGuidLib.sdl"
+"IsctGuidLib.mak"
+"IsctGuidLib.inf"
+"IsctAcpiTableStorage\IsctAcpiTableStorage.c"
+"IsctAcpiTableStorage\IsctAcpiTableStorage.h"
+"IsctPersistentData\IsctPersistentData.c"
+"IsctPersistentData\IsctPersistentData.h"
+<endComponent>

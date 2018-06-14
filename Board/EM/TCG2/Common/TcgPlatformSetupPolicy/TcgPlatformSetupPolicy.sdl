@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "TcgPlatformSetupPolicy_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TcgPlatformSetupPolicy support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "TcgPlatformSetupPolicy_DIR"
+End
+
+MODULE
+	Help  = "Includes AmtPlatformPolicy.mak to Project"
+	File  = "TcgPlatformSetupPolicy.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TcgPlatformSetupPolicy.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

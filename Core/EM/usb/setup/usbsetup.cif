@@ -1,0 +1,10 @@
+<component>
+	name = "UsbSetup"
+	category = ModulePart
+	LocalRoot = "core\em\usb\setup"
+	RefName = "USB_SETUP"
+[files]
+"\usb.uni"	
+"\usb.sd"	
+"\usbsetup.c"	
+<endComponent>

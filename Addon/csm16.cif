@@ -1,0 +1,9 @@
+<component>
+	name = "CSM 16-bit Addons"
+	category = ModulePart
+	LocalRoot = "Addon\"
+	RefName = "CSM16"
+[files]
+"\AmiLegacy16.bin"	
+"\Pxebase.lom"	
+<endComponent>

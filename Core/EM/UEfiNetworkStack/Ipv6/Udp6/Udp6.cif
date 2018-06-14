@@ -1,0 +1,11 @@
+<component>
+	name = "Udp6"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Ipv6\Udp6"
+	RefName = "Udp6"
+[files]
+"Udp6.sdl"	
+"Udp6.mak"	
+"Udp6Dxe.efi"	
+"Udp6DxeIa32.efi"	
+<endComponent>

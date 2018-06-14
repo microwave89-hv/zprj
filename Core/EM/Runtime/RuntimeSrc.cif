@@ -1,0 +1,13 @@
+<component>
+	name = "Runtime Sources"
+	category = ModulePart
+	LocalRoot = "Core\em\Runtime\"
+	RefName = "RuntimeSrc"
+[files]
+"RuntimeSrc.sdl"	
+"RuntimeSrc.mak"	
+"Runtime.c"	
+"CpuIoDxe.c"	
+"Flash.c"	
+"TimeAndReset.C"	
+<endComponent>

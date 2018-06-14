@@ -1,0 +1,18 @@
+<component>
+	name = "IntelSaSampleCodePpiLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\SampleCode\Ppi"
+	RefName = "IntelSaSampleCodePpiLib"
+[files]
+"IntelSaSampleCodePpiLib.sdl"	
+"IntelSaSampleCodePpiLib.mak"	
+"IntelSaSampleCodePpiLib.inf"	
+"PlatformMemoryRange\PlatformMemoryRange.c"	
+"PlatformMemoryRange\PlatformMemoryRange.h"	
+"PlatformMemorySize\PlatformMemorySize.c"	
+"PlatformMemorySize\PlatformMemorySize.h"	
+"Capsule\Capsule.c"	
+"Capsule\Capsule.h"	
+"SmmAccess\SmmAccess.c"	
+"SmmAccess\SmmAccess.h"	
+<endComponent>

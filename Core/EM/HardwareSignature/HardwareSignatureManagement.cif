@@ -1,0 +1,15 @@
+<component>
+    name = "Hardware Signature Management"
+    category = eModule
+    LocalRoot = "Core\EM\HardwareSignature\"
+    RefName = "HardwareSignatureManagement"
+[files]
+"HardwareSignatureManagement.chm"
+"HardwareSignatureManagement.mak"
+"HardwareSignatureManagement.dxs"
+"HardwareSignatureManagement.sdl"
+"HardwareSignatureManagement.c"
+"HardwareChangeDetect.c"
+[parts]
+"HardwareChangeProtocols"
+<endComponent>

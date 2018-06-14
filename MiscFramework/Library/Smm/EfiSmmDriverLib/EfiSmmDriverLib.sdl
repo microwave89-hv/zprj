@@ -1,0 +1,36 @@
+TOKEN
+	Name  = "EfiSmmDriverLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EfiSmmDriverLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EfiSmmDriverLib"
+	Value  = "$(BUILD_DIR)\EfiSmmDriverLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+MODULE
+	Help  = "Includes EfiSmmDriverLib.mak to Project"
+	File  = "EfiSmmDriverLib.mak"
+End
+
+PATH
+	Name  = "EfiSmmDriverLib_DIR"
+End
+
+ELINK
+	Name  = "EfiSmmDriverLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\EfiSmmDriverLib.lib"
+	Parent  = "EfiSmmDriverLib_LIB"
+	InvokeOrder = AfterParent
+End

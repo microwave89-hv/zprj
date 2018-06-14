@@ -1,0 +1,13 @@
+<component>
+	name = "SmmAccess"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\SmmAccess\Dxe"
+	RefName = "SmmAccess"
+[files]
+"SmmAccess.sdl"	
+"SmmAccess.mak"	
+"SmmAccessDriver.c"	
+"SmmAccessDriver.h"	
+"SmmAccess.dxs"
+"SmmAccess.inf"	
+<endComponent>

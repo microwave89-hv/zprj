@@ -1,0 +1,108 @@
+## @file
+#  Component description file for the PCH Init PEIM.
+#
+#@copyright
+#  Copyright (c)  2004 - 2013 Intel Corporation. All rights reserved
+#  This software and associated documentation (if any) is furnished
+#  under a license and may only be used or copied in accordance
+#  with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be
+#  reproduced, stored in a retrieval system, or transmitted in any
+#  form or by any means without the express written consent of
+#  Intel Corporation.
+#
+#  This file contains a 'Sample Driver' and is licensed as such
+#  under the terms of your license agreement with Intel or your
+#  vendor.  This file may be modified by the user, subject to
+#  the additional terms of the license agreement
+#
+
+[defines]
+BASE_NAME            = PchInitPeim
+FILE_GUID            = FD236AE7-0791-48c4-B29E-29BDEEE1A838
+COMPONENT_TYPE       = PE32_PEIM
+
+[sources.common]
+  PchInitPeim.h
+  PchInitPeim.c
+  PchUsbInit.c
+  ../Common/PchUsbCommon.c
+  ../Common/PchInitVar.c
+  ../Common/PchHsio.c
+  ../Common/PchHsioLptHB0.c
+  ../Common/PchHsioLptHCx.c  
+  ../Common/PchHsioLptLpBx.c
+  PchDmiPeim.c
+
+  PchUsbPreconditionPeim.c
+#
+# Edk II Glue Driver Entry Point
+#
+  EdkIIGluePeimEntryPoint.c
+
+[includes.common]
+  .
+  ../Common
+  $(EDK_SOURCE)/Foundation/Efi
+  $(EDK_SOURCE)/Foundation/Include
+  $(EDK_SOURCE)/Foundation/Efi/Include
+  $(EDK_SOURCE)/Foundation/Framework/Include
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)/Include
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)/Include/Library
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)/Protocol/PchPlatformPolicy
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)/Guid/ChipsetInitHob
+  $(EFI_SOURCE)/$(PROJECT_ME_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_ME_ROOT)/Heci/Include
+  $(EFI_SOURCE)/$(PROJECT_ME_ROOT)/Library/MeKernel/include
+#
+# EDK II Glue Library utilizes some standard headers from EDK
+#
+  $(EFI_SOURCE)
+  $(EDK_SOURCE)/Foundation
+  $(EDK_SOURCE)/Foundation/Framework
+  $(EDK_SOURCE)/Foundation/Include/IndustryStandard
+  $(EDK_SOURCE)/Foundation/Core/Dxe
+  $(EDK_SOURCE)/Foundation/Include/Pei
+  $(EDK_SOURCE)/Foundation/library/Pei/Include
+  $(EDK_SOURCE)/Foundation/Library/Dxe/Include
+  $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include
+  $(EDK_SOURCE)/Foundation/Efi
+  $(EDK_SOURCE)/Foundation/Efi/Include
+  $(EDK_SOURCE)/Foundation/Framework/Include
+  $(EDK_SOURCE)/Foundation/Include
+
+[libraries.common]
+  $(PROJECT_PCH_FAMILY)PpiLib
+  EdkFrameworkPpiLib
+  EdkIIGlueBaseIoLibIntrinsic
+  EdkIIGlueBaseMemoryLib
+  EdkIIGluePeiDebugLibReportStatusCode
+  EdkIIGluePeiReportStatusCodeLib
+  EdkIIGluePeiServicesLib
+  EdkIIGluePeiMemoryAllocationLib
+  EdkIIGluePeiFirmwarePerformanceLib
+  EdkIIGlueBasePciLibPciExpress
+  EdkPpiLib
+  PchPlatformLib
+  PeiLib
+  $(PROJECT_PCH_FAMILY)PpiLib
+  EdkIIGluePeiFirmwarePerformanceLib
+  PchPlatformLib
+  MeLibPpi
+  MeGuidLib
+
+[nmake.common]
+  IMAGE_ENTRY_POINT = _ModuleEntryPoint
+  DPX_SOURCE        = PchInitPeim.dxs
+#
+# Module Entry Point
+#
+  C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_MODULE_ENTRY_POINT__=InstallPchInitPpi
+  C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_BASE_IO_LIB_INTRINSIC__ \
+                       -D __EDKII_GLUE_BASE_MEMORY_LIB__ \
+                       -D __EDKII_GLUE_PEI_DEBUG_LIB_REPORT_STATUS_CODE__ \
+                       -D __EDKII_GLUE_PEI_REPORT_STATUS_CODE_LIB__ \
+                       -D __EDKII_GLUE_PEI_SERVICES_LIB__ \
+                       -D __EDKII_GLUE_PEI_MEMORY_ALLOCATION_LIB__ \
+                       -D __EDKII_GLUE_BASE_PCI_LIB_PCI_EXPRESS__

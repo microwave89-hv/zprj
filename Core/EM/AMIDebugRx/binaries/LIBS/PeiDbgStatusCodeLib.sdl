@@ -1,0 +1,49 @@
+PATH
+	Name  = "PeiDbgStatusCodeLib_DIR"
+End
+
+MODULE
+	Help  = "Includes PeiDbgStatusCodeLib.mak to Project"
+	File  = "PeiDbgStatusCodeLib.mak"
+End
+
+# (EIP 54793)>
+ELINK
+	Name  = "PeiDbgrSendDebugText,"
+	Parent  = "ReportStringStatus"
+	InvokeOrder = AfterParent
+	Token = "SEND_DEBUG_MESSAGE_SUPPORT" "=" "1"
+End
+# (EIP 54793)>
+
+ELINK
+	Name  = "PeiDbgrSendCheckPoint,"
+	Parent  = "ReportSimpleStatus"
+	InvokeOrder = AfterParent
+	Token = "SEND_CHECKPOINT_SUPPORT" "=" "1"
+End
+
+
+ELINK
+	Name  = "PeiDbgrSendProgressCode,"
+	Parent  = "ReportCheckpoint"
+	InvokeOrder = AfterParent
+	Token = "SEND_CHECKPOINT_SUPPORT" "=" "1"
+	Token = "STATUS_CODE_VERSION" ">=" "15"
+End
+
+
+ELINK
+	Name  = " "
+	Parent  = "PeiDbgrSendCheckPoint,"
+	InvokeOrder = ReplaceParent
+	Token = "STATUS_CODE_VERSION" ">=" "15"
+	Token = "SEND_CHECKPOINT_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "PeiDbgStatusToDBGMsg,"
+	Parent  = "ReportSimpleStatus"
+	InvokeOrder = AfterParent
+	Token = "SEND_DEBUG_MESSAGE_SUPPORT" "=" "1"
+End

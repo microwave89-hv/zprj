@@ -1,0 +1,12 @@
+<component>
+    name = "SB SMI"
+    category = ModulePart
+    LocalRoot = "Chipset\SB"
+    RefName = "SBSMI"
+[files]
+"SBSMI.sdl"
+"SBSMI.c"
+"SBSMI.h"
+"SBSMI.mak"
+"SBSMI.dxs"
+<endComponent>

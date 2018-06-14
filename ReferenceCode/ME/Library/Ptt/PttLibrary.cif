@@ -1,0 +1,14 @@
+<component>
+	name = "PttLibrary"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Me\Library\Ptt\"
+	RefName = "PttLibrary"
+[files]
+"PttLibrary.sdl"	
+"PttLibrary.mak"	
+[parts]
+"PttHciDeviceLib"
+"PttHciDeviceDxeLib"
+"PttHciDevicePeiLib"
+"PttLibInc"
+<endComponent>

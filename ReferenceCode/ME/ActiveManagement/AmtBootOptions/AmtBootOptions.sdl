@@ -1,0 +1,21 @@
+TOKEN
+	Name  = AmtBootOptions_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable AMT support in Project"
+End
+
+PATH
+	Name  = "AmtBootOptions_SOURCE"
+	Help  = "AMT Driver files source directory"
+End
+
+ELINK
+	Name  = "/I$(AmtBootOptions_SOURCE)\Include"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End
+

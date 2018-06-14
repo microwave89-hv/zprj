@@ -1,0 +1,11 @@
+<component>
+    name = "SleepSmi"
+    category = ModulePart
+    LocalRoot = "Chipset\SB"
+    RefName = "SleepSmi"
+[files]
+"SleepSmi.sdl"  
+"SleepSmi.mak"  
+"SleepSmi.c"    
+"SleepSmi.dxs"  
+<endComponent>

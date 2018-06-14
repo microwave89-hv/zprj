@@ -1,0 +1,14 @@
+<component>
+	name = "S3Save"
+	category = ModulePart
+	LocalRoot = "Core\EM\S3\"
+	RefName = "S3Save"
+[files]
+"S3Save.sdl"	
+"S3Save.mak"	
+"AcpiS3Save.c"	
+"BootScriptPrivate.h"	
+"BootScriptSave.c"	
+"AcpiS3Save.dxs"	
+"SmmS3Save.dxs"	
+<endComponent>

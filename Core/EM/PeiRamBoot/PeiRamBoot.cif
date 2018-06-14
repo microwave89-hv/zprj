@@ -1,0 +1,19 @@
+<component>
+	name = "PEI Ram Boot"
+	category = eModule
+	LocalRoot = "Core\EM\PeiRamBoot"
+	RefName = "PEI_RAM_BOOT"
+[files]
+"PeiRamBoot.sdl"	
+"PeiRamBoot.mak"	
+"PeiRamBoot.dxs"	
+"PeiRamBoot.h"	
+"PeiRamBoot.c"	
+"PeiRamBootHook.c"	
+"PeiRamBootDxe.c"	
+"PeiRamBootOfbd.c"	
+"PeiRamBootFvHook.c"	
+"PeiRamBootCacheRdy.c"	
+"PeiRamBootCacheRdy.dxs"	
+"PeiRamBoot.chm"	
+<endComponent>

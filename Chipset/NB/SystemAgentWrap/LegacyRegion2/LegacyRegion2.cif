@@ -1,0 +1,11 @@
+<component>
+	name = "LegacyRegion2"
+	category = ModulePart
+	LocalRoot = "Chipset\NB\SystemAgentWrap\LegacyRegion2\"
+	RefName = "LegacyRegion2"
+[files]
+"LegacyRegion2.sdl"
+"LegacyRegion2.mak"	
+"LegacyRegion2.dxs"	
+"LegacyRegion2.c"	
+<endComponent>

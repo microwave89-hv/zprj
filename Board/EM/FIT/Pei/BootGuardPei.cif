@@ -1,0 +1,14 @@
+<component>
+	name = "BootGuardPei"
+	category = ModulePart
+	LocalRoot = "Board\EM\FIT\Pei"
+	RefName = "BootGuardPei"
+[files]
+"BootGuardPei.c"
+"BootGuardPei.h"
+"BootGuardPei.dxs"
+"BootGuardPei.sdl"
+"BootGuardPei.mak"
+"PeiCryptLib.lib"
+"OpensslLib.lib"
+<endComponent>

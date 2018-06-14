@@ -1,0 +1,8 @@
+<component>
+	name = "Crypto Utilities"
+	category = ModulePart
+	RefName = "CryptoUtils"
+[files]
+"CryptoCon.exe"	
+"keygen.exe"	
+<endComponent>

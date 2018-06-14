@@ -1,0 +1,483 @@
+TOKEN
+	Name  = "ACPIPLATFORM_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PLATFORM support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "S3_Power_Reduction_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable PLATFORM support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "=== Platform Flavor Definition ======"
+	Help  = "Define Platform Flavor Tokens: Mobile, Desktop etc"
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "Desktop_Platform"
+	Value  = "0"
+	Help  = "This is a tag for MB/DT platform decision. DON NOT CHANGE IT!"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "Mobile_Platform"
+	Value  = "1"
+	Help  = "This is a tag for MB/DT platform decision. DON NOT CHANGE IT!"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "UpServer_Platform"
+	Value  = "2"
+	Help  = "Platform Flavor UP Server"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "FlavorMobile"
+	Value  = "1"
+	Help  = "Platform Flavor Mobile"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FMBL"
+	Value  = "$(FlavorMobile)"
+	Help  = "Platform Flavor - Mobile flavor for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "FlavorDesktop"
+	Value  = "2"
+	Help  = "Platform Flavor Desktop"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FDTP"
+	Value  = "$(FlavorDesktop)"
+	Help  = "Platform Flavor - Desktop flavor for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "FlavorUpServer"
+	Value  = "3"
+	Help  = "Platform Flavor UP Server"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FUPS"
+	Value  = "$(FlavorUpServer)"
+	Help  = "Platform Flavor - UP Server flavor for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "FlavorWorkStation"
+	Value  = "4"
+	Help  = "Platform Flavor UP Server"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FUWS"
+	Value  = "$(FlavorWorkStation)"
+	Help  = "Platform Flavor - WorkStation flavor for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "FlavorPlatformMax"
+	Value  = "5"
+	Help  = "Platform Flavor Max: This is the last entry for Platform Flavor!"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "=== Board ID Definition ======"
+	Help  = "Define Board ID Tokens: Shark Bay etc."
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "BoardIdGraysReef"
+	Value  = "0x01"
+	Help  = "Haswell - Grays Reef"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BGR"
+	Value  = "$(BoardIdGraysReef)"
+	Help  = "Haswell - Grays Reef Board ID for ASL codee."
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "BoardIdFlatheadRock"
+	Value  = "0x02"
+	Help  = "Haswell - Flathead Rock"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BFR"
+	Value  = "$(BoardIdFlatheadRock)"
+	Help  = "Haswell - Flathead Rock Board ID for ASL codee."
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "BoardIdBaskingRidge"
+	Value  = "0x03"
+	Help  = "Haswell - Basking Ridge"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BBR"
+	Value  = "$(BoardIdBaskingRidge)"
+	Help  = "Haswell - Basking Ridge Board ID for ASL codee."
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "BoardIdWalnutCanyon"
+	Value  = "0x04"
+	Help  = "Haswell - Walnut Canyon"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BWC"
+	Value  = "$(BoardIdWalnutCanyon)"
+	Help  = "Haswell - Walnut Canyon Board ID for ASL codee."
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "BoardIdhiteTipMountain1"
+	Value  = "0x20"
+	Help  = "Haswell - WhiteTip Mountain1"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BWT1"
+	Value  = "$(BoardIdhiteTipMountain1)"
+	Help  = "Haswell - WhiteTip Mountain1  Board ID for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "BoardIdSawtoothPeak"
+	Value  = "0x24"
+	Help  = "Haswell - Sawtooth Peak"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BSPC"
+	Value  = "$(BoardIdSawtoothPeak)"
+	Help  = "Haswell - Sawtooth Peak  Board ID for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "BoardIdFlatheadCreek"
+	Value  = "0x100"
+	Help  = "Haswell - Flathead Creek"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BFHC"
+	Value  = "$(BoardIdFlatheadCreek)"
+	Help  = "Haswell - Flathead Creek Board ID for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = " "
+	TokenType = Integer
+End
+
+TOKEN
+	Name  = "DeviceID1"
+	Value  = "0x100"
+	Help  = "Value for CRT Display"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DeviceID2"
+	Value  = "0x400"
+	Help  = "Value for Internal/Integrated Digital Flat Panel"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DeviceID3"
+	Value  = "0x300"
+	Help  = "Value for Digital Display 1"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DeviceID4"
+	Value  = "0x301"
+	Help  = "Value for Digital Display 2"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DeviceID5"
+	Value  = "0x302"
+	Help  = "Value for Digital Display 3"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DeviceID6"
+	Value  = "0x303"
+	Help  = "Value for Digital Display 4"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DeviceID7"
+	Value  = "0x304"
+	Help  = "Value for Digital Display 5"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DeviceID8"
+	Value  = "0x305"
+	Help  = "Value for Digital Display 6"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ValidDeviceIDs"
+	Value  = "0x08"
+	Help  = "Number of Valid Video Device Ids"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+PATH
+	Name  = "AcpiPlatform_DIR"
+End
+
+MODULE
+	Help  = "Includes AcpiPlatform.mak to Project"
+	File  = "AcpiPlatform.mak"
+End
+
+TOKEN
+	Name  = "ACPIPLATFORM_ASL_COMPILER"
+	Value  = "$(AcpiPlatform_DIR)\iasl.exe"
+	Help  = "ASL Optimizing Compiler version 20120711-32 [Jul 11 2012]"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "ACPI_ASL_COMPILER"
+	Value  = "$(AcpiPlatform_DIR)\iasl.exe"
+	Help  = "ASL Optimizing Compiler version 20120711-32 [Jul 11 2012]"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "GENACPI"
+	Value  = "$(AcpiPlatform_DIR)\GenAcpiTable"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AcpiPlatformPei.ffs"
+	Parent  = "$(BUILD_DIR)\SBPEI.ffs"
+	InvokeOrder = AfterParent
+	Token = "S3_Power_Reduction_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AcpiPlatform.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AcpiPlatformSmi.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+	Token = "S3_Power_Reduction_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AcpiPlatform.sdb"
+	Parent  = "SETUP_SDBS"
+	Priority  = 40
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(AcpiPlatform_DIR)\AcpiPlatform.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 40
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "AcpiPlatformPei_OBJECTS"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "AcpiPlatform_OBJECTS"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "SignalExitPmAuthProtocolEvent,"
+	Parent  = "SignalAllDriversConnectedEvent,"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "SignalExitPmAuthProtocolEvent,"
+	Parent  = "BeforeConnectFastBootDeviceHook"
+	Token = "FAST_BOOT_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "AcpiPlatformSmi_OBJECTS"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\$(AcpiPlatform_DIR)\AcpiPlatformPei.obj"
+	Parent  = "AcpiPlatformPei_OBJECTS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\$(AcpiPlatform_DIR)\AcpiPlatform.obj"
+	Parent  = "AcpiPlatform_OBJECTS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\$(NB_BOARD_DIR)\GetSetupData.obj"
+	Parent  = "AcpiPlatform_OBJECTS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\$(SB_BOARD_DIR)\GetSetupData.obj"
+	Parent  = "AcpiPlatform_OBJECTS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\$(AcpiPlatform_DIR)\AcpiPlatformSmi.obj"
+	Parent  = "AcpiPlatformSmi_OBJECTS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ACPI_PLATFORM_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/I $(AcpiPlatform_DIR)"
+	Parent  = "ACPI_PLATFORM_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I $(AcpiPlatform_DIR)\Library"
+	Parent  = "ACPI_PLATFORM_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/FI$(AcpiPlatform_DIR)\AcpiIntelRC.h"
+	Parent  = "ASLPREPROCESS_FLAG"
+	InvokeOrder = AfterParent
+End

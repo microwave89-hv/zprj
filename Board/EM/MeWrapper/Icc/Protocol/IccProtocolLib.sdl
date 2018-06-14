@@ -1,0 +1,29 @@
+TOKEN
+  Name  = "IccProtocolLib_SUPPORT"
+  Value  = "1"
+  TokenType = Boolean
+  TargetEQU = Yes
+  TargetMAK = Yes
+  Master = Yes
+  Help  = "Main switch to enable IccProtocolLib support in Project"
+End
+
+PATH
+  Name  = "IccProtocol_DIR"
+End
+
+MODULE
+  File  = "IccProtocolLib.mak"
+  Help  = "Includes IccProtocolLib.mak to Project"
+End
+
+ELINK
+  Name  = "IccProtocol_LIB"
+  InvokeOrder = ReplaceParent
+End
+
+ELINK
+  Name  = "$(BUILD_DIR)\IccProtocolLib.lib"
+  Parent  = "IccProtocol_LIB"
+  InvokeOrder = AfterParent
+End

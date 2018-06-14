@@ -1,0 +1,93 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchLib/PchPlatformLib/PchPlatformLib.sdl 1     2/08/12 8:48a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 2/08/12 8:48a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchLib/PchPlatformLib/PchPlatformLib.sdl $
+# 
+# 1     2/08/12 8:48a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+        Name  = "PchPlatformLib_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable PchPlatformLib support in Project"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        Master = Yes
+End
+
+PATH
+        Name  = "PchPlatformLib_DIR"
+End
+
+MODULE
+        Help  = "Includes PchPlatformLib.mak to Project"
+        File  = "PchPlatformLib.mak"
+End
+
+ELINK
+        Name  = "PchPlatformSmmLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\PchPlatformSmmLib.lib"
+        Parent  = "PchPlatformSmmLib_LIB"
+        InvokeOrder = AfterParent
+End
+
+ELINK
+        Name  = "PchPlatformDxeLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\PchPlatformDxeLib.lib"
+        Parent  = "PchPlatformDxeLib_LIB"
+        InvokeOrder = AfterParent
+End
+
+ELINK
+        Name  = "PchPlatformPeiLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\PchPlatformPeiLib.lib"
+        Parent  = "PchPlatformPeiLib_LIB"
+        InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

@@ -1,0 +1,13 @@
+<component>
+	name = "PchS3Support"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\S3Support\Dxe"
+	RefName = "PchS3Support"
+[files]
+"PchS3Support.sdl"	
+"PchS3Support.mak"	
+"PchS3Support.c"	
+"PchS3Support.h"	
+"PchS3Support.dxs"	
+"PchS3Support.inf"	
+<endComponent>

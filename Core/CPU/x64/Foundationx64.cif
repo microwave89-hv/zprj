@@ -1,0 +1,15 @@
+<component>
+	name = "Foundationx64"
+	category = ModulePart
+	LocalRoot = "Core\CPU\x64\"
+	RefName = "Foundationx64"
+[files]
+"Foundationx64.sdl"	
+"Foundationx64.mak"	
+"ProcessorAsms.Asm"	
+"EfiJump.h"	
+"PeCoffLoaderEx.c"	
+"PeCoffLoaderEx.h"	
+"Processor.c"
+"Processor.h"		
+<endComponent>

@@ -1,0 +1,47 @@
+TOKEN
+	Name  = "SGOEMSSDT_SUPPORT"
+	Value  = "0"
+	Help  = "Add an OEM SSDT for discrete VGA card. When Primarydisplay = Auto or PEG, the system can report OEM SSDT talbes for AMD or nVidia dGPU VGA card."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "SGOEM_ACPI_SSDT_TABLE"
+	Value  = "EFI_SIGNATURE_64 ('O', 'E', 'M', 'T', 'a', 'b', 'l', 0)"
+	Help  = "SGOEM Acpi table name"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SGOEM_ACPI_SSDT_GUID"
+	Value  = "{0x5B232086, 0x350A, 0x42c7, 0xA7, 0x0E, 0x34, 0x97, 0xB5, 0x76, 0x5D, 0x85}"
+	Help  = "SGTpv Acpi Package"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SGOEMSSDT_ASL_FILE"
+	Value  = "$(SG_OEMSSDT_DIR)\*.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "SG_OEMSSDT_DIR"
+End
+
+MODULE
+	Help  = "Includes OEMSSDT.mak to Project"
+	File  = "OEMSSDT.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\OEMSSDT.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

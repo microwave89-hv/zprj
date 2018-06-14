@@ -1,0 +1,15 @@
+<component>
+	name = "Tpm20Acpi"
+	category = ModulePart
+	LocalRoot = "Board\EM\TCG2\Common\Tpm20Acpi"
+	RefName = "Tpm20Acpi"
+[files]
+"Tpm20Acpi.sdl"	
+"Tpm20Acpi.mak"	
+"Tpm20Acpi.h"	
+"Tpm20Acpi.c"	
+"Tpm20Acpi.DXS"	
+"TpmCrb.asl"	
+"tcg_ppi1_2_Ex.asl"	
+"tcg_ppi1_2.asl"	
+<endComponent>

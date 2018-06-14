@@ -1,0 +1,59 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/PchWrap/PchSpiWrap/PchSpiWrap.dxs 1     2/08/12 8:33a Yurenlai $
+//
+// $Revision: 1 $
+//
+// $Date: 2/08/12 8:33a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/PchWrap/PchSpiWrap/PchSpiWrap.dxs $
+// 
+// 1     2/08/12 8:33a Yurenlai
+// Intel Lynx Point/SB eChipset initially releases.
+// 
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:        PchSpiWrap.dxs
+//
+// Description: This file is the dependency file for the Pch Spi Wrap driver.
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+
+#include <Protocol\Runtime.h>
+#include <Protocol\PchPlatformPolicy\PchPlatformPolicy.h>
+
+DEPENDENCY_START
+    EFI_RUNTIME_ARCH_PROTOCOL_GUID AND
+    DXE_PCH_PLATFORM_POLICY_PROTOCOL_GUID
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

@@ -1,0 +1,12 @@
+<component>
+	name = "OcPlatformLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\Library\"
+	RefName = "OcPlatformLib"
+[files]
+"OcPlatformLib.sdl"	
+"OcPlatformLib.mak"	
+"OverclockingLib\OverclockingLib.inf"	
+"OverclockingLib\OverclockingLibrary.c"	
+"OverclockingLib\OverclockingLibrary.h"
+<endComponent>

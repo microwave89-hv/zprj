@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EfiScriptLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EfiScriptLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EFISCRIPTLIB"
+	Value  = "$(BUILD_DIR)\EfiScriptLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EfiScriptLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EfiScriptLib.mak to Project"
+	File  = "EfiScriptLib.mak"
+End
+

@@ -1,0 +1,71 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1987-2013, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/Haswell/AMI Cpu PKG/AMI TXT PEI/AmiTxtPei.sdl 1     7/18/12 2:09a Davidhsieh $
+#
+# $Revision: 1 $
+#
+# $Date: 7/18/12 2:09a $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/Haswell/AMI Cpu PKG/AMI TXT PEI/AmiTxtPei.sdl $
+# 
+# 1     7/18/12 2:09a Davidhsieh
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	AMI TXT PEI module part create
+#
+#
+#**********************************************************************
+TOKEN
+	Name  = "AMI_TXT_PEI_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AMI TXT PEI support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+        Name  = "AmiTxtPei_DIR"
+End
+
+MODULE
+        Help  = "Includes TxtDxe.mak to Project"
+        File  = "AmiTxtPei.mak"
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\AmiTxtPei.ffs"
+        Parent  = "FV_BB"
+        Help  = "Intel Txt PEI component"
+        InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1987-2013, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

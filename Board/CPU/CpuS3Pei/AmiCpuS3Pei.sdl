@@ -1,0 +1,71 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1987-2013, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/Haswell/AMI Cpu PKG/AMI CPU S3 Pei/AmiCpuS3Pei.sdl 3     10/01/12 2:16a Davidhsieh $
+#
+# $Revision: 3 $
+#
+# $Date: 10/01/12 2:16a $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/Haswell/AMI Cpu PKG/AMI CPU S3 Pei/AmiCpuS3Pei.sdl $
+# 
+# 3     10/01/12 2:16a Davidhsieh
+# 
+# 2     9/27/12 12:26a Davidhsieh
+# 
+# 1     9/26/12 10:45a Davidhsieh
+#
+#**********************************************************************
+TOKEN
+	Name  = "AMI_CPU_S3_PEI_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AMI CPU S3 PEI support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "AmiCpuS3Pei_DIR"
+End
+
+MODULE
+	Help  = "Includes AmiCpuS3Pei.mak to Project"
+	File  = "AmiCpuS3Pei.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmiCpuS3Pei.ffs"
+	Parent  = "FV_BB"
+	Help  = "AMI CPU S3 PEI component"
+	InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1987-2013, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

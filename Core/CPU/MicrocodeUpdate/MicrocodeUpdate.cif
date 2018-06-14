@@ -1,0 +1,13 @@
+<component>
+	name = "MicrocodeUpdate"
+	category = ModulePart
+	LocalRoot = "Core\CPU\MicrocodeUpdate\"
+	RefName = "MicrocodeUpdate"
+[files]
+"MicrocodeUpdate.sdl"	
+"MicrocodeUpdate.mak"	
+"MicrocodeUpdate.c"	
+"MicrocodeUpdate.h"	
+"MicrocodeUpdate.dxs"	
+"FwhFvb.c"	
+<endComponent>

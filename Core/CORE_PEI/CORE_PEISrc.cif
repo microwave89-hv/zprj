@@ -1,0 +1,17 @@
+<component>
+	name = "CORE_PEI Source(EDK)"
+	category = ModulePart
+	LocalRoot = "Core\CORE_PEI\"
+	RefName = "CORE_PEISrc_EDK"
+[files]
+"CORE_PEISrc.sdl"	
+"CORE_PEISrc.mak"	
+"AmiPeiInit.c"	
+"CpuIo.c"	
+"PciCfg.c"	
+"DxeIpl.c"	
+"PeiPerf.c"	
+[parts]
+"CORE_PEISrcFramework_EDK"
+"CORE_PEISrcPI_EDK"
+<endComponent>

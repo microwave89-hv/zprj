@@ -1,0 +1,265 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**     5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093            **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+
+TOKEN
+	Name  = "PfatPubKey_SUPPORT"
+	Value  = "1"
+	Help  = ""
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+        Master = Yes
+End
+
+MODULE
+	File  = "PfatPubKeysAndBuildPSL.mak"
+End
+
+TOKEN
+	Name  = "PFATCRYPTCON"
+	Value  = "$(PFATPUB_DIR)\PfatCryptoCon.exe"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "KEYGEN"
+	Value  = "$(PFATPUB_DIR)\Keygen.exe"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PfatPubKey.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "PfatMaxSectionSize"
+	Help  = "Mega Byte is a unit of section size"
+	Value  = "0x100000"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BIOSStartingAddress"
+	Help  = ""
+	Value  = "0xFFFFFFFF - $(FLASH_SIZE) + 1"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FV_NvRamStartingAddress"
+	Help  = "ROM address"
+	Value  = "$(NVRAM_ADDRESS) - $(BIOSStartingAddress)"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FV_NvRamLength"
+	Help  = "ROM address"
+	Value  = "($(NVRAM_BLOCKS)*$(FLASH_BLOCK_SIZE))*2"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FV_OAStartingAddress"
+	Help  = "ROM address"
+	Value  = "$(OEM_ACTIVATION_TABLE_ADDRESS) - $(BIOSStartingAddress)"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+        Token = "OEM_ACTIVATION_TABLE_LOCATION" "=" "1"
+End
+
+TOKEN
+	Name  = "FV_OA_Length"
+	Help  = "ROM address"
+	Value  = "$(OEM_ACTIVATION_TABLE_SIZE)"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+        Token = "OEM_ACTIVATION_TABLE_LOCATION" "=" "1"
+End
+
+TOKEN
+	Name  = "FV_DataStartingAddress"
+	Help  = "ROM address"
+	Value  = "$(FV_DATA_BASE) - $(BIOSStartingAddress)"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FV_DataLength"
+	Help  = "ROM address"
+	Value  = "$(FV_DATA_SIZE)"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FV_MainStartingAddress"
+	Help  = "ROM address"
+	Value  = "$(FV_MAIN_BASE) - $(BIOSStartingAddress)"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FV_MainLength"
+	Help  = "ROM address"
+	Value  = "$(FV_MAIN_BLOCKS)*$(FLASH_BLOCK_SIZE)"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FV_BBStartingAddress"
+	Help  = "ROM address"
+	Value  = "$(FV_BB_BASE) - $(BIOSStartingAddress)"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FV_BBLength"
+	Help  = "ROM address"
+	Value  = "$(FV_BB_BLOCKS)*$(FLASH_BLOCK_SIZE)"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+        Name  = "BUILD_PSL_BATCH"
+        Value  = "$(PFATPUB_DIR)\\BuildPSL.bat"
+        TokenType = Expression
+        TargetMAK = Yes
+End
+
+TOKEN
+        Name  = "FITC_OUTIMAGE_MAP"
+        Value  = "$(ROM_IMAGE_DIR)\Build\OutImage.map"
+        TokenType = Expression
+        TargetMAK = Yes
+End
+
+TOKEN
+        Name  = "BUILD_BIOS_MAP"
+        Value  = "$(PFATPUB_DIR)\BuildBIOS.map"
+        TokenType = Expression
+        TargetMAK = Yes
+End
+
+TOKEN
+        Name  = "BUILD_BIOS_FV_NVRAM"
+        Value = "echo BIOS_FV_NVRAM.bin /N $(FV_NvRamStartingAddress) $(FV_NvRamLength)>$(BUILD_BIOS_MAP)"
+        TokenType = Expression
+        TargetMAK = Yes
+End
+
+TOKEN
+        Name  = "BUILD_BIOS_FV_OA"
+        Value = "echo BIOS_FV_OA.bin /OA $(FV_OAStartingAddress) $(FV_OA_Length)>>$(BUILD_BIOS_MAP)"
+        TokenType = Expression
+        TargetMAK = Yes
+        Token = "OEM_ACTIVATION_TABLE_LOCATION" "=" "1"
+End
+
+TOKEN
+        Name  = "BUILD_BIOS_FV_DATA"
+        Value = "echo BIOS_FV_DATA.bin /DATA $(FV_DataStartingAddress) $(FV_DataLength)>>$(BUILD_BIOS_MAP)"
+        TokenType = Expression
+        TargetMAK = Yes
+End
+
+TOKEN
+        Name  = "BUILD_BIOS_FV_MAIN"
+        Value = "echo BIOS_FV_MAIN.bin /P $(FV_MainStartingAddress) $(FV_MainLength)>>$(BUILD_BIOS_MAP)"
+        TokenType = Expression
+        TargetMAK = Yes
+End
+
+TOKEN
+        Name  = "BUILD_BIOS_FV_BB"
+        Value = "echo BIOS_FV_BB.bin /B $(FV_BBStartingAddress) $(FV_BBLength)>>$(BUILD_BIOS_MAP)"
+        TokenType = Expression
+        TargetMAK = Yes
+End
+
+TOKEN
+        Name  = "BUILD_BIOS_MAP_SET"
+        Value  = "$(BUILD_BIOS_FV_NVRAM) && $(BUILD_BIOS_FV_MAIN) && $(BUILD_BIOS_FV_DATA) && $(BUILD_BIOS_FV_BB)"
+        TokenType = Expression
+        TargetMAK = Yes
+End
+
+TOKEN
+        Name  = "BUILD_BIOS_MAP_SET"
+        Value  = "$(BUILD_BIOS_FV_NVRAM) && $(BUILD_BIOS_FV_OA) && $(BUILD_BIOS_FV_MAIN) && $(BUILD_BIOS_FV_DATA) && $(BUILD_BIOS_FV_BB)"
+        TokenType = Expression
+        TargetMAK = Yes
+        Token = "OEM_ACTIVATION_TABLE_LOCATION" "=" "1"
+End
+
+TOKEN
+        Name  = "BUILD_PSL_SET"
+        Value  = "$(BUILD_PSL_BATCH) $(FITC_OUTIMAGE_MAP) $(BUILD_BIOS_MAP) $(PFATPUB_DIR) $(BIOS_SVN) $(PfatMaxSectionSize)"
+        TokenType = Expression
+        TargetMAK = Yes
+End
+
+PATH
+	Name  = "PFATPUB_DIR"
+End
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**     5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093            **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+

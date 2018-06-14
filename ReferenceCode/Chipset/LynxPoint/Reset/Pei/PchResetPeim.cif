@@ -1,0 +1,13 @@
+<component>
+	name = "PchResetPeim"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Reset\Pei"
+	RefName = "PchResetPeim"
+[files]
+"PchResetPeim.sdl"	
+"PchResetPeim.mak"	
+"PchReset.h"	
+"PchReset.c"	
+"PchReset.dxs"	
+"PchResetPeim.inf"	
+<endComponent>

@@ -1,0 +1,12 @@
+<component>
+	name = "ACPI"
+	category = eModule
+	LocalRoot = "BOARD\EM\ACPI\"
+	RefName = "ACPI"
+[files]
+"ACPI.chm"	
+[parts]
+"ACPI_Board"
+"ACPI_CORE"
+"S3Support"
+<endComponent>

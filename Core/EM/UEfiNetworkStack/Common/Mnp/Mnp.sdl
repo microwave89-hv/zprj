@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "Mnp_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Mnp support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "Mnp_DIR"
+End
+
+MODULE
+	Help  = "Includes Mnp.mak to Project"
+	File  = "Mnp.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Mnp.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

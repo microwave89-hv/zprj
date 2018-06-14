@@ -1,0 +1,66 @@
+TOKEN
+	Name  = "AMI_TCG_NVFLAG_SAMPLE_SUPPORT"
+	Value  = "1"
+	Help  = "Sample module to provide interface to manipulate TPM NV BIOS FLAGS"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetH = Yes
+	TargetMAK = Yes
+	Master = Yes
+    Token = "USE_AMI_PERSISTENT_BIOS_MANAGEMENT_FLAGS_SUPPORT" "=" "1"
+    Token = "TCGPPISPEC_1_2_SUPPORT" "=" "1"
+    Token = "TPM12Enabled" "!=" "0"
+End
+
+
+TOKEN
+	Name  = "NV_DATA_SIZE"
+	Value  = "10"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name   = "NO_PPI_PROVISION_DEFAULT"
+	Value  = "001h"
+	Help   = "default for TPM NoPpiProvision flag"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name   = "NO_PPI_CLEAR_DEFAULT"
+	Value  = "000h"
+	Help   = "default for TPM NoPpiclear flag"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name   = "NO_PPI_MAINTENANCE_DEFAULT"
+	Value  = "000h"
+	Help   = "default for TPM NoPpiclear flag"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+PATH
+	Name  = "AMI_TCG_NVFLAG_SAMPLE_DIR"
+End
+
+MODULE
+	Help  = "AmiTcgNvflagSample.mak"
+	File  = "AmiTcgNvflagSample.mak"
+End
+
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmiTcgNvflagSample.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

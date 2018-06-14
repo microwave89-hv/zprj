@@ -1,0 +1,86 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2007, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**             6145-F Northbelt Pkwy, Norcross, GA 30071            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/HddSecurity/IdeSecurity.dxs 5     4/06/11 12:53a Rameshr $
+//
+// $Revision: 5 $
+//
+// $Date: 4/06/11 12:53a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/HddSecurity/IdeSecurity.dxs $
+// 
+// 5     4/06/11 12:53a Rameshr
+// [TAG]- EIP 57341
+// [Category]-IMPROVEMENT
+// [Description]- Added Support for SMM PI 1.1 in HDDSecurity eModule.
+// [Files]- IdeSecurity.c , IdeSecurity.h, IdeSecurity.dxs 
+// 
+// 4     2/19/10 12:51p Yul
+// Delete comment out codes
+// 
+// 3     1/21/10 12:08p Yul
+// Refer to EIP 33848 
+// LegacyBios is not needed here.
+// 
+// 2     12/09/09 12:19p Krishnakumarg
+// EIP 31797 : IDE Security API documentation. Added comments whereever
+// possible and modified files for coding standard
+// 
+// 1     28/02/08 6:40p Anandakrishnanl
+// Created new HddSecurity module.  Isolated IdeSecurity and IdeSmm from
+// IdeBus driver to be compatable with the AHCI Bus driver.
+// 
+// 
+// 
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//---------------------------------------------------------------------------
+//
+// Name:        IdeSecurity.DXS
+//
+// Description: Dependency expression for IDESecurity driver.
+//
+//---------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+#if defined(PI_SPECIFICATION_VERSION)&&(PI_SPECIFICATION_VERSION>=0x0001000A)
+#include <Protocol/SmmControl2.h>
+#else
+#include <Protocol/SmmControl.h>
+#endif
+
+DEPENDENCY_START
+#if defined(PI_SPECIFICATION_VERSION)&&(PI_SPECIFICATION_VERSION>=0x0001000A)
+  EFI_SMM_CONTROL2_PROTOCOL_GUID
+#else
+  EFI_SMM_CONTROL_PROTOCOL_GUID
+#endif
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2007, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**             6145-F Northbelt Pkwy, Norcross, GA 30071            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

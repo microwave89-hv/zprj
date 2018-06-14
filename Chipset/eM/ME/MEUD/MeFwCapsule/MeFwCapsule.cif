@@ -1,0 +1,11 @@
+<component>
+	name = "MeFwCapsule"
+	category = ModulePart
+	LocalRoot = "\Chipset\eM\ME\MEUD\MeFwCapsule\"
+	RefName = "MeFwCapsule"
+[files]
+"MeFwCapsule.sdl"
+"MeFwCapsule.mak"
+"MeFwCapsulePei.c"
+"MeFwCapsulePei.dxs"
+<endComponent>

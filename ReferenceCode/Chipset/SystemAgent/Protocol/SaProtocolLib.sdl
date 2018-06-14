@@ -1,0 +1,35 @@
+TOKEN
+  Name  = SaProtocolLib_SUPPORT
+  Value  = 1
+  TokenType = Boolean
+  TargetEQU = Yes
+  TargetMAK = Yes
+  Master = Yes
+  Help  = "Main switch to enable SaProtocolLib support in Project"
+End
+
+MODULE
+  Help  = "Includes SaProtocolLib.mak to Project"
+  File  = "SaProtocolLib.mak"
+End
+
+PATH
+  Name  = "INTEL_SA_PROTOCOL_LIB_DIR"
+End
+
+ELINK
+	Name  = "/I$(INTEL_SA_PROTOCOL_LIB_DIR)"
+	Parent  = "INTEL_MCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+  Name  = "INTEL_SA_PROTOCOL_LIB"
+  InvokeOrder = ReplaceParent
+End
+
+ELINK
+  Name  = "$(BUILD_DIR)\IntelSaProtocolLib.lib"
+  Parent  = "INTEL_SA_PROTOCOL_LIB"
+  InvokeOrder = AfterParent
+End

@@ -1,0 +1,11 @@
+<component>
+	name = "PchSpiWrap"
+	category = ModulePart
+	LocalRoot = "Chipset\SB\PchWrap\PchSpiWrap\"
+	RefName = "PchSpiWrap"
+[files]
+"PchSpiWrap.sdl"	
+"PchSpiWrap.mak"	
+"PchSpiWrap.c"	
+"PchSpiWrap.dxs"	
+<endComponent>

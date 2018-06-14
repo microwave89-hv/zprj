@@ -1,0 +1,107 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SMM/SMMBase/SmmBase.dxs 8     4/01/11 10:36a Markw $
+//
+// $Revision: 8 $
+//
+// $Date: 4/01/11 10:36a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SMM/SMMBase/SmmBase.dxs $
+// 
+// 8     4/01/11 10:36a Markw
+// [TAG]  		EIP57440
+// [Category]  	New Feature
+// [Description]  	Update for PI 1.1
+// [Files]  		SmmBase.dxs
+// 
+// 7     7/08/09 8:03p Markw
+// Update headers.
+// 
+// 6     8/28/08 2:04p Markw
+// 
+// 5     10/29/07 3:38p Markw
+// 
+// 4     10/29/07 11:21a Markw
+// Smm Thunk:
+// * Code and data different segments.
+// * Code position independent.
+// * Switch for CSM for code and EBDA for data.
+// 
+// 3     3/14/06 10:02a Felixp
+// 
+// 
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//---------------------------------------------------------------------------
+//
+// Name:		SmmBase.dxs
+//
+// Description:	Dependency file for the SMM base driver
+//
+//---------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+#include <Token.h>
+#if PI_SPECIFICATION_VERSION >= 0x0001000a
+#include <Protocol\SmmAccess2.h>
+#include <Protocol\smmcontrol2.h>
+#else
+#include <Protocol\SmmAccess.h>
+#include <Protocol\smmcontrol.h>
+#endif
+#include <Protocol\FirmwareVolume.h >
+#include <Protocol\Variable.h>
+
+#if SMM_THUNK_IN_CSM == 1
+#include <Protocol\LegacyBiosExt.h>
+#include <Protocol\LegacyBios.h>
+#endif
+
+DEPENDENCY_START
+#if PI_SPECIFICATION_VERSION >= 0x0001000a
+    EFI_SMM_ACCESS2_PROTOCOL_GUID AND
+    EFI_SMM_CONTROL2_PROTOCOL_GUID AND
+#else
+    EFI_SMM_ACCESS_PROTOCOL_GUID AND
+    EFI_SMM_CONTROL_PROTOCOL_GUID AND
+#endif
+    EFI_FIRMWARE_VOLUME_PROTOCOL_GUID AND
+    EFI_VARIABLE_ARCH_PROTOCOL_GUID AND
+#if SMM_THUNK_IN_CSM == 0
+    EFI_VARIABLE_WRITE_ARCH_PROTOCOL_GUID
+#else
+    EFI_VARIABLE_WRITE_ARCH_PROTOCOL_GUID AND
+    EFI_LEGACY_BIOS_EXT_PROTOCOL_GUID AND
+    EFI_LEGACY_BIOS_PROTOCOL_GUID
+#endif
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

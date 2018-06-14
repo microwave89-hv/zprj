@@ -1,0 +1,13 @@
+<component>
+	name = "FastBootOption"
+	category = ModulePart
+	LocalRoot = "Core\EM\FastBoot\FastBootOption\"
+	RefName = "FastBootOption"
+[files]
+"FastBootOption.sdl"	
+"FastBootOption.mak"	
+"FastBootOption.h"
+"FastBootOption.c"
+"FastBootOptionBds.c"
+"FastBootOption.dxs"	
+<endComponent>

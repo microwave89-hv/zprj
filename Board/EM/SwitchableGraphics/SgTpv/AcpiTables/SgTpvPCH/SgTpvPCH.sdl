@@ -1,0 +1,53 @@
+TOKEN
+	Name  = "SgTpvPCH_SUPPORT"
+	Value  = "1"
+	Help  = "Add an OEM SSDT for discrete VGA card. When Primarydisplay = Auto or PEG, the system can report OEM SSDT talbes for AMD or nVidia dGPU VGA card."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "DGPUPCH_SCOPE"
+	Value  = "\_SB.PCI0.RP0$(SG_ULT_RPNum).PEGP"
+	Help  = "PLATFORM PORTING!!! Update iGPU and dGPU device names as defined in SB/NB.SDL"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "INTEL_OPSSDTPCH_ASL_FILE"
+	Value  = "$(SG_TPVPCH_DIR)\OpSSDTPCH.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_NVSSDTPCH_ASL_FILE"
+	Value  = "$(SG_TPVPCH_DIR)\NvSSDTPCH.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "INTEL_ATISSDTPCH_ASL_FILE"
+	Value  = "$(SG_TPVPCH_DIR)\AtiSSDTPCH.asl"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "SG_TPVPCH_DIR"
+End
+
+MODULE
+	Help  = "Includes SgTpvPEG.mak to Project"
+	File  = "SgTpvPCH.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SGTPVPCHssdt.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

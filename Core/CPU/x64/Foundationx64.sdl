@@ -1,0 +1,19 @@
+TOKEN
+	Name  = "Foundationx64_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Foundationx64 support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "Foundationx64_DIR"
+End
+
+MODULE
+	Help  = "Includes Foundationx64.mak to Project"
+	File  = "Foundationx64.mak"
+End
+

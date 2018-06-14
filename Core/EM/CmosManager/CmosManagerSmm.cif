@@ -1,0 +1,11 @@
+<component>
+	name = "CMOS SMM"
+	category = ModulePart
+	LocalRoot = "Core\EM\CmosManager\"
+	RefName = "CmosSmm"
+[files]
+"CmosManagerSmm.c"	
+"CmosManagerSmm.h"	
+"CmosManagerSmm.dxs"	
+"CmosAccess.asl"	
+<endComponent>

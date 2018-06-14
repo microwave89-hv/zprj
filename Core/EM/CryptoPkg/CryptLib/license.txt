@@ -1,0 +1,102 @@
+//<AMI_FHDR_START>
+//----------------------------------------------------------------------------
+// Name:          License
+// Description:   WPA Supplicant License
+======================================================================
+
+Copyright (c) 2003-2009, Jouni Malinen <j@w1.fi> and contributors
+All Rights Reserved.
+
+======================================================================
+License
+--------
+
+This software may be distributed, used, and modified
+under the terms of BSD license:
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+
+3. Neither the name(s) of the above-listed copyright holder(s) nor the
+   names of its contributors may be used to endorse or promote products
+   derived from this software without specific prior written permission.
+
+==============
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+======================================================================
+
+Features
+--------
+
+Internal crypto implementation (optional):
+- X.509 certificate processing in PEM and DER formats
+- PKCS #1
+- ASN.1
+- RSA
+- bignum
+- minimal size (ca. 50 kB binary, parts of which are already needed for WPA;
+  TLSv1/X.509/ASN.1/RSA/bignum parts are about 25 kB on x86)
+
+
+Requirements
+------------
+
+wpa_supplicant was designed to be portable for different drivers and
+operating systems. Hopefully, support for more wlan cards and OSes will be
+added in the future. See developer's documentation
+(http://hostap.epitest.fi/wpa_supplicant/devel/) for more information about the
+design of wpa_supplicant and porting to other drivers. One main goal
+is to add full WPA/WPA2 support to Linux wireless extensions to allow
+new drivers to be supported without having to implement new
+driver-specific interface code in wpa_supplicant.
+
+
+WPA
+---
+
+The original security mechanism of IEEE 802.11 standard was not
+designed to be strong and has proven to be insufficient for most
+networks that require some kind of security. Task group I (Security)
+of IEEE 802.11 working group (http://www.ieee802.org/11/) has worked
+to address the flaws of the base standard and has in practice
+completed its work in May 2004. The IEEE 802.11i amendment to the IEEE
+802.11 standard was approved in June 2004 and published in July 2004.
+
+Wi-Fi Alliance (http://www.wi-fi.org/) used a draft version of the
+IEEE 802.11i work (draft 3.0) to define a subset of the security
+enhancements that can be implemented with existing wlan hardware. This
+is called Wi-Fi Protected Access<TM> (WPA). This has now become a
+mandatory component of interoperability testing and certification done
+by Wi-Fi Alliance. Wi-Fi provides information about WPA at its web
+site (http://www.wi-fi.org/OpenSection/protected_access.asp).
+
+IEEE 802.11 standard defined wired equivalent privacy (WEP) algorithm
+for protecting wireless networks. WEP uses RC4 with 40-bit keys,
+24-bit initialization vector (IV), and CRC32 to protect against packet
+forgery. All these choices have proven to be insufficient: key space is
+too small against current attacks, RC4 key scheduling is insufficient
+(beginning of the pseudorandom stream should be skipped), IV space is
+too small and IV reuse makes attacks easier, there is no replay
+protection, and non-keyed authentication does not protect against bit
+flipping packet data.
+
+//<AMI_FHDR_END>

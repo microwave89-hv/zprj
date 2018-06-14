@@ -1,0 +1,12 @@
+<component>
+    name = "STD Interface - Source"
+    category = ModulePart
+    LocalRoot = "Board\Flash\STD"
+    RefName = "STD_INTERFACE_SOURCE"
+[files]
+"StdFlash.sdl"
+"StdFlash.mak"
+"StdSpansionFlashWrite.c"
+"STDIntelFlashWrite.c"
+"StdMxicFlashWrite.c"
+<endComponent>

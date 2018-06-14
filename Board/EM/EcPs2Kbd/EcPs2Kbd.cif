@@ -1,0 +1,13 @@
+<component>
+	name = "EcPs2Kbd"
+	category = eModule
+	LocalRoot = "Board\em\EcPs2Kbd"
+	RefName = "EcPs2Kbd"
+[files]
+"EcPs2Kbd.sdl"	
+"EcPs2Kbd.c"	
+"EcPs2Kbd.mak"	
+"EcPs2Kbd.h"	
+"EcPs2Kbd.dxs"	
+"EcPs2Kbd.chm"
+<endComponent>

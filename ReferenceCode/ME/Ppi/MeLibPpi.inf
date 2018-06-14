@@ -1,0 +1,59 @@
+## @file
+#  Component description file for Me PPI library.
+#
+#@copyright
+#  Copyright (c)  2005 - 2012 Intel Corporation. All rights reserved
+#  This software and associated documentation (if any) is furnished
+#  under a license and may only be used or copied in accordance
+#  with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be
+#  reproduced, stored in a retrieval system, or transmitted in any
+#  form or by any means without the express written consent of
+#  Intel Corporation.
+#
+#  This file contains a 'Sample Driver' and is licensed as such
+#  under the terms of your license agreement with Intel or your
+#  vendor.  This file may be modified by the user, subject to
+#  the additional terms of the license agreement
+#
+
+[defines]
+BASE_NAME       =   MeLibPpi
+COMPONENT_TYPE  =   LIBRARY
+
+[includes.common]
+  $(EFI_SOURCE)/$(PROJECT_ME_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_ME_ROOT)/Library/MeKernel/Include
+
+#
+# EDK II Glue Library utilizes some standard headers from EDK
+#
+ $(EDK_SOURCE)/Foundation
+ $(EDK_SOURCE)/Foundation/Core/Dxe
+ $(EDK_SOURCE)/Foundation/Efi
+ $(EDK_SOURCE)/Foundation/Efi/Include
+ $(EDK_SOURCE)/Foundation/Framework
+ $(EDK_SOURCE)/Foundation/Framework/Include
+ $(EDK_SOURCE)/Foundation/Include
+ $(EDK_SOURCE)/Foundation/Include/IndustryStandard
+ $(EDK_SOURCE)/Foundation/Include/Pei
+ $(EDK_SOURCE)/Foundation/Library/Dxe/Include
+ $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include
+
+[sources.common]
+  AmtStatusCode/AmtStatusCode.c
+  AmtStatusCode/AmtStatusCode.h
+  Heci/Heci.c
+  Heci/Heci.h
+  AmtPlatformPolicyPei/AmtPlatformPolicyPei.c
+  AmtPlatformPolicyPei/AmtPlatformPolicyPei.h
+  MePlatformPolicyPei/MePlatformPolicyPei.c
+  MePlatformPolicyPei/MePlatformPolicyPei.h
+  PlatformMeHook/PlatformMeHook.c
+  PlatformMeHook/PlatformMeHook.h
+  PchMeUma/PchMeUma.c
+  PchMeUma/PchMeUma.h
+
+[nmake.common]
+C_STD_INCLUDE=
+

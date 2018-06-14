@@ -1,0 +1,25 @@
+TOKEN
+	Name  = SmmKscLib_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable SmmKscLib support in Project"
+End
+
+TOKEN
+	Name  = "SmmKscLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\SmmKscLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+MODULE
+	Help  = "Includes SmmKscLib.mak to Project"
+	File  = "SmmKscLib.mak"
+End
+
+PATH
+	Name  = "SmmKscLib_DIR"
+End

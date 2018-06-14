@@ -1,0 +1,12 @@
+<component>
+	name = "RcFviDxeLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Library\RcFviDxeLib"
+	RefName = "RcFviDxeLib"
+[files]
+"RcFviDxeLib.sdl"
+"RcFviDxeLib.mak"	
+"CreateFviLibrary.c"
+"RcFviLib.h"
+"RcFviDxeLib.inf"
+<endComponent>

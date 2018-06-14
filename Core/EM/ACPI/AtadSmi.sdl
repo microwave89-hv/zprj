@@ -1,0 +1,25 @@
+TOKEN
+	Name  = AtadSmi_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable AtadSmi support in Project"
+    Token = "ATAD_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "AtadSmi_DIR"
+End
+
+MODULE
+	Help  = "Includes AtadSmi.mak to Project"
+	File  = "AtadSmi.mak"
+End
+
+ELINK
+    Name   = "$(BUILD_DIR)\AtadSmi.ffs"
+    Parent = "FV_MAIN"
+    InvokeOrder = AfterParent
+End

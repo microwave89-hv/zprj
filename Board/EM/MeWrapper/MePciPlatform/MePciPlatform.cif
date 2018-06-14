@@ -1,0 +1,12 @@
+<component>
+        name = "MePciPlatform"
+        category = ModulePart
+        LocalRoot = "Board\EM\MeWrapper\MePciPlatform"
+        RefName = "MePciPlatform"
+[files]
+"MePciPlatform.c"   
+"MePciPlatform.h"   
+"MePciPlatform.sdl" 
+"MePciPlatform.mak"
+"MePciPlatform.dxs"
+<endComponent>

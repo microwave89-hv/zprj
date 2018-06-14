@@ -1,0 +1,15 @@
+<component>
+	name = "nVidia"
+	category = ModulePart
+	LocalRoot = "Board\EM\SwitchableGraphics\SgTpv\AcpiTables\SgTpvPEG"
+	RefName = "nVidiaSG"
+[files]
+"NvSSDT.asl"	
+"NVdGPU.asl"	
+"NViGPU.asl"	
+"NViGDmisc.asl"	
+"OpSSDT.asl"	
+"NvVentura.asl"	
+"NvGPS.asl"	
+"NvGC6.asl"	
+<endComponent>

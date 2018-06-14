@@ -1,0 +1,19 @@
+<component>
+	name = "IdeAcoustic"
+	category = eModule
+	LocalRoot = "Board\EM\IdeAcoustic"
+	RefName = "Acoustic"
+[files]
+"Acoustic.sdl"	
+"Acoustic.mak"	
+"Acoustic.c"	
+"Acoustic.h"	
+"AcousticBoard.c"	
+"AcousticSetup.c"	
+"Acoustic.dxs"	
+"Acoustic.sd"	
+"Acoustic.uni"	
+"Acoustic.chm"	
+[parts]
+"AcousticProtocol"
+<endComponent>

@@ -1,0 +1,31 @@
+TOKEN
+  Name  = CpuPpiLib_SUPPORT
+  Value  = "1"
+  TokenType = Boolean
+  TargetEQU = Yes
+  TargetMAK = Yes
+  Master = Yes
+  Help  = "Main switch to enable SaPpiLib support in Project"
+End
+
+MODULE
+  Help  = "Includes SaPpiLib.mak to Project"
+  File  = "CpuPpiLib.mak"
+End
+
+ELINK
+  Name  = "CPU_PPI_LIB"
+  InvokeOrder = ReplaceParent
+End
+
+ELINK
+  Name  = "$(BUILD_DIR)\CpuPpiLib.lib"
+  Parent  = "CPU_PPI_LIB"
+  InvokeOrder = AfterParent
+End
+
+PATH
+  Name  = "CPU_PPI_LIB_DIR"
+End
+
+

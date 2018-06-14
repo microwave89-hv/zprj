@@ -1,0 +1,12 @@
+<component>
+	name = "NVRAM. Authenticated Variables"
+	category = ModulePart
+	LocalRoot = "Core\EM\SecurityPkg\AuthenticatedVariable\"
+	RefName = "AuthVariable"
+[files]
+"AuthVariable.sdl"	
+"AuthVariable.mak"	
+"AuthVariable.c"	
+"Auth2Variable.c"	
+"AuthVariable.h"	
+<endComponent>

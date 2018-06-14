@@ -1,0 +1,9 @@
+<component>
+	name = "IA32 Core"
+	category = ModulePart
+	LocalRoot = "Core\CPU\IA32\"
+	RefName = "IA32Core"
+[files]
+"IA32Core.sdl"	
+"IA32rules.mak"	
+<endComponent>

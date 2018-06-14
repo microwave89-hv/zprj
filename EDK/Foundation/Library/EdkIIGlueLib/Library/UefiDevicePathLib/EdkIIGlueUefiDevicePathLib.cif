@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueUefiDevicePathLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\UefiDevicePathLib"
+	RefName = "EdkIIGlueUefiDevicePathLib"
+[files]
+"EdkIIGlueUefiDevicePathLib.sdl"	
+"EdkIIGlueUefiDevicePathLib.mak"
+"UefiDevicePathLib.inf"	
+"UefiDevicePathLib.c"	
+<endComponent>

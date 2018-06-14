@@ -1,0 +1,64 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/AcpiModeEnable/AcpiModeEnable.dxs 2     4/25/12 9:26a Victortu $
+//
+// $Revision: 2 $
+//
+// $Date: 4/25/12 9:26a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/AcpiModeEnable/AcpiModeEnable.dxs $
+// 
+// 2     4/25/12 9:26a Victortu
+// [TAG]         None
+// [Category]    Improvement
+// [Description] Remove unnecessary dependence.
+// [Files]       AcpiModeEnable.dxs; SBSMI.dxs; SleepSmi.dxs
+// 
+// 1     2/08/12 8:30a Yurenlai
+// Intel Lynx Point/SB eChipset initially releases.
+// 
+//*************************************************************************
+//<AMI_FHDR_START>
+//---------------------------------------------------------------------------
+//
+// Name:		AcpiModeEnable.DXS
+//
+// Description:	Dependency file for the ACPI mode enable/disable driver
+//
+//---------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+#include <Protocol\SmmSwDispatch.h>
+
+DEPENDENCY_START
+    EFI_SMM_SW_DISPATCH_PROTOCOL_GUID
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

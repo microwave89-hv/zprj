@@ -1,0 +1,9 @@
+<component>
+	name = "PrintUnicode"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Library\Dxe\Print\Unicode"
+	RefName = "PrintUnicode"
+[files]
+"PrintWidth.h"	
+"Sprint.c"	
+<endComponent>

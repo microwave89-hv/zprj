@@ -1,0 +1,14 @@
+<component>
+	name = "SwitchableGraphics"
+	category = eModule
+	LocalRoot = "Board\EM\SwitchableGraphics\"
+	RefName = "SwitchableGraphics"
+[files]
+"SwitchableGraphics.sdl"	
+"SwitchableGraphics.mak"	
+"SwitchableGraphics.sd"	
+"SwitchableGraphics.uni"	
+"SwitchableGraphics.chm"	
+[parts]
+"SgTpv"
+<endComponent>

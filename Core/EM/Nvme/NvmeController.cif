@@ -1,0 +1,12 @@
+<component>
+    name = "NvmeControllerLib"
+    category = ModulePart
+    LocalRoot = "Core\EM\Nvme\"
+    RefName = "NvmeControllerLib"
+
+[files]
+"NvmeController.sdl"	
+"NvmeController.mak"	
+"NvmeController.c"
+"NvmeController.h"
+<endComponent>

@@ -1,0 +1,26 @@
+TOKEN
+	Name  = CpuGuidLib_SUPPORT
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable CpuGuidLib support in Project"
+End
+
+MODULE
+	Help  = "Includes CpuGuidLib.mak to Project"
+	File  = "CpuGuidLib.mak"
+End
+
+PATH
+	Name  = "CpuGuidLib_DIR"
+End
+
+TOKEN
+	Name  = "CpuGuidLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\CpuGuidLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+

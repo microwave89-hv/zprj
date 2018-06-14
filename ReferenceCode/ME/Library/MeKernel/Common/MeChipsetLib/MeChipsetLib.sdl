@@ -1,0 +1,70 @@
+TOKEN
+	Name  = "MeChipsetLib_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable MeChipsetLib support in Project"
+End
+
+MODULE
+	Help  = "Includes MeChipsetLib.mak to Project"
+	File  = "MeChipsetLib.mak"
+End
+
+PATH
+	Name  = "MeChipsetLib_DIR"
+	Help  = "Me Chipset Library file source directory"
+End
+
+ELINK
+	Name  = "MeChipsetPeiLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\MeChipsetPeiLib.lib"
+	Parent  = "MeChipsetPeiLib_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(MeChipsetLib_DIR)"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "MeChipsetDxeLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\MeChipsetDxeLib.lib"
+	Parent  = "MeChipsetDxeLib_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(MeChipsetLib_DIR)"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "MeChipsetSmmLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\MeChipsetSmmLib.lib"
+	Parent  = "MeChipsetSmmLib_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(MeChipsetLib_DIR)"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End

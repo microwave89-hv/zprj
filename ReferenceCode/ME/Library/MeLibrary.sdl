@@ -1,0 +1,32 @@
+TOKEN
+	Name  = "MeLibrary_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable MeLibrary support in Project"
+End
+
+PATH
+	Name  = "MeLibrary_DIR"
+	Help  = "Me Library file source directory"
+End
+
+ELINK
+	Name  = "/I$(MeLibrary_DIR)\Include"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(MeLibrary_DIR)\PttHeci\Include"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_PCH_INCLUDES)"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End

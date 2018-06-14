@@ -1,0 +1,9 @@
+<component>
+	name = "EDK II headers"
+	category = ModulePart
+	LocalRoot = "Include\"
+	RefName = "EdkII_headers"
+[files]
+"EdkIICommon.h"	
+"EdkIIHii.h"	
+<endComponent>

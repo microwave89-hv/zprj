@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueBaseCacheMaintenanceLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\BaseCacheMaintenanceLib"
+	RefName = "EdkIIGlueBaseCacheMaintenanceLib"
+[files]
+"EdkIIGlueBaseCacheMaintenanceLib.sdl"	
+"EdkIIGlueBaseCacheMaintenanceLib.mak"	
+"BaseCacheMaintenanceLib.inf"
+"x86Cache.c"	
+<endComponent>

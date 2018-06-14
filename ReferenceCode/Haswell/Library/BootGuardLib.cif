@@ -1,0 +1,11 @@
+<component>
+	name = "BootGuardLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\Library\"
+	RefName = "BootGuardLib"
+[files]
+"BootGuardLib.sdl"	
+"BootGuardLib.mak"	
+"BootGuardLib\BootGuardLib.inf"	
+"BootGuardLib\BootGuardLibrary.c"
+<endComponent>

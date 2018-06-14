@@ -1,0 +1,39 @@
+TOKEN
+	Name  = "StdEC_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable Embedded Controller Flash support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "STDECLIB"
+	Value  = "$(BUILD_DIR)\StdEC.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "OFBD_StdEC_DIR"
+End
+
+MODULE
+	Help  = "Includes StdEC.mak to Project"
+	File  = "StdEC.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\StdEC.lib"
+	Parent  = "OFBDLISTLIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "StdECEntry,"
+	Parent  = "OFBDPartsList"
+	Token = "StdEC_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+

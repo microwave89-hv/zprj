@@ -1,0 +1,12 @@
+<component>
+	name = "PfatRecovery"
+	category = ModulePart
+	LocalRoot = "Board\EM\Pfat\PfatRecovery"
+	RefName = "PfatRecovery"
+[files]
+"PfatRecovery.sdl"
+"PfatRecovery.mak"
+"PfatRecovery.dxs"
+"PfatRecovery.c"
+"PfatRecoveryHook.c"
+<endComponent>

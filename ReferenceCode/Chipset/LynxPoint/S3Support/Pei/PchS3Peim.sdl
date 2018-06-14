@@ -1,0 +1,75 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2015, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/S3Support/Pei/PchS3Peim.sdl 1     5/21/15 2:56a Dennisliu $
+#
+# $Revision: 1 $
+#
+# $Date: 5/21/15 2:56a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/S3Support/Pei/PchS3Peim.sdl $
+# 
+# 1     5/21/15 2:56a Dennisliu
+# [TAG]  		EIP217847
+# [Category]  	Improvement
+# [Description]  	[PCH] Shark Bay-M/DT Reference Code Production Version
+# 1.9.1
+# [Files]  		PchS3Peim.sdl
+# PchS3Peim.mak
+# PchS3Peim.h
+# PchS3Peim.c
+# PchS3Peim.dxs
+# PchS3Peim.inf
+# 
+#*************************************************************************
+TOKEN
+        Name  = "PchS3Peim_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable PchS3Peim support in Project"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        Master = Yes
+End
+
+PATH
+        Name  = "PchS3Peim_DIR"
+End
+
+MODULE
+        File  = "PchS3Peim.mak"
+        Help  = "Includes PchS3Peim.mak to Project"
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\PchS3Peim.ffs"
+        Parent  = "FV_BB"
+        InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2015, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

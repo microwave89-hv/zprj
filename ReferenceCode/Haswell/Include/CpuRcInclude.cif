@@ -1,0 +1,27 @@
+<component>
+	name = "CpuRcInclude"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\Include\"
+	RefName = "CpuRcInclude"
+[files]
+"CommonIncludes.h"
+"CpuAccess.h"
+"CpuBaseLib.h"
+"CpuDataStruct.h"
+"CpuPowerMgmt.dsc"
+"CpuRegs.h"
+"IntelCpuDxe.dsc"
+"IntelCpuDxeLib.dsc"
+"IntelCpuPei.dsc"
+"IntelCpuPeiLib.dsc"
+"PfatDefinitions.h"
+"PowerMgmtDefinitions.h"
+"ThunkLib.h"
+"TisPc.h"
+"Txt.h"
+"Txt.inc"
+"Library\CpuPlatformLib.h"
+"Library\BootGuardLibrary.h"
+"Library\TxtLibrary.h"
+
+<endComponent>

@@ -1,0 +1,10 @@
+<component>
+	name = "EfiRegTableLib"
+	category = ModulePart
+	LocalRoot = "MiscFramework\Library\Dxe\EfiRegTableLib"
+	RefName = "EfiRegTableLib"
+[files]
+"EfiRegTableLib.sdl"	
+"EfiRegTableLib.mak"	
+"EfiRegTableLib.c"	
+<endComponent>

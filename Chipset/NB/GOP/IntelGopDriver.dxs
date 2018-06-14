@@ -1,0 +1,61 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2015, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/IntelGopDriver/IntelGopDriver.dxs 2     1/27/15 11:17p Dennisliu $
+//
+// $Revision: 2 $
+//
+// $Date: 1/27/15 11:17p $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/IntelGopDriver/IntelGopDriver.dxs $
+// 
+// 2     1/27/15 11:17p Dennisliu
+// [TAG]           EIP202457
+// [Category]      Improvement
+// [Description]   Implement Loading Intel GOP driver Condition
+// [Files]
+// Chipset\NB\GOP\IntelGopDriver.dxs
+// Chipset\NB\GOP\IntelSaGopDriver.mak
+// 
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:        IntelGopDriver.dxs
+//
+// Description: Dependency expression file for Intel GOP driver.
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+#include <Protocol\IntelSaGopDriver.h>
+
+DEPENDENCY_START
+  EFI_PLATFORM_GOP_POLICY_PROTOCOL_GUID
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2015, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

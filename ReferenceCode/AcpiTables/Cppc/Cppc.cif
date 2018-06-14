@@ -1,0 +1,14 @@
+<component>
+	name = "Intel CPPC"
+	category = eModule
+	LocalRoot = "ReferenceCode\AcpiTables\Cppc\"
+	RefName = "Intel CPPC"
+[files]
+"Cppc.sdl"	
+"ReleaseNotes.chm"	
+"iasl.exe"	
+[parts]
+"CppcDxe"
+"CppcAcpiTables"
+"CppcGuidLib"
+<endComponent>

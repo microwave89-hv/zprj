@@ -1,0 +1,75 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2015, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/S3Support/Dxe/PchS3Support.sdl 1     5/21/15 2:53a Dennisliu $
+#
+# $Revision: 1 $
+#
+# $Date: 5/21/15 2:53a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/S3Support/Dxe/PchS3Support.sdl $
+# 
+# 1     5/21/15 2:53a Dennisliu
+# [TAG]  		EIP217847 
+# [Category]  	Improvement
+# [Description]  	[PCH] Shark Bay-M/DT Reference Code Production Version
+# 1.9.1
+# [Files]  		PchS3Support.sdl
+# PchS3Support.mak
+# PchS3Support.c
+# PchS3Support.h
+# PchS3Support.dxs
+# PchS3Support.inf
+# 
+#*************************************************************************
+TOKEN
+        Name  = "PchS3Support_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable PchS3Support support in Project"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        Master = Yes
+End
+
+PATH
+        Name  = "PchS3Support_DIR"
+End
+
+MODULE
+        Help  = "Includes PchS3Support.mak to Project"
+        File  = "PchS3Support.mak"
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\PchS3Support.ffs"
+        Parent  = "FV_MAIN"
+        InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2015, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

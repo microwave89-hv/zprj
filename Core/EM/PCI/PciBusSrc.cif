@@ -1,0 +1,13 @@
+<component>
+	name = "PciBus Sources"
+	category = ModulePart
+	LocalRoot = "Core\EM\PCI\"
+	RefName = "PciBusSrc"
+[files]
+"PciBusSrc.chm"	
+"PciBusSrc.sdl"	
+"PciBusSrc.mak"	
+"PciBus.c"	
+"PciHostBridge.c"	
+"DeviceIo.c"	
+<endComponent>

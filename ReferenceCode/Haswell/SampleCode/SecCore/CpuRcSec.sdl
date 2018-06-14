@@ -1,0 +1,40 @@
+TOKEN
+    Name = "Intel_Haswell_SEC_RC_SUPPORT"
+    Value = "1"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+End
+
+MODULE
+	Help  = "Includes CpuRcSec.mak to Project"
+	File  = "CpuRcSec.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CpuRcSec.obj"
+	Parent  = "ADDON_SEC_CORE_OBJ_FILES"
+	InvokeOrder = AfterParent
+End
+
+PATH
+    Name = "CPU_RC_SEC_DIR"
+    Path = "ReferenceCode\Haswell\SampleCode\SecCore\Sec\Ia32"
+End
+
+ELINK
+	Name  = "GainestownSecRcEntry"
+	Parent  = "SECCoreAtPowerOn"
+	Priority  = 1000
+	Help  = "Gainestown RC"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CrcSecPlatformInformationPpi,"
+	Parent  = "PeiCoreInitialize"
+	InvokeOrder = AfterParent
+End
+

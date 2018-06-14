@@ -1,0 +1,12 @@
+<component>
+	name = "RapidStartDxeLib"
+	category = ModulePart
+	LocalRoot = "Board\EM\RapidStartWrapper\Library\RapidStartPlatformLib\Dxe"
+	RefName = "RapidStartDxeLib"
+[files]
+"RapidStartDxeLib.sdl"
+"RapidStartDxeLib.mak"
+"RapidStartDxeLib.c"
+"RapidStartDxeLib.h"
+"RapidStartDxeLib.inf"
+<endComponent>

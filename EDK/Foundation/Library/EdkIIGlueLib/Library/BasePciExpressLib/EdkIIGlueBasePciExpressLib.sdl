@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueBasePciExpressLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueBasePciExpressLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueBasePciExpressLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueBasePciExpressLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueBasePciExpressLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueBasePciExpressLib.mak to Project"
+	File  = "EdkIIGlueBasePciExpressLib.mak"
+End
+

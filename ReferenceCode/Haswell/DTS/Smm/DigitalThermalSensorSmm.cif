@@ -1,0 +1,15 @@
+<component>
+	name = "DigitalThermalSensorSmm"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\DTS\Smm"
+	RefName = "DigitalThermalSensorSmm"
+[files]
+"DigitalThermalSensorSmm.mak"
+"DigitalThermalSensorSmm.sdl"
+"DigitalThermalSensorSmm.inf"
+"DigitalThermalSensorSmm.c"
+"DigitalThermalSensorSmm.dxs"
+"DigitalThermalSensorSmm.h"
+"DigitalThermalSensorInitStatus.h"
+"DigitalThermalSensorLib.h"
+<endComponent>

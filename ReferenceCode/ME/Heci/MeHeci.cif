@@ -1,0 +1,13 @@
+<component>
+	name = "MeHeci"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Heci\"
+	RefName = "MeHeci"
+[files]
+"MeHeci.sdl"	
+[parts]
+"HeciDxe"
+"HeciPei"
+"HeciInclude"
+"HeciSmm"
+<endComponent>

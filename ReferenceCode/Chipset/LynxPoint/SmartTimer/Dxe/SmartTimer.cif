@@ -1,0 +1,13 @@
+<component>
+	name = "SmartTimer"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\SmartTimer\Dxe"
+	RefName = "SmartTimer"
+[files]
+"SmartTimer.sdl"	
+"SmartTimer.mak"	
+"SmartTimer.h"	
+"SmartTimer.c"	
+"SmartTimer.dxs"	
+"SmartTimer.inf"	
+<endComponent>

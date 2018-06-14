@@ -1,0 +1,8 @@
+<component>
+	name = "Hardware Change Protocols"
+	category = ModulePart
+	LocalRoot = "Include"
+	RefName = "HardwareChangeProtocols"
+[files]
+"Protocol\HardwareChangeProtocol.h"
+<endComponent>

@@ -1,0 +1,417 @@
+IODEVICE
+	Name  = "System PS2 Keyboard Controller"
+	ASLfile  = "core\em\acpi\PS2KB.asl"
+	ASLdeviceName  = "PS2K"
+	GPEbit  = 01dh
+	SleepNum  = 03h
+	Token = "PCH_SKU" "=" "1"
+	Token = "CRB_SIO_SUPPORT" "=" "0"
+	Token = "VirtualSerial_SUPPORT" "=" "1"
+End
+
+IODEVICE
+	Name  = "System PS2 Mouse Controller"
+	ASLfile  = "core\em\acpi\PS2MS.asl"
+	ASLdeviceName  = "PS2M"
+	GPEbit  = 01dh
+	SleepNum  = 03h
+	Token = "PCH_SKU" "=" "1"
+	Token = "CRB_SIO_SUPPORT" "=" "0"
+	Token = "VirtualSerial_SUPPORT" "=" "1"
+End
+
+IODEVICE
+	Name  = "System PS2 Keyboard Controller"
+	ASLfile  = "core\em\acpi\PS2KB.asl"
+	ASLdeviceName  = "PS2K"
+	GPEbit  = 01dh
+	SleepNum  = 03h
+	Token = "PCH_SKU" "=" "1"
+	Token = "EC_H8SMC" "=" "1"
+	Token = "CRB_EC_SUPPORT" "=" "1"
+End
+
+IODEVICE
+	Name  = "System PS2 Mouse Controller"
+	ASLfile  = "core\em\acpi\PS2MS.asl"
+	ASLdeviceName  = "PS2M"
+	GPEbit  = 01dh
+	SleepNum  = 03h
+	Token = "PCH_SKU" "=" "1"
+	Token = "EC_H8SMC" "=" "1"
+	Token = "CRB_EC_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "PlatformAcpiTables_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SaAcpiTables support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "TRTP"
+	Value  = "0x01"
+	Help  = "TRAP_TYPE_PPM"
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "WDTE"
+	Value  = "0x01"
+	Help  = "WDT enabled"
+	TokenType = Integer
+	TargetASL = Yes
+	Token = "CougarPoint_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "WDTE"
+	Value  = "0x00"
+	Help  = "WDT enabled"
+	TokenType = Integer
+	TargetASL = Yes
+	Token = "Ibexpeak_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "TRTD"
+	Value  = "0x02"
+	Help  = "TRAP_TYPE_DTS"
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "TRTI"
+	Value  = "0x03"
+	Help  = "TRAP_TYPE_IGD"
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "PFTI"
+	Value  = "0x04"
+	Help  = "PFAT IO Trap flag"
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "GCDD"
+	Value  = "0x01"
+	Help  = "SW_SMI_GET_CURRENT_DISPLAY_DEVICE"
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "DSTA"
+	Value  = "0x0A"
+	Help  = "SW_SMI_DISPLAY_SWITCH_TOGGLE_ACPI"
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "DSLO"
+	Value  = "0x0C"
+	Help  = "SW_SMI_DISPLAY_SWITCH_LID_OPEN_ACPI"
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "DSLC"
+	Value  = "0x0E"
+	Help  = "SW_SMI_DISPLAY_SWITCH_LID_CLOSE_ACPI"
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "PITS"
+	Value  = "0x10"
+	Help  = "SW_SMI_POPUP_ICON_TOGGLE"
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "SBCS"
+	Value  = "0x12"
+	Help  = "SW_SMI_SET_BACKLIGHT_CONTROL"
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "SALS"
+	Value  = "0x13"
+	Help  = "SW_SMI_SET_ALI_LEVEL"
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "LSSS"
+	Value  = "0x2A"
+	Help  = "SW_SMI_LID_STATE_SWITCH"
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "SOOT"
+	Value  = "0x35"
+	Help  = "SW_SMI_SAVE_OSB_OS_TYPE"
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "PDBR"
+	Value  = "0x4D"
+	Help  = "SW_SMI_PCIE_DOCK_BRIDGE_RESOURCE_PATCH"
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "BW1P"
+	Value  = "0x21"
+	Help  = "Haswell - WhiteTip Mountain1  PPV Board ID for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "BW2C"
+	Value  = "0x22"
+	Help  = "Haswell - WhiteTip Mountain2  Board ID for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "BW2P"
+	Value  = "0x23"
+	Help  = "Haswell - WhiteTip Mountain2  PPV Board ID for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "BSPC"
+	Value  = "0x24"
+	Help  = "Haswell - Sawtooth Peak Board ID for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "BSPP"
+	Value  = "0x25"
+	Help  = "Haswell - Sawtooth Peak  PPV Board ID for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "BICO"
+	Value  = "0x27"
+	Help  = "Haswell - WhiteTip Mountain2 CDK Open Chasis Board ID for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "BICC"
+	Value  = "0x28"
+	Help  = "Haswell - WhiteTip Mountain2 CDK Close Chasis Board ID for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "BHB"
+	Value  = "0x30"
+	Help  = "Haswell - Harris Beach FFRD Board ID for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "BFS2"
+	Value  = "0x31"
+	Help  = "Haswell - FFRD SKU2 Board ID for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "BFS3"
+	Value  = "0x32"
+	Help  = "Haswell - FFRD SKU3 Board ID for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "BFS4"
+	Value  = "0x33"
+	Help  = "Haswell - FFRD SKU4 Board ID for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+TOKEN
+	Name  = "BRH"
+	Value  = "0x35"
+	Help  = "Haswell - Reed Harbor TDV Board ID for ASL code."
+	TokenType = Integer
+	TargetASL = Yes
+	Range  = "16-bit IO register"
+End
+
+PATH
+	Name  = "INTEL_ACPI_ASL_DIR"
+End
+
+MODULE
+	Help  = "Includes AcpiAsl.mak to Project"
+	File  = "AcpiAsl.mak"
+End
+
+ELINK
+	Name  = "INTEL_EC_ASL"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "INTEL_GENERIC_ASL"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(INTEL_GENERIC_ASL)"
+	Parent  = "GENERIC_ASL"
+	Priority  = 10
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Cpu.asl"
+	Parent  = "GENERIC_ASL"
+	Disable = Yes
+	InvokeOrder = AfterParent
+	Lock = Yes
+End
+
+ELINK
+	Name  = "Board\Em\Acpi\oemdsdt.asl"
+	Parent  = "GENERIC_ASL"
+	Disable = Yes
+	InvokeOrder = AfterParent
+	Lock = Yes
+End
+
+ELINK
+	Name  = "Board\Em\Acpi\OEMRMISC.asl"
+	Parent  = "GENERIC_ASL"
+	Disable = Yes
+	InvokeOrder = AfterParent
+	Lock = Yes
+End
+
+ELINK
+	Name  = "$(SB_CHIPSET_DIR)\IRQLink.asl"
+	Parent  = "GENERIC_ASL"
+	Token = "PlatformAcpiTables_SUPPORT" "=" "0"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "$(INTEL_ACPI_ASL_DIR)\GloblNvs.asl"
+	Parent  = "GENERIC_ASL_BEFORE_PCITREE"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(INTEL_ACPI_ASL_DIR)\CPU.asl"
+	Parent  = "INTEL_GENERIC_ASL"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(INTEL_ACPI_ASL_DIR)\Platform.asl"
+	Parent  = "INTEL_GENERIC_ASL"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(INTEL_ACPI_ASL_DIR)\PCI_DRC.asl"
+	Parent  = "INTEL_GENERIC_ASL"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(INTEL_ACPI_ASL_DIR)\Video.asl"
+	Parent  = "INTEL_GENERIC_ASL"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(INTEL_ACPI_ASL_DIR)\Gpe.asl"
+	Parent  = "INTEL_GENERIC_ASL"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(INTEL_ACPI_ASL_DIR)\PCIEDOCK.asl"
+	Parent  = "INTEL_GENERIC_ASL"
+	InvokeOrder = AfterParent
+	Token = "FACP_FLAG_DCK_CAP" "=" "1"
+	Token = "CRB_EC_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "$(INTEL_ACPI_ASL_DIR)\Thermal.asl"
+	Parent  = "INTEL_GENERIC_ASL"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(INTEL_ACPI_ASL_DIR)\wcam.asl"
+	Parent  = "INTEL_GENERIC_ASL"
+	InvokeOrder = AfterParent
+End

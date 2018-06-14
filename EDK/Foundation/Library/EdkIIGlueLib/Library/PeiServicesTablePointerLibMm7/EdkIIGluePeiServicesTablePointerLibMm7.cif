@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGluePeiServicesTablePointerLibMm7"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\PeiServicesTablePointerLibMm7"
+	RefName = "EdkIIGluePeiServicesTablePointerLibMm7"
+[files]
+"EdkIIGluePeiServicesTablePointerLibMm7.sdl"	
+"EdkIIGluePeiServicesTablePointerLibMm7.mak"
+"PeiServicesTablePointerLibMm7.inf"	
+"PeiServicesTablePointer.c"	
+<endComponent>

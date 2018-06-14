@@ -1,0 +1,14 @@
+<component>
+	name = "IccOverClocking"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\Icc\OverClocking\"
+	RefName = "IccOverClocking"
+[files]
+"IccOverClocking.sdl"	
+"IccOverClocking.dxs"	
+"IccOverClocking.mak"	
+"IccOverClocking.efi"	
+"IccOverClocking9_5.dxs"	
+"IccOverClocking9_5.efi"	
+"IccProtocol.h"	
+<endComponent>

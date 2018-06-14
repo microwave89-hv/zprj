@@ -1,0 +1,20 @@
+<component>
+	name = "CSP Library"
+	category = eBoard
+	LocalRoot = "Core\CSPLib\"
+	RefName = "CSP Library"
+[files]
+"CspLib.sdl"	
+"CspLib.mak"	
+"CspLibPei.C"	
+"CspLibDxe.C"	
+"CspLibDxe.Dxs"	
+"CspLibGeneric.C"	
+"CspLibGeneric.h"	
+"CSP Library.chm"	
+"FID.c"	
+[parts]
+"CSP Library Include"
+"CSP Library Protocols"
+"CSP Library PPIs"
+<endComponent>

@@ -1,0 +1,12 @@
+<component>
+	name = "TcgPlatformSetupPolicy"
+	category = ModulePart
+	LocalRoot = "Board\EM\TCG2\Common\TcgPlatformSetupPolicy\"
+	RefName = "TcgPlatformSetupPolicy"
+[files]
+"TcgPlatformSetupPolicy.c"	
+"TcgPlatformSetupPolicy.h"	
+"TcgPlatformSetupPolicy.sdl"	
+"TcgPlatformSetupPolicy.mak"
+"TcgPlatformSetupPolicy.dxs"
+<endComponent>

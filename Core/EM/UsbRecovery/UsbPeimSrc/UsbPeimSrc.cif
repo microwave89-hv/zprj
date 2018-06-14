@@ -1,0 +1,12 @@
+<component>
+	name = "UsbPeimSrc"
+	category = ModulePart
+	LocalRoot = "Core\EM\UsbRecovery\UsbPeimSrc\"
+	RefName = "UsbPeimSrc"
+[files]
+"HubPeim.c"	
+"UsbIoPeim.c"	
+"UsbPeim.c"	
+[parts]
+"UsbIoPpi"
+<endComponent>

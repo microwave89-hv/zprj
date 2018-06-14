@@ -1,0 +1,56 @@
+TOKEN
+	Name  = "DEFCFG_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AFU Default Command Configuration support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "DEFCFGLIB"
+	Value  = "$(BUILD_DIR)\DEFCFGLIB.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "[AFU Default Command Configuration Sample Code Section]"
+	Help  = "See detail description in each token's help box."
+	TokenType = Expression
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "DEF_CFG_SAMPLE_TEST"
+	Value  = "0"
+	Help  = "Test AFU Default Command Configuration Function"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "DEFCFG_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "OFBD_DEFCFG_DIR"
+End
+
+MODULE
+	Help  = "Includes DefCfg.mak to Project"
+	File  = "DefCfg.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\DEFCFGLIB.lib"
+	Parent  = "OFBDLISTLIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "DEFCFGEntry,"
+	Parent  = "OFBDPartsList"
+	Token = "DEFCFG_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+

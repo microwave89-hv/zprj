@@ -1,0 +1,12 @@
+<component>
+  name = "PciHotPlug"
+  category = ModulePart
+  LocalRoot = "Chipset\SB\PchWrap\PciHotPlug"
+  RefName = "PciHotPlug"
+[files]
+"PciHotPlug.sdl"  
+"PciHotPlug.mak"  
+"PciHotPlug.c"  
+"PciHotPlug.h"  
+"PciHotPlug.dxs"  
+<endComponent>

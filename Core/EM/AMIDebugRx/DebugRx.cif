@@ -1,0 +1,18 @@
+<component>
+	name = "DebugRx"
+	category = ModulePart
+	LocalRoot = "Core\EM\AMIDebugRx\"
+	RefName = "DebugRx"
+[files]
+"AMIDebugRx.chm"
+"AMIDebugRx.mak"	
+"AMIDebugRx.sd"	
+"AMIDebugRx.uni"		
+"DebugRx.sdl"	
+[parts]
+"PeiAMIDebugRx"
+"PeiDbgStatusCodeLibBin"
+"DbgrUsbCableSelectLib"
+"DbgrX64Lib"
+"DebuggerLib"
+<endComponent>

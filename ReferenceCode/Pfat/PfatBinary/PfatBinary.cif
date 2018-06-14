@@ -1,0 +1,10 @@
+<component>
+	name = "PfatBinary"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Pfat\PfatBinary"
+	RefName = "PfatBinary"
+[files]
+"PfatBinary.sdl"	
+"PfatBinary.mak"
+"PfatBinary.bin"	
+<endComponent>

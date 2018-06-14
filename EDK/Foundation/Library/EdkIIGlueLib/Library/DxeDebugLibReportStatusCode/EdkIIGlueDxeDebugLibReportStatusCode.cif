@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueDxeDebugLibReportStatusCode"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\DxeDebugLibReportStatusCode"
+	RefName = "EdkIIGlueDxeDebugLibReportStatusCode"
+[files]
+"EdkIIGlueDxeDebugLibReportStatusCode.sdl"	
+"EdkIIGlueDxeDebugLibReportStatusCode.mak"	
+"DxeDebugLibReportStatusCode.inf" 
+"DebugLib.c"	
+<endComponent>

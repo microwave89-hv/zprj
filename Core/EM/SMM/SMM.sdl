@@ -1,0 +1,101 @@
+TOKEN
+	Name  = "SMM_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SMM support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "SMM_MAJOR_VER"
+	Value  = "00"
+	Help  = "SMM Major Version Number. Do not change"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "SMM_MINOR_VER"
+	Value  = "0x46"
+	Help  = "SMM Minor Version Number. Do not change"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "SMM_PAGING_MAX_ADDRESS_LINES"
+	Value  = "32"
+	Help  = "For x64, maximum number of address lines to page.\Each additional line doubles the page table size."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMM_CACHE_SUPPORT"
+	Value  = "1"
+	Help  = "Enable/disable SMM Cache Support"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMM_THUNK_NO_AB_SEG"
+	Value  = "1"
+	Help  = "Enable/disable using A & B segment for SMM Thunk.\Some CPUs don't provide support for SMM THUNK in A&B segment."
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMM_THUNK_IN_CSM"
+	Value  = "0"
+	Help  = "Enable/disable SMM Thunk in CSM"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "CSM_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "SMM_TIME_OUT_US"
+	Value  = "1000"
+	Help  = "uS Timeout waiting for BSP and APs to sync."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BSP_SMM_STACK_SIZE"
+	Value  = "16384"
+	Help  = "Must be 4k byte alligned."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "AP_SMM_STACK_SIZE"
+	Value  = "16384"
+	Help  = "Must be 4k byte alligned."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "INTEL_MP_SW_SMI_PATCH"
+	Value  = "0"
+	Help  = "INTEL drivers always read Save State Copy 0.\When this is enabled, an AP generated sw smi will\appear as CPU 0.\Further, Save State Copies of other CPUs may be invalid."
+	TokenType = Boolean
+	TargetH = Yes
+End
+

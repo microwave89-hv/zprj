@@ -1,0 +1,10 @@
+<component>
+	name = "FrameworkHii"
+	category = ModulePart
+	LocalRoot = "Core\CORE_DXE\FrameworkHii\"
+	RefName = "FrameworkHii"
+[files]
+"FrameworkHii.sdl"	
+"HIIDB.c"	
+"FrameworkHiiUtils.c"	
+<endComponent>

@@ -1,0 +1,8 @@
+<component>
+	name = "AHCI CSP-Template"
+	category = ModulePart
+	LocalRoot = "Chipset\eM\Ahci"
+	RefName = "ACSP"
+[files]
+"AhciAccess.c"	
+<endComponent>

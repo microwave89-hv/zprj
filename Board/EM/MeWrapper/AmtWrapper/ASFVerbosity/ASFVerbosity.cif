@@ -1,0 +1,10 @@
+<component>
+	name = "ASF Verbosity"
+	category = ModulePart
+	LocalRoot = "Board\EM\MEWrapper\AmtWrapper\ASFVerbosity"
+	RefName = "ASFVerbosity"
+[files]
+"ASFVerbosity.mak"	
+"ASFVerbosity.sdl"
+"ASFVerbosity.c"	
+<endComponent>

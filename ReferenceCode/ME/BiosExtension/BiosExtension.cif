@@ -1,0 +1,9 @@
+<component>
+	name = "BiosExtension"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\BiosExtension\"
+	RefName = "BiosExtension"
+[parts]
+"BiosExtensionLoader"
+"EfiMebx"
+<endComponent>

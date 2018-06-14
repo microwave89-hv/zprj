@@ -1,0 +1,15 @@
+<component>
+	name = "Intel Nehalem Microcode"
+	category = eModule
+	LocalRoot = "Board\CPU\Microcode\"
+	RefName = "Intel_Nehalem_Microcode"
+[files]
+"Microcode.sdl"	
+"Microcode.mak"	
+"MPDTable.asm"
+"MPDTableBB.asm"
+[parts]
+"INTEL_MOBILE"
+"INTEL_DESKTOP"
+"INTEL_SERVWORK"
+<endComponent>

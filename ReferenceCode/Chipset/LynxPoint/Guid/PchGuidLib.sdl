@@ -1,0 +1,43 @@
+TOKEN
+	Name  = "PchGuidLib_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable PchGuidLib support in Project"
+End
+
+MODULE
+	Help  = "Includes PchGuidLib.mak to Project"
+	File  = "PchGuidLib.mak"
+End
+
+PATH
+	Name  = "PchGuidLib_DIR"
+End
+
+ELINK
+	Name  = "/I$(PchGuidLib_DIR)"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PchGuidLib_DIR)\ChipsetInitHob"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PchGuidLib_DIR)\S3SupportHob"
+	Parent  = "INTEL_PCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "PchGuidLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\PchGuidLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End

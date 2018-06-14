@@ -1,0 +1,20 @@
+<component>
+	name = "EdkPpiLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Ppi\"
+	RefName = "EdkPpiLib"
+[files]
+"EdkPpiLib.sdl"	
+"EdkPpiLib.mak"	
+"BaseMemoryTest\BaseMemoryTest.h"	
+"BaseMemoryTest\BaseMemoryTest.c"	
+"DebugMask\DebugMask.h"	
+"DebugMask\DebugMask.c"	
+"FlashMap\FlashMap.h"	
+"FlashMap\FlashMap.c"	
+"PeiInMemory\PeiInMemory.h"	
+"PeiInMemory\PeiInMemory.c"	
+"StatusCodeMemory\StatusCodeMemory.h"	
+"StatusCodeMemory\StatusCodeMemory.c"	
+"EdkPpiLib.inf"	
+<endComponent>

@@ -1,0 +1,35 @@
+TOKEN
+	Name  = "SgTpvAcpiS3Save_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SgAcpiS3Save support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "SGTPV_ACPIS3_DIR"
+	Help  = "Path to SG AcpiS3Save folder"
+End
+
+MODULE
+	File  = "SgTpvAcpiS3Save.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SGTPVAcpiS3Save.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SgTpvAcpiS3Save_OBJECTS"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\$(SGTPV_ACPIS3_DIR)\SgTpvAcpiS3Save.obj"
+	Parent  = "SgTpvAcpiS3Save_OBJECTS"
+	InvokeOrder = AfterParent
+End

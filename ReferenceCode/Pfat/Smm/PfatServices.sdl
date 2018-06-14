@@ -1,0 +1,37 @@
+TOKEN
+	Name  = "PfatServices_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+    TargetH   = Yes
+	Master = Yes
+	Help  = "Main switch to enable Pfat support in Project, needs NvramSmiSupport Enabled"
+    Token = "NvramSmiSupport" "=" "1"
+End
+
+TOKEN
+	Name  = "Pfat_Enable_Pei"
+	Value  = "0
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+   	TargetH   = Yes
+    Help  = "DON'T MODIFY THIS TOKEN"
+End
+
+PATH
+	Name  = "PfatServices_DIR"
+	Help  = "PfatServices Driver files source directory"
+End
+
+MODULE
+	Help  = "Includes PfatServices.mak to Project"
+	File  = "PfatServices.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PfatServices.ffs"
+	Parent  = "$(BUILD_DIR)\SmmBase.ffs"
+	InvokeOrder = AfterParent
+End

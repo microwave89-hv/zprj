@@ -1,0 +1,22 @@
+TOKEN
+	Name  = "IdeBusSrc_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable IdeBusSrc support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+
+MODULE
+	Help  = "Includes IdeBusSrc.mak to Project"
+	File  = "IdeBusSrc.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\IdeBusSrc.lib"
+	Parent  = "$(IDEBUS_DIR)\IdeBusSrc$(ARCH).lib"
+	InvokeOrder = ReplaceParent
+End
+

@@ -1,0 +1,11 @@
+<component>
+        name = "WdtCommonLib"
+        category = ModulePart
+        LocalRoot = "ReferenceCode\Chipset\LynxPoint\Wdt\Common"
+        RefName = "WdtCommonLib"
+[files]
+"WdtCommonLib.sdl"
+"WdtCommonLib.mak"
+"WdtCommon.h"
+"WdtCommon.c"
+<endComponent>

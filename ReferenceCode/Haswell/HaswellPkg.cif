@@ -1,0 +1,12 @@
+<component>
+	name = "Intel Haswell"
+	category = CPU
+	LocalRoot = "ReferenceCode\Haswell\"
+	RefName = "Intel Haswell"
+[files]
+"HaswellPkg.sdl"	
+"Haswell.chm"
+[parts]
+"Haswell Cpu RC PKG"
+"AMI Cpu PKG"
+<endComponent>

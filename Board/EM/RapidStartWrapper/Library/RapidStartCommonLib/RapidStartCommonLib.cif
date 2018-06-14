@@ -1,0 +1,12 @@
+<component>
+	name = "RapidStartCommonLib"
+	category = ModulePart
+	LocalRoot = "Board\EM\RapidStartWrapper\Library\RapidStartCommonLib"
+	RefName = "RapidStartCommonLib"
+[files]
+"RapidStartCommonLib.sdl"
+"RapidStartCommonLib.mak"
+"RapidStartCommonLib.c"
+"RapidStartCommonLib.h"
+"RapidStartCommonLib.inf"
+<endComponent>

@@ -1,0 +1,32 @@
+PATH
+	Name  = "PeiDbgXport_DIR"
+End
+
+MODULE
+	Help  = "Includes PeiDbgXport.mak to Project"
+	File  = "PeiDbgXport.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PeiDbgXport.ffs"
+	Parent  = "FV_MAIN"
+	Token = "DEBUG_RX_FFS_IN_FVMAIN_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PeiDbgXport.ffs"
+	Parent  = "FV_BB"
+	Token = "DEBUG_RX_FFS_IN_FVMAIN_SUPPORT" "=" "0"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "TARGET_PROJECT_TAG"
+	Value  = "$(PROJECT_TAG)$(PROJECT_MAJOR_VERSION)$(PROJECT_MINOR_VERSION).rom"
+	Help  = "File name of the BIOS rom image"
+	TokenType = Expression
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "valid file name"
+End

@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkGuidLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkGuidLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EDKGUIDLIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkGuidLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkGuidLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkGuidLib.mak to Project"
+	File  = "EdkGuidLib.mak"
+End
+

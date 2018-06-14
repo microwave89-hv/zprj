@@ -1,0 +1,12 @@
+<component>
+	name = "SmmIoLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\SampleCode\Library\SmmIo"
+	RefName = "SmmIoLib"
+[files]
+"SmmIoLib.sdl"
+"SmmIoLib.mak"
+"SmmIoLib.inf"
+"SmmIo.c"
+"SmmPciIo.c"
+<endComponent>

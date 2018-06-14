@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "TseOEM_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TseLite sources support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "TSEOEMSRC_DIR"
+End
+
+MODULE
+	Help  = "Includes TseOEM.mak to Project"
+	File  = "TseOEM.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TseOEMLocal.lib"
+	Parent  = "MINISETUPLIB"
+	Priority  = 60
+	InvokeOrder = AfterParent
+End
+

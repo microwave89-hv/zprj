@@ -1,0 +1,29 @@
+TOKEN
+	Name  = BootGuardTpmEventLogLib_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable BootGuardTpmEventLogLib support in Project"
+End
+
+MODULE
+	Help  = "Includes BootGuardTpmEventLogLib.mak to Project"
+	File  = "BootGuardTpmEventLogLib.mak"
+End
+
+PATH
+	Name  = "BootGuardTpmEventLogLib_DIR"
+End
+
+ELINK
+	Name  = "BootGuardTpmEventLogLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\BootGuardTpmEventLogLib.lib"
+	Parent  = "BootGuardTpmEventLogLib_LIB"
+	InvokeOrder = AfterParent
+End

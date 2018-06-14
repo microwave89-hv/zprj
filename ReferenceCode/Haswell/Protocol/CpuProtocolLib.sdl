@@ -1,0 +1,29 @@
+TOKEN
+	Name  = CpuProtocolLib_SUPPORT
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable CpuProtocolLib support in Project"
+End
+
+MODULE
+	Help  = "Includes CpuProtocolLib.mak to Project"
+	File  = "CpuProtocolLib.mak"
+End
+
+PATH
+	Name  = "CpuProtocolLib_DIR"
+End
+
+ELINK
+	Name  = "CpuProtocolLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CpuProtocolLib.lib"
+	Parent  = "CpuProtocolLib_LIB"
+	InvokeOrder = AfterParent
+End

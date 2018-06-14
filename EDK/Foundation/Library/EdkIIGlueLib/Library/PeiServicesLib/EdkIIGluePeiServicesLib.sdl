@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGluePeiServicesLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGluePeiServicesLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGluePeiServicesLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGluePeiServicesLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGluePeiServicesLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGluePeiServicesLib.mak to Project"
+	File  = "EdkIIGluePeiServicesLib.mak"
+End
+

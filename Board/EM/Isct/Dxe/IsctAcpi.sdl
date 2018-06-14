@@ -1,0 +1,78 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/ISCT/IsctDxeAcpi/IsctAcpi.sdl 1     9/02/12 11:19p Bensonlai $
+#
+# $Revision: 1 $
+#
+# $Date: 9/02/12 11:19p $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/ISCT/IsctDxeAcpi/IsctAcpi.sdl $
+# 
+# 1     9/02/12 11:19p Bensonlai
+# Intel Smart Connect Technology initially releases.
+#
+#
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name: IsctAcpi.sdl
+#
+# Description: SDL file for IsctAcpi
+#
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+	Name  = "IsctAcpi_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable ISCT support in Project in DXE Phase"
+End
+
+MODULE
+	File  = "IsctAcpi.mak"
+	Help  = "Includes IsctAcpi.mak to Project"
+End
+
+PATH
+	Name  = "IsctAcpi_DIR"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\IsctAcpi.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

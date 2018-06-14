@@ -1,0 +1,125 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/AcpiModeEnable/AcpiModeEnable.sdl 4     10/01/12 5:51a Victortu $
+#
+# $Revision: 4 $
+#
+# $Date: 10/01/12 5:51a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/AcpiModeEnable/AcpiModeEnable.sdl $
+# 
+# 4     10/01/12 5:51a Victortu
+# 
+# 3     9/26/12 3:57a Victortu
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Update for PCH LP GPIO compatible.
+# [Files]         SB.sdl, SB.H, AcpiModeEnable.c, AcpiModeEnable.sdl,
+# SBDxe.c, SBGeneric.c, SBPEI.c, SBSMI.c, SleepSmi.c,
+# SmiHandlerPorting.c, SmiHandlerPorting2.c
+# 
+# 2     9/12/12 5:16a Victortu
+# [TAG]           None
+# [Category]      Improvement
+# [Description]   Modify for ULT GPIO changed by PCH LPT-LP EDS 1.0.
+# [Files]         SB.H, SB.sdl, AcpiModeEnable.c, AcpiModeEnable.sdl,
+# SBPEI.c
+# 
+# 1     2/08/12 8:29a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+    Name  = "AcpiModeEnable_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable AcpiModeEnable support in Project"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "SW_SMI_ACPI_ENABLE"
+    Value  = "0xA0"
+    Help  = "Value to be written into SMI command register \to enable SCI generation and switch to ACPI mode"
+    TokenType = Integer
+    TargetH = Yes
+    Range  = "0-0xff"
+End
+
+TOKEN
+    Name  = "SW_SMI_ACPI_DISABLE"
+    Value  = "0xA1"
+    Help  = "Value to write into SMI command register to disable \SCI generation and switch to non ACPI mode"
+    TokenType = Integer
+    TargetH = Yes
+    Range  = "0 - 0xff"
+End
+
+TOKEN
+    Name  = "GPIO_SCI_BITMAP"
+    Value  = "0x0000"
+    Help  = "Programming the corresponding GPIO pin to generate SCI#.\BIT00: GPIO0\BIT01: GPIO1\BIT02: GPIO2\.\.\.\BIT15: GPIO15"
+    TokenType = Integer
+    TargetH = Yes
+    Range  = "0 - 0xffff"
+End
+
+PATH
+    Name  = "ACPI_MODE_ENABLE_DIR"
+End
+
+MODULE
+    Help  = "Includes AcpiModeEnable.mak to Project"
+    File  = "AcpiModeEnable.mak"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\AcpiModeEnable.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CSP_ACPI_OBJ_FILES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "AcpiEnableCallbackList"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "AcpiDisableCallbackList"
+	InvokeOrder = ReplaceParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

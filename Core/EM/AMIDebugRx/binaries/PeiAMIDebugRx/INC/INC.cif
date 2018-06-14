@@ -1,0 +1,11 @@
+<component>
+	name = "INC"
+	category = ModulePart
+	LocalRoot = "Core\em\AMIDebugRx\binaries\PeiAMIDebugRx\INC\"
+	RefName = "INC"
+[files]
+"AMIpeidebug.h"	
+"EHCI.h"	
+"misc.h"
+"AMIpeidebugX64.h"
+<endComponent>

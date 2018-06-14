@@ -1,0 +1,11 @@
+<component>
+	name = "MePlatformGetResetTypeProtocolLib"
+	category = ModulePart
+	LocalRoot = "\ReferenceCode\ME\SampleCode\Protocol\MePlatformGetResetType\"
+	RefName = "MePlatformGetResetTypeProtocolLib"
+[files]
+"MePlatformGetResetTypeProtocolLib.sdl"	
+"MePlatformGetResetTypeProtocolLib.mak"	
+"MePlatformGetResetType.h"	
+"MePlatformGetResetType.c"	
+<endComponent>

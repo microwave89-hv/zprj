@@ -1,0 +1,22 @@
+<component>
+	name = "FrameworkGuidLib"
+	category = ModulePart
+	LocalRoot = "MiscFramework\Guid\"
+	RefName = "FrameworkGuidLib"
+[files]
+"FrameworkGuidLib.sdl"	
+"FrameworkGuidLib.mak"	
+"TcgDataHob\TcgDataHob.c"	
+"TcgDataHob\TcgDataHob.h"	
+"TcgLogHob\TcgLogHob.c"	
+"TcgLogHob\TcgLogHob.h"	
+"LegacyBios\LegacyBios.h"	
+"TpmStateInitHob\TpmStateInitHob.c"	
+"TpmStateInitHob\TpmStateInitHob.h"	
+"AcpiVariable\AcpiVariable.c"	
+"AcpiVariable\AcpiVariable.h"	
+"MemoryConfigData\MemoryConfigData.c"	
+"MemoryConfigData\MemoryConfigData.h"	
+"ExtdAcpiVariable\ExtdAcpiVariable.c"	
+"ExtdAcpiVariable\ExtdAcpiVariable.h"	
+<endComponent>

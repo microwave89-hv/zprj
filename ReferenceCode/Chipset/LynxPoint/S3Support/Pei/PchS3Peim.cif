@@ -1,0 +1,13 @@
+<component>
+	name = "PchS3Peim"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\S3Support\Pei"
+	RefName = "PchS3Peim"
+[files]
+"PchS3Peim.sdl"	
+"PchS3Peim.mak"	
+"PchS3Peim.h"	
+"PchS3Peim.c"	
+"PchS3Peim.dxs"	
+"PchS3Peim.inf"	
+<endComponent>

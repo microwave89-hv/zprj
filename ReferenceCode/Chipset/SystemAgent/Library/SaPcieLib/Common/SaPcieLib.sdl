@@ -1,0 +1,29 @@
+
+TOKEN
+        Name  = "SaPcieLib_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable SaPcieLib support in Project"
+        TokenType = Boolean
+        TargetMAK = Yes
+        Master = Yes
+End
+
+PATH
+        Name  = "SaPcieLib_DIR"
+End
+
+MODULE
+        Help  = "Includes SaPcieLib.mak to Project"
+        File  = "SaPcieLib.mak"
+End
+
+ELINK
+        Name  = "SaPcieLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\SaPcieLib.lib"
+        Parent  = "SaPcieLib_LIB"
+        InvokeOrder = AfterParent
+End

@@ -1,0 +1,9 @@
+<component>
+	name = "WdtAppInclude"
+	category = ModulePart
+	LocalRoot = "Chipset\SB\PchWrap\WdtApp\Include"
+	RefName = "WdtAppInclude"
+[files]
+"WdtAppInclude.sdl"
+"WdtAppVariable.h"
+<endComponent>

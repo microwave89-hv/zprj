@@ -1,0 +1,11 @@
+<component>
+	name = "MeChipsetLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Library\MeKernel\Common\MeChipsetLib\"
+	RefName = "MeChipsetLib"
+[files]
+"MeChipsetLib.mak"
+"MeChipsetLib.sdl"
+"MeChipsetLib.c"
+"MeChipsetLib.inf"
+<endComponent>

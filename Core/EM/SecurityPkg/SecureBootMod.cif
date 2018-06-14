@@ -1,0 +1,21 @@
+<component>
+	name = "Secure Boot Pkg"
+	category = eModule
+	LocalRoot = "Core\EM\SecurityPkg\"
+	RefName = "SecureBootMod"
+[files]
+"SecureBootMod.chm"	
+"SecureBootMod.sdl"	
+"SecureBootMod.uni"	
+"SecureBootMod.mak"	
+"SecureBootMod.dxs"	
+"SecureBootMod.sd"	
+"SecureBootMod.c"	
+"SecureBootMod.h"
+[parts]
+"AuthVariable"
+"ImageVerificationLib"
+"SecVariables"
+[dependon]
+"CryptoPkg"
+<endComponent>

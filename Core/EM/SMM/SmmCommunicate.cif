@@ -1,0 +1,12 @@
+<component>
+	name = "SmmCommunicate"
+	category = ModulePart
+	LocalRoot = "Core\EM\SMM\"
+	RefName = "SmmCommunicate"
+[files]
+"SmmCommunicate.sdl"	
+"SmmCommunicate.c"
+"SmmCommunicate.dxs"	
+"SmmDxeCommunicate.dxs"
+"SmmCommunicate.mak"	
+<endComponent>

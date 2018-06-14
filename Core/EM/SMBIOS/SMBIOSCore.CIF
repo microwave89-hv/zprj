@@ -1,0 +1,17 @@
+<component>
+	name = "SMBIOS - Core Source"
+	category = eModule
+	LocalRoot = "Core\EM\SMBIOS\"
+	RefName = "SMBIOSCore"
+[files]
+"SMBios.c"	
+"SMBiosCoreSrc.sdl"	
+"SMBios.mak"	
+"SMBios.dxs"	
+"SMBiosCore.chm"	
+[parts]
+"SmbiosDMIEdit"
+"SmbiosGetFlashData"
+"SmbiosFlashData"
+"SmbiosPeim"
+<endComponent>

@@ -1,0 +1,17 @@
+<component>
+	name = "TcgDxe"
+	category = ModulePart
+	LocalRoot = "Core\EM\TCG2\Common"
+	RefName = "TcgDxe"
+[files]
+"TcgDxe.mak"	
+"TpmDxe.c"	
+"TcgDxe.c"	
+"TcgDxe.dxs"	
+"xTcgDxe.c"	
+"EMpCallBin.asm"	
+"EMpCallBin32.asm"	
+"EMpTcmDxe.c"	
+"TcgDxe20.c"	
+"TcgDxe.sdl"	
+<endComponent>

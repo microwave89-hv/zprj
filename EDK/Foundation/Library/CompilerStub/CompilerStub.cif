@@ -1,0 +1,12 @@
+<component>
+	name = "CompilerStub"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Library\CompilerStub\"
+	RefName = "CompilerStub"
+[files]
+"CompilerStub.sdl"	
+"CompilerStub.mak"	
+"memcpy.c"	
+"memset.c"	
+"CompilerStubLib.inf"	
+<endComponent>

@@ -1,0 +1,30 @@
+TOKEN
+	Name  = DptfDxe_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable DptfDxe support in Project"
+End
+
+MODULE
+	Help  = "Includes DptfDxe.mak to Project"
+	File  = "DptfDxe.mak"
+End
+
+PATH
+	Name  = "INTEL_DPTF_DXE_DIR"
+End
+
+ELINK
+	Name  = "/I$(INTEL_DPTF_DXE_DIR)"
+	Parent  = "DPTF_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\DptfDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

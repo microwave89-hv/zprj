@@ -1,0 +1,68 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartInclude/RapidStartInclude.sdl 2     10/15/12 5:35a Bensonlai $
+#
+# $Revision: 2 $
+#
+# $Date: 10/15/12 5:35a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartInclude/RapidStartInclude.sdl $
+# 
+# 2     10/15/12 5:35a Bensonlai
+# [Category] Improvement
+# [Severity] Important
+# [Description] Update Shark Bay Rapid Start Reference Code Version
+# 0.7.1.0.
+# [Files] ReferenceCode\RapidStart\*.*
+# 
+# 1     4/19/12 8:09a Yurenlai
+# Initial check in.
+#
+#*************************************************************************
+TOKEN
+        Name  = "RapidStartInclude_SUPPORT"
+        Value  = 1
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        Master = Yes
+        Help  = "Main switch to enable RapidStartInclude support in Project"
+End
+
+PATH
+        Name  = "RapidStartInclude_DIR"
+End
+
+ELINK
+	Name  = "/I$(RapidStartInclude_DIR)"
+	Parent  = "RAPIDSTART_INCLUDES"
+	InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

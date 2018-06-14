@@ -1,0 +1,16 @@
+TOKEN
+	Name  = "iAMT_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable iAMT support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Token = "iME_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "AMT_DIR"
+	Help  = "iAMT Driver files source directory"
+End

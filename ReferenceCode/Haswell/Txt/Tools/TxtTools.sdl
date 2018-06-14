@@ -1,0 +1,23 @@
+TOKEN
+	Name  = "TxtTools_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable TxtTools support in Project"
+End
+
+PATH
+	Name  = "TxtTools_DIR"
+	Help  = "TXT Tools directory"
+End
+
+TOKEN
+	Name  = "AP_FIXUP_FILE"
+	Value  = "$(TxtTools_DIR)\Apfixup.txt"
+	Help  = "Name of AP FFS fixup table file."
+	TokenType = Expression
+	TargetMAK = Yes
+	TargetH = Yes
+End

@@ -1,0 +1,114 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**     5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/TCG2/Common/TcgPei/TcgPei.dxs 1     4/21/14 2:16p Fredericko $
+//
+// $Revision: 1 $
+//
+// $Date: 4/21/14 2:16p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/TCG2/Common/TcgPei/TcgPei.dxs $
+// 
+// 1     4/21/14 2:16p Fredericko
+// 
+// 1     10/08/13 12:02p Fredericko
+// Initial Check-In for Tpm-Next module
+// 
+// 1     7/10/13 5:51p Fredericko
+// [TAG]  		EIP120969
+// [Category]  	New Feature
+// [Description]  	TCG (TPM20)
+// 
+// 11    3/29/11 12:57p Fredericko
+// 
+// 10    3/28/11 2:10p Fredericko
+// [TAG]        EIP 54642
+// [Category] Improvement
+// [Description] 1. Checkin Files related to TCG function override
+// 2. Include TCM and TPM auto detection
+// [Files] Affects all TCG files
+// 
+// 9     5/19/10 5:45p Fredericko
+// Included File Header
+// Updated AMI copyright header
+// EIP 37653
+// 
+// 8     6/01/09 4:23p Fredericko
+// 
+// 7     4/30/09 6:21p Fredericko
+// Updated Header Date
+// 
+// 6     4/30/09 5:41p Fredericko
+// AMI company Header Address changed
+// 
+// 5     2/05/09 5:43p Fredericko
+// No more using EDK style includes
+// 
+// 4     6/25/08 6:17p Fredericko
+// Txt related changes
+// 
+// 3     6/02/08 8:37p Fredericko
+// 
+// 2     6/22/06 3:03p Andriyn
+// 
+// 1     6/20/06 5:58p Andriyn
+// 
+// 4     3/03/06 5:18p Markw
+// Added checking boot mode.
+// 
+// 3     2/03/06 10:30a Markw
+// This is loaded after memory.
+// 
+// 2     10/05/05 4:38p Mirk
+// All changes based on P4 CPU label "1.00.18_INTEL_P4_05"
+// 
+// 3     9/07/05 11:55a Markw
+// Added dependency on read only variable for setup.
+//
+//**********************************************************************
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:  TcgPei.dxs
+//
+// Description: 
+//  Dependency file for TcgPei subcomponent
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+#include <pei.h>
+#include "ppi\LoadFile.h"
+#include <Ppi\ReadOnlyVariable.h>
+#include <token.h>
+
+
+DEPENDENCY_START
+    EFI_PEI_MASTER_BOOT_MODE_PEIM_PPI AND
+    EFI_PEI_READ_ONLY_VARIABLE_PPI_GUID
+DEPENDENCY_END
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**     5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093            **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

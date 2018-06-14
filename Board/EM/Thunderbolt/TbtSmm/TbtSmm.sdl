@@ -1,0 +1,120 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+#*************************************************************************
+# $Header: /Alaska/SOURCE/Modules/Thunderbolt/TbtSmm/TbtSmm.sdl 2     12/25/13 6:06a Barretlin $
+#
+# $Revision: 2 $
+#
+# $Date: 12/25/13 6:06a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Thunderbolt/TbtSmm/TbtSmm.sdl $
+# 
+# 2     12/25/13 6:06a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Using token to enable/disable double check TBT host
+# router state in SxSMI/PowerButtonSMI
+# [Files]  		TbtSmm.sdl TbtSmm.c
+# 
+# 1     1/10/13 4:56a Barretlin
+# Change SS path and update module for Thunderbolt Spec 1.6 for Cactus
+# Ridge chip and Thunderbolt Spec 0.5 for Redwood Ridge chip
+# 
+# 3     5/07/12 6:44a Barretlin
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Change SwSMI value avoiding conflict
+# [Files]  		TbtSmm.sdl
+# 
+# 2     2/20/12 4:45a Wesleychen
+# Add new SDL token "TBT_SWSMI_DELAY" for debug.
+# 
+# 1     12/08/11 4:09a Wesleychen
+# Thunderbolt eModule initially releases.
+# 
+#*************************************************************************
+TOKEN
+	Name  = TbtSmm_SUPPORT
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable TbtSmm support in Project"
+End
+
+TOKEN
+	Name  = "TBT_SWSMI_VALUE"
+	Value  = "0xBC"
+	Help  = "Thunderbolt SWSMI value"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TBSW"
+	Value  = "$(TBT_SWSMI_VALUE)"
+	Help  = "Thunderbolt SWSMI value"
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "TBT_HR_SX_CHECK"
+	Value  = "0"
+	Help  = "Double check Thunderbolt host router status in SxSMI/PowerButton SMI"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+MODULE
+	Help  = "Includes TbtSmm.mak to Project"
+	File  = "TbtSmm.mak"
+End
+
+PATH
+	Name  = "TbtSmm_DIR"
+End
+
+ELINK
+	Name  = "/I$(TbtSmm_DIR)"
+	Parent  = "TBT_SMM_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "TBT_SMM_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TbtSmm.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

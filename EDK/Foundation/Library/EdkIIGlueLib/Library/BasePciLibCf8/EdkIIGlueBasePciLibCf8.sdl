@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueBasePciLibCf8_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueBasePciLibCf8 support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueBasePciLibCf8_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueBasePciLibCf8.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueBasePciLibCf8_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueBasePciLibCf8.mak to Project"
+	File  = "EdkIIGlueBasePciLibCf8.mak"
+End
+

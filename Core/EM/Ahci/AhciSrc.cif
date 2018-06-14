@@ -1,0 +1,19 @@
+<component>
+	name = "AHCI"
+	category = eModule
+	LocalRoot = "Core\em\Ahci\"
+	RefName = "AHCI"
+[files]
+"AhciSrc.sdl"	
+"AhciSrc.mak"	
+"AhciBus.c"	
+"AhciController.c"	
+"AhciComponentName.c"	
+"AhciBus.h"	
+"AhciController.h"	
+"AhciSources.chm"	
+[parts]
+"AINT13"
+"ACSP"
+"AhciSmm"
+<endComponent>

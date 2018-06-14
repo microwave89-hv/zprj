@@ -1,0 +1,12 @@
+<component>
+	name = "MeSsdt"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Me\AcpiTables\MeSsdt\"
+	RefName = "MeAcpiTableSsdt"
+[files]
+"MeSsdt.sdl"
+"MeSsdt.mak"
+"MeSsdt.inf"
+"MeSsdt_Edk.inf"
+"MeSsdt.asl"
+<endComponent>

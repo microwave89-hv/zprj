@@ -1,0 +1,14 @@
+<component>
+	name = "PeiLibIA32"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Library\Pei\PeiLib\"
+	RefName = "PeiLibIA32"
+[files]
+"ia32\PeCoffLoaderEx.c"	
+"ia32\PerformancePrimitives.c"	
+"ia32\Processor.c"	
+"ia32\efijump.h"	
+"ia32\PeCoffLoaderEx.h"	
+"ia32\ProcessorAsms.Asm"	
+"ia32\PeiServicePointer.c"	
+<endComponent>

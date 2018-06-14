@@ -1,0 +1,12 @@
+<component>
+	name = "PttHeciDxeLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Me\Library\PttHeci\Dxe\"
+	RefName = "PttHeciDxeLib"
+[files]	
+"PttHeciDxeLib.sdl"
+"PttHeciDxeLib.mak"
+"PttHeciDxeLib.c"
+"PttHeciDxeLib.h"
+"PttHeciDxeLib.inf"
+<endComponent>

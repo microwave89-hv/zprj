@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "Ip4Config_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Ip4Config support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "Ip4Config_DIR"
+End
+
+MODULE
+	Help  = "Includes Ip4Config.mak to Project"
+	File  = "Ip4Config.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Ip4Config.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

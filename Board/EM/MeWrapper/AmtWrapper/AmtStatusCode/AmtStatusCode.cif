@@ -1,0 +1,12 @@
+<component>
+	name = "AmtStatusCode"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\AmtWrapper\AmtStatusCode"
+	RefName = "AmtStatusCode"
+[files]
+"AmtStatusCode.sdl"	
+"AmtStatusCode.mak"	
+"AmtStatusCodePei.c"	
+"AmtStatusCodeDxe.c"	
+"AmtStatusCodeSmm.c"	
+<endComponent>

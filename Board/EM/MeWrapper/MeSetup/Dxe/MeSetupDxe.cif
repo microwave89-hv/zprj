@@ -1,0 +1,12 @@
+<component>
+    name = "MeSetupDxe"
+    category = ModulePart
+    LocalRoot = "Board\EM\MeWrapper\MeSetup\Dxe"
+    RefName = "MeSetupDxe"
+[files]
+"MeSetupDxe.c"
+"MeSetupDxe.h"
+"MeSetupDxe.sdl"
+"MeSetupDxe.dxs"
+"MeSetupDxe.mak"
+<endComponent>

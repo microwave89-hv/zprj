@@ -1,0 +1,19 @@
+<component>
+	name = "PchAcpiTables"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\AcpiTables\Dsdt"
+	RefName = "PchAcpiTables"
+[files]
+"PchAcpiTables.sdl"	
+"PchAcpiTables.inf"	
+"Pch.asl"	
+"PchAudio.asl"	
+"PchPcie.asl"	
+"PchSmb.asl"	
+"PchEhci1.asl"	
+"PchEhci2.asl"	
+"UsbSbd.asl"	
+"PchXhci.asl"	
+"PchAudioDsp.asl"	
+"PchSerialIo.asl"	
+<endComponent>

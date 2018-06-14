@@ -1,0 +1,23 @@
+<component>
+	name = "TisLib"
+	category = ModulePart
+	LocalRoot = "Core\EM\TCG2\TisLib"
+	RefName = "TisLib"
+[files]
+"TisLib.mak"	
+"TcgTpm12.h"	
+"TpmLib.h"	
+"TcgCommon.h"	
+"ZTEICTcmOrdinals.h"	
+"TpmLib.c"	
+"TcgCommon.c"	
+"TisLib.sdl"	
+"sha.h"	
+"INTTcgAcpi.h"	
+"TcgPc.h"	
+"TcmPc.h"	
+"TcgEfiTpm.h"	
+"TcgEFI12.h"	
+[parts]
+"AmiTcmlib"
+<endComponent>

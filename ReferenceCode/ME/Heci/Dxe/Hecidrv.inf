@@ -1,0 +1,99 @@
+## @file
+#  Component description file for Heci DXE driver
+#
+#@copyright
+#  Copyright (c)  2007 - 2013 Intel Corporation. All rights reserved
+#  This software and associated documentation (if any) is furnished
+#  under a license and may only be used or copied in accordance
+#  with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be
+#  reproduced, stored in a retrieval system, or transmitted in any
+#  form or by any means without the express written consent of
+#  Intel Corporation.
+#
+#  This file contains a 'Sample Driver' and is licensed as such
+#  under the terms of your license agreement with Intel or your
+#  vendor.  This file may be modified by the user, subject to
+#  the additional terms of the license agreement
+#
+
+[defines]
+BASE_NAME            = Hecidrv
+FILE_GUID            = 55E76644-78A5-4a82-A900-7126A5798892
+COMPONENT_TYPE       = BS_DRIVER
+
+[sources.common]
+  HeciDrv.c
+  Hecidrv.h
+  HeciCore.c
+  HeciCore.h
+  HeciHpet.c
+  HeciHpet.h
+  MeFvi.c
+
+#
+# Edk II Glue Driver Entry Point
+#
+ EdkIIGlueDxeDriverEntryPoint.c
+
+[includes.common]
+  $(EFI_SOURCE)/$(PROJECT_ME_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_ME_ROOT)/Library/MeKernel/Dxe
+  $(EFI_SOURCE)/$(PROJECT_ME_ROOT)/Library/MeKernel/Include
+  $(EFI_SOURCE)/$(PROJECT_ME_ROOT)/Heci/Include
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)/Include
+  $(EFI_SOURCE)/$(PROJECT_PCH_ROOT)/Include/Library
+
+#
+# EDK II Glue Library utilizes some standard headers from EDK
+#
+  $(EDK_SOURCE)/Foundation
+  $(EDK_SOURCE)/Foundation/Core/Dxe
+  $(EDK_SOURCE)/Foundation/Efi
+  $(EDK_SOURCE)/Foundation/Efi/Include
+  $(EDK_SOURCE)/Foundation/Framework
+  $(EDK_SOURCE)/Foundation/Framework/Include
+  $(EDK_SOURCE)/Foundation/Include
+  $(EDK_SOURCE)/Foundation/Include/IndustryStandard
+  $(EDK_SOURCE)/Foundation/Library/Dxe/Include
+  $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include
+
+[libraries.common]
+  MeGuidLib
+  MeProtocolLib
+  MeLib
+  MeChipsetLib
+  IntelPchProtocolLib
+  $(PROJECT_PCH_FAMILY)ProtocolLib
+  RcFviDxeLib
+  EfiScriptLib
+  EfiProtocolLib
+  EdkProtocolLib
+  EdkFrameworkProtocolLib
+  EdkIIGlueBaseIoLibIntrinsic
+  EdkIIGlueDxeReportStatusCodeLib
+  EdkIIGlueDxeDebugLibReportStatusCode
+  EdkIIGlueUefiBootServicesTableLib
+  EdkIIGlueUefiLib
+  EdkIIGlueBasePciLibPciExpress
+  EdkIIGlueBasePciExpressLib
+  EdkIIGlueDxeServicesTableLib
+  EdkIIGlueBasePrintLib
+
+[nmake.common]
+  IMAGE_ENTRY_POINT=_ModuleEntryPoint
+  DPX_SOURCE=Hecidrv.dxs
+#
+# Module Entry Point
+#
+ C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_MODULE_ENTRY_POINT__=InitializeHECI
+ C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_BASE_IO_LIB_INTRINSIC__ \
+                      -D __EDKII_GLUE_DXE_REPORT_STATUS_CODE_LIB__ \
+                      -D __EDKII_GLUE_DXE_DEBUG_LIB_REPORT_STATUS_CODE__ \
+                      -D __EDKII_GLUE_UEFI_BOOT_SERVICES_TABLE_LIB__ \
+                      -D __EDKII_GLUE_UEFI_LIB__ \
+                      -D __EDKII_GLUE_DXE_SERVICES_TABLE_LIB__ \
+                      -D __EDKII_GLUE_BASE_PCI_LIB_PCI_EXPRESS__ \
+# Uncomment the following line if RapidStart is supported
+#  C_FLAGS = $(C_FLAGS) -DRAPID_START_FLAG

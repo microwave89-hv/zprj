@@ -1,0 +1,64 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SataDriver/SataDriver.dxs 1     2/08/12 8:37a Yurenlai $
+//
+// $Revision: 1 $
+//
+// $Date: 2/08/12 8:37a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SataDriver/SataDriver.dxs $
+// 
+// 1     2/08/12 8:37a Yurenlai
+// Intel Lynx Point/SB eChipset initially releases.
+// 
+//*************************************************************************
+
+//<AMI_FHDR_START>
+//----------------------------------------------------------------------------
+//
+// Name:            SataDriver.dxs
+//
+// Description:     Sata UEFI Driver.
+//
+//----------------------------------------------------------------------------
+//<AMI_FHDR_END>
+#include "AutoGen.h"
+#include "DxeDepex.h"
+#if defined (BUILD_WITH_GLUELIB) || defined (BUILD_WITH_EDKII_GLUE_LIB)
+#include "EfiDepex.h"
+#endif
+
+#define PCH_EFI_RAID_DRIVER_EXECUTION_GUID \
+    { 0x99D5757C, 0xD906, 0x11E0, 0x8D, 0x78, 0x8D, 0xE4, 0x48, 0x24, 0x01, 0x9B }
+
+DEPENDENCY_START
+  PCH_EFI_RAID_DRIVER_EXECUTION_GUID
+DEPENDENCY_END
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

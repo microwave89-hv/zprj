@@ -1,0 +1,67 @@
+TOKEN
+	Name  = "IccPlatform_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable ICC support in Project in DXE Phase"
+End
+
+MODULE
+	Help  = "Includes IccPlatform.mak to Project"
+	File  = "IccPlatform.mak"
+End
+
+PATH
+	Name  = "IccPlatform_DIR"
+	Help  = "Icc platform dir"
+End
+
+ELINK
+	Name  = "/I$(IccPlatform_DIR)"
+	Parent  = "ICC_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\IccPlatform.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PCIEClockConfig"
+	InvokeOrder = ReplaceParent
+	Help  = "This Elink for Disable un-used PCIE port. Format is {Clock, PCIE_PORT_NUMBER, HotPlug)"
+End
+
+ELINK
+	Name  = "PCIClockConfig"
+	InvokeOrder = ReplaceParent
+	Help  = "This Elink for Disable un-used PCI port. Format is {Clock, PCIE_PORT_NUMBER, HotPlug)"
+End
+
+ELINK
+	Name  = "OEMPCIEClockConfig"
+	InvokeOrder = ReplaceParent
+	Help  = "This Elink for Disable un-used PCIE port. Format is {Clock, PCIE_PORT_NUMBER, HotPlug)"
+End
+
+ELINK
+	Name  = "OEMPCIClockConfig"
+	InvokeOrder = ReplaceParent
+	Help  = "This Elink for Disable un-used PCI port. Format is {Clock, PCIE_PORT_NUMBER, HotPlug)"
+End
+
+ELINK
+	Name  = "OEMClockUpdateFunc"
+	InvokeOrder = ReplaceParent
+	Help  = "This Elink for Disable un-used PCI port. Format is {Clock, PCIE_PORT_NUMBER, HotPlug)"
+End
+
+ELINK
+	Name  = "OemClock_LIB"
+	InvokeOrder = ReplaceParent
+End

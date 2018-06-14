@@ -1,0 +1,36 @@
+TOKEN
+	Name  = "SmbiosGetFlashData_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SmbiosGetFlashData support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Token = "SmbiosDMIEdit_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "SMBIOS_GETFLASHDATA_DIR"
+End
+
+MODULE
+	Help  = "Includes SmbiosGetFlashData.mak to Project"
+	File  = "SmbiosGetFlashData.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SmbiosGetFlashData32.ffs"
+	Parent  = "$(SMBIOS_DIR)\SmbiosGetFlashData32.ffs"
+	InvokeOrder = ReplaceParent
+	Token = "x64_BUILD" "=" "0"
+	Token = "SMBIOS_DMIEDIT_DATA_LOC" "!=" "2"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SmbiosGetFlashData64.ffs"
+	Parent  = "$(SMBIOS_DIR)\SmbiosGetFlashData64.ffs"
+	InvokeOrder = ReplaceParent
+	Token = "x64_BUILD" "=" "1"
+	Token = "SMBIOS_DMIEDIT_DATA_LOC" "!=" "2"
+End
+

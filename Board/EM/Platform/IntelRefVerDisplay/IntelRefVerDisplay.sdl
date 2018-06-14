@@ -1,0 +1,36 @@
+TOKEN
+	Name  = "IntelRefVerDisplay_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable IntelRefVerDisplay support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "IntelRefVerDisplay_DIR"
+End
+
+MODULE
+	Help  = "Includes IntelRefVerDisplay.mak to Project"
+	File  = "IntelRefVerDisplay.mak"
+End
+
+ELINK
+	Name  = "InitIntelVersionInfo,"
+	Parent  = "SetupStringInit"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\IntelRefVerDisplay.sdb"
+	Parent  = "SETUP_SDBS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(IntelRefVerDisplay_DIR)\IntelRefVerDisplay.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	InvokeOrder = AfterParent
+End

@@ -1,0 +1,11 @@
+<component>
+	name = "FvOnFv2Thunk"
+	category = ModulePart
+	LocalRoot = "Board\EM\Platform\FvOnFv2Thunk"
+	RefName = "FvOnFv2Thunk"
+[files]
+"FvOnFv2Thunk.sdl"
+"FvOnFv2Thunk.mak"
+"FvOnFv2Thunk.dxs"
+"FvOnFv2Thunk.c"
+<endComponent>

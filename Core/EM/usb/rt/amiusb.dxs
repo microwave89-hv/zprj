@@ -1,0 +1,44 @@
+//****************************************************************************
+//****************************************************************************
+//**                                                                        **
+//**             (C)Copyright 1985-2008, American Megatrends, Inc.          **
+//**                                                                        **
+//**                          All Rights Reserved.                          **
+//**                                                                        **
+//**                 5555 Oakbrook Pkwy, Norcross, GA 30093                 **
+//**                                                                        **
+//**                          Phone (770)-246-8600                          **
+//**                                                                        **
+//****************************************************************************
+//****************************************************************************
+
+#include <token.h>
+#if USB_RUNTIME_DRIVER_IN_SMM
+#include <Protocol/SmmBase.h>
+#include <Protocol/SmmSwDispatch.h>
+#endif
+#include <Protocol/PciRootBridgeIo.h>
+#include <Protocol/AmiUsbController.h>
+
+DEPENDENCY_START
+  EFI_USB_PROTOCOL_GUID AND
+#if USB_RUNTIME_DRIVER_IN_SMM
+  EFI_SMM_BASE_PROTOCOL_GUID AND
+  EFI_SMM_SW_DISPATCH_PROTOCOL_GUID AND
+#endif
+  EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL_GUID 
+DEPENDENCY_END
+
+//****************************************************************************
+//****************************************************************************
+//**                                                                        **
+//**             (C)Copyright 1985-2008, American Megatrends, Inc.          **
+//**                                                                        **
+//**                          All Rights Reserved.                          **
+//**                                                                        **
+//**                 5555 Oakbrook Pkwy, Norcross, GA 30093                 **
+//**                                                                        **
+//**                          Phone (770)-246-8600                          **
+//**                                                                        **
+//****************************************************************************
+//****************************************************************************

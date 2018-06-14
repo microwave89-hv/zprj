@@ -1,0 +1,11 @@
+<component>
+	name = "PpmAslUpdateLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\SampleCode\Library\AslUpdate\Dxe"
+	RefName = "PpmAslUpdateLib"
+[files]
+"PpmAslUpdateLib.sdl"
+"PpmAslUpdateLib.mak"
+"DxeAslUpdateLib.c"
+"DxeAslUpdateLib.inf"
+<endComponent>

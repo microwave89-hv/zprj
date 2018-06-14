@@ -1,0 +1,13 @@
+TOKEN
+	Name  = CpuTools_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable CpuTools support in Project"
+End
+
+PATH
+	Name  = "CPU_TOOLS_DIR"
+End

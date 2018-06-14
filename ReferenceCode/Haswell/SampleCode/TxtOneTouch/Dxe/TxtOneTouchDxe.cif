@@ -1,0 +1,14 @@
+<component>
+        name = "TxtOneTouch"
+        category = ModulePart
+        LocalRoot = "ReferenceCode\Haswell\SampleCode\TxtOneTouch\Dxe"
+        RefName = "TxtOneTouchDxe"
+[files]
+"TxtOneTouchDxe.sdl"  
+"TxtOneTouchDxe.dxs"  
+"TxtOneTouchDxe.mak"  
+"TxtOneTouchDxe.inf"  
+"TxtOneTouchDxe.c"  
+"TxtOneTouchDxe.h"  
+"TxtOneTouchOp.c"
+<endComponent>

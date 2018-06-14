@@ -1,0 +1,8 @@
+<component>
+    name = "AhciSmmProtocols"
+    category = ModulePart
+    LocalRoot = "INCLUDE\Protocol"
+    RefName = "AhciSmmProtocols"
+[files]
+"AhciSmmProtocol.h"
+<endComponent>

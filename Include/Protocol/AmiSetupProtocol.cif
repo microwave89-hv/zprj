@@ -1,0 +1,8 @@
+<component>
+	name = "AmiSetup Protocol"
+	category = ModulePart
+	LocalRoot = "Include\Protocol\"
+	RefName = "AmiSetupProtocol"
+[files]
+"AmiSetupProtocol.h"	
+<endComponent>

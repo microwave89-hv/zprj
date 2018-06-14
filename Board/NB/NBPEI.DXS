@@ -1,0 +1,73 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Board/NBPEI.DXS 2     7/03/12 6:47a Yurenlai $
+//
+// $Revision: 2 $
+//
+// $Date: 7/03/12 6:47a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Board/NBPEI.DXS $
+// 
+// 2     7/03/12 6:47a Yurenlai
+// [TAG]         None
+// [Severity]    Important
+// [Description] Change for SystemAgent RefCode Revision: 0.6.0.
+// [Files]       NBPEI.DXS, NB.sd, NBDxe.c, NBPEI.c
+// 
+// 1     2/08/12 4:32a Yurenlai
+// Intel Haswell/NB eChipset initially releases.
+// 
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:        NBPEI.DXS
+//
+// Description: This file is the dependency file for the NB PEI driver
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+
+#include <Token.h>
+#include <pei.h>
+#include "ppi\CpuIo.h"
+#include "ppi\PciCfg2.h"
+#include "ppi\CPUPolicy.h"
+#include "ppi\CspLibPpi.h"
+#include "ppi\ReadOnlyVariable2.h"
+#include "ppi\Stall.h"
+
+DEPENDENCY_START
+   EFI_PEI_CPU_IO_PPI_INSTALLED_GUID AND
+   EFI_PEI_READ_ONLY_VARIABLE2_PPI_GUID AND
+   EFI_PEI_PCI_CFG2_PPI_GUID AND
+   EFI_PEI_STALL_PPI_GUID 
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

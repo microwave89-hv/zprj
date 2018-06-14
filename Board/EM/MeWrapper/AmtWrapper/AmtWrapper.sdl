@@ -1,0 +1,20 @@
+TOKEN
+	Name  = "AmtWrapper_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable AMT Wrapper support in Project"
+	Token = "iAMT_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "AmtWrapper_DIR"
+End
+
+ELINK
+	Name  = "/I$(AmtWrapper_DIR)"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End

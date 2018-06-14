@@ -1,0 +1,84 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2013, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/HddSecurity/IdeSmm/IDESMM.DXS 4     1/08/13 12:40a Rameshr $
+//
+// $Revision: 4 $
+//
+// $Date: 1/08/13 12:40a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/HddSecurity/IdeSmm/IDESMM.DXS $
+// 
+// 4     1/08/13 12:40a Rameshr
+// [TAG]  		EIP109495
+// [Category]  	Improvement
+// [Description]  	HddSecurity driver needs to be updated for PI
+// specification 1.2
+// [Files]  		IdeSmm.c, IdeSmm.dxs, IdeSmm.h, IdeSmm.cif
+// 
+// 3     6/01/10 7:11p Krishnakumarg
+// Removed Tab spaces
+// 
+// 2     4/28/09 6:56p Rameshr
+// HDD password support in RAID mode
+// EIP:20421
+// 
+// 1     28/02/08 6:40p Anandakrishnanl
+// Created new HddSecurity module.  Isolated IdeSecurity and IdeSmm from
+// IdeBus driver to be compatable with the AHCI Bus driver.
+// 
+// 2     13/04/07 3:07p Anandakrishnanl
+// Ide Bus Module - Update source files to comply with AMI coding
+// standard"!!!
+// 
+// 1     12/14/05 2:57p Srinin
+// 
+// 
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//---------------------------------------------------------------------------
+//
+// Name:        IDESMM.DXS
+//
+// Description: Dependency file for the IDE SMM
+//
+//---------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+#include "IDESMM.h"
+
+DEPENDENCY_START
+#if defined(PI_SPECIFICATION_VERSION)&&(PI_SPECIFICATION_VERSION>=0x0001000A)
+    EFI_SMM_SW_DISPATCH2_PROTOCOL_GUID 
+#else
+    EFI_SMM_SW_DISPATCH_PROTOCOL_GUID 
+#endif
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2013, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

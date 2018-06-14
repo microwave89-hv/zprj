@@ -1,0 +1,95 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**     5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093            **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/IntelPfat/Pfatflashlib/PfatFlashLib.sdl 3     4/24/13 7:41p Fredericko $
+#
+# $Revision: 3 $
+#
+# $Date: 4/24/13 7:41p $
+#
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/IntelPfat/Pfatflashlib/PfatFlashLib.sdl $
+# 
+# 3     4/24/13 7:41p Fredericko
+# [TAG]  		EIP120447
+# [Category]  	Improvement
+# [Description]  	SHB ULT:  PFAT : Update with AFU Tools Fails SUT Locks
+# [Files]  		PfatFlashLib.c
+# PfatFlashLib.sdl
+# 
+# 2     9/17/12 4:26p Fredericko
+# 
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name:	PfatFlashLib.sdl
+#
+# Description:	SDL file for PfatFlashLib
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+PATH
+	Name  = "PfatFlashLib_DIR"
+	Help  = "PfatFlashLib files source directory"
+End
+
+TOKEN
+	Name  = "PFATFLASHLIB"
+	Value  = "$(BUILD_DIR)\PfatFlashLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "IdentifyPfatFlash ,"
+	Parent  = "FlashList"
+	Token = "PfatServices_SUPPORT" "=" "1"
+        Priority  = 60
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PreventAFUWhenPfatEnable,"
+	Parent  = "SMIFlashEndHandlerList"
+	InvokeOrder = AfterParent
+End
+
+MODULE
+	Help  = "Includes PfatFlashLib.mak to Project"
+	File  = "PfatFlashLib.mak"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\PfatFlashLib.lib"
+    Parent  = "$(PfatFlashLib_DIR)\PfatFlashLib.lib"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "$(PfatFlashLib_DIR)\PfatFlashLib.lib"
+    Parent  = "FLASHLISTLIB"
+    InvokeOrder = AfterParent
+End
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**     5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093            **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************

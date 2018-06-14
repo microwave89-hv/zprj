@@ -1,0 +1,26 @@
+<component>
+	name = "Chipset Reference Board - Shark Bay"
+	category = eBoard
+	LocalRoot = "CRB\"
+	RefName = "CRB"
+    Rank = 59
+[files]
+"CSP.sdl"	
+"CRB.sdl"	
+"CRB.mak"	
+"CRB.sd"	
+"CRB.uni"	
+"CRBSec.ASM"	
+"CRBPei.c"	
+"CRBDxe.c"	
+"CRBSmi.c"	
+"CRBLib.h"	
+"CRBLib.c"	
+"CRBSetup.c"	
+"CRBAcpi.c"	
+"CRBTse.c"
+"CRBPei.DXS"	
+"CRBDxe.DXS"	
+"CRBSmi.DXS"	
+"VBT_5.0.1035_FC.BIN"	
+<endComponent>

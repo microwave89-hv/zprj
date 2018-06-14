@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "LegacyRegion2_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable LegacyRegion2 support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Token = "CSM_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "LEGACY_REGION2_DIR"
+End
+
+MODULE
+	Help  = "Includes LegacyRegion.mak to Project"
+	File  = "LegacyRegion2.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\LegacyRegion2.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

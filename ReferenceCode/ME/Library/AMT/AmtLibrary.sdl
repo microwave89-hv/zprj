@@ -1,0 +1,20 @@
+TOKEN
+	Name  = "AmtLibrary_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable AmtLibDxe support in Project"
+End
+
+PATH
+	Name  = "AmtLibrary_DIR"
+	Help  = "iAMT Library file source directory"
+End
+
+ELINK
+	Name  = "/I$(AmtLibrary_DIR)\Include"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End

@@ -1,0 +1,99 @@
+#/*++
+#
+#  Copyright (c)  1999 - 2012 Intel Corporation. All rights reserved
+#  This software and associated documentation (if any) is furnished
+#  under a license and may only be used or copied in accordance
+#  with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be
+#  reproduced, stored in a retrieval system, or transmitted in any
+#  form or by any means without the express written consent of
+#  Intel Corporation.
+#
+#
+#  Module Name:
+#
+#   BdatAccessHandler.inf
+#
+#  Abstract:
+#
+#    Component description file for the BdatAccessHandler module.
+#
+#--*/
+
+[defines]
+BASE_NAME            = BdatAccessHandler
+FILE_GUID            = 6DB9486F-6AF6-4090-984D-238482CE3EA4
+COMPONENT_TYPE       = BS_DRIVER
+
+[sources.common]
+  BdatAccessHandler.c
+  BdatAccessHandler.h
+  BdatRmtHandler.c
+  BdatRmtHandler.h
+#
+# Edk II Glue Driver Entry Point
+#
+  EdkIIGlueDxeDriverEntryPoint.c
+
+[includes.common]
+  .
+  $(EFI_SOURCE)
+  $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include
+  $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include/Library
+  $(EDK_SOURCE)/Foundation/Library/EdkIIGlueLib/Include/Common
+  $(EDK_SOURCE)/Foundation/Efi
+  $(EDK_SOURCE)/Foundation
+  $(EDK_SOURCE)/Foundation/Framework
+  $(EDK_SOURCE)/Foundation/Framework/Guid
+  $(EDK_SOURCE)/Foundation/Include
+  $(EDK_SOURCE)/Foundation/Efi/Include
+  $(EDK_SOURCE)/Foundation/Framework/Include
+  $(EDK_SOURCE)/Foundation/Include/IndustryStandard
+  $(EDK_SOURCE)/Foundation/Core/Dxe
+  $(EDK_SOURCE)/Foundation/Library/Dxe/Include
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/Include
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/SaInit/Pei
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/$(PROJECT_SA_MRC)/Pei
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/$(PROJECT_SA_MRC)/Pei/Source/Api
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/$(PROJECT_SA_MRC)/Pei/Source/Include
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)/$(PROJECT_SA_MRC)/Pei/Source/Include/MrcRegisters
+  $(EFI_SOURCE)/$(PROJECT_SA_ROOT)
+  $(EDK_SOURCE)/Foundation/Cpu/Pentium/Include
+  $(EFI_SOURCE)/$(PROJECT_CPU_ROOT)
+  $(EFI_SOURCE)/$(PROJECT_CPU_ROOT)/Include
+  $(EFI_SOURCE)/$(PROJECT_CPU_ROOT)/Include/Library
+
+[libraries.common]
+  EdkFrameworkProtocolLib
+  EdkFrameworkGuidLib
+  EfiGuidLib
+  EdkProtocolLib
+  EdkIIGlueBaseLib
+  EdkIIGlueBaseIoLibIntrinsic
+  EdkIIGlueBaseMemoryLib
+  EdkIIGlueDxeReportStatusCodeLib
+  EdkIIGlueDxeDebugLibReportStatusCode
+  EdkIIGlueUefiBootServicesTableLib
+  EdkIIGlueUefiRuntimeServicesTableLib
+  EdkIIGlueDxeServicesTableLib
+  EdkIIGlueDxeHobLib
+  IntelSaProtocolLib
+  CpuPlatformLib
+
+[nmake.common]
+  IMAGE_ENTRY_POINT = _ModuleEntryPoint
+  DPX_SOURCE        = BdatAccessHandler.dxs
+
+#
+# Module Entry Point
+#
+  C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_MODULE_ENTRY_POINT__=BdatAccessHandler
+  C_FLAGS = $(C_FLAGS) -D __EDKII_GLUE_BASE_IO_LIB_INTRINSIC__ \
+                       -D __EDKII_GLUE_BASE_LIB__ \
+                       -D __EDKII_GLUE_DXE_REPORT_STATUS_CODE_LIB__ \
+                       -D __EDKII_GLUE_DXE_DEBUG_LIB_REPORT_STATUS_CODE__ \
+                       -D __EDKII_GLUE_UEFI_BOOT_SERVICES_TABLE_LIB__ \
+                       -D __EDKII_GLUE_UEFI_RUNTIME_SERVICES_TABLE_LIB__ \
+                       -D __EDKII_GLUE_DXE_SERVICES_TABLE_LIB__ \
+                       -D __EDKII_GLUE_DXE_MEMORY_ALLOCATION_LIB__
+

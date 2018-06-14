@@ -1,0 +1,240 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/BIN/Core/Modules/Recovery/ReFlash.vfr 17    5/22/12 5:12p Artems $
+//
+// $Revision: 17 $
+//
+// $Date: 5/22/12 5:12p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Core/Modules/Recovery/ReFlash.vfr $
+// 
+// 17    5/22/12 5:12p Artems
+// [TAG]  		EIP88314
+// [Category]  	Improvement
+// [Description]  	Recovery takes a long time for large flash size
+// Rewrite reflash code to not give control back to TSE until finished
+// reporting progress via DisplayProgress API of AMI Post manager
+// 
+// [Files]  		Reflash.c Reflash.h ReflashWorker.c Reflash.mak Reflash.vfr
+// Reflash.uni
+// 
+// 16    11/12/11 6:48p Artems
+// Added fault tolerant recovery support
+// 
+// 15    11/02/11 4:53p Artems
+// EIP 74446: Fixed bug - reflash is enabled when recovery image is not
+// found
+// 
+// 14    5/13/11 4:49p Artems
+// Added REFLASH_UPDATE_MAIN_BLOCK setup control
+// 
+// 13    11/17/10 2:52p Felixp
+// Enhencement (EIP 36355):
+// The Reflash component is updated to be extensible with external
+// eModules. 
+// The eModules can contribute content for the Recovery setup page, 
+// and provide callback function that will be periodically called 
+// once BIOS update is completed.The external eModules can be used 
+// to implement update of non-standard firmware components. 
+// For example, update of the non-shared EC firmware.
+// 
+// 12    10/01/10 2:14p Felixp
+// Previous changes related to descrete EC firmware update are rolled back
+// for the Core labeling.
+// 
+// 10    12/24/09 12:41p Oleksiyy
+// EIP 30173: Support for the EC Firmware Area Update control added. Main
+// token to enable this support is EC_FIRMWARE_UPDATE_INTERFACE_SUPPORT
+// should be located in specific EC-related  .sdl file.
+// 
+// 9     12/14/09 3:11p Aaronp
+// Updated to support UEFI2.1 interactive text
+// 
+// 8     10/09/09 6:30p Felixp
+// ReFlash component is updated to support Framework and UEFI 2.1 HII
+// 
+// 7     7/09/09 5:59p Oleksiyy
+// Files clean-up, some headers added
+// 
+// 6     10/22/08 9:36a Felixp
+// Bug fix (EIP 15931): NVRAM was never reset during BIOS Recovery. Even
+// when 'Reset NVRAM' setup option was enabled.
+// The bug was caused by the wrong varstore passed into the callback
+// routine.
+// Form layout has been changed to make sure default varstore is active
+// when goto statement is reached.
+// 
+// 5     10/09/08 5:30p Felixp
+// Bug fix (EIP 13077): During BIOS Recovery the warning about flash
+// update being disabled due to the user access level was truncated
+// 
+// 4     1/17/08 5:30p Felixp
+// Updated to disable flash update option during boot with the USER access
+// level
+// 
+// 3     10/19/07 6:23p Felixp
+// Recovery Flash Update module extended to support Boot Block update.
+// Boot block update can be enabled or disabled using SDL token. 
+// In addition to that there is an SDL token that enables/disables
+// checkbox on the 
+// recovery setup page that user can use to enable or disable boot block
+// update.
+// 
+// 2     12/22/06 9:38a Felixp
+// Support for optional NVRAM reset based on user input added
+// 
+// 1     12/01/05 9:35a Felixp
+// 
+// 1     11/08/05 4:04a Felixp
+// 
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:	ReFlash.vfr
+//
+// Description:	Reflash formset
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+#include "ReFlash.h"
+
+formset guid = RECOVERY_FORM_SET_GUID,
+	title = STRING_TOKEN(STR_RECOVERY),
+	help = STRING_TOKEN(STR_EMPTY),
+	class = RECOVERY_FORM_SET_CLASS, subclass = 0,
+
+    varstore AUTOFLASH,
+        name  = Setup,
+        guid  = RECOVERY_FORM_SET_GUID;
+
+    AMI_CALLBACK_VARSTORE
+    SYSTEM_ACCESS_VARSTORE
+
+
+#if REFLASH_INTERACTIVE
+
+	form formid = RECOVERY_MAIN,
+		title = STRING_TOKEN(STR_RECOVERY);
+
+		SUBTITLE(STRING_TOKEN(STR_SUBTITLE1))
+		SUBTITLE(STRING_TOKEN(STR_SUBTITLE2))
+		
+		suppressif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_ADMIN;
+            text
+                help  = STRING_TOKEN(STR_EMPTY),
+                text  = STRING_TOKEN(STR_ACCESS_DENIED),
+                text  = STRING_TOKEN(STR_ACCESS_DENIED2),
+                flags = 0, key   = 0;
+            text
+                help  = STRING_TOKEN(STR_EMPTY),
+                text  = STRING_TOKEN(STR_ACCESS_DENIED3),
+                text  = STRING_TOKEN(STR_ACCESS_DENIED4),
+                flags = 0, key   = 0;
+        endif;  
+
+		SEPARATOR
+
+		SUBTITLE(STRING_TOKEN(STR_OPTIONS))
+
+        grayoutif NOT ideqval AUTOFLASH.FailedRecovery == 0 OR ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+
+#if REFLASH_UPDATE_NVRAM_CONTROL
+            checkbox varid = AUTOFLASH.UpdateNv,
+    			prompt    = STRING_TOKEN(STR_UPDATE_NVRAM),
+    			help      = STRING_TOKEN(STR_UPDATE_NVRAM_HELP),
+    			flags     = REFLASH_UPDATE_NVRAM, // Flags behavior for checkbox is overloaded so that it equals a DEFAULT value.  1 = ON, 0 = off
+    		endcheckbox;
+#endif
+#if REFLASH_UPDATE_BOOT_BLOCK_CONTROL
+            checkbox varid = AUTOFLASH.UpdateBb,
+    			prompt    = STRING_TOKEN(STR_UPDATE_BB),
+    			help      = STRING_TOKEN(STR_UPDATE_BB_HELP),
+    			flags     = REFLASH_UPDATE_BOOT_BLOCK, // Flags behavior for checkbox is overloaded so that it equals a DEFAULT value.  1 = ON, 0 = off
+    		endcheckbox;
+#endif
+
+            checkbox varid = AUTOFLASH.UpdateMain,
+    			prompt    = STRING_TOKEN(STR_UPDATE_MAIN),
+    			help      = STRING_TOKEN(STR_UPDATE_MAIN_HELP),
+    			flags     = REFLASH_UPDATE_MAIN_BLOCK, // Flags behavior for checkbox is overloaded so that it equals a DEFAULT value.  1 = ON, 0 = off
+#if FtRecovery_SUPPORT
+                inconsistentif prompt = STRING_TOKEN(STR_FLASH_SELECTION_ERROR_POPUP),
+                    ideqval AUTOFLASH.UpdateBb == 1
+                    AND
+                    ideqval AUTOFLASH.UpdateMain == 0
+                endif
+#endif
+    		endcheckbox;
+#if REFLASH_UPDATE_EC_FIRMWARE_CONTROL
+            checkbox varid = AUTOFLASH.UpdateEC,
+    			prompt    = STRING_TOKEN(STR_UPDATE_EC),
+    			help      = STRING_TOKEN(STR_UPDATE_EC_HELP),
+    			flags     = REFLASH_UPDATE_EC_FIRMWARE, // Flags behavior for checkbox is overloaded so that it equals a DEFAULT value.  1 = ON, 0 = off
+    		endcheckbox;
+#endif
+
+#define REFLASH_CONTROL
+#include <ReflashDefinitions.h>
+#undef REFLASH_CONTROL
+
+		    //Can't use 'SEPARATOR' because it's not allowed in the grayoutif scope
+            INVENTORY(STRING_TOKEN(STR_EMPTY),STRING_TOKEN(STR_EMPTY))
+
+        endif;//grayoutif
+
+        suppressif NOT ideqval AUTOFLASH.FailedRecovery == 0 OR ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+    		goto RECOVERY_FLASH,
+    			prompt  = STRING_TOKEN(STR_FLASH),
+    			help    = STRING_TOKEN(STR_FLASH_HELP),
+                flags   = INTERACTIVE, key = FLASH_START_KEY;
+        endif;
+	endform;
+#endif //#if REFLASH_INTERACTIVE
+
+	form formid = RECOVERY_FLASH,
+		title = STRING_TOKEN(STR_RECOVERY_FLASH);
+		SUBTITLE(STRING_TOKEN(STR_UPDATE_WARNING1))
+		SUBTITLE(STRING_TOKEN(STR_UPDATE_WARNING2))
+		SUBTITLE(STRING_TOKEN(STR_UPDATE_WARNING3))
+		SUBTITLE(STRING_TOKEN(STR_UPDATE_WARNING_RESET))
+#if REFLASH_INTERACTIVE
+		SUBTITLE(STRING_TOKEN(STR_UPDATE_WARNING_RESET_USER))
+#else
+		SUBTITLE(STRING_TOKEN(STR_UPDATE_WARNING_RESET_AUTO))
+#endif
+		SEPARATOR
+
+        INTERACTIVE_TEXT(STRING_TOKEN(STR_FLASH_PROGRESS_HELP), STRING_TOKEN(STR_EMPTY), STRING_TOKEN(STR_EMPTY), FLASH_PROGRESS_KEY)
+#define REFLASH_PROGRESS
+#include <ReflashDefinitions.h>
+#undef REFLASH_PROGRESS
+	endform;
+endformset;
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

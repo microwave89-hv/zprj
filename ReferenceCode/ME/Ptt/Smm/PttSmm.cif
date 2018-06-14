@@ -1,0 +1,9 @@
+<component>
+	name = "PttSmm"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Ptt\Smm\"
+	RefName = "PttSmm"
+[parts]
+"PttHciSmm"
+"PttSmmAcpi"
+<endComponent>

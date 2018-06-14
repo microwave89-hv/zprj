@@ -1,0 +1,152 @@
+TOKEN
+	Name  = "SecFlashUpd_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Secured FlashUpdate support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "FlashUpdatePolicy"
+	Value  = "7"
+	Help  = "Flash update policy bitmap\0-Disabled, \bit0-Cold Reboot(recovery),bit1-Warm Reboot(capsule),bit2-Runtime,\bits 3..31-Reserved"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BBUpdatePolicy"
+	Value  = "7"
+	Help  = "Select Boot Block (CRTM) Flash update policy."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IGNORE_IMAGE_ROLLBACK"
+	Value  = "0"
+	Help  = "1-FW Capsule Validate logic will skip image Revision check"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IGNORE_RUNTIME_UPDATE_IMAGE_REVISION_CHECK"
+	Value  = "0"
+	Help  = "When set, FW Capsule Validate logic will skip image Revision check during Runtime updates"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IGNORE_RUNTIME_UPDATE_IMAGE_REVISION_CHECK"
+	Value  = "1"
+	Help  = "Force Ignore_runtime. if master Ignore_image_rollback is set"
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "IGNORE_IMAGE_ROLLBACK" "=" "1"
+End
+
+TOKEN
+	Name  = "RUNTIME_SECURE_UPDATE_FLOW"
+	Value  = "1"
+	Help  = "Force security checks during runtime SMM flash update process"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FWCAPSULE_RECOVERY_SUPPORT"
+	Value  = "0"
+	Help  = "Enable APTIO FW Capsule recovery PPI"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FWCAPSULE_RECOVERY_SUPPORT"
+	Value  = "1"
+	Help  = "Don't modify this value!"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "Recovery_SUPPORT" "=" "1"
+	Token = "CAPSULE_SUPPORT" "=" "1"
+	Token = "WARM_BOOT_SUPPORT" "=" "1"
+	Token = "UEFI_2_0_CAPSULE" "=" "1"
+End
+
+TOKEN
+	Name  = "FWCAPSULE_RECOVERY_SUPPORT"
+	Value  = "1"
+	Help  = "Don't modify this value!"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "Recovery_SUPPORT" "=" "1"
+	Token = "CAPSULE2_0_SUPPORT" "=" "1"
+	Token = "SUPPORT_UPDATE_CAPSULE_RESET" "=" "1"
+End
+
+TOKEN
+	Name  = "FWCAPSULE_2_0_SUPPORT"
+	Value  = "1"
+	Help  = "Older Aptio Capsule formats expected extra Cap Hdr in Mailbox"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "CAPSULE2_0_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FLASH_LOCK_EVENT_NOTIFY"
+	Value  = "1"
+	Help  = "1:Issue Flash Ready to Lock Event"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+PATH
+	Name  = "SecFlashUpd_DIR"
+	Help  = "Path to FlashUpdate Module in Project"
+End
+
+MODULE
+	File  = "SecFlashUpd.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\FwCapsuleRecoveryPPI.ffs"
+	Parent  = "FV_BB"
+	Token = "FWCAPSULE_RECOVERY_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "IsFlashUpdateRecovery,"
+	Parent  = "IsRecovery"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "IsFlashUpdateCapsuleInit,"
+	Parent  = "PeiCoreInitialize"
+	Token = "FWCAPSULE_RECOVERY_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "FwCapsuleInfo"
+	Parent  = "AmiGetRecoveryFileInfo"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SecFlashUpdDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

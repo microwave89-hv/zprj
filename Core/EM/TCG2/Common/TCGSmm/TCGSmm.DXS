@@ -1,0 +1,84 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+//*************************************************************************
+//*************************************************************************
+// $Header: /Alaska/SOURCE/Modules/TCG2/Common/TCGSmm/TCGSmm.DXS 1     4/21/14 2:18p Fredericko $
+//
+// $Revision: 1 $
+//
+// $Date: 4/21/14 2:18p $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/TCG2/Common/TCGSmm/TCGSmm.DXS $
+// 
+// 1     4/21/14 2:18p Fredericko
+// 
+// 2     12/10/13 12:59p Fredericko
+// Modify dependency's
+// 
+// 1     10/08/13 12:05p Fredericko
+// Initial Check-In for Tpm-Next module
+// 
+// 2     7/11/13 6:14p Fredericko
+// [TAG]  		EIP120969
+// [Category]  	New Feature
+// [Description]  	TCG (TPM20).
+// 
+// 1     7/10/13 5:57p Fredericko
+// [TAG]  		EIP120969
+// [Category]  	New Feature
+// [Description]  	TCG (TPM20)
+// 
+// 3     7/25/11 3:21a Fredericko
+// [TAG]  		EIP65177
+// [Category]  	Spec Update
+// [Severity]  	Minor
+// [Description]  	TCG Ppi Sec ver 1.2 update
+// 
+// 2     5/20/10 8:54a Fredericko
+// 
+// Included File Header
+// Included File Revision History 
+// EIP 37653
+//
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name: TCGSmm.dxs
+//
+// Description:
+// Dependency for TcgSmm
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+#include "TCGSmm.h"
+
+DEPENDENCY_START
+ EFI_SMM_SW_DISPATCH_PROTOCOL_GUID 
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************

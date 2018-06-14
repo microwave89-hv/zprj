@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "LegacyInterrupt_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable LegacyInterrupt support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "LEGACY_INTERRUPT_DIR"
+End
+
+MODULE
+	Help  = "Includes LegacyInterrupt.mak to Project"
+	File  = "LegacyInterrupt.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\LegacyInterrupt.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

@@ -1,0 +1,13 @@
+<component>
+	name = "PchPcieSmm"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Pcie\Smm"
+	RefName = "PchPcieSmm"
+[files]
+"PchPcieSmm.sdl"	
+"PchPcieSmm.mak"	
+"PchPcieSmm.h"	
+"PchPcieSmm.c"	
+"PchPcieSmm.dxs"	
+"PchPcieSmm.inf"	
+<endComponent>

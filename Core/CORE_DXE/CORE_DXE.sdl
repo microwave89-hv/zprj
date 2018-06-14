@@ -1,0 +1,1169 @@
+TOKEN
+	Name  = "CORE_DXE_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable CORE_DXE support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "ConSplitter_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable ConSplitter support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "Partition_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Partition support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "PS2Ctl_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PS2 Controller support in the project."
+	TokenType = Boolean
+	TargetH = Yes
+	TargetMAK = Yes
+	Token = "KBC_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "GC_COLOR_BLACK"
+	Value  = "0,0,0"
+	Help  = "Definition of the black color used by the graphic console\Format: <Blue>,<Green>,<Red>"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "<0-255>,<0-255>,<0-255>"
+End
+
+TOKEN
+	Name  = "GC_COLOR_BLUE"
+	Value  = "0x98,0,0"
+	Help  = "Definition of the blue color used by the graphic console\Format: <Blue>,<Green>,<Red>"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "<0-255>,<0-255>,<0-255>"
+End
+
+TOKEN
+	Name  = "GC_COLOR_GREEN"
+	Value  = "0,0x98,0"
+	Help  = "Definition of the green color used by the graphic console\Format: <Blue>,<Green>,<Red>"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "<0-255>,<0-255>,<0-255>"
+End
+
+TOKEN
+	Name  = "GC_COLOR_CYAN"
+	Value  = "0x98,0x98,0"
+	Help  = "Definition of the cyan color used by the graphic console\Format: <Blue>,<Green>,<Red>"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "<0-255>,<0-255>,<0-255>"
+End
+
+TOKEN
+	Name  = "GC_COLOR_RED"
+	Value  = "0,0,0x98"
+	Help  = "Definition of the red color used by the graphic console\Format: <Blue>,<Green>,<Red>"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "<0-255>,<0-255>,<0-255>"
+End
+
+TOKEN
+	Name  = "GC_COLOR_MAGENTA"
+	Value  = "0x98,0,0x98"
+	Help  = "Definition of the magenta color used by the graphic console\Format: <Blue>,<Green>,<Red>"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "<0-255>,<0-255>,<0-255>"
+End
+
+TOKEN
+	Name  = "GC_COLOR_BROWN"
+	Value  = "0x0,0x40,0x80"
+	Help  = "Definition of the brown color used by the graphic console\Format: <Blue>,<Green>,<Red>"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "<0-255>,<0-255>,<0-255>"
+End
+
+TOKEN
+	Name  = "GC_COLOR_LIGHTGRAY"
+	Value  = "0x98,0x98,0x98"
+	Help  = "Definition of the light gray color used by the graphic console\Format: <Blue>,<Green>,<Red>"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "<0-255>,<0-255>,<0-255>"
+End
+
+TOKEN
+	Name  = "GC_COLOR_DARKGRAY"
+	Value  = "0x10,0x10,0x10"
+	Help  = "Definition of the dark gray color used by the graphic console\Format: <Blue>,<Green>,<Red>"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "<0-255>,<0-255>,<0-255>"
+End
+
+TOKEN
+	Name  = "GC_COLOR_LIGHTBLUE"
+	Value  = "0xFF,0x10,0x10"
+	Help  = "Definition of the light blue color used by the graphic console\Format: <Blue>,<Green>,<Red>"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "<0-255>,<0-255>,<0-255>"
+End
+
+TOKEN
+	Name  = "GC_COLOR_LIGHTGREEN"
+	Value  = "0x10,0xFF,0x10"
+	Help  = "Definition of the light green color used by the graphic console\Format: <Blue>,<Green>,<Red>"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "<0-255>,<0-255>,<0-255>"
+End
+
+TOKEN
+	Name  = "GC_COLOR_LIGHTCYAN"
+	Value  = "0xFF,0xFF,0xE0"
+	Help  = "Definition of the light cyan color used by the graphic console\Format: <Blue>,<Green>,<Red>"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "<0-255>,<0-255>,<0-255>"
+End
+
+TOKEN
+	Name  = "GC_COLOR_LIGHTRED"
+	Value  = "0x10,0x10,0xFF "
+	Help  = "Definition of the light red color used by the graphic console\Format: <Blue>,<Green>,<Red>"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "<0-255>,<0-255>,<0-255>"
+End
+
+TOKEN
+	Name  = "GC_COLOR_LIGHTMAGENTA"
+	Value  = "0xF0,0x10,0xFF"
+	Help  = "Definition of the light magenta color used by the graphic console\Format: <Blue>,<Green>,<Red>"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "<0-255>,<0-255>,<0-255>"
+End
+
+TOKEN
+	Name  = "GC_COLOR_YELLOW"
+	Value  = "0x10,0xFF,0xFF"
+	Help  = "Definition of the yellow color used by the graphic console\Format: <Blue>,<Green>,<Red>"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "<0-255>,<0-255>,<0-255>"
+End
+
+TOKEN
+	Name  = "GC_COLOR_WHITE"
+	Value  = "0xFF,0xFF,0xFF"
+	Help  = "Definition of the white color used by the graphic console\Format: <Blue>,<Green>,<Red>"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "<0-255>,<0-255>,<0-255>"
+End
+
+TOKEN
+	Name  = "GC_MODE0"
+	Value  = "{ 0, 80, 25, 800, 600 }"
+	Help  = "Parameters of the graphica console text mode 0.\NOTE: Text resolution of the mode 0 must be 80 by 25\Format: {ModeNumber, TextColomns,TextRows, HorizontalPixels,VerticalPixels}"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "GC_MODE1"
+	Value  = "{ 1, 80, 50, 1280, 1024 }"
+	Help  = "Parameters of the graphica console text mode 1.\NOTE: Text resolution of the mode 0 must be 80 by 50\Format: {ModeNumber, TextColomns,TextRows, HorizontalPixels,VerticalPixels}"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "GC_MODE2"
+	Value  = "{ 2, 100, 31, 800, 600 }"
+	Help  = "Parameters of the graphica console text mode 2.\Format: {ModeNumber, TextColomns,TextRows, HorizontalPixels,VerticalPixels}"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "GC_MODE3"
+	Value  = "{ 3, 0, 0, 0, 0 }"
+	Help  = "Parameters of the graphica console text mode 3.\Format: {ModeNumber, TextColomns,TextRows, HorizontalPixels,VerticalPixels}"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "GC_MODE_LIST"
+	Value  = "$(GC_MODE0), $(GC_MODE1), $(GC_MODE2), $(GC_MODE3)"
+	Help  = "List of text modes supported by graphic console.\NOTE: Mode numbers defined by GC_MODEx tokens must be in ascending order."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "START_IN_NATIVE_RESOLUTION"
+	Value  = "1"
+	Help  = "When this token is 'on', Graphics console will start in native resolution if available"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "INSTALL_DUMMY_SECURITY_PROTOCOL"
+	Value  = "1"
+	Help  = "When this token is 'on', the Core publishes dummy instance of the security protocol.\The security protocol is one of the architectural protocols and as such must be available.\The default value is 'on'.  \Set to 'off' if project includes driver that publishes the security protocol.\"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PS2MOUSE_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "PS2Ctl_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "PS2KBD_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "PS2Ctl_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "KBC_AUTODETECT_PORTS"
+	Value  = "0"
+	Help  = "Auto detection of KB/MS using AMI KB-5.  This switch will enable/disable the connector swap of Keyboard and PS2 Mouse i.e. keyboard\can be connected to PS2 Mouse connector and vice-versa."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "KBC_AUTODETECT_PORTS_FUNCTION"
+	Value  = "AutodetectKbdMousePorts"
+	TokenType = Expression
+	TargetH = Yes
+	Token = "KBC_AUTODETECT_PORTS" "=" "1"
+End
+
+TOKEN
+	Name  = "BLOCK_KBC_PIN_22_23_BIT"
+	Value  = "1"
+	Help  = "Turn this switch On or Off to block or unblock KBC lines P22 and P23.\If unblocked - KBC will be able to change lines P22 and P23 from high to low and back using D1 command.\If blocked - KBC will not be able to change the state of P22 and P23 lines."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "LEDS_AT_STARTUP"
+	Value  = "2"
+	Help  = "Keyboard LEDs after startup:\Bit0: ScrlLock is on/off;\Bit1: NumLock is on/off;\Bit2: CapsLock is on/off."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "MAX_HOTKEYS"
+	Value  = "20"
+	Help  = "Number of hot keys."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "INIT_DEFAULT_HOTKEYS"
+	Value  = "1"
+	Help  = "Initialize default hot keys (perform system soft reset on Ctrl+Alt+Del combination)."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "KBC_BASIC_ASSURANCE_TEST"
+	Value  = "1"
+	Help  = "1 - Perform KBC Basic Assurance Test. 0 - Do not peform KBC Basic Assurance Test."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DETECT_PS2_KEYBOARD"
+	Value  = "0"
+	Help  = "1 - Perform PS2 Keyboard Detection. 0 - Do not perform PS2 Keybaord Detection."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DETECT_PS2_MOUSE"
+	Value  = "0"
+	Help  = "1 - Perform PS2 Mouse Detection. 0 - Do not perform PS2 Mouse Detection."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "INSTALL_KEYBOARD_MOUSE_ALWAYS"
+	Value  = "1"
+	Help  = "1 - Install the Keyboard- SimpleTextIn, Mouse - AbsPointer Always, 0 - Install the Keyboard- SimpleTextIn, Mouse - AbsPointer only if the device is present at the time of detection."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "RETURN_CURRENT_KEY_STATE"
+	Value  = "0"
+	Help  = "0 - return key shift and toggle states captured during a keypress, 1 - return current shift and toggle state."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "KB_IRQ_SUPPORT"
+	Value  = "0"
+	Help  = "When this token is ON mouse will operate using interrupt, when OFF polling will be used"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "MS_IRQ_SUPPORT"
+	Value  = "0"
+	Help  = "When this token is ON mouse will operate using interrupt, when OFF polling will be used"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "KBD_READ_BEFORE_INSTALL"
+	Value  = "0"
+	Help  = "This token will be used to save the key codes if keys are pressed before installing keyboard driver"
+	TokenType = Expression
+	TargetH = Yes
+	Token = "KB_IRQ_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "IBFREE_TIMEOUT"
+	Value  = "300"
+	Help  = "Timeout (in miliseconds) used for the function IbFreeTimeout()"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CLEAR_PS2KB_BUFFER_AT_READYTOBOOT"
+	Value  = "0"
+	Help  = "ON   -> PS2 KB Buffer will be cleared at ReadyToBoot.\OFF  -> PS2 KB Buffer will not be cleared at ReadyToBoot."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CHECK_BDA_KEYBOARD_BUFFER"
+	Value  = "1"
+	Help  = "ON   -> BDA KBD Buffer will be checked for any key whenever there is no key is found in ReadKeyStroke().\OFF  -> BDA KBD Buffer will not be checked."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CLEAR_PENDING_KEYS_IN_PS2"
+	Value  = "0"
+	Help  = "ON -> Resets the keyboard before PS2 Driver is started and Clears OBF on every Kbd Reset as some Notbook KBC has some pending keys even after disabling and enabling Scanning."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BBS_USB_DEVICE_TYPE_SUPPORT"
+	Value  = "0"
+	Help  = "Treat USB devices as a separate BBS device type"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BBS_NETWORK_DEVICE_TYPE_SUPPORT"
+	Value  = "0"
+	Help  = "Treat network devices as a separate BBS device type"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "GROUP_BOOT_OPTIONS_BY_TAG"
+	Value  = "1"
+	Help  = "When this token is on, the boot options are grouped by tag.\When this token is off, the boot list is flat (a.k.a. flex boot)."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FW_ORPHAN_BOOT_OPTIONS_POLICY"
+	Value  = "ORPHAN_BOOT_OPTIONS_POLICY_DELETE"
+	Help  = "Defines handling of the firmware boot options not associated with the device.\The supported policies are: \ORPHAN_BOOT_OPTIONS_POLICY_KEEP\ORPHAN_BOOT_OPTIONS_POLICY_DELETE\ORPHAN_BOOT_OPTIONS_POLICY_DISABLE\"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NON_FW_ORPHAN_BOOT_OPTIONS_POLICY"
+	Value  = "ORPHAN_BOOT_OPTIONS_POLICY_HIDE"
+	Help  = "Defines handling of the non-firmware (third party) boot options not associated with the device.\The supported policies are: \ORPHAN_BOOT_OPTIONS_POLICY_KEEP\ORPHAN_BOOT_OPTIONS_POLICY_DELETE\ORPHAN_BOOT_OPTIONS_POLICY_DISABLE\ORPHAN_BOOT_OPTIONS_POLICY_HIDE\"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "ORPHAN_BOOT_OPTIONS_POLICY_KEEP"
+End
+
+TOKEN
+	Name  = "ORPHAN_GROUP_HEADERS_POLICY"
+	Value  = "ORPHAN_BOOT_OPTIONS_POLICY_DELETE"
+	Help  = "Defines handling of the non-firmware (third party) boot options not associated with the device.\The supported policies are: \ORPHAN_BOOT_OPTIONS_POLICY_KEEP\ORPHAN_BOOT_OPTIONS_POLICY_DELETE\ORPHAN_BOOT_OPTIONS_POLICY_DISABLE\"
+	TokenType = Expression
+	TargetH = Yes
+	Range  = "ORPHAN_BOOT_OPTIONS_POLICY_KEEP"
+End
+
+TOKEN
+	Name  = "NORMALIZE_BOOT_OPTION_NAME"
+	Value  = "1"
+	Help  = "When the token is on, the Description of the existing boot options is regenerated during the boot option processing.\It is possible to override built time Description normalization policy using NormalizeBootOptionName variable."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NORMALIZE_BOOT_OPTION_DEVICE_PATH"
+	Value  = "1"
+	Help  = "When the token is on, the FilePathList of the existing boot options is regenerated during the boot option processing.\It is possible to override built time FilePathList normalization policy using NormalizeBootOptionDevicePath variable."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BOOT_OPTION_TAG_PRIORITIES"
+	Value  = "BoTagUefi, BoTagLegacyCdrom, BoTagLegacyHardDisk, BoTagLegacyFloppy, BoTagLegacyEmbedNetwork, BoTagEmbeddedShell"
+	Help  = "List of value of type BOOT_OPTION_TAG that define priorities of the boot option tags.\BOOT_OPTION_TAG is defined in BdsBoard.c\"
+	TokenType = Expression
+	TargetH = Yes
+	Token = "DEBUG_MODE" "=" "0"
+End
+
+TOKEN
+	Name  = "BOOT_OPTION_TAG_PRIORITIES"
+	Value  = "BoTagEmbeddedShell, BoTagUefi, BoTagLegacyCdrom, BoTagLegacyHardDisk, BoTagLegacyFloppy, BoTagLegacyEmbedNetwork"
+	Help  = "List of value of type BOOT_OPTION_TAG that define priorities of the boot option tags.\BOOT_OPTION_TAG is defined in BdsBoard.c\"
+	TokenType = Expression
+	TargetH = Yes
+	Token = "DEBUG_MODE" "!=" "0"
+End
+
+TOKEN
+	Name  = "BOOT_OPTION_NAME_PREFIX_FUNCTION"
+	Value  = "ConstructBootOptionNamePrefixDefault"
+	Help  = "Name of the function of type CONSTRUCT_BOOT_OPTION_NAME.\The function is used to create boot option name prefix."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BOOT_OPTION_NAME_SUFFIX_FUNCTION"
+	Value  = "ConstructBootOptionNameSuffixDefault"
+	Help  = "Name of the function of type CONSTRUCT_BOOT_OPTION_NAME.\The function is used to create boot option name suffix."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BOOT_OPTION_GET_BBS_ENTRY_DEVICE_TYPE_FUNCTION"
+	Value  = "GetBbsEntryDeviceTypeDefault"
+	Help  = "Name of the function of type GET_BBS_ENTRY_DEVICE_TYPE.\The function is used to convert device type stored in the BBS table to a legacy device type that will be stored in the NVRAM.\The default implementation(GetBbsEntryDeviceTypeDefault) provides support for BBS_USB_DEVICE_TYPE_SUPPORT and BBS_NETWORK_DEVICE_TYPE_SUPPORT SDL tokens."
+	TokenType = Expression
+	TargetH = Yes
+	Token = "CSM_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "MATCH_BOOT_OPTION_BY_LOCATION"
+	Value  = "1"
+	Help  = "When this option is on, the boot option is matched to the boot device using device location information. The device location is a specific connection point that the device is attached to. \For example: SATA Controller 1 Port 0,  IDE Primary Master,  USB Controller 1 Port 3\"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "MATCH_BOOT_OPTION_BY_DEVICE"
+	Value  = "1"
+	Help  = "When this option is on, the boot option is matched to the boot device using device information such as device name, device serial number or other information that uniquely identifies the device."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BDS_CONNECT_CONSOLE_DEVICES"
+	Value  = "1"
+	Help  = "Enables/Disables execution of the BDS Control Flow \functions from the 'Connect Console Devices' group"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "BDS_FULL_SYSTEM_INITIALIZATION"
+	Value  = "1"
+	Help  = "Enables/Disables execution of the BDS Control Flow(BDS_CONTROL_FLOW) \functions from the 'Full System Initialization' group"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "BDS_CONNECT_CON_OUT_DEVICES"
+	Value  = "1"
+	Help  = "Enables/Disables execution of the BDS Control Flow(BDS_CONTROL_FLOW) \functions from the 'Connect ConOut Devices' group"
+	TokenType = Boolean
+	Token = "BDS_CONNECT_CONSOLE_DEVICES" "=" "1"
+End
+
+TOKEN
+	Name  = "BDS_CONNECT_CON_IN_DEVICES"
+	Value  = "1"
+	Help  = "Enables/Disables execution of the BDS Control Flow(BDS_CONTROL_FLOW) \functions from the 'Connect ConIn Devices' group"
+	TokenType = Boolean
+	Token = "BDS_CONNECT_CONSOLE_DEVICES" "=" "1"
+End
+
+TOKEN
+	Name  = "BDS_UPDATE_BOOT_OPTION_VARIABLES"
+	Value  = "1"
+	Help  = "Enables/Disables execution of the BDS Control Flow(BDS_CONTROL_FLOW) \functions from the 'UpdateBootOptionVariables,' group"
+	TokenType = Boolean
+End
+
+TOKEN
+	Name  = "BDS_PROCESS_BOOT_OPTION_LIST"
+	Value  = "1"
+	Help  = "Enables/Disables execution of the BDS Control Flow(BDS_CONTROL_FLOW) \functions from the '/*Process Boot Option List*/' group"
+	TokenType = Boolean
+	Token = "BDS_UPDATE_BOOT_OPTION_VARIABLES" "=" "1"
+End
+
+TOKEN
+	Name  = "ATAPI_BUSY_CLEAR_TIMEOUT"
+	Value  = "16000"
+	Help  = "Timeout value for ATAPI busy clear. Set to 16 sec."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "S3_BUSY_CLEAR_TIMEOUT"
+	Value  = "10000"
+	Help  = "Timeout value for S3 busy clear. Set to 10 sec."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DMA_ATA_COMMAND_COMPLETE_TIMEOUT"
+	Value  = "5000"
+	Help  = "Timeout value for completion of DMA ATA command. Set to 5 Sec."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DMA_ATAPI_COMMAND_COMPLETE_TIMEOUT"
+	Value  = "16000"
+	Help  = "Timeout value for completion of DMA ATAPI command. Set to 16 Sec."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ATAPI_RESET_COMMAND_TIMEOUT"
+	Value  = "5000"
+	Help  = "Timeout Value for ATAPI reset command. Set to 5 sec."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "POWERON_BUSY_CLEAR_TIMEOUT"
+	Value  = "10000"
+	Help  = "The Poweron busy clear timeout value. Set to 10 sec."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+PATH
+	Name  = "CORE_DXE_DIR"
+End
+
+MODULE
+	Help  = "Includes CORE_DXE.mak to Project"
+	File  = "CORE_DXE.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CORE_DXE.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "DxeCoreInitialize"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "BdsInit,"
+	Parent  = "DxeCoreInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GenericSioEntryPoint,"
+	Parent  = "DxeCoreInitialize"
+	Token = "SIO_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "InitDataHub,"
+	Parent  = "DxeCoreInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "UnicodeCollationEntryPoint,"
+	Parent  = "DxeCoreInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "BDS_CONTROL_FLOW"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "HiiBdsEntryPoint,"
+	Parent  = "BdsEntryInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "DiskIoEntryPoint,"
+	Parent  = "BdsEntryInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GCEntryPoint,"
+	Parent  = "BdsEntryInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CSEntryPoint,"
+	Parent  = "BdsEntryInitialize"
+	Token = "ConSplitter_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PartitionEntryPoint,"
+	Parent  = "BdsEntryInitialize"
+	Token = "Partition_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CORE_DXE_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(CORE_DXE_DIR)\CORE_DXE$(ARCH)$(DBG).lib"
+	Parent  = "CORE_DXE_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "BdsEntryInitialize"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "DxeSioList"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "PS2CtlEntryPoint,"
+	Parent  = "BdsEntryInitialize"
+	Token = "PS2Ctl_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "FloppyCtrlEntryPoint,"
+	Parent  = "BdsEntryInitialize"
+	Token = "x64_BUILD" "=" "1"
+	Token = "FLOPPY_CTRL_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "HiiDbEntryPoint,"
+	Parent  = "DxeCoreInitialize"
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "HiiDriverEntryPoint,"
+	Parent  = "DxeCoreInitialize"
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "BDS_SDBS"
+	Help  = "List of SDB files with the string overrides for the BDS component."
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "BootOptionDpMatchingFunctions"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "BootOptionMatchingFunctions"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "BootOptionBootDeviceFilteringFunctions"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "BootOptionBuildNameFunctions"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "BootOptionBuildFilePathFunctions"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "LocateDevicePathTest,"
+	Parent  = "BootOptionDpMatchingFunctions"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PartitionDevicePathTest,"
+	Parent  = "BootOptionDpMatchingFunctions"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "UsbClassDevicePathTest,"
+	Parent  = "BootOptionDpMatchingFunctions"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "BbsDevicePathTest,"
+	Parent  = "BootOptionDpMatchingFunctions"
+	Token = "CSM_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "AmiBbsDevicePathTest,"
+	Parent  = "BootOptionDpMatchingFunctions"
+	Token = "CSM_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ConstructBootOptionNameByHandle,"
+	Parent  = "BootOptionBuildNameFunctions"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ConstructBootOptionNameByBbsDescription,"
+	Parent  = "BootOptionBuildNameFunctions"
+	Token = "CSM_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ConstructBootOptionNameByHandleDevicePath,"
+	Parent  = "BootOptionBuildNameFunctions"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ConstructBootOptionNameByFilePathList,"
+	Parent  = "BootOptionBuildNameFunctions"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "InstallLzmaDecompressProtocol,"
+	Parent  = "DxeCoreInitialize"
+	Token = "LZMA_SUPPORT" "=" "1"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "BuildLegacyLocationFilePath,"
+	Parent  = "BootOptionBuildFilePathFunctions"
+	Token = "CSM_SUPPORT" "=" "1"
+	Token = "MATCH_BOOT_OPTION_BY_LOCATION" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "BuildNameFilePath,"
+	Parent  = "BootOptionBuildFilePathFunctions"
+	Token = "MATCH_BOOT_OPTION_BY_DEVICE" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "BuildLegacyFilePath,"
+	Parent  = "BootOptionBuildFilePathFunctions"
+	Token = "CSM_SUPPORT" "=" "1"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "BuildEfiFilePath,"
+	Parent  = "BootOptionBuildFilePathFunctions"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "AmiDeviceNameDevicePathTest,"
+	Parent  = "BootOptionDpMatchingFunctions"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "DeviceTypeDevicePathTest,"
+	Parent  = "BootOptionDpMatchingFunctions"
+	Token = "MATCH_BOOT_OPTION_BY_LOCATION" "=" "0"
+	Token = "MATCH_BOOT_OPTION_BY_DEVICE" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SignalConnectDriversEvent,"
+	Parent  = "BDS_CONTROL_FLOW"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ConnectRootBridgeHandles,"
+	Parent  = "BDS_CONTROL_FLOW"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "RegisterMemoryTypeInformationUpdateCallback,"
+	Parent  = "BDS_CONTROL_FLOW"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "FastBootHook,"
+	Parent  = "BDS_CONTROL_FLOW"
+	Token = "FAST_BOOT_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/* Connect Console Devices */"
+	Parent  = "BDS_CONTROL_FLOW"
+	Token = "BDS_CONNECT_CONSOLE_DEVICES" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/* Full System Initialization */"
+	Parent  = "BDS_CONTROL_FLOW"
+	Token = "BDS_CONNECT_CONSOLE_DEVICES" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/* Connect ConOut Devices */"
+	Parent  = "/* Connect Console Devices */"
+	Token = "BDS_CONNECT_CON_OUT_DEVICES" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/* Connect ConIn Devices */"
+	Parent  = "/* Connect Console Devices */"
+	Token = "BDS_CONNECT_CON_IN_DEVICES" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ReportConnectConOutProgressCode,"
+	Parent  = "/* Connect ConOut Devices */"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ConnectVgaConOut,"
+	Parent  = "/* Connect ConOut Devices */"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ConnectConOutVariable,"
+	Parent  = "/* Connect ConOut Devices */"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "InstallConOutStartedProtocol,"
+	Parent  = "/* Connect ConOut Devices */"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ReportConnectConInProgressCode,"
+	Parent  = "/* Connect ConIn Devices */"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ConnectPs2ConIn,"
+	Parent  = "/* Connect ConIn Devices */"
+	Token = "PS2Ctl_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ConnectUsbConIn,"
+	Parent  = "/* Connect ConIn Devices */"
+	Token = "AMIUSB_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ConnectConInVariable,"
+	Parent  = "/* Connect ConIn Devices */"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "InstallConInStartedProtocol,"
+	Parent  = "/* Connect ConIn Devices */"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ConInAvailabilityBeep,"
+	Parent  = "/* Connect ConIn Devices */"
+	Token = "BEEP_ENABLE" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ConnectEverything,"
+	Parent  = "/* Full System Initialization */"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "RunDrivers,"
+	Parent  = "/* Full System Initialization */"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "InitConVars,"
+	Parent  = "/* Full System Initialization */"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "InstallFwLoadFile,"
+	Parent  = "/* Full System Initialization */"
+	Token = "Shell_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "UpdateBootOptionVariables,"
+	Parent  = "/* Full System Initialization */"
+	Token = "BDS_UPDATE_BOOT_OPTION_VARIABLES" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CallTheDispatcher,"
+	Parent  = "BDS_CONTROL_FLOW"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CapsuleHook,"
+	Parent  = "BDS_CONTROL_FLOW"
+	Token = "CAPSULE_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SignalAllDriversConnectedEvent,"
+	Parent  = "BDS_CONTROL_FLOW"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "HandoffToTse,"
+	Parent  = "BDS_CONTROL_FLOW"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ReadBootOptions,"
+	Parent  = "UpdateBootOptionVariables,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "AdjustLegacyBootOptionPriorities,"
+	Parent  = "UpdateBootOptionVariables,"
+	Token = "CSM_SUPPORT" "=" "1"
+	Token = "GROUP_BOOT_OPTIONS_BY_TAG" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "UnmaskOrphanDevices,"
+	Parent  = "UpdateBootOptionVariables,"
+	Token = "CSM_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CollectBootDevices,"
+	Parent  = "UpdateBootOptionVariables,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "FilterBootDeviceList,"
+	Parent  = "UpdateBootOptionVariables,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "MatchBootOptionsToDevices,"
+	Parent  = "UpdateBootOptionVariables,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "DeleteUnmatchedUefiHddBootDevices,"
+	Parent  = "UpdateBootOptionVariables,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CreateBootOptionsForNewBootDevices,"
+	Parent  = "UpdateBootOptionVariables,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/*Process Boot Option List*/"
+	Parent  = "UpdateBootOptionVariables,"
+	Token = "BDS_PROCESS_BOOT_OPTION_LIST" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "MaskOrphanDevices,"
+	Parent  = "UpdateBootOptionVariables,"
+	Token = "CSM_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SaveLegacyDevOrder,"
+	Parent  = "UpdateBootOptionVariables,"
+	Token = "CSM_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SaveBootOptions,"
+	Parent  = "UpdateBootOptionVariables,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SetBootOptionTags,"
+	Parent  = "/*Process Boot Option List*/"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "NormalizeBootOptions,"
+	Parent  = "/*Process Boot Option List*/"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PreProcessBootOptions,"
+	Parent  = "/*Process Boot Option List*/"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SetBootOptionPriorities,"
+	Parent  = "/*Process Boot Option List*/"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PostProcessBootOptions,"
+	Parent  = "/*Process Boot Option List*/"
+	InvokeOrder = AfterParent
+End
+

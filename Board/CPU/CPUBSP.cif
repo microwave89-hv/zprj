@@ -1,0 +1,20 @@
+<component>
+	name = "CPU Board"
+	category = ModulePart
+	LocalRoot = "Board\CPU"
+	RefName = "CPU Board"
+[files]
+"CPU.sdl"	
+"CPU.mak"	
+"CPU.EQU"	
+"CPU.sd"	
+"CPU.uni"	
+"CPUPwrMgt.uni"
+"CPUSetup.c"	
+"CpuSmbios.sdl"	
+"PlatformCpuLib.h"	
+"PlatformCpuLib.c"	
+"CpuPeiDebugger.c"	
+[parts]
+"CpuRcPolicyWrap"
+<endComponent>

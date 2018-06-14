@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "S3Restore_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable S3Restore support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "S3Restore_DIR"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\S3Restore.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+
+MODULE
+	Help  = "Includes S3Restore.mak to Project"
+	File  = "S3Restore.mak"
+End
+

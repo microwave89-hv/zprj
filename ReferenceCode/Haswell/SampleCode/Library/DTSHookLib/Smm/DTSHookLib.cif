@@ -1,0 +1,12 @@
+<component>
+	name = "DTSHookLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\SampleCode\Library\DTSHookLib\Smm\"
+	RefName = "DTSHookLib"
+[files]
+"DTSHookLib.sdl"
+"DTSHookLib.mak"
+"DTSHookLib.inf"
+"DTSHookLib.c"
+"DTSHookLib.h"
+<endComponent>

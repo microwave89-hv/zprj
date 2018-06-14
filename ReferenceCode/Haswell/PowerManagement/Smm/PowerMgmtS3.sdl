@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "Haswell_PowerMgmtS3_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to include CPU RC PowerMgmtS3 driver to the Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "PowerMgmtS3_DIR"
+End
+
+MODULE
+	Help  = "Includes PowerMgmtS3.mak to Project"
+	File  = "PowerMgmtS3.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PowerMgmtS3.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

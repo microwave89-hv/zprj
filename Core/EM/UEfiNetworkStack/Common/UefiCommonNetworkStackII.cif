@@ -1,0 +1,15 @@
+<component>
+	name = "UefiCommonNetworkStack II"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Common"
+	RefName = "UefiCommonNetworkStack II"
+[parts]
+"Dpc"
+"Arp"
+"Snp"
+"Mnp"
+"UefiPxeBc"
+"IpSec"
+"NetworkStackSetupScreen"
+"Tcp"
+<endComponent>

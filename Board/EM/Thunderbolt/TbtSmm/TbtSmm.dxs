@@ -1,0 +1,83 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/Thunderbolt/TbtSmm/TbtSmm.dxs 1     1/10/13 4:56a Barretlin $
+//
+// $Revision: 1 $
+//
+// $Date: 1/10/13 4:56a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/Thunderbolt/TbtSmm/TbtSmm.dxs $
+// 
+// 1     1/10/13 4:56a Barretlin
+// Change SS path and update module for Thunderbolt Spec 1.6 for Cactus
+// Ridge chip and Thunderbolt Spec 0.5 for Redwood Ridge chip
+// 
+// 4     9/03/12 6:27a Barretlin
+// [TAG]  		EIP N/A
+// [Category]  	Improvement
+// [Description]  	Change driver type and dependence for SharkBay platform
+// [Files]  		TbtSmm.mak TbtSmm.c TbtSmm.dxs
+// 
+// 3     6/12/12 11:30p Barretlin
+// [TAG]  		None
+// [Category]  	Improvement
+// [Description]  	fix programming error
+// [Files]  		TbtSmm.dxs
+// 
+// 2     12/22/11 9:15a Wesleychen
+// Included "token.h".
+// 
+// 1     12/08/11 4:09a Wesleychen
+// Thunderbolt eModule initially releases.
+// 
+//**********************************************************************
+#include <token.h>
+
+#if defined(PI_SPECIFICATION_VERSION)&&(PI_SPECIFICATION_VERSION>=0x0001000A)&&(CORE_COMBINED_VERSION >= 0x4028B)
+#include <Protocol\SmmBase2.h>
+#include <Protocol\SmmSwDispatch2.h>
+#include <Protocol\SmmSxDispatch2.h>
+#else
+#include <Protocol\SmmSwDispatch.h>
+#include <Protocol\SmmSxDispatch.h>
+#endif
+#include <TbtOemBoard.h>
+
+DEPENDENCY_START
+#if defined(PI_SPECIFICATION_VERSION)&&(PI_SPECIFICATION_VERSION>=0x0001000A)&&(CORE_COMBINED_VERSION >= 0x4028B)
+    EFI_SMM_BASE2_PROTOCOL_GUID AND
+    EFI_SMM_SW_DISPATCH2_PROTOCOL_GUID AND
+    EFI_SMM_SX_DISPATCH2_PROTOCOL_GUID AND
+#else
+    EFI_SMM_SW_DISPATCH_PROTOCOL_GUID AND
+    EFI_SMM_SX_DISPATCH_PROTOCOL_GUID AND
+#endif
+    AMI_TBT_PLATFROM_POLICY_PROTOCOL_GUID
+DEPENDENCY_END
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

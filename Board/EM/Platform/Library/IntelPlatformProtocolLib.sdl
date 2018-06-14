@@ -1,0 +1,47 @@
+TOKEN
+	Name  = "INTEL_PLATFORM_PROTOCOL_LIB_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable INTEL_PLATFORM_PROTOCOL_LIB support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "IntelPlatformProtocolLib_DIR"
+End
+
+MODULE
+	Help  = "Includes IntelPlatformProtocolLib.mak to Project"
+	File  = "IntelPlatformProtocolLib.mak"
+End
+
+ELINK
+	Name  = "INTEL_PLATFORM_PROTOCOL_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/I$(PROJECT_DIR)\Board\EM\Platform"
+	Parent  = "INTEL_PLATFORM_PROTOCOL_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(PROJECT_DIR)\Board\EM\Platform\Library"
+	Parent  = "INTEL_PLATFORM_PROTOCOL_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "IntelPlatformProtocolLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\IntelPlatformProtocolLib.lib"
+	Parent  = "IntelPlatformProtocolLib_LIB"
+	InvokeOrder = AfterParent
+End
+

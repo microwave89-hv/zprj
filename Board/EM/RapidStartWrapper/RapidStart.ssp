@@ -1,0 +1,246 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartWrapper/RapidStart.ssp 2     3/21/13 5:49a Bensonlai $
+//
+// $Revision: 2 $
+//
+// $Date: 3/21/13 5:49a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartWrapper/RapidStart.ssp $
+// 
+// 2     3/21/13 5:49a Bensonlai
+// [TAG]  		EIP118812
+// [Category]  	Bug Fix
+// [Severity]  	Critical
+// [Symptom]  	Intel Rapid Start Technology issue on Sharkbay platform
+// [RootCause]  	FFS_NV_CONFIG_REG(0x47) didn't define to CMOS Manager.
+// [Solution]  	FFS_NV_CONFIG_REG(0x47) define to CMOS Manager.
+// [Files]  		RapidStart.ssp, RapidStartWrapper.sdl
+// 
+// 1     10/15/12 4:39a Bensonlai
+// [TAG]  		None
+// [Category]  	Improvement
+// [Description]  	[Category] Improvement
+// [Severity] Important
+// [Description] Rename all IFFS sting to Rapid Start.
+// [Files] Board\EM\RapidStartWrapper\*.*, ReferenceCode\RapidStart\*.*
+// 
+// [Files]  		RapidStartWrapper.cif
+// RapidStartWrapper.sdl
+// RapidStart.ssp
+// Include\Mbr.h
+// Include\UefiGpt.h
+//
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name: RapidStart.ssp
+//
+// Description: This AMI Setup Script Processor (SSP) file contains setup items that
+//              are related to the CMOS Manager.
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+
+//---------------------------------------------------------------------------
+// CMOS manager starts auto-assigning at 0x40
+//
+// This is a typical CMOS usage arrangement.
+// (Note: these locations are not currently reserverd by default.)
+//---------------------------------------------------------------------------
+//
+// 0x00..0x3F   Legacy CMOS area, used by CSM
+// 0x40..0x7F   OEM/ODM
+// 0x80..0xBF   Chipset
+// 0xC0..0xFF   Core+Technologies
+//
+// This is the format of a CMOS token defintion:
+//---------------------------------------------------------------------------
+// NvramField (TOKEN_NAME)
+//  OptionBits = integer                    // how many bits to use
+//  [Default = integer]                     // assembler format "xxxh"
+//  [CheckSum = YES | NO]                   // include=YES | exclude=NO
+//  [Location = cmos address, clobber mask] // CMOS register, size/offset
+// EndNvramField
+
+
+//-----------------------------------------------------------------
+// TODO: Check if all 8 bits are needed for each of these locations
+//-----------------------------------------------------------------
+NvramField (CMOS_FFS_NV_CONFIG_REG)
+    OptionBits = 8
+    Default = 00h
+    CheckSum = NO
+    Location = MKF_FFS_NV_CONFIG_REG, 0FFh
+EndNvramField
+
+NvramField (CMOS_FFS_NV_FLAG_REG)
+    OptionBits = 8
+    Default = 00h
+    CheckSum = NO
+    Location = MKF_FFS_NV_FLAG_REG, 0FFh
+EndNvramField
+
+NvramField (CMOS_iFFS_CBTH_DATA_REG)
+    OptionBits = 8
+    Default = 0Ah
+    CheckSum = NO
+    Location = MKF_iFFS_CBTH_DATA_REG, 0FFh
+EndNvramField
+
+// 00 - 01
+NvramField (CMOS_iFFS_SMRAM_HASH_WORD0)
+    OptionBits = 16
+    Default = 0000h
+    CheckSum = NO
+    Location = MKF_iFFS_SMRAM_HASH_WORD0, 0FFFFh
+EndNvramField
+
+// 02 - 03
+NvramField (CMOS_iFFS_SMRAM_HASH_WORD1)
+    OptionBits = 16
+    Default = 0000h
+    CheckSum = NO
+    Location = MKF_iFFS_SMRAM_HASH_WORD0+2, 0FFFFh
+EndNvramField
+
+// 04 - 05
+NvramField (CMOS_iFFS_SMRAM_HASH_WORD2)
+    OptionBits = 16
+    Default = 0000h
+    CheckSum = NO
+    Location = MKF_iFFS_SMRAM_HASH_WORD0+4, 0FFFFh
+EndNvramField
+
+// 06 - 07
+NvramField (CMOS_iFFS_SMRAM_HASH_WORD3)
+    OptionBits = 16
+    Default = 0000h
+    CheckSum = NO
+    Location = MKF_iFFS_SMRAM_HASH_WORD0+6, 0FFFFh
+EndNvramField
+
+// 08 - 09
+NvramField (CMOS_iFFS_SMRAM_HASH_WORD4)
+    OptionBits = 16
+    Default = 0000h
+    CheckSum = NO
+    Location = MKF_iFFS_SMRAM_HASH_WORD0+8, 0FFFFh
+EndNvramField
+
+// 10 - 11
+NvramField (CMOS_iFFS_SMRAM_HASH_WORD5)
+    OptionBits = 16
+    Default = 0000h
+    CheckSum = NO
+    Location = MKF_iFFS_SMRAM_HASH_WORD0+10, 0FFFFh
+EndNvramField
+
+// 12 - 13
+NvramField (CMOS_iFFS_SMRAM_HASH_WORD6)
+    OptionBits = 16
+    Default = 0000h
+    CheckSum = NO
+    Location = MKF_iFFS_SMRAM_HASH_WORD0+12, 0FFFFh
+EndNvramField
+
+// 14 - 15
+NvramField (CMOS_iFFS_SMRAM_HASH_WORD7)
+    OptionBits = 16
+    Default = 0000h
+    CheckSum = NO
+    Location = MKF_iFFS_SMRAM_HASH_WORD0+14, 0FFFFh
+EndNvramField
+
+// 16 - 17
+NvramField (CMOS_iFFS_SMRAM_HASH_WORD8)
+    OptionBits = 16
+    Default = 0000h
+    CheckSum = NO
+    Location = MKF_iFFS_SMRAM_HASH_WORD0+16, 0FFFFh
+EndNvramField
+
+// 18 - 19
+NvramField (CMOS_iFFS_SMRAM_HASH_WORD9)
+    OptionBits = 16
+    Default = 0000h
+    CheckSum = NO
+    Location = MKF_iFFS_SMRAM_HASH_WORD0+18, 0FFFFh
+EndNvramField
+
+// 20 - 21
+NvramField (CMOS_iFFS_SMRAM_HASH_WORD10)
+    OptionBits = 16
+    Default = 0000h
+    CheckSum = NO
+    Location = MKF_iFFS_SMRAM_HASH_WORD0+20, 0FFFFh
+EndNvramField
+
+// 22 - 23
+NvramField (CMOS_iFFS_SMRAM_HASH_WORD11)
+    OptionBits = 16
+    Default = 0000h
+    CheckSum = NO
+    Location = MKF_iFFS_SMRAM_HASH_WORD0+22, 0FFFFh
+EndNvramField
+
+// 24 - 25
+NvramField (CMOS_iFFS_SMRAM_HASH_WORD12)
+    OptionBits = 16
+    Default = 0000h
+    CheckSum = NO
+    Location = MKF_iFFS_SMRAM_HASH_WORD0+24, 0FFFFh
+EndNvramField
+
+// 26 - 27
+NvramField (CMOS_iFFS_SMRAM_HASH_WORD13)
+    OptionBits = 16
+    Default = 0000h
+    CheckSum = NO
+    Location = MKF_iFFS_SMRAM_HASH_WORD0+26, 0FFFFh
+EndNvramField
+
+// 28 - 29
+NvramField (CMOS_iFFS_SMRAM_HASH_WORD14)
+    OptionBits = 16
+    Default = 0000h
+    CheckSum = NO
+    Location = MKF_iFFS_SMRAM_HASH_WORD0+28, 0FFFFh
+EndNvramField
+
+// 30 - 31
+NvramField (CMOS_iFFS_SMRAM_HASH_WORD15)
+    OptionBits = 16
+    Default = 0000h
+    CheckSum = NO
+    Location = MKF_iFFS_SMRAM_HASH_WORD0+30, 0FFFFh
+EndNvramField
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

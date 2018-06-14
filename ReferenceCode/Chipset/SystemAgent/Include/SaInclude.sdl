@@ -1,0 +1,15 @@
+TOKEN
+	Name  = "SaInclude_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable SaInclude support in Project"
+End
+
+PATH
+	Name  = "INTEL_SA_INCLUDE_DIR"
+End
+
+

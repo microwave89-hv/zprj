@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGluePeiServicesLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\PeiServicesLib"
+	RefName = "EdkIIGluePeiServicesLib"
+[files]
+"EdkIIGluePeiServicesLib.sdl"	
+"EdkIIGluePeiServicesLib.mak"	
+"PeiServicesLib.inf"
+"PeiServicesLib.c"	
+<endComponent>

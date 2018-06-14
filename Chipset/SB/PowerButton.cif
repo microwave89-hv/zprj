@@ -1,0 +1,11 @@
+<component>
+	name = "PowerButton"
+	category = ModulePart
+	LocalRoot = "Chipset\SB"
+	RefName = "PowerButton"
+[files]
+"\PowerButton.sdl"
+"\PowerButton.mak"
+"\PowerButton.c"
+"\PowerButton.dxs"
+<endComponent>

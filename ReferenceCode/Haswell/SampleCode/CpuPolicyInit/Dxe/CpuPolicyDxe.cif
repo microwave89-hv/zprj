@@ -1,0 +1,13 @@
+<component>
+	name = "Cpu Policy DXE"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\SampleCode\CpuPolicyInit\Dxe"
+	RefName = "Cpu Policy Dxe"
+[files]
+"CpuPolicyDxe.mak"
+"CpuPolicyDxe.sdl"
+"CpuPolicyInitDxe.c"
+"CpuPolicyInitDxe.h"
+"CpuPolicyInitDxe.dxs"
+"CpuPolicyInitDxe.inf"
+<endComponent>

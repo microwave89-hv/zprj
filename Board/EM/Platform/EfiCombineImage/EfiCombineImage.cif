@@ -1,0 +1,10 @@
+<component>
+	name = "EFI Combine Image"
+	category = ModulePart
+	LocalRoot = "Board\EM\Platform\EfiCombineImage\"
+	RefName = "EfiCombineImage"
+[files]
+"EfiCombineImage.sdl"	
+"EfiCombineImage.mak"	
+"EfiCombineImage.c"	
+<endComponent>

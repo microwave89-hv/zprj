@@ -1,0 +1,192 @@
+TOKEN
+    Name  = "ME_Setup"
+    Value  = "1"
+    Help  = "Main switch to enable ME Setup support in Project"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "CIRA_SUPPORT"
+    Value  = "1"
+    Help  = "Enable Disable CIRA"
+    TokenType = Boolean
+    TargetH = Yes
+    Token = "iAMT_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name = "MEBX_SCANCODE"
+    Value = "0"
+    Help = "The scancode of MEBX in Project"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name = "MEBX_UNICODE"
+    Value = "0x50"
+    Help = "The unicode of MEBX in Project"
+    TokenType = integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name = "MEBX_KeyShiftState"
+    Value = "RIGHT_CONTROL_PRESSED | LEFT_CONTROL_PRESSED | SHIFT_STATE_VALID"
+    Help = "The KeyShiftState of MEBX in Project"
+    TokenType = Expression
+    TargetH = Yes
+End
+
+TOKEN
+    Name = "MEBX_KeyToggleState"
+    Value = "0"
+    Help = "The KeyToggleState of MEBX in Project"
+    TokenType = integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name = "CIRA_SCANCODE"
+    Value = "EFI_SCAN_F1"
+    Help = "The scancode value of CIRA in Project"
+    TokenType = Expression
+    TargetH = Yes
+    Token = "CIRA_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name = "CIRA_UNICODE"
+    Value = "0"
+    Help = "The unicode value of CIRA in Project"
+    TokenType = integer
+    TargetH = Yes
+    Token = "CIRA_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name = "CIRA_KeyShiftState"
+    Value = "RIGHT_CONTROL_PRESSED | LEFT_CONTROL_PRESSED | SHIFT_STATE_VALID | RIGHT_ALT_PRESSED | LEFT_ALT_PRESSED"
+    Help = "The KeyShiftState of CIRA in Project"
+    TokenType = Expression
+    TargetH = Yes
+    Token = "CIRA_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name = "CIRA_KeyToggleState"
+    Value = "0"
+    Help = "The KeyToggleState of CIRA in Project"
+    TokenType = integer
+    TargetH = Yes
+    Token = "CIRA_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name = "DefaultTpmDeviceSelection"
+    Value = "1"
+    Help = "dTpm set to 0, PTT set to 1 for default setup setting"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+PATH
+    Name  = "ME_SETUP_DIR"
+End
+
+MODULE
+    Help  = "Includes MeSetup.mak to Project"
+    File  = "MeSetup.mak"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\MeSetup.sdb"
+    Parent  = "SETUP_SDBS"
+    Priority  = 30
+    Help  = "Includes generic ME setup screens to the project"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(ME_SETUP_DIR)\MeSetup.sd"
+    Parent  = "SETUP_DEFINITIONS"
+    Priority  = 30
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "/I$(ME_SETUP_DIR)"
+    Parent  = "ME_INCLUDES"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "-i $(ME_SETUP_DIR)"
+    Parent = "SETUP_VFR_INCLUDES"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "InitMeInfo,"
+    Parent  = "SetupStringInit"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\MebxPrompt.obj"
+    Parent  = "AMITSE_Objects"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "MebxPromptConInAvailabilityHook,"
+    Parent  = "ProcessConInAvailabilityHook,"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "RemoteAssistConInAvailabilityHook,"
+    Parent  = "ProcessConInAvailabilityHook,"
+    InvokeOrder = AfterParent
+    Token = "CIRA_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "MEProcessEnterSetup,"
+    Parent  = "ProcessEnterSetup,"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "MEProcessEnterSetup,"
+    Parent  = "BeforeEfiBootLaunchHook,"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\MeSetupReset.obj"
+    Parent  = "AMITSE_Objects"
+    InvokeOrder = AfterParent
+    Token = "IntelPTT_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "MeSetupProcessEnterSetupForPTT,"
+    Parent  = "ProcessEnterSetup,"
+    InvokeOrder = AfterParent
+    Token = "IntelPTT_SUPPORT" "=" "1"
+End
+
+ELINK
+    Name  = "MeSetupResetHookForPTT,"
+    Parent  = "PreSystemResetHook,"
+    Priority  = 60
+    InvokeOrder = AfterParent
+    Token = "IntelPTT_SUPPORT" "=" "1"
+End
+

@@ -1,0 +1,19 @@
+<component>
+	name = "PciBus"
+	category = ModulePart
+	LocalRoot = "Core\EM\PCI\"
+	RefName = "PciBus"
+[files]
+"PciBus.sdl"	
+"PciBus.mak"	
+"PciBus.sd"	
+"PciBus.uni"	
+"PciBusSetup.c"	
+"PciRootBridge.dxs"	
+"PciPort.c"	
+"PciSetup.h"	
+"PciPort.h"	
+"PciBus.chm"	
+[parts]
+"PciBusIncludes"
+<endComponent>

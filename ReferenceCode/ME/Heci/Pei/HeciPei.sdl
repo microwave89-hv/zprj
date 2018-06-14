@@ -1,0 +1,24 @@
+TOKEN
+	Name  = HeciPei_SUPPORT
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable HeciPei support in Project"
+End
+MODULE
+	Help  = "Includes HeciPei.mak to Project"
+	File  = "HeciPei.mak"
+End
+
+PATH
+	Name  = "HeciPei_DIR"
+	Help  = "Me Heci Pei file source directory"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\HeciPei.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End

@@ -1,0 +1,190 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/ISCT/IsctAcpiTables/Isct.sd 2     8/02/13 3:30a Joshchou $
+//
+// $Revision: 2 $
+//
+// $Date: 8/02/13 3:30a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/ISCT/IsctAcpiTables/Isct.sd $
+// 
+// 2     8/02/13 3:30a Joshchou
+// [TAG]  		None
+// [Category]  	Improvement
+// [Description]  	Hide the item of timer choice on the platforms which
+// don't have EC
+// 
+// 1     9/02/12 11:18p Bensonlai
+// Intel Smart Connect Technology initially releases.
+//
+//
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name: Isct.sd
+//
+// Description:	Create the setup item for Isct.
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+
+#ifdef SETUP_DATA_DEFINITION
+//---------------------------------------------------------------------------
+// Put NVRAM data definitions here.
+// For example: UINT8 Data1;
+// These definitions will be converted by the build process
+// to a definitions of SETUP_DATA fields.
+//---------------------------------------------------------------------------
+    UINT8   IsctConfiguration;
+    UINT8   ISCTNOTIFICATION;
+    UINT8   ISCTWLAN;
+    UINT8   ISCTWWAN;
+    UINT8   ISCTRFKillSwitch;
+    UINT8   IsctTimerChoice;
+#endif
+
+#if defined(VFRCOMPILE) && !defined(CONTROLS_ARE_DEFINED)
+#define CONTROL_DEFINITION
+#endif
+//---------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------
+#ifdef CONTROL_DEFINITION
+
+#define ISCT_ONEOF_CONFIGURATION\
+       oneof varid   = SETUP_DATA.IsctConfiguration,\
+         prompt      = STRING_TOKEN(STR_ISCT_CONFIGURATION_PROMPT),\
+         help        = STRING_TOKEN(STR_ISCT_CONFIGURATION_HELP),\
+         option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+         option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  RESET_REQUIRED, key = 0;\
+       endoneof;
+
+#define ISCT_ONEOF_NOTIFICATION\
+       oneof varid   = SETUP_DATA.ISCTNOTIFICATION,\
+         prompt      = STRING_TOKEN(STR_ISCT_NOTIFICATION_PROMPT),\
+         help        = STRING_TOKEN(STR_ISCT_NOTIFICATION_HELP),\
+         option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+         option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+       endoneof;
+
+#define ISCT_ONEOF_WLAN\
+       oneof varid   = SETUP_DATA.ISCTWLAN,\
+         prompt      = STRING_TOKEN(STR_ISCT_WLAN_PROMPT),\
+         help        = STRING_TOKEN(STR_ISCT_WLAN_HELP),\
+         option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+         option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+       endoneof;
+
+#define ISCT_ONEOF_WWAN\
+       oneof varid   = SETUP_DATA.ISCTWWAN,\
+         prompt      = STRING_TOKEN(STR_ISCT_WWAN_PROMPT),\
+         help        = STRING_TOKEN(STR_ISCT_WWAN_HELP),\
+         option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+         option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+       endoneof;
+
+#define ISCT_ONEOF_RFKILLSWITCH\
+       oneof varid   = SETUP_DATA.ISCTRFKillSwitch,\
+         prompt      = STRING_TOKEN(STR_ISCT_RF_KILL_SWITCH_PROMPT),\
+         help        = STRING_TOKEN(STR_ISCT_RF_KILL_SWITCH_HELP),\
+         option text = STRING_TOKEN(STR_ISCT_SOFTWARE), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+         option text = STRING_TOKEN(STR_ISCT_HARDWARE), value = 1, flags =  RESET_REQUIRED, key = 0;\
+       endoneof;
+
+#define ISCT_ONEOF_TIMERCHIOICE\
+       oneof varid   = SETUP_DATA.IsctTimerChoice,\
+         prompt      = STRING_TOKEN(STR_ISCT_TIMER_SELECTION_PROMPT),\
+         help        = STRING_TOKEN(STR_ISCT_TIMER_SELECTION_HELP),\
+         option text = STRING_TOKEN(STR_ISCT_EC_TIMER), value = 0, flags =  DEFAULT | RESET_REQUIRED, key = 0;\
+         option text = STRING_TOKEN(STR_ISCT_RTC_TIMER), value = 1, flags = MANUFACTURING | RESET_REQUIRED, key = 0;\
+       endoneof;
+
+#endif // CONTROL_DEFINITION
+
+#ifdef CONTROLS_WITH_DEFAULTS
+    ISCT_ONEOF_CONFIGURATION
+    ISCT_ONEOF_NOTIFICATION
+    ISCT_ONEOF_WLAN
+    ISCT_ONEOF_WWAN
+    ISCT_ONEOF_RFKILLSWITCH
+    ISCT_ONEOF_TIMERCHIOICE
+#endif // CONTROLS_WITH_DEFAULTS
+
+//---------------------------------------------------------------------------
+//                ADVANCED - CRB Configuration Form
+//---------------------------------------------------------------------------
+#ifdef ADVANCED_FORM_SET
+
+  #ifndef SUPPRESS_GRAYOUT_ENDIF //old Core
+    #define SUPPRESS_GRAYOUT_ENDIF endif;
+  #endif
+
+  #ifdef FORM_SET_GOTO
+   // Define goto commands for the forms defined in this file
+       goto ISCTCONFIGURATION_FORM_ID,
+       prompt = STRING_TOKEN(STR_ISCTCONFIGURATION_FORM),
+       help = STRING_TOKEN(STR_ISCTCONFIGURATION_HELP);
+  #endif
+
+  #ifdef FORM_SET_FORM
+  // Define forms
+    #ifndef ISCTCONFIGURATION_FORM_SETUP
+    #define ISCTCONFIGURATION_FORM_SETUP
+
+    form formid = AUTO_ID(ISCTCONFIGURATION_FORM_ID),
+          title = STRING_TOKEN(STR_ISCTCONFIGURATION_FORM);
+
+    grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+      ISCT_ONEOF_CONFIGURATION
+    endif;
+
+    SEPARATOR
+
+    grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+    suppressif ideqval SETUP_DATA.IsctConfiguration == 0;
+      ISCT_ONEOF_NOTIFICATION
+      ISCT_ONEOF_WLAN
+      ISCT_ONEOF_WWAN
+      ISCT_ONEOF_RFKILLSWITCH
+      #if defined (PCH_SKU) && (PCH_SKU == 1)
+      #if defined (LVC_BOARD) && (LVC_BOARD == 0)
+      ISCT_ONEOF_TIMERCHIOICE
+      #endif
+      #endif
+    SUPPRESS_GRAYOUT_ENDIF
+
+    endform;  // ISCT_FORM_ID
+
+    #endif // ISCTCONFIGURATION_FORM_SETUP
+  #endif  // FORM_SET_FORM
+
+#endif  // ADVANCED_FORM_SET
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

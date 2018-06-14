@@ -1,0 +1,50 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/Platform/FirmwareVerInfo/FirmwareVerInfo.dxs 1     6/13/12 8:38a Yurenlai $
+//
+// $Revision: 1 $
+//
+// $Date: 6/13/12 8:38a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/Platform/FirmwareVerInfo/FirmwareVerInfo.dxs $
+// 
+// 1     6/13/12 8:38a Yurenlai
+// [TAG] None
+// [Category] Improvement
+// [Description] Support Firmware Version Information.
+// [Files] AcpiPlatform.cif, Board/EM/Platform/FirmwareVerInfo/*.*
+// 
+//*************************************************************************
+
+DEPENDENCY_START
+    AFTER {0xEDA39402, 0xF375, 0x4496, 0x92, 0xD3, 0x83, 0xB4, 0x3C, 0xB8, 0xA7, 0x6A}
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

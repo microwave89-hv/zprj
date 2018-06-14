@@ -1,0 +1,8 @@
+<component>
+	name = "OHCI PPI"
+	category = ModulePart
+	LocalRoot = "INCLUDE\PPI"
+	RefName = "OHCI PPI"
+[files]
+"\OhciPPI.h"	
+<endComponent>

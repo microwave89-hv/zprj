@@ -1,0 +1,31 @@
+TOKEN
+    Name  = "NvmeController_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable NVMe Controller Library support in Project"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetH = Yes
+    Master = Yes
+End
+
+PATH
+    Name = "NVME_DIR"
+End
+
+MODULE
+	Help  = "Includes NvmeController.mak to Project"
+	File  = "NvmeController.mak"
+End
+
+ELINK
+	Name  = "NVMECONTROLLERLIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\NvmeController.lib"
+	Parent  = "NVMECONTROLLERLIB"
+	InvokeOrder = AfterParent
+End
+
+

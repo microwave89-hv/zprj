@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueDxeHobLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueDxeHobLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueDxeHobLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueDxeHobLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueDxeHobLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueDxeHobLib.mak to Project"
+	File  = "EdkIIGlueDxeHobLib.mak"
+End
+

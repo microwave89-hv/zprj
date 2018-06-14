@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "Dpc_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Dpc support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "Dpc_DIR"
+End
+
+MODULE
+	Help  = "Includes Dpc.mak to Project"
+	File  = "Dpc.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Dpc.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

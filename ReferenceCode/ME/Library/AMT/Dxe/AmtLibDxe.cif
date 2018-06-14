@@ -1,0 +1,16 @@
+<component>
+	name = "AmtLibDxe"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Library\AMT\Dxe\"
+	RefName = "AmtLibDxe"
+[files]
+"AmtLib.c"	
+"AmtLib.h"	
+"AmtLib.inf"
+"AmtLibDxe.mak"	
+"AmtLibDxe.sdl"	
+"AmtPolicyLib.c"	
+"AmtPolicyLib.h"	
+"AmtPolicyDebugDumpDxe.c"
+"MebxSetupDebugDumpDxe.c"
+<endComponent>

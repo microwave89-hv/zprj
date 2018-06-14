@@ -1,0 +1,13 @@
+<component>
+	name = "PchLateInitSmm"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\PchInit\Smm"
+	RefName = "PchLateInitSmm"
+[files]
+"PchLateInitSmm.sdl"	
+"PchLateInitSmm.mak"	
+"PchLateInitSmm.c"	
+"PchLateInitSmm.h"	
+"PchLateInitSmm.dxs"	
+"PchLateInitSmm.inf"	
+<endComponent>

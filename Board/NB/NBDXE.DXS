@@ -1,0 +1,71 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Board/NBDXE.DXS 1     2/08/12 4:32a Yurenlai $
+//
+// $Revision: 1 $
+//
+// $Date: 2/08/12 4:32a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Board/NBDXE.DXS $
+// 
+// 1     2/08/12 4:32a Yurenlai
+// Intel Haswell/NB eChipset initially releases.
+// 
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:        NBDXE.DXS
+//
+// Description: This file is the dependency file for the NB DXE
+//              driver
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+#include <Protocol\PciRootBridgeIo.h>
+#if defined(PI_SPECIFICATION_VERSION) && (PI_SPECIFICATION_VERSION >= 0x0001000A)
+#include <Protocol\S3SaveState.h>
+#else
+#include <AmiDxeLib.h>
+#endif
+#include <Protocol\Cpu.h>
+#include <Protocol\Variable.h>
+
+DEPENDENCY_START
+    EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL_GUID AND
+#if defined(PI_SPECIFICATION_VERSION) && (PI_SPECIFICATION_VERSION >= 0x0001000A)
+    EFI_S3_SAVE_STATE_PROTOCOL_GUID AND
+#else
+    EFI_BOOT_SCRIPT_SAVE_GUID AND
+#endif
+    EFI_VARIABLE_WRITE_ARCH_PROTOCOL_GUID AND
+    EFI_CPU_ARCH_PROTOCOL_GUID
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

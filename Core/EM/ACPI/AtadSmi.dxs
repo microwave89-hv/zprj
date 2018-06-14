@@ -1,0 +1,98 @@
+//****************************************************************************
+//****************************************************************************
+//**                                                                        **
+//**             (C)Copyright 1985-2012, American Megatrends, Inc.          **
+//**                                                                        **
+//**                          All Rights Reserved.                          **
+//**                                                                        **
+//**             5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093          **
+//**                                                                        **
+//**                          Phone (770)-246-8600                          **
+//**                                                                        **
+//****************************************************************************
+//****************************************************************************
+
+//*****************************************************************************
+// $Header: /Alaska/BIN/Modules/ACPI/Template/Core/AtadSmi.dxs 1     1/23/14 5:47p Oleksiyy $
+//
+// $Revision: 1 $
+//
+// $Date: 1/23/14 5:47p $
+//*****************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Modules/ACPI/Template/Core/AtadSmi.dxs $
+// 
+// 1     1/23/14 5:47p Oleksiyy
+// [TAG]  		EIP113941
+// [Category]  	New Feature
+// [Description]  	Time and Alarm ACPI device implemented.
+// [Files]  		AtadSmi.cif
+// AtadSmi.sdl
+// AtadSmi.mak
+// AtadSmi.dxs
+// AtadSmi.h
+// AtadSmi.c
+// 
+// 3     1/12/12 9:35a Vyacheslava
+// 
+// 
+//
+//*****************************************************************************
+//<AMI_FHDR_START>
+//
+// Name: SmmOemActivation.dxs
+//
+// Description: This file is the dependency file for OemActivation module.
+//
+//<AMI_FHDR_END>
+//*****************************************************************************
+
+//---------------------------------------------------------------------------
+// Header files for GUID definitions
+//---------------------------------------------------------------------------
+
+#if PI_SPECIFICATION_VERSION<0x0001000A
+//---------------------------------------------------------------------------
+
+#include <Protocol/SmmBase.h>
+#include <Protocol/SmmSwDispatch.h>
+#include <Protocol/AcpiTable.h>
+
+DEPENDENCY_START
+    EFI_SMM_BASE_PROTOCOL_GUID AND
+    EFI_SMM_SW_DISPATCH_PROTOCOL_GUID AND
+    EFI_ACPI_TABLE_PROTOCOL_GUID
+DEPENDENCY_END
+
+//---------------------------------------------------------------------------
+#else
+//---------------------------------------------------------------------------
+
+#include <Protocol/SmmBase2.h>
+#include <Protocol/SmmSwDispatch2.h>
+#include <Protocol/AcpiTable.h>
+
+DEPENDENCY_START
+    EFI_SMM_BASE2_PROTOCOL_GUID AND
+    EFI_SMM_SW_DISPATCH2_PROTOCOL_GUID AND
+    EFI_ACPI_TABLE_PROTOCOL_GUID
+DEPENDENCY_END
+
+//---------------------------------------------------------------------------
+#endif
+
+
+//****************************************************************************
+//****************************************************************************
+//**                                                                        **
+//**             (C)Copyright 1985-2012, American Megatrends, Inc.          **
+//**                                                                        **
+//**                          All Rights Reserved.                          **
+//**                                                                        **
+//**             5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093          **
+//**                                                                        **
+//**                          Phone (770)-246-8600                          **
+//**                                                                        **
+//****************************************************************************
+//****************************************************************************

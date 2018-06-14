@@ -1,0 +1,252 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2013, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+///**********************************************************************
+// $Header: /Alaska/Projects/Intel/Haswell/LynxPoint_SharkBay-DT_Crb_1AQQW/Core/EM/CsmOptOut/CsmOptOut.sd 6     6/25/14 7:34a Chienhsieh $
+//
+// $Revision: 6 $
+//
+// $Date: 6/25/14 7:34a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/Projects/Intel/Haswell/LynxPoint_SharkBay-DT_Crb_1AQQW/Core/EM/CsmOptOut/CsmOptOut.sd $
+// 
+// 6     6/25/14 7:34a Chienhsieh
+// Update CsmOptOut to 4.6.5.4_Csm_OptOut_05.
+// 
+// 6     11/01/13 9:27p Artems
+// [TAG]  		EIP126445
+// [Category]  	Improvement
+// [Description]  	Added UEFI Only option for OpROMS of unknown types
+// [Files]  		CsmOptOut.c CsmOptOut.sd CsmOptOut.sdl CsmOptOut.uni
+// 
+// 5     10/25/12 9:12a Wesleychen
+// Update CsmOptOut to 4.6.5.4_Csm_OptOut_04.
+// 
+// 4     8/15/12 7:15a Wesleychen
+// Remove some items for compatible issue.
+// 
+// 5     8/29/12 2:23p Artems
+// [TAG]  		EIP98995
+// [Category]  	Improvement
+// [Description]  	When enable secure boot disable CSM but preserve CSM
+// optout options setting,
+// so once secure boot is disabled they can be restored
+// [Files]  		CsmOptOut.sd, CsmOptOut.sdl, CsmOptOutSetup.c
+// CsmOptOutRuntime.c
+// 
+// 4     6/20/12 6:07p Artems
+// [TAG]  		EIP83692
+// [Category]  	Improvement
+// [Description]  	CSM OptOut setup page grayed out if secure boot is
+// enabled
+// CSM OptOut PlatformOverride protocol modified to fix SCT bugs
+// Removed support for Launch CSM "Auto" option
+// 
+// [Files]  		CsmOptOut.c CsmOptOut.mak CsmOptOut.sd CsmOptOut.sdl
+// CsmOptOut.uni CsmOptOutRuntime.c CsmOptOutSetup.c
+// 
+// 3     5/21/12 4:48p Artems
+// [TAG]  		EIP88768
+// [Category]  	Improvement
+// [Description]  	CsmOptOut Module Interactive setup callback support
+// Prevent user from disable CSM in setup if active video is legacy
+// [Files]  		CsmOptOutSetup.c CsmOptOut.sd CsmOptOut.mak 
+// CsmOptOut.sdl
+// 
+// 2     1/23/12 7:03p Artems
+// Added OpROM handling for PCI devices other than Network, Mass storage
+// or Video
+// Behavior is same as in previous Core versions
+// Added configurability for setup controls
+// 
+// 1     11/12/11 2:57p Artems
+// Initial check-in
+// 
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:  CsmOptOut.sd
+//
+// Description: Definition of CsmOptOut module setup controls
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+
+#ifdef SETUP_DATA_DEFINITION
+    UINT8  CsmLaunchPolicy;
+    UINT8  BootOptionFilter;
+    UINT8  PxeOpRom;
+    UINT8  MassStorageOpRom;
+    UINT8  VideoOpRom;
+    UINT8  OldOpRom;
+#endif //SETUP_DATA_DEFINITION
+
+#ifdef FORM_SET_TYPEDEF
+typedef struct {
+    UINT8 SecureBoot;
+} SECURE_BOOT;
+#endif
+
+#ifdef CONTROL_DEFINITION
+
+#define CSM_OPT_OUT_CSM_LAUNCH_POLICY\
+        oneof varid = SETUP_DATA.CsmLaunchPolicy, questionid = AUTO_ID(CSM_OPT_OUT_LAUNCH_KEY),\
+            prompt  = STRING_TOKEN(STR_CSM_LAUNCH_POLICY),\
+            help    = STRING_TOKEN(STR_CSM_LAUNCH_POLICY_HELP),\
+            default = DEFAULT_CSM_LAUNCH_POLICY,\
+            option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = INTERACTIVE | MANUFACTURING | RESET_REQUIRED;\
+			option text = STRING_TOKEN(STR_DISABLED),  value = 0, flags = INTERACTIVE | RESET_REQUIRED;\
+        endoneof;
+
+#define CSM_OPT_OUT_BOOT_OPTION_FILTER\
+            oneof varid = SETUP_DATA.BootOptionFilter,\
+                prompt  = STRING_TOKEN(STR_BOOT_OPTION_FILTERING_POLICY),\
+                help    = STRING_TOKEN(STR_BOOT_OPTION_FILTERING_POLICY_HELP),\
+                default = DEFAULT_BOOT_OPTION_FILTERING_POLICY,\
+                option text = STRING_TOKEN(STR_BOOT_OPTION_FILTERING_POLICY_ALL),  value = 0, flags = MANUFACTURING | RESET_REQUIRED;\
+    			option text = STRING_TOKEN(STR_BOOT_OPTION_FILTERING_POLICY_LEGACY_ONLY),  value = 1, flags = RESET_REQUIRED;\
+    			option text = STRING_TOKEN(STR_BOOT_OPTION_FILTERING_POLICY_UEFI_ONLY),  value = 2, flags = RESET_REQUIRED;\
+            endoneof;
+
+#define CSM_OPT_OUT_PXE_OPROM\
+            oneof varid = SETUP_DATA.PxeOpRom,\
+                prompt  = STRING_TOKEN(STR_PXE_OPROM_POLICY),\
+                help    = STRING_TOKEN(STR_PXE_OPROM_POLICY_HELP),\
+                default = DEFAULT_PXE_OPROM_POLICY,\
+                option text = STRING_TOKEN(STR_OPROM_POLICY_DISABLE),  value = 0, flags = RESET_REQUIRED;\
+                option text = STRING_TOKEN(STR_OPROM_POLICY_UEFI_ONLY),  value = 1, flags = MANUFACTURING | RESET_REQUIRED;\
+                option text = STRING_TOKEN(STR_OPROM_POLICY_LEGACY_ONLY),  value = 2, flags = RESET_REQUIRED;\
+            endoneof;
+//-    			option text = STRING_TOKEN(STR_OPROM_POLICY_LEGACY_BEFORE_UEFI),  value = 3, flags = RESET_REQUIRED;\
+//-    			option text = STRING_TOKEN(STR_OPROM_POLICY_LEGACY_AFTER_UEFI),  value = 4, flags = RESET_REQUIRED;\
+//-            endoneof;
+
+#define CSM_OPT_OUT_MASS_STORAGE_OPROM\
+            oneof varid = SETUP_DATA.MassStorageOpRom,\
+                prompt  = STRING_TOKEN(STR_MASS_STORAGE_OPROM_POLICY),\
+                help    = STRING_TOKEN(STR_MASS_STORAGE_OPROM_POLICY_HELP),\
+                default = DEFAULT_MASS_STORAGE_OPROM_POLICY,\
+                option text = STRING_TOKEN(STR_OPROM_POLICY_DISABLE),  value = 0, flags = RESET_REQUIRED;\
+                option text = STRING_TOKEN(STR_OPROM_POLICY_UEFI_ONLY),  value = 1, flags = MANUFACTURING | RESET_REQUIRED;\
+                option text = STRING_TOKEN(STR_OPROM_POLICY_LEGACY_ONLY),  value = 2, flags = RESET_REQUIRED;\
+            endoneof;
+//-    			option text = STRING_TOKEN(STR_OPROM_POLICY_LEGACY_BEFORE_UEFI),  value = 3, flags = RESET_REQUIRED;\
+//-    			option text = STRING_TOKEN(STR_OPROM_POLICY_LEGACY_AFTER_UEFI),  value = 4, flags = RESET_REQUIRED;\
+//-            endoneof;
+
+#define CSM_OPT_OUT_VIDEO_OPROM\
+            oneof varid = SETUP_DATA.VideoOpRom,\
+                prompt  = STRING_TOKEN(STR_VIDEO_OPROM_POLICY),\
+                help    = STRING_TOKEN(STR_VIDEO_OPROM_POLICY_HELP),\
+                default = DEFAULT_VIDEO_OPROM_POLICY,\
+                option text = STRING_TOKEN(STR_OPROM_POLICY_DISABLE),  value = 0, flags = RESET_REQUIRED;\
+                option text = STRING_TOKEN(STR_OPROM_POLICY_UEFI_ONLY),  value = 1, flags = RESET_REQUIRED;\
+                option text = STRING_TOKEN(STR_OPROM_POLICY_LEGACY_ONLY),  value = 2, flags = RESET_REQUIRED;\
+            endoneof; 
+//-    			option text = STRING_TOKEN(STR_OPROM_POLICY_LEGACY_BEFORE_UEFI),  value = 3, flags = RESET_REQUIRED;\
+//-    			option text = STRING_TOKEN(STR_OPROM_POLICY_LEGACY_AFTER_UEFI),  value = 4, flags = MANUFACTURING | RESET_REQUIRED;\
+//-            endoneof;
+
+#if OLD_OPROM_POLICY_SUPPORT
+#define CSM_OPT_OUT_OLD_OPROM\
+        oneof varid = SETUP_DATA.OldOpRom,\
+            prompt  = STRING_TOKEN(STR_OLD_OPROM_LAUNCH_POLICY),\
+            help    = STRING_TOKEN(STR_OLD_OPROM_LAUNCH_POLICY_HELP),\
+            option text = STRING_TOKEN(STR_OLD_OPROM_LAUNCH_POLICY_UEFI),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			option text = STRING_TOKEN(STR_OLD_OPROM_LAUNCH_POLICY_LEGACY),  value = 0, flags = RESET_REQUIRED;\
+        endoneof;
+#else
+#define CSM_OPT_OUT_OLD_OPROM\
+        oneof varid = SETUP_DATA.OldOpRom,\
+            prompt  = STRING_TOKEN(STR_OLD_OPROM_LAUNCH_POLICY),\
+            help    = STRING_TOKEN(STR_OLD_OPROM_LAUNCH_POLICY_HELP),\
+            option text = STRING_TOKEN(STR_OLD_OPROM_LAUNCH_POLICY_UEFI),  value = 1, flags = RESET_REQUIRED;\
+            option text = STRING_TOKEN(STR_OLD_OPROM_LAUNCH_POLICY_LEGACY_AND_UEFI),  value = 4, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			option text = STRING_TOKEN(STR_OLD_OPROM_LAUNCH_POLICY_LEGACY),  value = 2, flags = RESET_REQUIRED;\
+        endoneof;
+#endif //#if OLD_OPROM_POLICY_SUPPORT
+
+#define CSM_OPT_OUT_FORM_GOTO\
+    suppressif ideqval SECURE_BOOT.SecureBoot == 1;\
+    grayoutif  ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;\
+		goto CSM_OPTOUT_FORM_ID, \
+			prompt = STRING_TOKEN(STR_CSM_OPTOUT_FORM),\
+			help = STRING_TOKEN(STR_CSM_OPTOUT_FORM_HELP);\
+    endif;\
+    endif;
+#endif //#ifdef CONTROL_DEFINITION
+
+#ifdef CONTROLS_WITH_DEFAULTS
+
+CSM_OPT_OUT_CSM_LAUNCH_POLICY
+CSM_OPT_OUT_BOOT_OPTION_FILTER
+CSM_OPT_OUT_PXE_OPROM
+CSM_OPT_OUT_MASS_STORAGE_OPROM
+CSM_OPT_OUT_VIDEO_OPROM
+CSM_OPT_OUT_OLD_OPROM
+
+#endif //#ifdef CONTROLS_WITH_DEFAULTS
+
+#ifdef BOOT_FORM_SET
+    #ifdef FORM_SET_ITEM
+
+    #endif  // FORM_SET_ITEM
+
+    #ifdef FORM_SET_VARSTORE
+        varstore SECURE_BOOT, name = SecureBoot, guid = EFI_GLOBAL_VARIABLE_GUID;
+    #endif  // FORM_SET_VARSTORE
+
+    #ifdef FORM_SET_GOTO
+
+    CSM_OPT_OUT_FORM_GOTO
+
+    #endif  // FORM_SET_GOTO
+
+    #ifdef FORM_SET_FORM
+
+        form formid = AUTO_ID(CSM_OPTOUT_FORM_ID),
+            title = STRING_TOKEN(STR_CSM_OPTOUT_FORM);
+
+            CSM_OPT_OUT_CSM_LAUNCH_POLICY
+       
+        suppressif ideqval SETUP_DATA.CsmLaunchPolicy == 0;
+            CSM_OPT_OUT_BOOT_OPTION_FILTER
+            CSM_OPT_OUT_PXE_OPROM
+            CSM_OPT_OUT_MASS_STORAGE_OPROM
+            CSM_OPT_OUT_VIDEO_OPROM
+            SEPARATOR
+            CSM_OPT_OUT_OLD_OPROM
+        endif;
+
+        endform;
+
+    #endif  // FORM_SET_FORM
+
+#endif // BOOT_FORM_SET
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2013, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

@@ -1,0 +1,9 @@
+PATH
+	Name  = "DbgrUsbCableSelectLib_DIR"
+End
+
+MODULE
+	Help  = "Includes DbgrUsbCableSelect.mak to Project"
+	File  = "DbgrUsbCableSelectLib.mak"
+End
+

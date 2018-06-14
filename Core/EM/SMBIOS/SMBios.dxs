@@ -1,0 +1,142 @@
+//**********************************************************************//
+//**********************************************************************//
+//**                                                                  **//
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.         **//
+//**                                                                  **//
+//**                       All Rights Reserved.                       **//
+//**                                                                  **//
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **//
+//**                                                                  **//
+//**                       Phone: (770)-246-8600                      **//
+//**                                                                  **//
+//**********************************************************************//
+//**********************************************************************//
+
+//**********************************************************************//
+// $Header: /Alaska/SOURCE/Modules/SMBIOS/SMBios.dxs 13    1/06/12 3:25p Davidd $
+//
+// $Revision: 13 $
+//
+// $Date: 1/06/12 3:25p $
+//**********************************************************************//
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SMBIOS/SMBios.dxs $
+// 
+// 13    1/06/12 3:25p Davidd
+// [TAG]  		EIP78790
+// [Category]  	Improvement
+// [Description]  	Locating LegacyRegion2 Protocol fails in SMBIOS31 when
+// Bios is Built with PI 1.1 or lesser
+// [Files]  		Smbios.c
+// Smbios.dxs
+// 
+// 12    11/17/11 2:38p Davidd
+// [TAG]           EIP74579
+// [Category]      Improvement
+// [Description]   Update SMBIOS moudule to let AMDELNX support SMBIOS
+// spec 2.7
+//                 (remove the 64 characters string limitation)
+// [Files]         Smbios.h
+//                 SmbiosStaticData.sdl
+//                 Smbios.c
+//                 SMBios.dxs
+//                 SmbiosDMIEdit.sdl
+//                 SmbiosDMIEdit.h
+//                 SmbiosDMIEditFunc.c
+//                 SmbiosNvram.c
+//                 SmbiosFlashData.sdl
+// 
+// 11    10/06/11 5:34p Davidd
+// [TAG]           EIP70095
+// [Category]      Improvement
+// [Description]   Microsoft CSM Opt-Out feature implementation
+// [Files]         Smbios.dxs
+// 
+// 10    8/30/11 4:12p Davidd
+// [TAG]           EIP65648
+// [Category]      Improvement
+// [Description]   Update SMBIOS eModules for uEFI 2.3.1 / PI 1.2
+// compliance
+// [Files]         Smbios.c
+//                 Smbios.dxs
+//                 SmbiosDMIEdit.c
+//                 SmbiosDMIEditFunc.c
+//                 SmbiosGetFlashData.c
+//                 SmbiosGetFlashData.dxs
+// 
+// 9     5/13/11 5:21p Davidd
+// [TAG]           EIP57758
+// [Category]      Bug Fix
+// [Severity]      Normal
+// [Symptom]       DMIEDIT tool shows error message "Cann't update Smbios
+// Date with PNP function on current system!!" "Error getting DMI
+// data!!(Error code : 12000E)"
+// [RootCause]     Because Smbios Structure Table Entry Point header is
+// relocated on ReadyToBoot, it could not be found at runtime.
+// [Solution]      Allocate runtime memory for Smbios Structure Table
+// Entry Point header on Smbios driver entry point.
+// [Files]         Smbios.c
+//                 Smbios.dxs
+// 
+// 8     6/02/09 11:15a Davidd
+// Updated AMI header section (EIP 22180).
+// 
+// 7     12/26/07 5:06p Olegi
+// 
+// 6     3/29/07 5:57p Davidd
+// Changed the year in the AMI banner and adjust indentation to coding
+// standard.
+// 
+// 5     3/14/07 1:18p Pavell
+// Changes for ITK support
+// 
+// 4     3/21/06 8:41p Fasihm
+// Changed the protocol name FV.h to FirmwareVolume.h to be compatable
+// with the new Aptio 4.5 Core and later.
+// 
+// 3     7/18/05 4:55p Davidd
+// Added new dependency on SMBIOS Board Protocol.
+//
+//
+//**********************************************************************//
+
+#if (PI_SPECIFICATION_VERSION < 0x00010000)
+#include <protocol\FirmwareVolume.h>
+#else
+#include <protocol\FirmwareVolume2.h>
+#endif
+#include <protocol\CPU.h>
+#include <protocol\PciRootBridgeIo.h>
+#include <protocol\SmbiosDynamicData.h>
+#if (defined(CSM_SUPPORT) && (CSM_SUPPORT == 1) && defined(AMI_CSM_DRIVER_STARTED_GUID))
+#include <Protocol\CsmPlatform.h>
+#endif
+
+DEPENDENCY_START
+#if (defined(CSM_SUPPORT) && (CSM_SUPPORT == 1) && defined(AMI_CSM_DRIVER_STARTED_GUID))
+    AMI_CSM_DRIVER_STARTED_GUID AND
+#endif
+    EFI_SMBIOS_BOARD_PROTOCOL_GUID AND
+#if (PI_SPECIFICATION_VERSION < 0x00010000)
+    EFI_FIRMWARE_VOLUME_PROTOCOL_GUID AND
+#else
+    EFI_FIRMWARE_VOLUME2_PROTOCOL_GUID AND
+#endif
+    EFI_CPU_ARCH_PROTOCOL_GUID AND
+    EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL_GUID
+DEPENDENCY_END
+
+//**********************************************************************//
+//**********************************************************************//
+//**                                                                  **//
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.         **//
+//**                                                                  **//
+//**                       All Rights Reserved.                       **//
+//**                                                                  **//
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **//
+//**                                                                  **//
+//**                       Phone: (770)-246-8600                      **//
+//**                                                                  **//
+//**********************************************************************//
+//**********************************************************************//

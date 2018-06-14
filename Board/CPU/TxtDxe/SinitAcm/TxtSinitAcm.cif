@@ -1,0 +1,12 @@
+<component>
+	name = "TxtSinitAcm"
+	category = ModulePart
+	LocalRoot = "Board\Cpu\TxtDxe\SinitAcm"
+	RefName = "TxtSinitAcm"
+[files]
+"TxtSinitAcm.sdl"	
+"TxtSinitAcm.mak"	
+"HSW_SINITAC_PRO_Rev1_5.BIN"	
+"HSW_SINITAC_PRO_NPW_Rev1_5.BIN"	
+"HSW_SINITAC_DBG_Rev1_5.BIN"	
+<endComponent>

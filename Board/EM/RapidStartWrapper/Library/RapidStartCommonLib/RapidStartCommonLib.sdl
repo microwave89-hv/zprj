@@ -1,0 +1,121 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartWrapper/RapidStartCommonLib/RapidStartCommonLib.sdl 1     10/15/12 4:40a Bensonlai $
+#
+# $Revision: 1 $
+#
+# $Date: 10/15/12 4:40a $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartWrapper/RapidStartCommonLib/RapidStartCommonLib.sdl $
+# 
+# 1     10/15/12 4:40a Bensonlai
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	[Category] Improvement
+# [Severity] Important
+# [Description] Rename all IFFS sting to Rapid Start.
+# [Files] Board\EM\RapidStartWrapper\*.*, ReferenceCode\RapidStart\*.*
+# [Files]  		RapidStartCommonLib.cif
+# RapidStartCommonLib.sdl
+# RapidStartCommonLib.mak
+# RapidStartCommonLib.c
+# RapidStartCommonLib.h
+# RapidStartCommonLib.inf
+#
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name: RapidStartCommonLib.sdl
+#
+# Description: SDL file for the RapidStart library.
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+	Name  = "INTEL_MPG_RapidStartCommonLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable INTEL_MPG_RapidStartCommonLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "RapidStartCommonLib_DIR"
+End
+
+MODULE
+	Help  = "Includes RapidStartCommonLib.mak to Project"
+	File  = "RapidStartCommonLib.mak"
+End
+
+
+ELINK
+	Name  = "RapidStartCommonSmmLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\RapidStartCommonSmmLib.lib"
+	Parent  = "RapidStartCommonSmmLib_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "RapidStartCommonDxeLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\RapidStartCommonDxeLib.lib"
+	Parent  = "RapidStartCommonDxeLib_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+        Name  = "RapidStartCommonPeiLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\RapidStartCommonPeiLib.lib"
+        Parent  = "RapidStartCommonPeiLib_LIB"
+        InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(RapidStartCommonLib_DIR)"
+	Parent  = "RAPIDSTART_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

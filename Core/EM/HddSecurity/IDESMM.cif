@@ -1,0 +1,12 @@
+<component>
+	name = "IDESMM"
+	category = ModulePart
+	LocalRoot = "Core\EM\HddSecurity\"
+	RefName = "IDESMM"
+[files]
+"IDESMM.sdl"
+"IDESMM.mak"
+"IDESMM.h"	
+"IDESMM.c"	
+"IDESMM.DXS"
+<endComponent>

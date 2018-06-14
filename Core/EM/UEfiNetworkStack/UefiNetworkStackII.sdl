@@ -1,0 +1,11 @@
+TOKEN
+	Name  = "UefiNetworkStackII"
+	Value  = "1"
+	Help  = "Main switch to enable netwwork stack drivers support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+

@@ -1,0 +1,5 @@
+[MODULE]
+ModuleID = 1
+VendorID = 0
+DeviceID = 2
+File = Addon\UI13.BIN

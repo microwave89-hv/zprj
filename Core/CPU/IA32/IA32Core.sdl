@@ -1,0 +1,33 @@
+TOKEN
+	Name  = "IA32Core_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable IA32 support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "AFLAGSIA32"
+	Value  = "/coff"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "IA32Core_DIR"
+End
+
+ELINK
+	Name  = "IA32"
+	Parent  = "PROCESSOR"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(IA32Core_DIR)\IA32rules.mak"
+	Parent  = "PROCESSOR_RULES"
+	InvokeOrder = AfterParent
+End
+

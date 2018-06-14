@@ -1,0 +1,27 @@
+<component>
+	name = "Intel SystemAgent NB Refcode"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent"
+	RefName = "Intel SystemAgent NB Refcode"
+[files]
+"SystemAgent.sdl"	
+[parts]
+"MemoryInit"
+"PciHostBridge"
+"SmBiosMemory"
+"SmmAccess"
+"SmmAccessPeim"
+"SaAcpiTables"
+"SaGuidLib"
+"SaInclude"
+"SaPcieLib"
+"SaPcieDxeLib"
+"SaPcieSmmLib"
+"SaPpiLib"
+"SaProtocolLib"
+"SaSampleCode"
+"SaInitDxe"
+"SaInitPeim"
+"SaLateInitSmm"
+"BdatAccessHandler"
+<endComponent>

@@ -1,0 +1,10 @@
+<component>
+    name = "HashService"
+    category = ModulePart
+    LocalRoot = "Core\EM\HashService"
+    RefName = "HashService"
+[files]
+"HashService.sdl"  
+"HashService.mak"  
+"HashService.c"    
+<endComponent>

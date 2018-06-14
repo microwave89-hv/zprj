@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueBaseTimerLibLocalApic_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueBaseTimerLibLocalApic support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueBaseTimerLibLocalApic_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueBaseTimerLibLocalApic.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueBaseTimerLibLocalApic_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueBaseTimerLibLocalApic.mak to Project"
+	File  = "EdkIIGlueBaseTimerLibLocalApic.mak"
+End
+

@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "FrameworkGuidLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable FrameworkGuidLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "FrameworkGuidLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\FrameworkGuidLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "FrameworkGuidLib_DIR"
+End
+
+MODULE
+	Help  = "Includes FrameworkGuidLib.mak to Project"
+	File  = "FrameworkGuidLib.mak"
+End
+

@@ -1,0 +1,20 @@
+TOKEN
+	Name  = "AmiDxeLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AmiDxeLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+MODULE
+	Help  = "Includes AmiDxeLib.mak to Project"
+	File  = "AmiDxeLib.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmiDxeLib.lib"
+	Parent  = "$(LIBRARY_DIR)\AmiDxeLib$(ARCH)$(DBG).lib"
+	InvokeOrder = ReplaceParent
+End

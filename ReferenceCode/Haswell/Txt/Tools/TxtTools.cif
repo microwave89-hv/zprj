@@ -1,0 +1,10 @@
+<component>
+	name = "TxtTools"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\Txt\Tools"
+	RefName = "TxtTools"
+[files]
+"Apfixup.txt"	
+"Stafixup.exe"	
+"TxtTools.sdl"
+<endComponent>

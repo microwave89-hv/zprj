@@ -1,0 +1,35 @@
+TOKEN
+	Name  = "SmmDispatcher_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SmmDispatcher support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "SMM_DISPATCHER_DIR"
+End
+
+MODULE
+	Help  = "Includes SmmDispatcher.mak to Project"
+	File  = "SmmDispatcher.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SmmDispatcher.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SmmEntry.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SmmSaveRestoreEnvironment"
+	InvokeOrder = ReplaceParent
+End

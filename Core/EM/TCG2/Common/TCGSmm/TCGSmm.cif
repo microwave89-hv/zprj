@@ -1,0 +1,12 @@
+<component>
+	name = "TCGSmm"
+	category = ModulePart
+	LocalRoot = "Core\EM\TCG2\Common\TCGSmm\"
+	RefName = "TCGSmm"
+[files]
+"TCGSmm.sdl"
+"TCGSmm.mak"
+"TCGSmm.h"	
+"TCGSmm.c"	
+"TCGSmm.DXS"
+<endComponent>

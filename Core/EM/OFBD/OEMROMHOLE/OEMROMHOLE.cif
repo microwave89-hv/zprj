@@ -1,0 +1,11 @@
+<component>
+	name = "OEM ROM HOLE Checking"
+	category = ModulePart
+	LocalRoot = "Core\EM\OFBD\OEMROMHOLE\"
+	RefName = "OFBD_OEMROMHOLE"
+[files]
+"OEMROMHOLE.sdl"	
+"OEMROMHOLE.mak"	
+"OEMROMHOLE.c"	
+"OEMROMHOLE.h"	
+<endComponent>

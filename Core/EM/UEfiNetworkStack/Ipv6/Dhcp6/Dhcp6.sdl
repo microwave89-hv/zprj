@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "Dhcp6_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Dhcp6 support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "Dhcp6_DIR"
+End
+
+MODULE
+	Help  = "Includes Dhcp6.mak to Project"
+	File  = "Dhcp6.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Dhcp6.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

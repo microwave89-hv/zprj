@@ -1,0 +1,23 @@
+<component>
+	name = "PeiLib"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Library\Pei\PeiLib\"
+	RefName = "PeiLib"
+[files]
+"PeiLib.sdl"	
+"PeiLib.mak"	
+"Debug.c"	
+"Decompress.c"	
+"FindFv.c"	
+"PeCoffLoader.c"	
+"PeiLib.c"	
+"Perf.c"	
+"Hob\Hob.c"	
+"Print\Print.c"	
+"Print\Print.h"	
+"PeiLib.inf"	
+[parts]
+"PeiLibIA32"
+"PeiLibx64"
+"PeiLibIPF"
+<endComponent>

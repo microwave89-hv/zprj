@@ -1,0 +1,13 @@
+<component>
+	name = "PchWrap"
+	category = ModulePart
+	LocalRoot = "Chipset\SB\PchWrap\"
+	RefName = "PchWrap"
+[files]
+"PchWrap.sdl"	
+[parts]
+"PchSpiWrap"
+"WdtApp"
+"PciHotPlug"
+"SmBusMemoryDown"
+<endComponent>

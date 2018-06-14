@@ -1,0 +1,11 @@
+<component>
+	name = "AmiUsbLib"
+	category = ModulePart
+	LocalRoot = "core\em\usb\AmiUsbLib"
+	RefName = "AmiUsbLib"
+[files]
+"AmiUsbLib.sdl"
+[parts]
+"AmiUsbLibInclude"
+"AmiUsbSmmGlobalDataValidationLib"
+<endComponent>

@@ -1,0 +1,10 @@
+<component>
+	name = "Library"
+	category = ModulePart
+	LocalRoot = "Library\"
+	RefName = "Library"
+[files]
+"Library.sdl"	
+"Tokens.c"	
+"AmiLib.chm"	
+<endComponent>

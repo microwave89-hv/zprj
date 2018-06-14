@@ -1,0 +1,13 @@
+<component>
+	name = "EdkIIGlueBasePrintLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\BasePrintLib"
+	RefName = "EdkIIGlueBasePrintLib"
+[files]
+"EdkIIGlueBasePrintLib.sdl"	
+"EdkIIGlueBasePrintLib.mak"
+"BasePrintLib.inf"	
+"PrintLib.c"	
+"PrintLibInternal.c"
+"PrintLibInternal.h"
+<endComponent>

@@ -1,0 +1,306 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/IntelGopDriver/IntelSaGopSetup/IntelSaGopSetup.sd 7     8/06/14 10:28p Dennisliu $
+//
+// $Revision: 7 $
+//
+// $Date: 8/06/14 10:28p $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/IntelGopDriver/IntelSaGopSetup/IntelSaGopSetup.sd $
+// 
+// 7     8/06/14 10:28p Dennisliu
+// [TAG]           EIP180652
+// [Category]      Improvement
+// [Description]   IntelSaGopSetup needs updated to support latest
+// AmiGopPolicy.
+// [Files]         Chipset\NB\GOP\IntelSaGopSetup\IntelSaGopSetup.sd
+// 
+// 6     4/11/14 5:26a Dennisliu
+// [TAG]          None
+// [Severity]     Improvement
+// [Description]  Fixed coding error.
+// [Files]        IntelSaGopSetup.sd;
+// 
+// 4     1/20/14 9:30p Ireneyang
+// [TAG]          None
+// [Severity]     Improvement
+// [Description]  Fix showing messages, 
+//                "invalid token near line xxx (text was '\')", 
+//                when  building code.
+// [Files]        IntelSaGopSetup.sd;
+// 
+// 3     4/23/13 8:03a Ireneyang
+// [TAG]          None
+// [Severity]     Improvement
+// [Description]  Support for BIST (Built-In Self Test) Protocol.
+// [Files]        IntelSaGopSetup.c; IntelSaGopSetup.h;
+// IntelSaGopSetup.sd;
+//                IntelSaGopSetup.sd; IntelSaGopSetup.sdl; 
+//                IntelSaGopSetup.uni; IntelSaGopDriver.h;  
+// 
+// 2     8/14/12 5:47a Yurenlai
+// [TAG]         None
+// [Severity]    Important
+// [Description] Implemented BIOS Integration Guide Rev 1.0 to Intel SA
+// GOP driver.
+// [Files]       IntelSaGopDriver.cif, IntelSaGopDriver.mak,
+//               IntelSaGopDriver.sdl, IntelSaGopPolicy.c,
+// IntelSaGopSetup.c,
+//               IntelSaGopSetup.h, IntelSaGopSetup.mak,
+// IntelSaGopSetup.sd,
+//               IntelSaGopSetup.sdl, IntelSaGopSetup.uni, 
+//               IntelSaGopSwitch.c, IntelSaGopDriver.h, NBPlatformData.h
+// 
+// 1     3/08/12 10:55p Yurenlai
+// [TAG]         None
+// [Category]    Improvement
+// [Description] Create Haswell Intel SA GOP Driver module part.
+//               Notice : IntelGopDriver.efi and vbt.bin is dummy files.
+// 
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:        IntelSaGopSetup.sd
+//
+// Description: GOP setup form
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+
+#ifdef SETUP_DATA_DEFINITION
+//----------------------------------------------------------------------------
+// Put NVRAM data definitions here.
+// For example: UINT8 Data1;
+// These definitions will be converted by the build process
+// to a definitions of SETUP_DATA fields.
+//----------------------------------------------------------------------------
+    UINT8   GopOutputSelect;
+    UINT32  GopBrightness;
+    UINT8   EnableBIST;
+#endif //SETUP_DATA_DEFINITION
+
+#ifdef FORM_SET_TYPEDEF
+	#include "IntelSaGopSetup.h"
+        #include "Board\EM\AmiGopPolicy\AmiGopPolicy.h"
+#endif
+
+//Select Top level menu itmem (forset) for you pages
+#ifdef ADVANCED_FORM_SET
+    #ifndef SUPPRESS_GRAYOUT_ENDIF //old Core
+    #define SUPPRESS_GRAYOUT_ENDIF endif;
+    #endif
+
+    #ifdef FORM_SET_VARSTORE
+       varstore AMI_GOP_POLICY_SETUP_DATA,
+       key   = AUTO_ID(AMI_GOP_POLICY_SETUP_DATA_ID),
+       name  = AmiGopPolicySetupData,
+       guid  = AMI_GOP_POLICY_VARIABLE_GUID;
+
+       varstore NB_GOP_PLATFORM_DATA,
+       key   = AUTO_ID(NB_GOP_PLATFORM_DATA_ID),
+       name  = NBGopPlatformData,
+       guid  = SETUP_GUID;
+    #endif
+
+#ifdef FORM_SET_GOTO
+// Define goto commands for the forms defined in this file
+//	goto ID_OF_MY_FORM, 
+//		prompt = STRING_TOKEN(STR_FORM_TITLE),
+//		help = STRING_TOKEN(STR_FORM_HELP);
+	suppressif  ideqval AMI_GOP_POLICY_SETUP_DATA.GopDeviceCount == 0x0;
+       goto AGP_FORM_ID, 
+           prompt = STRING_TOKEN(STR_TITLE),
+           help = STRING_TOKEN(STR_TITLE_HELP);
+	endif; //suppressif GopDeviceCount < 1
+#endif //FORM_SET_GOTO
+
+#ifdef FORM_SET_FORM
+// Define forms
+//	form formid = AUTO_ID(ID_OF_MY_FORM),
+//		title = STRING_TOKEN(STR_FORM_TITLE);
+//	endform;
+	form formid = AUTO_ID(AGP_FORM_ID),
+		title = STRING_TOKEN(STR_TITLE);
+
+	//suppressif  ideqval AMI_GOP_POLICY_SETUP_DATA.GopDeviceCount == 0x0;
+		SUBTITLE(STRING_TOKEN(STR_GOP_DEVICE_NAME_0))
+		SUBTITLE(STRING_TOKEN(STR_GOP_DRIVER_NAME_0))
+
+		suppressif NOT ideqval AMI_GOP_POLICY_SETUP_DATA.GopOutputCount == 0x1;
+		oneof varid		= SETUP_DATA.GopOutputSelect,
+			prompt		= STRING_TOKEN(STR_GOP_OUTPUT_SELECT),
+			help		= STRING_TOKEN(STR_GOP_OUTPUT_HELP),
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_0), value = 0, flags = DEFAULT | MANUFACTURING | INTERACTIVE, key = AUTO_ID(AGP_KEY_0);
+		endoneof;
+		endif; //suppressif GopOutputCount != 1
+
+		suppressif NOT ideqval AMI_GOP_POLICY_SETUP_DATA.GopOutputCount == 0x2;
+		oneof varid		= SETUP_DATA.GopOutputSelect,
+			prompt		= STRING_TOKEN(STR_GOP_OUTPUT_SELECT),
+			help		= STRING_TOKEN(STR_GOP_OUTPUT_HELP),
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_0), value = 0, flags = DEFAULT | MANUFACTURING | INTERACTIVE, key = AUTO_ID(AGP_KEY_1);
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_1), value = 1, flags = 0;
+		endoneof;
+		endif; //suppressif GopOutputCount != 2
+
+		suppressif NOT ideqval AMI_GOP_POLICY_SETUP_DATA.GopOutputCount == 0x3;
+		oneof varid		= SETUP_DATA.GopOutputSelect,
+			prompt		= STRING_TOKEN(STR_GOP_OUTPUT_SELECT),
+			help		= STRING_TOKEN(STR_GOP_OUTPUT_HELP),
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_0), value = 0, flags = DEFAULT | MANUFACTURING | INTERACTIVE, key = AUTO_ID(AGP_KEY_2);
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_1), value = 1, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_2), value = 2, flags = 0;
+		endoneof;
+		endif; //suppressif GopOutputCount != 3
+
+		suppressif NOT ideqval AMI_GOP_POLICY_SETUP_DATA.GopOutputCount == 0x4;
+		oneof varid		= SETUP_DATA.GopOutputSelect,
+			prompt		= STRING_TOKEN(STR_GOP_OUTPUT_SELECT),
+			help		= STRING_TOKEN(STR_GOP_OUTPUT_HELP),
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_0), value = 0, flags = DEFAULT | MANUFACTURING | INTERACTIVE, key = AUTO_ID(AGP_KEY_3);
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_1), value = 1, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_2), value = 2, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_3), value = 3, flags = 0;
+		endoneof;
+		endif; //suppressif GopOutputCount != 4
+
+		suppressif NOT ideqval AMI_GOP_POLICY_SETUP_DATA.GopOutputCount == 0x5;
+		oneof varid		= SETUP_DATA.GopOutputSelect,
+			prompt		= STRING_TOKEN(STR_GOP_OUTPUT_SELECT),
+			help		= STRING_TOKEN(STR_GOP_OUTPUT_HELP),
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_0), value = 0, flags = DEFAULT | MANUFACTURING | INTERACTIVE, key = AUTO_ID(AGP_KEY_4);
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_1), value = 1, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_2), value = 2, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_3), value = 3, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_4), value = 4, flags = 0;
+		endoneof;
+		endif; //suppressif GopOutputCount != 5
+
+		suppressif NOT ideqval AMI_GOP_POLICY_SETUP_DATA.GopOutputCount == 0x6;
+		oneof varid		= SETUP_DATA.GopOutputSelect,
+			prompt		= STRING_TOKEN(STR_GOP_OUTPUT_SELECT),
+			help		= STRING_TOKEN(STR_GOP_OUTPUT_HELP),
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_0), value = 0, flags = DEFAULT | MANUFACTURING | INTERACTIVE, key = AUTO_ID(AGP_KEY_5);
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_1), value = 1, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_2), value = 2, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_3), value = 3, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_4), value = 4, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_5), value = 5, flags = 0;
+		endoneof;
+		endif; //suppressif GopOutputCount != 6
+
+		suppressif NOT ideqval AMI_GOP_POLICY_SETUP_DATA.GopOutputCount == 0x7;
+		oneof varid		= SETUP_DATA.GopOutputSelect,
+			prompt		= STRING_TOKEN(STR_GOP_OUTPUT_SELECT),
+			help		= STRING_TOKEN(STR_GOP_OUTPUT_HELP),
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_0), value = 0, flags = DEFAULT | MANUFACTURING | INTERACTIVE, key = AUTO_ID(AGP_KEY_6);
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_1), value = 1, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_2), value = 2, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_3), value = 3, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_4), value = 4, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_5), value = 5, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_6), value = 6, flags = 0;
+		endoneof;
+		endif; //suppressif GopOutputCount != 7
+
+		suppressif NOT ideqval AMI_GOP_POLICY_SETUP_DATA.GopOutputCount == 0x8;
+		oneof varid		= SETUP_DATA.GopOutputSelect,
+			prompt		= STRING_TOKEN(STR_GOP_OUTPUT_SELECT),
+			help		= STRING_TOKEN(STR_GOP_OUTPUT_HELP),
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_0), value = 0, flags = DEFAULT | MANUFACTURING | INTERACTIVE, key = AUTO_ID(AGP_KEY_7);
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_1), value = 1, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_2), value = 2, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_3), value = 3, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_4), value = 4, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_5), value = 5, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_6), value = 6, flags = 0;
+			option text	= STRING_TOKEN(STR_GOP_OUTPUT_NAME_7), value = 7, flags = 0;
+		endoneof;
+		endif; //suppressif GopOutputCount != 8
+
+
+        suppressif ideqval NB_GOP_PLATFORM_DATA.BrightnessAvailable == 0x00;
+        numeric varid = SETUP_DATA.GopBrightness,
+             prompt   = STRING_TOKEN(STR_GOP_BRIGHTNESS),
+	         help     = STRING_TOKEN(STR_GOP_BRIGHTNESS_HELP),
+	         flags    = INTERACTIVE, key = AUTO_ID(AGP_BRIGHTNESS_KEY),
+	         minimum     = 0,
+	         maximum     = 0xffffffff,
+	         step        = 1,
+	         default     = 255,
+             option text = STRING_TOKEN (STR_GOP_BRIGHTNESS), value = 0, flags = MANUFACTURING | INTERACTIVE;
+	         endnumeric; 
+        endif; 
+
+		suppressif ideqval NB_GOP_PLATFORM_DATA.GopBistAvailable == 0x00;
+		oneof varid		= SETUP_DATA.EnableBIST,
+			prompt		= STRING_TOKEN(STR_GOP_BIST_ENABLE),
+			help		= STRING_TOKEN(STR_GOP_BIST_ENABLE_HELP),
+			option text	= STRING_TOKEN(STR_COMMON_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING | INTERACTIVE, key = AUTO_ID(AGP_BIST_KEY);
+			option text	= STRING_TOKEN(STR_COMMON_ENABLED),  value = 1, flags = RESET_REQUIRED;
+		endoneof;
+		endif; //suppressif GopBistAvailable == 0
+
+	//endif; //suppressif GopDeviceCount < 1
+/*
+	SEPARATOR
+
+	suppressif  ideqval AMI_GOP_POLICY_SETUP_DATA.GopDeviceCount == 0x0 OR
+				ideqval AMI_GOP_POLICY_SETUP_DATA.GopDeviceCount == 0x1;
+		SUBTITLE(STRING_TOKEN(STR_GOP_DEVICE_NAME_1))
+		SUBTITLE(STRING_TOKEN(STR_GOP_DRIVER_NAME_1))
+	endif; //suppressif GopDeviceCount < 2
+
+	SEPARATOR
+
+	suppressif  ideqval AMI_GOP_POLICY_SETUP_DATA.GopDeviceCount == 0x0 OR
+				ideqval AMI_GOP_POLICY_SETUP_DATA.GopDeviceCount == 0x1 OR
+				ideqval AMI_GOP_POLICY_SETUP_DATA.GopDeviceCount == 0x2;
+		SUBTITLE(STRING_TOKEN(STR_GOP_DEVICE_NAME_2))
+		SUBTITLE(STRING_TOKEN(STR_GOP_DRIVER_NAME_2))
+	endif; //suppressif GopDeviceCount < 3
+
+	SEPARATOR
+
+	suppressif  ideqval AMI_GOP_POLICY_SETUP_DATA.GopDeviceCount == 0x0 OR
+				ideqval AMI_GOP_POLICY_SETUP_DATA.GopDeviceCount == 0x1 OR
+				ideqval AMI_GOP_POLICY_SETUP_DATA.GopDeviceCount == 0x2 OR
+				ideqval AMI_GOP_POLICY_SETUP_DATA.GopDeviceCount == 0x3;
+		SUBTITLE(STRING_TOKEN(STR_GOP_DEVICE_NAME_3))
+		SUBTITLE(STRING_TOKEN(STR_GOP_DRIVER_NAME_3))
+	endif; //suppressif GopDeviceCount < 4
+*/
+	endform;
+
+#endif //FORM_SET_FORM
+
+#endif //ADVANCED_FORM_SET
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

@@ -1,0 +1,9 @@
+<component>
+	name = "GraphicsAscii"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Library\Dxe\Graphics\Ascii"
+	RefName = "GraphicsAscii"
+[files]
+"PrintWidth.h"	
+"Sprint.c"	
+<endComponent>

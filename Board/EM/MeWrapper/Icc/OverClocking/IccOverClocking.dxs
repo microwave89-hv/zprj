@@ -1,0 +1,109 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+//**********************************************************************
+//
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/MeWrapper/Icc/IccOverClocking/IccOverClocking.dxs 2     12/04/12 4:39a Klzhan $
+//
+// $Revision: 2 $
+//
+// $Date: 12/04/12 4:39a $
+//
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/MeWrapper/Icc/IccOverClocking/IccOverClocking.dxs $
+// 
+// 2     12/04/12 4:39a Klzhan
+// [TAG]  		EIP107309
+// [Category]  	New Feature
+// [Description]  	Support ICC library for ME 9.5
+// [Files]  		IccOverClocking.sdl
+// IccOverClocking.dxs
+// IccOverClocking.mak
+// IccOverClocking.efi
+// IccOverClocking.cif
+// 
+// 1     2/08/12 1:07a Klzhan
+// Initial Check in 
+// 
+// 1     2/25/11 1:42a Klzhan
+// Initial Check-in
+// 
+// 1     12/03/10 5:10a Klzhan
+// Initial Check-in.
+// 
+//
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//----------------------------------------------------------------------------
+//
+// Name:            IccOverClocking.dxs
+//
+// Description:     Icc control library.
+//
+//----------------------------------------------------------------------------
+//<AMI_FHDR_END>
+/*++
+Copyright (c)  2009 Intel Corporation. All rights reserved
+This software and associated documentation (if any) is furnished
+under a license and may only be used or copied in accordance
+with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be
+reproduced, stored in a retrieval system, or transmitted in any
+form or by any means without the express written consent of
+Intel Corporation.
+
+Module Name:
+
+  IccOverClocking.dxs
+
+Abstract:
+
+  Icc control library
+
+--*/
+
+#include "AutoGen.h"
+#include "DxeDepex.h"
+#if defined (BUILD_WITH_GLUELIB) || defined (BUILD_WITH_EDKII_GLUE_LIB)
+#include "EfiDepex.h"
+#endif
+
+#include EFI_PROTOCOL_DEFINITION (Heci)
+#ifdef CougarPoint_SUPPORT
+#include EFI_PROTOCOL_DEFINITION (Wdt)
+#endif
+#include "IccProtocol.h"
+DEPENDENCY_START
+#ifdef CougarPoint_SUPPORT
+  WDT_PROTOCOL_GUID AND 
+#endif
+  EFI_HECI_PROTOCOL_GUID
+    AND
+  ICC_9_0_GUID
+DEPENDENCY_END
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

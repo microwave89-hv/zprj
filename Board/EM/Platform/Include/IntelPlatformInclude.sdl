@@ -1,0 +1,15 @@
+TOKEN
+	Name  = "INTEL_PLATFORM_INCLUDE_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable INTEL_PLATFORM_INCLUDE support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "IntelPlatformInclude_DIR"
+End
+
+

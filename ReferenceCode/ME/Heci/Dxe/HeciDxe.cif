@@ -1,0 +1,18 @@
+<component>
+	name = "HeciDxe"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Heci\Dxe\"
+	RefName = "HeciDxe"
+[files]
+"HeciDxe.sdl"	
+"HeciDxe.mak"	
+"Hecicore.c"	
+"Hecicore.h"	
+"Hecidrv.c"	
+"Hecidrv.h"	
+"Hecidrv.dxs"	
+"HeciHpet.c"	
+"HeciHpet.h"	
+"Hecidrv.inf"	
+"MeFvi.c"
+<endComponent>

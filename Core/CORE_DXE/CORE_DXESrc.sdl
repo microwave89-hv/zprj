@@ -1,0 +1,57 @@
+TOKEN
+	Name  = "CORE_DXESrc_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable CORE_DXESrc support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "TRACE_START"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "DEBUG_MODE" "!=" "0"
+End
+
+TOKEN
+	Name  = "TRACE_STOP"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "DEBUG_MODE" "!=" "0"
+End
+
+TOKEN
+	Name  = "CURSOR_BLINK_ENABLE"
+	Value  = "0"
+	Help  = "Enables and Disables the functionality to make the cursor blink"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "MM_LEGACY_RESERVE_MEM"
+	Value  = "0x1000000"
+	Help  = "DXE memory manager will try to keep memory in the range 0 - MM_LEGACY_RESERVE_MEM unallocated. \The memory in the range may still get allocated if the addresses in the range are specifically requested by \the AllocatePages calls, or if there is not enough free memory outside of the region to satisfy the request.\"
+	TokenType = Integer
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "CORE_DXE_SRC_DIR"
+End
+
+MODULE
+	Help  = "Includes CORE_DXESrc.mak to Project"
+	File  = "CORE_DXESrc.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CORE_DXE.lib"
+	Parent  = "$(CORE_DXE_DIR)\CORE_DXE$(ARCH)$(DBG).lib"
+	InvokeOrder = ReplaceParent
+End
+

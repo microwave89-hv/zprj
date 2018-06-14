@@ -1,0 +1,36 @@
+TOKEN
+    Name  = "CryptLib_SUPPORT"
+    Value  = "1"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "CRYPTO_trace_level"
+    Value  = "0"
+    Help  = "0-skip debug messages, 1- short trace, 2- full trace"
+    TokenType = Integer
+    TargetH = Yes
+    TargetMAK = Yes
+    Range  = "0-1-2"
+End
+
+TOKEN
+    Name  = "CRYPTOLIB"
+    Value  = "$(Cryptlib_DIR)\CRYPTLIB$(ARCH).lib"
+    TokenType = "Expression"
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "CRYPTOLIBPEI"
+    Value  = "$(Cryptlib_DIR)\CRYPTLIBPEI.lib"
+    TokenType = "Expression"
+    TargetMAK = Yes
+End
+
+PATH
+    Name  = "Cryptlib_DIR"
+End

@@ -1,0 +1,112 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/OFBD Intel ME Update/MEUD.sd 7     8/30/11 5:38a Klzhan $
+//
+// $Revision: 7 $
+//
+// $Date: 8/30/11 5:38a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/OFBD Intel ME Update/MEUD.sd $
+// 
+// 7     8/30/11 5:38a Klzhan
+// Remove un-used setup item.
+// SPS FW doesn't need setup item to disabled ME FW.
+// 
+// 6     6/14/11 3:43a Klzhan
+// Set Update ME Item to default Enable.
+// 
+// 5     5/09/11 3:24a Klzhan
+// Add Setup Item in Advanced Page to select regions to update.
+// 
+// 4     11/16/10 4:36a Klzhan
+// Support SPS FW update.
+// 
+// 3     5/27/10 3:44a Klzhan
+// Improvement : ME_SECOVR_MEI_MSG_SUPPORT control setup item
+// enable/disable.
+// 
+// 2     10/20/09 3:38a Klzhan
+// Improvement : Replace TSE2.0 callback by formset callback.
+// 
+// 1     10/13/09 3:28a Klzhan
+// 1. Support TSE2.0 Exit page callback for ME update(SECOVR_MEI_MSG
+// mode).
+//
+// 
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//---------------------------------------------------------------------------
+// Name:	MEUD.sd
+//
+// Description:	Setup definition for MEUD.
+//
+//---------------------------------------------------------------------------
+//<AMI_FHDR_END>
+#ifdef SETUP_DATA_DEFINITION
+
+#endif
+#ifdef FORM_SET_TYPEDEF
+
+#endif
+
+#ifdef FORM_SET_VARSTORE
+
+#endif
+
+#ifdef ADVANCED_FORM_SET
+#if ME_SECOVR_MEI_MSG_SUPPORT
+#ifdef FORM_SET_GOTO
+  //
+  // this grayout is always false, but ensures that callback function will receive pointer to ICC_VOLATILE_SETUP_DATA instead SETUP_DATA 
+  //
+    goto MEUD_FORM_ID, 
+      prompt = STRING_TOKEN(STR_MEUD_PROMPT),
+      help   = STRING_TOKEN(STR_MEUD_PROMPT_HELP);
+#endif
+
+#ifdef FORM_SET_FORM
+    form formid = AUTO_ID(MEUD_FORM_ID),
+    title = STRING_TOKEN(STR_MEUD_PROMPT);
+
+
+#if defined(CSP_MEUD_SUPPORT) && (CSP_MEUD_SUPPORT == 1)
+        goto MEUD_FORM_ID,
+            prompt   = STRING_TOKEN(STR_ME_TODISABLE_MODE_PROMPT),
+            help     = STRING_TOKEN(STR_ME_TODISABLE_MODE_PROMPT_HELP),
+            flags = INTERACTIVE,
+            key	= AMITSESETUP_KEY;
+#endif
+
+   endform;
+#endif //FORM_SET_FORM
+#endif // ME_SECOVR_MEI_MSG_SUPPORT
+#endif //ADVANCED_FORM_SET
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

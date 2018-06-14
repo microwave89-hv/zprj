@@ -1,0 +1,19 @@
+TOKEN
+	Name  = "MiscX64Lib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable MiscX64Lib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "MiscX64Lib_DIR"
+End
+
+MODULE
+	Help  = "Includes MiscX64Lib.mak to Project"
+	File  = "MiscX64Lib.mak"
+End
+

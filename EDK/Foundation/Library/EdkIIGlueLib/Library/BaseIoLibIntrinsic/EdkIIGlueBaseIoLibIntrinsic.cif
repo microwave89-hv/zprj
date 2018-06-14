@@ -1,0 +1,13 @@
+<component>
+	name = "EdkIIGlueBaseIoLibIntrinsic"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\BaseIoLibIntrinsic"
+	RefName = "EdkIIGlueBaseIoLibIntrinsic"
+[files]
+"EdkIIGlueBaseIoLibIntrinsic.sdl"	
+"EdkIIGlueBaseIoLibIntrinsic.mak"	
+"BaseIoLibIntrinsic.inf"
+"IoHighLevel.c"	
+"IoLib.c"
+"IoLibMsc.c"
+<endComponent>

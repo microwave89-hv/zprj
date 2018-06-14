@@ -1,0 +1,11 @@
+<component>
+	name = "ThunkLib x64"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\Library\ThunkLib\x64"
+	RefName = "ThunkLibx64"
+[files]
+"x86Thunk.c"
+"Thunk16.asm"
+"FxSave.asm"
+"FxRestore.asm"
+<endComponent>

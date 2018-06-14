@@ -1,0 +1,15 @@
+<component>
+	name = "SmmBase"
+	category = ModulePart
+	LocalRoot = "Core\EM\SMM"
+	RefName = "SmmBase"
+[files]
+"SmmBase.sdl"	
+"SmmBase.mak"	
+"SmmInit.c"
+"SmmBase.c"
+"SmmBase2.c"
+"SmmDriverDispatcher.c"
+"SmmBase.dxs"	
+"SmmBaseAsm.asm"	
+<endComponent>

@@ -1,0 +1,11 @@
+<component>
+	name = "AFU Default Command Configuration"
+	category = ModulePart
+	LocalRoot = "Core\EM\OFBD\DEFCFG\"
+	RefName = "OFBD_DEFCFG"
+[files]
+"DefCfg.sdl"	
+"DefCfg.mak"	
+"DefCfg.h"	
+"DefCfg.c"	
+<endComponent>

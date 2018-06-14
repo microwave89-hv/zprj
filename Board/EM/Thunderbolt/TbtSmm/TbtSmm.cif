@@ -1,0 +1,11 @@
+<component>
+	name = "TbtSmm"
+	category = ModulePart
+	LocalRoot = "Board\EM\Thunderbolt\TbtSmm\"
+	RefName = "TbtSmm"
+[files]
+"TbtSmm.sdl"	
+"TbtSmm.mak"	
+"TbtSmm.c"	
+"TbtSmm.dxs"	
+<endComponent>

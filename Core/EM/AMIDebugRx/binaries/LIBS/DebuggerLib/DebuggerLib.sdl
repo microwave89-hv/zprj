@@ -1,0 +1,29 @@
+PATH
+	Name  = "DebuggerLib_DIR"
+End
+
+MODULE
+	Help  = "Includes DebuggerLib.mak to Project"
+	File  = "DebuggerLib.mak"
+End
+
+ELINK
+	Name  = "InitDbgLdImageNotify,"
+	Parent  = "DxeCoreInitialize"
+	Token = "REDIRECTION_ONLY_MODE" "!=" "1"
+	Token = "PeiDebugger_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PeiDbgSptLdr,"
+	Parent  = "PeiCoreInitialize"
+	Token = "PeiDebugger_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ReadyToBootFunc,"
+	Parent  = "DxeCoreInitialize"
+	InvokeOrder = AfterParent
+End

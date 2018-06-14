@@ -1,0 +1,13 @@
+<component>
+	name = "MeInclude"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Include\"
+	RefName = "MeInclude"
+[files]
+"MeInclude.sdl"
+"MePeiLib.dsc"	
+"MeDxe.dsc"	
+"MeDxeLib.dsc"	
+"MePei.dsc"
+"IntelMeSsdtAcpiTables.dsc"
+<endComponent>

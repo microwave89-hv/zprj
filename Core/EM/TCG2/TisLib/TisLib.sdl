@@ -1,0 +1,46 @@
+TOKEN
+	Name  = "TPM12_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TCG support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+    Token = "TCG2Support" "=" "1"
+End
+
+TOKEN
+	Name  = "TPM_DRIVER_WAIT"
+	Value  = "005h"
+	Help  = "Delay count for TPM wait loop. Default is 50us. Please dont change to less than 2 (4us)."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DELAY_AMOUNT"
+	Value  = "010"
+	Help  = "Delay amount for TPM wait loop. Default is 5us. Please dont change to less than 2 (2us)."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+PATH
+	Name  = "TPM12_DIR"
+	Help  = "Tcg Directory"
+End
+
+MODULE
+	Help  = "Includes TCG.mak to Project"
+	File  = "TisLib.mak"
+End
+
+TOKEN
+	Name  = "tcgLibLite"
+	Value  = "$(BUILD_DIR)\tcgLibLite.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End

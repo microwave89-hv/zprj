@@ -1,0 +1,216 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/SwitchableGraphics/SwitchableGraphics.sd 2     9/09/12 11:26p Joshchou $
+//
+// $Revision: 2 $
+//
+// $Date: 9/09/12 11:26p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/SwitchableGraphics/SwitchableGraphics.sd $
+// 
+// 2     9/09/12 11:26p Joshchou
+// [TAG]  		None
+// [Category]  	Improvement
+// [Description]  	Tpv module support for sharkbay.
+// [Files]  		SwitchableGraphics.sdl
+// SwitchableGraphics.mak
+// SwitchableGraphics.sd
+// SwitchableGraphics.uni
+// SwitchableGraphics.chm
+// SwitchableGraphics.cif
+// 
+// 3     1/30/12 6:46a Alanlin
+// [TAG]  		EIP81672
+// [Category]  	New Feature
+// [Description]  	SwitchableGraphics setting goto define.
+// [Files]  		SwitchableGraphics.sd
+// 
+// 2     12/06/11 2:24a Alanlin
+// [TAG]  		EIP76248
+// [Category]  	New Feature
+// [Description]  	PX 5.0 feature updated
+// 
+// 1     6/27/11 5:13a Alanlin
+// [TAG]  		EIP61848
+// [Category]  	New Feature
+// [Description]  	Initial check-in.Integrated SwitchableGraphics Intel
+// Reference code 0.6.0
+// [Files]  		SwitchableGraphics.cif
+// SwitchableGraphics.sdl
+// SwitchableGraphics.mak
+// SwitchableGraphics.sd
+// SwitchableGraphics.uni
+// 
+// 
+// 1     9/17/10 1:46p Alexp
+// [TAG]    	  EIP43103 
+// [Category]  Function Request
+// [Severity]	  Normal
+// [Symptom]    Initial check-in of iIntel Switchable Graphics module
+// [RootCause] Request to implement Intel Huron River SG reference code .
+// [Solution]	Initial check-in. 
+// [Files]	
+//         SwitchableGraphics.cif; *.chm; *.sdl; *.mak; *.sd;*.uni
+// 
+// 
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//----------------------------------------------------------------------------
+//
+// Name:		SwitchableGraphics.sd
+//
+// Description:	Switchable Graphics Setup page layout
+//
+//----------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+#ifdef SETUP_DATA_DEFINITION
+/***********************************************************/
+/* Put NVRAM data definitions here.
+/* For example:	UINT8 Data1;
+/* These definitions will be converted by the build process
+/* to a definitions of SETUP_DATA fields.
+/***********************************************************/
+		UINT8	SgMuxMode;
+//		UINT8	PX_FIXED_MODE;
+//		UINT8	PX_DYNAMIC_MODE;
+		UINT8	PX_FIXED_DYNAMIC_MODE;
+        UINT8   TPVCardCheck;
+#endif
+
+//---------------------------------------------------------------------------
+#if defined(VFRCOMPILE) && !defined(CONTROLS_ARE_DEFINED)
+#define CONTROL_DEFINITION
+#endif
+//---------------------------------------------------------------------------
+
+//**********************************************************************
+//                  ADVANCED - Onboard Devices Form
+//**********************************************************************
+#ifdef CONTROL_DEFINITION
+
+#define SG_ONEOF_SGMUXMODE\
+    	oneof varid  = SETUP_DATA.SgMuxMode,\
+    		prompt = STRING_TOKEN(STR_SG_MODE),\
+    		help = STRING_TOKEN(STR_SG_MODE_HELP),\
+    		option text = STRING_TOKEN(STR_SG_MUXLESS), value = 2, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    	endoneof;
+
+/*
+#define SG_ONEOF_PXFIXEDMODE\
+        oneof varid = SETUP_DATA.PX_FIXED_MODE,
+            prompt  = STRING_TOKEN(STR_PX_FIXED_MODE),
+            help  = STRING_TOKEN(STR_PX_FIXED_MODE_HELP),
+            option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+            option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+
+#define SG_ONEOF_PXDYNAMICMODE\
+        oneof varid = SETUP_DATA.PX_DYNAMIC_MODE,
+            prompt  = STRING_TOKEN(STR_PX_DYNAMIC_MODE),
+            help  = STRING_TOKEN(STR_PX_DYNAMIC_MODE_HELP),
+            option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+            option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+*/
+
+#define SG_ONEOF_PXFIXEDDYNAMICMODE\
+        oneof varid = SETUP_DATA.PX_FIXED_DYNAMIC_MODE,\
+            prompt  = STRING_TOKEN(STR_PX_FIXED_DYNAMIC_MODE),\
+            help  = STRING_TOKEN(STR_PX_FIXED_DYNAMIC_MODE_HELP),\
+            option text = STRING_TOKEN(STR_BACO_DYNAMIC_SCHEME), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;\
+            option text = STRING_TOKEN(STR_DGPUOFF_DYNAMIC_SCHEME), value = 1, flags = RESET_REQUIRED;\
+        endoneof;
+
+#define SG_GOTO_SWITCHABLEGRAPHICS\
+    goto SG_FORM_ID, \
+    prompt  = STRING_TOKEN(STR_SG_FORM),\
+    help    = STRING_TOKEN(STR_SG_FORM_HELP);
+
+#endif // CONTROL_DEFINITION
+
+//---------------------------------------------------------------------------
+#ifdef CONTROLS_WITH_DEFAULTS
+    SG_ONEOF_SGMUXMODE
+/*
+    SG_ONEOF_PXFIXEDMODE
+    SG_ONEOF_PXDYNAMICMODE
+*/
+    SG_ONEOF_PXFIXEDDYNAMICMODE
+#endif // CONTROLS_WITH_DEFAULTS
+//---------------------------------------------------------------------------
+
+//**********************************************************************
+//                  Advanced -  SwitchableGraphics Configuration Form
+//**********************************************************************
+
+#ifdef ADVANCED_FORM_SET
+
+  #ifndef SUPPRESS_GRAYOUT_ENDIF //old Core
+    #define SUPPRESS_GRAYOUT_ENDIF endif;
+  #endif
+
+  #ifdef FORM_SET_ITEM
+  // Define controls to be added to the main page of the formset
+
+  #endif
+
+  #ifdef FORM_SET_GOTO
+  // Define goto commands for the forms defined in this file
+    SG_GOTO_SWITCHABLEGRAPHICS
+  #endif
+
+  #ifdef FORM_SET_FORM
+    #ifndef SWITCHABLEGRAPHICS_FORM_SETUP
+    #define SWITCHABLEGRAPHICS_FORM_SETUP
+
+  // Define forms
+   form formid = AUTO_ID(SG_FORM_ID),
+    title     = STRING_TOKEN(STR_SG_FORM);
+    
+  // Define controls to be added to the main page of the formset
+
+        grayoutif NOT ideqval SETUP_DATA.PrimaryDisplay == 4;
+          SG_ONEOF_SGMUXMODE
+    	endif;
+
+        suppressif NOT ideqval SETUP_DATA.PrimaryDisplay == 4 OR
+                       ideqval SETUP_DATA.TPVCardCheck == 0;
+          SG_ONEOF_PXFIXEDDYNAMICMODE
+        endif;
+
+    endform;
+    #endif // SWITCHABLEGRAPHICS_FORM_SETUP
+  #endif // FORM_SET_FORM
+
+#endif // ADVANCED_FORM_SET
+
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

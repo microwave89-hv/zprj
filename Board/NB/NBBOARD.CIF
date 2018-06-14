@@ -1,0 +1,21 @@
+<component>
+	name = "Intel SystemAgent NB Board"
+	category = ModulePart
+	LocalRoot = "Board\NB\"
+	RefName = "Intel SystemAgent NB Board"
+[files]
+"NB.sdl"	
+"NB.mak"	
+"NB.H"	
+"NBSECInit.ASM"	
+"NBPEI.DXS"	
+"NBPEIBoard.c"	
+"NBDXE.DXS"	
+"NBDXEBoard.c"	
+"GetSetupData.c"	
+"NbSetupData.h"	
+"Nb.ssp"	
+"NbInt15.asm"	
+[parts]
+"NBSetup"
+<endComponent>

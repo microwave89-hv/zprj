@@ -1,0 +1,12 @@
+<component>
+	name = "PttSmmAcpi"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\Ptt\Smm\"
+	RefName = "PttSmmAcpi"
+[files]
+"Ftpm.asl"	
+"Tpm2AcpiTables.inf"	
+"Tpm2AcpiTableStorage.h"	
+"PttSmmAcpi.mak"	
+"PttSmmAcpi.sdl"	
+<endComponent>

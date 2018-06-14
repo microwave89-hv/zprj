@@ -1,0 +1,70 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Chipset/SystemAgentWrap/MiscSubclass/MiscSubclassDxe.dxs 1     2/08/12 4:37a Yurenlai $
+//
+// $Revision: 1 $
+//
+// $Date: 2/08/12 4:37a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Chipset/Intel/NorthBridge/Haswell/Intel SystemAgent NB Chipset/SystemAgentWrap/MiscSubclass/MiscSubclassDxe.dxs $
+// 
+// 1     2/08/12 4:37a Yurenlai
+// Intel Haswell/NB eChipset initially releases.
+// 
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:        MiscSubclassDxe.DXS
+//
+// Description: This file is the dependency file for the MiscSubclass DXE driver.
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+#include <Protocol\DataHub.h>
+
+#if EFI_SPECIFICATION_VERSION >= 0x2000A
+#include "Include\UefiHii.h"
+#include "Protocol\HiiDatabase.h"
+#include "Protocol\HiiString.h"
+#else
+#include <Protocol/Hii.h>
+#endif
+
+DEPENDENCY_START
+  EFI_DATA_HUB_PROTOCOL_GUID AND
+#if EFI_SPECIFICATION_VERSION >= 0x2000A
+  EFI_HII_DATABASE_PROTOCOL_GUID AND
+  EFI_HII_STRING_PROTOCOL_GUID 
+#else
+  EFI_HII_PROTOCOL_GUID
+#endif
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

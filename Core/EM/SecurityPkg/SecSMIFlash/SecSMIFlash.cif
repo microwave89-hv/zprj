@@ -1,0 +1,16 @@
+<component>
+	name = "Secure SMIFlash"
+	category = ModulePart
+	LocalRoot = "CORE\EM\SecurityPkg\SecSMIFlash\"
+	RefName = "SecSMIFlash"
+[files]
+"SecSMIFlash.sdl"	
+"SecSMIFlash.mak"	
+"SecSMIFlash.dxs"	
+"SecSMIFlash.c"	
+"VerifyFwCapsule.c"	
+[parts]
+"SecSMIFlashProtocols"
+[dependOn]
+"SMIFlash"
+<endComponent>

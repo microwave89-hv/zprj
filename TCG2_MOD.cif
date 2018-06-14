@@ -1,0 +1,7 @@
+<component>
+	name = "TCG2_MOD"
+	category = ModulePart
+	RefName = "TCG2_MOD"
+[files]
+"Board\EM\TCG2\Common\Setup\TPMPwd.c"	
+<endComponent>

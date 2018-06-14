@@ -1,0 +1,11 @@
+<component>
+	name = "WdtAppProtocolLib"
+	category = ModulePart
+	LocalRoot = "Chipset\SB\PchWrap\WdtApp\Protocol"
+	RefName = "WdtAppProtocolLib"
+[files]
+"WdtAppProtocolLib.sdl"
+"WdtAppProtocolLib.mak"
+"WdtApp\WdtApp.h"
+"WdtApp\WdtApp.c"
+<endComponent>

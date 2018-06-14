@@ -1,0 +1,11 @@
+<component>
+	name = "SmBusMemoryDown"
+	category = ModulePart
+	LocalRoot = "Chipset\SB\PchWrap\SmBusMemoryDown\"
+	RefName = "SmBusMemoryDown"
+[files]
+"SmBusMemoryDown.sdl"
+"SmBusMemoryDown.mak"	
+"SmBusMemoryDown.dxs"	
+"SmBusMemoryDown.c"	
+<endComponent>

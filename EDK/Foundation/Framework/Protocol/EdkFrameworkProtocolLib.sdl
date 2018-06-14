@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkFrameworkProtocolLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkFrameworkProtocolLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EDKFRAMEWORKPROTOCOLLIB"
+	Value  = "$(BUILD_DIR)\EdkFrameworkProtocolLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkFrameworkProtocolLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkFrameworkProtocolLib.mak to Project"
+	File  = "EdkFrameworkProtocolLib.mak"
+End
+

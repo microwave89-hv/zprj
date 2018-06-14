@@ -1,0 +1,15 @@
+<component>
+	name = "OEMSSDT"
+	category = ModulePart
+	LocalRoot = "Board\EM\SwitchableGraphics\SgTpv\AcpiTables\OEMSSDT"
+	RefName = "OEMSSDT"
+[files]
+"OEMSSDT.sdl"	
+"OEMSSDT.mak"	
+"OEMSSDT.asl"	
+"OEMNVdGPU.asl"	
+"OEMNViGPU.asl"	
+"OEMNViGDmisc.asl"	
+"OEMNvVentura.asl"	
+"OEMNvGPS.asl"	
+<endComponent>

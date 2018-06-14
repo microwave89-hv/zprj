@@ -1,0 +1,16 @@
+<component>
+	name = "Boot Script Hide"
+	category = eModule
+	LocalRoot = "Core\EM\BootScriptHide"
+	RefName = "BootScriptHide"
+[files]
+"BootScriptHide.sdl"	
+"BootScriptHide.mak"
+"BootScriptHide.chm"
+"BootScriptHideDxe.c"
+"BootScriptHideDxe.dxs"
+"BootScriptHidePei.c"
+"BootScriptHidePei.dxs"
+"BootScriptHideSmm.c"
+"BootScriptHideSmm.dxs"
+<endComponent>

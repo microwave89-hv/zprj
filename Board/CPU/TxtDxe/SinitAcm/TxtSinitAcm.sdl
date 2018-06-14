@@ -1,0 +1,32 @@
+TOKEN
+	Name  = "SINIT_ACM_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable TXT BIOS AC Module support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SINITACM_FILE"
+	Value  = "Board\CPU\TxtDxe\SinitAcm\HSW_SINITAC_PRO_Rev1_5.BIN"
+	TokenType = File
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "SinitAcm_DIR"
+End
+
+MODULE
+	Help  = "Includes TxtSinitAcm.mak to Project"
+	File  = "TxtSinitAcm.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SinitAcmBin.ffs"
+	Parent  = "FV_MAIN"
+	Token = "SINIT_ACM_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+

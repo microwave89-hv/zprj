@@ -1,0 +1,28 @@
+<component>
+	name = "MeSampleCode"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\SampleCode\"
+	RefName = "MeSampleCode"
+[files]
+"Include\MeDxeLibSampleCode.dsc"	
+"Include\Acpi1_0.h"	
+"Include\Acpi2_0.h"	
+"Include\Acpi3_0.h"	
+"Include\AlertStandardFormatTable.h"	
+"Include\AslUpdateLib.h"	
+"AsfSupport\AsfSupport.h"	
+"AsfSupport\AsfSupport.c"	
+"Protocol\SmmVariable\SmmVariable.h"
+"Include\Guid\MemoryOverwriteControl\MemoryOverwriteControl.h"
+"Include\Guid\TrEEPhysicalPresenceData\TrEEPhysicalPresenceData.h"
+"Include\IndustryStandard\AcpiAml.h"
+"Include\IndustryStandard\Tpm20.h"
+"Include\IndustryStandard\Tpm20Implementation.h"
+"Include\IndustryStandard\Tpm2Acpi.h"
+"Include\IndustryStandard\Tpm2DeviceLib.h"
+[parts]
+"MeAslUpdateLib"
+"PlatformReset"
+"MePlatformGetResetTypeProtocolLib"
+"MdesStatusCodeDxe"
+<endComponent>

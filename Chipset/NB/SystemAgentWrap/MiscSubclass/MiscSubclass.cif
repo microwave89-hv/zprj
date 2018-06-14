@@ -1,0 +1,13 @@
+<component>
+	name = "MiscSubclass"
+	category = ModulePart
+	LocalRoot = "Chipset\NB\SystemAgentWrap\MiscSubclass"
+	RefName = "MiscSubclass"
+[files]
+"MiscSubclass.sdl"	
+"MiscSubclass.mak"	
+"MiscSubclassStrings.uni"	
+"MiscSubclass.c"	
+"MiscSubclassDxe.c"	
+"MiscSubclassDxe.dxs"	
+<endComponent>

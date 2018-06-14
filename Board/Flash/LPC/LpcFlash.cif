@@ -1,0 +1,11 @@
+<component>
+	name = "LPC Interface - Source"
+	category = ModulePart
+	LocalRoot = "Board\Flash\LPC"
+	RefName = "LPC_INTERFACE_SOURCE"
+[files]
+"LpcFlash.sdl"	
+"LpcFlash.mak"	
+"LpcFlashWrite.c"	
+"LpcSst2MblFlashWrite.c"	
+<endComponent>

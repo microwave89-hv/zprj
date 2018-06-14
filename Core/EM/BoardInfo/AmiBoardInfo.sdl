@@ -1,0 +1,113 @@
+TOKEN
+	Name  = "AmiBoardInfo_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AMI Board Info support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "AMI_BOARD_INFO_MAJOR_VERSION"
+	Value  = "2"
+	Help  = "AMI Board Info Driver Major Version"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "AMI_BOARD_INFO_MINOR_VERSION"
+	Value  = "1"
+	Help  = "AMI Board Info Driver Mainor Version"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "AMI_BOARD_VER_COMBINED"
+	Value  = "$(AMI_BOARD_INFO_MAJOR_VERSION)*100+ $(AMI_BOARD_INFO_MINOR_VERSION)*10"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+PATH
+	Name  = "AmiBoardInfo_DIR"
+	Help  = "Path to AMI Board Info Module in Project"
+End
+
+MODULE
+	Help  = "Includes AmiBoardInfo.mak to Project"
+	File  = "AmiBoardInfo.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmiBoardInfo.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ASL_EXP_INCLUDE_PATH"
+	Help  = "Include passes for ASL expander"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "ASLPREPROCESS_FLAG"
+	Help  = "Option override for preprocessing ASL files"
+	InvokeOrder = ReplaceParent
+End
+
+OUTPUTREGISTER
+	Name  = "BUSNUM_XLAT_C_v2"
+	Path  = "Build"
+	File  = "BusNumXlat.h"
+	Token = "AMI_BOARD_INFO_MAJOR_VERSION" ">=" "1"
+End
+
+OUTPUTREGISTER
+	Name  = "IRQ_C_APIC_v2"
+	Path  = "Build"
+	File  = "mppciirq.h"
+	Token = "AMI_BOARD_INFO_MAJOR_VERSION" ">=" "1"
+End
+
+OUTPUTREGISTER
+	Name  = "IRQ_C_v2"
+	Path  = "Build"
+	File  = "oempir.h"
+	Token = "AMI_BOARD_INFO_MAJOR_VERSION" ">=" "1"
+End
+
+OUTPUTREGISTER
+	Name  = "BUSNUM_XLAT"
+	Path  = "Build"
+	File  = "BusNumXlat.INC"
+	Token = "AMI_BOARD_INFO_MAJOR_VERSION" "<" "1"
+End
+
+OUTPUTREGISTER
+	Name  = "IRQ_ASM_APIC"
+	Path  = "Build"
+	File  = "mppciirq.inc"
+	Token = "AMI_BOARD_INFO_MAJOR_VERSION" "<" "1"
+End
+
+OUTPUTREGISTER
+	Name  = "IRQ_ASM"
+	Path  = "Build"
+	File  = "oempir.inc"
+	Token = "AMI_BOARD_INFO_MAJOR_VERSION" "<" "1"
+End
+

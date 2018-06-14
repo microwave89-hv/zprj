@@ -1,0 +1,12 @@
+<component>
+	name = "On Flash Block Description (APTIO) - Secure Flash"
+	category = eModule
+	LocalRoot = "Core\EM\OFBD\SecureFlash\"
+	RefName = "OFBD_SECURE_FLASH"
+[files]
+"SecureFlash.sdl"	
+"SecureFlash.mak"	
+"SecureFlash.h"	
+"SecureFlash.c"	
+"SecureFlash.chm"	
+<endComponent>

@@ -1,0 +1,18 @@
+<component>
+	name = "Sg nVidia API"
+	category = ModulePart
+	LocalRoot = "Board\EM\SwitchableGraphics\SgTpv\MXM30"
+	RefName = "MXM_NBCI"
+[files]
+"MXM30.sdl"	
+"MXM30.mak"	
+"Mxm30Dxe.dxs"	
+"Mxm30Dxe.c"
+"Mxm30Efi.c"	
+"NBCIEfi.c"	
+"MxmInt15.asm"	
+"Mxm30ElkCreek4.mxm"	
+"Mxm30ElkCreekIII.mxm"	
+[parts]
+"MXM_Protocol"
+<endComponent>

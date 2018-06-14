@@ -1,0 +1,11 @@
+<component>
+	name = "AC/Battery checking"
+	category = ModulePart
+	LocalRoot = "Core\EM\OFBD\BATTERYCHECK\"
+	RefName = "OFBD_BATTERYCHECK"
+[files]
+"BATTERYCHECK.sdl"	
+"BATTERYCHECK.mak"	
+"BATTERYCHECK.h"	
+"BATTERYCHECK.c"	
+<endComponent>

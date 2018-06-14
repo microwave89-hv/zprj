@@ -1,0 +1,72 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/IntelPchPpiLib/IntelPchPpiLib.sdl 1     2/08/12 8:58a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 2/08/12 8:58a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/IntelPchPpiLib/IntelPchPpiLib.sdl $
+# 
+# 1     2/08/12 8:58a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+        Name  = "IntelPchPpiLib_SUPPORT"
+        Value  = "1"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        Master = Yes
+        Help  = "Main switch to enable IntelPchPpiLib support in Project"
+End
+
+PATH
+        Name  = "IntelPchPpiLib_DIR"
+        Help  = "IntelPchPpiLib file source directory"
+End
+
+MODULE
+        File  = "IntelPchPpiLib.mak"
+        Help  = "Includes IntelPchPpiLib.mak to Project"
+End
+
+ELINK
+        Name  = "IntelPchPpiLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\IntelPchPpiLib.lib"
+        Parent  = "IntelPchPpiLib_LIB"
+        InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

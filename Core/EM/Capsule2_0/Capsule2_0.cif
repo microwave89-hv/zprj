@@ -1,0 +1,13 @@
+<component>
+	name = "Capsule2_0"
+	category = ModulePart
+	LocalRoot = "Core\EM\Capsule2_0\"
+	RefName = "Capsule2_0"
+[files]
+"Capsule2_0.sdl"	
+"Capsule2_0.mak"
+"Capsule2_0.c"	
+"Capsule2_0.h"
+"Capsule2_0Runtime.c"
+"Capsule2_0Bds.c"
+<endComponent>

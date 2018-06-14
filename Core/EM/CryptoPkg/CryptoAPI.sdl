@@ -1,0 +1,95 @@
+TOKEN
+	Name  = "CryptoAPI_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable CryptoAPI support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "CryptoPPI_SUPPORT"
+	Value  = "1"
+	Help  = "Includes the Crypto PPI module"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CR_PEI_MAX_HEAP_SIZE"
+	Value  = "48*1024"
+	Help  = "Crypt Optimized Mem manager. Min 15kb in rsa decrypt in Mode2,(?? if page alligned heap)"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CR_DXE_MAX_HEAP_SIZE"
+	Value  = "48*1024"
+	Help  = "Crypt Optimized Mem manager. Min 48kb if process PKCS7 Certs and Rsa decrypt in Mode2,(?? if page alligned heap)"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "E_CONST"
+	Value  = "0x01, 0x00, 0x01"
+	Help  = "RSA2048. Predefined value of Public Exponent:E = 0x10001"
+	TokenType = Expression
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "PSS_SIG_SALTLEN"
+	Value  = "8"
+	Help  = "PKCS_1 PSS Signature constant. Size of the Salt (random data) field in PSS signature."
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+    Name  = "CONFIG_PEI_PKCS7"
+    Value  = "0"
+    Help  = "Support x509 & Pkcs7 in PEI CryptoLib. Add ~8kb to CryptoPEI binary"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Range  = "0-1"
+End
+
+TOKEN
+    Name  = "PKCS7_MUTEX_LOCK"
+    Value  = "0"
+    Help  = "Turn on mutex functionality for Pkcs7Verify back to back operations. Preserves internal context until mutext released/reset"
+    TokenType = Boolean
+    TargetH = Yes
+    Range  = "0-1"
+End
+
+PATH
+	Name  = "CryptoAPI_DIR"
+	Help  = "Path to CryptoAPI Module in Project"
+End
+
+MODULE
+	Help  = "Includes CryptoAP.mak to Project"
+	File  = "CryptoAPI.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CryptoPei.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+	Token = "CryptoPPI_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CryptoDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

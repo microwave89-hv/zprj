@@ -1,0 +1,11 @@
+<component>
+	name = "PttWrapper"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\PttWrapper\"
+	RefName = "PttWrapper"
+[files]
+"PttWrapper.dxs"	
+"PttWrapper.c"	
+"PttWrapper.mak"	
+"PttWrapper.sdl"	
+<endComponent>

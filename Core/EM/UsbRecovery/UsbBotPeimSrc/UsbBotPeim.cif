@@ -1,0 +1,14 @@
+<component>
+	name = "UsbBotPeimSrc"
+	category = ModulePart
+	LocalRoot = "Core\em\UsbRecovery\UsbBotPeimSrc"
+	RefName = "UsbBotPeimSrc"
+[files]
+"UsbBotPeim.dxs"	= "dxs"
+"BotPeim.c"	
+"BotPeim.h"	
+"PeiAtapi.c"	
+"UsbBotPeim.c"	
+"UsbBotPeim.h"	
+"atapi.h"	
+<endComponent>

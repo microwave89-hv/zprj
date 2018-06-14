@@ -1,0 +1,12 @@
+<component>
+	name = "SgTpvPCH"
+	category = ModulePart
+	LocalRoot = "Board\EM\SwitchableGraphics\SgTpv\AcpiTables\SgTpvPCH"
+	RefName = "SgTpvPCH"
+[files]
+"SgTpvPCH.sdl"	
+"SgTpvPCH.mak"	
+[parts]
+"AtiSGULT"
+"nVidiaSGULT"	
+<endComponent>

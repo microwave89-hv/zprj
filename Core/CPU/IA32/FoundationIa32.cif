@@ -1,0 +1,16 @@
+<component>
+	name = "FoundationIa32"
+	category = ModulePart
+	LocalRoot = "Core\CPU\IA32\"
+	RefName = "FoundationIa32"
+[files]
+"FoundationIa32.sdl"	
+"FoundationIa32.mak"	
+"efijump.h"	
+"PeCoffLoaderEx.c"	
+"PeCoffLoaderEx.h"	
+"Processor.c"	
+"ProcessorAsms.Asm"	
+"SwitchCoreStacks.asm"	
+"Processor.h"	
+<endComponent>

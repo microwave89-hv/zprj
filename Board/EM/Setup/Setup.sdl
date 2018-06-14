@@ -1,0 +1,129 @@
+TOKEN
+	Name  = "Setup_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Setup support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "PASSWORD_MAX_SIZE"
+	Value  = "20"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PASSWORD_MAX_SIZE"
+	Value  = "$(SETUP_PASSWORD_LENGTH)"
+	TokenType = Integer
+	TargetH = Yes
+	Token = "AMITSE_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "PASSWORD_MIN_SIZE"
+	Value  = "3"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FORCE_USER_TO_SETUP_ON_FIRST_BOOT"
+	Value  = "0"
+	Help  = "When this flag is on, Setup will be automatically launched\whenever NVRAM is blank (during the first boot and\during any subsequent flash update)."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SHOW_ADVANCED_FORMSET"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SHOW_CHIPSET_FORMSET"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SHOW_SECURITY_FORMSET"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ALWAYS_PUBLISH_HII_RESOURCES"
+	Value  = "0"
+	Help  = "This token controls loading of the Setup related HII resources (setup screens and string).\If this token is cleared, setup resources are only published into HII database if the user enters setup.\If this token is set, setup resources are always published\Keep it off for speed optimization.\Set it to on if Runtime resources processing support is required (if ExportDatabase if used)"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "LOGO_FILE_NAME"
+	Value  = "$(Setup_DIR)\Logo.bmp"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "Setup_DIR"
+End
+
+MODULE
+	Help  = "Includes Setup.mak to Project"
+	File  = "Setup.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Setup.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Logo.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\$(Setup_DIR)"
+	Parent  = "IFR_DIR_LIST"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SETUP_DEFINITIONS"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "SETUP_SDBS"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "SetupStringInit"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "SETUP_VFR_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "SetupItemCallbacks"
+	InvokeOrder = ReplaceParent
+End
+

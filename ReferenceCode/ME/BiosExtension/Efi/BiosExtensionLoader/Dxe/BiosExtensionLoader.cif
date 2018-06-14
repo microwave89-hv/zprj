@@ -1,0 +1,18 @@
+<component>
+	name = "BiosExtensionLoader"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\BiosExtension\Efi\BiosExtensionLoader\Dxe\"
+	RefName = "BiosExtensionLoader"
+[files]
+"BiosExtensionLoader.sdl"	
+"BiosExtensionLoader.mak"	
+"BiosExtensionLoader.c"	
+"BiosExtensionLoader.dxs"	
+"BiosExtensionLoader.h"	
+"Inventory.c"	
+"Inventory.h"	
+"UsbProvision.c"	
+"UsbProvision.h"	
+"BiosExtensionLoader.inf"	
+"MebxBiosParamsDebugDumpDxe.c"
+<endComponent>

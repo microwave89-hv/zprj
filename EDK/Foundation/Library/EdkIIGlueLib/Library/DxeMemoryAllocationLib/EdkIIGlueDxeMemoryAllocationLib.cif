@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueDxeMemoryAllocationLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\DxeMemoryAllocationLib"
+	RefName = "EdkIIGlueDxeMemoryAllocationLib"
+[files]
+"EdkIIGlueDxeMemoryAllocationLib.sdl"	
+"EdkIIGlueDxeMemoryAllocationLib.mak"
+"DxeMemoryAllocationLib.inf"	
+"MemoryAllocationLib.c"	
+<endComponent>

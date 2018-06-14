@@ -1,0 +1,1525 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1987-2013, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/Haswell/AMI Cpu PKG/CPU Board/CPU.sd 26    6/11/15 10:34p Crystallee $
+//
+// $Revision: 26 $
+//
+// $Date: 6/11/15 10:34p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/Haswell/AMI Cpu PKG/CPU Board/CPU.sd $
+// 
+// 26    6/11/15 10:34p Crystallee
+// [TAG]  		EIP207854
+// [Category]  	Bug Fix
+// [Severity]  	Important
+// [Symptom]  	Txt test fail with TCG2 module
+// [RootCause]  	Tokne TCG_SUPPORT was removed.
+// [Solution]  	Add TCG2Support token.
+// 
+// 25    11/07/13 1:08a Crystallee
+// 
+// 24    8/28/13 5:59a Crystallee
+// [TAG]  		EIP134339
+// [Category]  	Bug Fix
+// [Severity]  	Important
+// [Symptom]  	[Sharkbay]Build error after update Haswell Cpu module
+// [RootCause]  	If token TCG_SUPPORT is disabled, TpmSupport setup data
+// will not define, then cause built error.
+// [Solution]  	Add token TCG_SUPPORT condition when use TpmSupport setup
+// data.
+// 
+// 23    7/23/13 7:41a Crystallee
+// [TAG]  		EIP128089
+// [Category]  	Improvement
+// [Description]  	TXT will be disabled and grayed out in Setup when TPM
+// Support is disabled.
+// 
+// 22    5/09/13 10:54p Crystallee
+// [TAG]  		EIP123326
+// [Category]  	Improvement
+// [Description]  	Show "Processor family" and "FSB speed" on CPU
+// Configuration in BIOS setup menu.
+// 
+// 21    4/03/13 4:56a Crystallee
+// [TAG]  		EIP119880
+// [Category]  	Improvement
+// [Description]  	Provide setup items which is related to PowerLimit3.
+// 
+// 20    3/20/13 2:57a Crystallee
+// [TAG]  		None
+// [Category]  	Improvement
+// [Description]  	Change TurboPowerLimitLock default value to enable.
+// 
+// 19    3/06/13 2:15a Crystallee
+// [TAG]  		None
+// [Category]  	Improvement
+// [Description]  	Change numeric step value to 1.
+// 
+// 18    3/05/13 1:35a Davidhsieh
+// [TAG]  		EIP116207
+// [Category]  	Improvement
+// [Description]  	Change VrCurrentLimit from UINT8 to UINT16
+// 
+// 17    2/26/13 3:19a Crystallee
+// [TAG]  		None
+// [Category]  	Improvement
+// [Description]  	Keep the same variable size.
+// 
+// 16    2/22/13 2:00a Crystallee
+// [TAG]  		EIP112238
+// [Category]  	Improvement
+// [Description]  	Refer Intel BIOS and provide setup items for Intel
+// Haswell RC policy.
+// 
+// 15    1/24/13 5:13a Crystallee
+// [TAG]           None
+// [Category]  	Bug Fix
+// [Severity]  	Important
+// [Symptom]  	Change C state limit to C10, the system will hang.
+// [RootCause]  	BIOS doesn't limit the C state to CPU support.
+// [Solution]  	According to the CPU C state support, add C state limit to
+// prevent system hanging and limit the setup item choice.
+// 
+// 14    1/23/13 2:49a Crystallee
+// [TAG]  		None
+// [Category]  	Improvement
+// [Description]  	Create setup item for BootInLfm
+// 
+// 13    12/26/12 2:59a Davidhsieh
+// [TAG]  		None
+// [Category]  	Improvement
+// [Description]  	Change Iout Slope default value
+// 
+// 12    12/13/12 4:14a Davidhsieh
+// [TAG]  		    None
+// [Category]  	Improvement
+// [Description]  	Extend setup item C state package to C10
+// 
+// 11    12/12/12 1:26a Davidhsieh
+// [TAG]  		EIP108401
+// [Category]  	Improvement
+// [Description]  	Create setup item for VrMiscIoutOffsetSign
+// 
+// 10    12/03/12 9:49p Davidhsieh
+// [TAG]  		EIP108401
+// [Category]  	Improvement
+// [Description]  	Create setup items for VrMiscIoutOffset,
+// VrMiscIoutSlope and LakeTiny
+// 
+// 9     11/18/12 9:34p Davidhsieh
+// [TAG]  		EIP195980
+// [Category]  	Improvement
+// [Description]  	Setup items for Package C State Limit and Energy
+// Performance
+// 
+// 8     10/28/12 11:36p Davidhsieh
+// [TAG]  		EIP105017
+// [Category]  	Improvement
+// [Description]  	Implement Setup Options for Debug Interface Enable/Lock
+// 
+// 7     10/19/12 7:07a Davidhsieh
+// [TAG]                None
+// [Category]         Improvement
+// [Description]      Setup items CTDP BIOS, C8, C9 and C10 created
+// 
+// 6     9/13/12 3:29a Davidhsieh
+// [TAG]  		None
+// [Category]  	Improvement
+// [Description]  	Add DTS setup item
+// 
+// 5     7/19/12 2:20a Davidhsieh
+// [TAG]  		None
+// [Category]  	Improvement
+// [Description]  	Change VT default value to enable
+// 
+// 4     6/15/12 3:30a Davidhsieh
+// [TAG]  		EIP89941
+// [Category]  	Improvement
+// [Description]  	Add Intel TXT setup item
+// [Files]  		CPU.sd
+// CPU.uni
+// CPUBSP.cif
+// 
+// 3     5/22/12 2:59a Davidhsieh
+// Setup page layout change
+// 
+// 2     3/16/12 3:34a Davidhsieh
+// Setup items create for CPU RC policy
+// 
+// 1     2/07/12 3:57a Davidhsieh
+//
+// 
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//---------------------------------------------------------------------------
+// Name:	CPU.sd
+//
+// Description:	Setup definition for CPU.
+//
+//---------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+#ifdef SETUP_DATA_DEFINITION
+/***********************************************************/
+/* Put NVRAM data definitions here.
+/* For example:	UINT8 Data1;
+/* These definitions will be converted by the build process
+/* to a definitions of SETUP_DATA fields.
+/***********************************************************/
+#if CPU_SETUP_SET_MAX_RATIO
+    UINT8   CpuMaxRatio;
+#endif
+#if CPU_SETUP_SET_BOOT_RATIO
+    UINT8   CpuSetBootRatio;
+#endif
+    UINT8   XDBit;
+    UINT8   HTD;
+    UINT8   ActiveCoreCount;
+	UINT8 	OverclockingLock;
+    UINT8   LimitCpuid;
+    UINT8   VT;
+    UINT8   LocalX2Apic;
+    UINT8   CpuTccActOffset;
+	UINT8 	TurboPowerLimitLock;
+    UINT8   Cpu1CoreRatioLimit;
+    UINT8   Cpu2CoreRatioLimit;
+    UINT8   Cpu3CoreRatioLimit;
+    UINT8   Cpu4CoreRatioLimit;
+	UINT8	VrCurrentLimitLock;
+    UINT16  VrCurrentLimit;
+    UINT8   PR1CurrentLimit;
+    UINT8   MlcStreamerPrefetcher;
+    UINT8   MlcSpatialPrefetcher;
+    UINT8   AesEnable;
+	UINT8	BootInLfm;
+    UINT8   EIST;
+    UINT8   TurboMode;
+    UINT8   PowerLimit1;
+    UINT8   PowerLimit2;
+    UINT8   PowerLimit1Time;
+    UINT8   DdrPowerLimit1;
+    UINT8   DdrPowerLimit2;
+    UINT8   DdrPowerLimit1Time;
+    UINT8   CxEnable;
+    UINT8   C3Enable;
+    UINT8   C6Enable;
+    UINT8   C7Enable;
+    UINT8   cTDPLevel;
+    UINT8   cTDPLock;
+    UINT8   CpuTstate;
+    UINT8   C1E;
+    UINT8   C1AutoDemotion;
+    UINT8   C3AutoDemotion;
+    UINT8   C1UnDemotion;
+    UINT8   C3UnDemotion;
+	UINT8	PkgCStateDemotion;
+	UINT8	PkgCStateUnDemotion;
+    UINT8   C6Latency;
+    UINT8   C7Latency;
+    UINT8   CxPreWake;	
+    UINT8   TxtSupport;    
+    UINT8   DtsEnable;
+    UINT8   CtdpBios;
+    UINT8   C8Enable;
+    UINT8   C9Enable;
+    UINT8   C10Enable;
+    UINT8   DebugInterfaceEnable;
+    UINT8   DebugInterfaceLock;
+	UINT8	PmgCstCfgCtrlLock;
+    UINT8   PackageCState;
+    UINT8   CpuEngPerfBias;
+    UINT8   LakeTiny;
+    UINT16  IoutOffset;
+    UINT16  IoutSlope;
+    UINT8   IoutOffsetSign;
+    UINT8	CstateLatencyControl0TimeUnit;
+	UINT8	CstateLatencyControl1TimeUnit;
+	UINT8	CstateLatencyControl2TimeUnit;
+	UINT8	CstateLatencyControl0Irtl;
+	UINT8	CstateLatencyControl1Irtl;
+	UINT8	CstateLatencyControl2Irtl;
+	UINT8   PowerLimit3Lock;
+	UINT8   PowerLimit3;
+	UINT8	PowerLimit3Time;
+	UINT8	PowerLimit3DutyCycle;
+#endif
+
+//---------------------------------------------------------------------------
+#if defined(VFRCOMPILE) && !defined(CONTROLS_ARE_DEFINED)
+#define CONTROL_DEFINITION
+#endif
+//---------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------
+#ifdef CONTROL_DEFINITION
+#if CPU_SETUP_SET_MAX_RATIO
+#define CPU_ONEOF_CPUMAXRATIO\
+	numeric varid = SETUP_DATA.CpuMaxRatio,\
+        prompt    = STRING_TOKEN(STR_CPU_MAX_RATIO),\
+        help      = STRING_TOKEN(STR_CPU_MAX_RATIO_HELP),\
+        flags     = RESET_REQUIRED,\
+        minimum   = 0,\
+        maximum   = 255,\
+        step      = 1,\
+        default   = 255,\
+    endnumeric;
+#endif
+#if CPU_SETUP_SET_BOOT_RATIO
+#define CPU_ONEOF_CPUBOOTRATIO\
+	numeric varid = SETUP_DATA.CpuSetBootRatio,\
+        prompt    = STRING_TOKEN(STR_CPU_SET_BOOT_RATIO),\
+        help      = STRING_TOKEN(STR_CPU_SET_BOOT_RATIO_HELP),\
+        flags     = RESET_REQUIRED,\
+        minimum   = 0,\
+        maximum   = 255,\
+        step      = 1,\
+        default   = 255,\
+    endnumeric;
+#endif
+#define CPU_ONEOF_CPUHTD\
+    oneof varid     = SETUP_DATA.HTD,\
+        prompt      = STRING_TOKEN(STR_CPU_HTD_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_HTD_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_CPUACTIVECORECOUNTGUP2\
+    oneof varid     = SETUP_DATA.ActiveCoreCount,\
+        prompt      = STRING_TOKEN(STR_CPU_ACTIVE_CORE_COUNT_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_ACTIVE_CORE_COUNT_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_ALL),	value = 0, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_1),		value = 1, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_2),		value = 2, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_3),		value = 3, flags = RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_CPUACTIVECORECOUNTGUP5\
+    oneof varid     = SETUP_DATA.ActiveCoreCount,\
+        prompt      = STRING_TOKEN(STR_CPU_ACTIVE_CORE_COUNT_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_ACTIVE_CORE_COUNT_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_ALL),	value = 0, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_1),		value = 1, flags = RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_CPUACTIVECORECOUNTGUP3\
+    oneof varid     = SETUP_DATA.ActiveCoreCount,\
+        prompt      = STRING_TOKEN(STR_CPU_ACTIVE_CORE_COUNT_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_ACTIVE_CORE_COUNT_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_ALL),	value = 0, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_1),		value = 1, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_2),		value = 2, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_3),		value = 3, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_4),		value = 4, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_5),		value = 5, flags = RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_OVERCLOCKING_LOCK\
+    oneof varid     = SETUP_DATA.OverclockingLock,\
+        prompt      = STRING_TOKEN(STR_CPU_OVERCLOCKING_LOCK),\
+        help        = STRING_TOKEN(STR_CPU_OVERCLOCKING_LOCK_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = RESET_REQUIRED, key = 0;\
+    endoneof;	
+
+#define CPU_ONEOF_CPULIMITCPUID\
+    oneof varid     = SETUP_DATA.LimitCpuid,\
+        prompt      = STRING_TOKEN(STR_CPU_LIMIT_CPUID_MAX_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_LIMIT_CPUID_MAX_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_CPUXDBIT\
+    oneof varid     = SETUP_DATA.XDBit,\
+        prompt      = STRING_TOKEN(STR_CPU_XD_BIT_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_XD_BIT_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_CPUVT\
+    oneof varid     = SETUP_DATA.VT,\
+        prompt      = STRING_TOKEN(STR_CPU_VT_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_VT_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_CPUMLCSTREAMER\
+    oneof varid     = SETUP_DATA.MlcStreamerPrefetcher,\
+        prompt      = STRING_TOKEN(STR_PROC_HW_PREFETCH_PROMPT),\
+        help        = STRING_TOKEN(STR_PROC_HW_PREFETCH_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_CPUMLCSPATIAL\
+    oneof varid     = SETUP_DATA.MlcSpatialPrefetcher,\
+        prompt      = STRING_TOKEN(STR_PROC_ADJ_CACHE_LINE_PROMPT),\
+        help        = STRING_TOKEN(STR_PROC_ADJ_CACHE_LINE_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_AES\
+    oneof varid     = SETUP_DATA.AesEnable,\
+        prompt = STRING_TOKEN(STR_CPU_AES_PROMPT),\
+        help = STRING_TOKEN(STR_CPU_AES_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_BOOTPERFORMANCEMODE\
+    oneof varid     = SETUP_DATA.BootInLfm,\
+        prompt      = STRING_TOKEN(STR_CPU_BOOT_PERFORMANCE_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_BOOT_PERFORMANCE_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_BOOT_PERFORMANCE_MAX_NONTURBO),  value = 0,  flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_BOOT_PERFORMANCE_MAX_BATTERY),  	value = 1,  flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_BOOT_PERFORMANCE_TURBO),    		value = 2,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+    
+#define CPU_ONEOF_EIST\
+    oneof varid     = SETUP_DATA.EIST,\
+        prompt = STRING_TOKEN(STR_CPU_EIST_PROMPT),\
+        help = STRING_TOKEN(STR_CPU_EIST_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_TURBOMODE\
+    oneof varid     = SETUP_DATA.TurboMode,\
+        prompt      = STRING_TOKEN(STR_CPU_TURBO_MODE_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_TURBO_MODE_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_CPUENGPERFBIAS\
+    oneof varid     = SETUP_DATA.CpuEngPerfBias,\
+        prompt      = STRING_TOKEN(STR_CPU_ENG_PERF_BIAS_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_ENG_PERF_BIAS_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_ENG_PERF_BIAS_PERFORM),      value = 0,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENG_PERF_BIAS_BAL_PERFORM),  value = 7,  flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENG_PERF_BIAS_BAL_ENRGY),    value = 11, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENG_PERF_BIAS_ERGY_EFFIC),   value = 15, flags = RESET_REQUIRED, key = 0;\
+    endoneof;
+
+	#define CPU_ONEOF_TURBOPOWERLIMITLOCK\
+        oneof varid     = SETUP_DATA.TurboPowerLimitLock,\
+            prompt      = STRING_TOKEN(STR_CPU_POWER_LIMIT_LOCK),\
+            help        = STRING_TOKEN(STR_CPU_POWER_LIMIT_LOCK_HELP),\
+            option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = RESET_REQUIRED, key = 0;\
+            option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+        endoneof;
+
+#define CPU_NUMERIC_CPUPWRLIMIT1\
+    numeric varid   = SETUP_DATA.PowerLimit1,\
+        prompt  = STRING_TOKEN(STR_CPU_LONG_DUR_PWR),\
+        help    = STRING_TOKEN(STR_CPU_LONG_DUR_PWR_HELP),\
+        flags   = 0 | RESET_REQUIRED,\
+        minimum = 0,\
+        maximum = 255,\
+        step    = 1,\
+        default = 0,\
+        option text = STRING_TOKEN (STR_CPU_LONG_DUR_PWR), value = 255, flags = MANUFACTURING; \
+    endnumeric;
+
+#define CPU_NUMERIC_CPUPWRLIMIT1TIME\
+    numeric varid   = SETUP_DATA.PowerLimit1Time,\
+        prompt  = STRING_TOKEN(STR_CPU_LONG_DUR_TIME),\
+        help    = STRING_TOKEN(STR_CPU_LONG_DUR_TIME_HELP),\
+        flags   = 0 | RESET_REQUIRED,\
+        minimum = 0,\
+        maximum = 255,\
+        step    = 1,\
+        default = 0,\
+        option text = STRING_TOKEN (STR_CPU_LONG_DUR_TIME), value = 255, flags = MANUFACTURING; \
+    endnumeric;
+
+#define CPU_NUMERIC_CPUPWRLIMIT2\
+    numeric varid   = SETUP_DATA.PowerLimit2,\
+        prompt  = STRING_TOKEN(STR_CPU_SHRT_DUR_PWR),\
+        help    = STRING_TOKEN(STR_CPU_SHRT_DUR_PWR_HELP),\
+        flags   = 0 | RESET_REQUIRED,\
+        minimum = 0,\
+        maximum = 255,\
+        step    = 1,\
+        default = 0,\
+        option text = STRING_TOKEN (STR_CPU_SHRT_DUR_PWR), value = 255, flags = MANUFACTURING; \
+    endnumeric;
+
+#define CPU_ONEOF_PLATFORMPOWERLIMITLOCK\
+        oneof varid     = SETUP_DATA.PowerLimit3Lock,\
+            prompt      = STRING_TOKEN(STR_CPU_PLATFORM_POWER_LIMIT_LOCK),\
+            help        = STRING_TOKEN(STR_CPU_PLATFORM_POWER_LIMIT_LOCK_HELP),\
+            option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = RESET_REQUIRED, key = 0;\
+            option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+        endoneof;
+
+#define CPU_NUMERIC_CPUPWRLIMIT3\
+    numeric varid   = SETUP_DATA.PowerLimit3,\
+        prompt  = STRING_TOKEN(STR_CPU_POWER_LIMIT3),\
+        help    = STRING_TOKEN(STR_CPU_POWER_LIMIT3_HELP),\
+        flags   = 0 | RESET_REQUIRED,\
+        minimum = 0,\
+        maximum = 255,\
+        step    = 1,\
+        default = 0,\
+        option text = STRING_TOKEN (STR_CPU_POWER_LIMIT3), value = 255, flags = MANUFACTURING; \
+    endnumeric;
+
+#define CPU_NUMERIC_CPUPWRLIMIT3TIME\
+    numeric varid   = SETUP_DATA.PowerLimit3Time,\
+        prompt  = STRING_TOKEN(STR_CPU_PL3_TIME),\
+        help    = STRING_TOKEN(STR_CPU_PL3_TIME_HELP),\
+        flags   = 0 | RESET_REQUIRED,\
+        minimum = 0,\
+        maximum = 255,\
+        step    = 1,\
+        default = 0,\
+        option text = STRING_TOKEN (STR_CPU_PL3_TIME), value = 255, flags = MANUFACTURING; \
+    endnumeric;
+
+#define CPU_NUMERIC_CPUPWRLIMIT3DUTYCYCLE\
+    numeric varid   = SETUP_DATA.PowerLimit3DutyCycle,\
+        prompt  = STRING_TOKEN(STR_CPU_PL3_DUTY_CYCLE),\
+        help    = STRING_TOKEN(STR_CPU_PL3_DUTY_CYCLE_HELP),\
+        flags   = 0 | RESET_REQUIRED,\
+        minimum = 0,\
+        maximum = 100,\
+        step    = 1,\
+        default = 0,\
+        option text = STRING_TOKEN (STR_CPU_PL3_DUTY_CYCLE), value = 100, flags = MANUFACTURING; \
+    endnumeric;
+
+#define DDR_NUMERIC_DDRPWRLIMIT1\
+    numeric varid   = SETUP_DATA.DdrPowerLimit1,\
+        prompt  = STRING_TOKEN(STR_DDR_PWR_LIMIT1),\
+        help    = STRING_TOKEN(STR_DDR_PWR_LIMIT1_HELP),\
+        flags   = 0 | RESET_REQUIRED,\
+        minimum = 0,\
+        maximum = 255,\
+        step    = 1,\
+        default = 0,\
+        option text = STRING_TOKEN (STR_CPU_LONG_DUR_PWR), value = 255, flags = MANUFACTURING; \
+    endnumeric;
+
+#define DDR_NUMERIC_DDRPWRLIMIT1TIME\
+    numeric varid   = SETUP_DATA.DdrPowerLimit1Time,\
+        prompt  = STRING_TOKEN(STR_DDR_PWR_LIMIT1_TIME),\
+        help    = STRING_TOKEN(STR_DDR_PWR_LIMIT1_TIME_HELP),\
+        flags   = 0 | RESET_REQUIRED,\
+        minimum = 0,\
+        maximum = 255,\
+        step    = 1,\
+        default = 0,\
+        option text = STRING_TOKEN (STR_CPU_LONG_DUR_TIME), value = 255, flags = MANUFACTURING; \
+    endnumeric;
+
+#define DDR_NUMERIC_DDRPWRLIMIT2\
+    numeric varid   = SETUP_DATA.DdrPowerLimit2,\
+        prompt  = STRING_TOKEN(STR_DDR_PWR_LIMIT2),\
+        help    = STRING_TOKEN(STR_DDR_PWR_LIMIT2_HELP),\
+        flags   = 0 | RESET_REQUIRED,\
+        minimum = 0,\
+        maximum = 255,\
+        step    = 1,\
+        default = 0,\
+        option text = STRING_TOKEN (STR_CPU_SHRT_DUR_PWR), value = 255, flags = MANUFACTURING; \
+    endnumeric;          
+
+#define CPU_ONEOF_CXENABLE\
+    oneof varid     = SETUP_DATA.CxEnable,\
+        prompt      = STRING_TOKEN(STR_CPU_CTATES_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_CTATES_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+    
+#define CPU_ONEOF_C1EENABLE\
+    oneof varid     = SETUP_DATA.C1E,\
+        prompt      = STRING_TOKEN(STR_CPU_C1E_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_C1E_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+        
+#define CPU_ONEOF_C3ENABLE\
+    oneof varid     = SETUP_DATA.C3Enable,\
+        prompt      = STRING_TOKEN(STR_CPU_C3_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_C3_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_C6ENABLE\
+    oneof varid     = SETUP_DATA.C6Enable,\
+        prompt      = STRING_TOKEN(STR_CPU_C6_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_C6_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),  	value = 0,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),   	value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+    endoneof;
+
+#define CPU_LONGSHORT_C6LATENCY\
+    oneof varid     = SETUP_DATA.C6Latency,\
+        prompt      = STRING_TOKEN(STR_CPU_C6_LATENCY_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_C6_LATENCY_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_SHORT_LATENCY),  	value = 0,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_LONG_LATENCY),   	value = 1,  flags = RESET_REQUIRED;\
+    endoneof;    
+
+#define CPU_ONEOF_C7ENABLE\
+    oneof varid     = SETUP_DATA.C7Enable,\
+        prompt      = STRING_TOKEN(STR_CPU_C7_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_C7_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),  	value = 0,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_C7),   	value = 1,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_C7S),   	value = 2,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+    endoneof;
+
+#define CPU_LONGSHORT_C7LATENCY\
+    oneof varid     = SETUP_DATA.C7Latency,\
+        prompt      = STRING_TOKEN(STR_CPU_C7_LATENCY_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_C7_LATENCY_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_SHORT_LATENCY),  	value = 0,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_LONG_LATENCY),   	value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+    endoneof;    
+
+#define CPU_ONEOF_C8ENABLE\
+    oneof varid     = SETUP_DATA.C8Enable,\
+        prompt      = STRING_TOKEN(STR_CPU_C8_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_C8_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),  	value = 0,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),   	value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+    endoneof;
+
+#define CPU_ONEOF_C9ENABLE\
+    oneof varid     = SETUP_DATA.C9Enable,\
+        prompt      = STRING_TOKEN(STR_CPU_C9_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_C9_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),  	value = 0,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),   	value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+    endoneof;
+
+#define CPU_ONEOF_C10ENABLE\
+    oneof varid     = SETUP_DATA.C10Enable,\
+        prompt      = STRING_TOKEN(STR_CPU_C10_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_C10_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),  	value = 0,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),   	value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+    endoneof;
+
+#define CPU_ONEOF_C1AUTODEMOTIONENABLE\
+    oneof varid     = SETUP_DATA.C1AutoDemotion,\
+        prompt      = STRING_TOKEN(STR_CPU_C1DEMOTION_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_C1DEMOTION_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_C3AUTODEMOTIONENABLE\
+    oneof varid     = SETUP_DATA.C3UnDemotion,\
+        prompt      = STRING_TOKEN(STR_CPU_C3DEMOTION_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_C3DEMOTION_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_C1UNDEMOTIONENABLE\
+    oneof varid     = SETUP_DATA.C1UnDemotion,\
+        prompt      = STRING_TOKEN(STR_CPU_C1UNDEMOTION_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_C1UNDEMOTION_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_C3UNDEMOTIONENABLE\
+    oneof varid     = SETUP_DATA.C3AutoDemotion,\
+        prompt      = STRING_TOKEN(STR_CPU_C3UNDEMOTION_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_C1UNDEMOTION_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_PACKAGECDEMOTIONENABLE\
+    oneof varid     = SETUP_DATA.PkgCStateDemotion,\
+        prompt      = STRING_TOKEN(STR_CPU_PACKAGECDEMOTION_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_PACKAGECDEMOTION_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_PACKAGECUNDEMOTIONENABLE\
+    oneof varid     = SETUP_DATA.PkgCStateUnDemotion,\
+        prompt      = STRING_TOKEN(STR_CPU_PACKAGECUNDEMOTION_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_PACKAGECUNDEMOTION_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_CXPREWAKEENABLE\
+    oneof varid     = SETUP_DATA.CxPreWake,\
+        prompt      = STRING_TOKEN(STR_CPU_CX_PREWAKE_PROMPT),\
+        help        = STRING_TOKEN(STR_CPU_CX_PREWAKE_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+        
+#if CPU_SETUP_SET_LATENCY_CONTROL
+#define CPU_ONEOF_C3LATENCYCONTROLTIMEUNIT\
+    oneof varid     = SETUP_DATA.CstateLatencyControl0TimeUnit,\
+        prompt      = STRING_TOKEN(STR_CPU_C3_LATENCY_CONTROL_TIME_UNIT),\
+        help        = STRING_TOKEN(STR_CPU_C3_LATENCY_CONTROL_TIME_UNIT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_1NS),			value = 0, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_32NS),			value = 1, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_1024NS),		value = 2, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_32768NS),		value = 3, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_1048576NS),	value = 4, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_33554432NS),	value = 5, flags = RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_NUMERIC_C3LATENCYCONTROLLATENCY\
+    numeric varid   = SETUP_DATA.CstateLatencyControl0Irtl,\
+        prompt  = STRING_TOKEN(STR_CPU_C3_LATENCY_CONTROL_LATENCY),\
+        help    = STRING_TOKEN(STR_CPU_C3_LATENCY_CONTROL_LATENCY_HELP),\
+        flags   = 0 | RESET_REQUIRED,\
+        minimum = 0,\
+        maximum = 1023,\
+        step    = 1,\
+        default = 0x42,\
+    endnumeric;
+
+#define CPU_ONEOF_C6C7SHORTLATENCYCONTROLTIMEUNIT\
+    oneof varid     = SETUP_DATA.CstateLatencyControl1TimeUnit,\
+        prompt      = STRING_TOKEN(STR_CPU_C6C7_SHORT_LATENCY_CONTROL_TIME_UNIT),\
+        help        = STRING_TOKEN(STR_CPU_C6C7_SHORT_LATENCY_CONTROL_TIME_UNIT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_1NS),			value = 0, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_32NS),			value = 1, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_1024NS),		value = 2, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_32768NS),		value = 3, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_1048576NS),	value = 4, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_33554432NS),	value = 5, flags = RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_NUMERIC_C6C7SHORTLATENCYCONTROLLATENCY\
+    numeric varid   = SETUP_DATA.CstateLatencyControl1Irtl,\
+        prompt  = STRING_TOKEN(STR_CPU_C6C7_SHORT_LATENCY_CONTROL_LATENCY),\
+        help    = STRING_TOKEN(STR_CPU_C6C7_SHORT_LATENCY_CONTROL_LATENCY_HELP),\
+        flags   = 0 | RESET_REQUIRED,\
+        minimum = 0,\
+        maximum = 1023,\
+        step    = 1,\
+        default = 0x6A,\
+    endnumeric;
+
+#define CPU_ONEOF_C6C7LONGLATENCYCONTROLTIMEUNIT\
+    oneof varid     = SETUP_DATA.CstateLatencyControl2TimeUnit,\
+        prompt      = STRING_TOKEN(STR_CPU_C6C7_LONG_LATENCY_CONTROL_TIME_UNIT),\
+        help        = STRING_TOKEN(STR_CPU_C6C7_LONG_LATENCY_CONTROL_TIME_UNIT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_1NS),			value = 0, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_32NS),			value = 1, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_1024NS),		value = 2, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_32768NS),		value = 3, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_1048576NS),	value = 4, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_LATENCY_CONTROL_TIME_UNIT_33554432NS),	value = 5, flags = RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_NUMERIC_C6C7LONGLATENCYCONTROLLATENCY\
+    numeric varid   = SETUP_DATA.CstateLatencyControl2Irtl,\
+        prompt  = STRING_TOKEN(STR_CPU_C6C7_LONG_LATENCY_CONTROL_LATENCY),\
+        help    = STRING_TOKEN(STR_CPU_C6C7_LONG_LATENCY_CONTROL_LATENCY_HELP),\
+        flags   = 0 | RESET_REQUIRED,\
+        minimum = 0,\
+        maximum = 1023,\
+        step    = 1,\
+        default = 0x91,\
+    endnumeric;
+#endif 	
+
+#define CPU_ONEOF_PACKAGECSTATELOCK\
+    oneof varid     = SETUP_DATA.PmgCstCfgCtrlLock,\
+        prompt      = STRING_TOKEN(STR_CPU_PACKAGE_CSTATE_REPORT_LOCK),\
+        help        = STRING_TOKEN(STR_CPU_PACKAGE_CSTATE_REPORT_LOCK_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_PACKAGECSTATEUPTOC7\
+    oneof varid     = SETUP_DATA.PackageCState,\
+        prompt      = STRING_TOKEN(STR_CPU_PACKAGE_CSTATE_REPORT),\
+        help        = STRING_TOKEN(STR_CPU_PACKAGE_CSTATE_REPORT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_C0SUPPORT),  value = 0,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_C2SUPPORT),  value = 1,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_C3SUPPORT),  value = 2,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_C6SUPPORT),  value = 3,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_C7SUPPORT),  value = 4,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_C7SSUPPORT), value = 5,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_AUTO),       value = 0xff,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+  endoneof;
+
+#define CPU_ONEOF_PACKAGECSTATEUPTOC10\
+    oneof varid     = SETUP_DATA.PackageCState,\
+        prompt      = STRING_TOKEN(STR_CPU_PACKAGE_CSTATE_REPORT),\
+        help        = STRING_TOKEN(STR_CPU_PACKAGE_CSTATE_REPORT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_C0SUPPORT),  value = 0,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_C2SUPPORT),  value = 1,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_C3SUPPORT),  value = 2,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_C6SUPPORT),  value = 3,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_C7SUPPORT),  value = 4,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_C7SSUPPORT), value = 5,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_C8SUPPORT),  value = 6,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_C9SUPPORT),  value = 7,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_C10SUPPORT), value = 8,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_AUTO),       value = 0xff,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+  endoneof;
+
+#define CPU_ONEOF_CPULAKETINY\
+	oneof varid   = SETUP_DATA.LakeTiny,\
+        prompt    = STRING_TOKEN(STR_CPU_LAKETINY_PROMPT),\
+        help      = STRING_TOKEN(STR_CPU_LAKETINY_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_CPUCTDPBIOS\
+        oneof varid     = SETUP_DATA.CtdpBios,\
+            prompt      = STRING_TOKEN(STR_CPU_CTDP_BIOS_PROMPT),\
+            help        = STRING_TOKEN(STR_CPU_CTDP_BIOS_PROMPT_HELP),\
+            option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+            option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = RESET_REQUIRED, key = 0;\
+        endoneof;   
+                
+#define CPU_ONEOF_CPUCONFIGTDPLEVEL\
+        oneof varid     = SETUP_DATA.cTDPLevel,\
+            prompt      = STRING_TOKEN(STR_CPUTDP_LEVEL_PROMPT),\
+            help        = STRING_TOKEN(STR_CPUTDP_LEVEL_PROMPT_HELP),\
+            option text = STRING_TOKEN(STR_CPUTDP_LEVEL_NOMINAL),	value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+            option text = STRING_TOKEN(STR_CPUTDP_LEVEL_DOWN),	value = 1, flags = RESET_REQUIRED, key = 0;\
+            option text = STRING_TOKEN(STR_CPUTDP_LEVEL_UP),	value = 2, flags = RESET_REQUIRED, key = 0;\
+            option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0xff, flags = RESET_REQUIRED, key = 0;\
+        endoneof;
+        
+#define CPU_ONEOF_CPUCTDPLOCK\
+        oneof varid     = SETUP_DATA.cTDPLock,\
+            prompt      = STRING_TOKEN(STR_CPUTDP_LOCK_PROMPT),\
+            help        = STRING_TOKEN(STR_CPUTDP_LOCK_PROMPT_HELP),\
+            option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+            option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = RESET_REQUIRED, key = 0;\
+        endoneof;            
+                
+#define CPU_NUMERIC_CPUTCCACTIVEOFFSET\
+    numeric varid   = SETUP_DATA.CpuTccActOffset,\
+        prompt  = STRING_TOKEN(STR_CPU_TCC_ACTIVATION_OFFSET),\
+        help    = STRING_TOKEN(STR_CPU_TCC_ACTIVATION_OFFSET_HELP),\
+        flags   = RESET_REQUIRED, \
+        minimum = 0,\
+        maximum = 50,\
+        step    = 1,\
+        default = 0,\
+        option text = STRING_TOKEN (STR_CPU_TCC_ACTIVATION_OFFSET), value = 50, flags = MANUFACTURING; \
+    endnumeric;
+
+#define CPU_ONEOF_CPU1CORERATIOLIMIT\
+    numeric varid = SETUP_DATA.Cpu1CoreRatioLimit,\
+        prompt    = STRING_TOKEN(STR_CPU_1_CORE_RATIO_LIMIT),\
+        help      = STRING_TOKEN(STR_CPU_1_CORE_RATIO_LIMIT_HELP),\
+        flags     = RESET_REQUIRED,\
+        minimum   = 0,\
+        maximum   = 255,\
+        step      = 1,\
+        default   = 0,\
+        option text = STRING_TOKEN (STR_CPU_1_CORE_RATIO_LIMIT), value = 255, flags = MANUFACTURING; \
+    endnumeric;
+
+#define CPU_ONEOF_CPU2CORERATIOLIMIT\
+    numeric varid = SETUP_DATA.Cpu2CoreRatioLimit,\
+        prompt    = STRING_TOKEN(STR_CPU_2_CORE_RATIO_LIMIT),\
+        help      = STRING_TOKEN(STR_CPU_2_CORE_RATIO_LIMIT_HELP),\
+        flags     = RESET_REQUIRED,\
+        minimum   = 0,\
+        maximum   = 255,\
+        step      = 1,\
+        default   = 0,\
+        option text = STRING_TOKEN (STR_CPU_2_CORE_RATIO_LIMIT), value = 255, flags = MANUFACTURING; \
+    endnumeric;
+
+#define CPU_ONEOF_CPU3CORERATIOLIMIT\
+    numeric varid = SETUP_DATA.Cpu3CoreRatioLimit,\
+        prompt    = STRING_TOKEN(STR_CPU_3_CORE_RATIO_LIMIT),\
+        help      = STRING_TOKEN(STR_CPU_3_CORE_RATIO_LIMIT_HELP),\
+        flags     = RESET_REQUIRED,\
+        minimum   = 0,\
+        maximum   = 255,\
+        step      = 1,\
+        default   = 0,\
+        option text = STRING_TOKEN (STR_CPU_3_CORE_RATIO_LIMIT), value = 255, flags = MANUFACTURING; \
+    endnumeric;
+
+#define CPU_ONEOF_CPU4CORERATIOLIMIT\
+    numeric varid = SETUP_DATA.Cpu4CoreRatioLimit,\
+        prompt    = STRING_TOKEN(STR_CPU_4_CORE_RATIO_LIMIT),\
+        help      = STRING_TOKEN(STR_CPU_4_CORE_RATIO_LIMIT_HELP),\
+        flags     = RESET_REQUIRED ,\
+        minimum   = 0,\
+        maximum   = 255,\
+        step      = 1,\
+        default   = 0,\
+        option text = STRING_TOKEN (STR_CPU_4_CORE_RATIO_LIMIT), value = 255, flags = MANUFACTURING; \
+    endnumeric;
+
+#define CPU_ONEOF_CPUVRCURRENTLIMITLOCK\
+        oneof varid     = SETUP_DATA.VrCurrentLimitLock,\
+            prompt      = STRING_TOKEN(STR_PRIMARY_PLANE_CURRENT_LOCK),\
+            help        = STRING_TOKEN(STR_PRIMARY_PLANE_CURRENT_LOCK_HELP),\
+            option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = RESET_REQUIRED, key = 0;\
+            option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+        endoneof;	
+
+#define CPU_ONEOF_CPUVRCURRENTLIMIT\
+    numeric varid = SETUP_DATA.VrCurrentLimit,\
+        prompt    = STRING_TOKEN(STR_PRIMARY_PLANE_CURRENT),\
+        help      = STRING_TOKEN(STR_PRIMARY_PLANE_CURRENT_HELP),\
+        flags     = RESET_REQUIRED,\
+        minimum   = 0,\
+        maximum   = 8191,\
+        step      = 1,\
+        default   = 0,\
+        option text = STRING_TOKEN (STR_PRIMARY_PLANE_CURRENT), value = 255, flags = MANUFACTURING; \
+    endnumeric;
+
+#define CPU_ONEOF_CPUPR1CURRENTLIMIT\
+    numeric varid = SETUP_DATA.PR1CurrentLimit,\
+        prompt    = STRING_TOKEN(STR_SECONDARY_PLANE_CURRENT),\
+        help      = STRING_TOKEN(STR_SECONDARY_PLANE_CURRENT_HELP),\
+        flags     = RESET_REQUIRED,\
+        minimum   = 0,\
+        maximum   = 255,\
+        step      = 1,\
+        default   = 0,\
+        option text = STRING_TOKEN (STR_SECONDARY_PLANE_CURRENT), value = 255, flags = MANUFACTURING; \
+    endnumeric;
+
+#define CPU_ONEOF_ITXT\
+    oneof varid     = SETUP_DATA.TxtSupport,\
+        prompt = STRING_TOKEN(STR_ITXT_PROMPT),\
+        help = STRING_TOKEN(STR_ITXT_SUPPORT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = RESET_REQUIRED, key = 0;\
+    endoneof;
+    
+#define CPU_ONEOF_CPUTSTATEENABLE\
+        oneof varid     = SETUP_DATA.CpuTstate,\
+            prompt      = STRING_TOKEN(STR_CPU_TSTATE_PROMPT),\
+            help        = STRING_TOKEN(STR_CPU_TSTATE_PROMPT_HELP),\
+            option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+            option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = RESET_REQUIRED, key = 0;\
+        endoneof;
+
+#define CPU_ONEOF_DTS\
+    oneof varid     = SETUP_DATA.DtsEnable,\
+        prompt      = STRING_TOKEN(STR_DTS_PROMPT),\
+        help        = STRING_TOKEN(STR_DTS_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_DEBUG_INTERFACE\
+    oneof varid     = SETUP_DATA.DebugInterfaceEnable,\
+        prompt      = STRING_TOKEN(STR_DEBUG_INTERFACE_PROMPT),\
+        help        = STRING_TOKEN(STR_DEBUG_INTERFACE_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define CPU_ONEOF_DEBUG_INTERFACE_LOCK\
+    oneof varid     = SETUP_DATA.DebugInterfaceLock,\
+        prompt      = STRING_TOKEN(STR_DEBUG_INTERFACE_LOCK_PROMPT),\
+        help        = STRING_TOKEN(STR_DEBUG_INTERFACE_LOCK_PROMPT_HELP),\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),	value = 0, flags = RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),	value = 1, flags = DEFAULT |  MANUFACTURING | RESET_REQUIRED, key = 0;\
+    endoneof;
+
+#define VR_NUMERIC_IOUT_OFFSET_SIGN\
+    numeric varid   = SETUP_DATA.IoutOffsetSign,\
+        prompt  = STRING_TOKEN(STR_CPU_IOUT_OFFSET_SIGN_PROMPT),\
+        help    = STRING_TOKEN(STR_CPU_IOUT_OFFSET_SIGN_PROMPT_HELP),\
+        flags   = 0 | RESET_REQUIRED,\
+        minimum = 0,\
+        maximum = 1,\
+        step    = 1,\
+        default = 0,\
+        option text = STRING_TOKEN (STR_CPU_IOUT_OFFSET_PROMPT), value = 255, flags = MANUFACTURING; \
+    endnumeric;
+
+#define VR_NUMERIC_IOUT_OFFSET\
+    numeric varid   = SETUP_DATA.IoutOffset,\
+        prompt  = STRING_TOKEN(STR_CPU_IOUT_OFFSET_PROMPT),\
+        help    = STRING_TOKEN(STR_CPU_IOUT_OFFSET_PROMPT_HELP),\
+        flags   = 0 | RESET_REQUIRED,\
+        minimum = 0,\
+        maximum = 625,\
+        step    = 1,\
+        default = 0,\
+        option text = STRING_TOKEN (STR_CPU_IOUT_OFFSET_PROMPT), value = 255, flags = MANUFACTURING; \
+    endnumeric;
+
+#define VR_NUMERIC_IOUT_SLOPE\
+    numeric varid   = SETUP_DATA.IoutSlope,\
+        prompt  = STRING_TOKEN(STR_CPU_IOUT_SLOPE_PROMPT),\
+        help    = STRING_TOKEN(STR_CPU_IOUT_SLOPE_PROMPT_HELP),\
+        flags   = 0 | RESET_REQUIRED,\
+        minimum = 0,\
+        maximum = 1023,\
+        step    = 1,\
+        default = 512,\
+        option text = STRING_TOKEN (STR_CPU_IOUT_SLOPE_PROMPT), value = 1023, flags = MANUFACTURING; \
+    endnumeric;
+#endif //#ifdef CONTROL_DEFINITION
+
+#ifdef CONTROLS_WITH_DEFAULTS
+#if CPU_SETUP_SET_MAX_RATIO
+    CPU_ONEOF_CPUMAXRATIO
+#endif
+#if CPU_SETUP_SET_BOOT_RATIO
+    CPU_ONEOF_CPUBOOTRATIO
+#endif
+    CPU_ONEOF_CPUHTD
+    CPU_ONEOF_CPUACTIVECORECOUNTGUP2
+    CPU_ONEOF_CPUACTIVECORECOUNTGUP5
+    CPU_ONEOF_CPUACTIVECORECOUNTGUP3
+	CPU_ONEOF_OVERCLOCKING_LOCK
+    CPU_ONEOF_CPULIMITCPUID
+    CPU_ONEOF_CPUXDBIT
+    CPU_ONEOF_CPUVT
+    CPU_ONEOF_CPUMLCSTREAMER
+    CPU_ONEOF_CPUMLCSPATIAL
+    CPU_ONEOF_AES
+	CPU_ONEOF_BOOTPERFORMANCEMODE
+    CPU_ONEOF_EIST
+    CPU_ONEOF_TURBOMODE
+    CPU_ONEOF_CPUENGPERFBIAS
+	CPU_ONEOF_TURBOPOWERLIMITLOCK
+    CPU_NUMERIC_CPUPWRLIMIT1
+    CPU_NUMERIC_CPUPWRLIMIT1TIME
+    CPU_NUMERIC_CPUPWRLIMIT2
+	CPU_ONEOF_PLATFORMPOWERLIMITLOCK
+	CPU_NUMERIC_CPUPWRLIMIT3
+	CPU_NUMERIC_CPUPWRLIMIT3TIME
+	CPU_NUMERIC_CPUPWRLIMIT3DUTYCYCLE
+    CPU_ONEOF_CXENABLE
+    CPU_ONEOF_C1EENABLE
+    CPU_ONEOF_C3ENABLE
+    CPU_ONEOF_C6ENABLE
+    CPU_LONGSHORT_C6LATENCY
+    CPU_ONEOF_C7ENABLE
+    CPU_LONGSHORT_C7LATENCY
+    CPU_ONEOF_C8ENABLE
+    CPU_ONEOF_C9ENABLE
+    CPU_ONEOF_C10ENABLE
+    CPU_ONEOF_C1AUTODEMOTIONENABLE
+    CPU_ONEOF_C3AUTODEMOTIONENABLE
+    CPU_ONEOF_C1UNDEMOTIONENABLE
+    CPU_ONEOF_C3UNDEMOTIONENABLE
+	CPU_ONEOF_PACKAGECDEMOTIONENABLE
+	CPU_ONEOF_PACKAGECUNDEMOTIONENABLE
+    CPU_ONEOF_CXPREWAKEENABLE
+#if CPU_SETUP_SET_LATENCY_CONTROL
+	CPU_ONEOF_C3LATENCYCONTROLTIMEUNIT
+	CPU_NUMERIC_C3LATENCYCONTROLLATENCY
+	CPU_ONEOF_C6C7SHORTLATENCYCONTROLTIMEUNIT
+	CPU_NUMERIC_C6C7SHORTLATENCYCONTROLLATENCY
+	CPU_ONEOF_C6C7LONGLATENCYCONTROLTIMEUNIT
+	CPU_NUMERIC_C6C7LONGLATENCYCONTROLLATENCY
+#endif
+	CPU_ONEOF_PACKAGECSTATELOCK
+	CPU_ONEOF_PACKAGECSTATEUPTOC7
+    CPU_ONEOF_PACKAGECSTATEUPTOC10
+    CPU_ONEOF_CPULAKETINY
+    CPU_ONEOF_CPUCTDPBIOS
+    CPU_ONEOF_CPUCONFIGTDPLEVEL
+    CPU_ONEOF_CPUCTDPLOCK
+    CPU_NUMERIC_CPUTCCACTIVEOFFSET
+    CPU_ONEOF_CPU1CORERATIOLIMIT
+    CPU_ONEOF_CPU2CORERATIOLIMIT
+    CPU_ONEOF_CPU3CORERATIOLIMIT
+    CPU_ONEOF_CPU4CORERATIOLIMIT
+	CPU_ONEOF_CPUVRCURRENTLIMITLOCK
+    CPU_ONEOF_CPUVRCURRENTLIMIT
+    CPU_ONEOF_ITXT
+    CPU_ONEOF_CPUTSTATEENABLE
+    CPU_ONEOF_DTS
+    CPU_ONEOF_DEBUG_INTERFACE
+    CPU_ONEOF_DEBUG_INTERFACE_LOCK
+    VR_NUMERIC_IOUT_OFFSET_SIGN
+    VR_NUMERIC_IOUT_OFFSET
+    VR_NUMERIC_IOUT_SLOPE
+#endif //#ifdef CONTROLS_WITH_DEFAULTS
+
+#ifdef ADVANCED_FORM_SET
+
+    #ifndef SUPPRESS_GRAYOUT_ENDIF
+        #define SUPPRESS_GRAYOUT_ENDIF endif;
+    #endif
+
+    #ifdef FORM_SET_TYPEDEF
+        #include <PlatformCpuLib.h>
+    #endif
+
+    #ifdef FORM_SET_VARSTORE
+        varstore SETUP_CPU_FEATURES,
+            key   = AUTO_ID(CPU_FEATURES_ID),
+            name  = SetupCpuFeatures,
+            guid  = SETUP_GUID;
+    #endif
+
+    #ifdef FORM_SET_ITEM
+        //	Define controls to be added to the main page of the formset
+    #endif
+
+    #ifdef FORM_SET_GOTO
+        // Define goto commands for the forms defined in this file
+        goto CPU_FORM_ID, 
+        prompt = STRING_TOKEN(STR_CPU_FORM),
+        help = STRING_TOKEN(STR_CPU_FORM_HELP);
+    #endif
+
+    #ifdef FORM_SET_FORM
+    #ifndef CPU_FORM_SETUP
+    #define CPU_FORM_SETUP
+
+    // Define forms
+    form formid = AUTO_ID(CPU_FORM_ID),
+     title = STRING_TOKEN(STR_CPU_FORM);
+ 
+     SUBTITLE(STRING_TOKEN(STR_CPU_FORM))
+     SEPARATOR
+     
+     SUBTITLE(STRING_TOKEN(STR_CPU_SKT0_VERSION_VALUE))
+ 
+     text 
+       help   = STRING_TOKEN(STR_CPU_SKT_CPUID_HELP),
+       text   = STRING_TOKEN(STR_CPU_SKT_CPUID_STRING),
+       text   = STRING_TOKEN(STR_CPU_SKT0_CPUID_VALUE),
+       flags  = 0, key = 0;
+
+	 text 
+       help   = STRING_TOKEN(STR_PROCESSOR_FAMILY_HELP),
+       text   = STRING_TOKEN(STR_PROCESSOR_FAMILY_STRING),
+       text   = STRING_TOKEN(STR_PROCESSOR_FAMILY_VALUE),
+       flags  = 0, key = 0;
+ 
+     text 
+       help   = STRING_TOKEN(STR_CPU_SKT_MICROCODE_HELP),
+       text   = STRING_TOKEN(STR_CPU_SKT_MICROCODE_STRING),
+       text   = STRING_TOKEN(STR_CPU_SKT0_MICROCODE_VALUE),
+       flags  = 0, key = 0;
+
+	 text 
+       help   = STRING_TOKEN(STR_CPU_SKT_FSBSPEED_HELP),
+       text   = STRING_TOKEN(STR_CPU_SKT_FSBSPEED_STRING),
+       text   = STRING_TOKEN(STR_CPU_SKT_FSBSPEED_VALUE),
+       flags  = 0, key = 0;
+ 
+     text 
+       help   = STRING_TOKEN(STR_CPU_SKT_MAXSPEED_HELP),
+       text   = STRING_TOKEN(STR_CPU_SKT_MAXSPEED_STRING),
+       text   = STRING_TOKEN(STR_CPU_SKT0_MAXSPEED_VALUE),
+       flags  = 0, key = 0;
+ 
+     text 
+       help   = STRING_TOKEN(STR_CPU_SKT_MINSPEED_HELP),
+       text   = STRING_TOKEN(STR_CPU_SKT_MINSPEED_STRING),
+       text   = STRING_TOKEN(STR_CPU_SKT0_MINSPEED_VALUE),
+       flags  = 0, key = 0;
+    
+     text 
+       help   = STRING_TOKEN(STR_PROCESSOR_SPEED_HELP),
+       text   = STRING_TOKEN(STR_PROCESSOR_SPEED_STRING),
+       text   = STRING_TOKEN(STR_PROCESSOR_SPEED_VALUE),
+       flags  = 0, key = 0;  
+ 
+     text 
+       help   = STRING_TOKEN(STR_CPU_SKT_NUMCORE_HELP),
+       text   = STRING_TOKEN(STR_CPU_SKT_NUMCORE_STRING),
+       text   = STRING_TOKEN(STR_CPU_SKT0_NUMCORE_VALUE),
+       flags  = 0, key = 0;
+ 
+     text 
+       help   = STRING_TOKEN(STR_CPU_SKT_HT_HELP),
+       text   = STRING_TOKEN(STR_CPU_SKT_HT_STRING),
+       text   = STRING_TOKEN(STR_CPU_SKT0_HT_VALUE),
+       flags  = 0, key = 0;
+ 
+     text 
+       help   = STRING_TOKEN(STR_CPU_SKT_VTX_HELP),
+       text   = STRING_TOKEN(STR_CPU_SKT_VTX_STRING),
+       text   = STRING_TOKEN(STR_CPU_SKT0_VTX_VALUE),
+       flags  = 0, key = 0;
+
+     text 
+       help   = STRING_TOKEN(STR_CPU_SKT_SMX_HELP),
+       text   = STRING_TOKEN(STR_CPU_SKT_SMX_STRING),
+       text   = STRING_TOKEN(STR_CPU_SKT0_SMX_VALUE),
+       flags  = 0, key = 0;
+
+     text 
+         help = STRING_TOKEN(STR_CPU_EMT64_HELP),
+         text = STRING_TOKEN(STR_CPU_EMT64_STRING),
+         text = STRING_TOKEN(STR_CPU_EMT64_VALUE),
+         flags = 0, key = 0;  
+ 
+    text 
+       help   = STRING_TOKEN(STR_CPU_SKT_EIST_HELP),
+       text   = STRING_TOKEN(STR_CPU_SKT_EIST_STRING),
+       text   = STRING_TOKEN(STR_CPU_SKT0_EIST_VALUE),
+       flags  = 0, key = 0;  
+       
+    text 
+       help   = STRING_TOKEN(STR_CPU_SKT_C3_HELP),
+       text   = STRING_TOKEN(STR_CPU_SKT_C3_STRING),
+       text   = STRING_TOKEN(STR_CPU_SKT0_C3_VALUE),
+       flags  = 0, key = 0;  
+       
+    text 
+       help   = STRING_TOKEN(STR_CPU_SKT_C6_HELP),
+       text   = STRING_TOKEN(STR_CPU_SKT_C6_STRING),
+       text   = STRING_TOKEN(STR_CPU_SKT0_C6_VALUE),
+       flags  = 0, key = 0;  
+       
+    text 
+       help   = STRING_TOKEN(STR_CPU_SKT_C7_HELP),
+       text   = STRING_TOKEN(STR_CPU_SKT_C7_STRING),
+       text   = STRING_TOKEN(STR_CPU_SKT0_C7_VALUE),
+       flags  = 0, key = 0;           
+ 
+     SEPARATOR
+ 
+     text 
+       help   = STRING_TOKEN(STR_CPU_SKT_L1_DATA_CACHE_HELP),
+       text   = STRING_TOKEN(STR_CPU_SKT_L1_DATA_CACHE_STRING),
+       text   = STRING_TOKEN(STR_CPU_SKT0_L1_DATA_CACHE_VALUE),
+       flags  = 0, key = 0;
+ 
+     text 
+       help   = STRING_TOKEN(STR_CPU_SKT_L1_CODE_CACHE_HELP),
+       text   = STRING_TOKEN(STR_CPU_SKT_L1_CODE_CACHE_STRING),
+       text   = STRING_TOKEN(STR_CPU_SKT0_L1_CODE_CACHE_VALUE),
+       flags  = 0, key = 0;
+ 
+     text 
+       help   = STRING_TOKEN(STR_CPU_SKT_L2_CACHE_HELP),
+       text   = STRING_TOKEN(STR_CPU_SKT_L2_CACHE_STRING),
+       text   = STRING_TOKEN(STR_CPU_SKT0_L2_CACHE_VALUE),
+       flags  = 0, key = 0;
+ 
+     text 
+       help   = STRING_TOKEN(STR_CPU_SKT_L3_CACHE_HELP),
+       text   = STRING_TOKEN(STR_CPU_SKT_L3_CACHE_STRING),
+       text   = STRING_TOKEN(STR_CPU_SKT0_L3_CACHE_VALUE),
+       flags  = 0, key = 0;	   
+ 
+     SEPARATOR
+ 
+     suppressif  ideqval SETUP_CPU_FEATURES.CpuMismatch == 0;
+         text 
+           help   = STRING_TOKEN(STR_CPU_MISMATCH_VALUE),
+           text   = STRING_TOKEN(STR_CPU_MISMATCH_STRING),
+           text   = STRING_TOKEN(STR_CPU_MISMATCH_VALUE),
+           flags  = 0, key = 0;
+     endif;
+
+#if CPU_SETUP_SET_MAX_RATIO
+     CPU_ONEOF_CPUMAXRATIO
+#endif
+
+#if CPU_SETUP_SET_BOOT_RATIO
+     CPU_ONEOF_CPUBOOTRATIO
+#endif
+
+     suppressif  ideqval SETUP_CPU_FEATURES.HTAvailable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+         CPU_ONEOF_CPUHTD
+     SUPPRESS_GRAYOUT_ENDIF
+
+     suppressif  ideqval SETUP_CPU_FEATURES.MultiCoreAvailable == 0 OR NOT ideqval SETUP_CPU_FEATURES.CpuGroup == 2;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+         CPU_ONEOF_CPUACTIVECORECOUNTGUP2
+     SUPPRESS_GRAYOUT_ENDIF
+
+     suppressif  ideqval SETUP_CPU_FEATURES.MultiCoreAvailable == 0 OR NOT ideqval SETUP_CPU_FEATURES.CpuGroup == 5;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+         CPU_ONEOF_CPUACTIVECORECOUNTGUP5
+     SUPPRESS_GRAYOUT_ENDIF
+
+     suppressif  ideqval SETUP_CPU_FEATURES.MultiCoreAvailable == 0 OR NOT ideqval SETUP_CPU_FEATURES.CpuGroup == 3;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+         CPU_ONEOF_CPUACTIVECORECOUNTGUP3
+     SUPPRESS_GRAYOUT_ENDIF
+	 
+	 grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+        CPU_ONEOF_OVERCLOCKING_LOCK
+     endif;
+
+     suppressif  ideqval SETUP_CPU_FEATURES.LimitCpuidAvailable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+ 	    CPU_ONEOF_CPULIMITCPUID
+     SUPPRESS_GRAYOUT_ENDIF
+
+     suppressif  ideqval SETUP_CPU_FEATURES.XDBitAvailable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+         CPU_ONEOF_CPUXDBIT
+     SUPPRESS_GRAYOUT_ENDIF
+
+     suppressif  ideqval SETUP_CPU_FEATURES.VTAvailable == 0 OR ideqval SETUP_DATA.TxtSupport == 1;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+         CPU_ONEOF_CPUVT
+     SUPPRESS_GRAYOUT_ENDIF
+     
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+        CPU_ONEOF_CPUMLCSTREAMER
+     endif;
+     
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+        CPU_ONEOF_CPUMLCSPATIAL
+     endif;
+     
+     suppressif  ideqval SETUP_CPU_FEATURES.AesAvailable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+         CPU_ONEOF_AES
+     SUPPRESS_GRAYOUT_ENDIF
+
+	 grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+		CPU_ONEOF_BOOTPERFORMANCEMODE
+	 endif;
+
+     suppressif  ideqval SETUP_CPU_FEATURES.EistAvailable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+         CPU_ONEOF_EIST
+     SUPPRESS_GRAYOUT_ENDIF
+     
+     suppressif  ideqval SETUP_CPU_FEATURES.TurboModeAvailable == 0 OR ideqval SETUP_DATA.EIST == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+         CPU_ONEOF_TURBOMODE
+         CPU_ONEOF_CPUENGPERFBIAS
+     SUPPRESS_GRAYOUT_ENDIF
+     
+     suppressif ideqval SETUP_CPU_FEATURES.PwrLimitAvailable == 0 
+             OR ideqval SETUP_DATA.TurboMode == 0
+             OR ideqval SETUP_DATA.EIST == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+		CPU_ONEOF_TURBOPOWERLIMITLOCK
+        CPU_NUMERIC_CPUPWRLIMIT1
+        CPU_NUMERIC_CPUPWRLIMIT1TIME
+        CPU_NUMERIC_CPUPWRLIMIT2
+		CPU_ONEOF_PLATFORMPOWERLIMITLOCK
+		CPU_NUMERIC_CPUPWRLIMIT3
+		CPU_NUMERIC_CPUPWRLIMIT3TIME
+		CPU_NUMERIC_CPUPWRLIMIT3DUTYCYCLE
+        DDR_NUMERIC_DDRPWRLIMIT1
+        DDR_NUMERIC_DDRPWRLIMIT1TIME
+        DDR_NUMERIC_DDRPWRLIMIT2         
+     SUPPRESS_GRAYOUT_ENDIF
+
+     suppressif  ideqval SETUP_CPU_FEATURES.XECoreRatioLimitAvailable == 0 
+              OR ideqval SETUP_DATA.TurboMode == 0
+              OR ideqval SETUP_DATA.EIST == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+         CPU_ONEOF_CPU1CORERATIOLIMIT
+     SUPPRESS_GRAYOUT_ENDIF    
+
+     suppressif  ideqval SETUP_CPU_FEATURES.XECoreRatioLimitAvailable == 0 OR ideqval SETUP_CPU_FEATURES.NumCores == 1
+              OR ideqval SETUP_DATA.TurboMode == 0
+              OR ideqval SETUP_DATA.EIST == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;    
+         CPU_ONEOF_CPU2CORERATIOLIMIT
+     SUPPRESS_GRAYOUT_ENDIF
+     
+     suppressif ideqval SETUP_CPU_FEATURES.XECoreRatioLimitAvailable == 0 OR ideqval SETUP_CPU_FEATURES.NumCores == 1 
+      OR ideqval SETUP_CPU_FEATURES.NumCores == 2
+      OR ideqval SETUP_DATA.TurboMode == 0
+      OR ideqval SETUP_DATA.EIST == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;    
+         CPU_ONEOF_CPU3CORERATIOLIMIT
+     SUPPRESS_GRAYOUT_ENDIF
+     
+     suppressif  ideqval SETUP_CPU_FEATURES.XECoreRatioLimitAvailable == 0 OR ideqval SETUP_CPU_FEATURES.NumCores == 1
+      OR ideqval SETUP_CPU_FEATURES.NumCores == 2 OR ideqval SETUP_CPU_FEATURES.NumCores == 3
+      OR ideqval SETUP_DATA.TurboMode == 0 OR ideqval SETUP_DATA.EIST == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;    
+         CPU_ONEOF_CPU4CORERATIOLIMIT
+     SUPPRESS_GRAYOUT_ENDIF
+     
+     suppressif  ideqval SETUP_CPU_FEATURES.CurrentLimitAvailable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+		 CPU_ONEOF_CPUVRCURRENTLIMITLOCK
+         CPU_ONEOF_CPUVRCURRENTLIMIT
+     SUPPRESS_GRAYOUT_ENDIF 
+     
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+        CPU_ONEOF_CXENABLE
+     endif;
+     
+     suppressif ideqval SETUP_DATA.CxEnable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+        CPU_ONEOF_C1EENABLE
+     SUPPRESS_GRAYOUT_ENDIF
+
+     suppressif ideqval SETUP_CPU_FEATURES.C3Available == 0
+             OR ideqval SETUP_DATA.CxEnable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+          CPU_ONEOF_C3ENABLE
+     SUPPRESS_GRAYOUT_ENDIF
+
+     suppressif ideqval SETUP_CPU_FEATURES.C6Available == 0
+             OR ideqval SETUP_DATA.CxEnable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+          CPU_ONEOF_C6ENABLE
+          CPU_LONGSHORT_C6LATENCY
+     SUPPRESS_GRAYOUT_ENDIF
+
+     suppressif ideqval SETUP_CPU_FEATURES.C7Available == 0
+             OR ideqval SETUP_DATA.CxEnable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+          CPU_ONEOF_C7ENABLE
+          CPU_LONGSHORT_C7LATENCY
+     SUPPRESS_GRAYOUT_ENDIF
+
+     suppressif ideqval SETUP_CPU_FEATURES.C8Available == 0
+             OR ideqval SETUP_DATA.CxEnable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+          CPU_ONEOF_C8ENABLE
+     SUPPRESS_GRAYOUT_ENDIF
+     
+     suppressif ideqval SETUP_CPU_FEATURES.C9Available == 0
+             OR ideqval SETUP_DATA.CxEnable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+          CPU_ONEOF_C9ENABLE
+     SUPPRESS_GRAYOUT_ENDIF
+     
+     suppressif ideqval SETUP_CPU_FEATURES.C10Available == 0
+             OR ideqval SETUP_DATA.CxEnable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+          CPU_ONEOF_C10ENABLE
+     SUPPRESS_GRAYOUT_ENDIF
+        
+     suppressif ideqval SETUP_DATA.CxEnable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+         CPU_ONEOF_C1AUTODEMOTIONENABLE
+         CPU_ONEOF_C3AUTODEMOTIONENABLE
+	 SUPPRESS_GRAYOUT_ENDIF
+	 
+	 suppressif ideqval SETUP_DATA.CxEnable == 0
+		 	 OR ideqval SETUP_CPU_FEATURES.PkgCStateDemotionAvailable == 0;
+	 grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+		 CPU_ONEOF_PACKAGECDEMOTIONENABLE
+	 SUPPRESS_GRAYOUT_ENDIF
+
+	 suppressif ideqval SETUP_DATA.CxEnable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+         CPU_ONEOF_C1UNDEMOTIONENABLE
+         CPU_ONEOF_C3UNDEMOTIONENABLE
+	 SUPPRESS_GRAYOUT_ENDIF
+
+	 suppressif ideqval SETUP_DATA.CxEnable == 0
+		     OR ideqval SETUP_CPU_FEATURES.PkgCStateDemotionAvailable == 0;
+	 grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+		 	CPU_ONEOF_PACKAGECUNDEMOTIONENABLE
+	 SUPPRESS_GRAYOUT_ENDIF
+
+	 suppressif ideqval SETUP_DATA.CxEnable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+         CPU_ONEOF_CXPREWAKEENABLE
+#if CPU_SETUP_SET_LATENCY_CONTROL
+		 CPU_ONEOF_C3LATENCYCONTROLTIMEUNIT
+		 CPU_NUMERIC_C3LATENCYCONTROLLATENCY
+		 CPU_ONEOF_C6C7SHORTLATENCYCONTROLTIMEUNIT
+		 CPU_NUMERIC_C6C7SHORTLATENCYCONTROLLATENCY
+		 CPU_ONEOF_C6C7LONGLATENCYCONTROLTIMEUNIT
+		 CPU_NUMERIC_C6C7LONGLATENCYCONTROLLATENCY
+#endif
+		 CPU_ONEOF_PACKAGECSTATELOCK
+	 SUPPRESS_GRAYOUT_ENDIF
+	 
+	 suppressif ideqval SETUP_DATA.CxEnable == 0
+			 OR	ideqval SETUP_CPU_FEATURES.C10Available == 1;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+		 CPU_ONEOF_PACKAGECSTATEUPTOC7
+	 SUPPRESS_GRAYOUT_ENDIF
+
+	 suppressif ideqval SETUP_DATA.CxEnable == 0
+			 OR	ideqval SETUP_CPU_FEATURES.C10Available == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+		 CPU_ONEOF_PACKAGECSTATEUPTOC10
+	 SUPPRESS_GRAYOUT_ENDIF
+
+	 suppressif ideqval SETUP_DATA.CxEnable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+         CPU_ONEOF_CPULAKETINY
+     SUPPRESS_GRAYOUT_ENDIF
+
+     suppressif  ideqval SETUP_CPU_FEATURES.cTDPAvailable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+          CPU_ONEOF_CPUCTDPBIOS
+          CPU_ONEOF_CPUCONFIGTDPLEVEL
+          CPU_ONEOF_CPUCTDPLOCK
+     SUPPRESS_GRAYOUT_ENDIF
+
+     suppressif  ideqval SETUP_CPU_FEATURES.TccActivationAvailable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+         CPU_NUMERIC_CPUTCCACTIVEOFFSET
+     SUPPRESS_GRAYOUT_ENDIF
+
+     
+     suppressif ideqval SETUP_CPU_FEATURES.SmxAvailable == 0;
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER
+#if TCG_SUPPORT || TCG2Support
+			OR ideqval SETUP_DATA.TpmSupport == 0
+#endif
+			OR ideqval SETUP_CPU_FEATURES.TpmDeviceAvailable == 0;
+        CPU_ONEOF_ITXT
+     SUPPRESS_GRAYOUT_ENDIF
+     
+     grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+        CPU_ONEOF_CPUTSTATEENABLE
+        CPU_ONEOF_DTS
+        CPU_ONEOF_DEBUG_INTERFACE
+        CPU_ONEOF_DEBUG_INTERFACE_LOCK
+        VR_NUMERIC_IOUT_OFFSET_SIGN
+        VR_NUMERIC_IOUT_OFFSET
+        VR_NUMERIC_IOUT_SLOPE
+     endif;
+    endform;
+    #endif
+    #endif
+#endif
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1987-2013, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

@@ -1,0 +1,31 @@
+TOKEN
+	Name  = "PeiLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PeiLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "PEILIB"
+	Value  = "$$(LIB_BUILD_DIR)\PeiLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "PeiLib_DIR"
+End
+
+MODULE
+	Help  = "Includes PeiLib.mak to Project"
+	File  = "PeiLib.mak"
+End
+
+ELINK
+	Name  = "/I$(EDK_SOURCE)\Foundation\Library\Pei\PeiLib\$(PROCESSOR)"
+    	Parent  = "EDK_INCLUDES"
+    	InvokeOrder = AfterParent
+End

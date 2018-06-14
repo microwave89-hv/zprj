@@ -1,0 +1,11 @@
+<component>
+	name = "CSM Thunk"
+	category = ModulePart
+	LocalRoot = "core\em\csm\thunk"
+	RefName = "THUNK"
+[parts]
+"X86THUNK"
+"BIOSBLKIO"
+"BIOSSNP16"
+"CsmVideo"
+<endComponent>

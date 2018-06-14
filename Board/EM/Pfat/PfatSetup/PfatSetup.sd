@@ -1,0 +1,119 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/IntelPfat/PfatSetup/PfatSetup.sd 1     9/17/12 4:49p Fredericko $
+//
+// $Revision: 1 $
+//
+// $Date: 9/17/12 4:49p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/IntelPfat/PfatSetup/PfatSetup.sd $
+// 
+// 1     9/17/12 4:49p Fredericko
+// Added PfatSetup Module-part
+//
+//
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name: PfatSetup.sd
+//
+// Description:	Create the setup item for PFAT.
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+
+#ifdef SETUP_DATA_DEFINITION
+//---------------------------------------------------------------------------
+// Put NVRAM data definitions here.
+// For example: UINT8 Data1;
+// These definitions will be converted by the build process
+// to a definitions of SETUP_DATA fields.
+//---------------------------------------------------------------------------
+    UINT8   Pfatstate;
+#endif
+
+#if defined(VFRCOMPILE) && !defined(CONTROLS_ARE_DEFINED)
+#define CONTROL_DEFINITION
+#endif
+//---------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------
+#ifdef CONTROL_DEFINITION
+
+#define PFAT_ONEOF_STATEENABLE\
+       oneof varid   = SETUP_DATA.Pfatstate,\
+         prompt      = STRING_TOKEN(STR_PFAT_CONFIGURATION_PROMPT),\
+         help        = STRING_TOKEN(STR_PFAT_CONFIGURATION_HELP),\
+         option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+         option text = STRING_TOKEN(STR_ENABLED), value = 1, flags =  RESET_REQUIRED, key = 0;\
+       endoneof;
+
+#endif // CONTROL_DEFINITION
+
+#ifdef CONTROLS_WITH_DEFAULTS
+    PFAT_ONEOF_STATEENABLE
+#endif // CONTROLS_WITH_DEFAULTS
+
+//---------------------------------------------------------------------------
+//                ADVANCED - CRB Configuration Form
+//---------------------------------------------------------------------------
+#ifdef ADVANCED_FORM_SET
+
+  #ifndef SUPPRESS_GRAYOUT_ENDIF //old Core
+    #define SUPPRESS_GRAYOUT_ENDIF endif;
+  #endif
+
+  #ifdef FORM_SET_GOTO
+   // Define goto commands for the forms defined in this file
+       goto PFAT_CONFIGURATION_FORM_ID,
+       prompt = STRING_TOKEN(STR_PFAT_CONFIGURATION_FORM),
+       help = STRING_TOKEN(STR_PFAT_CONFIGURATION_HELP);
+  #endif
+
+  #ifdef FORM_SET_FORM
+  // Define forms
+    #ifndef PFAT_CONFIGURATION_FORM_SETUP
+    #define PFAT_CONFIGURATION_FORM_SETUP
+
+    form formid = AUTO_ID(PFAT_CONFIGURATION_FORM_ID),
+          title = STRING_TOKEN(STR_PFAT_CONFIGURATION_FORM);
+
+    grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+      PFAT_ONEOF_STATEENABLE
+    endif;
+
+    endform;  // PFAT_FORM_ID
+
+    #endif // PFAT_CONFIGURATION_FORM_SETUP
+  #endif  // FORM_SET_FORM
+
+#endif  // ADVANCED_FORM_SET
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

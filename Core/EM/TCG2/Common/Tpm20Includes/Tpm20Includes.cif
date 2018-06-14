@@ -1,0 +1,10 @@
+<component>
+	name = "Tpm20Includes"
+	category = ModulePart
+	LocalRoot = "Core\EM\TCG2\Common\Tpm20Includes"
+	RefName = "Tpm20Includes"
+[files]
+"Tpm20.h"	
+"Tpm20Pei.h"	
+"TrEEProtocol.h"	
+<endComponent>

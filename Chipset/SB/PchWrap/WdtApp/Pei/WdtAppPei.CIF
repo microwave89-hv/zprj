@@ -1,0 +1,11 @@
+<component>
+	name = "WdtAppPei"
+	category = ModulePart
+	LocalRoot = "Chipset\SB\PchWrap\WdtApp\Pei\"
+	RefName = "WdtAppPei"
+[files]
+"WdtAppPei.sdl"
+"WdtAppPei.mak"
+"WdtAppPei.c"
+"WdtAppPei.dxs"
+<endComponent>

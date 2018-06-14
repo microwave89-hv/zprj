@@ -1,0 +1,22 @@
+<component>
+	name = "IdeSecurity"
+	category = eModule
+	Rank = 31
+	LocalRoot = "Core\EM\HddSecurity\"
+	RefName = "IdeSecurity"
+[files]
+"IdeSecurity.sdl"	
+"IdeSecurity.mak"	
+"IdeSecurity.h"	
+"IdeSecurity.c"	
+"IdeSecuritySetup.c"	
+"IdeSecurityBdsCall.c"	
+"IdeSecurity.sd"	
+"IdeSecurity.uni"	
+"IdeSecurity.dxs"	
+"IdeSecurity.chm"	
+"IdeSecurityCommon.sd"	
+[parts]
+"IDESMM"
+"AmiTseHddPassword"
+<endComponent>

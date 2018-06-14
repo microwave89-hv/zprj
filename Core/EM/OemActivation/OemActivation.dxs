@@ -1,0 +1,93 @@
+//****************************************************************************
+//****************************************************************************
+//**                                                                        **
+//**             (C)Copyright 1985-2011, American Megatrends, Inc.          **
+//**                                                                        **
+//**                          All Rights Reserved.                          **
+//**                                                                        **
+//**             5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093          **
+//**                                                                        **
+//**                          Phone (770)-246-8600                          **
+//**                                                                        **
+//****************************************************************************
+//****************************************************************************
+
+//*****************************************************************************
+// $Header: /Alaska/SOURCE/Modules/OemActivation/OemActivation.dxs 6     1/12/12 9:21a Vyacheslava $
+//
+// $Revision: 6 $
+//
+// $Date: 1/12/12 9:21a $
+//*****************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/OemActivation/OemActivation.dxs $
+// 
+// 6     1/12/12 9:21a Vyacheslava
+// Removed dependency on SMM protocols.
+// 
+// 5     10/03/11 11:04a Vyacheslava
+// [TAG]  		EIP64110 
+// [Category]  	Spec Update
+// [Severity]  	Normal
+// [Description]  	(7) IsRoceveryOverSerial, NetBootHotkey, OpromTxT,
+// SimpleBootFlag, SLP10, SlpSupport, SmiVariable
+// 
+// 4     9/22/11 11:13a Vyacheslava
+// [TAG]  		EIP64110 
+// [Category]  	Spec Update
+// [Severity]  	Normal
+// [Description]  	Changed according to Aptio 4.6.5.x Components Porting
+// Guide (Conversion of the SMM Drivers). 
+// 
+// 3     8/08/11 10:14a Vyacheslava
+// [TAG]  		EIP64110
+// [Category]  	Spec Update
+// [Severity]  	Normal
+// [Description]  	Updated to be compliant with PI 1.2, and UEFI 2.3.1
+// specifications. 
+// 
+// 2     5/20/11 12:35p Vyacheslava
+// [TAG]  		EIP59717
+// [Category]  	New Feature
+// [Description]  	Added SMM dependency.
+// 
+// 1     11/22/10 10:10a Vyacheslava
+// 
+// 
+//
+//*****************************************************************************
+//<AMI_FHDR_START>
+//
+// Name: OemActivation.dxs
+//
+// Description: This file is the dependency file for OemActivation eModule.
+//
+//<AMI_FHDR_END>
+//*****************************************************************************
+
+//---------------------------------------------------------------------------
+// Header files for GUID definitions
+//---------------------------------------------------------------------------
+
+
+#include <Protocol/AcpiTable.h>
+
+DEPENDENCY_START
+    EFI_ACPI_TABLE_PROTOCOL_GUID
+DEPENDENCY_END
+
+
+//****************************************************************************
+//****************************************************************************
+//**                                                                        **
+//**             (C)Copyright 1985-2011, American Megatrends, Inc.          **
+//**                                                                        **
+//**                          All Rights Reserved.                          **
+//**                                                                        **
+//**             5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093          **
+//**                                                                        **
+//**                          Phone (770)-246-8600                          **
+//**                                                                        **
+//****************************************************************************
+//****************************************************************************

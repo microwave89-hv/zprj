@@ -1,0 +1,97 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartSmm/RapidStartSmm.sdl 3     12/27/12 1:19a Bensonlai $
+#
+# $Revision: 3 $
+#
+# $Date: 12/27/12 1:19a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/RapidStartSmm/RapidStartSmm.sdl $
+# 
+# 3     12/27/12 1:19a Bensonlai
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Change the SMI port to 0xB5 for
+# AMI_SW_SMI_WHOLE_MEMORY_CHECK.
+# [Files]  		RapidStartSmm.sdl
+# 
+# 2     8/14/12 7:52a Yurenlai
+# [TAG]         None
+# [Category]    Improvement
+# [Severity]    Important
+# [Description] Support ASLPREPROCESS_FLAG to include Iintel RC flags.
+# [Description] RapidStart.sdl, RapidStartSmm.sdl
+# 
+# 1     4/19/12 8:07a Yurenlai
+# Initial check in.
+#
+#*************************************************************************
+TOKEN
+	Name  = "RapidStartSmm_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable RapidStartSmm support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "AMI_SW_SMI_WHOLE_MEMORY_CHECK"
+	Value  = "0xB5"
+	Help  = "SWSMI# for whole memory check."
+	TokenType = Integer
+	TargetH = Yes
+	TargetMAK = Yes
+	Token = "WHOLE_MEMORY_CHECK" "=" "1"
+End
+
+PATH
+	Name  = "RapidStartSmm_DIR"
+End
+
+MODULE
+	Help  = "Includes RapidStartSmm.mak to Project"
+	File  = "RapidStartSmm.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\RapidStartSmm.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D SW_SMI_WHOLE_MEMORY_CHECK=$(AMI_SW_SMI_WHOLE_MEMORY_CHECK)"
+	Parent  = "INTEL_IRST_RC_FLAGS"
+	Token = "WHOLE_MEMORY_CHECK" "=" "1"
+	InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

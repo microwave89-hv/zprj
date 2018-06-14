@@ -1,0 +1,10 @@
+<component>
+	name = "MiscX64Lib"
+	category = ModulePart
+	LocalRoot = "Core\CPU\x64\MiscLib"
+	RefName = "MiscX64Lib"
+[files]
+"Misc.asm"
+"MiscX64Lib.sdl"
+"MiscX64Lib.mak"
+<endComponent>

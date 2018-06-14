@@ -1,0 +1,18 @@
+<component>
+	name = "MeSetup"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\MeSetup"
+	RefName = "MeSetup"
+[files]
+"MeSetup.sdl"	
+"MeSetup.mak"	
+"MeSetup.sd"	
+"MeSetup.uni"	
+"MeSetup.c"	
+"MeSetup.h"	
+"MebxPrompt.c"	
+"MeSetupReset.c"	
+[parts]
+"MeSetupDxe"
+"NfcSupportDxe"
+<endComponent>

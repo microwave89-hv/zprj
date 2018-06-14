@@ -1,0 +1,20 @@
+<component>
+	name = "Core Sources"
+	category = eCore
+	LocalRoot = "Core\"
+	RefName = "CoreSrc"
+[files]
+"CoreSrc.sdl"	
+[parts]
+"LibSrc"
+"RuntimeSrc"
+"IdeBusSrc"
+"FloppyCtrl"
+"FileSystem"
+"RecoverySrc"
+"FoundationEdk"
+"NVRAM"
+"PciBusSrc"
+"EdkIILib"
+"Capsule2_0"
+<endComponent>

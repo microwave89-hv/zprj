@@ -1,0 +1,16 @@
+<component>
+	name = "RapidStartInclude"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\RapidStart\Include"
+	RefName = "RapidStartInclude"
+[files]
+"RapidStartInclude.sdl"	
+"RapidStartAhciReg.h"	
+"RapidStartConfig.h"
+"RapidStartData.h"	
+"RapidStartAcpi.dsc"	
+"RapidStartDxe.dsc"	
+"RapidStartDxeLib.dsc"	
+"RapidStartPei.dsc"	
+"RapidStartPeiLib.dsc"	
+<endComponent>

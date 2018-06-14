@@ -1,0 +1,13 @@
+<component>
+	name = "IoTrap"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\IoTrap\Smm"
+	RefName = "IoTrap"
+[files]
+"IoTrap.sdl"	
+"IoTrap.mak"	
+"IoTrap.c"	
+"IoTrap.h"	
+"IoTrapDepex.dxs"	
+"IoTrap.inf"	
+<endComponent>

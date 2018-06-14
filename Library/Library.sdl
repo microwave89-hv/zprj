@@ -1,0 +1,36 @@
+TOKEN
+	Name  = "Library_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Library support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "LIBRARY_DIR"
+End
+
+ELINK
+	Name  = "AMIPEILIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(LIBRARY_DIR)\AmiPeiLib$(ARCH)$(DBG).lib"
+	Parent  = "AMIPEILIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "AMIDXELIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(LIBRARY_DIR)\AmiDxeLib$(ARCH)$(DBG).lib"
+	Parent  = "AMIDXELIB"
+	InvokeOrder = AfterParent
+End
+

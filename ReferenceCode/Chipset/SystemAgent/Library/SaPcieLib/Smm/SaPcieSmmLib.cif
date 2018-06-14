@@ -1,0 +1,11 @@
+<component>
+	name = "SaPcieSmmLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\Library\SaPcieLib\Smm\"
+	RefName = "SaPcieSmmLib"
+[files]
+"SaPcieSmmLib.sdl"
+"SaPcieSmmLib.mak"
+"SaPcieSmmLib.c"
+"SaPcieSmmLib.inf"
+<endComponent>

@@ -1,0 +1,24 @@
+<component>
+	name = "PchSmiDispatcher"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\PchSmiDispatcher\Smm"
+	RefName = "PchSmiDispatcher"
+[files]
+"PchSmiDispatcher.sdl"	
+"PchSmiDispatcher.mak"	
+"PchSmm.h"	
+"PchSmmCore.c"	
+"PchSmmHelpers.h"	
+"PchSmmHelpers.c"	
+"PchxSmmHelpers.h"	
+"PchxSmmHelpers.c"	
+"PchSmmUsb.c"	
+"PchSmmGpi.c"	
+"PchSmmPowerButton.c"	
+"PchSmmSw.c"	
+"PchSmmSx.c"	
+"PchSmmIchn.c"	
+"PchSmmPeriodicTimer.c"	
+"PchSmiDispatcher.dxs"	
+"PchSmiDispatcher.inf"	
+<endComponent>

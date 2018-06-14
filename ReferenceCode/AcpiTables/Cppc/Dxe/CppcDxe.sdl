@@ -1,0 +1,30 @@
+TOKEN
+	Name  = "CppcDxe_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable CppcDxe support in Project"
+End
+
+MODULE
+	Help  = "Includes CppcDxe.mak to Project"
+	File  = "CppcDxe.mak"
+End
+
+PATH
+	Name  = "INTEL_CPPC_DXE_DIR"
+End
+
+ELINK
+	Name  = "/I$(INTEL_CPPC_DXE_DIR)"
+	Parent  = "CPPC_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CppcDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

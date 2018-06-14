@@ -1,0 +1,16 @@
+<component>
+    name = "RapidStartGuidLib"
+    category = ModulePart
+    LocalRoot = "ReferenceCode\RapidStart\Guid"
+    RefName = "RapidStartGuidLib"
+[files]
+"RapidStartGuidLib.sdl"
+"RapidStartGuidLib.mak"
+"RapidStartGuidLib.inf"
+"RapidStartAcpiTableStorage\RapidStartAcpiTableStorage.c"
+"RapidStartAcpiTableStorage\RapidStartAcpiTableStorage.h"
+"RapidStartPersistentData\RapidStartPersistentData.c"
+"RapidStartPersistentData\RapidStartPersistentData.h"
+"RapidStartTransition\RapidStartTransition.c"
+"RapidStartTransition\RapidStartTransition.h"
+<endComponent>

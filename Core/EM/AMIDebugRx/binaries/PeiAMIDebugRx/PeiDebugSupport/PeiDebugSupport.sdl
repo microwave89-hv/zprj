@@ -1,0 +1,24 @@
+PATH
+	Name  = "PeiDebugSupport_DIR"
+End
+
+MODULE
+	Help  = "Includes PeiDebugSupport.mak to Project"
+	File  = "PeiDebugSupport.mak"
+End
+
+
+# To move PeiDebugSupport.ffs to FV_MAIN refer the Release notes
+#ELINK
+#	Name  = "$(BUILD_DIR)\PeiDebugSupport.ffs"
+#	Parent  = "FV_MAIN"
+#	Token = "DEBUG_RX_FFS_IN_FVMAIN_SUPPORT" "=" "1"
+#	InvokeOrder = AfterParent
+#End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PeiDebugSupport.ffs"
+	Parent  = "FV_BB"
+#	Token = "DEBUG_RX_FFS_IN_FVMAIN_SUPPORT" "!=" "1"
+	InvokeOrder = AfterParent
+End

@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueDxeFirmwarePerformanceLib"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Library\EdkIIGlueLib\Library\DxeFirmwarePerformanceLib\"
+	RefName = "EdkIIGlueDxeFirmwarePerformanceLib"
+[files]
+"EdkIIGlueDxeFirmwarePerformanceLib.sdl"	
+"EdkIIGlueDxeFirmwarePerformanceLib.mak"	
+"EdkIIGlueDxeFirmwarePerformanceLib.inf"	
+"EdkIIGlueDxeFirmwarePerformanceLib.c"	
+<endComponent>

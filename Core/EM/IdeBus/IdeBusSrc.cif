@@ -1,0 +1,18 @@
+<component>
+	name = "IdeBus Sources"
+	category = ModulePart
+	LocalRoot = "Core\em\IdeBus\"
+	RefName = "IdeBusSrc"
+[files]
+"IdeBusSrc.sdl"	
+"IdeBusSrc.mak"	
+"IdeBus.h"	
+"IdeBus.c"	
+"Ata.c"	
+"Atapi.c"	
+"IdeBusMaster.c"	
+"IdePowerManagement.c"	
+"IdeHPA.c"	
+"IDEBusComponentName.c"
+"IdeBusSrc.chm"	
+<endComponent>

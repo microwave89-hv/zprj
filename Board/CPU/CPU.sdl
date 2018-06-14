@@ -1,0 +1,470 @@
+TOKEN
+	Name  = "NUMBER_CPU_SOCKETS"
+	Value  = "1"
+	Help  = "Number CPU Sockets on the board. Fixed on 1 for this CPU module"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "CPU_SETUP_SET_MAX_RATIO"
+	Value  = "0"
+	Help  = "Enable setup question force max ratio."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CPU_SETUP_SET_BOOT_RATIO"
+	Value  = "0"
+	Help  = "Enable setup question to set boot ratio."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CPU_SETUP_SET_LATENCY_CONTROL"
+	Value  = "0"
+	Help  = "Enable setup question to set latency control."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CPU_DISPLAY_SETUP_SMX"
+	Value  = "1"
+	Help  = "Enables display CPU SMX supported."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "RC_POLICY_POWER_UNIT"
+	Value  = "0"
+	Help  = "This is used for Intel Haswell RC policy. 0 - in Watts, 1 - in 125 Milli Watts"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NCPU"
+	Value  = "16"
+	Help  = "Maximum number of processor threads."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "MTRR_POLICY"
+	Value  = "1"
+	Help  = "Maximum number of processor threads."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CPU_MAX_MEMORY_SIZE"
+	Value  = "0x100000000"
+	Help  = "Maximum memory size addressable by the CPU"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CPU_MAX_IO_SIZE"
+	Value  = "0x10000"
+	Help  = "Maximum I/O size addressable by the CPU"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SW_SMI_PSTATE_CNT"
+	Value  = "0"
+	Help  = "VALUE to write into SMI CMD register to enter\CPU performance state control mode (if any)"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-0xff 0 = not supported"
+	Token = "ACPI_BUILD_TABLES_2_0" "=" "1"
+End
+
+TOKEN
+	Name  = "SW_SMI_CST_CNT"
+	Value  = "0"
+	Help  = "Value to write in SMI_CMD reg to support _CST object and change state notification"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-0xff"
+	Token = "ACPI_BUILD_TABLES_2_0" "=" "1"
+End
+
+TOKEN
+	Name  = "NEHALEM_CPU_MODULE"
+	Value  = "1"
+	Help  = "Nehalem CPU module is present"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "LOCAL_APIC_BASE"
+	Value  = "0xfee00000"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "APIC_ID_REGISTER"
+	Value  = "0x20"
+	Help  = "APIC Identification Register Index"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "APIC_VERSION_REGISTER"
+	Value  = "0x30"
+	Help  = "APIC Version Register Index"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "APIC_SPURIOUS_VECTOR_REGISTER"
+	Value  = "0xf0"
+	Help  = "APIC Spurious Interrupt Vector Register Index"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "APIC_ICR_LOW_REGISTER"
+	Value  = "0x300"
+	Help  = "APIC Interrupt Control Register Low Index"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "APIC_ICR_HIGH_REGISTER"
+	Value  = "0x310"
+	Help  = "APIC Interrupt Control Register High Index"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "APIC_LVT_LINT0_REGISTER"
+	Value  = "0x350"
+	Help  = "APIC LVT LINT0 Register Index"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "APIC_LVT_LINT1_REGISTER"
+	Value  = "0x360"
+	Help  = "APIC LVT LINT1 Register Index"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SEC_CREATE_PE32"
+	Value  = "1"
+	Help  = "Create SEC Core PE32 Image."
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "CAR_BASE_ADDRESS"
+	Value  = "(0xffffffff - $(FLASH_SIZE) + 1 - 0x100000) & 0xfff00000"
+	Help  = "DO NOT CHANGE THIS VALUE.\Cache-as-RAM physical base location"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CAR_TOTAL_SIZE"
+	Value  = "0x20000"
+	Help  = "Total Cache-as-RAM size available (in bytes)"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "PEI_CACHE_FLASH_ENABLED"
+	Value  = "1"
+	Help  = "Enable caching the flash during PEI."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CODE_CACHE_BASE_ADDRESS"
+	Value  = "0xffffffff - 0x100000 + 1"
+	Help  = "Code Cache Base Address."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CODE_CACHE_SIZE"
+	Value  = "100000h"
+	Help  = "Code Cache Size.\Max 40000h. Size must match aligment of base."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CODE_CACHE_PART2_BASE"
+	Value  = "0"
+	Help  = "Code Cache PART 2 Base Address. 0 = No PART 2"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CODE_CACHE_PART2_SIZE"
+	Value  = "10000h"
+	Help  = "Code Cache PART 2 Size ."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "WDB_REGION_BASE_ADDRESS"
+	Value  = "0"
+	Help  = "Write-Combined Cache Base Address. 0 = No WDB"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "WDB_REGION_BASE_SIZE"
+	Value  = "1000h"
+	Help  = "Write-Combined Cache Size ."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMM_FROM_SMBASE_DRIVER"
+	Value  = "0x55"
+	Help  = "SWSMI number used in CPU RC"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SMM_BASE_SAVE_STATE_OFFSET"
+	Value  = "0fef8h"
+	Help  = "Offset in the CPU SMM save state area where the SMM Base value is stored. \This offset is used to change the SMM Base location during next SMI."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "MAX_SMM_SAVE_STATE_SIZE"
+	Value  = "0x400"
+	Help  = "Largest SMM save state size of any CPU that can be placed on the board.\Currently, Intel 64-bit CPUs use 0x300 for its save state size.\"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "IED_SAVESTATE_OFFSET"
+	Value  = "0xfeec"
+	Help  = "Intel Enhanced Debug Save"
+	TokenType = Integer
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "ACPI_INFO2_PROTOCOL_PUBLISHED"
+	Value  = "1"
+	Help  = "ACPI INFO2 PROTOCOL is published by this module."
+	TokenType = Boolean
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "PERF_TUNE_SUPPORT"
+	Value  = "0"
+	Help  = "This token is for performance tunning support.\The major function of performnce tunning is not done in CPU module, it's in performance tunning module.\Do not change this token directly."
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "I3_CPU_NON_TURBO"
+	Value  = "1"
+	Help  = "Force i3 Cpu turbo mode not available"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BRAND_STRING_WORKAROUND"
+	Value  = "0"
+	Help  = "This sample code is a workaround for prevent Windows displays 2 different frequencies brand string within the My Computer -> Properties.It will configure custom tdp table. And if use this workaround, the parameter in the custom ctdp settings shoule vary with platform."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+    Name  = "MPDTable_CREATED"
+    Value  = "1"
+    Help  = "Create MPDT Table."
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+
+TOKEN
+	Name  = "SMM_ACCESS_CHECK_ENABLE"
+	Value  = "0"
+	Help  = "Enable or disable Smm Access Check Feature of Cpu"
+	TokenType = Boolean
+        TargetH = Yes	
+End
+
+PATH
+	Name  = "CPU_BOARD_DIR"
+	Path  = "Board\CPU"
+End
+
+PATH
+	Name  = "CPU_CORE_DIR"
+	Path  = "Core\CPU"
+End
+
+MODULE
+	Help  = "Includes CPU.mak to Project"
+	File  = "CPU.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CpuDxe.ffs"
+	Parent  = "FV_MAIN"
+	Priority  = 0
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CPU.sdb"
+	Parent  = "SETUP_SDBS"
+	Priority  = 10
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(CPU_BOARD_DIR)\CPU.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 10
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "CPUPEIDBG_Initialize,"
+	Parent  = "PeiDebuggerInitialize"
+	Priority  = 100
+	Token = "PeiDebugger_SUPPORT" "!=" "0"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SecCore.ffs"
+	Parent  = "FV_BB"
+	Help  = "SEC Core"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CpuPeiBeforeMem.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\CPUPEI.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "InitCPUStrings,"
+	Parent  = "SetupStringInit"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "-i $(CPU_BOARD_DIR)"
+	Parent  = "SETUP_VFR_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SECCoreAtPowerOn"
+	Segment  = "STARTUP_SEG"
+	Help  = "SEC Core Init after power-on and before memory detection."
+	mSTART  = "mSTART_PROC_NEAR32"
+	mBODY  = "mBODY_JMP_PROC_NEAR32"
+	mEND  = "mEND_PROC_WITH_JMP_NEAR32"
+	mEXTERN  = "mEXTERN_NEAR32"
+	SrcFile  = "$(BUILD_DIR)\SECCore.ASM"
+	InvokeOrder = TableFunction
+	OutBOOT = Yes
+End
+
+ELINK
+	Name  = "ADDON_SEC_CORE_OBJ_FILES"
+	InvokeOrder = ReplaceParent
+End
+
+OUTPUTREGISTER
+	Name  = "EKERNEL_BOOT"
+	Path  = "BUILD\"
+	File  = "SECCore.ASM"
+End
+
+SEGMENT
+	Name  = "STARTUP_SEG"
+	Format  = "SEGMENT PARA PUBLIC 'CODE' USE32"
+End
+

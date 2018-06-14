@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "Haswell_DigitalThermalSensorSmm_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to include Haswell DigitalThermalSensorSmm driver to the Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "DigitalThermalSensorSmm_DIR"
+End
+
+MODULE
+	Help  = "Includes DigitalThermalSensorSmm.mak to Project"
+	File  = "DigitalThermalSensorSmm.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\DigitalThermalSensorSmm.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

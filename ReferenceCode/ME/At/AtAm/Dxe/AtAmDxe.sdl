@@ -1,0 +1,33 @@
+TOKEN
+	Name  = "AtAmDxe_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TdtDxe support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Token = "AT_SUPPORT" "=" "1"
+End
+
+MODULE
+	Help  = "Includes TdtDxe.mak to Project"
+	File  = "AtAmDxe.mak"
+End
+
+PATH
+	Name  = "AtAmDxe_DIR"
+	Help  = "Tdt file source directory"
+End
+
+PATH
+	Name  = "AtAmDxe_SOURCE"
+	Help  = "iAMT Driver files source directory"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AtAmDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+

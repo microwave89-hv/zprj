@@ -1,0 +1,24 @@
+TOKEN
+	Name  = "EBC_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EBC support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "EBC_DIR"
+End
+
+MODULE
+	Help  = "Includes EBC.mak to Project"
+	File  = "EBC.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\EBC.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

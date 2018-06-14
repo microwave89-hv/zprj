@@ -1,0 +1,12 @@
+<component>
+    name = "RapidStartDxe"
+    category = ModulePart
+    LocalRoot = "ReferenceCode\RapidStart\Dxe"
+    RefName = "RapidStartDxe"
+[files]
+"RapidStartDxe.sdl"
+"RapidStartDxe.dxs"
+"RapidStartDxe.mak"
+"RapidStartDxe.inf"
+"RapidStartDxe.c"
+<endComponent>

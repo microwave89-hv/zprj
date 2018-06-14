@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "GraphicsLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable GraphicsLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "GRAPHICSLIB"
+	Value  = "$(BUILD_DIR)\GraphicsLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "GraphicsLib_DIR"
+End
+
+MODULE
+	Help  = "Includes GraphicsLib.mak to Project"
+	File  = "GraphicsLib.mak"
+End
+

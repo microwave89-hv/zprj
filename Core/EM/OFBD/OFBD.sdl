@@ -1,0 +1,68 @@
+TOKEN
+	Name  = OFBD_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable On Flash Block Description support in Project"
+End
+
+TOKEN
+	Name  = "OFBD_SW_SMI_VALUE"
+	Value  = "0x26"
+	Help  = "Sw SMI value of OFBD item change"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-0xff"
+End
+
+TOKEN
+	Name  = "OFBD_VERSION"
+	Value  = "0x0210"
+	Help  = "OFBD Version"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+MODULE
+	Help  = "Includes OFBD.mak to Project"
+	File  = "OFBD.mak"
+End
+
+PATH
+	Name  = "OFBD_DIR"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\OFBD.ffs"
+	Parent  = "FV_MAIN"
+	Help  = "OFBD component"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmiBufferValidationLib.lib"
+	Parent  = "OFBDLISTLIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OFBDLISTLIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "OFBDPartsList"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "OFBDInSmmFuncList"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "OFBDNotInSmmFuncList"
+	InvokeOrder = ReplaceParent
+End

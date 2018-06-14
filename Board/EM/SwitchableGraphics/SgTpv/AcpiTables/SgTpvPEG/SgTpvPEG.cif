@@ -1,0 +1,12 @@
+<component>
+	name = "SgTpvPEG"
+	category = ModulePart
+	LocalRoot = "Board\EM\SwitchableGraphics\SgTpv\AcpiTables\SgTpvPEG"
+	RefName = "SgTpvPEG"
+[files]
+"SgTpvPEG.sdl"	
+"SgTpvPEG.mak"	
+[parts]
+"AtiSG"
+"nVidiaSG"	
+<endComponent>

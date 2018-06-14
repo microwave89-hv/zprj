@@ -1,0 +1,21 @@
+<component>
+	name = "FrameworkPpiLib"
+	category = ModulePart
+	LocalRoot = "MiscFramework\Ppi"
+	RefName = "FrameworkPpiLib"
+[files]
+"FrameworkPpiLib.sdl"	
+"FrameworkPpiLib.mak"	
+"PlatformMemoryRange\PlatformMemoryRange.c"	
+"PlatformMemoryRange\PlatformMemoryRange.h"	
+"PlatformMemorySize\PlatformMemorySize.c"	
+"PlatformMemorySize\PlatformMemorySize.h"	
+"Capsule\Capsule.c"	
+"Capsule\Capsule.h"	
+"SmbusPolicy\SmbusPolicy.h"	
+"SmbusPolicy\SmbusPolicy.c"	
+"AtaController\AtaController.c"	
+"AtaController\AtaController.h"	
+"AtaPolicy\AtaPolicy.c"	
+"AtaPolicy\AtaPolicy.h"	
+<endComponent>

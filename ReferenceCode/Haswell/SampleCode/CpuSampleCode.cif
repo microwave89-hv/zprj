@@ -1,0 +1,15 @@
+<component>
+	name = "CpuSampleCode"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\SampleCode\"
+	RefName = "CpuSampleCode"
+[files]
+"Include\AslUpdateLib.h"
+"Include\PeiKscLib.h"
+"Include\SmmIoLib.h"
+"Include\KscLib.h"
+"Include\acpibuild.dsc"
+"Include\Cpu.h"
+"Include\FlashMap.h"
+"Include\BootGuardRevocationLib.h"
+<endComponent>

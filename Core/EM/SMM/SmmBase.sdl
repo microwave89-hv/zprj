@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "SmmBase_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SmmBase support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "SMM_BASE_DIR"
+End
+
+MODULE
+	Help  = "Includes SmmBase.mak to Project"
+	File  = "SmmBase.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SmmBase.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

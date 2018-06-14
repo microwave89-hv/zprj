@@ -1,0 +1,104 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/Legacy Serial Redirection/LegacySredir.dxs 7     6/25/13 4:41a Rameshr $
+//
+// $Revision: 7 $
+//
+// $Date: 6/25/13 4:41a $
+//**********************************************************************
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/Legacy Serial Redirection/LegacySredir.dxs $
+// 
+// 7     6/25/13 4:41a Rameshr
+// [TAG]  		EIP125655
+// [Category]  	Improvement
+// [Description]  	MMIO Address validated before reading or writing to the
+// MMIO region in the SW SMI handler
+// [Files]  		LegacySmmSredir.c, LegacySredir.dxs
+// 
+// 6     4/10/12 12:50a Rameshr
+// [TAG]  		EIP84345
+// [Category]  	Improvement
+// [Description]  	Error checking and SMM dependency added
+// [Files]  		LegacySmmSredir.c, LegacySredir.dxs
+// 
+// 5     3/05/10 4:19a Rameshr
+// MMIO COM device support added.
+// EIP 33847
+// 
+// 4     6/29/09 12:11p Rameshr
+// Coding Standard and File header updated.
+// 
+// 3     12/24/08 3:51p Rameshraju
+// Added the dependency for LegacyBios
+// 
+// 2     4/17/07 4:41a Rameshraju
+// PCIserial support added
+//
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//**********************************************************************
+// Name:        LegacySredir.dxs
+//
+// Description: Dependancy Expression file for Legacy Serial Redirection
+//
+//**********************************************************************
+//<AMI_FHDR_END>
+
+#include <Protocol/LegacyRegion.h>
+#include <Protocol/LegacyInterrupt.h>
+#include <Protocol/Legacy8259.h>
+#include <Protocol/FirmwareVolume.h>
+#include <Protocol/Cpu.h>
+#include <Protocol/LegacyBios.h>
+#if defined(PI_SPECIFICATION_VERSION)&&(PI_SPECIFICATION_VERSION>=0x0001000A)&&(CORE_COMBINED_VERSION >= 0x4028B)
+#include <Protocol\SmmBase2.h>
+#include <Protocol\SmmSwDispatch2.h>
+#else
+#include <Protocol/SmmBase.h>
+#include <Protocol/SmmSwDispatch.h>
+#endif
+
+DEPENDENCY_START
+  EFI_LEGACY_INTERRUPT_PROTOCOL_GUID      AND 
+  EFI_LEGACY_REGION_PROTOCOL_GUID         AND 
+  EFI_LEGACY_8259_PROTOCOL_GUID           AND
+  EFI_FIRMWARE_VOLUME_PROTOCOL_GUID       AND
+  EFI_LEGACY_BIOS_PROTOCOL_GUID           AND  
+  EFI_CPU_ARCH_PROTOCOL_GUID              AND
+#if defined(PI_SPECIFICATION_VERSION)&&(PI_SPECIFICATION_VERSION>=0x0001000A)&&(CORE_COMBINED_VERSION >= 0x4028B)
+  EFI_SMM_BASE2_PROTOCOL_GUID AND
+  EFI_SMM_SW_DISPATCH2_PROTOCOL_GUID 
+#else
+  EFI_SMM_BASE_PROTOCOL_GUID              AND    
+  EFI_SMM_SW_DISPATCH_PROTOCOL_GUID 
+#endif
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

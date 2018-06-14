@@ -1,0 +1,1 @@
+nmake /nologo /f build.mak %*

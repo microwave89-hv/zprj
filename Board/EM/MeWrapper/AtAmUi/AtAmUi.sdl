@@ -1,0 +1,27 @@
+TOKEN
+	Name  = "AtAMUI_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TdtWrapper support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Token = "AT_SUPPORT" "=" "1"
+End
+
+
+PATH
+	Name  = "AtAmUi_DIR"
+End
+
+MODULE
+	Help  = "Includes TdtWrapper.mak to Project"
+	File  = "AtAmUi.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AtAmUi.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

@@ -1,0 +1,41 @@
+TOKEN
+	Name  = "AMI_TCG_PLATFORM_DXE_SUPPORT"
+	Value  = "1"
+	Help  = "Disable AmiTcgPlatformDxe"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+    Token = "TPM12Enabled" "!=" "0"
+End
+
+PATH
+	Name  = "AMI_TCG_PLATFORM_DXE_DIR"
+End
+
+MODULE
+	Help  = "Includes AmiTcgPlatform.mak to Project"
+	File  = "AmiTcgPlatformDxe.mak"
+End
+
+TOKEN
+	Name  = "SMBIOS_VER_32"
+	Value  = "0"
+	Help  = "Projects support smbios version 4.6.3_SMBIOS_32 and later"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmiTcgPlatformDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "TCGDXE_SDBS"
+    InvokeOrder = ReplaceParent
+END

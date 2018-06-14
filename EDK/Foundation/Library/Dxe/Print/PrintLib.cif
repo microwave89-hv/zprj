@@ -1,0 +1,19 @@
+<component>
+	name = "PrintLib"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Library\Dxe\Print\"
+	RefName = "PrintLib"
+[files]
+"PrintLib.sdl"	
+"PrintLib.mak"	
+"BoxDraw.c"	
+"Print.c"	
+"Print.h"	
+"StdErr.c"	
+"PrintLib.inf"	
+[parts]
+"PrintAscii"
+"PrintUnicode"
+"PrintAscii"
+"PrintUnicode"
+<endComponent>

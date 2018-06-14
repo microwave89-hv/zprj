@@ -1,0 +1,11 @@
+<component>
+	name = "Embedded Controller Flash"
+	category = ModulePart
+	LocalRoot = "Core\EM\OFBD\StdEC\"
+	RefName = "OFBD_STDEC"
+[files]
+"StdEC.sdl"	
+"StdEC.mak"	
+"StdEC.c"	
+"StdEC.h"	
+<endComponent>

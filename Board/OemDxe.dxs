@@ -1,0 +1,74 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+//**********************************************************************
+//
+// $Header: /Alaska/BIN/Board/OemDxe.dxs 3     2/15/11 4:28p Artems $
+//
+// $Revision: 3 $
+//
+// $Date: 2/15/11 4:28p $
+//
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Board/OemDxe.dxs $
+// 
+// 3     2/15/11 4:28p Artems
+// Replaced TABs with spaces
+// 
+// 2     6/25/09 6:09p Robert
+// Updated Comments and function headers
+// 
+// 1     6/13/06 4:54p Sivagarn
+// Initial Checkin
+// 
+//
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//----------------------------------------------------------------------------
+//
+// Name:        OEMDXE.DXS
+//
+// Description: 
+//  This file is the dependency file for the OEM DXE driver
+//
+//----------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+
+#include <Protocol\Cpu.h>
+#include <Protocol\BootScriptSave.h>
+#include <Protocol\PciRootBridgeIo.h>
+
+DEPENDENCY_START
+    EFI_CPU_ARCH_PROTOCOL_GUID AND
+    EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL_GUID AND
+    EFI_BOOT_SCRIPT_SAVE_GUID
+DEPENDENCY_END
+
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

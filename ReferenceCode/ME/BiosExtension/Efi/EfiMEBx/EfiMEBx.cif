@@ -1,0 +1,9 @@
+<component>
+	name = "EfiMEBx"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\BiosExtension\Efi\EfiMEBx\"
+	RefName = "EfiMEBx"
+[parts]
+"Mebx"
+"MebxSetupBrowser"
+<endComponent>

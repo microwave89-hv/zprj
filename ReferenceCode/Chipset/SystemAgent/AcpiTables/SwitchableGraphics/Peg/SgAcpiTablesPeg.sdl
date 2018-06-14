@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "SgAcpiTablesPeg_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable SgAcpiTablesPeg support in Project"
+    Token = "SwitchableGraphics_SUPPORT" "=" "1"
+End
+
+MODULE
+	Help  = "Includes SgAcpiTablesPeg.mak to Project"
+	File  = "SgAcpiTablesPeg.mak"
+End
+
+PATH
+	Name  = "SGACPIPEG_DIR"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SGACPIPEG.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

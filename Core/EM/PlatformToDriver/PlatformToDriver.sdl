@@ -1,0 +1,31 @@
+TOKEN
+    Name  = "PlatformToDriver_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable Platform-to-driver configuration support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+End
+
+PATH
+    Name  = "PlatformToDriver_DIR"
+    Help  = "Path to PlatformToDriver Module in Project"
+End
+
+MODULE
+    Help  = "Includes PlatformToDriver.mak to Project"
+    File  = "PlatformToDriver.mak"
+End
+
+ELINK
+	Name  = "PlatformToDriverEntryPoint,"
+	Parent  = "BdsEntryInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PlatformToDriverAgents"
+	InvokeOrder = ReplaceParent
+End
+

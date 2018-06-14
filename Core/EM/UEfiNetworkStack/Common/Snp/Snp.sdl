@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "Snp_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Snp support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "Snp_DIR"
+End
+
+MODULE
+	Help  = "Includes Snp.mak to Project"
+	File  = "Snp.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Snp.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+

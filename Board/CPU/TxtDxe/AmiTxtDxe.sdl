@@ -1,0 +1,133 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1987-2013, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/Haswell/AMI Cpu PKG/AMI TXT DXE/AmiTxtDxe.sdl 3     1/17/14 4:08a Crystallee $
+#
+# $Revision: 3 $
+#
+# $Date: 1/17/14 4:08a $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/Haswell/AMI Cpu PKG/AMI TXT DXE/AmiTxtDxe.sdl $
+# 
+# 3     1/17/14 4:08a Crystallee
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	Show Txt information in setup->Advanced ->Intel Txt
+# Information page.
+# 
+# 2     8/14/12 5:06a Davidhsieh
+# [TAG]  		EIP97190
+# [Category]  	Improvement
+# [Description]  	Changes in TXT Configuration require a Powercycle reset
+# 
+# 1     7/18/12 2:07a Davidhsieh
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	AMI TXT Dxe module part create
+#
+#
+#**********************************************************************
+TOKEN
+	Name  = "AMI_TXT_DXE_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable AMI TXT DXE support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "AMI_TXT_INFO_IN_SETUP"
+	Value  = "1"
+	TokenType = Boolean
+End
+
+TOKEN
+    Name  = "AMI_POSE_SHOW_TXT_INFO"
+    Value  = "0"
+    Help  = "Show txt information in pose time when quiet boot disable."
+    TokenType = Integer
+    TargetH = Yes
+    Token = "AMI_TXT_INFO_IN_SETUP" "=" "1"
+End
+
+PATH
+        Name  = "AmiTxtDxe_DIR"
+End
+
+MODULE
+        Help  = "Includes TxtDxe.mak to Project"
+        File  = "AmiTxtDxe.mak"
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\AmiTxtDxe.ffs"
+        Parent  = "FV_MAIN"
+        Help  = "Intel Txt DXE component"
+        InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "TxtExitSetupEvent,"
+	Parent  = "PreSystemResetHook,"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AmiTxtInfoSetup.sdb"
+	Parent  = "SETUP_SDBS"
+	Priority  = 50
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(AmiTxtDxe_DIR)\AmiTxtInfoSetup.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 50
+	InvokeOrder = AfterParent
+	Token = "AMI_TXT_INFO_IN_SETUP" "=" "1"
+End
+
+ELINK
+	Name  = "InitAmiTxtInfoStrings,"
+	Parent  = "SetupStringInit"
+	InvokeOrder = AfterParent
+	Token = "AMI_TXT_INFO_IN_SETUP" "=" "1"
+End
+
+ELINK
+    Name  = "AmiTxtHook,"
+    Parent  = "ProcessConInAvailabilityHook,"
+    InvokeOrder = AfterParent
+    Token = "AMI_TXT_INFO_IN_SETUP" "=" "1"
+    Token = "AMI_POSE_SHOW_TXT_INFO" "=" "1"
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1987-2013, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

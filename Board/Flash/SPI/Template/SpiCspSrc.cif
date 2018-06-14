@@ -1,0 +1,8 @@
+<component>
+	name = "CSP : DUMMY SPI - Do Not Delete"
+	category = ModulePart
+	LocalRoot = "Board\Flash\SPI\Template"
+	RefName = "DUMMY_SPI_CSP_SOURCE"
+[files]
+"SPIFlash.c"
+<endComponent>

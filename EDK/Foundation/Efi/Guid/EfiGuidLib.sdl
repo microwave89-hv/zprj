@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EfiGuidLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EfiGuidLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EFIGUIDLIB"
+	Value  = "$$(LIB_BUILD_DIR)\EfiGuidLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EfiGuidLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EfiGuidLib.mak to Project"
+	File  = "EfiGuidLib.mak"
+End
+

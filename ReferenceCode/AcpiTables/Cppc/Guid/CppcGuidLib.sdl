@@ -1,0 +1,37 @@
+TOKEN
+	Name  = "CppcGuidLib_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable CppcGuidLib support in Project"
+End
+
+MODULE
+	Help  = "Includes CppcGuidLib.mak to Project"
+	File  = "CppcGuidLib.mak"
+End
+
+PATH
+	Name  = "INTEL_CPPC_GUIDLIB_DIR"
+End
+
+TOKEN
+	Name  = "CppcGuidLib_LIB"
+	Value  = "$(BUILD_DIR)\CppcGuidLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+ELINK
+	Name  = "/I$(INTEL_CPPC_GUIDLIB_DIR)"
+	Parent  = "CPPC_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_CPPC_GUIDLIB_DIR)\AcpiTableStorage"
+	Parent  = "CPPC_INCLUDES"
+	InvokeOrder = AfterParent
+End

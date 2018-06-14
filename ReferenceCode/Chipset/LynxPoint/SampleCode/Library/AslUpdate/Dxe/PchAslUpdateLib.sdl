@@ -1,0 +1,29 @@
+TOKEN
+	Name  = PchAslUpdateLib_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable PchAslUpdateLib support in Project"
+End
+
+MODULE
+	Help  = "Includes PchAslUpdateLib.mak to Project"
+	File  = "PchAslUpdateLib.mak"
+End
+
+PATH
+	Name  = "PchAslUpdateLib_DIR"
+End
+
+ELINK
+	Name  = "PchAslUpdateLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PchAslUpdateLib.lib"
+	Parent  = "PchAslUpdateLib_LIB"
+	InvokeOrder = AfterParent
+End

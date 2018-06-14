@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueBasePciExpressLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\BasePciExpressLib"
+	RefName = "EdkIIGlueBasePciExpressLib"
+[files]
+"EdkIIGlueBasePciExpressLib.sdl"	
+"EdkIIGlueBasePciExpressLib.mak"
+"BasePciExpressLib.inf"	
+"PciLib.c"	
+<endComponent>

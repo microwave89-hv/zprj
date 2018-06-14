@@ -1,0 +1,8 @@
+<component>
+	name = "UsbHCPpi"
+	category = ModulePart
+	LocalRoot = "Include\Ppi"
+	RefName = "UsbHCPpi"
+[files]
+"UsbHostController.h"	
+<endComponent>

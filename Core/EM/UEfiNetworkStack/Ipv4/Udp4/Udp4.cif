@@ -1,0 +1,11 @@
+<component>
+	name = "Udp4"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Ipv4\Udp4"
+	RefName = "Udp4"
+[files]
+"Udp4.sdl"	
+"Udp4.mak"	
+"Udp4Dxe.efi"	
+"Udp4DxeIa32.efi"	
+<endComponent>

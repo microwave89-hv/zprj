@@ -1,0 +1,15 @@
+<component>
+	name = "TdtWrapper"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\TdtWrapper\"
+	RefName = "TdtWrapper"
+[files]
+"TDTWrapper.dxs"	
+"TDTWrapper.c"	
+"TDTWrapper.mak"	
+"TDTWrapper.sdl"	
+"TDTSetup.sd"	
+"TDTSetup.uni"	
+"TdtCallback.h"	
+"TdtOfbd.c"	
+<endComponent>

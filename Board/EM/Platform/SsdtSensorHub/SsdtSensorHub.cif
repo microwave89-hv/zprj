@@ -1,0 +1,10 @@
+<component>
+	name = "SsdtSensorHub"
+	category = ModulePart
+	LocalRoot = "Board\EM\Platform\SsdtSensorHub"
+	RefName = "SsdtSensorHub"
+[files]
+"SsdtSensorHub.sdl"
+"SsdtSensorHub.mak"
+"SsdtSensorHub.asl"
+<endComponent>

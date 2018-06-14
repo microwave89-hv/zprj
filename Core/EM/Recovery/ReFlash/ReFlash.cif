@@ -1,0 +1,16 @@
+<component>
+	name = "ReFlash"
+	category = ModulePart
+	LocalRoot = "Core\EM\Recovery\ReFlash\"
+	RefName = "ReFlash"
+[files]
+"ReFlash.sdl"	
+"ReFlash.mak"	
+"ReFlash.vfr"	
+"ReFlash.c"	
+"ReFlashWorker.c"	
+"ReFlash.dxs"	
+"ReFlash.uni"	
+"ReFlash.h"	
+"Esrt.c"	
+<endComponent>

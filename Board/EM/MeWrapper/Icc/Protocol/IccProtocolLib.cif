@@ -1,0 +1,11 @@
+<component>
+	name = "IccProtocolLib"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\Icc\Protocol"
+	RefName = "IccProtocolLib"
+[files]
+"IccProtocolLib.sdl"
+"IccProtocolLib.mak"
+"IccOverClocking\IccOverClocking.h"
+"IccOverClocking\IccOverClocking.c"
+<endComponent>

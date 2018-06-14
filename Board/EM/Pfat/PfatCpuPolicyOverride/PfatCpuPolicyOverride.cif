@@ -1,0 +1,14 @@
+<component>
+	name = "PfatCpuPolicyOverride"
+	category = ModulePart
+	LocalRoot = "Board\EM\Pfat\PfatCpuPolicyOverride"
+	RefName = "PfatCpuPolicyOverride"
+[files]
+"PfatCpuPolicyOverride.c"
+"PfatCpuPolicyOverride.h"
+"PfatCpuPolicyOverride.dxs"
+"PfatCpuPolicyOverride.sdl"
+"PfatCpuPolicyOverride.mak"
+"PeiCryptLib.lib"
+"OpensslLib.lib"
+<endComponent>

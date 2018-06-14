@@ -1,0 +1,57 @@
+TOKEN
+	Name  = "RuntimeSrc_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable RuntimeSrc support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "MINIMUM_YEAR"
+	Value  = "1998"
+	Help  = "Minimum allowed year.\If RTC year is less than this value, date will be reset to defaults."
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "1998"
+End
+
+TOKEN
+	Name  = "DEFAULT_YEAR"
+	Value  = "2009"
+	Help  = "Default year. RTC will be reset to this value if current date is invalid."
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "MINIMUM_YEAR - 2099"
+End
+
+TOKEN
+	Name  = "DEFAULT_MONTH"
+	Value  = "1"
+	Help  = "Default month. RTC will be reset to this value if current date is invalid."
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "1-12"
+End
+
+TOKEN
+	Name  = "DEFAULT_DAY"
+	Value  = "1"
+	Help  = "Default day. RTC will be reset to this value if current date is invalid."
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "1-31"
+End
+
+MODULE
+	Help  = "Includes RuntimeSrc.mak to Project"
+	File  = "RuntimeSrc.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Runtime.lib"
+	Parent  = "$(RUNTIME_DIR)\Runtime$(ARCH).lib"
+	InvokeOrder = ReplaceParent
+End
+

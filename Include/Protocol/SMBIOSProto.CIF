@@ -1,0 +1,10 @@
+<component>
+	name = "SMBIOS - Protocols"
+	category = ModulePart
+	LocalRoot = "Include\Protocol"
+	RefName = "SMBIOSProto"
+[files]
+"SmbiosDynamicData.h"	
+"SmbiosGetFlashDataProtocol.h"	
+"SMBios.h"	
+<endComponent>

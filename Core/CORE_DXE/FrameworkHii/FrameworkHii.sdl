@@ -1,0 +1,15 @@
+TOKEN
+	Name  = "FrameworkHii_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable FrameworkHii support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "FrameworkHii_DIR"
+	Help  = "Path to FrameworkHii Module in Project"
+End
+

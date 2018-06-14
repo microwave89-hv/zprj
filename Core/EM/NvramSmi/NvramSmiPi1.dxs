@@ -1,0 +1,66 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/NvramSmi/NvramSmiPi1.dxs 2     11/28/12 3:02p Oleksiyy $
+//
+// $Revision: 2 $
+//
+// $Date: 11/28/12 3:02p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/NvramSmi/NvramSmiPi1.dxs $
+// 
+// 2     11/28/12 3:02p Oleksiyy
+// [TAG]  		EIP106304
+// [Category]  	Improvement
+// [Description]  	Fixing Headers.
+// [Files]  		NvramSmiPi1.dxs
+// 
+// 1     11/28/12 2:47p Oleksiyy
+// [TAG]  		EIP106304
+// [Category]  	Improvement
+// [Description]  	Create a new label of NvramSmi eModule.
+// [Files]  		NvramSmiPi1.dxs
+// 
+// 
+//
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:	NvramSmiPi1.dxs
+//
+// Description: Dependency expression for the NvramSmi module used if
+// PI_SPECIFICATION_VERSION<0x1000A.
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+#include <Protocol/SmmSwDispatch.h>
+DEPENDENCY_START
+  EFI_SMM_SW_DISPATCH_PROTOCOL_GUID
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

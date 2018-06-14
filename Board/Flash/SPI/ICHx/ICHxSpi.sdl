@@ -1,0 +1,86 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2009, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Flash_Combined_2/CSP_SPI/Intel/ICHx/ICHxSpi.sdl 3     9/14/10 3:25a Calvinchen $
+#
+# $Revision: 3 $
+#
+# $Date: 9/14/10 3:25a $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Flash_Combined_2/CSP_SPI/Intel/ICHx/ICHxSpi.sdl $
+# 
+# 3     9/14/10 3:25a Calvinchen
+# Added the "SPI_INITIALIAL_WITH_VSCC" token for VSCC register
+# initialize.
+# 
+# 2     6/24/09 3:25a Calvinchen
+# (EIP22177) Updated for Aptio Source Enhancement.
+#
+#
+#**********************************************************************
+
+TOKEN
+	Name  = "ICHx_SPI_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable ICHx SPI support in Project"
+	TokenType = Boolean
+	Master = Yes
+End
+
+TOKEN
+	Name  = "SPI_INITIALIZE_WITH_VSCC"
+	Value  = "0"
+	Help  = "Program Host Lower/Upper Vendor Specific Component Capabilities Register."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "LOWER_VSCC_REG"
+	Value  = "0xC4"
+	Help  = "Host Lower Vendor Specific Component Capabilities Register."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "SPI_INITIALIZE_WITH_VSCC" "=" "1"
+End
+
+TOKEN
+	Name  = "UPPER_VSCC_REG"
+	Value  = "0xC8"
+	Help  = "Host Upper Vendor Specific Component Capabilities Register."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "SPI_INITIALIZE_WITH_VSCC" "=" "1"
+End
+
+PATH
+	Name  = "SPI_CSP_DIR"
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2009, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

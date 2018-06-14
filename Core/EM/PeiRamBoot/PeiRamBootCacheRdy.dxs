@@ -1,0 +1,57 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/PEI Ram Boot/PeiRamBootCacheRdy.dxs 1     4/22/11 1:39a Calvinchen $
+//
+// $Revision: 1 $
+//
+// $Date: 4/22/11 1:39a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/PEI Ram Boot/PeiRamBootCacheRdy.dxs $
+// 
+// 1     4/22/11 1:39a Calvinchen
+// Added Token "SAVE_ENTIRE_FV_TO_MEM" for OEM measure FV if needed. 
+// 
+// 
+// 
+//**********************************************************************
+#include <pei.h>
+#include "ppi\CpuIo.h"
+#include "ppi\PciCfg.h"
+#include "ppi\ReadOnlyVariable.h"
+#include "ppi\Stall.h"
+
+DEPENDENCY_START
+   EFI_PEI_PERMANENT_MEMORY_INSTALLED_PPI AND
+   EFI_PEI_CPU_IO_PPI_INSTALLED_GUID AND
+   EFI_PEI_READ_ONLY_VARIABLE_PPI_GUID AND
+   EFI_PEI_PCI_CFG_PPI_INSTALLED_GUID  AND
+   EFI_PEI_STALL_PPI_GUID 
+DEPENDENCY_END
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

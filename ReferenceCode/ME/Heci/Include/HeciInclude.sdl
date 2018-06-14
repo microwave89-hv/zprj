@@ -1,0 +1,9 @@
+PATH
+	Name  = "HeciInclude_DIR"
+End
+
+ELINK
+	Name  = "/I$(HeciInclude_DIR)"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End

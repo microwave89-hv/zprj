@@ -1,0 +1,263 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/BIN/Modules/ACPI/Template/Board/ACPI.sd 21    1/26/12 5:19p Oleksiyy $
+//
+// $Revision: 21 $
+//
+// $Date: 1/26/12 5:19p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Modules/ACPI/Template/Board/ACPI.sd $
+// 
+// 21    1/26/12 5:19p Oleksiyy
+// [TAG]  		EIP81670
+// [Category]  	New Feature
+// [Description]  	ACPI, ACPI settings goto define
+// [Files]  		ACPI.sd
+// 
+// 20    9/30/11 4:22p Oleksiyy
+// [TAG]  		EIP71374 
+// [Category]  	Improvement
+// [Description]  	ACPI sleep state setup option update.
+// [Files]  		ACPI.sd, ACPI.uni and AcpiCore.c
+// 
+// 19    12/06/10 4:18p Oleksiyy
+// [TAG]  		EIP48172
+// [Category]  	Improvement
+// [Description]  	CONTROLS_WITH_DEFAULTS section added.
+// [Files]  		ACPI.sd
+// 
+// 18    11/24/10 4:20p Oleksiyy
+// [TAG]  		EIP48172 
+// [Category]  	Improvement
+// [Description]  	File updated to meet Setup Customization requirements.
+// [Files]  		ACPI.sd
+// 
+// 17    10/12/10 5:51p Oleksiyy
+// EIP 38110. Setup Page title added.
+// 
+// 16    4/28/10 2:35p Oleksiyy
+// EIP 35563  "Force to ACPI ver. 1.1" ACPI setup menu (default is OFF) 
+// added. If Enabled - only Tables for ver. 1.1 will be builded (FACP, 
+// FACS, RSDT (no XSDT), and MADT) al other tables added by 
+// means of ACPI protocols not modified.
+// 
+// 15    2/19/10 12:22p Oleksiyy
+// EIP 35099: Setup question to lock legacy resources from OS added. 
+// Default value controlled by  DEFAULT_ACPI_LOCK_LEGACY_DEV 
+// SDL token and "OFF".   
+// 
+// 14    11/03/09 5:29p Oleksiyy
+// EIP 30137: Support for UEFI 2.1 added
+// 
+// 13    3/26/09 4:47p Oleksiyy
+// New ACPI Core realization - improves logic, execution time and memory
+// usage of ACPI module.
+// 
+// 1     2/18/09 3:50p Oleksiyy
+// 
+// 12    8/14/08 10:07a Fasihm
+// Added the MANUFACTURING flag to the setup questions.
+// 
+// 11    4/29/08 5:34p Yakovlevs
+// 
+// 10    3/12/07 6:07p Yakovlevs
+// 
+// 9     2/07/07 2:52p Markw
+// Add video repost setup question.
+// 
+// 8     1/23/07 11:27a Markw
+// Added video repost setup question.
+// 
+// 7     11/21/05 7:22p Felixp
+// Disable editing in in user mode
+// 
+// 6     11/06/05 5:04p Yakovlevs
+// 
+// 5     10/05/05 5:38p Felixp
+// oneof requires 2 bytes in NVRAM
+// 
+// 4     9/09/05 6:36p Girim
+// Code Cleanup and added comments.
+// 
+// 3     7/12/05 2:15p Girim
+// 
+// 2     6/30/05 6:10p Yakovlevs
+// 
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:	ACPI.sd
+//
+// Description:	ACPI Form Template
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+
+#ifdef SETUP_DATA_DEFINITION
+/***********************************************************/
+/* Put NVRAM data definitions here.
+/* For example: UINT8 Data1;
+/* These definitions will be converted by the build process
+/* to a definitions of SETUP_DATA fields.
+/***********************************************************/
+    UINT8   AcpiAuto;
+    UINT16  AcpiSleepState;
+    UINT8   AcpiLockLegacyRes;
+    UINT8   AcpiHibernate;
+    UINT8   S3ResumeVideoRepost;
+    UINT8   ForceToAcpi1;
+#endif
+
+#if defined(VFRCOMPILE) && !defined(CONTROLS_ARE_DEFINED)
+#define CONTROL_DEFINITION
+#endif
+
+#ifdef CONTROL_DEFINITION
+
+        #define ACPI_CHECKBOX_ACPIAUTO\
+				checkbox varid = SETUP_DATA.AcpiAuto,\
+					prompt = STRING_TOKEN(STR_ACPI_AUTO_PROMPT),\
+					help = STRING_TOKEN(STR_ACPI_AUTO_HELP),\
+					flags = DEFAULT_AUTO_ACPI | MANUFACTURING,\
+					key = 0,\
+				endcheckbox;
+        #define ACPI_CHECKBOX_ACPIHIBERNATE\
+				checkbox varid = SETUP_DATA.AcpiHibernate,\
+					prompt = STRING_TOKEN(STR_ACPI_S4_PROMPT),\
+					help = STRING_TOKEN(STR_ACPI_S4_HELP),\
+					flags = DEFAULT_SS4 | MANUFACTURING | RESET_REQUIRED,\
+					key = 0,\
+				endcheckbox;
+        #define ACPI_ONEOF_ACPISLEEPSTATE\
+				oneof varid  = SETUP_DATA.AcpiSleepState,\
+					prompt = STRING_TOKEN(STR_ACPI_SLEEP_PROMPT),\
+					help = STRING_TOKEN(STR_ACPI_SLEEP_HELP),\
+					option text = STRING_TOKEN(STR_ACPI_SLEEP_NO), value = 0, flags = RESET_REQUIRED;\
+					option text = STRING_TOKEN(STR_ACPI_SLEEP_S1), value = 1, flags = RESET_REQUIRED;\
+					option text = STRING_TOKEN(STR_ACPI_SLEEP_S3), value = 2, flags = RESET_REQUIRED;\
+					option text = STRING_TOKEN(STR_ACPI_SLEEP_AUTO), value = 3, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;\
+				endoneof;
+        #define ACPI_CHECKBOX_ACPILOCKLEGACYRES\
+				checkbox varid = SETUP_DATA.AcpiLockLegacyRes,\
+					prompt = STRING_TOKEN(STR_ACPI_LOCK_LEGACY_DEV_PROMPT),\
+					help = STRING_TOKEN(STR_ACPI_LOCK_LEGACY_DEV_HELP),\
+					flags = DEFAULT_ACPI_LOCK_LEGACY_DEV | MANUFACTURING | RESET_REQUIRED,\
+					key = 0,\
+				endcheckbox;
+    #if S3_VIDEO_REPOST_SUPPORT == 1
+        #define ACPI_ONEOF_S3RESUMEVIDEOREPOST\
+				oneof varid  = SETUP_DATA.S3ResumeVideoRepost,\
+					prompt = STRING_TOKEN(STR_S3_VIDEO_REPOST_PROMPT),\
+					help = STRING_TOKEN(STR_S3_VIDEO_REPOST_HELP),\
+					option text = STRING_TOKEN(STR_ACPI_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+				    option text = STRING_TOKEN(STR_ACPI_ENABLED), value = 1, flags = RESET_REQUIRED;\
+				endoneof;
+    #else
+        #define ACPI_ONEOF_S3RESUMEVIDEOREPOST
+    #endif
+    #if FORCE_TO_ACPI1_SETUP_ENABLE == 1
+        #define ACPI_ONEOF_FORCETOACPI1\
+				oneof varid  = SETUP_DATA.ForceToAcpi1,\
+					prompt = STRING_TOKEN(STR_FORCE_TO_ACPI1_PROMPT),\
+					help = STRING_TOKEN(STR_FORCE_TO_ACPI1_HELP),\
+					option text = STRING_TOKEN(STR_ACPI_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+				    option text = STRING_TOKEN(STR_ACPI_ENABLED), value = 1, flags = RESET_REQUIRED;\
+				endoneof;
+    #else
+        #define ACPI_ONEOF_FORCETOACPI1
+    #endif
+	// Define goto commands for the forms defined in this file
+    #define ACPI_GOTO_ACPISETTINGS\
+        goto ACPI_FORM_ID, \
+		    prompt = STRING_TOKEN(STR_ACPI_FORM),\
+		    help = STRING_TOKEN(STR_ACPI_FORM_HELP);
+
+#endif //#ifdef CONTROL_DEFINITION
+
+#ifdef CONTROLS_WITH_DEFAULTS
+
+    ACPI_CHECKBOX_ACPIAUTO
+    ACPI_CHECKBOX_ACPIHIBERNATE
+    ACPI_ONEOF_ACPISLEEPSTATE
+    ACPI_CHECKBOX_ACPILOCKLEGACYRES
+    ACPI_ONEOF_S3RESUMEVIDEOREPOST
+    ACPI_ONEOF_FORCETOACPI1
+
+#endif //#ifdef CONTROLS_WITH_DEFAULTS
+
+#ifdef ADVANCED_FORM_SET
+    #ifndef SUPPRESS_GRAYOUT_ENDIF //old Core
+    #define SUPPRESS_GRAYOUT_ENDIF endif;
+    #endif
+	#ifdef FORM_SET_ITEM
+	// Define controls to be added to the main page of the formset
+	#endif
+
+	#ifdef FORM_SET_GOTO
+	// Define goto commands for the forms defined in this file
+        ACPI_GOTO_ACPISETTINGS
+	#endif
+
+	#ifdef FORM_SET_FORM
+	// Define forms
+        #ifndef ACPI_FORM_MAIN
+        #define ACPI_FORM_MAIN
+
+		    form formid = AUTO_ID(ACPI_FORM_ID),
+			    title = STRING_TOKEN(STR_ACPI_FORM);
+            SUBTITLE(STRING_TOKEN(STR_ACPI_FORM))
+            SEPARATOR
+        
+			    grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+                    ACPI_CHECKBOX_ACPIAUTO
+			    endif;
+
+			    SEPARATOR
+			    suppressif ideqval SETUP_DATA.AcpiAuto == 0x1;
+			    grayoutif ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+
+                    ACPI_CHECKBOX_ACPIHIBERNATE
+
+                    ACPI_ONEOF_ACPISLEEPSTATE
+
+                    ACPI_CHECKBOX_ACPILOCKLEGACYRES
+
+                    ACPI_ONEOF_S3RESUMEVIDEOREPOST
+
+                    ACPI_ONEOF_FORCETOACPI1
+
+			    SUPPRESS_GRAYOUT_ENDIF
+		    endform;  // ACPI_FORM_ID
+        #endif // ACPI_FORM_MAIN
+	#endif  // FORM_SET_FORM
+
+#endif  // ADVANCED_FORM_SET
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**         5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

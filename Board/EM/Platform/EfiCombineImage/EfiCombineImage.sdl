@@ -1,0 +1,203 @@
+TOKEN
+	Name  = "EfiCombineImage"
+	Value  = "0"
+	Help  = "Main Switch to Enable Efi Combine Image"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+    TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "NVidia_Optimus_dGPU"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "AMD_PX_CHELSEA_dGPU"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "AMD_PX_THAMES_dGPU"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NVidia_dGPU_DID"
+	Value  = "0x0FD2"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "NVidia_Optimus_dGPU" "=" "1"
+End
+
+TOKEN
+	Name  = "NVidia_dGPU_MAKFILE_GUID"
+	Value  = "C5D7EAAD-B218-482c-A909-E3B8CDB00E94"
+	TokenType = Expression
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "GUID"
+	Token = "NVidia_Optimus_dGPU" "=" "1"
+End
+
+TOKEN
+	Name  = "NVidia_dGPU_HEADER_GUID"
+	Value  = "{0xC5D7EAAD,0xB218,0x482c,0xA9,0x09,0xE3,0xB8,0xCD,0xB0,0x0E,0x94}"
+	TokenType = Expression
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "GUID"
+	Token = "NVidia_Optimus_dGPU" "=" "1"
+End
+
+TOKEN
+	Name  = "AMD_CHELSEA_DID"
+	Value  = "0x682F"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "AMD_PX_CHELSEA_dGPU" "=" "1"
+End
+
+TOKEN
+	Name  = "AMD_CHELSEA_MAKFILE_GUID"
+	Value  = "B9C6D5AB-5914-4b1b-B33D-B10D9D0075BE"
+	TokenType = Expression
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "GUID"
+	Token = "AMD_PX_CHELSEA_dGPU" "=" "1"
+End
+
+TOKEN
+	Name  = "AMD_CHELSEA_HEADER_GUID"
+	Value  = "{0XB9C6D5AB,0X5914,0X4b1b,0XB3,0X3D,0XB1,0X0D,0X9D,0X00,0X75,0XBE}"
+	TokenType = Expression
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "GUID"
+	Token = "AMD_PX_CHELSEA_dGPU" "=" "1"
+End
+
+TOKEN
+	Name  = "AMD_THAMES_DID"
+	Value  = "0x6840"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "AMD_PX_THAMES_dGPU" "=" "1"
+End
+
+TOKEN
+	Name  = "AMD_THAMES_MAKFILE_GUID"
+	Value  = "633657DB-777F-4038-8D72-3E581518E03A"
+	TokenType = Expression
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "GUID"
+	Token = "AMD_PX_THAMES_dGPU" "=" "1"
+End
+
+TOKEN
+	Name  = "AMD_THAMES_HEADER_GUID"
+	Value  = "{0X633657DB,0X777F,0X4038,0X8D,0X72,0X3E,0X58,0X15,0X18,0XE0,0X3A}"
+	TokenType = Expression
+	TargetMAK = Yes
+	TargetH = Yes
+	Range  = "GUID"
+	Token = "AMD_PX_THAMES_dGPU" "=" "1"
+End
+
+TOKEN
+	Name  = "EfiCombineImageFile"
+	Value  = "Chipset\NB\GOP\SandyBridge\vbt_edp.bin"
+	Help  = "It is a sample, please modify to your VGA Oprom path."
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "NVidia_Optimus_dGPU" "=" "1"
+End
+
+TOKEN
+	Name  = "EfiCombineImageFile1"
+	Value  = "Chipset\NB\GOP\SandyBridge\vbt_edp.bin"
+	Help  = "It is a sample, please modify to your VGA Oprom path."
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "AMD_PX_CHELSEA_dGPU" "=" "1"
+End
+
+TOKEN
+	Name  = "EfiCombineImageFile2"
+	Value  = "Chipset\NB\GOP\SandyBridge\vbt_edp.bin"
+	Help  = "It is a sample, please modify to your VGA Oprom path."
+	TokenType = Expression
+	TargetMAK = Yes
+	Token = "AMD_PX_THAMES_dGPU" "=" "1"
+End
+
+PATH
+	Name  = "EfiCombineImage_DIR"
+End
+
+MODULE
+	Help  = "Includes EfiCombineImage.mak to Project"
+	File  = "EfiCombineImage.mak"
+End
+
+ELINK
+	Name  = "OEM_PCI_DEVICE_CALLBACK(0x10DE, NVidia_dGPU_DID, GetEfiCombineImage),"
+	Parent  = "OEM_PCI_DEVICE_GET_OPT_ROM"
+	Help  = "It is a sample(Nvidia Optims), please change DID and VID depend on your device."
+	Token = "NVidia_Optimus_dGPU" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OEM_PCI_DEVICE_CALLBACK(0x1002, AMD_CHELSEA_DID, GetEfiCombineImage),"
+	Parent  = "OEM_PCI_DEVICE_GET_OPT_ROM"
+	Help  = "It is a sample(AMD Chelsea), please change DID and VID depend on your device."
+	Token = "AMD_PX_CHELSEA_dGPU" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OEM_PCI_DEVICE_CALLBACK(0x1002, AMD_THAMES_DID, GetEfiCombineImage),"
+	Parent  = "OEM_PCI_DEVICE_GET_OPT_ROM"
+	Help  = "It is a sample(AMD Thames), please change DID and VID depend on your device."
+	Token = "AMD_PX_THAMES_dGPU" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\EfiCombineImageFile.ffs"
+	Parent  = "FV_MAIN"
+	Token = "NVidia_Optimus_dGPU" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\EfiCombineImageFile1.ffs"
+	Parent  = "FV_MAIN"
+	Token = "AMD_PX_CHELSEA_dGPU" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\EfiCombineImageFile2.ffs"
+	Parent  = "FV_MAIN"
+	Token = "AMD_PX_THAMES_dGPU" "=" "1"
+	InvokeOrder = AfterParent
+End
+

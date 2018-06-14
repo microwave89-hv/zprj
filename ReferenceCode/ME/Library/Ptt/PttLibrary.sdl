@@ -1,0 +1,59 @@
+TOKEN
+	Name  = "MePttLibrary_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable Me Kernel Library support in Project"
+End
+
+PATH
+	Name  = "MePttLibrary_DIR"
+	Help  = "Me Library file source directory"
+End
+
+ELINK
+	Name  = "/I$(MePttLibrary_DIR)\Include"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(MePttLibrary_DIR)\Pei"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(MePttLibrary_DIR)\Dxe"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+MODULE
+	Help  = "Includes PttLibrary.mak to Project"
+	File  = "PttLibrary.mak"
+End
+
+ELINK
+	Name  = "PttPei_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "PttDxe_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PttPeiLibrary.lib"
+	Parent  = "PttPei_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PttDxeLibrary.lib"
+	Parent  = "PttDxe_LIB"
+	InvokeOrder = AfterParent
+End

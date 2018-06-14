@@ -1,0 +1,13 @@
+<component>
+	name = "PciSerial"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\ME\ActiveManagement\Sol\Dxe\"
+	RefName = "PciSerial"
+[files]
+"PciSerial.sdl"	
+"PciSerial.mak"	
+"PciSerial.c"	
+"ComponentName.c"	
+"PciSerial.h"	
+"PciSerial.inf"	
+<endComponent>

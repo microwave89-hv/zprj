@@ -1,0 +1,47 @@
+TOKEN
+    Name  = CSP_MEUD_SUPPORT
+    Value  = "1"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    Master = Yes
+    Help  = "Main switch to enable ME Firmware Update Chipset function in Project"
+End
+
+TOKEN
+    Name  = "CSP_MEUDLIB"
+    Value  = "$(BUILD_DIR)\CSP_MEUD.lib"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+MODULE
+    Help  = "Includes MEUD.mak to Project"
+    File  = "CSP_MEUD.mak"
+End
+
+PATH
+    Name  = "MEUD_CSP_DIR"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\CSP_MEUD.lib"
+    Parent  = "OFBDLISTLIB"
+    InvokeOrder = AfterParent
+End
+
+TOKEN
+    Name  = "pSPIBASE"
+    Value  = "$(SB_RCBA) + $(SPI_BASE_ADDRESS)"
+    TokenType = Integer
+    TargetH = Yes
+    Help  = "Fill SPI_BASE."
+End
+
+TOKEN
+    Name  = "BITS_OF_SPI_DENSITY"
+    Value  = "1"
+    TokenType = Integer
+    TargetH = Yes
+    Help  = "Please check Flash Descriptor Component Section in SPI Programming Guid, 0 = 3 BITs for Density , 1 = 4 BITs for Density"
+End

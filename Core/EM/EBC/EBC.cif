@@ -1,0 +1,12 @@
+<component>
+	name = "EBC"
+	category = ModulePart
+	LocalRoot = "Core\EM\EBC\"
+	RefName = "EBC"
+[files]
+"EBC.sdl"	
+"EBC.mak"	
+"EBC.dxs"	
+"EBC.efi"	
+"EBCx64.efi"	
+<endComponent>

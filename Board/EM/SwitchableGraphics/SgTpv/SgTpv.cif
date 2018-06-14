@@ -1,0 +1,20 @@
+<component>
+	name = "Sg TPV"
+	category = ModulePart
+	LocalRoot = "Board\EM\SwitchableGraphics\SgTpv\"
+	RefName = "SgTpv"
+[files]
+"SgTpv.sdl"	
+"SgTpv.mak"	
+"SgTpvPei.c"	
+"SgTpvPei.dxs"	
+"SgTpvDxe.c"	
+"SgTpvDxe.dxs"	
+[parts]
+"MXM_NBCI"
+"NvOptimusSMM"
+"SgTpvAcpiTables"
+"SgTpvAcpiS3Save"
+[dependOn]
+"SwitchableGraphics"
+<endComponent>

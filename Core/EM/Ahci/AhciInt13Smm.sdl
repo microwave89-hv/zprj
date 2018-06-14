@@ -1,0 +1,58 @@
+TOKEN
+    Name  = "AHCI_INT13_SMM_SUPPORT"
+    Value  = "0"
+    Help  = "Main switch to enable SMM support for AHCI Int13/MMIO operations in Project. Currently only INT13 Read/Write functions are supported."
+    TokenType = Boolean
+    Master = Yes
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+PATH
+    Name  = "AHCI_INT13_SMM_DIR"
+End
+
+MODULE
+    Help  = "Includes AhciInt13Smm.mak"
+    File  = "AhciInt13Smm.mak"
+End
+
+TOKEN
+    Name  = "AHCI_INT13_SMM_SWSMI_VALUE"
+    Value  = "043h"
+    Help  = "Value to write into SMI command register to generate software SMI for AHCI INT13/MMIO operations."
+    TokenType = Integer
+    TargetH = Yes
+    TargetEQU = Yes
+    Range  = "0 - 0xff"
+End
+
+TOKEN
+    Name  = "AINT13_AVOID_MULTIPLE_SMI"
+    Value  = "0"
+    Help  = "Execute INT13 Read/Write functions completely in SMM and avoid multiple SMI generation for single AHCI INT13 function/call."
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetH = Yes
+    Token = "PI_SPECIFICATION_VERSION" ">=" "0x1000A"
+    Token = "CORE_COMBINED_VERSION" ">=" "0x4028B"
+    Token = "SMM_COMMUNICATE_SUPPORT" "=" "1"
+    Token = "AhciSmm_SUPPORT" "=" "1"
+End
+
+TOKEN
+    Name  = "BIG_REAL_MODE_MMIO_ACCESS"
+    Value  = "0"
+    Help  = "1- Access the MMIO region by switching to big real mode, 0 - Access the MMIO using SMI handler"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\AhciInt13Smm.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End

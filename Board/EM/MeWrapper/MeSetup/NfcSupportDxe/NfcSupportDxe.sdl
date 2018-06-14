@@ -1,0 +1,62 @@
+TOKEN
+	Name  = "NFC_SUPPORT_DXE_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable NfcSupportDxe support in DXE Phase"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_NFC_SETTING"
+	Value  = "1"
+	Help  = "Default value of NFC Enable option"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+PATH
+	Name  = "NFC_SUPPORT_DXE_PATH"
+End
+
+MODULE
+	Help  = "Includes NfcSupportDxe.mak to Project"
+	File  = "NfcSupportDxe.mak"
+End
+
+ELINK
+	Name  = "NfcSupportResetHook,"
+	Parent  = "PreSystemResetHook,"
+	Priority  = 60
+	Token = "NFC_SUPPORT_DXE_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\NfcSupportDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "-i $(NFC_SUPPORT_DXE_PATH)"
+	Parent  = "SETUP_VFR_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\NfcSupportSetupHook.obj"
+	Parent  = "AMITSE_Objects"
+	Token = "NFC_SUPPORT_DXE_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "NfcSupportEnterSetup,"
+	Parent  = "ProcessEnterSetup,"
+	Token = "NFC_SUPPORT_DXE_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+

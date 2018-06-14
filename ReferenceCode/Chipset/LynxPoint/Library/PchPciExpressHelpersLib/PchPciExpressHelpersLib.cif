@@ -1,0 +1,12 @@
+<component>
+	name = "PchPciExpressHelpersLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Library\PchPciExpressHelpersLib"
+	RefName = "PchPciExpressHelpersLib"
+[files]
+"PchPciExpressHelpersLib.sdl"
+"PchPciExpressHelpersLib.mak"	
+"PchPciExpressHelpersLibrary.c"
+"PchPciExpressHelpersLibrary.h"
+"PchPciExpressHelpersLib.inf"
+<endComponent>

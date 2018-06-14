@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueBasePciLibCf8"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\BasePciLibCf8"
+	RefName = "EdkIIGlueBasePciLibCf8"
+[files]
+"EdkIIGlueBasePciLibCf8.sdl"	
+"EdkIIGlueBasePciLibCf8.mak"
+"BasePciLibCf8.inf"	
+"PciLib.c"	
+<endComponent>

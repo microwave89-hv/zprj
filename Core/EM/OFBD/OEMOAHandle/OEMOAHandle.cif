@@ -1,0 +1,11 @@
+<component>
+	name = "OEM OA Data Handle"
+	category = ModulePart
+	LocalRoot = "Core\EM\OFBD\OEMOAHandle\"
+	RefName = "OFBD_OA_DATA_HANDLE"
+[files]
+"OEMOAHandle.sdl"	
+"OEMOAHandle.mak"	
+"OEMOAHandle.h"	
+"OEMOAHandle.c"	
+<endComponent>

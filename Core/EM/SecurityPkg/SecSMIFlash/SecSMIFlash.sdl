@@ -1,0 +1,74 @@
+TOKEN
+    Name  = "SecSMIFlash_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable Secured SMIFlash support in Project"
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "INSTALL_SECURE_FLASH_SW_SMI_HNDL"
+    Value  = "0"
+    Help  = "Install SecFlash SW SMI callbacks. Not needed if OFBD Secure Flash is present"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "NEW_BIOS_MEM_ALLOC"
+    Value  = "1"
+    Help  = "Memory buffer location for new BIOS image.\0-SMM TSEG, 1-ACPI NVS, 2-allocated by AFU"
+    Range = "0-1-2"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "CSLIB_WARM_RESET_SUPPORTED"
+    Value  = "0"
+    Help  = "1 - Chipset provides SBLib_ResetSystem(EfiResetWarm).\0 - Simulate Warm Reset via S3 & RTC resume."
+    TokenType = Boolean
+    TargetMAK = Yes
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "SwSmi_LoadFwImage"
+    Value  = "0x1d"
+    Help  = "SW SMI value for Load FW image to SMM RAM"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "SwSmi_GetFlashPolicy"
+    Value  = "0x1e"
+    Help  = "SW SMI value for Get Fl Upd Policy"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "SwSmi_SetFlashMethod"
+    Value  = "0x1f"
+    Help  = "SW SMI value for Set Fl Upd Method"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+PATH
+    Name  = "SEC_SMI_FLASH_DIR"
+End
+
+MODULE
+    Help  = "Includes SecSMIFlash.mak to Project"
+    File  = "SecSMIFlash.mak"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\SecSMIFlash.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End

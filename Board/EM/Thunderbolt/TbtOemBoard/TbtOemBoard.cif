@@ -1,0 +1,17 @@
+<component>
+	name = "TbtOemBoard"
+	category = ModulePart
+	LocalRoot = "Board\EM\Thunderbolt\TbtOemBoard\"
+	RefName = "TbtOemBoard"
+[files]
+"TbtOemBoard.h"	
+"TbtOemBoard.c"	
+"TbtOemBoard.dxs"	
+"TbtOemBoard.mak"	
+"TbtOemBoard.sdl"	
+"TbtOemLib.c"	
+"TbtOemLib.h"	
+"TbtOemPorting.asl"	
+[parts]
+"TbtSetup"
+<endComponent>

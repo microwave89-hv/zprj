@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueDxeHobLib"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\DxeHobLib"
+	RefName = "EdkIIGlueDxeHobLib"
+[files]
+"EdkIIGlueDxeHobLib.sdl"	
+"EdkIIGlueDxeHobLib.mak"
+"DxeHobLib.inf"	
+"HobLib.c"	
+<endComponent>

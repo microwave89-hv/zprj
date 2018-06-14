@@ -1,0 +1,135 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SmmChildDispatcher2/SmmChildDispatcher2.sdl 4     1/03/13 7:00a Scottyang $
+#
+# $Revision: 4 $
+#
+# $Date: 1/03/13 7:00a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SmmChildDispatcher2/SmmChildDispatcher2.sdl $
+# 
+# 4     1/03/13 7:00a Scottyang
+# [TAG]  		None
+# [Category]  	Bug Fix
+# [Severity]  	Important
+# [Symptom]  	GPISMI cannot use.
+# [RootCause]  	GPISMI2 will clear status before GPISMI.
+# [Solution]  	GPISMI2 do not clear status when GPISMI has register.
+# [Files]  		SmmChildDispatcher2.sdl
+# SmiHandlerGeneric2.c
+# 
+# 3     10/19/12 2:52a Scottyang
+# [TAG]       EIP93461
+# [Category]  Bug Fix
+# [Severity]  Normal
+# [Symptom]   System halt when AFUDOS is running with /N /ME command.
+# [RootCause] An unexpected BIOSWR_STS is set, it causes BIOS stuck
+#             at SMM dispatcher.
+# [Solution]  Clear BIOSWR_STS if BIOS Lock Enable is not set.
+# [Files]     SmiHandlerPorting2.c; SmmChildDispatch2Main.c
+#             SmmChildDispatcher2.sdl; SmmChildDispatch2.h
+#             SB\SBGeneric.c
+# 
+# 2     4/25/12 9:32a Victortu
+# [TAG]         None
+# [Category]    Improvement
+# [Description] Reprogram SMM ChildDispatcher drivers.
+# [Files]       SmiHandlerGeneric.c; SmiHandlerPorting.c;
+# SmiHandlerGeneric2.c; SmmChildDispatch2Main.c; SmmChildDispatcher2.mak;
+# SmmChildDispatcher2.sdl; SmmChildDispatch.h; SmmChildDispatchMain.c;
+# SmmChildDispatchProtocol.c; SmmChildDispatcher.dxs;
+# PchSmiDispatcher.sdl
+# 
+# 1     2/08/12 8:28a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+    Name  = "SmmChildDispatcher2_SUPPORT"
+    Value  = "1"
+    Help  = "Main switch to enable SmmChildDispatcher II support in Project"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    Master = Yes
+    Token = "PI_SPECIFICATION_VERSION" ">" "0x10000"
+End
+
+TOKEN
+    Name  = "PI_0_9_CHILD_DISPATCHER_SUPPORT"
+    Value  = "1"
+    Help  = "Enable SmmChildDispatcher I support"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+                                        # [EIP93461]>
+TOKEN
+    Name  = "BIOS_WRITE_SMI_PATCH_ENABLE"
+    Value  = "1"
+    Help  = "Clear unexpected BIOSWR_STS."
+    TokenType = Boolean
+    TargetH = Yes
+End
+                                        # <[EIP93461]
+
+TOKEN
+    Name  = "GPI_DISPATCH2_BY_BITMAP"
+    Value  = "0"
+    Help  = "ON = The registered parameter of SMM GPI dispatcher II is using bitmapped.\OFF = The registered parameter of SMM GPI disatcher is using index based"
+    TokenType = Boolean
+    TargetH = Yes
+    Lock = Yes
+End
+
+TOKEN
+    Name  = "SUPPORTED_GPIS2"
+    Value  = "0xFFFF"
+    Help  = "This is a supported GPI SMI mask, 1 = supported, 16 bits maximum"
+    TokenType = Integer
+    TargetH = Yes
+End
+
+PATH
+    Name  = "SMM_CHILD_DISP2_DIR"
+End
+
+MODULE
+    Help  = "Includes SmmChildDispatcher2.mak to Project"
+    File  = "SmmChildDispatcher2.mak"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\SmmChildDispatcher2.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

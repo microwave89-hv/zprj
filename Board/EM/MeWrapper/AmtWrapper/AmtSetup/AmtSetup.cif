@@ -1,0 +1,16 @@
+<component>
+	name = "AmtSetup"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\AmtWrapper\AmtSetup"
+	RefName = "AmtSetup"
+[files]
+"AmtSetup.sdl"	
+"AmtSetup.mak"	
+"AmtSetup.c"	
+"AmtSetup.sd"	
+"AmtSetup.uni"	
+"AmtSetup.h"	
+"AmtSetup.dxs"	
+"AmtTseFunc.c"	
+"AmtSMIFlashElink.c"	
+<endComponent>

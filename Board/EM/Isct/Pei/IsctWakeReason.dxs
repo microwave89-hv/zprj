@@ -1,0 +1,73 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/ISCT/IsctPeiWakeReason/IsctWakeReason.dxs 2     9/26/12 2:08a Bensonlai $
+//
+// $Revision: 2 $
+//
+// $Date: 9/26/12 2:08a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/ISCT/IsctPeiWakeReason/IsctWakeReason.dxs $
+// 
+// 2     9/26/12 2:08a Bensonlai
+// [TAG]  		Nono
+// [Category]  	Improvement
+// [Description]  	Modified comment
+// [Files]  		IsctWakeReason.dxs
+// IsctWakeReason.sdl
+// IsctWakeReason.mak
+// 
+// 1     9/02/12 11:18p Bensonlai
+// Intel Smart Connect Technology initially releases.
+//
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:  IsctWakeReason.dxs
+//
+// Description:	Dependency expression file for IsctWakeReason Driver.
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+
+#include "AutoGen.h"
+#include "PeimDepex.h"
+#if defined (BUILD_WITH_GLUELIB) || defined (BUILD_WITH_EDKII_GLUE_LIB)
+#include "EfiDepex.h"
+#include EFI_PPI_DEPENDENCY (Variable)
+
+#include EFI_PPI_DEPENDENCY (PchPeiInitDone)
+#endif
+
+DEPENDENCY_START
+   PEI_READ_ONLY_VARIABLE_ACCESS_PPI_GUID  AND
+   PCH_PEI_INIT_DONE_PPI_GUID
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

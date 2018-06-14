@@ -1,0 +1,77 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/GfxDisplayLibPei/GfxDisplayLibPei.sdl 1     9/26/12 3:53a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 9/26/12 3:53a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Intel Fast Flash Standby/iRST_SharkBay/GfxDisplayLibPei/GfxDisplayLibPei.sdl $
+# 
+# 1     9/26/12 3:53a Yurenlai
+# [TAG]           None
+# [Category]      Improvement
+# [Severity]      Important
+# [Description]   Update Intel Rapid Start Technology Framework Reference
+# Code Beta Version 0.7.0.
+# [Description]   ReferenceCode\RapidStart\*.*, RapidStartPeiLib.h
+# 
+#*************************************************************************
+TOKEN
+        Name  = "GfxDisplayLibPei_SUPPORT"
+        Value  = "1"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        Master = Yes
+        Help  = "Main switch to enable GfxDisplayLibPei support in Project"
+End
+
+PATH
+        Name  = "GfxDisplayLibPei_DIR"
+        Help  = "GfxDisplayLibPei file source directory"
+End
+
+MODULE
+        File  = "GfxDisplayLibPei.mak"
+        Help  = "Includes GfxDisplayLibPei.mak to Project"
+End
+
+ELINK
+        Name  = "GfxDisplayLibPei_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\GfxDisplayLibPei.lib"
+        Parent  = "GfxDisplayLibPei_LIB"
+        InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

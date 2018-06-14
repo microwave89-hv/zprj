@@ -1,0 +1,25 @@
+<component>
+	name = "DptfAcpiTablesFfrd"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\AcpiTables\Dptf\AcpiTables\Ffrd\"
+	RefName = "DptfAcpiTablesFfrd"
+[files]
+"DptfAcpiTablesFfrd.sdl"
+"DptfAcpiTablesFfrd.mak"
+"DptfAcpiTablesFfrd.inf"
+"B0d4DppmPolicy.asl"
+"Art.asl"
+"DptfFfrd.asl"
+"Ertm.asl"
+"TAmbParticipant.asl"
+"TEfnParticipant.asl"
+"TFN1Participant.asl"
+"TFN2Participant.asl"
+"TMemDppmPolicy.asl"
+"TInlDppmPolicy.asl"
+"TInlParticipant.asl"
+"TMemParticipant.asl"
+"Trt.asl"
+"TSknParticipant.asl"
+"TSknDppmPolicy.asl"
+<endComponent>

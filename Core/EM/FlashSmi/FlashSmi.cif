@@ -1,0 +1,12 @@
+<component>
+	name = "FLASH SMI"
+	category = eModule
+	LocalRoot = "Core\EM\FlashSmi"
+	RefName = "Flash_SMI"
+[files]
+"FlashSmi.chm"
+"FlashSmi.sdl"
+"FlashSmi.mak"
+"FlashSmi.c"
+"FlashSmi.dxs"
+<endComponent>

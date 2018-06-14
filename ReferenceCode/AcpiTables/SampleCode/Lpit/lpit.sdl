@@ -1,0 +1,38 @@
+TOKEN
+	Name  = "LPIT_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable LPIT support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "LPIT_DIR"
+End
+
+MODULE
+	Help  = "Includes LPIT.mak to Project"
+	File  = "lpit.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Lpit.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Lpit.asl"
+	Parent  = "GENERIC_ASL"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "LPIT_GUID"
+        Value  = "{0x9dd795eb, 0x41e8, 0x4591, 0x8e, 0x63, 0x5e, 0xf4, 0xaa, 0x33, 0xb9, 0x8}"
+	Help  = "lpit Acpi Package"
+	TokenType = Expression
+	TargetH = Yes
+End

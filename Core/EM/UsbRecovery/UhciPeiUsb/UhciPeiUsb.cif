@@ -1,0 +1,10 @@
+<component>
+	name = "UhciPeiUsb"
+	category = ModulePart
+	LocalRoot = "core\em\UsbRecovery\UhciPeiUsb\"
+	RefName = "UhciPeiUsb"
+[files]
+"UhciPeiUsb.c"	
+[parts]
+"UHCI PPI"
+<endComponent>

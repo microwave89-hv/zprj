@@ -1,0 +1,11 @@
+<component>
+	name = "Dhcp6"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Ipv6\Dhcp6"
+	RefName = "Dhcp6"
+[files]
+"Dhcp6.sdl"	
+"Dhcp6.mak"	
+"Dhcp6Dxe.efi"	
+"Dhcp6DxeIa32.efi"	
+<endComponent>

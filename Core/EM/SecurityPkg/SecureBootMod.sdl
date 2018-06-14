@@ -1,0 +1,277 @@
+TOKEN
+	Name  = "SecureBoot_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SecureBoot Module support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Token = "CryptoAPI_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "SECURE_BOOT_MODULE_REVISION"
+	Value  = "25"
+	Help  = "Version of Secure Boot module interfaces"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_SECURE_BOOT_ENABLE"
+	Value  = "1"
+	Help  = "Default value of Secure Boot Enable Control.\0-Secure Boot control option will be locked Disabled unless platform in User mode with CSM disabled"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_SECURE_BOOT_MODE"
+	Value  = "0"
+	Help  = "Default Secure Boot Mode selector.\0-Standard, 1-Custom Mode allows physically present users more flexibility changing Image Execution policy and Secure Boot Key management."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_SECURE_BOOT_MODE"
+	Value  = "1"
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "DEFAULT_SECURE_BOOT_ENABLE" "=" "0"
+End
+
+TOKEN
+	Name  = "DEFAULT_PROVISION_SECURE_VARS"
+	Value  = "0"
+	Help  = "Install factory default Secure Boot variables: PK, KEK, db, dbx and dbt.\Note: this function will not override existing Secure Boot variables in NVRAM."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "SecVariables_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "SET_SECURE_VARS"
+	Value  = "0"
+	Help  = "Placeholder token"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SET_SECURE_VARS"
+	Value  = "1"
+	Help  = "Includes the code to provision Platform Keys EFI variable from Setup Page and at 1st boot after reFlash"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "SecVariables_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "PRESERVE_SECURE_VARIABLES"
+	Value  = "1"
+	Help  = "1 - Preserve Secure Boot State across flash updates.\0 - Do not preserve Secure Boot State across flash updates.\Note. Same functionality may already exist in SmiFlash eModule"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ALWAYS_INSTALL_DEFAULT_RT_KEYS"
+	Value  = "0"
+	Help  = "UEFI 2.3.1c. Install vendor default Secure Boot keys as volatile variables: PKdefault, KEKdefault etc. are set irrespective of Setup mode"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+PATH
+	Name  = "SecureBoot_DIR"
+	Help  = "Path to SecureBoot Module Module in Project"
+End
+
+MODULE
+	File  = "SecureBootMod.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SecureBootMod.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SecureBootMod.sdb"
+	Parent  = "SETUP_SDBS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(SecureBoot_DIR)\SecureBootMod.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "UpdateSecureVariableBrowserInfo,"
+	Parent  = "LoadedPreviousValuesHook,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "UpdateSecureVariableBrowserInfo,"
+	Parent  = "LoadedConfigDefaults,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,SECURE_BOOT_MENU_REFRESH,ForceSetupModeCallback),"
+    Parent  = "SetupItemCallbacks"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,SECURE_BOOT_SUPPORT_CHANGE_KEY,ForceSetupModeCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,SECURE_BOOT_MODE_CHANGE_KEY,ForceSetupModeCallback),"
+    Parent  = "SetupItemCallbacks"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,KEY_MANAGEMENT_MENU_REFRESH,ForceSetupModeCallback),"
+    Parent  = "SetupItemCallbacks"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,FORCE_DEFAULT_KEY,ForceSetupModeCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,FORCE_SETUP_KEY,ForceSetupModeCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,KEY_PROVISION_CHANGE_KEY,ForceSetupModeCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,SET_KEK_KEY,SetAppendSecureBootDBCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,DELETE_KEK_KEY,DeleteSecureBootDBCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,APPEND_KEK_KEY,SetAppendSecureBootDBCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,SET_DB_KEY,SetAppendSecureBootDBCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,DELETE_DB_KEY,DeleteSecureBootDBCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,APPEND_DB_KEY,SetAppendSecureBootDBCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,SET_DBT_KEY,SetAppendSecureBootDBCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,DELETE_DBT_KEY,DeleteSecureBootDBCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,APPEND_DBT_KEY,SetAppendSecureBootDBCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,SET_DBX_KEY,SetAppendSecureBootDBCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,DELETE_DBX_KEY,DeleteSecureBootDBCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,APPEND_DBX_KEY,SetAppendSecureBootDBCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,SET_PK_KEY,SetAppendSecureBootDBCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,GET_PK_KEY,GetSecureBootDBCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(SECURITY_FORM_SET_CLASS,0,DELETE_PK_KEY,DeleteSecureBootDBCallback),"
+	Parent  = "SetupItemCallbacks"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PreserveSecureVariables,"
+	Parent  = "SMIFlashPreUpdateList"
+	Token = "SMIFlash_SUPPORT" "=" "1"
+	Token = "PRESERVE_SECURE_VARIABLES" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "RestoreSecureVariables,"
+	Parent  = "SMIFlashEndUpdateList"
+	Token = "SMIFlash_SUPPORT" "=" "1"
+	Token = "PRESERVE_SECURE_VARIABLES" "=" "1"
+	InvokeOrder = AfterParent
+End
+

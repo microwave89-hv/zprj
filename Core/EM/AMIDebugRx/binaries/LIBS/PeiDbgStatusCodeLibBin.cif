@@ -1,0 +1,14 @@
+<component>
+	name = "PeiDbgStatusCodeLibBin"
+	category = ModulePart
+	LocalRoot = "Core\em\AMIDebugRx\binaries\LIBS\"
+	RefName = "PeiDbgStatusCodeLibBin"
+[files]
+"PeiDbgStatusCodeLib.sdl"	
+"PeiDbgStatusCodeLib.mak"	
+"StatusCodeLib\DbgrHelp.c"	
+"StatusCodeLib\HostConStatus.c"	
+[parts]
+"StsCodeObjsIa32Rx"
+"StsCodeObjsx64Rx"
+<endComponent>

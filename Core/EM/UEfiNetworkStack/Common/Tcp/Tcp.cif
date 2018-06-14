@@ -1,0 +1,11 @@
+<component>
+	name = "Tcp"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Common\Tcp"
+	RefName = "Tcp"
+[files]
+"Tcp.sdl"	
+"Tcp.mak"	
+"TcpDxeIa32.efi"	
+"TcpDxe.efi"	
+<endComponent>

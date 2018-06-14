@@ -1,0 +1,28 @@
+TOKEN
+	Name  = "MeProtocolLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable MeProtocolLib support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "MeProtocolLib_DIR"
+End
+
+MODULE
+	Help  = "Includes MeProtocolLib.mak to Project"
+	File  = "MeProtocolLib.mak"
+End
+
+ELINK
+	Name  = "MeProtocolLib_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\MeProtocolLib.lib"
+	Parent  = "MeProtocolLib_LIB"
+	InvokeOrder = AfterParent
+End

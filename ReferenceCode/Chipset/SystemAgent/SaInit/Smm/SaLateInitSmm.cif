@@ -1,0 +1,13 @@
+<component>
+	name = "SaLateInitSmm"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\SaInit\Smm\"
+	RefName = "SaLateInitSmm"
+[files]
+"SaLateInitSmm.sdl"	
+"SaLateInitSmm.mak"	
+"SaLateInitSmm.h"	
+"SaLateInitSmm.c"	
+"SaLateInitSmm.dxs"	
+"SaLateInitSmm.inf"	
+<endComponent>

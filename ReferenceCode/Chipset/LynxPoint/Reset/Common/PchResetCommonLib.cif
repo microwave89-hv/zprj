@@ -1,0 +1,11 @@
+<component>
+	name = "PchResetCommonLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\Reset\Common"
+	RefName = "PchResetCommonLib"
+[files]
+"PchResetCommonLib.sdl"	
+"PchResetCommonLib.mak"	
+"PchResetCommon.h"	
+"PchResetCommon.c"	
+<endComponent>

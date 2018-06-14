@@ -1,0 +1,8 @@
+<component>
+	name = "SNP16"
+	category = ModulePart
+	LocalRoot = "core\em\csm\thunk\Snp16"
+	RefName = "BIOSSNP16"
+[files]
+[parts]
+<endComponent>

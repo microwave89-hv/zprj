@@ -1,0 +1,24 @@
+TOKEN
+	Name  = "TCGSMM_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TCGSMM support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "TCGSmm_DIR"
+End
+
+MODULE
+	Help  = "Includes TCGSMM.mak to Project"
+	File  = "TCGSmm.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TCGSmm.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

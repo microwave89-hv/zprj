@@ -1,0 +1,10 @@
+<component>
+	name = "CpuTools"
+	category = ModulePart
+	LocalRoot = "Core\Cpu"
+	RefName = "CpuTools"
+[files]
+"CpuTools.sdl"	
+"SecFixup.exe"	
+"CreateSecFfs.exe"	
+<endComponent>

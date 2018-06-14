@@ -1,0 +1,239 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+//**********************************************************************
+//
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/MeWrapper/Icc/IccSetup/IccSetupSubmenu.sd 3     11/20/12 3:09a Klzhan $
+//
+// $Revision: 3 $
+//
+// $Date: 11/20/12 3:09a $
+//
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/ME/MeWrapper/Icc/IccSetup/IccSetupSubmenu.sd $
+// 
+// 3     11/20/12 3:09a Klzhan
+// [TAG]  		EIPNone
+// [Category]  	Improvement
+// [Description]  	AMI CSP Intel BIOS Setup Unify Rule.
+// 
+// 2     10/30/12 8:37a Klzhan
+// Support DMI Ratio for new ICC.
+// 
+// 1     2/08/12 1:07a Klzhan
+// Initial Check in 
+// 
+// 2     9/06/11 6:11a Klzhan
+// [TAG]  		EIP67462
+// [Category]  	Spec Update
+// [Severity]  	Important
+// [Description]  	Update ICC 08.00.00.022.1
+// [Files]  		IccSetup.mak
+// IccSetup.sdl
+// IccCallbacks.c
+// IccCallbacks.h
+// IccSetup.h
+// IccSetupMenu.sd
+// IccSetupSubmenu.sd
+// IccStrings.uni
+// IccLoadDefault.c
+// IccSetup.cif
+// 
+// 1     2/25/11 1:42a Klzhan
+// Initial Check-in
+// 
+// 1     12/03/10 5:10a Klzhan
+// Initial Check-in.
+// 
+//
+//**********************************************************************
+
+//<AMI_FHDR_START>
+//----------------------------------------------------------------------------
+//
+// Name:            IccSetup.sd
+//
+// Description:     SD file for ICC Setup
+//
+//----------------------------------------------------------------------------
+//<AMI_FHDR_END>
+/*++
+
+Copyright (c)  2009 Intel Corporation. All rights reserved
+This software and associated documentation (if any) is furnished
+under a license and may only be used or copied in accordance
+with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be
+reproduced, stored in a retrieval system, or transmitted in any
+form or by any means without the express written consent of
+Intel Corporation.
+
+Module Name:
+
+  IccSetupSubmenu.sd
+
+Abstract:
+
+  Icc's overclocking submenu layout
+
+--*/
+
+//This file should be included multiple times into IccSetupMenu.sd
+
+#ifdef INSIDE_ICC_SUBMENU
+
+title = STRING_TOKEN(STR_EMPTY);
+
+    text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_ICC_CLOCK_NUMBER),
+        text   = STRING_TOKEN(STR_EMPTY),
+        flags  = 0, key = 0;
+
+    text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_ICC_CLOCK_USAGE_1),
+        text   = STRING_TOKEN(STR_EMPTY),
+        flags  = 0, key = 0;
+
+    text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_ICC_CLOCK_USAGE_2),
+        text   = STRING_TOKEN(STR_EMPTY),
+        flags  = 0, key = 0;
+
+    SEPARATOR
+
+    text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_ICC_MAX_FREQUENCY),
+        text   = STRING_TOKEN(STR_ICC_MAX_FREQUENCY_VALUE),
+        flags = 0, key = 0;
+
+    text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_ICC_MIN_FREQUENCY),
+        text   = STRING_TOKEN(STR_ICC_MIN_FREQUENCY_VALUE),
+        flags = 0, key = 0;
+
+    text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_ICC_CURRENT_FREQUENCY),
+        text   = STRING_TOKEN(STR_ICC_CURRENT_FREQUENCY_VALUE),
+        flags = 0, key = 0;
+
+  suppressif ideqval ICC_VOLATILE_SETUP_DATA.ShowClock[CLOCK_NUMBER] == 0;
+  grayoutif  ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+    numeric varid = ICC_VOLATILE_SETUP_DATA.Frequency[CLOCK_NUMBER],
+        prompt    = STRING_TOKEN(STR_ICC_NEW_FREQUENCY),
+        help      = STRING_TOKEN(STR_ICC_NEW_FREQUENCY_HELP),
+        flags     = INTERACTIVE,
+        key       = KEY_FREQ,
+        minimum   = 0,
+        maximum   = 65535,
+        step      = 1,
+        default   = 0,
+    endnumeric;
+  SUPPRESS_GRAYOUT_ENDIF
+
+  grayoutif  ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+  suppressif ideqval ICC_VOLATILE_SETUP_DATA.ShowSsc[CLOCK_NUMBER] == 0;
+    text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_ICC_SSC_MODES),
+        text   = STRING_TOKEN(STR_ICC_SSC_MODES_VALUE),
+        flags = 0, key = 0;
+  SUPPRESS_GRAYOUT_ENDIF
+
+    text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_ICC_SSC_CURRENT_MODE),
+        text   = STRING_TOKEN(STR_ICC_SSC_CURRENT_MODE_VALUE),
+        flags = 0, key = 0;
+
+  grayoutif  ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;        
+  suppressif ideqval ICC_VOLATILE_SETUP_DATA.ShowSsc[CLOCK_NUMBER] == 0;
+    oneof varid     = ICC_VOLATILE_SETUP_DATA.SscMode[CLOCK_NUMBER],
+        prompt      = STRING_TOKEN(STR_ICC_SSC_MODE_SELECTION),
+        help        = STRING_TOKEN(STR_ICC_SSC_MODE_SELECTION_HELP),
+        option text = STRING_TOKEN(STR_ICC_MODE_DOWN),   value = 0, flags = DEFAULT;
+        option text = STRING_TOKEN(STR_ICC_MODE_CENTRE), value = 1, flags = 0;
+        option text = STRING_TOKEN(STR_ICC_MODE_UP),     value = 2, flags = 0;
+    endoneof;
+    SUPPRESS_GRAYOUT_ENDIF
+
+  grayoutif  ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;  
+  suppressif ideqval ICC_VOLATILE_SETUP_DATA.ShowSsc[CLOCK_NUMBER] == 0;
+    text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_ICC_SSC_MAX),
+        text   = STRING_TOKEN(STR_ICC_SSC_MAX_VALUE),
+        flags = 0, key = 0;
+  SUPPRESS_GRAYOUT_ENDIF
+  
+    text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_ICC_SSC_CURRENT),
+        text   = STRING_TOKEN(STR_ICC_SSC_CURRENT_VALUE),
+        flags = 0, key = 0;
+
+  grayoutif  ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;
+  suppressif ideqval ICC_VOLATILE_SETUP_DATA.ShowSsc[CLOCK_NUMBER] == 0;
+    numeric varid = ICC_VOLATILE_SETUP_DATA.SscPercent[CLOCK_NUMBER],
+        prompt    = STRING_TOKEN(STR_ICC_SSC_NEW_PERCENT),
+        help      = STRING_TOKEN(STR_ICC_SSC_NEW_PERCENT_HELP),
+        flags     = 0,
+        key       = 0,
+        minimum   = 0,
+        maximum   = 999,
+        step      = 1,
+        default   = 0,
+    endnumeric;
+  SUPPRESS_GRAYOUT_ENDIF
+
+  grayoutif  ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;        
+  suppressif ideqval ICC_VOLATILE_SETUP_DATA.ShowDmiPegRatio[CLOCK_NUMBER] == 0;
+    oneof varid     = ICC_VOLATILE_SETUP_DATA.DmiPegRatio[CLOCK_NUMBER],
+        prompt      = STRING_TOKEN(STR_DMI_PEG_RATIO),
+        help        = STRING_TOKEN(STR_DMI_PEG_RATIO_HELP),
+        option text = STRING_TOKEN(STR_DMI_PEG_RATIO_55),     value = 0, flags = DEFAULT;
+        option text = STRING_TOKEN(STR_DMI_PEG_RATIO_54),     value = 1, flags = 0;
+        option text = STRING_TOKEN(STR_DMI_PEG_RATIO_53),     value = 2, flags = 0;
+        option text = STRING_TOKEN(STR_DMI_PEG_RATIO_52),     value = 3, flags = 0;
+    endoneof;
+    SUPPRESS_GRAYOUT_ENDIF
+
+  grayoutif  ideqval SYSTEM_ACCESS.Access == SYSTEM_PASSWORD_USER;    
+  suppressif ideqval ICC_VOLATILE_SETUP_DATA.ShowSsc[CLOCK_NUMBER] == 0 AND ideqval ICC_VOLATILE_SETUP_DATA.ShowClock[CLOCK_NUMBER] == 0;
+    goto MENU_NUMBER,prompt=STRING_TOKEN(STR_ICC_IMMEDIATE_CHANGES),help=STRING_TOKEN(STR_ICC_IMMEDIATE_CHANGES_HELP),flags=INTERACTIVE,key=KEY_CHANGE_NOW;
+    goto MENU_NUMBER,prompt=STRING_TOKEN(STR_ICC_PERMANENT_CHANGES),help=STRING_TOKEN(STR_ICC_PERMANENT_CHANGES_HELP),flags=INTERACTIVE,key=KEY_CHANGE_PERM;
+  SUPPRESS_GRAYOUT_ENDIF
+
+  endform;
+
+#endif
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

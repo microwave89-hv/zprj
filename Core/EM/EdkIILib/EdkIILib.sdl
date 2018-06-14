@@ -1,0 +1,26 @@
+TOKEN
+	Name  = EdkIILib_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable Edk II compatibility library support in Project"
+End
+
+PATH
+	Name  = EdkIILib_DIR
+	Help  = "Path to Edk II compatibility library Module in Project"
+End
+
+MODULE
+	Help  = "Includes EdkIILib.mak to Project"
+	File  = "EdkIILib.mak"
+End
+
+TOKEN
+	Name  = "EDK_II_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIILib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End

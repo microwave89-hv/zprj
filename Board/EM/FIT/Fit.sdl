@@ -1,0 +1,390 @@
+TOKEN
+        Name  = "INTEL_FIT_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable Intel FIT in Project"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Master = Yes
+End
+
+TOKEN
+        Name  = "INTEL_BOOT_GUARD_SUPPORT"
+        Value = "1"
+        Help  = "Main switch to enable Intel Boot Guard in Project"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Token = "ULT_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "INTEL_BOOT_GUARD_CHAIN_OF_TRUST_SUPPORT"
+        Value = "1"
+        Help  = "Main switch to enable Intel Boot Guard Chain of Trust in Project"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "INTEL_BOOT_GUARD_SIGNING_SERVER_SUPPROT"
+        Value  = "1"
+        TokenType = Integer
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+End
+
+TOKEN
+        Name  = "INTEL_FIT_TABLE_ADDRESS"
+        Help  = "The address must be 0xFFFFFFFF. It will be updated by the FITUtil.exe"
+        Value  = "0xFFFFFFFF"
+        TokenType = Integer
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+End
+
+ELINK
+        Name  = "FV_DATA"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(FV_DATA_DESCRIPTOR)"
+        Parent  = "ROM_IMAGE"
+        InvokeOrder = AfterParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\FitTable.ffs"
+        Parent  = "FV_DATA"
+        InvokeOrder = AfterParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\BootGuardBpmBinary.ffs"
+        Parent  = "FV_DATA"
+        InvokeOrder = AfterParent
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BootGuardBpmBinary"
+        Value  = "ReserveBpmTable.bin"
+        TokenType = File
+        TargetMAK = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\BootGuardKmBinary.ffs"
+        Parent  = "FV_DATA"
+        InvokeOrder = AfterParent
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BootGuardKmBinary"
+        Value  = "ReserveKmTable.bin"
+        TokenType = File
+        TargetMAK = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\BootGuardAcmBinary.ffs"
+        Parent  = "FV_DATA"
+        InvokeOrder = AfterParent
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BOOT_GUARD_ACM"
+        Value = "2"
+        Help  = "MUST use the correct ACM binary for the matching CPUs, else platform will not behave as expected. Pre-ES and ES CPU set the token to 0, Pre-QS and QS CPU set the token to 1 and PV ME FW set the token to 2"
+        TokenType = Integer
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BootGuardAcmBinary"
+        Value = "Boot_Guard_ACM_Rev1_1_PC_ES.bin"
+        Help  = "The ACM is for Pre-ES and ES CPU samples ONLY!"
+        TokenType = File
+        TargetMAK = Yes
+        Token = "BOOT_GUARD_ACM" "=" "0"
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BootGuardAcmBinary"
+        Value = "Boot_Guard_ACM_Rev1_2_PC_QS.bin"
+        Help  = "The ACM is for Pre-QS and QS or newer CPU samples ONLY! NOTE: PC_QS is only for development platform."
+        TokenType = File
+        TargetMAK = Yes
+        Token = "BOOT_GUARD_ACM" "=" "1"
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BootGuardAcmBinary"
+        Value = "Boot_Guard_ACM_Rev1_2_PV_QS.bin"
+        Help  = "PV Image should be used with PV ME FW. The ACM is for Pre-QS and QS or newer CPU samples ONLY!"
+        TokenType = File
+        TargetMAK = Yes
+        Token = "BOOT_GUARD_ACM" "=" "2"
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "ACMSVN"
+        Value = "0"
+        Help  = "ACMSVN:0 for ES binaries"
+        TokenType = File
+        TargetMAK = Yes
+        TargetH = Yes
+        Token = "BOOT_GUARD_ACM" "=" "0"
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "ACMSVN"
+        Value = "0"
+        Help  = "ACMSVN:0 for PC_QS binaries"
+        TokenType = File
+        TargetMAK = Yes
+        TargetH = Yes
+        Token = "BOOT_GUARD_ACM" "=" "1"
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "ACMSVN"
+        Value = "3"
+        Help  = "ACMSVN:3 for PV_QS binary"
+        TokenType = File
+        TargetMAK = Yes
+        TargetH = Yes
+        Token = "BOOT_GUARD_ACM" "=" "2"
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BOOT_GUARD_BPM_PRIVATE_KEY_FILENAME"
+        Value  = "$(FIT_DIR)\BpmPrivate.key"
+        TokenType = File
+        TargetMAK = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BOOT_GUARD_BPM_PUBLIC_KEY_FILENAME"
+        Value  = "$(FIT_DIR)\BpmPublic.key"
+        TokenType = File
+        TargetMAK = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BOOT_GUARD_KM_PRIVATE_KEY_FILENAME"
+        Value  = "$(FIT_DIR)\KmPrivate.key"
+        TokenType = File
+        TargetMAK = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BOOT_GUARD_KM_PUBLIC_KEY_FILENAME"
+        Value  = "$(FIT_DIR)\KmPublic.key"
+        TokenType = File
+        TargetMAK = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BOOT_GUARD_PBULIC_KEY_EXPONENT"
+        Help  = "The token for the KeyGen.exe"
+        Value  = "0x10001"
+        TokenType = Integer
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BPM_IBB_MCHBAR"
+        Help  = "BpmKmGen.exe only support the decimal value"
+        Value  = "$(NB_MCH_BASE_ADDRESS) + 0"
+        TokenType = Integer
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BPM_VTD_BAR"
+        Help  = "BpmKmGen.exe only support the decimal value"
+        Value  = "$(NB_VTD_BASE_ADDRESS) + 0"
+        TokenType = Integer
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "IS_FV_DATA_ALIGNMENT64K"
+        Help  = "BpmKmGen.exe only support the decimal value"
+        Value  = "($(FV_DATA_BASE)&0x0000FFFF)"
+        TokenType = Integer
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BPM_IBB_SEGMENT_BASE"
+        Help  = "BpmKmGen.exe only support the decimal value"
+        Value  = "$(FV_BB_BASE) + 0"
+        TokenType = Integer
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BPM_IBB_SEGMENT_SIZE"
+        Help  = "BpmKmGen.exe only support the decimal value"
+        Value  = "$(FV_BB_BLOCKS) * $(FLASH_BLOCK_SIZE)"
+        TokenType = Integer
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "KM_KEY_MANIFEST_ID"
+        Help  = "BpmKmGen.exe only support the decimal value, and this field must match the Key Manifest ID of Secure boot of FITC."
+        Value  = "1"
+        TokenType = Integer
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "DXE_SEGMENT_BASE"
+        Help  = "BpmKmGen.exe only support the decimal value"
+        Value  = "$(FV_MAIN_BASE) + 0"
+        TokenType = Integer
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "DXE_SEGMENT_SIZE"
+        Help  = "BpmKmGen.exe only support the decimal value"
+        Value  = "$(FV_MAIN_BLOCKS) * $(FLASH_BLOCK_SIZE)"
+        TokenType = Integer
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BIOS_STARTING_ADDRESS"
+        Help  = "Support the decimal value"
+        Value  = "0xFFFFFFFF - $(FLASH_SIZE) + 1"
+        TokenType = Integer
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+End
+
+TOKEN
+        Name  = "FITEntryPointToOtherFVBBRomAddress"
+        Help  = "FitUtil.exe only support the decimal value. If you don't have other FV_BB, please set the OtherFVBBRomAddress to 0."
+        Value  = "0"
+        TokenType = Integer
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+End
+
+TOKEN
+        Name  = "FITEntryPointToOtherFVBBRomAddress"
+        Help  = "FitUtil.exe only support the decimal value. If you don't have other FV_BB, please set the OtherFVBBRomAddress to 0."
+        Value  = "$(FT_FV_BB_BASE) + $(FV_BB_BLOCKS) * $(FLASH_BLOCK_SIZE) - $(BIOS_STARTING_ADDRESS) - 0x40"
+        TokenType = Integer
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Token = "FAULT_TOLERANT_BOOTBLOCK_UPDATE" "=" "1"
+End
+
+
+TOKEN
+        Name  = "FV_DATA_ATTR"
+        Help  = "The token is attribution of FV_DATA"
+        Value  = ""
+        TokenType = File
+        TargetMAK = Yes
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+TOKEN
+        Name  = "BootGuardTokens"
+        Value  = "$(BPM_IBB_MCHBAR) $(BPM_VTD_BAR) $(BPM_IBB_SEGMENT_BASE) $(BPM_IBB_SEGMENT_SIZE) $(BIOS_STARTING_ADDRESS) $(KM_KEY_MANIFEST_ID) $(ACMSVN)"
+        Help  = "Support the decimal value"
+        TokenType = Expression
+        TargetMAK = Yes
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\ReserveBootGuardSigningServer.ffs"
+        Parent  = "FV_DATA"
+        InvokeOrder = AfterParent
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+        Token = "INTEL_BOOT_GUARD_SIGNING_SERVER_SUPPROT" "=" "1"
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\ReserveBootGuardFvMainHashKey.ffs"
+        Parent  = "FV_BB"
+        InvokeOrder = AfterParent
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+PATH
+        Name  = "FIT_DIR"
+End
+
+MODULE
+        Help  = "Includes Fit.mak to Project"
+        File  = "Fit.mak"
+End
+
+ELINK
+        Name  = "/D BOOT_GUARD_SUPPORT_FLAG=1"
+        Parent  = "GLOBAL_DEFINES"
+        InvokeOrder = AfterParent
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End

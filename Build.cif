@@ -1,0 +1,8 @@
+<component>
+	name = "Build"
+	category = ModulePart
+	RefName = "Build"
+[files]
+"Build.bat"	
+"Build.mak"	
+<endComponent>

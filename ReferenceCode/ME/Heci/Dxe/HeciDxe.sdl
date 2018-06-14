@@ -1,0 +1,24 @@
+TOKEN
+	Name  = "HeciDxe_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable HeciDxe support in Project"
+End
+MODULE
+	Help  = "Includes HeciDxe.mak to Project"
+	File  = "HeciDxe.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\HeciDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+PATH
+	Name  = "HeciDxe_DIR"
+	Help  = "iAMT Hec Driver files source directory"
+End

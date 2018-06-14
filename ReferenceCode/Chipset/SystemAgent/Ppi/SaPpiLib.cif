@@ -1,0 +1,16 @@
+<component>
+	name = "SaPpiLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\Ppi\"
+	RefName = "SaPpiLib"
+[files]
+"SaPpiLib.sdl"	
+"SaPpiLib.mak"	
+"IntelSaPpiLib.inf"	
+"SsaPeiInit\SsaPeiInit.c"	
+"SsaPeiInit\SsaPeiInit.h"	
+"SaPlatformPolicy\SaPlatformPolicy.c"	
+"SaPlatformPolicy\SaPlatformPolicy.h"	
+"SaPeiInit\SaPeiInit.h"	
+"SaPeiInit\SaPeiInit.c"	
+<endComponent>

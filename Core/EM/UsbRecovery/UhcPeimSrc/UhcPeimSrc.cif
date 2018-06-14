@@ -1,0 +1,11 @@
+<component>
+	name = "UhcPeimSrc"
+	category = ModulePart
+	LocalRoot = "Core\em\UsbRecovery\UhcPeimSrc"
+	RefName = "UhcPeimSrc"
+[files]
+"UhcPeim.c"	
+"UhcPeim.h"	
+[parts]
+"UsbHCPpi"
+<endComponent>

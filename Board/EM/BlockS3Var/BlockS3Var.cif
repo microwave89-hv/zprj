@@ -1,0 +1,11 @@
+<component>
+	name = "Block S3 Variable"
+	category = eModule
+	LocalRoot = "Board\EM\BlockS3Var\"
+	RefName = "BlockS3Var"
+[files]
+"BlockS3Var.chm"	
+"BlockS3Var.sdl"	
+"BlockS3Var.mak"	
+"BlockS3Var.c"	
+<endComponent>

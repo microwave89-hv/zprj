@@ -1,0 +1,12 @@
+<component>
+	name = "StsCodeObjsx64Rx"
+	category = ModulePart
+	LocalRoot = "Core\em\AMIDebugRx\binaries\LIBS\StatusCodeLib\x64"
+	RefName = "StsCodeObjsx64Rx"
+[files]
+"PeiDbgStatusCode.obj"	
+"GetDbgInterfaceDxe.obj"	
+"DummyAmiSerialIO.obj"	
+"AMIDbgPortStatusCodePei.obj"	
+"AMIDbgPortStatusCodeDxe.obj"	
+<endComponent>

@@ -1,0 +1,15 @@
+<component>
+	name = "Edk II Compatibility library"
+	category = ModulePart
+    LocalRoot = "Core\EM\EdkIILib\"
+	RefName = "EdkIILib"
+[files]
+"EdkIILib.sdl"	
+"EdkIILib.mak"	
+"EdkIICommonWrap.c"	
+"EdkIIHiiWrap.c"	
+"EdkIIHiiLib.c"	
+"Console.c"	
+[parts]
+"EdkII_headers"
+<endComponent>

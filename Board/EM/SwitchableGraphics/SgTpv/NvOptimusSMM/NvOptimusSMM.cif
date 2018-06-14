@@ -1,0 +1,13 @@
+<component>
+	name = "Sg nVidia Optimus SMM"
+	category = ModulePart
+	LocalRoot = "Board\EM\SwitchableGraphics\SgTpv\NvOptimusSMM\"
+	RefName = "NvOptimusSMM"
+[files]
+"NvOptimusSMM.sdl"	
+"NvOptimusSMM.mak"	
+"NvOptimusSMM.c"	
+"NvOptimusSMM.dxs"	
+"NvOptimusSMM.ssp"	
+"NvOptimusSMM.asl"	
+<endComponent>

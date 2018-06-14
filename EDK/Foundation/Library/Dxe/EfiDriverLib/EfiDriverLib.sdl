@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EfiDriverLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EfiDriverLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EFIDRIVERLIB"
+	Value  = "$(BUILD_DIR)\EfiDriverLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EfiDriverLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EfiDriverLib.mak to Project"
+	File  = "EfiDriverLib.mak"
+End
+

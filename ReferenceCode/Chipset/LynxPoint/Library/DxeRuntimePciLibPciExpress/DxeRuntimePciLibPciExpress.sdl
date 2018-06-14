@@ -1,0 +1,72 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchLib/DxeRuntimePciLibPciExpress/DxeRuntimePciLibPciExpress.sdl 1     2/08/12 8:46a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 2/08/12 8:46a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchLib/DxeRuntimePciLibPciExpress/DxeRuntimePciLibPciExpress.sdl $
+# 
+# 1     2/08/12 8:46a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+        Name  = "DxeRuntimePciLibPciExpress_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable DxeRuntimePciLibPciExpress support in Project"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        TargetH = Yes
+        Master = Yes
+End
+
+PATH
+        Name  = "DxeRuntimePciLibPciExpress_DIR"
+End
+
+MODULE
+        File  = "DxeRuntimePciLibPciExpress.mak"
+        Help  = "Includes DxeRuntimePciLibPciExpress.mak to Project"
+End
+
+ELINK
+        Name  = "DxeRuntimePciLibPciExpressLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\DxeRuntimePciLibPciExpress_Lib.lib"
+        Parent  = "DxeRuntimePciLibPciExpressLib_LIB"
+        InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

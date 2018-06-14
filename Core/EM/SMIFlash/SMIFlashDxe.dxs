@@ -1,0 +1,72 @@
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SMIFlash/SMIFlashDxe.dxs 2     11/02/12 7:14a Calvinchen $
+//
+// $Revision: 2 $
+//
+// $Date: 11/02/12 7:14a $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SMIFlash/SMIFlashDxe.dxs $
+// 
+// 2     11/02/12 7:14a Calvinchen
+// [TAG]  		EIP64328
+// [Category]  	Improvement
+// [Description]  	Improvement: 
+//  1. (EIP64328) Update modules to be compliant with PI 1.2 and UEFI
+// 2.3.1 specifications. 
+// BugFix: 
+//  1. (EIP100950) Fix the attribute of Win8 Debug Variable been changed
+// after restored. 
+//  2. (EIP98199) The #### in Boot#### should be upper case. 
+// [Files]  		SMIFlash.mak
+// SMIFlash.dxs
+// SMIFlash.c
+// SMIFlash.chm
+// SMIFlashLinks.c
+// SMIFlashDxe.dxs
+// SMIFlash.cif
+// 
+//
+//**********************************************************************
+//<AMI_FHDR_START>
+//
+// Name:   SMIFlashDxe.dxs
+//
+// Description: This file is the dependency file for the SMIFlash driver.
+//
+//<AMI_FHDR_END>
+//**********************************************************************
+#include <Protocol/FlashProtocol.h>
+
+DEPENDENCY_START
+  FLASH_PROTOCOL_GUID
+DEPENDENCY_END
+
+//**********************************************************************
+//**********************************************************************
+//**                                                                  **
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **
+//**                                                                  **
+//**                       All Rights Reserved.                       **
+//**                                                                  **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+//**                                                                  **
+//**                       Phone: (770)-246-8600                      **
+//**                                                                  **
+//**********************************************************************
+//**********************************************************************

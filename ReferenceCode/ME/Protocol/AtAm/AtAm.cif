@@ -1,0 +1,9 @@
+<component>
+  name = "ATAM Protocol"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Me\Protocol\AtAm"
+  RefName = "ATAMProtocols"
+[files]
+"ATAM.h"
+"ATAM.c"
+<endComponent>

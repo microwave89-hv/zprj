@@ -1,0 +1,11 @@
+<component>
+	name = "SaPcieLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\SystemAgent\Library\SaPcieLib\Common\"
+	RefName = "SaPcieLib"
+[files]
+"SaPcieLib.sdl"
+"SaPcieLib.mak"
+"SaPcieLib.h"
+"SaPcieLib.c"
+<endComponent>

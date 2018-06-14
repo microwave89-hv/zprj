@@ -1,0 +1,11 @@
+<component>
+	name = "BootGuardTPM2Dxe"
+	category = ModulePart
+	LocalRoot = "Board\EM\FIT\Dxe\BootGuardTPM2Dxe"
+	RefName = "BootGuardTPM2Dxe"
+[files]
+"BootGuardTPM2Dxe.c"
+"BootGuardTPM2Dxe.h"
+"BootGuardTPM2Dxe.sdl"
+"BootGuardTPM2Dxe.mak"
+<endComponent>

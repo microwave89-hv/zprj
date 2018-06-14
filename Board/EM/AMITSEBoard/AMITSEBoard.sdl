@@ -1,0 +1,58 @@
+TOKEN
+	Name  = "TSE_BOARD_MODULE_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable TSE Board Module"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "TSE_BOARD_SOURCE_SUPPORT"
+	Value  = "1"
+	Help  = "Allow to use Board module sources"
+	TokenType = Boolean
+	TargetH = Yes
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "TSE_BOARD_DIR"
+End
+
+MODULE
+	Help  = "Includes AMITseBoard.mak to Project"
+	File  = "AMITseBoard.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AMITseBoard.lib"
+	Parent  = "MINISETUPLIB"
+	Priority  = 70
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(TSE_BOARD_DIR)\OemTokens.c"
+	Parent  = "TSE_STRING_CONSUMERS_LIST"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "-i $(TSE_BOARD_DIR)"
+	Parent  = "TSE_UNI_INCLUDE_PATH"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\AMITseBoard.sdb"
+	Parent  = "TSE_SDBS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(TSE_BOARD_DIR)\TseOem.h"
+	Parent  = "AMITSE_OEM_HEADER_LIST"
+	InvokeOrder = AfterParent
+End

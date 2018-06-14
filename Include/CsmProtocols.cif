@@ -1,0 +1,13 @@
+<component>
+	name = "CSM Protocols"
+	category = ModulePart
+	LocalRoot = "include"
+	RefName = "CsmProtocols"
+[files]
+"protocol\LegacyInterrupt.h"	= "Protocols"
+"Protocol\LegacyBiosPlatform.h"	
+"Protocol\LegacyBios.h"	
+"Protocol\CsmPlatform.h"	
+"Protocol\LegacyBiosExt.h"	
+"Protocol\CsmVideoPolicy.h"	
+<endComponent>

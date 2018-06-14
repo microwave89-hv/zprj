@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueUefiDriverModelLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueUefiDriverModelLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueUefiDriverModelLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueUefiDriverModelLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueUefiDriverModelLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueUefiDriverModelLib.mak to Project"
+	File  = "EdkIIGlueUefiDriverModelLib.mak"
+End
+

@@ -1,0 +1,72 @@
+TOKEN
+    Name  = HARDWARE_SIGNATURE_MANAGEMENT_SUPPORT
+    Value  = 1
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    TargetH = Yes
+    Master = Yes
+    Help  = "Main switch to enable HardwareSignatureManagement support in Project"
+End
+
+MODULE
+    Help  = "Includes HardwareSignatureManagement.mak to Project"
+    File  = "HardwareSignatureManagement.mak"
+End
+
+PATH
+    Name  = "HARDWARE_SIGNATURE_DIR"
+    Path  = "Core\EM\HardwareSignature"
+End
+
+ELINK
+    Name  = "$(BUILD_DIR)\HardwareSignatureManagement.ffs"
+    Parent  = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+
+TOKEN
+    Name  = "HARDWARE_SIGNATURE_DEBUG_MESSAGES"
+    Value  = "1"
+    Help  = "A switch to enable HardwareSignatureManagement Driver Debug messages over Serial Port."
+    TokenType = Boolean
+    TargetH = Yes
+    Token = "DEBUG_CODE" "=" "1"
+End
+
+TOKEN
+    Name  = "HARDWARE_SIGNATURE_USB_CHANGE"
+    Value  = "0"
+    Help  = "A switch to enable detect the change of the USB devices"
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "THRESHOLD_OF_DIFFERENT_MEMORY_SIZE"
+    Value  = "128"
+    Help  = "The threshold of the different memory size. If memory map is changed, the total memory size will be little different."
+    TokenType = Integer
+    TargetH = Yes
+    Lock = Yes
+End
+
+ELINK
+	Name  = "SaveFwUpdateCountToMemory,"
+	Parent  = "SMIFlashPreUpdateList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SaveCountToNvramAfterFwUpdate,"
+	Parent  = "SMIFlashEndUpdateList"
+	InvokeOrder = AfterParent
+End
+
+#<EIP147244 >
+ELINK
+	Name  = "SetupChangeCount,"
+	Parent  = "SavedConfigChanges,"
+	InvokeOrder = AfterParent
+End
+#<EIP147244 >

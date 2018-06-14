@@ -1,0 +1,17 @@
+<component>
+	name = "Intel SA GOP Driver"
+	category = ModulePart
+	LocalRoot = "Chipset\NB\GOP\"
+	RefName = "IntelSaGopDriver"
+[files]
+"IntelSaGopDriver.sdl"
+"IntelSaGopDriver.mak"
+"IntelSaGopPolicy.c"
+"IntelSaGopDriver.dxs"
+"IntelGopDriver.dxs"
+"Haswell\IntelGopDriver.efi"
+"Haswell\vbt.bin"
+[parts]
+"IntelSaGopSetup"
+"IntelSaGopDriverProtocol"
+<endComponent>

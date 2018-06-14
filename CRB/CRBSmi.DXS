@@ -1,0 +1,59 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/Projects/Intel/Haswell/LynxPoint_SharkBay-DT_Crb_1AQQW/CRB/CRBSmi.DXS 1     2/12/12 10:38p Victortu $
+//
+// $Revision: 1 $
+//
+// $Date: 2/12/12 10:38p $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/Projects/Intel/Haswell/LynxPoint_SharkBay-DT_Crb_1AQQW/CRB/CRBSmi.DXS $
+// 
+// 1     2/12/12 10:38p Victortu
+// Intel SharkBay CRB initially releases.
+// 
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:        CRBSMI.DXS
+//
+// Description: This file is the dependency file for the CRB SMI driver.
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+
+#include <Protocol\BootScriptSave.h>
+#include <Protocol\SmmSwDispatch.h>
+
+DEPENDENCY_START
+    EFI_BOOT_SCRIPT_SAVE_GUID AND
+    EFI_SMM_SW_DISPATCH_PROTOCOL_GUID
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

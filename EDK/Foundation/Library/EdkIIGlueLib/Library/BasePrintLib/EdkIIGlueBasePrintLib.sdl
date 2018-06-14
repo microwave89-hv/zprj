@@ -1,0 +1,26 @@
+TOKEN
+	Name  = "EdkIIGlueBasePrintLib_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EdkIIGlueBasePrintLib support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EdkIIGlueBasePrintLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\EdkIIGlueBasePrintLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "EdkIIGlueBasePrintLib_DIR"
+End
+
+MODULE
+	Help  = "Includes EdkIIGlueBasePrintLib.mak to Project"
+	File  = "EdkIIGlueBasePrintLib.mak"
+End
+

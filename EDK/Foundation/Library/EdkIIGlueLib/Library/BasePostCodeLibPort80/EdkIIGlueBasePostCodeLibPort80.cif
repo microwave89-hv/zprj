@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueBasePostCodeLibPort80"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\BasePostCodeLibPort80"
+	RefName = "EdkIIGlueBasePostCodeLibPort80"
+[files]
+"EdkIIGlueBasePostCodeLibPort80.sdl"	
+"EdkIIGlueBasePostCodeLibPort80.mak"	
+"BasePostCodeLibPort80.inf"
+"PostCode.c"	
+<endComponent>

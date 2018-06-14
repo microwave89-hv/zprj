@@ -1,0 +1,31 @@
+TOKEN
+	Name  = CpuPlatformLib_SUPPORT
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable ThunkLib support in Project"
+End
+
+TOKEN
+	Name  = "CpuPlatformLib_LIB"
+	Value  = "$$(LIB_BUILD_DIR)\CpuPlatformLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+PATH
+	Name  = "CpuPlatformLib_DIR"
+End
+
+MODULE
+	Help  = "Includes ThunkLib.mak to Project"
+	File  = "CpuPlatformLib.mak"
+End
+
+ELINK
+	Name  = "/I$(CpuPlatformLib_DIR)\CpuPlatformLib"
+	Parent  = "PROJECT_CPU_INCLUDES"
+	InvokeOrder = AfterParent
+End

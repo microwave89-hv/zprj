@@ -1,0 +1,286 @@
+TOKEN
+	Name  = "EfiOsBootOptionNames_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable EfiOsBootOptionNames support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "RemoveLegacyGptHddDevice"
+	Value  = "0"
+	Help  = "On. Filter GPT Format Hard disk of Legacy device."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "RemoveBootOptionWithoutFile"
+	Value  = "0"
+	Help  = "On. Delete Boot Option when the file path in EfiOsBootOptionNamesFilePathItem doesn't exist."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BootOption_x64"
+	Value  = "1"
+	Help  = "Enable build support for 64 bit(x64/IA64)"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "x64_BUILD" "=" "1"
+End
+
+#TOKEN
+#   Name  = "NORMALIZE_BOOT_OPTION_NAME"
+#   Value  = "0"
+#   Help  = "When the token is on, the Description of the existing boot options is regenerated during the boot option processing.\It is possible to override built time Description normalization policy using NormalizeBootOptionName variable."
+#   TokenType = Boolean
+#   TargetH = Yes
+#End
+
+#TOKEN
+#   Name  = "NORMALIZE_BOOT_OPTION_DEVICE_PATH"
+#   Value  = "0"
+#   Help  = "When the token is on, the FilePathList of the existing boot options is regenerated during the boot option processing.\It is possible to override built time FilePathList normalization policy using NormalizeBootOptionDevicePath variable."
+#   TokenType = Boolean
+#   TargetH = Yes
+#End
+
+TOKEN
+    Name  = "DefaultFwBootOption"
+    Value  = "1"
+    Help  = "Boot Option Created by this module, 1 - FW Boot Option , 0 - Non FW Boot Option."
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "KeepDuplicateNonFWBootOption"
+    Value  = "0"
+    Help  = "0 - Delete Duplicate Non FW BootOption, 1 - Leave Non FW BootOption."
+    TokenType = Boolean
+    TargetH = Yes
+End
+
+
+TOKEN
+    Name  = "DISPLAY_FULL_OPTION_NAME_WITH_FBO"
+    Value  = "1"
+    Help  = "Display full boot option name with Fixed Boot Order, such as: Windows Boot Manager(P0 DeviceName)."
+    TokenType = Boolean
+    Token = "FIXED_BOOT_ORDER_SUPPORT" "=" "1"
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "NEW_UEFI_OS_OPTION_ORDER_POLICY"
+    Value  = "0"
+    Help  = "The order of new UEFI OS boot option. \0:BoTagUefi order.\1:The Highest order.\2:The Lowest order."
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+	Name  = "CREATE_BOOT_OPTION_WITH_UEFI_FILE_NAME_POLICY"
+	Value  = "1"
+	Help  = "0: Create boot option by EfiOsBootOptionNamesFilePathItem, 1: Create boot option (UEFI OS) if can't find any other"
+	TokenType = Boolean 
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "NAME_OF_UEFI_OS"
+	Value  = 'L"UEFI OS"'
+	Help  = "Name of UEFI OS, BootX64.efi or BootIa32.efi"
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEAL_WITH_EFI_OS_BOOT_OPTION_FUNC_PTR"
+	Value  = "SearchBootablePathAndCreateBootOption"
+	Help  = "Name of the function pointer of type DEAL_WITH_EFI_OS_BOOT_OPTION."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CREATE_TARGET_EFI_OS_BOOT_OPTION_FUNC_PTR"
+	Value  = "CreateTargetEfiOsBootOption"
+	Help  = "Name of the function pointer of type CREATE_TARGET_EFI_OS_BOOT_OPTION."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+    Name  = "NEW_UEFI_OS_OPTION_ORDER_POLICY_ELINK_DEPENDENCY"
+    Value  = "0"
+    Help  = "To replace the Elink dependency on BcpBootOrder_SUPPORT token."
+    TokenType = Integer
+    TargetH = Yes
+End
+
+TOKEN
+    Name  = "NEW_UEFI_OS_OPTION_ORDER_POLICY_ELINK_DEPENDENCY"
+    Value  = "1"
+    Help  = "To replace the Elink dependency on BcpBootOrder_SUPPORT token."
+    TokenType = Integer
+    TargetH = Yes
+    Token = "BcpBootOrder_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "EfiOsBootOptionNames_DIR"
+	Help  = "EfiOsBootOptionNames files source directory"
+End
+
+MODULE
+	Help  = "Includes EfiOsBootOptionNames.mak to Project"
+	File  = "EfiOsBootOptionNames.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\EfiOsBootOptionNames.sdb"
+	Parent  = "SETUP_SDBS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(EfiOsBootOptionNames_DIR)\EfiOsBootOptionNames.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ChangeUefiBootNames,"
+	Parent  = "ProcessEnterSetupHook,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "AdjustEfiOsBootOrder,"
+	Parent  = "ReadBootOptions,"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "CreateEfiOsBootOption,"
+	Parent  = "FilterBootDeviceList,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "EfiOsName_NormalizeBootOptions,"
+    Parent  = "NormalizeBootOptions,"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "RemoveLegacyGptHdd,"
+	Parent  = "BootOptionBootDeviceFilteringFunctions"
+	Token = "RemoveLegacyGptHddDevice" "=" "1"
+	Token = "CSM_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "AdjustNewUefiOsOptionPriority,"
+    Parent  = "SetBootOptionPriorities,"
+    Token = "NEW_UEFI_OS_OPTION_ORDER_POLICY_ELINK_DEPENDENCY" "=" "0"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "AdjustNewUefiOsOptionPriority,"
+    Parent  = "SetDefaultBcpBootOptionPriorities,"
+    Token = "NEW_UEFI_OS_OPTION_ORDER_POLICY_ELINK_DEPENDENCY" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "SaveEfiOsBootOrder,"
+    Parent  = "SaveBootOptions,"
+    InvokeOrder = AfterParent 
+    Token = "DefaultFwBootOption" "=" "0"
+End
+
+ELINK
+	Name  = "EfiOsBootOptionNamesFilePathItem"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "{TstrW(\\EFI\\Microsoft\\Boot\\bootmgfw.efi), TstrW(Windows Boot Manager)},"
+	Parent  = "EfiOsBootOptionNamesFilePathItem"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{TstrW(\\EFI\\Suse\\elilo.efi), TstrW(Suse Boot Manager)},"
+	Parent  = "EfiOsBootOptionNamesFilePathItem"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{TstrW(\\EFI\\Ubuntu\\grubx64.efi), TstrW(ubuntu)},"
+	Parent  = "EfiOsBootOptionNamesFilePathItem"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{TstrW(\\EFI\\Redhat\\elilo.efi), TstrW(RedHat Boot Manager)},"
+	Parent  = "EfiOsBootOptionNamesFilePathItem"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{TstrW(\\EFI\\Redhat\\grub.efi), TstrW(RedHat Boot Manager)},"
+	Parent  = "EfiOsBootOptionNamesFilePathItem"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "{TstrW(\\EFI\\Redhat\\shim.efi), TstrW(RedHat Boot Manager)},"
+    Parent  = "EfiOsBootOptionNamesFilePathItem"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name  = "{TstrW(\\EFI\\Centos\\shim.efi), TstrW(CentOS)},"
+    Parent  = "EfiOsBootOptionNamesFilePathItem"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "{TstrW(\\EFI\\opensuse\\grubx64.efi), TstrW(opensuse)},"
+    Parent = "EfiOsBootOptionNamesFilePathItem"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{TstrW(\\EFI\\BOOT\\BOOTX64.EFI), TstrW(UEFI OS)},"
+	Parent  = "EfiOsBootOptionNamesFilePathItem"
+	Token = "x64_BUILD" "=" "1"
+	Token = "CREATE_BOOT_OPTION_WITH_UEFI_FILE_NAME_POLICY" "=" "0"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{TstrW(\\EFI\\BOOT\\BOOTIA32.EFI), TstrW(UEFI OS)},"
+	Parent  = "EfiOsBootOptionNamesFilePathItem"
+	Token = "x64_BUILD" "=" "0"
+	Token = "CREATE_BOOT_OPTION_WITH_UEFI_FILE_NAME_POLICY" "=" "0"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{TstrW(\\EFI\\debian\\grubx64.efi), TstrW(debian)},"
+	Parent  = "EfiOsBootOptionNamesFilePathItem"
+	InvokeOrder = AfterParent
+End

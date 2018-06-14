@@ -1,0 +1,11 @@
+<component>
+	name = "TxtLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\Library\"
+	RefName = "TxtLib"
+[files]
+"TxtLib.sdl"	
+"TxtLib.mak"	
+"TxtLib\TxtLib.inf"	
+"TxtLib\Ia32\TxtPeiLib.asm"
+<endComponent>

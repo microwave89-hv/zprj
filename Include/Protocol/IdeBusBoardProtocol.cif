@@ -1,0 +1,8 @@
+<component>
+	name = "IdeBusBoardProtocol"
+	category = ModulePart
+	LocalRoot = "Include\Protocol\"
+	RefName = "IdeBusBoardProtocol"
+[files]
+"IdeBusBoard.h"	
+<endComponent>

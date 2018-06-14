@@ -1,0 +1,58 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//**********************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/IntelPfat/PfatRecovery/PfatRecovery.dxs 1     4/05/13 5:36p Fredericko $
+//
+// $Revision: 1 $
+//
+// $Date: 4/05/13 5:36p $
+//**********************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/IntelPfat/PfatRecovery/PfatRecovery.dxs $
+// 
+// 1     4/05/13 5:36p Fredericko
+// [TAG]  		EIP119706
+// [Category]  	Improvement
+// [Description]  	Support Recovery in pfat module
+// [Files]  		PfatRecovery.cif
+// PfatRecovery.sdl
+// PfatRecovery.mak
+// PfatRecovery.dxs
+// PfatRecovery.c
+// PfatRecoveryHook.c
+// 
+// 
+//**********************************************************************
+#include <PEI.h>
+#include <PPI\RecoveryModule.h>
+
+DEPENDENCY_START
+  EFI_PEI_BOOT_IN_RECOVERY_MODE_PEIM_PPI AND
+  EFI_PEI_RECOVERY_MODULE_PPI_GUID
+DEPENDENCY_END
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2010, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

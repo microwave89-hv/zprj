@@ -1,0 +1,13 @@
+<component>
+	name = "PeiSmmControl"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\SmmControl\Pei\"
+	RefName = "PeiSmmControl"
+[files]
+"PeiSmmControl.sdl"	
+"PeiSmmControl.mak"	
+"SmmControl.dxs"	
+"SmmControl.inf"	
+"SmmControlDriver.c"	
+"SmmControlDriver.h"	
+<endComponent>

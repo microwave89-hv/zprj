@@ -1,0 +1,15 @@
+<component>
+	name = "S3Restore"
+	category = ModulePart
+	LocalRoot = "Core\EM\S3\"
+	RefName = "S3Restore"
+[files]
+"S3Restore.sdl"	
+"S3Restore.mak"	
+"S3Resume.dxs"	
+"AcpiS3Wake.asm"	
+"S3Resume.c"	
+"AcpiPeiS3Func.c"	
+"AcpiPeiS3Func.h"	
+"BootScriptExecuter.c"	
+<endComponent>

@@ -1,0 +1,67 @@
+TOKEN
+	Name  = "NvOptimusSMM_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable NvOptimusSMM support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "SWSMI_NVOEM_CMOS_W"
+	Value  = "0xB6"
+	Help  = "Value to be written into SMI command register \to write AcpiNvs->AudioCodec to CMOS"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-0xff"
+End
+
+TOKEN
+	Name  = "SWSMI_NVOEM_CMOS_R"
+	Value  = "0xB7"
+	Help  = "Value to be written into SMI command register \to write CMOS:AudioCodec to AcpiNvs->AudioCodec"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-0xff"
+End
+
+TOKEN
+	Name  = "CMOS_NVOEM_OFFSET"
+	Value  = "0x74"
+	Help  = "select fixed Offset in CMOS. By default the offset is assigned by CmosManager, see NvOptimus.ssp"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+PATH
+	Name  = "NvOptimusSMM_DIR"
+End
+
+MODULE
+	Help  = "Includes NvOptimusSMM.mak to Project"
+	File  = "NvOptimusSMM.mak"
+End
+
+#ELINK
+#	Name  = "$(NvOptimusSMM_DIR)\NvOptimusSMM.asl"
+#	Parent  = "GENERIC_ACPI_ASL"
+#	InvokeOrder = AfterParent
+#    Disable = Yes
+#End
+
+ELINK
+    Name = "$(BUILD_DIR)\NvOptimusSMM.ffs"
+	Parent  = "$(BUILD_DIR)\SaInitDxe.ffs"
+	InvokeOrder = BeforeParent
+#        Parent = "FV_MAIN"
+#        InvokeOrder = AfterParent
+End 
+
+ELINK
+	Name  = "$(NvOptimusSMM_DIR)\NvOptimusSMM.SSP"
+	Parent  = "ADDON_SSP_FILES"
+	InvokeOrder = AfterParent
+End
+

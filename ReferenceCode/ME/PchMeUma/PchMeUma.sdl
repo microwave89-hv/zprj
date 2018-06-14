@@ -1,0 +1,41 @@
+TOKEN
+	Name  = PchMeUma_SUPPORT
+	Value  = 1
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable PchMeUma support in Project"
+End
+MODULE
+	Help  = "Includes PchMeUma.mak to Project"
+	File  = "PchMeUma.mak"
+End
+
+PATH
+	Name  = "PchMeUma_DIR"
+	Help  = "PCH ME UMA file source directory"
+End
+
+ELINK
+	Name  = "PchMeUma_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/I$(PchMeUma_DIR)"
+	Parent  = "PchMeUma_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PchMeUma.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(ME_DIR)"
+	Parent  = "PchMeUma_INCLUDES"
+	InvokeOrder = AfterParent
+End

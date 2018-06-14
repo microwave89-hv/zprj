@@ -1,0 +1,91 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2013, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/FIT/Dxe/BootGuardTPM2Dxe/BootGuardTPM2Dxe.sdl 2     10/29/13 5:16a Bensonlai $
+#
+# $Revision: 2 $
+#
+# $Date: 10/29/13 5:16a $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/FIT/Dxe/BootGuardTPM2Dxe/BootGuardTPM2Dxe.sdl $
+# 
+# 2     10/29/13 5:16a Bensonlai
+# [TAG]  		EIPNone
+# [Category]  	Bug Fix
+# [Severity]  	Important
+# [Symptom]  	Build error when enable the DEBUG mode.
+# 
+# 1     9/06/13 6:17a Bensonlai
+# [TAG]  		EIP135513 
+# [Category]  	New Feature
+# [Description]  	Implementation of Boot Guard of PTT flow for WHCK test.
+# [Files]  		BootGuardTPM2Dxe.cif
+# BootGuardTPM2Dxe.c
+# BootGuardTPM2Dxe.h
+# BootGuardTPM2Dxe.sdl
+# BootGuardTPM2Dxe.mak
+#
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name: BootGuardTPM2Dxe.sdl
+#
+# Description: SDL file for BootGuard TPM2
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+        Name = "BootGuardTPM2Dxe_SUPPORT"
+        Value = "1"
+        Help = "Main switch to enable BootGuardTPM2Dxe support in Project"
+        TokenType = Boolean
+        TargetEQU = Yes
+        TargetMAK = Yes
+        Master = Yes
+        Token = "TpmDrv_SUPPORT" "=" "1"
+        Token = "INTEL_BOOT_GUARD_SUPPORT" "=" "1"
+End
+
+PATH
+        Name = "BootGuardTPM2Dxe_PATH"
+End
+
+MODULE
+        File = "BootGuardTPM2Dxe.mak"
+        Help = "Includes BootGuardTPM2Dxe.mak to Project"
+End
+
+ELINK
+        Name = "BootGuardMeasureCRTMVersion,"
+        Parent  = "TcgPreMeasurementList"
+        InvokeOrder = AfterParent
+End
+
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2013, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************

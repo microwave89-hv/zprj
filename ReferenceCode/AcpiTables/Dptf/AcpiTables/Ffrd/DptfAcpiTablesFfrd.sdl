@@ -1,0 +1,25 @@
+TOKEN
+	Name  = "DptfAcpiTablesFfrd_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable DptfAcpiTablesFfrd support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "INTEL_DptfAcpiTablesFfrd_DIR"
+End
+
+MODULE
+	Help  = "Includes DptfAcpiTablesFfrd.mak to Project"
+	File  = "DptfAcpiTablesFfrd.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\DptfAcpiTablesFfrd.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+	Token = "DptfAcpiTablesFfrd_SUPPORT" "=" "1"
+End

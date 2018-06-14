@@ -1,0 +1,92 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchSmbusCommonLib/PchSmbusCommonLib.sdl 1     2/08/12 9:18a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 2/08/12 9:18a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchSmbusCommonLib/PchSmbusCommonLib.sdl $
+# 
+# 1     2/08/12 9:18a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+        Name  = "PchSmbusCommonLib_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable PchSmbusCommonLib support in Project"
+        TokenType = Boolean
+        TargetMAK = Yes
+        Master = Yes
+End
+
+PATH
+        Name  = "PchSmbusCommonLib_DIR"
+End
+
+MODULE
+        Help  = "Includes PchSmbusCommonLib.mak to Project"
+        File  = "PchSmbusCommonLib.mak"
+End
+
+ELINK
+        Name  = "PchSmbusCommonDxeLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\PchSmbusCommonDxeLib.lib"
+        Parent  = "PchSmbusCommonDxeLib_LIB"
+        InvokeOrder = AfterParent
+End
+
+ELINK
+        Name  = "PchSmbusCommonPeiLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\PchSmbusCommonPeiLib.lib"
+        Parent  = "PchSmbusCommonPeiLib_LIB"
+        InvokeOrder = AfterParent
+End
+
+ELINK
+        Name  = "PchSmbusCommonSmmLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$(BUILD_DIR)\PchSmbusCommonSmmLib.lib"
+        Parent  = "PchSmbusCommonSmmLib_LIB"
+        InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

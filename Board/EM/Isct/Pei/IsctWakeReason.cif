@@ -1,0 +1,11 @@
+<component>
+	name = "IsctPeiWakeReason"
+	category = ModulePart
+	LocalRoot = "Board\EM\Isct\Pei"
+	RefName = "IsctPeiWakeReason"
+[files]
+"IsctWakeReason.c"
+"IsctWakeReason.dxs"
+"IsctWakeReason.sdl"
+"IsctWakeReason.mak"
+<endComponent>

@@ -1,0 +1,13 @@
+<component>
+	name = "ThunkLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\Library\"
+	RefName = "ThunkLib"
+[files]
+"ThunkLib.sdl"	
+"ThunkLib.mak"	
+"ThunkLib\ThunkLib.inf"	
+[parts]
+"ThunkLibIa32"
+"ThunkLibx64"
+<endComponent>

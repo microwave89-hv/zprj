@@ -1,0 +1,17 @@
+<component>
+	name = "TpmClearOnRollback"
+	category = ModulePart
+	LocalRoot = "Core\EM\TCG2\TpmClearOnRollback\"
+	RefName = "TpmClearOnRollback"
+[files]
+"TpmClearOnRollback.c"	
+"TpmClearOnRollback.h"	
+"TpmClearOnRollback.sdl"	
+"TpmClearOnRollback.mak"	
+"TpmClearOnRollback.dxs"	
+"TpmClearOnRollbackSmiFlash.c"	
+"TpmClearOnRollbackWrapperLib.c"	
+"TpmClearOnRollbackWrapperLib.h"	
+[parts]
+"AmiTpmClearOnRollbackProtocol"
+<endComponent>

@@ -1,0 +1,11 @@
+<component>
+	name = "Dpc"
+	category = ModulePart
+	LocalRoot = "Core\EM\UEfiNetworkStack\Common\Dpc"
+	RefName = "Dpc"
+[files]
+"Dpc.sdl"	
+"Dpc.mak"	
+"DpcDxe.efi"	
+"DpcDxeIa32.efi"	
+<endComponent>

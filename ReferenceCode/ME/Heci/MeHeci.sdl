@@ -1,0 +1,19 @@
+TOKEN
+	Name  = "MeHeci_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable MeHeci support in Project"
+End
+
+PATH
+	Name  = "MeHeci_DIR"
+	Help  = "Me Heci Driver files source directory"
+End
+ELINK
+	Name  = "/I$(MeHeci_DIR)\Include"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End

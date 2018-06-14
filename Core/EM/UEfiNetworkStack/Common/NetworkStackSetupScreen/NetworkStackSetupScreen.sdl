@@ -1,0 +1,38 @@
+TOKEN
+	Name  = NetworkStackSetupScreen_SUPPORT
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable NetworkStackSetupScreen support in Project"
+End
+
+MODULE
+	Help  = "Includes NetworkStackSetupScreen.mak to Project"
+	File  = "NetworkStackSetupScreen.mak"
+End
+
+PATH
+	Name  = "NETWORK_STACK_SETUP_SCREEN_DIR"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\NetworkStackSetupScreen.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\NetworkStackSetupScreen.sdb"
+	Parent  = "SETUP_SDBS"
+	Priority  = 254
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(NETWORK_STACK_SETUP_SCREEN_DIR)\NetworkStackSetupScreen.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 254
+	InvokeOrder = AfterParent
+End

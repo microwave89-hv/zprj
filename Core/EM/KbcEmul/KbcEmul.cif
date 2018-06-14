@@ -1,0 +1,31 @@
+<component>
+	name = "KbcEmulation"
+	category = eModule
+	LocalRoot = "core\em\KbcEmul"
+	RefName = "KbcEmul"
+[files]
+"KbcEmul.sdl"	
+"KbcEmul.mak"	
+"KbcEmul.dxs"	
+"KbcEmul.c"	
+"KbcEmul.h"	
+"KbcEmulLib.h"	
+"KbcEmulLib.c"	
+"KbcEmulAcpi.c"	
+"Kbc.h"	
+"KbcDevEmul.h"	
+"Kbccore.c"	
+"Legacykbc.c"	
+"Legacykbd.c"	
+"LegacyMouse.c"	
+"VirtualKbc.c"	
+"VirtualKbd.c"	
+"VirtualMouse.c"	
+"Ap4x.h"	
+"Ap4x.c"	
+"KbcEmulation.chm"	
+[parts]
+"KbcUhci"
+"KbcEmulIrq"
+"KbcOhci"
+<endComponent>

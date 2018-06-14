@@ -1,0 +1,65 @@
+TOKEN
+	Name  = "NVRAM_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable NVRAM support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "NVRAM_DIR"
+End
+
+MODULE
+	Help  = "Includes NVRAM.mak to Project"
+	File  = "NVRAM.mak"
+End
+
+ELINK
+	Name  = "GetVariableHook"
+	Help  = "Called before GetVariable"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "GetNextVariableNameHook"
+	Help  = "Called before GetNextVariableName"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "SetVariableHook"
+	Help  = "Called before SetVariable"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "PeiGetVariableHook"
+	Help  = "Called before GetVariable in PEI"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "PeiGetNextVariableNameHook"
+	Help  = "Called before GetNextVariableName in PEI"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "NvramPreserveVariables"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = '{L"Setup", { 0xEC87D643, 0xEBA4, 0x4BB5, 0xA1, 0xE5, 0x3F, 0x3E, 0x36, 0xB2, 0x0D, 0xA9 }},'
+	Parent  = "NvramPreserveVariables"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = '{L"AMITSESetup", { 0xc811fa38, 0x42c8, 0x4579, 0xa9, 0xbb, 0x60, 0xe9, 0x4e, 0xdd, 0xfb, 0x34 }},'
+	Parent  = "NvramPreserveVariables"
+	InvokeOrder = AfterParent
+End

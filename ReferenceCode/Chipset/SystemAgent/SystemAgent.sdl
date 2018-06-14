@@ -1,0 +1,337 @@
+TOKEN
+	Name  = "SystemAgent_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SystemAgent support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "PEG_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "DMI_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "SwitchableGraphics_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "GPIO_dGPU_SELECT"
+	Value  = "52"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ACTIVE_dGPU_SELECT"
+	Value  = "0"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "====== SharkBay MB/DT Two Chip platform GPIO setting======"
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "GPIO_dGPU_PRSNT"
+	Value  = "67"
+	Help  = "PCH GPIO bit offset on HuronRiver CRB-Emerald Lake\Unused GPIOs must return 0xFF"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ACTIVE_dGPU_PRSNT"
+	Value  = "0"
+	Help  = "PCH GPIO bit offset on HuronRiver CRB-Emerald Lake"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "GPIO_dGPU_PWR_EN"
+	Value  = "54"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ACTIVE_dGPU_PWR_EN"
+	Value  = "0"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "GPIO_dGPU_PWROK"
+	Value  = "17"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ACTIVE_dGPU_PWROK"
+	Value  = "1"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "GPIO_dGPU_HOLD_RST"
+	Value  = "50"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ACTIVE_dGPU_HOLD_RST"
+	Value  = "0"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "====== SharkBay ULT platform GPIO setting======"
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "GPIO_dGPU_PRSNT_ULT"
+	Value  = "67"
+	Help  = "PCH GPIO bit offset on HuronRiver CRB-Emerald Lake\Unused GPIOs must return 0xFF"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ACTIVE_dGPU_PRSNT_ULT"
+	Value  = "0"
+	Help  = "PCH GPIO bit offset on HuronRiver CRB-Emerald Lake"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "GPIO_dGPU_PWR_EN_ULT"
+	Value  = "84"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ACTIVE_dGPU_PWR_EN_ULT"
+	Value  = "0"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "GPIO_dGPU_PWROK_ULT"
+	Value  = "17"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ACTIVE_dGPU_PWROK_ULT"
+	Value  = "1"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "GPIO_dGPU_HOLD_RST_ULT"
+	Value  = "48"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ACTIVE_dGPU_HOLD_RST_ULT"
+	Value  = "0"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "====== SharkBay ULT platform port function setting======"
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "SG_ULT_PORT_FUNC"
+	Value  = "0x04"
+	Help  = "Port Function Number."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "MRC_BDAT_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Help  = "Main switch to enable BdatAccessHandler support in Project"
+End
+
+ELINK
+	Name  = "INTEL_SA_RC_FLAGS"
+	Help  = "System Agent Reference Code command line options of the compiler"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(INTEL_SA_RC_FLAGS)"
+	Parent  = "GLOBAL_DEFINES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(INTEL_SA_RC_FLAGS)"
+	Parent  = "ASLPREPROCESS_FLAG"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D PEG_FLAG"
+	Parent  = "INTEL_SA_RC_FLAGS"
+	Token = "PEG_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D DMI_FLAG"
+	Parent  = "INTEL_SA_RC_FLAGS"
+	Token = "DMI_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D SG_SUPPORT"
+	Parent  = "INTEL_SA_RC_FLAGS"
+	Token = "SwitchableGraphics_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D PciHotPlug_SUPPORT"
+	Parent  = "INTEL_SA_RC_FLAGS"
+	Token = "HOTPLUG_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/D AMI_SgTpv_SUPPORT"
+	Parent  = "INTEL_SA_RC_FLAGS"
+	InvokeOrder = AfterParent
+	Token = "SgTpv_SUPPORT" "=" "1"
+	Token = "SwitchableGraphics_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "/D BDAT_SUPPORT"
+	Parent  = "INTEL_SA_RC_FLAGS"
+	InvokeOrder = AfterParent
+	Token = "MRC_BDAT_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "INTEL_SYSTEM_AGENT_DIR"
+End
+
+ELINK
+	Name  = "INTEL_MCH_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_SYSTEM_AGENT_DIR)"
+	Parent  = "INTEL_MCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_SA_INCLUDE_DIR)"
+	Parent  = "INTEL_MCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_SYSTEM_AGENT_DIR)\SampleCode"
+	Parent  = "INTEL_MCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_SYSTEM_AGENT_DIR)\SampleCode\Include"
+	Parent  = "INTEL_MCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_SYSTEM_AGENT_DIR)\MemoryInit\Pei\Source\Api"
+	Parent  = "INTEL_MCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_SYSTEM_AGENT_DIR)\MemoryInit"
+	Parent  = "INTEL_MCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_SYSTEM_AGENT_DIR)\MemoryInit\Pei"
+	Parent  = "INTEL_MCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_SYSTEM_AGENT_DIR)\MemoryInit\Pei\Source\Include"
+	Parent  = "INTEL_MCH_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(INTEL_SYSTEM_AGENT_DIR)\MemoryInit\Pei\Source\Include\MrcRegisters"
+	Parent  = "INTEL_MCH_INCLUDES"
+	InvokeOrder = AfterParent
+End

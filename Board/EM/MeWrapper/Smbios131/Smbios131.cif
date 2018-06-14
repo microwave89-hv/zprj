@@ -1,0 +1,12 @@
+<component>
+	name = "Smbios131"
+	category = ModulePart
+	LocalRoot = "Board\EM\MeWrapper\Smbios131\"
+	RefName = "Smbios131"
+[files]
+"Smbios131.sdl"	
+"Smbios131.mak"	
+"Smbios131.c"	
+"Smbios131.dxs"	
+"Smbios131.h"	
+<endComponent>

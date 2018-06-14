@@ -1,0 +1,169 @@
+#**********************************************************************
+#**********************************************************************
+#**                                                                  **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.         **
+#**                                                                  **
+#**                       All Rights Reserved.                       **
+#**                                                                  **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093        **
+#**                                                                  **
+#**                       Phone: (770)-246-8600                      **
+#**                                                                  **
+#**********************************************************************
+#**********************************************************************
+
+#**********************************************************************
+# $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/IntelPfat/PfatRecovery/PfatRecovery.sdl 3     7/15/13 8:17p Fredericko $
+#
+# $Revision: 3 $
+#
+# $Date: 7/15/13 8:17p $
+#**********************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/IntelPfat/PfatRecovery/PfatRecovery.sdl $
+# 
+# 3     7/15/13 8:17p Fredericko
+# EIP 124189: Secure Flash failure with Pfat 
+# 
+# 2     5/29/13 5:44p Fredericko
+# [TAG]  		EIP124189
+# [Description]  	[PFAT] Secure Flash is fail using
+# 4.6.5.1_INTEL_PFAT_2_6 or 2_7
+# [Files]  		PfatPubKeysAndBuildPsl.sdl
+# Pfatrecovery.sdl
+# PfatRecoveryHook.c
+# Recovery.mak
+# 
+# 1     4/05/13 5:36p Fredericko
+# [TAG]  		EIP119706
+# [Category]  	Improvement
+# [Description]  	Support Recovery in pfat module
+# [Files]  		PfatRecovery.cif
+# PfatRecovery.sdl
+# PfatRecovery.mak
+# PfatRecovery.dxs
+# PfatRecovery.c
+# PfatRecoveryHook.c
+# 
+#
+#**********************************************************************
+#<AMI_FHDR_START>
+#
+# Name: PfatSetup.sdl
+#
+# Description: SDL file for PfatSetup
+#
+#
+#<AMI_FHDR_END>
+#**********************************************************************
+
+TOKEN
+	Name  = "PFAT_RECOVERY_SUPPORT"
+	Value  = "1"
+	Help  = ""
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Token = "PfatServices_SUPPORT" "=" "1"
+End
+
+PATH
+	Name  = "PFAT_RECOVERY_PATH"
+End
+
+MODULE
+	Help  = "Includes PfatRecovery.mak to Project"
+	File  = "PfatRecovery.mak"
+End
+
+TOKEN
+        Name  = "MAX_DEVICE_RECOVERY_MODULE"
+        Value  = "8"
+        TokenType = Integer
+        TargetH = Yes
+End
+
+TOKEN
+        Name  = "PFAT_RECOVERY_FILE"
+        Value  = "AMIPFAT.BIN"
+        TokenType = Expression
+        TargetMAK = Yes
+        TargetH = Yes
+End
+
+TOKEN
+        Name  = "PFAT_RECOVERY_IMAGE_SIZE"
+        Value  = "0xFF4CE0"
+        TokenType = Integer
+        TargetH = Yes
+End
+
+TOKEN
+        Name  = "PFAT_RECOVERY_IMAGE_SIZE"
+        Value  = "0x10050c5"
+        TokenType = Integer
+        TargetH = Yes
+        Token = "OEM_ACTIVATION_TABLE_LOCATION" "=" "1"
+End
+
+TOKEN
+	Name  = "PfatRecoveryPeiLib"
+	Value  = "$(BUILD_DIR)\PfatRecoveryPeiLib.lib"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+#-ELINK
+#-	Name  = "$(BUILD_DIR)\PfatRecoveryPeiLib.lib"
+#-	Parent  = "AMIPEILIB"
+#-	InvokeOrder = AfterParent
+#-End
+
+ELINK
+	Name  = "$(BUILD_DIR)\PfatRecovery.ffs"
+	Parent  = "FV_BB"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+        Name  = "FwCapsuleInfo_enable"
+        Value  = "0"
+        TokenType = Boolean
+End
+ 
+TOKEN
+        Name  = "FwCapsuleInfo_enable"
+        Value  = "1"
+        TokenType = Boolean
+        Token = "SecureMod_SUPPORT" "=" "1"
+End
+ 
+ELINK
+        Name = "PfatRecoveryFileInfo"
+        Parent = "AmiGetRecoveryFileInfo"
+        InvokeOrder = ReplaceParent
+        Token = "FwCapsuleInfo_enable" "=" "0"
+End
+
+ELINK
+        Name = "PfatImageInfo"
+        Parent = "FwCapsuleInfo"
+        InvokeOrder = ReplaceParent
+        Token = "FwCapsuleInfo_enable" "=" "1"
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

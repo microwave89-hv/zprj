@@ -1,0 +1,9 @@
+<component>
+	name = "PTT Dxe Library"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Me\Library\Ptt\Dxe\"
+	RefName = "PttHciDeviceDxeLib"
+[files]
+"PttHciDeviceDxeLib.inf"
+"PttHciDeviceDxeLib.h"
+<endComponent>

@@ -1,0 +1,32 @@
+TOKEN
+	Name  = "IccOverClocking_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable IccOverClocking support in Project"
+End
+
+MODULE
+	Help  = "Includes IccOverClocking.mak to Project"
+	File  = "IccOverClocking.mak"
+End
+
+PATH
+	Name  = "IccOverClocking_DIR"
+	Help  = "Icc Support commands"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\IccOverClocking.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\IccOverClocking9_5.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End

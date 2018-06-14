@@ -1,0 +1,79 @@
+TOKEN
+    Name  = "OemActivation_SUPPORT"
+    Value = "1"
+    Help  = "Main switch to enable OemActivation support in Project"
+    TokenType = Boolean
+    TargetH   = Yes
+    TargetMAK = Yes
+    Master = Yes
+End
+
+TOKEN
+    Name  = "OEM_ACTIVATION_TABLE_LOCATION" 
+    Value = "0"
+    Help  = "OEM Activation Table location: \0 = FID Table.\1 = Non-Critical Block."
+    TokenType = Integer
+    TargetH   = Yes
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "OEM_ACTIVATION_TABLE_ADDRESS"
+    Value = "0xFFE10000"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH   = Yes
+    Token = "OEM_ACTIVATION_TABLE_LOCATION" "=" "1"
+End
+
+TOKEN
+    Name  = "OEM_ACTIVATION_TABLE_SIZE"
+    Value = "0x10000"
+    TokenType = Integer
+    TargetMAK = Yes
+    TargetH   = Yes
+    Token = "OEM_ACTIVATION_TABLE_LOCATION" "=" "1"
+End
+
+TOKEN
+    Name  = "OEM_ACTIVATION_LIB"
+    Value = "$(BUILD_DIR)\OemActivation.lib"
+    TokenType = Expression
+    TargetMAK = Yes
+End
+
+PATH
+    Name  = "OemActivation_DIR"
+End
+
+MODULE
+    Help  = "Includes OemActivation.mak to Project"
+    File  = "OemActivation.mak"
+End
+
+ELINK
+    Name   = "$(BUILD_DIR)\OemActivation.lib"
+    Parent = "PRESERVE_LIB"
+    Token  = "OEM_ACTIVATION_TABLE_LOCATION" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name   = "$(BUILD_DIR)\OemActivation.ffs"
+    Parent = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name   = "$(OEM_ACTIVATION_DESCRIPTOR)"
+    Parent = "ROM_IMAGE"
+    Token  = "OEM_ACTIVATION_TABLE_LOCATION" "=" "1"
+    InvokeOrder = AfterParent
+End
+
+ELINK
+    Name   = "OemActivationUpdateBlockTypeId,"
+    Parent = "SMIFlashEndHandlerList"
+    Token  = "OEM_ACTIVATION_TABLE_LOCATION" "=" "1"
+    InvokeOrder = AfterParent
+End

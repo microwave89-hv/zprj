@@ -1,0 +1,70 @@
+//**********************************************************************//
+//**********************************************************************//
+//**                                                                  **//
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **//
+//**                                                                  **//
+//**                       All Rights Reserved.                       **//
+//**                                                                  **//
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **//
+//**                                                                  **//
+//**                       Phone: (770)-246-8600                      **//
+//**                                                                  **//
+//**********************************************************************//
+//**********************************************************************//
+
+//**********************************************************************//
+// $Header: /Alaska/SOURCE/Modules/SMBIOS/SmbiosGetFlashData/SmbiosGetFlashData.dxs 5     8/30/11 4:15p Davidd $
+//
+// $Revision: 5 $
+//
+// $Date: 8/30/11 4:15p $
+//**********************************************************************//
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SMBIOS/SmbiosGetFlashData/SmbiosGetFlashData.dxs $
+// 
+// 5     8/30/11 4:15p Davidd
+// [TAG]           EIP65648
+// [Category]      Improvement
+// [Description]   Update SMBIOS eModules for uEFI 2.3.1 / PI 1.2
+// compliance
+// [Files]         Smbios.c
+//                 Smbios.dxs
+//                 SmbiosDMIEdit.c
+//                 SmbiosDMIEditFunc.c
+//                 SmbiosGetFlashData.c
+//                 SmbiosGetFlashData.dxs
+// 
+// 4     6/02/09 11:27a Davidd
+// Updated AMI header section (EIP 22180)
+// 
+// 3     3/29/07 6:11p Davidd
+// Changed the year in the AMI banner and adjust indentation to coding
+// standard.
+// 
+// 2     3/21/06 8:45p Fasihm
+// Changed the protocol name FvBlock.h to FirmwareVolumeBlock.h to be
+// compatable with the new Aptio 4.5 Core and later.
+//
+//
+//**********************************************************************
+
+#include <Protocol\FirmwareVolumeBlock.h>
+
+DEPENDENCY_START
+    EFI_FIRMWARE_VOLUME_BLOCK_PROTOCOL_GUID
+DEPENDENCY_END
+
+//**********************************************************************//
+//**********************************************************************//
+//**                                                                  **//
+//**        (C)Copyright 1985-2009, American Megatrends, Inc.         **//
+//**                                                                  **//
+//**                       All Rights Reserved.                       **//
+//**                                                                  **//
+//**        5555 Oakbrook Pkwy, Suite 200, Norcross, GA 30093         **//
+//**                                                                  **//
+//**                       Phone: (770)-246-8600                      **//
+//**                                                                  **//
+//**********************************************************************//
+//**********************************************************************//

@@ -1,0 +1,11 @@
+<component>
+	name = "EdkIIGlueBaseTimerLibLocalApic"
+	category = ModulePart
+	LocalRoot = "Edk\Foundation\Library\EdkIIGlueLib\Library\BaseTimerLibLocalApic"
+	RefName = "EdkIIGlueBaseTimerLibLocalApic"
+[files]
+"EdkIIGlueBaseTimerLibLocalApic.sdl"	
+"EdkIIGlueBaseTimerLibLocalApic.mak"	
+"BaseTimerLibLocalApic.inf"
+"x86TimerLib.c"	
+<endComponent>

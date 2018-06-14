@@ -1,0 +1,159 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*************************************************************************
+// $Header: /Alaska/SOURCE/Modules/SharkBayRefCodes/Platform/IntelRefVerDisplay/IntelRefVerDisplay.sd 4     7/11/12 4:01a Yurenlai $
+//
+// $Revision: 4 $
+//
+// $Date: 7/11/12 4:01a $
+//*************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/SOURCE/Modules/SharkBayRefCodes/Platform/IntelRefVerDisplay/IntelRefVerDisplay.sd $
+// 
+// 4     7/11/12 4:01a Yurenlai
+// [TAG]         None
+// [Category]    Improvement
+// [Description] Corrected Setup RefCcode Version info.
+// [Files]       IntelRefVerSetup.cm IntelRefVerDisplay.sd
+// 
+// 3     6/13/12 8:51a Yurenlai
+// [TAG]         None
+// [Description] 01. Implement Intel Rapid Start Technology RC version
+// info.
+//               02. Remove DPTF and TxT RefCode version in setup, because
+// they are not separate components.
+// [Files]       IntelRefVerDisplay.mak, IntelRefVerDisplay.sd,
+// IntelRefVerDisplay.uni, IntelRefVerSetup.c
+// 
+// 2     2/24/12 1:27a Yurenlai
+// Initial IntelRefVerDisplay midule part.
+// 
+// 1     2/09/12 12:39a Yurenlai
+// Initial check in.
+// 
+//*************************************************************************
+
+//*************************************************************************
+//<AMI_FHDR_START>
+//
+// Name:  IntelRefVerDisplay.sd
+//
+// Description: Setup file for IntelRefVerDisplay driver. It displays the 
+// version of Intel RC Driver and its Version String in a form of Advanced 
+// tab of setup screen
+//
+//<AMI_FHDR_END>
+//*************************************************************************
+
+#ifdef SETUP_DATA_DEFINITION
+// Put NVRAM data definitions here.
+// For example:	UINT8 Data1;
+// These definitions will be converted by the build process
+// to a definitions of SETUP_DATA fields.
+#endif
+
+#ifdef ADVANCED_FORM_SET
+
+  #ifdef FORM_SET_ITEM
+    // Define controls to be added to the main page of the formset
+  #endif
+
+  #ifdef FORM_SET_GOTO
+    // Define goto commands for the forms defined in this file
+    goto INTEL_RC_VERSION_FORM_ID, 
+      prompt = STRING_TOKEN(STR_INTEL_RC_VERSION_FORM),
+      help   = STRING_TOKEN(STR_INTEL_RC_VERSION_FORM_HELP);
+  #endif
+
+
+  #ifdef FORM_SET_FORM
+  // Define forms
+    #ifndef INTEL_RC_VERSION_FORM_SETUP
+    #define INTEL_RC_VERSION_FORM_SETUP
+    
+    form formid = AUTO_ID(INTEL_RC_VERSION_FORM_ID),
+      title = STRING_TOKEN(STR_INTEL_RC_VERSION_FORM);
+
+#if defined (INTEL_CPURC_SUPPORT) && INTEL_CPURC_SUPPORT      
+    text 
+      help    = STRING_TOKEN (STR_INTEL_CPU_RC_VER_HELP),
+      text    = STRING_TOKEN (STR_INTEL_CPU_RC_VER_NAME),
+      text    = STRING_TOKEN (STR_INTEL_CPU_RC_VER_VALUE),
+      flags   = 0, key = 0;
+#endif
+
+    text 
+      help    = STRING_TOKEN (STR_INTEL_SA_RC_VER_HELP),
+      text    = STRING_TOKEN (STR_INTEL_SA_RC_VER_NAME),
+      text    = STRING_TOKEN (STR_INTEL_SA_RC_VER_VALUE),
+      flags   = 0, key = 0;
+                
+    text 
+      help    = STRING_TOKEN (STR_INTEL_PCH_RC_VER_HELP),
+      text    = STRING_TOKEN (STR_INTEL_PCH_RC_VER_NAME),
+      text    = STRING_TOKEN (STR_INTEL_PCH_RC_VER_VALUE),
+      flags   = 0, key = 0;
+
+    text 
+      help    = STRING_TOKEN (STR_INTEL_ACPI_RC_VER_HELP),
+      text    = STRING_TOKEN (STR_INTEL_ACPI_RC_VER_NAME),
+      text    = STRING_TOKEN (STR_INTEL_ACPI_RC_VER_VALUE),
+      flags   = 0, key = 0;   
+
+#if defined (iME_SUPPORT) && iME_SUPPORT      
+    text 
+      help    = STRING_TOKEN (STR_INTEL_ME_RC_VER_HELP),
+      text    = STRING_TOKEN (STR_INTEL_ME_RC_VER_NAME),
+      text    = STRING_TOKEN (STR_INTEL_ME_RC_VER_VALUE),
+      flags   = 0, key = 0;
+#endif
+
+#if defined (DigitalThermalSensor_SUPPORT) && DigitalThermalSensor_SUPPORT
+    text 
+      help    = STRING_TOKEN (STR_INTEL_DTS_RC_VER_HELP),
+      text    = STRING_TOKEN (STR_INTEL_DTS_RC_VER_NAME),
+      text    = STRING_TOKEN (STR_INTEL_DTS_RC_VER_VALUE),
+      flags   = 0, key = 0;    
+#endif
+
+#if defined (RapidStart_SUPPORT) && RapidStart_SUPPORT
+    text 
+      help    = STRING_TOKEN (STR_INTEL_RST_RC_VER_HELP),
+      text    = STRING_TOKEN (STR_INTEL_RST_RC_VER_NAME),
+      text    = STRING_TOKEN (STR_INTEL_RST_RC_VER_VALUE),
+      flags   = 0, key = 0;    
+#endif    
+
+    endform; // VERSION_FORM_ID
+
+    #endif // INTEL_RC_VERSION_FORM_SETUP
+  #endif  // FORM_SET_FORM
+
+#endif  // ADVANCED_FORM_SET
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************

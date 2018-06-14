@@ -1,0 +1,21 @@
+<component>
+	name = "PchUsbCommonLib"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Chipset\LynxPoint\PchInit\Common"
+	RefName = "PchUsbCommonLib"
+[files]
+"PchUsbCommonLib.sdl"	
+"PchUsbCommonLib.mak"	
+"PchUsbCommon.h"	
+"PchUsbCommon.c"	
+"PchHSIO.c"	
+"PchHSIO.h"	
+"PchHSIOLptHB0.c"	
+"PchHSIOLptHB0.h"	
+"PchInitVar.c"	
+"PchInitVar.h"	
+"PchHsioLptLpBx.h"	
+"PchHsioLptHCx.c"	
+"PchHsioLptHCx.h"	
+"PchHsioLptLpBx.c"	
+<endComponent>

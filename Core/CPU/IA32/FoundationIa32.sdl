@@ -1,0 +1,19 @@
+TOKEN
+	Name  = "FoundationIa32_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable FoundationIa32 support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "FoundationIa32_DIR"
+End
+
+MODULE
+	Help  = "Includes FoundationIa32.mak to Project"
+	File  = "FoundationIa32.mak"
+End
+

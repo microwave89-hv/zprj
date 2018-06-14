@@ -1,0 +1,12 @@
+<component>
+	name = "PeiXportx64Redir"
+	category = ModulePart
+	LocalRoot = "Core\em\AMIDebugRx\binaries\PeiAMIDebugRx\x64\XPORT"
+	RefName = "PeiXportx64Redir"
+[files]
+"REDIR\xp_layer.obj"	
+"REDIR\transport.obj"	
+"REDIR\usb_acc.obj"	
+"REDIR\usb_xp.obj"	
+"REDIR\UsbDebugPort.obj"	
+<endComponent>

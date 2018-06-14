@@ -1,0 +1,19 @@
+<component>
+	name = "FileSystem"
+	category = ModulePart
+	LocalRoot = "Core\EM\FileSystem\"
+	RefName = "FileSystem"
+[files]
+"\FileSystem.sdl"	
+"\FileSYstem.mak"	
+"\FileSystem.h"	
+"\Open.c"	
+"\FileSystem.c"	
+"\FileFatHandler.c"	
+"\Info.c"	
+"\DirectoryHandler.c"
+"\VolFatHandler.c"	
+"\MediaAccess.c"	
+"\FileSystemComponentName.c"
+"\FileSystem.chm"	
+<endComponent>

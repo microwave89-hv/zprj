@@ -1,0 +1,36 @@
+TOKEN
+	Name  = "MeLibPei_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable MeLibPei support in Project"
+End
+
+MODULE
+	Help  = "Includes MeLibPei.mak to Project"
+	File  = "MeLibPei.mak"
+End
+
+PATH
+	Name  = "MeLibPei_DIR"
+	Help  = "Me Library file source directory"
+End
+
+ELINK
+	Name  = "MeLibPei_LIB"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\MeLibPei.lib"
+	Parent  = "MeLibPei_LIB"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "/I$(MeLibPei_DIR)"
+	Parent  = "ME_INCLUDES"
+	InvokeOrder = AfterParent
+End

@@ -1,0 +1,81 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchUsbCommonLib/PchUsbCommonLib.sdl 1     2/08/12 9:29a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 2/08/12 9:29a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Refcode/PchUsbCommonLib/PchUsbCommonLib.sdl $
+# 
+# 1     2/08/12 9:29a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+        Name  = "PchUsbCommonLib_SUPPORT"
+        Value  = "1"
+        Help  = "Main switch to enable PchUsbCommonLib support in Project"
+        TokenType = Boolean
+        TargetMAK = Yes
+        Master = Yes
+End
+
+PATH
+        Name  = "PchUsbCommonLib_DIR"
+End
+
+MODULE
+        Help  = "Includes PchUsbCommonLib.mak to Project"
+        File  = "PchUsbCommonLib.mak"
+End
+
+ELINK
+        Name  = "PchUsbCommonDxeLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$$(LIB_BUILD_DIR)\PchUsbCommonDxeLib.lib"
+        Parent  = "PchUsbCommonDxeLib_LIB"
+        InvokeOrder = AfterParent
+End
+
+ELINK
+        Name  = "PchUsbCommonPeiLib_LIB"
+        InvokeOrder = ReplaceParent
+End
+
+ELINK
+        Name  = "$$(LIB_BUILD_DIR)\PchUsbCommonPeiLib.lib"
+        Parent  = "PchUsbCommonPeiLib_LIB"
+        InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

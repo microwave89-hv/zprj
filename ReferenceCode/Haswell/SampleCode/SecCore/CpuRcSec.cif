@@ -1,0 +1,20 @@
+<component>
+	name = "CpuRcSec"
+	category = ModulePart
+	LocalRoot = "ReferenceCode\Haswell\SampleCode\SecCore"
+	RefName = "CpuRcSec"
+[files]
+"CpuRcSec.mak"
+"CpuRcSec.sdl"
+"Sec\Ia32\Chipset.inc"
+"Sec\Ia32\CpuRcSec.asm"
+"Sec\Ia32\CrcSecPpi.c"
+"Sec\Ia32\Flat32.asm"
+"Sec\Ia32\Ia32.inc"
+"Sec\Ia32\SecFlat32.inc"
+"Sec\Ia32\Platform.inc"
+"Sec\Ia32\ResetVec.asm"
+"Sec\Ia32\ResetVec.raw"
+"Sec\Ia32\SecCore.inc"
+"Sec\Ia32\SecStartup.c"
+<endComponent>

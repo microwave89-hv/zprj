@@ -1,0 +1,586 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+#*************************************************************************
+# $Header: /Alaska/SOURCE/Modules/Thunderbolt/TbtDxe/TbtDxe.sdl 8     7/26/13 2:46a Barretlin $
+#
+# $Revision: 8 $
+#
+# $Date: 7/26/13 2:46a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/SOURCE/Modules/Thunderbolt/TbtDxe/TbtDxe.sdl $
+# 
+# 8     7/26/13 2:46a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Separate ASL code for Intel RC and non Intel RC
+# [Files]  		TbtDxe.sdl TbtDxe.cif
+# 
+# 7     6/21/13 7:40a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Fix build error with non Intel RC project
+# [Files]  		TbtDxe.sdl TbtDxe.c TbtGpe.asl TbtDxeLib.h
+# 
+# 6     5/27/13 8:54a Barretlin
+# [TAG]  		EIP122882
+# [Category]  	Bug Fix
+# [Severity]  	Normal
+# [Symptom]  	let system entering sleep status continually and waking up
+# system via Thunderbolt Lan device, system will auto-wake
+# [RootCause]  	PCIE PME status is not cleared by ASL in SB module
+# [Solution]  	Clear PCIE PME status againg before system entring sleep
+# status
+# [Files]  		TbtDxe.sdl TbtGpe.asl
+# 
+# 5     4/10/13 1:37p Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Adding a TPTS method into _PTS method in ASL code
+# [Files]  		TbtDxe.sdl TbtGpe.asl
+# 
+# 4     3/21/13 4:58a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Use token to decide where location of OS_UP command for
+# RR chip is
+# [Files]  		TbtDxe.sdl TbtGpe.asl
+# 
+# 3     2/08/13 1:23a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Following Intel sample code move _INI method of
+# thunderbolt from under PCIE root port to under system bus
+# [Files]  		TbtDxe.sdl TbtGpe.asl
+# 
+# 2     1/18/13 2:26a Barretlin
+# [TAG]  		EIP N/A
+# [Category]  	Improvement
+# [Description]  	Improve _RMV ASL code  for SharkBay RC
+# [Files]  		TbtDxe.sdl TbtDxe.c TbtGpe.asl
+# 
+# 1     1/10/13 4:56a Barretlin
+# Change SS path and update module for Thunderbolt Spec 1.6 for Cactus
+# Ridge chip and Thunderbolt Spec 0.5 for Redwood Ridge chip
+# 
+# 7     12/12/12 3:02a Barretlin
+# [TAG]  		EIP108272
+# [Category]  	Spec Update
+# [Severity]  	Important
+# [Description]  	Update to Spec 1.4 to support Redwood Ridge chip
+# [Files]  		TbtPei.c TbtSmm.c TbtDxe.c TbtDxe.sdl TbtGpe.asl
+# TbtOemBoard.c TbtOemBoard.h TbtOemLib.c TbtOemLib.h
+# 
+# 6     7/25/12 11:58p Barretlin
+# [TAG]  		EIP90644
+# [Category]  	Improvement
+# [Description]  	Change pre-boot event timing from ready to boot to pci
+# bus finish assigning resources
+# [Files]  		TbtDxe.sdl TbtDxe.c TbtDxeLib.c TbtDxeLib.h
+# 
+# 5     5/22/12 9:48a Barretlin
+# [TAG]  		EIPNone
+# [Category]  	Improvement
+# [Description]  	Rollback default value of token
+# [Files]  		TbtDxe.sdl
+# 
+# 4     5/07/12 6:30a Barretlin
+# [TAG]  		None
+# [Category]  	Improvement
+# [Description]  	change default value of token, because of it is need
+# SwSMI when S3 resume
+# [Files]  		TbtDxe.sdl
+# 
+# 3     4/16/12 10:17a Barretlin
+# [TAG]  		EIP86590
+# [Category]  	Bug Fix
+# [Symptom]  	Only EP#1 can be detected after resume from S3
+# [Solution]  	Adding a TWAK method into _WAK method
+# [Files]  		TbtDxe.sdl  TbtGpe.asl
+# 
+# 2     2/20/12 12:09a Wesleychen
+# [TAG]         None
+# [Category]    Improvement
+# [Description] Add TbtDxeLib.
+# [Files]       TbtDxeLib.c; TbtDxeLib.h; TbtDxe.mak; TbtDxe.sdl;
+#               TbtDxe.cif.
+# 
+# 1     12/08/11 4:09a Wesleychen
+# Thunderbolt eModule initially releases.
+# 
+#*************************************************************************
+
+TOKEN
+	Name  = "TbtDxe_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Help  = "Main switch to enable TbtDxe support in Project"
+End
+
+TOKEN
+	Name  = "TBT_RPNum"
+	Value  = "1"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_FUNC" "=" "0"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RPNum"
+	Value  = "0"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_FUNC" "=" "0"
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "0"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RPNum"
+	Value  = "2"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_FUNC" "=" "1"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RPNum"
+	Value  = "1"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_FUNC" "=" "1"
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "0"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RPNum"
+	Value  = "3"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_FUNC" "=" "2"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RPNum"
+	Value  = "2"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_FUNC" "=" "2"
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "0"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RPNum"
+	Value  = "4"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_FUNC" "=" "3"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RPNum"
+	Value  = "3"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_FUNC" "=" "3"
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "0"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RPNum"
+	Value  = "5"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_FUNC" "=" "4"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RPNum"
+	Value  = "4"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_FUNC" "=" "4"
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "0"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RPNum"
+	Value  = "6"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_FUNC" "=" "5"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RPNum"
+	Value  = "5"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_FUNC" "=" "5"
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "0"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RPNum"
+	Value  = "7"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_FUNC" "=" "6"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RPNum"
+	Value  = "6"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_FUNC" "=" "6"
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "0"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RPNum"
+	Value  = "8"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_FUNC" "=" "7"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RPNum"
+	Value  = "7"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Token = "TBT_UP_PORT_FUNC" "=" "7"
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "0"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RP_NUM"
+	Value  = "\_SB.PCI0.RP0$(TBT_RPNum)"
+	TokenType = Expression
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RP_NUM"
+	Value  = "\_SB.PCI0.PEX$(TBT_RPNum)"
+	TokenType = Expression
+	TargetH = Yes
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "0"
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "TBT_RMV_REPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Help  = "Enable:1/Disable:0 Thunderbolt module report _RMV function in ASL code."
+	Token = "DESKTOP_306AX" "=" "1"
+	Token = "HOTPLUG_RMV_SUPPORT" "=" "0"
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "1"
+End
+
+TOKEN
+	Name  = "TBT_RMV_REPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Help  = "Enable:1/Disable:0 Thunderbolt module report _RMV function in ASL code."
+	Token = "MOBILE_306AX" "=" "1"
+	Token = "HOTPLUG_RMV_SUPPORT" "=" "0"
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "1"
+End
+
+TOKEN
+	Name  = "TBT_RMV_REPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Help  = "Enable:1/Disable:0 Thunderbolt module report _RMV function in ASL code."
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "0"
+End
+
+TOKEN
+	Name  = "TBT_WAK_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Help  = "Main switch to enable TWAK method in ASL code"
+End
+
+TOKEN
+	Name  = "TBT_PTS_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Help  = "Main switch to enable TPTS method in ASL code"
+End
+
+TOKEN
+	Name  = "TBT_PCI0_INI_SUPPORT"
+	Value  = "0"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Help  = "Enable/Disable OS_UP command of RR chip under _INI method of system bus in ASL code."
+End
+
+TOKEN
+	Name  = "TBT_S3_WAK_SMI"
+	Value  = "0"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Help  = "Enable:1/Disable:0 trigger TBT SMI in ASL code when S3 resuming"
+End
+
+TOKEN
+	Name  = "TBT_WAK"
+	Value  = "\_SB.PCI0.RP0$(TBT_RPNum).TWAK(Arg0)"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Lock = Yes
+	Token = "TBT_WAK_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "TBT_WAK"
+	Value  = "\_SB.PCI0.PEX$(TBT_RPNum).TWAK(Arg0)"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Lock = Yes
+	Token = "TBT_WAK_SUPPORT" "=" "1"
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "0"
+End
+
+TOKEN
+	Name  = "TBT_PTS"
+	Value  = "\_SB.PCI0.RP0$(TBT_RPNum).TPTS(Arg0)"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Lock = Yes
+	Token = "TBT_PTS_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "TBT_PTS"
+	Value  = "\_SB.PCI0.PEX$(TBT_RPNum).TPTS(Arg0)"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Lock = Yes
+	Token = "TBT_PTS_SUPPORT" "=" "1"
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "0"
+End
+
+TOKEN
+	Name  = "TBT_CLEAR_PME_STATUS"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Help  = "Enable:1/Disable:0 Clear PCIE root port thunderbolt host located PME status in ASL code."
+	Token = "TBT_PTS_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "TBT_CLEAR_PME_STATUS"
+	Value  = "0"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Help  = "Enable:1/Disable:0 Clear PCIE root port thunderbolt host located PME status in ASL code."
+	Token = "MOBILE_306AX" "=" "1"
+	Token = "TBT_PTS_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "TBT_CLEAR_PME_STATUS"
+	Value  = "0"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Help  = "Enable:1/Disable:0 Clear PCIE root port thunderbolt host located PME status in ASL code."
+	Token = "DESKTOP_306AX" "=" "1"
+	Token = "TBT_PTS_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "TBT_INI"
+	Value  = "\_SB.PCI0.RP0$(TBT_RPNum).TINI()"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Lock = Yes
+	Token = "TBT_PCI0_INI_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "TBT_INI"
+	Value  = "\_SB.PCI0.PEX$(TBT_RPNum).TINI()"
+	TokenType = Expression
+	TargetMak = Yes
+	TargetH = Yes
+	Lock = Yes
+	Token = "TBT_PCI0_INI_SUPPORT" "=" "1"
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "0"
+End
+
+MODULE
+	Help  = "Includes TbtDxe.mak to Project"
+	File  = "TbtDxe.mak"
+End
+
+PATH
+	Name  = "TbtDxe_DIR"
+End
+
+ELINK
+	Name  = "/I$(TbtDxe_DIR)"
+	Parent  = "TBT_DXE_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "TBT_DXE_INCLUDES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "$(TbtDxe_DIR)\TbtGpe.asl"
+	Parent  = "INTEL_GENERIC_ASL"
+	InvokeOrder = AfterParent
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "1"
+End
+
+ELINK
+	Name  = "$(TbtDxe_DIR)\TbtGpeNonRC.asl"
+	Parent  = "GENERIC_ASL"
+	InvokeOrder = AfterParent
+	TOKEN = "TBT_INTEL_RC_CONFIG" "=" "0"
+End
+
+ELINK
+	Name  = "$(TBT_WAK)"
+	Parent  = "ASL_WAK"
+	Help  = "Include TBT Specific Function at WAK.\Arg0 is a sleep state the System is resuming from. "
+	SrcFile  = "$(TbtDxe_DIR)\TbtGpe.ASL"
+	InvokeOrder = AfterParent
+	Token = "TBT_WAK_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "$(TBT_PTS)"
+	Parent  = "ASL_PTS"
+	Help  = "Include TBT Specific Function at PTS.\Arg0 is a sleep state the System is resuming from. "
+	SrcFile  = "$(TbtDxe_DIR)\TbtGpe.ASL"
+	InvokeOrder = AfterParent
+	Token = "TBT_PTS_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "$(TBT_INI)"
+	Parent  = "ASL_PCI0_INI"
+	Help  = "Include TBT Specific Function at _INI method of PCI0."
+	SrcFile  = "$(TbtDxe_DIR)\TbtGpe.ASL"
+	InvokeOrder = AfterParent
+	Token = "TBT_PCI0_INI_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TbtDxe.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OEM_PCI_DEVICE_CALLBACK(0, 0, TbtProtectedPciDevice),"
+	Parent  = "OEM_SKIP_PCI_DEVICE"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "TbtDxeInvokeSmiHandler,"
+	Parent  = "ConnectRootBridgeHandles,"
+	InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2012, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

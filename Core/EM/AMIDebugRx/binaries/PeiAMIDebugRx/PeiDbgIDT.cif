@@ -1,0 +1,11 @@
+<component>
+	name = "PeiDbgIDT"
+	category = ModulePart
+	LocalRoot = "Core\em\AMIDebugRx\binaries\PeiAMIDebugRx\"
+	RefName = "PeiDbgIDT"
+[files]
+"PeiDbgIDT.sdl"	
+"PeiDbgIDT.mak"	
+"PeiDbgIDT.dxs"	
+"IDT\emptyidt.obj"	
+<endComponent>

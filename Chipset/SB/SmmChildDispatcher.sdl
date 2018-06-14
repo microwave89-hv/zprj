@@ -1,0 +1,141 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+
+#*************************************************************************
+# $Header: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SmmChildDispatcher/SmmChildDispatcher.sdl 1     2/08/12 8:27a Yurenlai $
+#
+# $Revision: 1 $
+#
+# $Date: 2/08/12 8:27a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/Chipset/Intel/SouthBridge/LynxPoint/Intel Pch SB Chipset/SmmChildDispatcher/SmmChildDispatcher.sdl $
+# 
+# 1     2/08/12 8:27a Yurenlai
+# Intel Lynx Point/SB eChipset initially releases.
+#
+#*************************************************************************
+TOKEN
+	Name  = "SmmChildDispatcher_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SmmChildDispatcher support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "EXTENDED_SMI"
+	Value  = "0xF0"
+	Help  = "SMI number for DWORD SMI value handlers"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "00-FF"
+End
+
+TOKEN
+	Name  = "MAX_SW_SMI_INPUT_VALUE"
+	Value  = "0xEF"
+	Help  = "This is the maximum value supported by the SW SMI child dispatcher"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SUPPORTED_GPIS"
+	Value  = "0xFFFF"
+	Help  = "This is a supported GPI SMI mask, 1 = supported, 32 bits maximum"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+    Name  = "GPI_DISPATCH_BY_BITMAP"
+    Value  = "0"
+    Help  = "ON = The registered parameter of SMM GPI dispatcher is using bitmapped.\OFF = The registered parameter of SMM GPI disatcher is using index based"
+    TokenType = Boolean
+    TargetH = Yes
+    Lock = Yes
+End
+
+TOKEN
+	Name  = "SUPPORTED_TCOS"
+	Value  = "0x168F"
+	Help  = "This is a supported TCO SMI status mask, 1 = supported, 32 bits maximum\This value should not include BIOSWE bit, because it had been supported by another SMM dispatch"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "MAX_SUPPORTED_IOTRAP_REGS"
+	Value  = "0x04"
+	Help  = "This is the maximum register number in SB can be used for I/O Trap"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "MAX_SUPPORTED_IOTRAP_LENGTH"
+	Value  = "0x100"
+	Help  = "This is the maximum length (BYTE) supported by I/O Trap register"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ACPI_SLEEP_IN_SMM"
+	Value  = "1"
+	Help  = "If ON = The function of ACPI Sleep will enable in SMM by BIOS.\If OFF = The function of ACPI Sleep will enable by OS."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SWSMI_TIMER_INSTEAD"
+	Value  = "1"
+	Help  = "ON = Select the SWSMI Timer for SMI Periodic Timer event.\OFF = Select the Periodic Timer for SMI Periodic Timer event."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+PATH
+	Name  = "SMM_CHILD_DISP_DIR"
+End
+
+MODULE
+	Help  = "Includes SmmChildDispatcher.mak to Project"
+	File  = "SmmChildDispatcher.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SmmChildDispatcher.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+

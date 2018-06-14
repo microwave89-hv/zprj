@@ -1,0 +1,72 @@
+TOKEN
+	Name    =   "TPM20ACPI_SUPPORT"
+	Value   =   "1"
+	Help    =   "Main switch to enable TCGSMM support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+    Token = "TPM20Enabled" "!=" "0"
+End
+
+PATH
+	Name  = "TPM20ACPI_DIR"
+End
+
+MODULE
+	Help  = "Includes Tpm20Acpi.mak to Project"
+	File  = "Tpm20Acpi.mak"
+End
+
+ELINK
+	Name    = "$(BUILD_DIR)\Tpm20Acpi.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\tpm.asl"
+	Parent  = "GENERIC_ASL"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(TPM20ACPI_DIR)\TpmCrb.asl"
+	Parent  = "GENERIC_ASL"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(TPM20ACPI_DIR)\tcg_ppi1_2.asl"
+	Parent  = "GENERIC_ASL"
+	InvokeOrder = AfterParent
+    Token = "OVERRIDE_TCG_ASL" "=" "0"
+    Token = "TCGPPISPEC_1_2_SUPPORT" "=" "1"
+    Token = "WORD_ACCESS_SMI_PORT" "=" "0"
+End
+
+ELINK
+	Name  = "$(TPM20ACPI_DIR)\tcg_ppi1_2_Ex.asl"
+	Parent  = "GENERIC_ASL"
+	InvokeOrder = AfterParent
+    Token = "OVERRIDE_TCG_ASL" "=" "0"
+    Token = "TCGPPISPEC_1_2_SUPPORT" "=" "1"
+    Token = "WORD_ACCESS_SMI_PORT" "=" "1"
+End
+
+TOKEN
+	Name  = "TPMF"
+	Value  = "0"
+	Help  = "TPM ASL update Variable"
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+End
+
+ELINK
+	Name  = "/D PTT_FLAG"
+    Help  = "Intel platforms only"
+	Parent  = "GLOBAL_DEFINES"
+	InvokeOrder = AfterParent
+End
+

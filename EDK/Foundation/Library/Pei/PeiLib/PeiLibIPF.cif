@@ -1,0 +1,19 @@
+<component>
+	name = "PeiLibIPF"
+	category = ModulePart
+	LocalRoot = "EDK\Foundation\Library\Pei\PeiLib\"
+	RefName = "PeiLibIPF"
+[files]
+"Ipf\PeCoffLoaderEx.c"	
+"Ipf\processor.c"	
+"Ipf\asm.h"	
+"Ipf\efijump.h"	
+"Ipf\ia_64gen.h"	
+"Ipf\PeCoffLoaderEx.h"	
+"Ipf\PerformancePrimitives.s"	
+"Ipf\pioflush.s"	
+"Ipf\setjmp.s"	
+"Ipf\SwitchStack.s"	
+"Ipf\PeiServicePointer.c"	
+"Ipf\math.c"	
+<endComponent>
