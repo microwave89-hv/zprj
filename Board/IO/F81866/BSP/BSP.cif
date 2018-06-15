@@ -1,0 +1,13 @@
+<component>
+	name = "F81866 Board"
+	category = ModulePart
+	LocalRoot = "Board\IO\F81866\BSP\"
+	RefName = "F81866Board"
+[files]
+"OemIoDecode.c"	
+"PeiIoTable.h"	
+"DxeIoTable.h"	
+"F81866HwmOemHooks.c"	
+"F81866SmartFan.c"	
+<endComponent>
+

@@ -1,0 +1,76 @@
+	+-----------------------------------------------------------+
+	|                Super I/O  Release History                 |
+	|                                                           |
+	|       IO Vendor       : Fintek                            |
+	|       Part Number     : F81216                            |
+	|       Datasheet Version   : F81216_V032P                  |
+	|       Template Version    :                               |
+	|                                                           |
+	+-----------------------------------------------------------+
+
+;---------------------------------------------------------------------------;
+Module Label	:4.6.3_SIO_F81216_Sec_A9 
+;---------------------------------------------------------------------------;
+[TAG]  		EIP115780
+[Category]  	Bug Fix
+[Symptom]  	Burn in test faile while dual IO using same idex/data port
+[RootCause]  	Method DSTA retrned before exit config mode.
+[Files]  		F81216.ASL
+;---------------------------------------------------------------------------;
+AMI China
+Engineer        : Elviscai
+Release Date    : 2013-04-01
+;---------------------------------------------------------------------------;
+
+;---------------------------------------------------------------------------;
+Module Label	:4.6.3_SIO_F81216_Sec_A8 
+;---------------------------------------------------------------------------;
+[TAG]  		EIPNONE
+[Category]  	Bug Fix
+[Solution]  	Change UHID judgement if IR mode
+		Correct IR mode register setting in COM_INIT
+		Change _HID judgement if IR mode
+[Files]  		F81216.ASL
+Uart1.ASL
+F81216DXE.C
+;---------------------------------------------------------------------------;
+AMI China
+Engineer        : Elviscai
+Release Date    : 2011-07-19
+;---------------------------------------------------------------------------;
+
+;---------------------------------------------------------------------------;
+Module Label	:4.6.3_SIO_F81216_Sec_A7 
+;---------------------------------------------------------------------------;
+[TAG]  		EIPNONE
+[Category]  	Bug Fix
+[Severity]  	Important
+[Symptom]  	Base 0x200 generic IO decode fail
+[RootCause]  	1ST IO OemIoDecode will take 0x200 as GamePort
+[Solution]  	Change Com port IoDecodeBase from 0x200 to 0x240.
+;---------------------------------------------------------------------------;
+AMI China
+Engineer        : Elviscai
+Release Date    : 2011-06-18
+;---------------------------------------------------------------------------;
+
+
+;---------------------------------------------------------------------------;
+Module Label	:4.6.3_SIO_F81216_Sec_A6 
+;---------------------------------------------------------------------------;
+[CATEGORY]  Improvement
+[REASON]    Update to new template
+[SEVERITY]  Medium
+[FILE]      
+Board\IO\*.*           
+[TAG]
+;---------------------------------------------------------------------------;
+AMI China
+Engineer        : Elviscai
+Release Date    : 2011-05-19
+;---------------------------------------------------------------------------;
+
+
+
+
+

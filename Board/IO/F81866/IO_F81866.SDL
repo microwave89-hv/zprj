@@ -1,0 +1,2063 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+#
+#*************************************************************************
+# $Header: /Alaska/BIN/IO/Fintek/F81866/IO_F81866.SDL 4     9/16/12 9:47p Elviscai $
+#
+# $Revision: 4 $
+#
+# $Date: 9/16/12 9:47p $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/IO/Fintek/F81866/IO_F81866.SDL $
+# 
+# 4     9/16/12 9:47p Elviscai
+# [TAG]  		EIPNONE
+# [Category]  	Bug Fix
+# [Solution]  	Remove token "KB_MO_SWAP" to set it "0" as fixed
+# 
+# 3     2/16/12 9:24p Elviscai
+# [TAG]  		EIP82572
+# [Category]  	Improvement
+# [Description]  	Remove PS2 SWAP auto detection according Spec v0.13
+# 
+# 2     12/14/11 9:22p Kasalinyi
+# [TAG]  		EIPNone
+# [Category]  	Improvement
+# [Description]  	Fix Smart Function build error
+# [Files]  		F81866DXE.C
+# F81866.SD
+# F81866.MAK
+# IO_F81866.SDL
+# 
+# 1     7/20/11 4:22a Kasalinyi
+# [Category]  	Improvement
+# [Description]  	Initial Porting 
+# [Files]  		F81866.CIF
+# IO_F81866.SDL
+# F81866.ASL
+# F81866.MAK
+# F81866.SD
+# F81866.UNI
+# F81866DXE.C
+# F81866PEI.C
+# F81866PeiDebugger.C
+# F81866Setup.C
+# F81866Setup.H
+# History.txt
+# F81866.chm
+# 
+# 4     3/21/11 9:41p Mikes
+# seperate the core and oem job
+# 
+#*************************************************************************
+#<AMI_FHDR_START>
+#
+# Name:  <IO_F81866.SDL>
+#
+# Description:     SDL file to define SIO functions
+#
+#
+#<AMI_FHDR_END>
+#*************************************************************************
+IODEVICE
+	Name  = "F81866 SIO Implementation"
+	ASLfile  = "F81866.ASL"
+End
+
+IODEVICE
+	Name  = "F81866 SIO event handler"
+	ASLfile  = "Board\IO\F81866\ACPI\SIOH.ASL"
+	Token = "F81866_KEYBOARD_PRESENT" "!=" "0"
+End
+
+IODEVICE
+	Name  = "System PS2 Keyboard Controller"
+	ASLfile  = "Board\IO\F81866\ACPI\PS2KB.ASL"
+	ASLdeviceName  = "PS2K"
+	GPEbit  = 01dh
+	SleepNum  = 03h
+	WakeEnabled = Yes
+	PWRBwake = Yes
+	Token = "F81866_KEYBOARD_PRESENT" "=" "1"
+End
+
+IODEVICE
+	Name  = "System PS2 Mouse Controller"
+	ASLfile  = "Board\IO\F81866\ACPI\PS2MS.ASL"
+	ASLdeviceName  = "PS2M"
+	GPEbit  = 01dh
+	SleepNum  = 03h
+	WakeEnabled = Yes
+	PWRBwake = Yes
+	Token = "F81866_MOUSE_PRESENT" "=" "1"
+End
+
+IODEVICE
+	Name  = "F81866 Floppy Controller"
+	ASLfile  = "Board\IO\F81866\ACPI\FDC.ASL"
+	ASLdeviceName  = "FDC"
+	Token = "F81866_FLOPPY_PORT_PRESENT" "=" "1"
+End
+
+IODEVICE
+	Name  = "F81866 Serial Port A"
+	ASLfile  = "Board\IO\F81866\ACPI\UART1.ASL"
+	ASLdeviceName  = "UAR1"
+	Token = "F81866_SERIAL_PORT0_PRESENT" "=" "1"
+End
+
+IODEVICE
+	Name  = "F81866 Serial Port B"
+	ASLfile  = "Board\IO\F81866\ACPI\UART2.ASL"
+	ASLdeviceName  = "UAR2"
+	Token = "F81866_SERIAL_PORT1_PRESENT" "=" "1"
+End
+
+IODEVICE
+	Name  = "F81866 Serial Port C"
+	ASLfile  = "Board\IO\F81866\ACPI\UART3.ASL"
+	ASLdeviceName  = "UAR3"
+	Token = "F81866_SERIAL_PORT2_PRESENT" "=" "1"
+End
+
+IODEVICE
+	Name  = "F81866 Serial Port D"
+	ASLfile  = "Board\IO\F81866\ACPI\UART4.ASL"
+	ASLdeviceName  = "UAR4"
+	Token = "F81866_SERIAL_PORT3_PRESENT" "=" "1"
+End
+
+IODEVICE
+	Name  = "F81866 Serial Port E"
+	ASLfile  = "Board\IO\F81866\ACPI\UART5.ASL"
+	ASLdeviceName  = "UAR5"
+	Token = "F81866_SERIAL_PORT4_PRESENT" "=" "1"
+End
+
+IODEVICE
+	Name  = "F81866 Serial Port F"
+	ASLfile  = "Board\IO\F81866\ACPI\UART6.ASL"
+	ASLdeviceName  = "UAR6"
+	Token = "F81866_SERIAL_PORT5_PRESENT" "=" "1"
+End
+
+IODEVICE
+	Name  = "F81866 Parallel Port"
+	ASLfile  = "Board\IO\F81866\ACPI\LPTE.ASL"
+	ASLdeviceName  = "LPTE"
+	Token = "F81866_PARALLEL_PORT_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "====== SIO Global Control Tokens ======"
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "Specfy global control tokens."
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "F81866_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable F81866 support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "SIO_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable SIO support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "IODECODETYPE"
+	Value  = "1"
+	Help  = "Check project actually who does IODecode Implement by :\1 - decode by this module(default),\0 - decode by chipset/oem porting"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BOARD_LABEL_BELOW_25"
+	Value  = "1"
+	Help  = "Enable(Core<=4.6.4.0)/Disable(Core > 4.6.4.0 have defined AMI_CALLBACK_VARSTORE)"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "CORE_AFTER_4634"
+	Value  = "1"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "CORE_VERSION_VALUE" ">" "4634"
+End
+
+TOKEN
+	Name  = "CORE_VERSION_VALUE"
+	Value  = "$(CORE_MAJOR_VERSION)*1000+$(CORE_MINOR_VERSION)*100+$(CORE_REVISION)*10+$(CORE_BUILD_NUMBER)"
+	Help  = "The token value is an aggregation of all core version tokens into a single integer."
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+	Lock = Yes
+End
+
+TOKEN
+	Name  = "F81866_CONFIG_INDEX"
+	Value  = "0x2E"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_CONFIG_DATA"
+	Value  = "0x2F"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SP1O"
+	Value  = "$(F81866_CONFIG_INDEX)"
+	Help  = "Super IO Index/Data configuration port for ASL."
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "SIO_SB_BUS_NUM"
+	Value  = "0"
+	Help  = "SB LPC Bus Number"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SIO_SB_DEV_NUM"
+	Value  = "0x1F"
+	Help  = "SB LPC Device Number"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SIO_SB_FUNC_NUM"
+	Value  = "0"
+	Help  = "SB LPC Function Number"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "====== SIO Logical Devices Numbers ======"
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "Specfy Devices Logical Number."
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "F81866_LDN_FDC"
+	Value  = "0x00"
+	Help  = "LDN for Floppy Disk Controller"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_LDN_LPT"
+	Value  = "0x03"
+	Help  = "LDN for Parallel Port Controller"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_LDN_HWM"
+	Value  = "0x04"
+	Help  = "LDN for Hardware Monitor Controller"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_LDN_PS2M"
+	Value  = "0x05"
+	Help  = "LDN for PS2 Keyboard Controller"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_LDN_PS2K"
+	Value  = "0x05"
+	Help  = "LDN for PS2 Mouse Controller. (it is same as PS2K specify same value)"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_LDN_GPIO"
+	Value  = "0x06"
+	Help  = "LDN for GPIO."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_LDN_WDT"
+	Value  = "0x07"
+	Help  = "LDN for Watch Dog Timer"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_LDN_PME"
+	Value  = "0x0A"
+	Help  = "LDN for PME and ACPI"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_LDN_UART1"
+	Value  = "0x10"
+	Help  = "LDN for Serial1 Port Controller"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_LDN_UART2"
+	Value  = "0x11"
+	Help  = "LDN for Serial2 Port Controller"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_LDN_UART3"
+	Value  = "0x12"
+	Help  = "LDN for Serial3 Port Controller"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_LDN_UART4"
+	Value  = "0x13"
+	Help  = "LDN for Serial4 Port Controller"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_LDN_UART5"
+	Value  = "0x14"
+	Help  = "LDN for Serial5 Port Controller"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_LDN_UART6"
+	Value  = "0x15"
+	Help  = "LDN for Serial6 Port Controller"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "=== SIO Global Registers Settings =========="
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "SIO Global Registers Setting"
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "F81866_CLOCK"
+	Value  = "0"
+	Help  = "0/1/2 for 48Mhz/14.318MHz/24MHz"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_KBC_CLOCK"
+	Value  = "1"
+	Help  = "0/1 for 12Mhz/8MHz"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "====== SIO Registers Layout =========="
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "Specfy Register address inside SIO Chip."
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "F81866_LDN_SEL_REGISTER"
+	Value  = "0x07"
+	Help  = "Logical Device Select Register Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_DEV_ID_REGISTER"
+	Value  = "0x20"
+	Help  = "Device Identification Register Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_ACTIVATE_REGISTER"
+	Value  = "0x30"
+	Help  = "Device Identification Register Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_BASE1_HI_REGISTER"
+	Value  = "0x60"
+	Help  = "Device BaseAddres Register#1 MSB Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_BASE1_LO_REGISTER"
+	Value  = "0x61"
+	Help  = "Device BaseAddres Register#1 LSB Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_BASE2_HI_REGISTER"
+	Value  = "0x62"
+	Help  = "Device BaseAddres Register#2 MSB Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_BASE2_LO_REGISTER"
+	Value  = "0x63"
+	Help  = "Device BaseAddres Register#2 LSB Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_IRQ1_REGISTER"
+	Value  = "0x70"
+	Help  = "Device IRQ Register#1 Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_IRQ2_REGISTER"
+	Value  = "0x72"
+	Help  = "Device IRQ Register#2 Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_DMA1_REGISTER"
+	Value  = "0x74"
+	Help  = "Device DMA Register#1 Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_DMA2_REGISTER"
+	Value  = "0x75"
+	Help  = "Device DMA Register#2 Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "=== Hardware monitor Registers Settings =========="
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "Hardware monitor Registers Settings"
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "F81866_PECI_SUPPORT"
+	Value  = "1"
+	Help  = "Intel PECI 1/0 support/not"
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "F81866_HWM_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "F81866_I2C_ADDR"
+	Value  = "0x5C"
+	Help  = "I2C_ADDR[7:1] is the slave address sent by the embedded master when using a block write command"
+	TokenType = Integer
+	TargetH = Yes
+	Token = "F81866_PECI_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "F81866_INTEL_SEL"
+	Value  = "1"
+	Help  = "This bit is used to select AMD TSI or Intel IBEX when TSI_EN is set to 1.\0: Select AMD\1: Select Intel"
+	TokenType = Integer
+	TargetH = Yes
+	Token = "F81866_PECI_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "F81866_PECI_EN"
+	Value  = "1"
+	Help  = "Set this bit 1 to enable Intel PECI function"
+	TokenType = Integer
+	TargetH = Yes
+	Token = "F81866_PECI_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "F81866_IBEX_SUPPORT"
+	Value  = "1"
+	Help  = "Intel PECI 1/0 support/not"
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "F81866_HWM_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "F81866_IBEX_EN"
+	Value  = "1"
+	Help  = "Set this bit 1 to enable AMD TSI or Intel IBEX function"
+	TokenType = Integer
+	TargetH = Yes
+	Token = "F81866_IBEX_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "F81866_TSI_OFFSET"
+	Value  = "0"
+	Help  = "TSI Temperature offset for the CPU\ When AMD TSI or Intel PCH SMBus is enabled, this byte is used as the offset to be added to the temperature reading of CPU."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "F81866_PECI_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "F81866_SMBUS_ADDR"
+	Value  = "0x96"
+	Help  = "When AMD TSI or Intel PCH SMBus is enabled, this byte is used as SMBUS_ADDR.\SMBUS_ADDR [7:1] is the slave address sent by the embedded master to fetch the temperature."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "F81866_IBEX_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "F81866_T2_MODE"
+	Value  = "1"
+	Help  = "0: TEMP2 is connected to a thermistor.\1: TEMP2 is connected to a BJT. (default)"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_T1_MODE"
+	Value  = "1"
+	Help  = "0: TEMP1 is connected to a thermistor\1: TEMP1 is connected to a BJT.(default)"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "=== SIO Logic Device Present Settings =========="
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "All Logic Device Present / Not Present."
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "F81866_FLOPPY_PORT_PRESENT"
+	Value  = "1"
+	Help  = "Floppy Port Present / Not Present."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_PARALLEL_PORT_PRESENT"
+	Value  = "1"
+	Help  = "LPT Port Present / Not Present."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_HWM_PRESENT"
+	Value  = "1"
+	Help  = "HWM Port Present / Not Present."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_KEYBOARD_PRESENT"
+	Value  = "1"
+	Help  = "Keyboard Present / Not Present."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_MOUSE_PRESENT"
+	Value  = "1"
+	Help  = "Mouse Present / Not Present."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_GPIO_PORT_PRESENT"
+	Value  = "1"
+	Help  = "GPIO Present / Not Present."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_WDT_PRESENT"
+	Value  = "1"
+	Help  = "Watch Dog Time Present / Not Present."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_PME_CONTROLLER_PRESENT"
+	Value  = "1"
+	Help  = "Powe Management Controller Present / Not Present."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_SERIAL_PORT0_PRESENT"
+	Value  = "1"
+	Help  = "Serial Port 0 (COMA / UART1) Present / Not Present."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_SERIAL_PORT1_PRESENT"
+	Value  = "1"
+	Help  = "Serial Port 1 (COMB / UART2) Present / Not Present."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_SERIAL_PORT2_PRESENT"
+	Value  = "1"
+	Help  = "Serial Port 2 (COMC / UART3) Present / Not Present."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_SERIAL_PORT3_PRESENT"
+	Value  = "1"
+	Help  = "Serial Port 3 (COMD / UART4) Present / Not Present."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_SERIAL_PORT4_PRESENT"
+	Value  = "1"
+	Help  = "Serial Port 4 (COME / UART5) Present / Not Present."
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "F81866_FLOPPY_PORT_PRESENT" "=" "0"
+End
+
+TOKEN
+	Name  = "F81866_SERIAL_PORT4_PRESENT"
+	Value  = "0"
+	Help  = "Serial Port 4 (COME / UART5) Present / Not Present."
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "F81866_FLOPPY_PORT_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "F81866_SERIAL_PORT5_PRESENT"
+	Value  = "1"
+	Help  = "Serial Port 5 (COMF / UART6) Present / Not Present."
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "F81866_FLOPPY_PORT_PRESENT" "=" "0"
+End
+
+TOKEN
+	Name  = "F81866_SERIAL_PORT5_PRESENT"
+	Value  = "0"
+	Help  = "Serial Port 5 (COMF / UART6) Present / Not Present."
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "F81866_FLOPPY_PORT_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "F81866_SMF_SUPPORT"
+	Value  = "0"
+	Help  = "F81866 SmartFan control support"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "F81866_HWM_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "=== SIO Activation Values =========="
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "Specfy Logical Device Activation Value."
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "F81866_CONFIG_MODE_ENTER_VALUE"
+	Value  = "0x87"
+	Help  = "Value to enter the SIO Configuration Mode."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_CONFIG_MODE_EXIT_VALUE"
+	Value  = "0xAA"
+	Help  = "Value to enter the SIO Configuration Mode."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ENTK"
+	Value  = "$(F81866_CONFIG_MODE_ENTER_VALUE)"
+	Help  = "ASL alias for SIO Config Mode Enter Value."
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "EXTK"
+	Value  = "$(F81866_CONFIG_MODE_EXIT_VALUE)"
+	Help  = "ASL alias for SIO Config Mode Exit Value."
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "F81866_ACTIVATE_VALUE"
+	Value  = "0x01"
+	Help  = "Value to activate Device."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_DEACTIVATE_VALUE"
+	Value  = "0x00"
+	Help  = "Value to deactivate Device."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "====== SIO For Debug Setting =========="
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "The debug Serial Port Setting."
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "DEBUG_COM_PORT_ADDR"
+	Value  = "0x3F8"
+	Help  = "Debug Address from Serial Port x.\Default is 0x3F8."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEBUG_COM_PORT_ADDR"
+	Value  = "$(F81866_SERIAL_PORT0_BASE_ADDRESS)"
+	Help  = "When seiral port 1 is present, it will be used as default for serial port debug and recovery function."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "F81866_SERIAL_PORT0_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "DEBUG_LDN_UART"
+	Value  = "$(F81866_LDN_UART1)"
+	Help  = "UARTx Login Devive for Debugger."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_SERIAL_PORT0_BASE_ADDRESS"
+	Value  = "0x03F8"
+	Help  = "Base Address of Serial Port 0 (COMA / UART1)."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "F81866_SERIAL_PORT0_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "====== SIO BASE ADDRESS Setting =========="
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "SIO some base address setting "
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "F81866_TOTAL_BASE_ADDRESS"
+	Value  = "0xA00"
+	Help  = "It's used for IODecode, System will open TOTAL_BASE_ADDRESS+TOTAL_LENGTH IODecode for GPIO+PME+..."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_TOTAL_LENGTH"
+	Value  = "0x30"
+	Help  = "IODecode base address 's length. 0xFF >= TOTAL_LENGTH >= GPIO_LENGTH + PME_LENGTH + ..."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_GPIO_BASE_ADDRESS"
+	Value  = "0xA00"
+	Help  = "Base Address of GPIO. If changed, please update PeiSetLpcDeviceDecoding() in F81866PEI.c too."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "F81866_GPIO_PORT_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "F81866_GPIO_LENGTH"
+	Value  = "0x10"
+	Help  = "Base Address's length of GPIO. If changed, please update PeiSetLpcDeviceDecoding() in F81866PEI.c too."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "F81866_GPIO_PORT_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "IO1B"
+	Value  = "$(F81866_GPIO_BASE_ADDRESS)"
+	Help  = "Base Address of GPIO Controller."
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+	Token = "F81866_GPIO_PORT_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "IO1L"
+	Value  = "$(F81866_GPIO_LENGTH)"
+	Help  = "Length of GPIO Controller."
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+	Token = "F81866_GPIO_PORT_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "IO1B"
+	Value  = "0"
+	Help  = "Base Address of GPIO Controller."
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+	Token = "F81866_GPIO_PORT_PRESENT" "=" "0"
+End
+
+TOKEN
+	Name  = "IO1L"
+	Value  = "0"
+	Help  = "Length of GPIO Controller."
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+	Token = "F81866_GPIO_PORT_PRESENT" "=" "0"
+End
+
+TOKEN
+	Name  = "F81866_WDT_BASE_ADDRESS"
+	Value  = "0xA10"
+	Help  = "Base Address of WDT Direct Access. If changed, please update PeiSetLpcDeviceDecoding() in F81866PEI.c too."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "F81866_WDT_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "F81866_WDT_LENGTH"
+	Value  = "0x10"
+	Help  = "Base Address's length of WDT Direct Access. If changed, please update PeiSetLpcDeviceDecoding() in F81866PEI.c too."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "F81866_WDT_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "IO2B"
+	Value  = "$(F81866_WDT_BASE_ADDRESS)"
+	Help  = "Base Address of PME Controller."
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+	Token = "F81866_WDT_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "IO2L"
+	Value  = "$(F81866_WDT_LENGTH)"
+	Help  = "Length of PME Controller."
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+	Token = "F81866_WDT_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "IO2B"
+	Value  = "0"
+	Help  = "Base Address of PME Controller."
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+	Token = "F81866_WDT_PRESENT" "=" "0"
+End
+
+TOKEN
+	Name  = "IO2L"
+	Value  = "0"
+	Help  = "Length of PME Controller."
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+	Token = "F81866_WDT_PRESENT" "=" "0"
+End
+
+TOKEN
+	Name  = "F81866_HWM_BASE_ADDRESS"
+	Value  = "0xA20"
+	Help  = "Base Address of HWM Direct Access. If changed, please update PeiSetLpcDeviceDecoding() in F81866PEI.c too."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "F81866_HWM_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "F81866_HWM_LENGTH"
+	Value  = "0x10"
+	Help  = "Base Address's length of HWM Direct Access. If changed, please update PeiSetLpcDeviceDecoding() in F81866PEI.c too."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "F81866_HWM_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "IO3B"
+	Value  = "$(F81866_HWM_BASE_ADDRESS)"
+	Help  = "Base Address of HWM Controller."
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+	Token = "F81866_HWM_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "IO3L"
+	Value  = "$(F81866_HWM_LENGTH)"
+	Help  = "Length of HWM Controller."
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+	Token = "F81866_HWM_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "IO3B"
+	Value  = "0"
+	Help  = "Base Address of HWM Controller."
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+	Token = "F81866_HWM_PRESENT" "=" "0"
+End
+
+TOKEN
+	Name  = "IO3L"
+	Value  = "0"
+	Help  = "Length of HWM Controller."
+	TokenType = Integer
+	TargetASL = Yes
+	TargetH = Yes
+	Token = "F81866_HWM_PRESENT" "=" "0"
+End
+
+TOKEN
+	Name  = "===== SIO token only been used in ASL  ====="
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "Provide Resource properties."
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "KBFG"
+	Value  = "0"
+	Help  = "Keyboard wake-up flag.\This token can avoid building error without PS/2 devices."
+	TokenType = Integer
+	TargetASL = Yes
+	Token = "F81866_KEYBOARD_PRESENT" "=" "0"
+End
+
+TOKEN
+	Name  = "MSFG"
+	Value  = "0"
+	Help  = "Mouse wake-up flag.\This token can avoid building error without PS/2 devices."
+	TokenType = Integer
+	TargetASL = Yes
+	Token = "F81866_MOUSE_PRESENT" "=" "0"
+End
+
+TOKEN
+	Name  = "====== SIO COM Mode Select Tokens ======"
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "SIO COM Mode Select Tokens."
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "F81866_COM1_RS485_Mode"
+	Value  = "0"
+	Help  = "Enable/disable COM1 support in Project\no effect when com1 disabled"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_COM1_RS485_RTS_INV"
+	Value  = "0"
+	Help  = "Enable/disable COM1 RTS# invert rs485 mode\no effect when com1 RS485 disabled"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_COM2_RS485_Mode"
+	Value  = "0"
+	Help  = "Enable/disable COM2 support in Project\no effect when com2 disabled"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_COM2_RS485_RTS_INV"
+	Value  = "0"
+	Help  = "Enable/disable COM2 RTS# invert rs485 mode\no effect when com2 RS485 disabled"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_COM3_RS485_Mode"
+	Value  = "0"
+	Help  = "Enable/disable COM3 support in Project\no effect when com3 disabled"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_COM3_RS485_RTS_INV"
+	Value  = "0"
+	Help  = "Enable/disable COM3 RTS# invert rs485 mode\no effect when com3 RS485 disabled"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_COM4_RS485_Mode"
+	Value  = "0"
+	Help  = "Enable/disable COM4 support in Project\no effect when com4 disabled"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_COM4_RS485_RTS_INV"
+	Value  = "0"
+	Help  = "Enable/disable COM4 RTS# invert rs485 mode\no effect when com4 RS485 disabled"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_COM5_RS485_Mode"
+	Value  = "0"
+	Help  = "Enable/disable COM5 support in Project\no effect when com5 disabled"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_COM5_RS485_RTS_INV"
+	Value  = "0"
+	Help  = "Enable/disable COM5 RTS# invert rs485 mode\no effect when com5 RS485 disabled"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_COM6_RS485_Mode"
+	Value  = "0"
+	Help  = "Enable/disable COM6 support in Project\no effect when com6 disabled"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81866_COM6_RS485_RTS_INV"
+	Value  = "0"
+	Help  = "Enable/disable COM6 RTS# invert rs485 mode\no effect when com6 RS485 disabled"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "====== SIO SMF Control Tokens ======"
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "Smart Fan control tokens."
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "FAN1_TYPE"
+	Value  = "0"
+	Help  = "FAN1 output type\00: Output PWM mode (push pull) to control fans.\01: Use linear fan application circuit to control fan speed by fan's power terminal.\10: Output PWM mode (open drain) to control Intel 4-wire fans."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_TYPE"
+	Value  = "0"
+	Help  = "FAN1 output type\00: Output PWM mode (push pull) to control fans.\01: Use linear fan application circuit to control fan speed by fan's power terminal.\10: Output PWM mode (open drain) to control Intel 4-wire fans."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_TYPE"
+	Value  = "0"
+	Help  = "FAN1 output type\00: Output PWM mode (push pull) to control fans.\01: Use linear fan application circuit to control fan speed by fan's power terminal.\10: Output PWM mode (open drain) to control Intel 4-wire fans."
+	TokenType = Integer
+	TargetH = Yes
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_FIXED_RPM"
+	Value  = "3000"
+	Help  = "FAN1 FIXED RPM value"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "500-10000"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_FIXED_DUTY"
+	Value  = "60"
+	Help  = "FAN1 FIXED DUTY-Cycle value"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_AUTO_RPM_T1"
+	Value  = "60"
+	Help  = "FAN1 FIXED Auto RPM setting T1"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_AUTO_RPM_T2"
+	Value  = "50"
+	Help  = "FAN1 FIXED Auto RPM setting T2"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_AUTO_RPM_T3"
+	Value  = "40"
+	Help  = "FAN1 FIXED Auto RPM setting T3"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_AUTO_RPM_T4"
+	Value  = "30"
+	Help  = "FAN1 FIXED Auto RPM setting T4"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_AUTO_RPM_F1"
+	Value  = "85"
+	Help  = "FAN1 FIXED Auto RPM setting F1"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_AUTO_RPM_F2"
+	Value  = "70"
+	Help  = "FAN1 FIXED Auto RPM setting F2"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_AUTO_RPM_F3"
+	Value  = "60"
+	Help  = "FAN1 FIXED Auto RPM setting F3"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_AUTO_RPM_F4"
+	Value  = "50"
+	Help  = "FAN1 FIXED Auto RPM setting F4"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_AUTO_DUTY_T1"
+	Value  = "60"
+	Help  = "FAN1 FIXED Auto DUTY setting T1"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_AUTO_DUTY_T2"
+	Value  = "50"
+	Help  = "FAN1 FIXED Auto DUTY setting T2"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_AUTO_DUTY_T3"
+	Value  = "40"
+	Help  = "FAN1 FIXED Auto DUTY setting T3"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_AUTO_DUTY_T4"
+	Value  = "30"
+	Help  = "FAN1 FIXED Auto DUTY setting T4"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_AUTO_DUTY_F1"
+	Value  = "85"
+	Help  = "FAN1 FIXED Auto DUTY setting F1"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_AUTO_DUTY_F2"
+	Value  = "70"
+	Help  = "FAN1 FIXED Auto DUTY setting F2"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_AUTO_DUTY_F3"
+	Value  = "60"
+	Help  = "FAN1 FIXED Auto DUTY setting F3"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN1_AUTO_DUTY_F4"
+	Value  = "50"
+	Help  = "FAN1 FIXED Auto DUTY setting F4"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_FIXED_RPM"
+	Value  = "3000"
+	Help  = "FAN2 FIXED RPM value"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "500-10000"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_FIXED_DUTY"
+	Value  = "60"
+	Help  = "FAN2 FIXED DUTY-Cycle value"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_AUTO_RPM_T1"
+	Value  = "60"
+	Help  = "FAN2 FIXED Auto RPM setting T1"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_AUTO_RPM_T2"
+	Value  = "50"
+	Help  = "FAN2 FIXED Auto RPM setting T2"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_AUTO_RPM_T3"
+	Value  = "40"
+	Help  = "FAN2 FIXED Auto RPM setting T3"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_AUTO_RPM_T4"
+	Value  = "30"
+	Help  = "FAN2 FIXED Auto RPM setting T4"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_AUTO_RPM_F1"
+	Value  = "85"
+	Help  = "FAN2 FIXED Auto RPM setting F1"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_AUTO_RPM_F2"
+	Value  = "70"
+	Help  = "FAN2 FIXED Auto RPM setting F2"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_AUTO_RPM_F3"
+	Value  = "60"
+	Help  = "FAN2 FIXED Auto RPM setting F3"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_AUTO_RPM_F4"
+	Value  = "50"
+	Help  = "FAN2 FIXED Auto RPM setting F4"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_AUTO_DUTY_T1"
+	Value  = "60"
+	Help  = "FAN2 FIXED Auto DUTY setting T1"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_AUTO_DUTY_T2"
+	Value  = "50"
+	Help  = "FAN2 FIXED Auto DUTY setting T2"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_AUTO_DUTY_T3"
+	Value  = "40"
+	Help  = "FAN2 FIXED Auto DUTY setting T3"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_AUTO_DUTY_T4"
+	Value  = "30"
+	Help  = "FAN2 FIXED Auto DUTY setting T4"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_AUTO_DUTY_F1"
+	Value  = "85"
+	Help  = "FAN2 FIXED Auto DUTY setting F1"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_AUTO_DUTY_F2"
+	Value  = "70"
+	Help  = "FAN2 FIXED Auto DUTY setting F2"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_AUTO_DUTY_F3"
+	Value  = "60"
+	Help  = "FAN2 FIXED Auto DUTY setting F3"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN2_AUTO_DUTY_F4"
+	Value  = "50"
+	Help  = "FAN2 FIXED Auto DUTY setting F4"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_FIXED_RPM"
+	Value  = "3000"
+	Help  = "FAN3 FIXED RPM value"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "500-10000"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_FIXED_DUTY"
+	Value  = "60"
+	Help  = "FAN3 FIXED DUTY-Cycle value"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_AUTO_RPM_T1"
+	Value  = "60"
+	Help  = "FAN3 FIXED Auto RPM setting T1"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_AUTO_RPM_T2"
+	Value  = "50"
+	Help  = "FAN3 FIXED Auto RPM setting T2"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_AUTO_RPM_T3"
+	Value  = "40"
+	Help  = "FAN3 FIXED Auto RPM setting T3"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_AUTO_RPM_T4"
+	Value  = "30"
+	Help  = "FAN3 FIXED Auto RPM setting T4"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_AUTO_RPM_F1"
+	Value  = "85"
+	Help  = "FAN3 FIXED Auto RPM setting F1"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_AUTO_RPM_F2"
+	Value  = "70"
+	Help  = "FAN3 FIXED Auto RPM setting F2"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_AUTO_RPM_F3"
+	Value  = "60"
+	Help  = "FAN3 FIXED Auto RPM setting F3"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_AUTO_RPM_F4"
+	Value  = "50"
+	Help  = "FAN3 FIXED Auto RPM setting F4"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_AUTO_DUTY_T1"
+	Value  = "60"
+	Help  = "FAN3 FIXED Auto DUTY setting T1"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_AUTO_DUTY_T2"
+	Value  = "50"
+	Help  = "FAN3 FIXED Auto DUTY setting T2"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_AUTO_DUTY_T3"
+	Value  = "40"
+	Help  = "FAN3 FIXED Auto DUTY setting T3"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_AUTO_DUTY_T4"
+	Value  = "30"
+	Help  = "FAN3 FIXED Auto DUTY setting T4"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_AUTO_DUTY_F1"
+	Value  = "85"
+	Help  = "FAN3 FIXED Auto DUTY setting F1"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_AUTO_DUTY_F2"
+	Value  = "70"
+	Help  = "FAN3 FIXED Auto DUTY setting F2"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_AUTO_DUTY_F3"
+	Value  = "60"
+	Help  = "FAN3 FIXED Auto DUTY setting F3"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FAN3_AUTO_DUTY_F4"
+	Value  = "50"
+	Help  = "FAN3 FIXED Auto DUTY setting F4"
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-100"
+	Token = "F81866_SMF_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "===== SIO Module Setting   ======"
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "SIO Module Setting"
+	TokenType = Expression
+End
+
+PATH
+	Name  = "F81866_DIR"
+End
+
+MODULE
+	Help  = "Includes F81866.MAK to Project"
+	File  = "F81866.MAK"
+End
+
+ELINK
+	Name  = "PeiF81866Init,"
+	Parent  = "PeiCoreInitialize"
+	Priority  = 1
+	Help  = "if SecondIO, Priority must be 2."
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "F81866,"
+	Parent  = "DxeSioList"
+	Priority  = 1
+	Help  = "if SecondIO, Priority must be 2."
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\F81866.SDB"
+	Parent  = "SETUP_SDBS"
+	Priority  = 40
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(F81866_DIR)\F81866.SD"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 40
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "AmiSioEntryPoint,"
+	Parent  = "DxeCoreInitialize"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "-i $(F81866_DIR)"
+	Parent  = "SETUP_VFR_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "InitSioSetupStrings,"
+	Parent  = "SetupStringInit"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SIOPEIDBG_Initialize,"
+	Parent  = "PeiDebuggerInitialize"
+	Token = "PeiDebugger_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "IoRangeDecodeList"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "CSP_SetLpcDeviceDecoding,"
+	Parent  = "IoRangeDecodeList"
+	Help  = "Use this module provided example-decode function(only intel platform)"
+	Token = "IODECODETYPE" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SbLib_SetLpcDeviceDecoding,"
+	Parent  = "IoRangeDecodeList"
+	Help  = "elink Chipset/Oem porting IODecode function(take care yourname),compiler to CORE_PEIBin/CORE_DXEBin"
+	Token = "IODECODETYPE" "=" "0"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "SetupStrTableList"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "{dsFDC, 0x00, STRING_TOKEN(STR_F81866_FLOPPY_CONFIG_VALUE)},"
+	Parent  = "SetupStrTableList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{dsLPT, 0x00, STRING_TOKEN(STR_F81866_PARALLEL_CONFIG_VALUE)},"
+	Parent  = "SetupStrTableList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{dsUART,0x00, STRING_TOKEN(STR_F81866_SERIAL0_CONFIG_VALUE)},"
+	Parent  = "SetupStrTableList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{dsUART,0x01, STRING_TOKEN(STR_F81866_SERIAL1_CONFIG_VALUE)},"
+	Parent  = "SetupStrTableList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{dsUART,0x02, STRING_TOKEN(STR_F81866_SERIAL2_CONFIG_VALUE)},"
+	Parent  = "SetupStrTableList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{dsUART,0x03, STRING_TOKEN(STR_F81866_SERIAL3_CONFIG_VALUE)},"
+	Parent  = "SetupStrTableList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{dsUART,0x04, STRING_TOKEN(STR_F81866_SERIAL4_CONFIG_VALUE)},"
+	Parent  = "SetupStrTableList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{dsUART,0x05, STRING_TOKEN(STR_F81866_SERIAL5_CONFIG_VALUE)},"
+	Parent  = "SetupStrTableList"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(ADVANCED_FORM_SET_CLASS,0,HWM_INTERACTIVE_KEY,F81866_HWM_CallBack),"
+	Parent  = "SetupItemCallbacks"
+	Token = "F81866_HWM_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "HwmExtFunList"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "GetAndUpdateTemperature1,"
+	Parent  = "HwmExtFunList"
+	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+	Token = "F81866_HWM_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GetAndUpdateTemperature2,"
+	Parent  = "HwmExtFunList"
+	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+	Token = "F81866_HWM_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GetAndUpdateTemperature3,"
+	Parent  = "HwmExtFunList"
+	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+	Token = "F81866_PECI_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GetAndUpdateTemperature4,"
+	Parent  = "HwmExtFunList"
+	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+	Token = "F81866_IBEX_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GetAndUpdateTemperature5,"
+	Parent  = "HwmExtFunList"
+	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+	Token = "F81866_IBEX_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GetAndUpdateTemperature6,"
+	Parent  = "HwmExtFunList"
+	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+	Token = "F81866_IBEX_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GetAndUpdateFan1Speed,"
+	Parent  = "HwmExtFunList"
+	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+	Token = "F81866_HWM_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GetAndUpdateFan2Speed,"
+	Parent  = "HwmExtFunList"
+	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+	Token = "F81866_HWM_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GetAndUpdateFan3Speed,"
+	Parent  = "HwmExtFunList"
+	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+	Token = "F81866_HWM_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GetAndUpdateVIN1Voltage,"
+	Parent  = "HwmExtFunList"
+	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+	Token = "F81866_HWM_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GetAndUpdateVIN2Voltage,"
+	Parent  = "HwmExtFunList"
+	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+	Token = "F81866_HWM_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GetAndUpdateVIN3Voltage,"
+	Parent  = "HwmExtFunList"
+	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+	Token = "F81866_HWM_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GetAndUpdateVIN4Voltage,"
+	Parent  = "HwmExtFunList"
+	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+	Token = "F81866_HWM_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GetAndUpdateVSB5VVoltage,"
+	Parent  = "HwmExtFunList"
+	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+	Token = "F81866_HWM_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GetAndUpdateVCC3VVoltage,"
+	Parent  = "HwmExtFunList"
+	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+	Token = "F81866_HWM_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GetAndUpdateVSB3VVoltage,"
+	Parent  = "HwmExtFunList"
+	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+	Token = "F81866_HWM_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "GetAndUpdateVBATVoltage,"
+	Parent  = "HwmExtFunList"
+	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+	Token = "F81866_HWM_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************

@@ -1,0 +1,10 @@
+<component>
+	name = "F81216 Board"
+	category = ModulePart
+	LocalRoot = "Board\IO\F81216\BSP\"
+	RefName = "F81216Board"
+[files]
+"OemIoDecode.c"	
+"PeiIoTable.h"	
+"DxeIoTable.h"	
+<endComponent>

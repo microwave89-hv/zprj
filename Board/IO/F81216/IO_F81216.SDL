@@ -1,0 +1,479 @@
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+#
+#*************************************************************************
+# $Header: /Alaska/BIN/IO/Fintek/F81216_Sec/IO_F81216.SDL 6     6/18/12 3:12a Elviscai $
+#
+# $Revision: 6 $
+#
+# $Date: 6/18/12 3:12a $
+#*************************************************************************
+# Revision History
+# ----------------
+# $Log: /Alaska/BIN/IO/Fintek/F81216_Sec/IO_F81216.SDL $
+# 
+# 6     6/18/12 3:12a Elviscai
+# Specific Tokentype Integer to ENT2 
+# 
+# 5     7/04/11 3:22a Kasalinyi
+# [Category]  	Improvement
+# [Description]  	Update to new template
+# [Files]  		IO_F81216.SDL
+# F81216.ASL
+# F81216.MAK
+# F81216.SD
+# F81216.UNI
+# F81216DXE.C
+# F81216PEI.C
+# F81216Setup.H
+# F81216.CIF
+# 
+# 4     11/17/10 5:01a Mikes
+# [Category]  	Improvement
+# [Description]  	Add TargetMAK for master token
+# [Files]  		IO_F81216.SDL
+# 
+# 3     10/28/10 2:23a Mikes
+# Add enter configure key token
+# Clean code and implement new name rule
+# 
+# 2     6/02/10 9:42p Fantasylai
+# Redefine the TOKEN "CORE_AFTER_4634"
+# 
+# 1     3/31/10 5:55a Fantasylai
+# Initial release to F81216 just as a second IO
+# 
+#*************************************************************************
+#<AMI_FHDR_START>
+#
+# Name:  <IO_F81216.SDL>
+#
+# Description:     SDL file to define SIO functions
+#
+#
+#<AMI_FHDR_END>
+#*************************************************************************
+IODEVICE
+	Name  = "F81216 SIO Implementation"
+	ASLfile  = "F81216.ASL"
+End
+
+IODEVICE
+	Name  = "F81216 Serial Port A2"
+	ASLfile  = "Board\IO\F81216\ACPI\UART1.ASL"
+	ASLdeviceName  = "UR11"
+	Token = "F81216SEC_SERIAL_PORT0_PRESENT" "=" "1"
+End
+
+IODEVICE
+	Name  = "F81216 Serial Port B2"
+	ASLfile  = "Board\IO\F81216\ACPI\UART2.ASL"
+	ASLdeviceName  = "UR12"
+	Token = "F81216SEC_SERIAL_PORT1_PRESENT" "=" "1"
+End
+
+IODEVICE
+	Name  = "F81216 Serial Port C2"
+	ASLfile  = "Board\IO\F81216\ACPI\UART3.ASL"
+	ASLdeviceName  = "UR13"
+	Token = "F81216SEC_SERIAL_PORT2_PRESENT" "=" "1"
+End
+
+IODEVICE
+	Name  = "F81216 Serial Port D2"
+	ASLfile  = "Board\IO\F81216\ACPI\UART4.ASL"
+	ASLdeviceName  = "UR14"
+	Token = "F81216SEC_SERIAL_PORT3_PRESENT" "=" "1"
+End
+
+TOKEN
+	Name  = "====== SIO Global Control Tokens ======"
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "Specfy global control tokens."
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "F81216SEC_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable F81216SEC support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_CONFIG_INDEX"
+	Value  = "0x2E"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_CONFIG_DATA"
+	Value  = "0x2F"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SP2O"
+	Value  = "$(F81216SEC_CONFIG_INDEX)"
+	Help  = "Super IO Index/Data configuration port for ASL."
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "====== SIO Logical Devices Numbers ======"
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "Specfy Devices Logical Number."
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "F81216SEC_LDN_UART0"
+	Value  = "0x00"
+	Help  = "LDN for Serial1 Port Controller"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_LDN_UART1"
+	Value  = "0x01"
+	Help  = "LDN for Serial2 Port Controller"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_LDN_UART2"
+	Value  = "0x02"
+	Help  = "LDN for Serial3 Port Controller"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_LDN_UART3"
+	Value  = "0x03"
+	Help  = "LDN for Serial4 Port Controller"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_LDN_WDT"
+	Value  = "0x08"
+	Help  = "LDN for Watch Dog Timer"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "=== SIO Global Registers Settings =========="
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "SIO Global Registers Setting"
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "F81216SEC_CLOCK"
+	Value  = "0"
+	Help  = "1/0 for 48Mhz/24MHz"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "====== SIO Registers Layout =========="
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "Specfy Register address inside SIO Chip."
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "F81216SEC_LDN_SEL_REGISTER"
+	Value  = "0x07"
+	Help  = "Logical Device Select Register Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_DEV_ID_REGISTER"
+	Value  = "0x20"
+	Help  = "Device Identification Register Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_ACTIVATE_REGISTER"
+	Value  = "0x30"
+	Help  = "Device Identification Register Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_BASE1_HI_REGISTER"
+	Value  = "0x60"
+	Help  = "Device BaseAddres Register#1 MSB Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_BASE1_LO_REGISTER"
+	Value  = "0x61"
+	Help  = "Device BaseAddres Register#1 LSB Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_BASE2_HI_REGISTER"
+	Value  = "0x62"
+	Help  = "Device BaseAddres Register#2 MSB Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_BASE2_LO_REGISTER"
+	Value  = "0x63"
+	Help  = "Device BaseAddres Register#2 LSB Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_IRQ1_REGISTER"
+	Value  = "0x70"
+	Help  = "Device IRQ Register#1 Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_IRQ2_REGISTER"
+	Value  = "0x72"
+	Help  = "Device IRQ Register#2 Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_DMA1_REGISTER"
+	Value  = "0x74"
+	Help  = "Device DMA Register#1 Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_DMA2_REGISTER"
+	Value  = "0x75"
+	Help  = "Device DMA Register#2 Address"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "=== SIO Activation Values =========="
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "Logical Device Activation Value."
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "F81216SEC_CONFIG_MODE_ENTER_VALUE"
+	Value  = "0x77"
+	Help  = "Value to enter Configuration Mode.Please check your hardware\Default is 0x77.\others are 0xA0, 0x87, 0x67"
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "ENT2"
+	Value  = "$(F81216SEC_CONFIG_MODE_ENTER_VALUE)"
+	Help  = "Value to enter Configuration Mode.Please check your hardware\Default is 0x77.\others are 0xA0, 0x87, 0x67"
+	TokenType = Integer
+	TargetASL = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_ACTIVATE_VALUE"
+	Value  = "0x01"
+	Help  = "Value to activate Device."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_DEACTIVATE_VALUE"
+	Value  = "0x00"
+	Help  = "Value to deactivate Device."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "=== SIO Logic Device Present Settings =========="
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "All Logic Device Present / Not Present."
+	TokenType = Expression
+End
+
+TOKEN
+	Name  = "F81216SEC_SERIAL_PORT0_PRESENT"
+	Value  = "1"
+	Help  = "Serial Port 0 (COMA / UART0) Present / Not Present."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_SERIAL_PORT1_PRESENT"
+	Value  = "1"
+	Help  = "Serial Port 1 (COMB / UART1) Present / Not Present."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_SERIAL_PORT2_PRESENT"
+	Value  = "1"
+	Help  = "Serial Port 2 (COMC / UART2) Present / Not Present."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_SERIAL_PORT3_PRESENT"
+	Value  = "1"
+	Help  = "Serial Port 3 (COMD / UART3) Present / Not Present."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "F81216SEC_WDT_PORT_PRESENT"
+	Value  = "1"
+	Help  = "WDT Port Present / Not Present."
+	TokenType = Boolean
+	TargetH = Yes
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "===== SIO Module Setting   ======"
+	Value  = "!!!DO NOT CHANGE NAMES JUST VALUES!!!"
+	Help  = "SIO Module Setting"
+	TokenType = Expression
+End
+
+PATH
+	Name  = "F81216_DIR"
+End
+
+MODULE
+	Help  = "Includes F81216.MAK to Project"
+	File  = "F81216.MAK"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\F81216.SDB"
+	Parent  = "SETUP_SDBS"
+	Priority  = 40
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(F81216_DIR)\F81216.SD"
+	Parent  = "SETUP_DEFINITIONS"
+	Priority  = 40
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "PeiF81216SECInit,"
+	Parent  = "PeiCoreInitialize"
+	InvokeOrder = AfterParent
+    Priority = 2 
+	Help  = "if SecondIO, Priority must be 2."
+End
+
+ELINK
+	Name  = "F81216SEC,"
+	Parent  = "DxeSioList"
+	InvokeOrder = AfterParent
+    Priority = 2 
+	Help  = "if SecondIO, Priority must be 2."
+End
+
+ELINK
+	Name  = "-i $(F81216_DIR)"
+	Parent  = "SETUP_VFR_INCLUDES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{dsUART,0x10, STRING_TOKEN(STR_F81216SEC_SERIAL0_CONFIG_VALUE)},"
+	Parent  = "SetupStrTableList"
+	Token = "F81216SEC_SERIAL_PORT0_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{dsUART,0x11, STRING_TOKEN(STR_F81216SEC_SERIAL1_CONFIG_VALUE)},"
+	Parent  = "SetupStrTableList"
+	Token = "F81216SEC_SERIAL_PORT1_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{dsUART,0x12, STRING_TOKEN(STR_F81216SEC_SERIAL2_CONFIG_VALUE)},"
+	Parent  = "SetupStrTableList"
+	Token = "F81216SEC_SERIAL_PORT2_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "{dsUART,0x13, STRING_TOKEN(STR_F81216SEC_SERIAL3_CONFIG_VALUE)},"
+	Parent  = "SetupStrTableList"
+	Token = "F81216SEC_SERIAL_PORT3_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+End
+
+#*************************************************************************
+#*************************************************************************
+#*************************************************************************
+#**                                                                     **
+#**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+#**                                                                     **
+#**                       All Rights Reserved.                          **
+#**                                                                     **
+#**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+#**                                                                     **
+#**                       Phone: (770)-246-8600                         **
+#**                                                                     **
+#*************************************************************************
+#*************************************************************************
+

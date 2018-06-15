@@ -1,0 +1,19 @@
+<component>
+	name = "F81866 Device ASL Files"
+	category = ModulePart
+	LocalRoot = "Board\IO\F81866\ACPI\"
+	RefName = "F81866ASLFiles"
+[files]
+"FDC.ASL"	
+"LPTE.ASL"	
+"PS2kb.asl"	
+"PS2ms.asl"	
+"Uart1.ASL"	
+"Uart2.ASL"	
+"Uart3.ASL"	
+"Uart4.ASL"	
+"Uart5.ASL"	
+"Uart6.ASL"	
+"SIOH.ASL"	
+<endComponent>
+

@@ -1,0 +1,20 @@
+<component>
+	name = "Second SuperI/O - F81216"
+	category = IO
+	LocalRoot = "Board\IO\F81216"
+	RefName = "F81216"
+[files]
+"IO_F81216.SDL"	
+"F81216.ASL"	
+"F81216.MAK"	
+"F81216.SD"	
+"F81216.UNI"	
+"F81216DXE.C"	
+"F81216PEI.C"	
+"F81216Setup.H"	
+"History.txt"	
+"F81216SEC.chm"	
+[parts]
+"F81216ASLFiles"
+"F81216Board"
+<endComponent>

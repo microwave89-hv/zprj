@@ -1,0 +1,11 @@
+<component>
+	name = "F81216 Device ASL Files"
+	category = ModulePart
+	LocalRoot = "Board\IO\F81216\ACPI\"
+	RefName = "F81216ASLFiles"
+[files]
+"Uart3.ASL"	
+"Uart4.ASL"	
+"Uart2.ASL"	
+"Uart1.ASL"	
+<endComponent>
