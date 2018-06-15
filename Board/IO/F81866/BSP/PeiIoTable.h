@@ -26,7 +26,7 @@
 // 5     9/16/12 9:38p Elviscai
 // [TAG]  		EIPNONE
 // [Category]  	Bug Fix
-// [Solution]  	Remove token control, LDN05h index FEh bit7& bit4 to ¡°0¡±
+// [Solution]  	Remove token control, LDN05h index FEh bit7& bit4 to ï¿½ï¿½0ï¿½ï¿½
 // as fixed.
 // 
 // 4     2/16/12 9:22p Elviscai
@@ -195,41 +195,67 @@ SIO_DATA F81866_PEI_Init_Table[] = {
     //---------------------------------------------------------------------
     {F81866_CONFIG_INDEX, 0xFF, 0x26},
     {F81866_CONFIG_DATA,  0x3F, F81866_CLOCK << 6},
-    #if (F81866_SERIAL_PORT2_PRESENT)
-	{F81866_CONFIG_INDEX, 0xFF, 0x29},
-    {F81866_CONFIG_DATA,  0xCF, 0x30},
-	#endif
-	#if (F81866_SERIAL_PORT3_PRESENT)
-	{F81866_CONFIG_INDEX, 0xFF, 0x29},
-    {F81866_CONFIG_DATA,  0x3F, 0xC0},
-	#endif
-	#if (F81866_MOUSE_PRESENT)
-	{F81866_CONFIG_INDEX, 0xFF, 0x28},
-    {F81866_CONFIG_DATA,  0xEF, 0x00},
-	#endif
-	#if (F81866_SERIAL_PORT4_PRESENT)
-	{F81866_CONFIG_INDEX, 0xFF, 0x28},
-    {F81866_CONFIG_DATA,  0xB3, 0x0C},
-	#endif
-	#if (F81866_SERIAL_PORT5_PRESENT)
-	{F81866_CONFIG_INDEX, 0xFF, 0x28},
-    {F81866_CONFIG_DATA,  0xBC, 0x03},
-	#endif
-	#if (F81866_PARALLEL_PORT_PRESENT)
-	{F81866_CONFIG_INDEX, 0xFF, 0x28},
-    {F81866_CONFIG_DATA,  0xDF, 0x00},
-	{F81866_CONFIG_INDEX, 0xFF, 0x2B},
-    {F81866_CONFIG_DATA,  0xFC, 0x00},
-	#endif
-	#if (F81866_FLOPPY_PORT_PRESENT)
-	{F81866_CONFIG_INDEX, 0xFF, 0x28},
-    {F81866_CONFIG_DATA,  0xB0, 0x00},
-	#endif
+    //#if (F81866_SERIAL_PORT2_PRESENT)
+	//{F81866_CONFIG_INDEX, 0xFF, 0x29},
+    //{F81866_CONFIG_DATA,  0xCF, 0x30},
+	//#endif
+	//#if (F81866_SERIAL_PORT3_PRESENT)
+	//{F81866_CONFIG_INDEX, 0xFF, 0x29},
+    //{F81866_CONFIG_DATA,  0x3F, 0xC0},
+	//#endif
+    //#if (F81866_MOUSE_PRESENT)
+	//{F81866_CONFIG_INDEX, 0xFF, 0x28},
+    //{F81866_CONFIG_DATA,  0xEF, 0x00},
+	//#endif
+	//#if (F81866_SERIAL_PORT4_PRESENT)
+	//{F81866_CONFIG_INDEX, 0xFF, 0x28},
+    //{F81866_CONFIG_DATA,  0xB3, 0x0C},
+	//#endif
+	//#if (F81866_SERIAL_PORT5_PRESENT)
+	//{F81866_CONFIG_INDEX, 0xFF, 0x28},
+    //{F81866_CONFIG_DATA,  0xBC, 0x03},
+	//#endif
+	//#if (F81866_PARALLEL_PORT_PRESENT)
+	//{F81866_CONFIG_INDEX, 0xFF, 0x28},
+    //{F81866_CONFIG_DATA,  0xDF, 0x00},
+	//{F81866_CONFIG_INDEX, 0xFF, 0x2B},
+    //{F81866_CONFIG_DATA,  0xFC, 0x00},
+	//#endif
+	//#if (F81866_FLOPPY_PORT_PRESENT)
+	//{F81866_CONFIG_INDEX, 0xFF, 0x28},
+    //{F81866_CONFIG_DATA,  0xB0, 0x00},
+	//#endif
 	// Enable PS/2 KB/MS Wake-up Function
-    #if (F81866_KEYBOARD_PRESENT)
-    {F81866_CONFIG_INDEX, 0xFF, 0x2D},
-    {F81866_CONFIG_DATA,  0xF7, 0x0F},
-    #endif
+    //#if (F81866_KEYBOARD_PRESENT)
+    //{F81866_CONFIG_INDEX, 0xFF, 0x2D},
+    //{F81866_CONFIG_DATA,  0xF7, 0x0F},
+    //#endif
+	{F81866_CONFIG_INDEX, 0xFF, 0x27},
+    {F81866_CONFIG_DATA,  0xF3, 0x00}, // GPIO_PROG_SEL = 00b
+	{F81866_CONFIG_INDEX, 0xFF, 0x28},
+    {F81866_CONFIG_DATA,  0x80, 0x6F}, 
+	{F81866_CONFIG_INDEX, 0xFF, 0x27},
+    {F81866_CONFIG_DATA,  0xF3, 0x04}, // GPIO_PROG_SEL = 01b
+	{F81866_CONFIG_INDEX, 0xFF, 0x28},
+    {F81866_CONFIG_DATA,  0xFC, 0x00}, 
+	{F81866_CONFIG_INDEX, 0xFF, 0x27},
+    {F81866_CONFIG_DATA,  0xFE, 0x00}, // CLK_TUNE_PROG_EN = 0b
+	{F81866_CONFIG_INDEX, 0xFF, 0x29},
+    {F81866_CONFIG_DATA,  0xFF, 0xF0}, 
+	{F81866_CONFIG_INDEX, 0xFF, 0x2B},
+    {F81866_CONFIG_DATA,  0xE3, 0x00}, 
+	{F81866_CONFIG_INDEX, 0xFF, 0x27},
+    {F81866_CONFIG_DATA,  0xF2, 0x00}, // GPIO_PROG_SEL = 00b , CLK_TUNE_PROG_EN = 0b
+	{F81866_CONFIG_INDEX, 0xFF, 0x2C},
+    {F81866_CONFIG_DATA,  0xE0, 0x0F}, 
+	{F81866_CONFIG_INDEX, 0xFF, 0x27},
+    {F81866_CONFIG_DATA,  0xF2, 0x04}, // GPIO_PROG_SEL = 01b , CLK_TUNE_PROG_EN = 0b
+	{F81866_CONFIG_INDEX, 0xFF, 0x2C},
+    {F81866_CONFIG_DATA,  0x10, 0x6F}, 
+	{F81866_CONFIG_INDEX, 0xFF, 0x27},
+    {F81866_CONFIG_DATA,  0xF2, 0x08}, // GPIO_PROG_SEL = 10b , CLK_TUNE_PROG_EN = 0b
+	{F81866_CONFIG_INDEX, 0xFF, 0x2C},
+    {F81866_CONFIG_DATA,  0xFF, 0x01}, 
 
     //---------------------------------------------------------------------
     // Initialize the Serial Port for debug useage. Default is COMA

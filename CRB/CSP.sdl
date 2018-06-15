@@ -620,6 +620,14 @@ TOKEN
     TargetMAK = Yes
     Token = "Q87_SKU" "=" "1"
 End
+TOKEN
+    Name  = "H87_SKU"
+    Value  = "0"
+    Help  = "On/Off build this image."
+    TokenType = Boolean
+    TargetMAK = Yes
+    Token = "SELECT_BUILD_PLATFORM" "=" "1"
+End
 
 ## Board\NB\NB.sdl
 PCIDEVICE
@@ -1284,5 +1292,21 @@ TOKEN
 	Value  = "0"
 	Help  = "LPT Port Present / Not Present."
 	TokenType = Boolean
+	TargetH = Yes
+End
+
+## Board\IO\F81216\IO_F81216.SDL
+TOKEN
+	Name  = "F81216SEC_CLOCK"
+	Value  = "1"
+	Help  = "1/0 for 48Mhz/24MHz"
+	TokenType = Integer
+	TargetH = Yes
+End
+TOKEN
+	Name  = "F81216SEC_CONFIG_MODE_ENTER_VALUE"
+	Value  = "0x67"
+	Help  = "Value to enter Configuration Mode.Please check your hardware\Default is 0x77.\others are 0xA0, 0x87, 0x67"
+	TokenType = Integer
 	TargetH = Yes
 End

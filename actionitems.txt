@@ -1,9 +1,9 @@
 2018/06/15
 	Review decode algorithm
-	Clock Gen - 2018/06/15 no need
-	GPIO Multifunction - 2018/06/15 done
-	VBIOS - 2018/06/15 done
-	Disable Gbe Controller - 2018/06/15 done
+//	Clock Gen - 2018/06/15 no need
+//	GPIO Multifunction - 2018/06/15 done
+//	VBIOS - 2018/06/15 done
+//	Disable Gbe Controller - 2018/06/15 done
 	CH7511 Porting
 	Discussion : LAN_DIS PULL H/L
 	Discussion : GPIO32 only GPIO mode
@@ -13,7 +13,7 @@
 	SIO Function Porting
 	SIO PECI / Smart FAN
 2018/06/14
-	"iAMT_SUPPORT" = 0 - 2018/06/15 done
-	IntelPTT_SUPPORT = 0 - 2018/06/15 done
-	review crb.sdl / csp.sdl / xml - 2018/06/15 done
-	vscc table - 2018/06/15 done
+//	"iAMT_SUPPORT" = 0 - 2018/06/15 done
+//	IntelPTT_SUPPORT = 0 - 2018/06/15 done
+//	review crb.sdl / csp.sdl / xml - 2018/06/15 done
+//	vscc table - 2018/06/15 done
