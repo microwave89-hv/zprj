@@ -620,3 +620,19 @@ TOKEN
     TargetMAK = Yes
     Token = "Q87_SKU" "=" "1"
 End
+
+## Board\NB\NB.sdl
+PCIDEVICE
+	Title  = "I.G.F.X."
+	Bus  = 00h
+	Dev  = 02h
+	Fun  = 00h
+	ROMFile  = "Chipset\NB\hsw_1039.dat"
+	DeviceID  = 0402h
+	VendorID  = 08086h
+	IntA = 	LNKA; 16
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	OptionROM = Yes
+	CompressedROM = Yes
+End

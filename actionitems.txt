@@ -2,7 +2,9 @@
 	Review decode algorithm
 	Clock Gen
 	GPIO Multifunction
-	VBIOS
+	VBIOS - 2018/06/15 done
+	Disable Gbe Controller
+	CH7511 Porting
 2018/06/14
 	"iAMT_SUPPORT" = 0 - 2018/06/15 done
 	IntelPTT_SUPPORT = 0 - 2018/06/15 done
