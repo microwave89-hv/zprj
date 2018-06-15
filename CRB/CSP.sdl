@@ -610,3 +610,13 @@ TOKEN
 #	Master = Yes
 	Token = "iME_SUPPORT" "=" "1"
 End
+
+## RomImage\RomImage.sdl
+TOKEN
+    Name  = "Q87_SKU_BUILD_SET"
+    Value  = "$(Me_Q87_Xml) 0 Q87"
+    Help  = "FitcBuild <MeXmlFile> <MeFwSelect> <MeFwSku> <FlashCount> <FlashSize1> <FlashSize2>\<MeFwSelect>:0 = 1.5MB ME Firmware, 1 = 5MB ME Firmware.\<MeFwSku>:Z87_SKU, Z85_SKU, Q87_SKU, H87_SKU, Q85_SKU, B85_SKU, H81_SKU.\<MeFwSku>:Use Xml file need give a name, this name do not use XXXX_SKU.\<FlashCount>:1 = One image, 2 = Two image.\<FlashSize1>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB.\<FlashSize2>:0=512KB,1=1MB,2=2MB,3=4MB,4=8MB,5=16MB."
+    TokenType = Expression
+    TargetMAK = Yes
+    Token = "Q87_SKU" "=" "1"
+End

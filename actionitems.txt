@@ -2,8 +2,9 @@
 	Review decode algorithm
 	Clock Gen
 	GPIO Multifunction
+	VBIOS
 2018/06/14
 	"iAMT_SUPPORT" = 0 - 2018/06/15 done
 	IntelPTT_SUPPORT = 0 - 2018/06/15 done
 	review crb.sdl / csp.sdl / xml - 2018/06/15 done
-	vscc table
+	vscc table - 2018/06/15 done
