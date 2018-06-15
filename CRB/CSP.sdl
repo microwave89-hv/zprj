@@ -368,6 +368,7 @@ End
 #*************************************************************************
 
 ##  k_prj begin
+## Modules Disable
 TOKEN
 	Name  = "AmiGopPolicy"
 	Value  = "0"
@@ -538,4 +539,61 @@ TOKEN
 	TargetMAK = Yes
 	TargetH = Yes
 #	Master = Yes
+End
+
+## Override
+## CRB\CSP.sdl
+TOKEN
+	Name  = "PowerButton_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable PowerButton support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+End
+ELINK
+	Name  = "IsCtrlHomePressed,"
+	Parent  = "IsRecovery"
+	Help  = "Ctr+Home detection"
+#	Token = "KBC_SUPPORT" "=" "1"
+	InvokeOrder = AfterParent
+	Disable = Yes
+End
+ELINK
+	Name  = "IsRecoveryJumper,"
+	Parent  = "IsRecovery"
+	Help  = "CRB recovery jumper detection"
+	InvokeOrder = AfterParent
+	Disable = Yes
+End
+## CRB\CRB.sdl
+ELINK
+	Name  = "{0x10EC0888, 0, 0xFF, TRUE, 11, 2, CrbHdaVerbTbl8},"
+	Parent  = "OEM_HDA_VERB_TABLE"
+	Help  = "CRB HDA Verb Table"
+#	Token = "CRB_HDA_VERB_TABLE_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+	Disable = Yes
+End
+ELINK
+	Name  = "{0x10EC0885, 0, 0xFF, TRUE, 11, 2, CrbHdaVerbTbl9},"
+	Parent  = "OEM_HDA_VERB_TABLE"
+	Help  = "CRB HDA Verb Table"
+#	Token = "CRB_HDA_VERB_TABLE_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+	Disable = Yes
+End
+ELINK
+	Name  = "{0x10EC0889, 0, 0xFF, TRUE, 11, 2, CrbHdaVerbTbl10},"
+	Parent  = "OEM_HDA_VERB_TABLE"
+	Help  = "CRB HDA Verb Table"
+#	Token = "CRB_HDA_VERB_TABLE_PRESENT" "=" "1"
+	InvokeOrder = AfterParent
+	Disable = Yes
+End
+TOKEN
+	Name  = "BEEP_ENABLE"
+	Value  = "1"
+	Help  = "This flag enables/disables all firmware beeps"
+	TokenType = Boolean
 End
