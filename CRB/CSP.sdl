@@ -597,3 +597,16 @@ TOKEN
 	Help  = "This flag enables/disables all firmware beeps"
 	TokenType = Boolean
 End
+
+## ReferenceCode\ME\ActiveManagement\ActiveManagement.sdl
+TOKEN
+	Name  = "iAMT_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable iAMT support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+#	Master = Yes
+	Token = "iME_SUPPORT" "=" "1"
+End

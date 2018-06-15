@@ -3,7 +3,7 @@
 	Clock Gen
 	GPIO Multifunction
 2018/06/14
-	"iAMT_SUPPORT" = 0
-	IntelPTT_SUPPORT = 0
+	"iAMT_SUPPORT" = 0 - 2018/06/15 done
+	IntelPTT_SUPPORT = 0 - 2018/06/15 done
 	review crb.sdl / csp.sdl / xml - 2018/06/15 done
 	vscc table
