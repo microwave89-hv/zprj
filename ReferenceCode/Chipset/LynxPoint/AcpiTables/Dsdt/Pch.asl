@@ -560,6 +560,10 @@ scope (\_SB.PCI0) {
   Device(GLAN) { // GbE Controller
     Name(_ADR, 0x00190000)
     Method(_PRW, 0) { Return(GPRW(0x0D, 4)) }  // can wakeup from S4 state
+  	Method(_STA,0)
+  	{
+  	    Return(0)		// Hide device 
+  	}
   } // end "GbE Controller"
 
   //

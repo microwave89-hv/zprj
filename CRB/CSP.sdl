@@ -636,3 +636,28 @@ PCIDEVICE
 	OptionROM = Yes
 	CompressedROM = Yes
 End
+
+## Board\SB\SB.sdl
+PCIDEVICE
+	Title  = "GbE Controller"
+	Bus  = 00h
+	Dev  = 019h
+	Fun  = 00h
+	ROMFile  = "Chipset\SB\GbE_OR.BIN"
+	DeviceID  = 01502h
+	VendorID  = 08086h
+	IntA = 	LNKE; 20
+	DeviceType = OnBoard
+	PCIBusSize = 32bit
+	OptionROM = Yes
+	CompressedROM = Yes
+	LinkDevice = Yes
+	Disable = Yes
+End
+TOKEN
+	Name  = "PCH_PWR_OPT_GBE"
+	Value  = "0"
+	Help  = "0:Set the function to 'Disabled'.\1:Set the function to 'Enabled'."
+	TokenType = Boolean
+	TargetH = Yes
+End
