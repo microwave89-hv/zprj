@@ -661,3 +661,628 @@ TOKEN
 	TokenType = Boolean
 	TargetH = Yes
 End
+## Program PCH GPIO
+TOKEN
+	Name = "PROGRAM_GPIO_TYPE"
+	Value = "1"
+	Help = "0:use array directly/1:use token define"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_000"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_001"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_002"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_003"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_004"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_005"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_006"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_007"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_008"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_009"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_010"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_011"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_012"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_013"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_014"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_015"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_016"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_017"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_018"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_019"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_020"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_021"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_022" ## LAN1_DISABLE#
+	Value = "$(GPO_HIGH)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_023"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_024"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_025"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_026"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_027"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_028"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_029"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_030"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_031"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_032"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_033"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_034"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_035"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_036"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_037"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_038" ## LAN2_DISABLE#
+	Value = "$(GPO_HIGH)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_039" ## BOARD_ID
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_040"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_041"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_042"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_043"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_044"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_045"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_046"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_048" ## BOARD_ID
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_049"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_050" ## Connected to TPM Header
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_051"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_052"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_053"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_054"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_055"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_057"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_058" ## SML1CLK
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_059"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_060"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_061"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_062"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_063"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_064"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_065"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_066"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_067"
+	Value = "$(IS_NOT_GPIO)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_068"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_069"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_070"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_071"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_072"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_073"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_074"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name = "GPIO_075"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
+	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+## Board\IO\F81866\IO_F81866.SDL
+TOKEN
+	Name  = "BOARD_LABEL_BELOW_25"
+	Value  = "0"
+	Help  = "Enable(Core<=4.6.4.0)/Disable(Core > 4.6.4.0 have defined AMI_CALLBACK_VARSTORE)"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name  = "F81866_FLOPPY_PORT_PRESENT"
+	Value  = "0"
+	Help  = "Floppy Port Present / Not Present."
+	TokenType = Boolean
+	TargetH = Yes
+End
+TOKEN
+	Name  = "F81866_PARALLEL_PORT_PRESENT"
+	Value  = "0"
+	Help  = "LPT Port Present / Not Present."
+	TokenType = Boolean
+	TargetH = Yes
+End

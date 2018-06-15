@@ -71,8 +71,8 @@
 					<MacSecDisable value="true" edit="false" visible="true" name="MACsec Disable" help_text="MACsec is a hop-by-hop network security solution. It provides Layer 2 encryption and authenticity/integrity protection for packets traveling between MACsec-enabled nodes of the network."/>
 					<LanPhyPcGp12Sel value="GPIO12 default is General Purpose (GP) output" value_list="GPIO12 default is General Purpose (GP) output,,GPIO12 is used in native mode as LANPHYPC" edit="false" visible="true" name="LAN PHY Power Control GPIO12 Select" help_text="Lan Phy Power"/>
 					<SmBusEnable value="true" edit="true" visible="true" name="Intel (R) ME SMBus Enable" help_text="Configures if Intel (R) ME SMBus is enabled."/>
-					<SmLink0Enable value="true" edit="true" visible="true" name="SMLink0 Enable" help_text="Configures if SmLink0 is enabled."/>
-					<SmLink1Enable value="true" edit="true" visible="true" name="SMLink1 Enable" help_text="Configures if SmLink1 is enabled."/>
+					<SmLink0Enable value="false" edit="true" visible="true" name="SMLink0 Enable" help_text="Configures if SmLink0 is enabled."/>
+					<SmLink1Enable value="false" edit="true" visible="true" name="SMLink1 Enable" help_text="Configures if SmLink1 is enabled."/>
 				</PchStrap0>
 				<PchStrap1 name="PCH Strap 1">
 					<TpmClockFrequency value="33MHz" value_list="20MHz,,33MHz" edit="true" visible="true" name="TPM Clock Frequency" help_text="This field identifies the frequency that should be used with the TPM on SPI (50MHz supported only on C610). This field is undefined if the TPM on SPI is disabled by softstrap."/>
