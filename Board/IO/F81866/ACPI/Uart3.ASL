@@ -59,6 +59,7 @@ Device(UAR3) {
     //In method UHID(), it should return HID by device mode registers.
     //Method(_HID, 0)	{Return(^^SIO1.UHID(0x11))}	//PnP Device ID
 
+	Name(_DDN, "COM3")
 	Name(_UID, 3)	                            //Generic ID for COMC
 	Method(_STA, 0) {Return(^^SIO1.DSTA(0x11))}	//Get UART status
 	Method(_DIS, 0) {^^SIO1.DCNT(0x11, 0)}		//Disable UART

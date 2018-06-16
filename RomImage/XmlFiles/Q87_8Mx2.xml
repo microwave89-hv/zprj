@@ -29,7 +29,7 @@
 				<FastReadFreq value="50MHz" value_list="20MHz,,33MHz,,50MHz" edit="true" visible="true" name="Fast read clock frequency" help_text="This field is undefined if the Fast Read Support is set to false."/>
 				<FastReadSupport value="false" edit="true" visible="true" name="Fast read support" help_text="Enables/disables Fast Read support."/>
 				<ReadFreq value="20MHz" value_list="20MHz" edit="false" visible="true" name="Read clock frequency" help_text="Sets the Flash read frequency"/>
-				<DensityComp1 value="16MB" value_list="512KB,,1MB,,2MB,,4MB,,8MB,,16MB,,32MB,,64MB" edit="true" visible="true" name="Flash component 1 density" help_text="This field identifies the size of the 1st Flash component."/>
+				<DensityComp1 value="8MB" value_list="512KB,,1MB,,2MB,,4MB,,8MB,,16MB,,32MB,,64MB" edit="true" visible="true" name="Flash component 1 density" help_text="This field identifies the size of the 1st Flash component."/>
 				<DensityComp2 value="8MB" value_list="512KB,,1MB,,2MB,,4MB,,8MB,,16MB,,32MB,,64MB" edit="false" visible="true" name="Flash component 2 density" help_text="This field identifies the size of the 2nd Flash component."/>
 				<DualOutputFastReadSupport value="false" edit="true" visible="true" name="Dual Output Fast Read Support" help_text="false: Not Supported. true: Dual Output Fast Read instruction is issued in all cases where the the Fast Read would have been issued."/>
 				<InvalidInst0 value="0x0" edit="true" visible="true" name="Invalid Instruction 0" help_text="Op-code for an invalid instruction that the Flash Controller should protect against chip erase. This byte should be set to 0 if there is no instruction to protect against."/>
@@ -191,7 +191,7 @@
 		<Region2 name="ME Region">
 			<Enabled value="true" edit="false" visible="false" name="ME region enabled" help_text=""/>
 			<RegionLength value="0x00000000" edit="true" visible="false" name="ME region length" help_text="This is the size of the ME region in bytes. Set this to 0 to make the region length equal to the binary file length (rounded up to 4k). Extra space will be filled with 0xFF."/>
-			<InputFile value="$SourceDir\me\me9.1_5m_production.bin" edit="true" visible="true" name="ME Binary Input File" help_text="This is the path to a binary file that will be used for the ME region."/>
+			<InputFile value="$SourceDir\me\me9.1_1.5m_production.bin" edit="true" visible="true" name="ME Binary Input File" help_text="This is the path to a binary file that will be used for the ME region."/>
 			<WcodChosen value="0x0082 TAYLOR" value_list="0x088E JACKSON,,0x0087 KILMER,,0x422B PUMA,,0x08B1 WILKINS,,0x0082 TAYLOR" edit="true" visible="true" name="WCOD Id" help_text="Determines which wireless LAN micro code will be supported in the firmware image"/>
 			<LoclChosen value="0x01 EN" value_list="0x02 FR,,0x03 GER,,0x04 CH,,0x05 JPN,,0x06 RUS,,0x07 ITA,,0x08 ESP,,0x09 PTB,,0x0A KOR,,0x0B CHS,,0x0C ARA,,0x0D CZE,,0x0E DAN,,0x0F GRE,,0x10 FIN,,0x11 HEB,,0x12 HUN,,0x13 DUT,,0x14 NOR,,0x15 POL,,0x16 POR,,0x17 SLK,,0x18 SLV,,0x19 SWE,,0x1A THA,,0x1B TUR,,0x01 EN" edit="true" visible="true" name="LOCL Id" help_text="Determines which localized language data will be used by the firmware for the secure output screens (Examples: SOL / KVM)"/>
 			<Configuration name="Configuration">

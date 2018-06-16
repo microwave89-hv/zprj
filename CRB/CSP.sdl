@@ -540,6 +540,36 @@ TOKEN
 	TargetH = Yes
 #	Master = Yes
 End
+TOKEN
+    Name  = "NVMe_SUPPORT"
+    Value  = "0"
+    Help  = "Main switch to enable NVMe support in Project"
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetH = Yes
+#    Master = Yes
+End
+TOKEN
+	Name  = ACOUSTIC_MANAGEMENT_DRIVER_SUPPORT
+	Value  = "0"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+#	Master = Yes
+	Help  = "Main switch to enable Acoustic Management support in Project"
+End
+TOKEN
+	Name  = "PfatServices_SUPPORT"
+	Value  = "0"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+    TargetH   = Yes
+#	Master = Yes
+	Help  = "Main switch to enable Pfat support in Project, needs NvramSmiSupport Enabled"
+    Token = "NvramSmiSupport" "=" "1"
+End
 
 ## Override
 ## CRB\CSP.sdl

@@ -39,7 +39,8 @@
 // Category # :0x13
 Device(UR13) {
     Name(_HID, EISAID("PNP0501"))    //PnP Device ID 16550 Type
-	Name(_UID, 0x13)	                         
+	Name(_UID, 0x13)	       
+	Name(_DDN, "COM9")                  
 
 //	Method(_HID, 0)	{Return(^^SIO2.UHID(0x13))}	//PnP Device ID
 	Method(_STA, 0) {Return(^^SIO2.DSTA(0x13))}	//Get UART status

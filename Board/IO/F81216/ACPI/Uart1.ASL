@@ -45,6 +45,7 @@
 Device(UR11) {
 //	Name(_HID, EISAID("PNP0501"))    //PnP Device ID 16550 Type
 	Name(_UID, 0x11)	                            //Generic ID for COMC
+	Name(_DDN, "COM7")
 
     Method(_HID, 0)	{Return(^^SIO2.UHID(0x11))}	//PnP Device ID
 	Method(_STA, 0) {Return(^^SIO2.DSTA(0x11))}	//Get UART status

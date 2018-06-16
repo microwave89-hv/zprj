@@ -40,6 +40,7 @@
 Device(UR14) {
     Name(_HID, EISAID("PNP0501"))    //PnP Device ID 16550 Type
 	Name(_UID, 0x14)	                            //Generic ID for COMD
+	Name(_DDN, "COM10")
 
 //	Method(_HID, 0)	{Return(^^SIO2.UHID(0x14))}	//PnP Device ID
 	Method(_STA, 0) {Return(^^SIO2.DSTA(0x14))}	//Get UART status
