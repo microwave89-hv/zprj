@@ -139,7 +139,7 @@ VOID F81216SEC_INIT(VOID)
     UINTN   i;
 
     // Decode neccessary IO resource in PEI phase
-    PeiSetLpcDeviceDecoding();
+//    PeiSetLpcDeviceDecoding();
 
     // Step through table and initialize the Serial Port
     for(i=0; i<(sizeof(F81216SEC_PEI_Init_Table))/(sizeof(SIO_DATA));i++) {

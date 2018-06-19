@@ -570,6 +570,16 @@ TOKEN
 	Help  = "Main switch to enable Pfat support in Project, needs NvramSmiSupport Enabled"
     Token = "NvramSmiSupport" "=" "1"
 End
+TOKEN
+	Name  = "NFC_SUPPORT_DXE_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable NfcSupportDxe support in DXE Phase"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+#	Master = Yes
+End
 
 ## Override
 ## CRB\CSP.sdl
@@ -676,6 +686,54 @@ PCIDEVICE
 End
 
 ## Board\SB\SB.sdl
+IRQLINK
+	Name  = "LNKA"
+	Reg  = 060h
+	IrqList  = 3,4,5,6,7,10,11,12,14,15
+	InterruptType = LevelLow
+End
+IRQLINK
+	Name  = "LNKB"
+	Reg  = 061h
+	IrqList  = 3,4,5,6,7,10,11,12,14,15
+	InterruptType = LevelLow
+End
+IRQLINK
+	Name  = "LNKC"
+	Reg  = 062h
+	IrqList  = 3,4,5,6,7,10,11,12,14,15
+	InterruptType = LevelLow
+End
+IRQLINK
+	Name  = "LNKD"
+	Reg  = 063h
+	IrqList  = 3,4,5,6,7,10,11,12,14,15
+	InterruptType = LevelLow
+End
+IRQLINK
+	Name  = "LNKE"
+	Reg  = 068h
+	IrqList  = 3,4,5,6,7,10,11,12,14,15
+	InterruptType = LevelLow
+End
+IRQLINK
+	Name  = "LNKF"
+	Reg  = 069h
+	IrqList  = 3,4,5,6,7,10,11,12,14,15
+	InterruptType = LevelLow
+End
+IRQLINK
+	Name  = "LNKG"
+	Reg  = 06ah
+	IrqList  = 3,4,5,6,7,10,11,12,14,15
+	InterruptType = LevelLow
+End
+IRQLINK
+	Name  = "LNKH"
+	Reg  = 06bh
+	IrqList  = 3,4,5,6,7,10,11,12,14,15
+	InterruptType = LevelLow
+End
 PCIDEVICE
 	Title  = "GbE Controller"
 	Bus  = 00h
@@ -699,6 +757,34 @@ TOKEN
 	TokenType = Boolean
 	TargetH = Yes
 End
+TOKEN
+	Name = "SB_IO_DECODE_IN_SEC"
+	Value = "1"
+	Help = "The value of SIO_PME_BASE_ADDRESS, '0' means no function."
+	TokenType = Boolean
+	TargetEQU = Yes
+End
+TOKEN
+	Name = "SB_GEN_DECODE_RANGE_1"
+	Value = "0x200"
+	Help = "The value of SIO_PME_BASE_ADDRESS, '0' means no function."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Range = "00 - 0FFFFh"
+	Token = "SB_IO_DECODE_IN_SEC" "=" "1"
+End
+TOKEN
+	Name = "SB_GEN_DECODE_RANGE_2"
+	Value = "0xA00"
+	Help = "The value of SIO_PME_BASE_ADDRESS, '0' means no function."
+	TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+	Range = "00 - 0FFFFh"
+	Token = "SB_IO_DECODE_IN_SEC" "=" "1"
+End
+
 ## Program PCH GPIO
 TOKEN
 	Name = "PROGRAM_GPIO_TYPE"

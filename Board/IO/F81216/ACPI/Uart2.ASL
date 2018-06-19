@@ -43,11 +43,11 @@ Device(UR12) {
 	Name(_DDN, "COM8")
                             //Generic ID for COMD
 //	Method(_HID, 0)	{Return(^^SIO2.UHID(0x12))}	//PnP Device ID
-	Method(_STA, 0) {Return(^^SIO2.DSTA(0x12))}	//Get UART status
-	Method(_DIS, 0) {^^SIO2.DCNT(0x12, 0)}			//Disable UART
+	Method(_STA, 0) {Return(^^SIO2.DSTA(0x09))}	//Get UART status
+	Method(_DIS, 0) {^^SIO2.DCNT(0x09, 0)}			//Disable UART
     //Default is share mode
-	Method(_CRS, 0) {Return(^^SIO2.DCR3(0x12, 0))} //Get UART current resources
-	Method(_SRS, 1) {^^SIO2.DSR3(Arg0, 0x12)}      //Set UART recources
+	Method(_CRS, 0) {Return(^^SIO2.DCR3(0x09, 0))} //Get UART current resources
+	Method(_SRS, 1) {^^SIO2.DSR3(Arg0, 0x09)}      //Set UART recources
 
 //-----------------------------------------------------------------------
 // UART2 Possible Resources

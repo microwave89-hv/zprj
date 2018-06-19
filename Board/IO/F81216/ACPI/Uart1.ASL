@@ -47,12 +47,12 @@ Device(UR11) {
 	Name(_UID, 0x11)	                            //Generic ID for COMC
 	Name(_DDN, "COM7")
 
-    Method(_HID, 0)	{Return(^^SIO2.UHID(0x11))}	//PnP Device ID
-	Method(_STA, 0) {Return(^^SIO2.DSTA(0x11))}	//Get UART status
-	Method(_DIS, 0) {^^SIO2.DCNT(0x11, 0)}			//Disable UART
+    Method(_HID, 0)	{Return(^^SIO2.UHID(0x08))}	//PnP Device ID
+	Method(_STA, 0) {Return(^^SIO2.DSTA(0x08))}	//Get UART status
+	Method(_DIS, 0) {^^SIO2.DCNT(0x08, 0)}			//Disable UART
     //Default is share mode
-	Method(_CRS, 0) {Return(^^SIO2.DCR3(0x11, 0))} //Get UART current resources
-	Method(_SRS, 1) {^^SIO2.DSR3(Arg0, 0x11)}      //Set UART recources
+	Method(_CRS, 0) {Return(^^SIO2.DCR3(0x08, 0))} //Get UART current resources
+	Method(_SRS, 1) {^^SIO2.DSR3(Arg0, 0x08)}      //Set UART recources
 //-----------------------------------------------------------------------
 // UART1 Possible Resources
 //-----------------------------------------------------------------------

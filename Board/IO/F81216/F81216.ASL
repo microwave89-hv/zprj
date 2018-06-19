@@ -136,12 +136,12 @@ Device(SIO2) {
         0xFF,    //   05 - MIDI
         0xFF,    //   06 - MSS Audio
         0xFF,    //   07 - AdLib sound (FM synth)
-        0xFF,    //   08 - Game port #1
-        0xFF,    //   09 - Game port #2
+        0x00,    //   08 - Game port #1
+        0x01,    //   09 - Game port #2
         0xFF,    //   0A - KBC 60 & 64
         0xFF,    //   0B - EC 62 & 66
-        0xFF,    //   0C - Reserved 
-        0xFF,    //   0D - Reserved
+        0x02,    //   0C - Reserved 
+        0x03,    //   0D - Reserved
         0xFF,    //   0E - PS/2 Mouse
         0xFF,    //   0F - Reserved
 //----add your other device below,if no,please cut and modify Package number----------//

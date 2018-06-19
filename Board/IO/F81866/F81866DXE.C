@@ -627,10 +627,10 @@ static EFI_STATUS COM_Init(
     switch (InitStep)
     {
         case isGetSetupData:
-            if((!dev->DeviceInfo->Implemented) || (!dev->NvData.DevEnable)) {
-                 LoopCspIoDecodeListInit(NULL,AmiSio); 
-                 ClearDevResource(dev);
-            }
+//            if((!dev->DeviceInfo->Implemented) || (!dev->NvData.DevEnable)) {
+//                 LoopCspIoDecodeListInit(NULL,AmiSio); 
+//                 ClearDevResource(dev);
+//            }
         break;
     
         case isPrsSelect:
@@ -638,45 +638,45 @@ static EFI_STATUS COM_Init(
 
         case isBeforeActivate:
 
-            //Only decode UART1/UART2. More others UART port is decode in PEI
-            //Attention! Remove the more com ports to PEI decode.
-            if(dev->DeviceInfo->UID <= 0x02)
-                LoopCspIoDecodeListInit(PciIo,AmiSio);
+//            //Only decode UART1/UART2. More others UART port is decode in PEI
+//            //Attention! Remove the more com ports to PEI decode.
+//            if(dev->DeviceInfo->UID <= 0x02)
+//                LoopCspIoDecodeListInit(PciIo,AmiSio);
         
             //Programm Device Mode register here(if NEEDED)use AmiSioProtocol
-            if(DXE_COM_Mode_Init_Table[dev->DeviceInfo->UID].AndData8 == 0xFF) {
-                rv=DXE_COM_Mode_Init_Table[dev->DeviceInfo->UID].OrData8;
-            } else {
-                Status=AmiSio->Access(AmiSio, FALSE, FALSE, 0xF0, &rv);
-                ASSERT_EFI_ERROR(Status);
-                rv &= DXE_COM_Mode_Init_Table[dev->DeviceInfo->UID].AndData8;
-                rv |= DXE_COM_Mode_Init_Table[dev->DeviceInfo->UID].OrData8;
-            }
-			Status=AmiSio->Access(AmiSio,TRUE,FALSE,0xF0,&rv);            
+//            if(DXE_COM_Mode_Init_Table[dev->DeviceInfo->UID].AndData8 == 0xFF) {
+//                rv=DXE_COM_Mode_Init_Table[dev->DeviceInfo->UID].OrData8;
+//            } else {
+//                Status=AmiSio->Access(AmiSio, FALSE, FALSE, 0xF0, &rv);
+//                ASSERT_EFI_ERROR(Status);
+//                rv &= DXE_COM_Mode_Init_Table[dev->DeviceInfo->UID].AndData8;
+//                rv |= DXE_COM_Mode_Init_Table[dev->DeviceInfo->UID].OrData8;
+//            }
+//			Status=AmiSio->Access(AmiSio,TRUE,FALSE,0xF0,&rv);            
 
             //AMI_TODO: You can program device mode as follow:
 
-            if(dev->DeviceInfo->UID == 0x05)    {
-                    Status=AmiSio->Access(AmiSio,FALSE,FALSE,0xF1,&rv);
-					ASSERT_EFI_ERROR(Status);
-					if(EFI_ERROR(Status))return Status;
-					//clear Bit4~3 where COM Port mode is:
-					rv &= 0xE7;            
-					switch (dev->NvData.DevMode) {
-						case 0:
-							rv |= 0x00;    //Bit4~3 = 000, Disable IR1 function
-						break;
-						case 1:
-							rv |= 0x10;    //Bit4~3 = 010, Enable IR1 function, active pulse is 1.6uS
-						break;
-						case 2:
-							rv |= 0x18;    //Bit4~3 = 011, Enable IR1 function, active pulse is 3/16 bit time
-						break;
-						default: return EFI_INVALID_PARAMETER;
-					}
-					Status=AmiSio->Access(AmiSio,TRUE,FALSE,0xF1,&rv);
-					ASSERT_EFI_ERROR(Status);
-                }
+//            if(dev->DeviceInfo->UID == 0x05)    {
+//                    Status=AmiSio->Access(AmiSio,FALSE,FALSE,0xF1,&rv);
+//					ASSERT_EFI_ERROR(Status);
+//					if(EFI_ERROR(Status))return Status;
+//					//clear Bit4~3 where COM Port mode is:
+//					rv &= 0xE7;            
+//					switch (dev->NvData.DevMode) {
+//						case 0:
+//							rv |= 0x00;    //Bit4~3 = 000, Disable IR1 function
+//						break;
+//						case 1:
+//							rv |= 0x10;    //Bit4~3 = 010, Enable IR1 function, active pulse is 1.6uS
+//						break;
+//						case 2:
+//							rv |= 0x18;    //Bit4~3 = 011, Enable IR1 function, active pulse is 3/16 bit time
+//						break;
+//						default: return EFI_INVALID_PARAMETER;
+//					}
+//					Status=AmiSio->Access(AmiSio,TRUE,FALSE,0xF1,&rv);
+//					ASSERT_EFI_ERROR(Status);
+//                }
            
                 //Programm Serial_X IRQ Share register.
                 if((dev->DeviceInfo->Flags & SIO_SHR_IRQ1) && dev->ResOwner) { 
@@ -878,7 +878,7 @@ static EFI_STATUS KBC_Init(
         break;
 
         case isBeforeActivate:
-            LoopCspIoDecodeListInit(PciIo,AmiSio);  // Enable IODecode
+//            LoopCspIoDecodeListInit(PciIo,AmiSio);  // Enable IODecode
         break;
 
         default: Status=EFI_INVALID_PARAMETER;

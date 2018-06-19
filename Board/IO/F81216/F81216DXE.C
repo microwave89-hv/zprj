@@ -420,11 +420,11 @@ static EFI_STATUS COM_Init(
     switch (InitStep)
     {
         case isGetSetupData:
-            // Disable IODecode?
-            if((!dev->DeviceInfo->Implemented) || (!dev->NvData.DevEnable)) {
-                 LoopCspIoDecodeListInit(NULL,AmiSio); 
-                 ClearDevResource(dev);
-            }
+ //           // Disable IODecode?
+ //           if((!dev->DeviceInfo->Implemented) || (!dev->NvData.DevEnable)) {
+ //                LoopCspIoDecodeListInit(NULL,AmiSio); 
+ //                ClearDevResource(dev);
+ //           }
         break;
     
         case isPrsSelect:
@@ -434,36 +434,36 @@ static EFI_STATUS COM_Init(
 
             //Programm Device Mode register here(if NEEDED)use AmiSioProtocol
             //make serial port 0 as IR port funtion only
-            if(dev->DeviceInfo->UID == 0x10)
-            {
-                //Programm Device Mode register here(if NEEDED)use AmiSioProtocol
-                Status=AmiSio->Access(AmiSio,FALSE,FALSE,0xF1,&rv);
-                ASSERT_EFI_ERROR(Status);
-                if(EFI_ERROR(Status)) return Status;
-				
-				rv &= 0xE3;
-				
-                switch (dev->NvData.DevMode)
-                {
-                    case 0:			//Bit4 = 0, Serial Port Function Mode
-                        break;
-                    case 1:
-                        rv|=0x10;    //Bit4 = 1 Bit3,Bit2 = 00 , IR Mode,Pusle 1.6us,Full Duplex
-                        break;
-                    case 2:
-                        rv|=0x14;    //Bit4 = 1 Bit3,Bit2 = 01 , IR Mode,Pusle 1.6us,Half Duplex
-                        break;
-                    case 3:
-                        rv|=0x18;    //Bit4 = 1 Bit3,Bit2 = 10 , IR Mode,Pusle 3/16 Bit Time,Full Duplex
-                        break;
-                    case 4:
-                        rv|=0x1C;    //Bit4 = 1 Bit3,Bit2 = 11 , IR Mode,Pusle 3/16 Bit Time,Half Duplex
-                        break;
-                    default: return EFI_INVALID_PARAMETER;
-                }
-                Status=AmiSio->Access(AmiSio,TRUE,FALSE,0xF1,&rv);
-                ASSERT_EFI_ERROR(Status);
-            }
+//            if(dev->DeviceInfo->UID == 0x10)
+//            {
+//                //Programm Device Mode register here(if NEEDED)use AmiSioProtocol
+//                Status=AmiSio->Access(AmiSio,FALSE,FALSE,0xF1,&rv);
+//                ASSERT_EFI_ERROR(Status);
+//                if(EFI_ERROR(Status)) return Status;
+//				
+//				rv &= 0xE3;
+//				
+//                switch (dev->NvData.DevMode)
+//                {
+//                    case 0:			//Bit4 = 0, Serial Port Function Mode
+//                        break;
+//                    case 1:
+//                        rv|=0x10;    //Bit4 = 1 Bit3,Bit2 = 00 , IR Mode,Pusle 1.6us,Full Duplex
+//                        break;
+//                    case 2:
+//                        rv|=0x14;    //Bit4 = 1 Bit3,Bit2 = 01 , IR Mode,Pusle 1.6us,Half Duplex
+//                        break;
+//                    case 3:
+//                        rv|=0x18;    //Bit4 = 1 Bit3,Bit2 = 10 , IR Mode,Pusle 3/16 Bit Time,Full Duplex
+//                        break;
+//                    case 4:
+//                        rv|=0x1C;    //Bit4 = 1 Bit3,Bit2 = 11 , IR Mode,Pusle 3/16 Bit Time,Half Duplex
+//                        break;
+//                    default: return EFI_INVALID_PARAMETER;
+//                }
+//                Status=AmiSio->Access(AmiSio,TRUE,FALSE,0xF1,&rv);
+//                ASSERT_EFI_ERROR(Status);
+//            }
             //Programm Serial_X IRQ Share register.
             if((dev->DeviceInfo->Flags & SIO_SHR_IRQ1) && dev->ResOwner) { 
                 //enter cfgmode

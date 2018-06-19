@@ -247,7 +247,7 @@ IF MKF_SB_IO_DECODE_IN_SEC
         mov     eax, (1 shl 31t) + (SB_BUS shl 16t) + (SB_DEV_FUN shl 8) + 80h
         out     dx, eax
         add     dx, 04h
-        mov     eax, 370F0010h
+        mov     eax, 34030070h
  IFDEF MKF_EC_SUPPORT
         or      eax, (MKF_EC_SUPPORT shl 27t) ; Enable MC_LPC_EN
  ENDIF
