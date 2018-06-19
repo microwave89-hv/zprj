@@ -637,6 +637,15 @@ TOKEN
 	Help  = "This flag enables/disables all firmware beeps"
 	TokenType = Boolean
 End
+TOKEN
+	Name  = "ISA_IRQ_MASK"
+	Value  = "0x2305"
+	Help  = "This is an IRQ mask which may be used by ISA devices\ If BIT == 0 IRQ Available BIT == 1 IRQ Used.\DEFAULT VALUE == 0xE305."
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0...0FFFFh"
+End
+
 
 ## ReferenceCode\ME\ActiveManagement\ActiveManagement.sdl
 TOKEN

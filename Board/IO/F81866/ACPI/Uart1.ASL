@@ -84,24 +84,24 @@ Device(UAR1) {
 		}
 		StartDependentFnNoPri() {
 			IO(Decode16, 0x3F8, 0x3F8, 1, 8)
-			IRQNoFlags() {3,4,5,6,7,10,11,12}
+			IRQNoFlags() {4}
 			DMA(Compatibility, NotBusMaster, Transfer8) {}
 		}
 		StartDependentFnNoPri() {
 			IO(Decode16, 0x2F8, 0x2F8, 1, 8)
-			IRQNoFlags() {3,4,5,6,7,10,11,12}
+			IRQNoFlags() {3}
 			DMA(Compatibility, NotBusMaster, Transfer8) {}
 		}
-		StartDependentFnNoPri() {
-			IO(Decode16, 0x3E8, 0x3E8, 1, 8)
-			IRQNoFlags() {3,4,5,6,7,10,11,12}
-			DMA(Compatibility, NotBusMaster, Transfer8) {}
-		}
-		StartDependentFnNoPri() {
-			IO(Decode16, 0x2E8, 0x2E8, 1, 8)
-			IRQNoFlags() {3,4,5,6,7,10,11,12}
-			DMA(Compatibility, NotBusMaster, Transfer8) {}
-		}
+//		StartDependentFnNoPri() {
+//			IO(Decode16, 0x3E8, 0x3E8, 1, 8)
+//			IRQNoFlags() {3,4,5,6,7,10,11,12}
+//			DMA(Compatibility, NotBusMaster, Transfer8) {}
+//		}
+//		StartDependentFnNoPri() {
+//			IO(Decode16, 0x2E8, 0x2E8, 1, 8)
+//			IRQNoFlags() {3,4,5,6,7,10,11,12}
+//			DMA(Compatibility, NotBusMaster, Transfer8) {}
+//		}
 		EndDependentFn()
 	})
 } // End Of UAR1

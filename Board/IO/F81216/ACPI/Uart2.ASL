@@ -57,30 +57,30 @@ Device(UR12) {
 //-----------------------------------------------------------------------
 	Name(_PRS, ResourceTemplate() {
 		StartDependentFn(0, 0) {
-			IO(Decode16, 0x268, 0x268, 1, 8)
-			IRQ(Level,ActiveLow,Shared) {11}
+			IO(Decode16, 0x2C0, 0x2C0, 1, 8)
+			IRQ(Level,ActiveLow,Shared) {5}
 			DMA(Compatibility, NotBusMaster, Transfer8) {}
 		}
 		StartDependentFnNoPri() {
-			IO(Decode16, 0x260, 0x260, 1, 8)
-			IRQ(Level,ActiveLow,Shared) {10,11,12}
+			IO(Decode16, 0x2C8, 0x2C8, 1, 8)
+			IRQ(Level,ActiveLow,Shared) {5}
 			DMA(Compatibility, NotBusMaster, Transfer8) {}
 		}
 		StartDependentFnNoPri() {
-			IO(Decode16, 0x268, 0x268, 1, 8)
-			IRQ(Level,ActiveLow,Shared) {10,11,12}
+			IO(Decode16, 0x2C0, 0x2C0, 1, 8)
+			IRQ(Level,ActiveLow,Shared) {5}
 			DMA(Compatibility, NotBusMaster, Transfer8) {}
 		}
-		StartDependentFnNoPri() {
-			IO(Decode16, 0x270, 0x270, 1, 8)
-			IRQ(Level,ActiveLow,Shared) {10,11,12}
-			DMA(Compatibility, NotBusMaster, Transfer8) {}
-		}
-		StartDependentFnNoPri() {
-			IO(Decode16, 0x278, 0x278, 1, 8)
-			IRQ(Level,ActiveLow,Shared) {10,11,12}
-			DMA(Compatibility, NotBusMaster, Transfer8) {}
-		}
+//		StartDependentFnNoPri() {
+//			IO(Decode16, 0x270, 0x270, 1, 8)
+//			IRQ(Level,ActiveLow,Shared) {10,11,12}
+//			DMA(Compatibility, NotBusMaster, Transfer8) {}
+//		}
+//		StartDependentFnNoPri() {
+//			IO(Decode16, 0x278, 0x278, 1, 8)
+//			IRQ(Level,ActiveLow,Shared) {10,11,12}
+//			DMA(Compatibility, NotBusMaster, Transfer8) {}
+//		}
 		EndDependentFn()
 	})
 /*

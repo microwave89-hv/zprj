@@ -1291,8 +1291,8 @@
                 option text = STRING_TOKEN(STR_F81866_SERIAL0_SETTINGS1), value = 1, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS2), value = 2, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS3), value = 3, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS4), value = 4, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS5), value = 5, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS4), value = 4, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS5), value = 5, flags = RESET_REQUIRED;
             endoneof;
         endif;    // suppressif SIO_SETUP_VAR.ComAEnable == 0x00;
 
@@ -1332,8 +1332,8 @@
                 option text = STRING_TOKEN(STR_F81866_SERIAL1_SETTINGS1), value = 1, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS2), value = 2, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS3), value = 3, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS4), value = 4, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS5), value = 5, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS4), value = 4, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS5), value = 5, flags = RESET_REQUIRED;
             endoneof;
         endif;    // suppressif SIO_SETUP_VAR.ComBEnable == 0x00;
 
@@ -1373,8 +1373,8 @@
                 option text = STRING_TOKEN(STR_F81866_SERIAL2_SETTINGS1), value = 1, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS4), value = 2, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS5), value = 3, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS6), value = 4, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS7), value = 5, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS6), value = 4, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS7), value = 5, flags = RESET_REQUIRED;
             endoneof;
         endif;    // suppressif SIO_SETUP_VAR.ComCEnable == 0x00;
 
@@ -1414,8 +1414,8 @@
                 option text = STRING_TOKEN(STR_F81866_SERIAL3_SETTINGS1), value = 1, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS4), value = 2, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS5), value = 3, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS6), value = 4, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS7), value = 5, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS6), value = 4, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS7), value = 5, flags = RESET_REQUIRED;
             endoneof;
         endif;    // suppressif SIO_SETUP_VAR.ComDEnable == 0x00;
 
@@ -1453,10 +1453,10 @@
                 help        = STRING_TOKEN(STR_SETTINGS_HELP),
                 option text = STRING_TOKEN(STR_AUTO), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81866_SERIAL4_SETTINGS1), value = 1, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS4), value = 2, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS5), value = 3, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS6), value = 4, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS7), value = 5, flags = RESET_REQUIRED;
+                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS6), value = 2, flags = RESET_REQUIRED;
+                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS7), value = 3, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS6), value = 4, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS7), value = 5, flags = RESET_REQUIRED;
             endoneof;
         endif;    // suppressif SIO_SETUP_VAR.ComEEnable == 0x00;
 
@@ -1494,14 +1494,15 @@
                 help        = STRING_TOKEN(STR_SETTINGS_HELP),
                 option text = STRING_TOKEN(STR_AUTO), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81866_SERIAL5_SETTINGS1), value = 1, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS4), value = 2, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS5), value = 3, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS6), value = 4, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS7), value = 5, flags = RESET_REQUIRED;
+                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS6), value = 2, flags = RESET_REQUIRED;
+                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS7), value = 3, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS6), value = 4, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81866_SERIAL_SETTINGS7), value = 5, flags = RESET_REQUIRED;
             endoneof;
         endif;    // suppressif SIO_SETUP_VAR.ComFEnable == 0x00;
     
-        suppressif ideqval COMF_NV_DATA.DevEnable == 0x00;
+//        suppressif ideqval COMF_NV_DATA.DevEnable == 0x00;
+        suppressif TRUE;
             oneof varid = COMF_NV_DATA.DevMode,
                 prompt      = STRING_TOKEN(STR_SELECT_MODE),
                 help        = STRING_TOKEN(STR_F81866_SERIAL_MODE_HELP),

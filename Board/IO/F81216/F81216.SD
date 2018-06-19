@@ -224,12 +224,13 @@ endform;//SIO Form
                 option text = STRING_TOKEN(STR_F81216SEC_SERIAL0_SETTINGS1), value = 1, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS2), value = 2, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS3), value = 3, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS4), value = 4, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS5), value = 5, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS4), value = 4, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS5), value = 5, flags = RESET_REQUIRED;
             endoneof;
         endif;    // suppressif SIO_SETUP_VAR.COMA2Enable == 0x00;
 
-        suppressif ideqval COMA2_NV_DATA.DevEnable == 0x00;
+//        suppressif ideqval COMA2_NV_DATA.DevEnable == 0x00;
+        suppressif TRUE;
             oneof varid = COMA2_NV_DATA.DevMode,
                 prompt      = STRING_TOKEN(STR_SELECT_MODE),
                 help        = STRING_TOKEN(STR_F81216SEC_SERIAL_MODE_HELP),
@@ -277,8 +278,8 @@ endform;//SIO Form
                 option text = STRING_TOKEN(STR_F81216SEC_SERIAL1_SETTINGS1), value = 1, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS2), value = 2, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS3), value = 3, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS4), value = 4, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS5), value = 5, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS4), value = 4, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS5), value = 5, flags = RESET_REQUIRED;
             endoneof;
         endif;    // suppressif SIO_SETUP_VAR.COMB2Enable == 0x00;
     
@@ -319,8 +320,8 @@ endform;//SIO Form
                 option text = STRING_TOKEN(STR_F81216SEC_SERIAL2_SETTINGS1), value = 1, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS2), value = 2, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS3), value = 3, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS4), value = 4, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS5), value = 5, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS4), value = 4, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS5), value = 5, flags = RESET_REQUIRED;
             endoneof;
         endif;    // suppressif SIO_SETUP_VAR.COMC2Enable == 0x00;
     
@@ -361,8 +362,8 @@ endform;//SIO Form
                 option text = STRING_TOKEN(STR_F81216SEC_SERIAL3_SETTINGS1), value = 1, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS2), value = 2, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS3), value = 3, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS4), value = 4, flags = RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS5), value = 5, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS4), value = 4, flags = RESET_REQUIRED;
+//                option text = STRING_TOKEN(STR_F81216SEC_SERIAL_SETTINGS5), value = 5, flags = RESET_REQUIRED;
             endoneof;
         endif;    // suppressif SIO_SETUP_VAR.COMD2Enable == 0x00;
     

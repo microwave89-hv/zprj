@@ -2,7 +2,6 @@
 	version = 1
 	Build = "build.bat"
 	BuildAll = "build.bat rebuild"
-	SourceControl = "SS: Alaska;$/Alaska/Projects/Intel/Haswell/LynxPoint_SharkBay-DT_Crb_1AQQW/;"
 	BoardFlavor = "SharkBayDT"
 	CleanCmd = "build.bat clean"
 
