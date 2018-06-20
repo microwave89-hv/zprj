@@ -3001,29 +3001,29 @@ ELINK   #[EIP151535]
 	InvokeOrder = AfterParent
 End
 
-ELINK
-	Name  = "{0x10EC0888, 0, 0xFF, TRUE, 11, 2, CrbHdaVerbTbl8},"
-	Parent  = "OEM_HDA_VERB_TABLE"
-	Help  = "CRB HDA Verb Table"
-	Token = "CRB_HDA_VERB_TABLE_PRESENT" "=" "1"
-	InvokeOrder = AfterParent
-End
-
-ELINK
-	Name  = "{0x10EC0885, 0, 0xFF, TRUE, 11, 2, CrbHdaVerbTbl9},"
-	Parent  = "OEM_HDA_VERB_TABLE"
-	Help  = "CRB HDA Verb Table"
-	Token = "CRB_HDA_VERB_TABLE_PRESENT" "=" "1"
-	InvokeOrder = AfterParent
-End
-
-ELINK
-	Name  = "{0x10EC0889, 0, 0xFF, TRUE, 11, 2, CrbHdaVerbTbl10},"
-	Parent  = "OEM_HDA_VERB_TABLE"
-	Help  = "CRB HDA Verb Table"
-	Token = "CRB_HDA_VERB_TABLE_PRESENT" "=" "1"
-	InvokeOrder = AfterParent
-End
+##ELINK
+##	Name  = "{0x10EC0888, 0, 0xFF, TRUE, 11, 2, CrbHdaVerbTbl8},"
+##	Parent  = "OEM_HDA_VERB_TABLE"
+##	Help  = "CRB HDA Verb Table"
+##	Token = "CRB_HDA_VERB_TABLE_PRESENT" "=" "1"
+##	InvokeOrder = AfterParent
+##End
+##
+##ELINK
+##	Name  = "{0x10EC0885, 0, 0xFF, TRUE, 11, 2, CrbHdaVerbTbl9},"
+##	Parent  = "OEM_HDA_VERB_TABLE"
+##	Help  = "CRB HDA Verb Table"
+##	Token = "CRB_HDA_VERB_TABLE_PRESENT" "=" "1"
+##	InvokeOrder = AfterParent
+##End
+##
+##ELINK
+##	Name  = "{0x10EC0889, 0, 0xFF, TRUE, 11, 2, CrbHdaVerbTbl10},"
+##	Parent  = "OEM_HDA_VERB_TABLE"
+##	Help  = "CRB HDA Verb Table"
+##	Token = "CRB_HDA_VERB_TABLE_PRESENT" "=" "1"
+##	InvokeOrder = AfterParent
+##End
 
 ELINK
 	Name  = "IsRecoveryJumper,"

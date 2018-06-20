@@ -337,6 +337,95 @@ UINT32 CrbHdaVerbTbl10[] = {
   0x01F71F41
 };
 
+UINT32 ZprjHdaVerbTbl[] = {
+// Realtek High Definition Audio Configuration - Version : 5.0.2.2
+// Realtek HD Audio Codec : ALC662
+// PCI PnP ID : PCI\VEN_8086&DEV_2668&SUBSYS_000010EC
+// HDA Codec PnP ID : HDAUDIO\FUNC_01&VEN_10EC&DEV_0662&SUBSYS_10EC0000
+// The number of verb command block : 13
+
+//    NID 0x14 : 0x02014010
+//    NID 0x15 : 0x4000C000
+//    NID 0x16 : 0x411111F0
+//    NID 0x18 : 0x01A19020
+//    NID 0x19 : 0x411111F0
+//    NID 0x1A : 0x0181302F
+//    NID 0x1B : 0x411111F0
+//    NID 0x1C : 0x411111F0
+//    NID 0x1D : 0x40B00001
+//    NID 0x1E : 0x411111F0
+
+
+// ===== HDA Codec Subsystem ID Verb-table =====
+// HDA Codec Subsystem ID  : 0x10EC0000
+0x00172062,
+0x00172106,
+0x001722EC,
+0x00172310,
+
+
+// ===== Pin Widget Verb-table =====
+// Widget node 0x01 :
+0x0017FF00,
+0x0017FF00,
+0x0017FF00,
+0x0017FF00,
+// Pin widget 0x14 - FRONT (Port-D)
+0x01471C10,
+0x01471D40,
+0x01471E01,
+0x01471F02,
+// Pin widget 0x15 - SURR (Port-A)
+0x01571C00,
+0x01571DC0,
+0x01571E00,
+0x01571F40,
+// Pin widget 0x16 - CEN/LFE (Port-G)
+0x01671CF0,
+0x01671D11,
+0x01671E11,
+0x01671F41,
+// Pin widget 0x18 - MIC1 (Port-B)
+0x01871C20,
+0x01871D90,
+0x01871EA1,
+0x01871F01,
+// Pin widget 0x19 - MIC2 (Port-F)
+0x01971CF0,
+0x01971D11,
+0x01971E11,
+0x01971F41,
+// Pin widget 0x1A - LINE1 (Port-C)
+0x01A71C2F,
+0x01A71D30,
+0x01A71E81,
+0x01A71F01,
+// Pin widget 0x1B - LINE2 (Port-E)
+0x01B71CF0,
+0x01B71D11,
+0x01B71E11,
+0x01B71F41,
+// Pin widget 0x1C - CD-IN
+0x01C71CF0,
+0x01C71D11,
+0x01C71E11,
+0x01C71F41,
+// Pin widget 0x1D - BEEP-IN
+0x01D71C01,
+0x01D71D00,
+0x01D71EB0,
+0x01D71F40,
+// Pin widget 0x1E - S/PDIF-OUT
+0x01E71CF0,
+0x01E71D11,
+0x01E71E11,
+0x01E71F41,
+// Widget node 0x20 :
+0x02050004,
+0x02040001,
+0x02050004,
+0x02040001
+};
 
 // GUID Definition(s)
 

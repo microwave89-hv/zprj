@@ -52,6 +52,7 @@ extern "C" {
 UINT32                          CrbHdaVerbTbl8[];
 UINT32                          CrbHdaVerbTbl9[];
 UINT32                          CrbHdaVerbTbl10[];
+UINT32                          ZprjHdaVerbTbl[];
 
 BOOLEAN IsRecoveryJumper(
   IN EFI_PEI_SERVICES **PeiServices

@@ -1,0 +1,93 @@
+;===================================================================================================
+;
+;                               Realtek Semiconductor Corp.
+;
+;===================================================================================================
+
+;Realtek High Definition Audio Configuration - Version : 5.0.2.2
+;Realtek HD Audio Codec : ALC662
+;PCI PnP ID : PCI\VEN_8086&DEV_2668&SUBSYS_000010EC
+;HDA Codec PnP ID : HDAUDIO\FUNC_01&VEN_10EC&DEV_0662&SUBSYS_10EC0000
+;The number of verb command block : 13
+
+;    NID 0x14 : 0x02014010
+;    NID 0x15 : 0x4000C000
+;    NID 0x16 : 0x411111F0
+;    NID 0x18 : 0x01A19020
+;    NID 0x19 : 0x411111F0
+;    NID 0x1A : 0x0181302F
+;    NID 0x1B : 0x411111F0
+;    NID 0x1C : 0x411111F0
+;    NID 0x1D : 0x40B00001
+;    NID 0x1E : 0x411111F0
+
+
+;===== HDA Codec Subsystem ID Verb-table =====
+;HDA Codec Subsystem ID  : 0x10EC0000
+dd 00172000h
+dd 00172100h
+dd 001722ECh
+dd 00172310h
+
+
+;===== Pin Widget Verb-table =====
+;Widget node 0x01 :
+dd 0017FF00h
+dd 0017FF00h
+dd 0017FF00h
+dd 0017FF00h
+;Pin widget 0x14 - FRONT (Port-D)
+dd 01471C10h
+dd 01471D40h
+dd 01471E01h
+dd 01471F02h
+;Pin widget 0x15 - SURR (Port-A)
+dd 01571C00h
+dd 01571DC0h
+dd 01571E00h
+dd 01571F40h
+;Pin widget 0x16 - CEN/LFE (Port-G)
+dd 01671CF0h
+dd 01671D11h
+dd 01671E11h
+dd 01671F41h
+;Pin widget 0x18 - MIC1 (Port-B)
+dd 01871C20h
+dd 01871D90h
+dd 01871EA1h
+dd 01871F01h
+;Pin widget 0x19 - MIC2 (Port-F)
+dd 01971CF0h
+dd 01971D11h
+dd 01971E11h
+dd 01971F41h
+;Pin widget 0x1A - LINE1 (Port-C)
+dd 01A71C2Fh
+dd 01A71D30h
+dd 01A71E81h
+dd 01A71F01h
+;Pin widget 0x1B - LINE2 (Port-E)
+dd 01B71CF0h
+dd 01B71D11h
+dd 01B71E11h
+dd 01B71F41h
+;Pin widget 0x1C - CD-IN
+dd 01C71CF0h
+dd 01C71D11h
+dd 01C71E11h
+dd 01C71F41h
+;Pin widget 0x1D - BEEP-IN
+dd 01D71C01h
+dd 01D71D00h
+dd 01D71EB0h
+dd 01D71F40h
+;Pin widget 0x1E - S/PDIF-OUT
+dd 01E71CF0h
+dd 01E71D11h
+dd 01E71E11h
+dd 01E71F41h
+;Widget node 0x20 :
+dd 02050004h
+dd 02040001h
+dd 02050004h
+dd 02040001h
