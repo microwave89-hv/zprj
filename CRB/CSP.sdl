@@ -599,13 +599,7 @@ ELINK
 	InvokeOrder = AfterParent
 	Disable = Yes
 End
-ELINK
-	Name  = "IsRecoveryJumper,"
-	Parent  = "IsRecovery"
-	Help  = "CRB recovery jumper detection"
-	InvokeOrder = AfterParent
-	Disable = Yes
-End
+
 ## CRB\CRB.sdl
 ELINK
 	Name  = "{0x10EC0662, 0, 0xFF, TRUE, 11, 2, ZprjHdaVerbTbl},"
@@ -1417,4 +1411,16 @@ TOKEN
 	Help  = "Value to enter Configuration Mode.Please check your hardware\Default is 0x77.\others are 0xA0, 0x87, 0x67"
 	TokenType = Integer
 	TargetH = Yes
+End
+
+## Core\EM\Recovery\Recovery.sdl
+TOKEN
+	Name  = "Recovery_SUPPORT"
+	Value  = "0"
+	Help  = "Main switch to enable Recovery support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+#	Master = Yes
 End

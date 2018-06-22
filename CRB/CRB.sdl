@@ -3025,12 +3025,12 @@ End
 ##	InvokeOrder = AfterParent
 ##End
 
-ELINK
-	Name  = "IsRecoveryJumper,"
-	Parent  = "IsRecovery"
-	Help  = "CRB recovery jumper detection"
-	InvokeOrder = AfterParent
-End
+##ELINK
+##	Name  = "IsRecoveryJumper,"
+##	Parent  = "IsRecovery"
+##	Help  = "CRB recovery jumper detection"
+##	InvokeOrder = AfterParent
+##End
 
 ELINK
 	Name  = "/D __EDKII_GLUE_PCD_PcdDebugPrintErrorLevel__=0x80000000+0x00000004+0x00000040"
