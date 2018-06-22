@@ -1,8 +1,8 @@
 2018/06/22
-	PCIEClockConfig
+//	PCIEClockConfig - 2018/06/22 done
 2018/06/19
 	F81866 H/W Monitor
-	AUDIO CODEC
+//	AUDIO CODEC - 2018/06/21 done
 2018/06/16
 	LAN EEPROM
 2018/06/15
@@ -11,8 +11,8 @@
 //	GPIO Multifunction - 2018/06/15 done
 //	VBIOS - 2018/06/15 done
 //	Disable Gbe Controller - 2018/06/15 done
-	Discussion : LAN_DIS PULL H/L
-	Discussion : GPIO32 only GPIO mode
+//	Discussion : LAN_DIS PULL H/L
+//	Discussion : GPIO32 only GPIO mode
 //	Review tables in schematics
 	SML1/2 CLK / DATA should not be connected to SIO
 //	SIO GPIO Porting - 2018/06/16 done
