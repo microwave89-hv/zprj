@@ -3039,26 +3039,26 @@ ELINK
 	InvokeOrder = AfterParent
 End
 
-ELINK
-	Name  = "{ CLOCK_SRC7, PCI_FUNCTION_NUMBER_PCH_PCIE_ROOT_PORT_6, 0 },"
-	Parent  = "PCIEClockConfig"
-	InvokeOrder = AfterParent
-	Help  = "Intel Flathead Creek, PCIE Slot#6(J13BU)"
-End
-
-ELINK
-	Name  = "{ CLOCK_SRC0, PCI_FUNCTION_NUMBER_PCH_PCIE_ROOT_PORT_7, 0 },"
-	Parent  = "PCIEClockConfig"
-	InvokeOrder = AfterParent
-	Help  = "Intel Flathead Creek, PCIE Slot#5(J17BU)"
-End
-
-ELINK
-	Name  = "{ CLOCK_SRC6, PCI_FUNCTION_NUMBER_PCH_PCIE_ROOT_PORT_8, 0 },"
-	Parent  = "PCIEClockConfig"
-	InvokeOrder = AfterParent
-	Help  = "Intel Flathead Creek, PCIE Slot#4(J4BU)"
-End
+##ELINK
+##	Name  = "{ CLOCK_SRC7, PCI_FUNCTION_NUMBER_PCH_PCIE_ROOT_PORT_6, 0 },"
+##	Parent  = "PCIEClockConfig"
+##	InvokeOrder = AfterParent
+##	Help  = "Intel Flathead Creek, PCIE Slot#6(J13BU)"
+##End
+##
+##ELINK
+##	Name  = "{ CLOCK_SRC0, PCI_FUNCTION_NUMBER_PCH_PCIE_ROOT_PORT_7, 0 },"
+##	Parent  = "PCIEClockConfig"
+##	InvokeOrder = AfterParent
+##	Help  = "Intel Flathead Creek, PCIE Slot#5(J17BU)"
+##End
+##
+##ELINK
+##	Name  = "{ CLOCK_SRC6, PCI_FUNCTION_NUMBER_PCH_PCIE_ROOT_PORT_8, 0 },"
+##	Parent  = "PCIEClockConfig"
+##	InvokeOrder = AfterParent
+##	Help  = "Intel Flathead Creek, PCIE Slot#4(J4BU)"
+##End
 
 ELINK
     Name  = "NEHALEM_MICROCODE"

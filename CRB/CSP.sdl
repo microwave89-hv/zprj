@@ -1424,3 +1424,22 @@ TOKEN
 	TargetH = Yes
 #	Master = Yes
 End
+
+ELINK
+	Name  = "{ CLOCK_SRC0, PCI_FUNCTION_NUMBER_PCH_PCIE_ROOT_PORT_1, 0 },"
+	Parent  = "PCIEClockConfig"
+	InvokeOrder = AfterParent
+	Help  = "Intel Flathead Creek, PCIE Slot#6(J13BU)"
+End
+ELINK
+	Name  = "{ CLOCK_SRC1, PCI_FUNCTION_NUMBER_PCH_PCIE_ROOT_PORT_2, 0 },"
+	Parent  = "PCIEClockConfig"
+	InvokeOrder = AfterParent
+	Help  = "Intel Flathead Creek, PCIE Slot#6(J13BU)"
+End
+ELINK
+	Name  = "{ CLOCK_SRC2, PCI_FUNCTION_NUMBER_PCH_PCIE_ROOT_PORT_3, 0 },"
+	Parent  = "PCIEClockConfig"
+	InvokeOrder = AfterParent
+	Help  = "Intel Flathead Creek, PCIE Slot#6(J13BU)"
+End
