@@ -354,7 +354,7 @@ Device(SIO2) {
         // Arg1      0/1 Disable/Enable resource decoding
         // Arg2      Port to Route/Release
         // Arg3      Port SIZE to Route 
-        RRIO(Arg0, Arg1, Local1, 0x08)
+//        RRIO(Arg0, Arg1, Local1, 0x08)
 
         EXFG()              // Exit Config Mode
     } // End DCNT
