@@ -135,6 +135,12 @@
     UINT8   Fan3Mode3AutoDutyF2;
     UINT8   Fan3Mode3AutoDutyF3;
     UINT8   Fan3Mode3AutoDutyF4;
+
+    UINT8   ParallelGpioSettings;
+    UINT8   F81866LptGpioConfiguration7x[8]; // GPIO7x
+    UINT8   F81866LptGpioConfiguration7xLevel[8];
+    UINT8   F81866LptGpioConfiguration8x[8]; // GPIO8x
+    UINT8   F81866LptGpioConfiguration8xLevel[8];
 #endif //SETUP_DATA_DEFINITION
 
 //-------------------------------------------------------------------------
@@ -1207,7 +1213,7 @@
             prompt  = STRING_TOKEN(STR_F81866_PARALLEL_FORM),
             help    = STRING_TOKEN(STR_F81866_PARALLEL_FORM_HELP);
         endif;
-    
+
       endform;//SIO Form
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1590,6 +1596,263 @@
             endoneof;
         endif;    // suppressif SIO_SETUP_VAR.LptEnable == 0x0;
     
+        suppressif NOT ideqval LPT_NV_DATA.DevEnable == 0x0;
+        SEPARATOR
+//        oneof varid     = SETUP_DATA.ParallelGpioSettings,
+//            prompt      = STRING_TOKEN(STR_F81866_PARALLEL_GPIO_SETTINGS),
+//            help        = STRING_TOKEN(STR_F81866_PARALLEL_GPIO_SETTINGS),
+//            option text = STRING_TOKEN(STR_F81866_PARALLEL_PROMPT), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+//            option text = STRING_TOKEN(STR_F81866_GPIO), value = 1, flags = RESET_REQUIRED;
+//        endoneof;
+        checkbox varid  = SETUP_DATA.ParallelGpioSettings,
+            prompt      = STRING_TOKEN(STR_F81866_PARALLEL_GPIO_SETTINGS),
+            help        = STRING_TOKEN(STR_F81866_PARALLEL_GPIO_SETTINGS),
+            flags       = 0 | RESET_REQUIRED, 
+        endcheckbox;
+
+		suppressif ideqval SETUP_DATA.ParallelGpioSettings == 0;
+        // GPIO70
+        oneof varid = SETUP_DATA.F81866LptGpioConfiguration7x[0],\
+		    prompt = STRING_TOKEN (STR_F81866_GPIO70),\
+		    help   = STRING_TOKEN (STR_F81866_GPIO70),\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_INPUT), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT), value = 1, flags = RESET_REQUIRED;\
+		endoneof;\
+		suppressif ideqval SETUP_DATA.F81866LptGpioConfiguration7x[0] == 0;\
+			oneof varid = SETUP_DATA.F81866LptGpioConfiguration7xLevel[0],\
+			prompt = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			help   = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_LOW), value = 0, flags = RESET_REQUIRED;\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_HIGH), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			endoneof;\
+		endif;
+        // GPIO71
+        oneof varid = SETUP_DATA.F81866LptGpioConfiguration7x[1],\
+		    prompt = STRING_TOKEN (STR_F81866_GPIO71),\
+		    help   = STRING_TOKEN (STR_F81866_GPIO71),\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_INPUT), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT), value = 1, flags = RESET_REQUIRED;\
+		endoneof;\
+		suppressif ideqval SETUP_DATA.F81866LptGpioConfiguration7x[1] == 0;\
+			oneof varid = SETUP_DATA.F81866LptGpioConfiguration7xLevel[1],\
+			prompt = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			help   = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_LOW), value = 0, flags = RESET_REQUIRED;\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_HIGH), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			endoneof;\
+		endif;
+        // GPIO72
+        oneof varid = SETUP_DATA.F81866LptGpioConfiguration7x[2],\
+		    prompt = STRING_TOKEN (STR_F81866_GPIO72),\
+		    help   = STRING_TOKEN (STR_F81866_GPIO72),\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_INPUT), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT), value = 1, flags = RESET_REQUIRED;\
+		endoneof;\
+		suppressif ideqval SETUP_DATA.F81866LptGpioConfiguration7x[2] == 0;\
+			oneof varid = SETUP_DATA.F81866LptGpioConfiguration7xLevel[2],\
+			prompt = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			help   = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_LOW), value = 0, flags = RESET_REQUIRED;\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_HIGH), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			endoneof;\
+		endif;
+        // GPIO73
+        oneof varid = SETUP_DATA.F81866LptGpioConfiguration7x[3],\
+		    prompt = STRING_TOKEN (STR_F81866_GPIO73),\
+		    help   = STRING_TOKEN (STR_F81866_GPIO73),\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_INPUT), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT), value = 1, flags = RESET_REQUIRED;\
+		endoneof;\
+		suppressif ideqval SETUP_DATA.F81866LptGpioConfiguration7x[3] == 0;\
+			oneof varid = SETUP_DATA.F81866LptGpioConfiguration7xLevel[3],\
+			prompt = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			help   = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_LOW), value = 0, flags = RESET_REQUIRED;\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_HIGH), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			endoneof;\
+		endif;
+        // GPIO74
+        oneof varid = SETUP_DATA.F81866LptGpioConfiguration7x[4],\
+		    prompt = STRING_TOKEN (STR_F81866_GPIO74),\
+		    help   = STRING_TOKEN (STR_F81866_GPIO74),\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_INPUT), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT), value = 1, flags = RESET_REQUIRED;\
+		endoneof;\
+		suppressif ideqval SETUP_DATA.F81866LptGpioConfiguration7x[4] == 0;\
+			oneof varid = SETUP_DATA.F81866LptGpioConfiguration7xLevel[4],\
+			prompt = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			help   = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_LOW), value = 0, flags = RESET_REQUIRED;\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_HIGH), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			endoneof;\
+		endif;
+        // GPIO75
+        oneof varid = SETUP_DATA.F81866LptGpioConfiguration7x[5],\
+		    prompt = STRING_TOKEN (STR_F81866_GPIO75),\
+		    help   = STRING_TOKEN (STR_F81866_GPIO75),\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_INPUT), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT), value = 1, flags = RESET_REQUIRED;\
+		endoneof;\
+		suppressif ideqval SETUP_DATA.F81866LptGpioConfiguration7x[5] == 0;\
+			oneof varid = SETUP_DATA.F81866LptGpioConfiguration7xLevel[5],\
+			prompt = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			help   = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_LOW), value = 0, flags = RESET_REQUIRED;\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_HIGH), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			endoneof;\
+		endif;
+        // GPIO76
+        oneof varid = SETUP_DATA.F81866LptGpioConfiguration7x[6],\
+		    prompt = STRING_TOKEN (STR_F81866_GPIO76),\
+		    help   = STRING_TOKEN (STR_F81866_GPIO76),\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_INPUT), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT), value = 1, flags = RESET_REQUIRED;\
+		endoneof;\
+		suppressif ideqval SETUP_DATA.F81866LptGpioConfiguration7x[6] == 0;\
+			oneof varid = SETUP_DATA.F81866LptGpioConfiguration7xLevel[6],\
+			prompt = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			help   = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_LOW), value = 0, flags = RESET_REQUIRED;\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_HIGH), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			endoneof;\
+		endif;
+        // GPIO77
+        oneof varid = SETUP_DATA.F81866LptGpioConfiguration7x[7],\
+		    prompt = STRING_TOKEN (STR_F81866_GPIO77),\
+		    help   = STRING_TOKEN (STR_F81866_GPIO77),\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_INPUT), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT), value = 1, flags = RESET_REQUIRED;\
+		endoneof;\
+		suppressif ideqval SETUP_DATA.F81866LptGpioConfiguration7x[7] == 0;\
+			oneof varid = SETUP_DATA.F81866LptGpioConfiguration7xLevel[7],\
+			prompt = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			help   = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_LOW), value = 0, flags = RESET_REQUIRED;\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_HIGH), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			endoneof;\
+		endif;
+        // GPIO80
+        oneof varid = SETUP_DATA.F81866LptGpioConfiguration8x[0],\
+		    prompt = STRING_TOKEN (STR_F81866_GPIO80),\
+		    help   = STRING_TOKEN (STR_F81866_GPIO80),\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_INPUT), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT), value = 1, flags = RESET_REQUIRED;\
+		endoneof;\
+		suppressif ideqval SETUP_DATA.F81866LptGpioConfiguration8x[0] == 0;\
+			oneof varid = SETUP_DATA.F81866LptGpioConfiguration8xLevel[0],\
+			prompt = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			help   = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_LOW), value = 0, flags = RESET_REQUIRED;\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_HIGH), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			endoneof;\
+		endif;
+        // GPIO81
+        oneof varid = SETUP_DATA.F81866LptGpioConfiguration8x[1],\
+		    prompt = STRING_TOKEN (STR_F81866_GPIO81),\
+		    help   = STRING_TOKEN (STR_F81866_GPIO81),\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_INPUT), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT), value = 1, flags = RESET_REQUIRED;\
+		endoneof;\
+		suppressif ideqval SETUP_DATA.F81866LptGpioConfiguration8x[1] == 0;\
+			oneof varid = SETUP_DATA.F81866LptGpioConfiguration8xLevel[1],\
+			prompt = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			help   = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_LOW), value = 0, flags = RESET_REQUIRED;\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_HIGH), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			endoneof;\
+		endif;
+        // GPIO82
+        oneof varid = SETUP_DATA.F81866LptGpioConfiguration8x[2],\
+		    prompt = STRING_TOKEN (STR_F81866_GPIO82),\
+		    help   = STRING_TOKEN (STR_F81866_GPIO82),\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_INPUT), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT), value = 1, flags = RESET_REQUIRED;\
+		endoneof;\
+		suppressif ideqval SETUP_DATA.F81866LptGpioConfiguration8x[2] == 0;\
+			oneof varid = SETUP_DATA.F81866LptGpioConfiguration8xLevel[2],\
+			prompt = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			help   = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_LOW), value = 0, flags = RESET_REQUIRED;\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_HIGH), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			endoneof;\
+		endif;
+        // GPIO83
+        oneof varid = SETUP_DATA.F81866LptGpioConfiguration8x[3],\
+		    prompt = STRING_TOKEN (STR_F81866_GPIO83),\
+		    help   = STRING_TOKEN (STR_F81866_GPIO83),\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_INPUT), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT), value = 1, flags = RESET_REQUIRED;\
+		endoneof;\
+		suppressif ideqval SETUP_DATA.F81866LptGpioConfiguration8x[3] == 0;\
+			oneof varid = SETUP_DATA.F81866LptGpioConfiguration8xLevel[3],\
+			prompt = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			help   = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_LOW), value = 0, flags = RESET_REQUIRED;\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_HIGH), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			endoneof;\
+		endif;
+        // GPIO84
+        oneof varid = SETUP_DATA.F81866LptGpioConfiguration8x[4],\
+		    prompt = STRING_TOKEN (STR_F81866_GPIO84),\
+		    help   = STRING_TOKEN (STR_F81866_GPIO84),\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_INPUT), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT), value = 1, flags = RESET_REQUIRED;\
+		endoneof;\
+		suppressif ideqval SETUP_DATA.F81866LptGpioConfiguration8x[4] == 0;\
+			oneof varid = SETUP_DATA.F81866LptGpioConfiguration8xLevel[4],\
+			prompt = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			help   = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_LOW), value = 0, flags = RESET_REQUIRED;\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_HIGH), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			endoneof;\
+		endif;
+        // GPIO85
+        oneof varid = SETUP_DATA.F81866LptGpioConfiguration8x[5],\
+		    prompt = STRING_TOKEN (STR_F81866_GPIO85),\
+		    help   = STRING_TOKEN (STR_F81866_GPIO85),\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_INPUT), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT), value = 1, flags = RESET_REQUIRED;\
+		endoneof;\
+		suppressif ideqval SETUP_DATA.F81866LptGpioConfiguration8x[5] == 0;\
+			oneof varid = SETUP_DATA.F81866LptGpioConfiguration8xLevel[5],\
+			prompt = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			help   = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_LOW), value = 0, flags = RESET_REQUIRED;\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_HIGH), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			endoneof;\
+		endif;
+        // GPIO86
+        oneof varid = SETUP_DATA.F81866LptGpioConfiguration8x[6],\
+		    prompt = STRING_TOKEN (STR_F81866_GPIO86),\
+		    help   = STRING_TOKEN (STR_F81866_GPIO86),\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_INPUT), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT), value = 1, flags = RESET_REQUIRED;\
+		endoneof;\
+		suppressif ideqval SETUP_DATA.F81866LptGpioConfiguration8x[6] == 0;\
+			oneof varid = SETUP_DATA.F81866LptGpioConfiguration8xLevel[6],\
+			prompt = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			help   = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_LOW), value = 0, flags = RESET_REQUIRED;\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_HIGH), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			endoneof;\
+		endif;
+        // GPIO87
+        oneof varid = SETUP_DATA.F81866LptGpioConfiguration8x[7],\
+		    prompt = STRING_TOKEN (STR_F81866_GPIO87),\
+		    help   = STRING_TOKEN (STR_F81866_GPIO87),\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_INPUT), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+		    option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT), value = 1, flags = RESET_REQUIRED;\
+		endoneof;\
+		suppressif ideqval SETUP_DATA.F81866LptGpioConfiguration8x[7] == 0;\
+			oneof varid = SETUP_DATA.F81866LptGpioConfiguration8xLevel[7],\
+			prompt = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			help   = STRING_TOKEN (STR_F81866_GPIO_LEVEL_PROMPT),\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_LOW), value = 0, flags = RESET_REQUIRED;\
+			option text  = STRING_TOKEN (STR_F81866_GPIO_OUTPUT_HIGH), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			endoneof;\
+		endif;        
+        endif ; //suppressif ideqval SETUP_DATA.ParallelGpioSettings == 0;
+        endif; //suppressif NOT ideqval LPT_NV_DATA.DevEnable == 0x0;
     endform;  // Parralel Form
 
 #endif //FORM_SET_FORM

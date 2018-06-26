@@ -323,8 +323,98 @@ static EFI_PEI_PPI_DESCRIPTOR Crb2CustomPpi[] = {
 // PPI that are notified
 
 // External Declaration(s)
+#define		PORT_SELECT_REGISTER			0x27
+	#define		GPIO_PROG_SEL			BIT2|BIT3
+	#define		GPIO0_EN			0
+	#define		GPIO1_EN			BIT2
+	#define		GPIO2_EN			BIT3
+
+#define		MULTI_FUNCTION_SELECT_1_REGISTER	0x28
+	#define		LPT_GP_EN			BIT5
 
 // Function Definition(s)
+VOID F81866_CRBPeiClearDevResource(
+    IN  UINT8    Ldn
+)
+{
+    // Seclect device LDN
+    IoWrite8(F81866_CONFIG_INDEX, F81866_LDN_SEL_REGISTER);
+    IoWrite8(F81866_CONFIG_DATA, Ldn);
+    // Deactivate Device
+    IoWrite8(F81866_CONFIG_INDEX, F81866_ACTIVATE_REGISTER);
+    IoWrite8(F81866_CONFIG_DATA,  F81866_DEACTIVATE_VALUE);
+    // Clear Base Address
+    IoWrite8(F81866_CONFIG_INDEX, F81866_BASE1_HI_REGISTER);
+    IoWrite8(F81866_CONFIG_DATA,  0);
+    IoWrite8(F81866_CONFIG_INDEX, F81866_BASE1_LO_REGISTER);
+    IoWrite8(F81866_CONFIG_DATA,  0);
+    // Clear Interrupt
+    IoWrite8(F81866_CONFIG_INDEX, F81866_IRQ1_REGISTER);
+    IoWrite8(F81866_CONFIG_DATA,  0);
+//    return;
+}
+
+VOID F81866ConfigRegisterWrite(UINT8 Index, UINT8 Data)
+{
+	IoWrite8(F81866_CONFIG_INDEX, Index);
+	IoWrite8(F81866_CONFIG_DATA, Data);
+}
+UINT8 F81866ConfigRegisterRead(UINT8 Index)
+{
+	UINT8 Data8;
+	IoWrite8(F81866_CONFIG_INDEX, Index);
+	Data8 = IoRead8(F81866_CONFIG_DATA);
+	return Data8;
+}
+VOID F81866LDNSelect(UINT8 Ldn)
+{
+	IoWrite8(F81866_CONFIG_INDEX, F81866_LDN_SEL_REGISTER);
+	IoWrite8(F81866_CONFIG_DATA, Ldn);
+}
+VOID F81866EnterConfigMode()
+{
+	IoWrite8(F81866_CONFIG_INDEX, F81866_CONFIG_MODE_ENTER_VALUE);
+	IoWrite8(F81866_CONFIG_INDEX, F81866_CONFIG_MODE_ENTER_VALUE);
+}
+VOID F81866ExitConfigMode()
+{
+	// Exit config mode
+	IoWrite8(F81866_CONFIG_INDEX, F81866_CONFIG_MODE_EXIT_VALUE);
+}
+VOID F81866SetGpioPin(IN UINT8 GpioNum, IN UINT8 Type, IN UINT8 Level, IN UINT8 Drive)
+{
+	UINT8	Data8, Offset;
+	
+//	F81866EnterConfigMode();	
+	F81866LDNSelect(F81866_LDN_GPIO);		//GPIO Device Configuration Registers
+	
+	if( (GpioNum/10) <= 7 ){
+		Offset = ( ~(GpioNum/10) );
+		Offset = Offset << 4;
+		Offset &= 0xF0;
+	}
+	else if ( (GpioNum/10) == 8 )
+		Offset = 0x88;	
+	Data8 = F81866ConfigRegisterRead(Offset + 3);	//Drive Enable Register
+	Data8 &= ~( 1 << ( GpioNum%10 ) );
+	if(Drive == 1)
+		Data8 |= ( 1 << ( GpioNum%10 ) );
+	F81866ConfigRegisterWrite(Offset + 3, Data8);
+	
+	Data8 = F81866ConfigRegisterRead(Offset + 1);	//Output Data Register
+	Data8 &= ~( 1 << ( GpioNum%10 ) );
+	if(Level == 1)
+		Data8 |= ( 1 << ( GpioNum%10 ) );
+	F81866ConfigRegisterWrite(Offset + 1, Data8);		
+
+	Data8 = F81866ConfigRegisterRead(Offset);	//Output Enable Register
+	Data8 &= ~( 1 << ( GpioNum%10 ) );
+	if(Type == 0)
+		Data8 |= ( 1 << ( GpioNum%10 ) );
+	F81866ConfigRegisterWrite(Offset, Data8);
+
+//	F81866ExitConfigMode();
+}
 
 //---------------------------------------------------------------------------
 
@@ -359,7 +449,7 @@ EFI_STATUS EFIAPI CRBPEI_Init (
     // Get pointer to the CpuIo PPI
     CpuIo = (*PeiServices)->CpuIo;
 
-    Status = SbLib_SetLpcDeviceDecoding(NULL,0x60, 0, dsPS2K);          // Decode SB Port 0x60,0x64
+//    Status = SbLib_SetLpcDeviceDecoding(NULL,0x60, 0, dsPS2K);          // Decode SB Port 0x60,0x64
 
     // Install custom PPI for customization
     // Customers or OEM can define SSID and GPIO by different platform type
@@ -382,6 +472,93 @@ EFI_STATUS EFIAPI CRBPEI_Init (
 //####    ASSERT_PEI_ERROR (PeiServices, Status);
 // Intel Platform Policy Override Sample Code <<<
 
+{
+#include <Setup.h>
+#include <Ppi\ReadOnlyVariable2.h>
+
+    EFI_PEI_READ_ONLY_VARIABLE2_PPI *ReadOnlyVariable = NULL;
+    EFI_GUID gPeiReadOnlyVarPpiGuid = EFI_PEI_READ_ONLY_VARIABLE2_PPI_GUID;
+    EFI_GUID gSetupGuid = SETUP_GUID;
+    UINTN                           VariableSize = sizeof( SETUP_DATA );
+    SETUP_DATA                      SetupData;
+
+    Status = (*PeiServices)->LocatePpi( PeiServices, \
+                                        &gPeiReadOnlyVarPpiGuid, \
+                                        0, \
+                                        NULL, \
+                                        &ReadOnlyVariable );
+    VariableSize = sizeof(SetupData);
+    Status = ReadOnlyVariable->GetVariable( ReadOnlyVariable, \
+                                            L"Setup", \
+                                            &gSetupGuid, \
+                                            NULL, \
+                                            &VariableSize, \
+                                            &SetupData );
+
+	// Parallel Port / Gpio multi function selection _Begin >>
+	if(SetupData.ParallelGpioSettings == 1) {
+		UINT8	Data8;
+
+		F81866EnterConfigMode();
+
+        Data8 = F81866ConfigRegisterRead(PORT_SELECT_REGISTER);
+		Data8 &= ~(GPIO_PROG_SEL);
+		Data8 |= GPIO0_EN;
+
+		Data8 = F81866ConfigRegisterRead(MULTI_FUNCTION_SELECT_1_REGISTER);
+		Data8 &= ~(LPT_GP_EN);
+		//if(SetupData.ParallelGpioSettings == 1)
+			Data8 |= LPT_GP_EN;
+		F81866ConfigRegisterWrite(MULTI_FUNCTION_SELECT_1_REGISTER, Data8);
+
+        F81866_CRBPeiClearDevResource(F81866_LDN_LPT);
+
+    F81866LDNSelect(F81866_LDN_GPIO);
+    // GPIO7x
+    F81866ConfigRegisterWrite(0x83, 0xFF); // All push pull
+    F81866ConfigRegisterWrite(0x81, 
+                        SetupData.F81866LptGpioConfiguration7xLevel[7] << 7
+                    |   SetupData.F81866LptGpioConfiguration7xLevel[6] << 6
+                    |   SetupData.F81866LptGpioConfiguration7xLevel[5] << 5
+                    |   SetupData.F81866LptGpioConfiguration7xLevel[4] << 4
+                    |   SetupData.F81866LptGpioConfiguration7xLevel[3] << 3
+                    |   SetupData.F81866LptGpioConfiguration7xLevel[2] << 2
+                    |   SetupData.F81866LptGpioConfiguration7xLevel[1] << 1
+                    |   SetupData.F81866LptGpioConfiguration7xLevel[0] );
+    F81866ConfigRegisterWrite(0x80, 
+                        SetupData.F81866LptGpioConfiguration7x[7] << 7
+                    |   SetupData.F81866LptGpioConfiguration7x[6] << 6
+                    |   SetupData.F81866LptGpioConfiguration7x[5] << 5
+                    |   SetupData.F81866LptGpioConfiguration7x[4] << 4
+                    |   SetupData.F81866LptGpioConfiguration7x[3] << 3
+                    |   SetupData.F81866LptGpioConfiguration7x[2] << 2
+                    |   SetupData.F81866LptGpioConfiguration7x[1] << 1
+                    |   SetupData.F81866LptGpioConfiguration7x[0] );
+    // GPIO8x
+    F81866ConfigRegisterWrite(0x8B, 0xFF); // All push pull
+    F81866ConfigRegisterWrite(0x89, 
+                        SetupData.F81866LptGpioConfiguration8xLevel[7] << 7
+                    |   SetupData.F81866LptGpioConfiguration8xLevel[6] << 6
+                    |   SetupData.F81866LptGpioConfiguration8xLevel[5] << 5
+                    |   SetupData.F81866LptGpioConfiguration8xLevel[4] << 4
+                    |   SetupData.F81866LptGpioConfiguration8xLevel[3] << 3
+                    |   SetupData.F81866LptGpioConfiguration8xLevel[2] << 2
+                    |   SetupData.F81866LptGpioConfiguration8xLevel[1] << 1
+                    |   SetupData.F81866LptGpioConfiguration8xLevel[0] );
+    F81866ConfigRegisterWrite(0x88, 
+                        SetupData.F81866LptGpioConfiguration8x[7] << 7
+                    |   SetupData.F81866LptGpioConfiguration8x[6] << 6
+                    |   SetupData.F81866LptGpioConfiguration8x[5] << 5
+                    |   SetupData.F81866LptGpioConfiguration8x[4] << 4
+                    |   SetupData.F81866LptGpioConfiguration8x[3] << 3
+                    |   SetupData.F81866LptGpioConfiguration8x[2] << 2
+                    |   SetupData.F81866LptGpioConfiguration8x[1] << 1
+                    |   SetupData.F81866LptGpioConfiguration8x[0] );
+
+        F81866ExitConfigMode();
+	}
+	// Parallel Port / Gpio multi function selection _End <<
+}
     return EFI_SUCCESS;
 }
 

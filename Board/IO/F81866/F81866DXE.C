@@ -750,9 +750,9 @@ static EFI_STATUS LPT_Init(
 
     switch (InitStep) {
         case isGetSetupData:
-            // Disable decode?
-            if((!dev->DeviceInfo->Implemented) || (!dev->NvData.DevEnable))
-                LoopCspIoDecodeListInit(NULL,AmiSio); 
+//            // Disable decode?
+//            if((!dev->DeviceInfo->Implemented) || (!dev->NvData.DevEnable))
+//                LoopCspIoDecodeListInit(NULL,AmiSio); 
         break;
     
         case isPrsSelect:
@@ -784,7 +784,7 @@ static EFI_STATUS LPT_Init(
         break;
 
         case isBeforeActivate:
-            LoopCspIoDecodeListInit(PciIo,AmiSio);   // Enable IODecode
+//            LoopCspIoDecodeListInit(PciIo,AmiSio);   // Enable IODecode
 
             //Programm Device Mode register here(if NEEDED)use AmiSioProtocol  
 
