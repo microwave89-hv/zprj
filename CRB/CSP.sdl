@@ -1391,7 +1391,7 @@ TOKEN
 End
 TOKEN
 	Name  = "F81866_PARALLEL_PORT_PRESENT"
-	Value  = "0"
+	Value  = "1"
 	Help  = "LPT Port Present / Not Present."
 	TokenType = Boolean
 	TargetH = Yes

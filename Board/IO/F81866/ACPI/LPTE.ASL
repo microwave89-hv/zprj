@@ -117,19 +117,19 @@ Device(LPTE) {
 // IRQ
         StartDependentFn(0,0) {
             IO(Decode16, 0x378, 0x378, 1, 8)
-            IRQNoFlags() {5}
+            IRQNoFlags() {7}
         }
         StartDependentFnNoPri() {
             IO(Decode16, 0x378, 0x378, 1, 8)
-            IRQNoFlags() {5,6,7,10,11,12}
+            IRQNoFlags() {7}
         }
         StartDependentFnNoPri() {
             IO(Decode16, 0x278, 0x278, 1, 8)
-            IRQNoFlags() {5,6,7,10,11,12}
+            IRQNoFlags() {7}
         }
         StartDependentFnNoPri() {
             IO(Decode16, 0x3BC, 0x3BC, 1, 4)
-            IRQNoFlags() {5,6,7,10,11,12}
+            IRQNoFlags() {7}
         }
 // No IRQ
 //        StartDependentFnNoPri() {
@@ -154,25 +154,25 @@ Device(LPTE) {
         StartDependentFn(0, 0) {
             IO(Decode16, 0x378, 0x378, 1, 8)
             IO(Decode16, 0x778, 0x778, 1, 8)
-            IRQNoFlags() {5}
+            IRQNoFlags() {7}
             DMA(Compatibility, NotBusMaster, Transfer8) {3}
         }
         StartDependentFnNoPri() {
             IO(Decode16, 0x378, 0x378, 1, 8)
             IO(Decode16, 0x778, 0x778, 1, 8)
-            IRQNoFlags() {5,6,7,10,11,12}
+            IRQNoFlags() {7}
             DMA(Compatibility, NotBusMaster, Transfer8) {1,3}
         }
         StartDependentFnNoPri() {
             IO(Decode16, 0x278, 0x278, 1, 8)
             IO(Decode16, 0x678, 0x678, 1, 8)
-            IRQNoFlags() {5,6,7,10,11,12}
+            IRQNoFlags() {7}
             DMA(Compatibility, NotBusMaster, Transfer8) {1,3}
         }
         StartDependentFnNoPri() {
             IO(Decode16, 0x3BC, 0x3BC, 1, 4)
             IO(Decode16, 0x7BC, 0x7BC, 1, 4)
-            IRQNoFlags() {5,6,7,10,11,12}
+            IRQNoFlags() {7}
             DMA(Compatibility, NotBusMaster, Transfer8) {1,3}
         }
 // No IRQ

@@ -74,17 +74,17 @@ Device(UAR6) {
 	Name(_PRS, ResourceTemplate() {
 		StartDependentFn(0, 0) {
 			IO(Decode16, 0x270, 0x270, 1, 8)
-			IRQ(Level,ActiveLow,Shared) {10}
+			IRQ(Level,ActiveLow,Shared) {11}
 			DMA(Compatibility, NotBusMaster, Transfer8) {}
 		}
 		StartDependentFnNoPri() {
 			IO(Decode16, 0x278, 0x278, 1, 8)
-			IRQ(Level,ActiveLow,Shared) {10}
+			IRQ(Level,ActiveLow,Shared) {11}
 			DMA(Compatibility, NotBusMaster, Transfer8) {}
 		}
 		StartDependentFnNoPri() {
 			IO(Decode16, 0x270, 0x270, 1, 8)
-			IRQ(Level,ActiveLow,Shared) {10}
+			IRQ(Level,ActiveLow,Shared) {11}
 			DMA(Compatibility, NotBusMaster, Transfer8) {}
 		}
 //        StartDependentFnNoPri() {
