@@ -613,6 +613,9 @@ TOKEN
 	Value  = "1"
 	Help  = "This flag enables/disables all firmware beeps"
 	TokenType = Boolean
+	TargetH = Yes
+	TargetEQU = Yes
+	TargetMAK = Yes
 End
 TOKEN
 	Name  = "ISA_IRQ_MASK"
@@ -1456,4 +1459,23 @@ ELINK
 	Parent  = "PCIEClockConfig"
 	InvokeOrder = AfterParent
 	Help  = "Intel Flathead Creek, PCIE Slot#6(J13BU)"
+End
+
+ELINK
+	Name  = "ConInAvailabilityBeep,"
+	Parent  = "/* Connect ConIn Devices */"
+#	Token = "BEEP_ENABLE" "=" "1"
+	InvokeOrder = AfterParent
+End
+ELINK
+	Name  = "BeepService,"
+	Parent  = "ReportMiscStatus"
+#	Token = "BEEP_ENABLE" "=" "1"
+	InvokeOrder = AfterParent
+End
+ELINK
+	Name  = "BeepStatus,"
+	Parent  = "ReportSimpleStatus"
+#	Token = "BEEP_ENABLE" "=" "1"
+	InvokeOrder = AfterParent
 End

@@ -1,3 +1,6 @@
+2018/06/26
+	Setup Option to control LPT / GPIO
+//	NO POST BEEP - 2018/06/26 done
 2018/06/22
 //	PCIEClockConfig - 2018/06/22 done
 2018/06/19
