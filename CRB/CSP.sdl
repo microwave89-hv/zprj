@@ -1399,6 +1399,37 @@ TOKEN
 	TokenType = Boolean
 	TargetH = Yes
 End
+TOKEN
+	Name  = "F81866_IBEX_SUPPORT"
+	Value  = "0"
+	Help  = "Intel PECI 1/0 support/not"
+	TokenType = Boolean
+	TargetH = Yes
+#	Token = "F81866_HWM_PRESENT" "=" "1"
+End
+TOKEN
+	Name  = "F81866_T2_MODE"
+	Value  = "0"
+	Help  = "0: TEMP2 is connected to a thermistor.\1: TEMP2 is connected to a BJT. (default)"
+	TokenType = Integer
+	TargetH = Yes
+End
+TOKEN
+	Name  = "F81866_T1_MODE"
+	Value  = "0"
+	Help  = "0: TEMP1 is connected to a thermistor\1: TEMP1 is connected to a BJT.(default)"
+	TokenType = Integer
+	TargetH = Yes
+End
+TOKEN
+	Name  = "F81866_SMF_SUPPORT"
+	Value  = "1"
+	Help  = "F81866 SmartFan control support"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "F81866_HWM_PRESENT" "=" "1"
+End
 
 ## Board\IO\F81216\IO_F81216.SDL
 TOKEN

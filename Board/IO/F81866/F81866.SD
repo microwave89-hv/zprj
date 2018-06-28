@@ -76,6 +76,7 @@
 /***********************************************************/
     UINT8   SmartFanEnable;
 
+	UINT8   Fan1TempSrc;
     UINT8   Fan1SmartFanMode;
     UINT16  Fan1Mode0FixedSpeed;
     UINT8   Fan1Mode1FixedDuty;
@@ -87,6 +88,7 @@
     UINT8   Fan1Mode2AutoRpmF2;
     UINT8   Fan1Mode2AutoRpmF3;
     UINT8   Fan1Mode2AutoRpmF4;
+    UINT8   Fan1Mode2AutoRpmF5;
     UINT8   Fan1Mode3AutoDutyT1;
     UINT8   Fan1Mode3AutoDutyT2;
     UINT8   Fan1Mode3AutoDutyT3;
@@ -95,7 +97,9 @@
     UINT8   Fan1Mode3AutoDutyF2;
     UINT8   Fan1Mode3AutoDutyF3;
     UINT8   Fan1Mode3AutoDutyF4;
+    UINT8   Fan1Mode3AutoDutyF5;
 
+	UINT8   Fan2TempSrc;
     UINT8   Fan2SmartFanMode;
     UINT16  Fan2Mode0FixedSpeed;
     UINT8   Fan2Mode1FixedDuty;
@@ -107,6 +111,7 @@
     UINT8   Fan2Mode2AutoRpmF2;
     UINT8   Fan2Mode2AutoRpmF3;
     UINT8   Fan2Mode2AutoRpmF4;
+    UINT8   Fan2Mode2AutoRpmF5;
     UINT8   Fan2Mode3AutoDutyT1;
     UINT8   Fan2Mode3AutoDutyT2;
     UINT8   Fan2Mode3AutoDutyT3;
@@ -115,7 +120,9 @@
     UINT8   Fan2Mode3AutoDutyF2;
     UINT8   Fan2Mode3AutoDutyF3;
     UINT8   Fan2Mode3AutoDutyF4;
+    UINT8   Fan2Mode3AutoDutyF5;
 
+    UINT8   Fan3TempSrc;
     UINT8   Fan3SmartFanMode;
     UINT16  Fan3Mode0FixedSpeed;
     UINT8   Fan3Mode1FixedDuty;
@@ -127,6 +134,7 @@
     UINT8   Fan3Mode2AutoRpmF2;
     UINT8   Fan3Mode2AutoRpmF3;
     UINT8   Fan3Mode2AutoRpmF4;
+    UINT8   Fan3Mode2AutoRpmF5;
     UINT8   Fan3Mode3AutoDutyT1;
     UINT8   Fan3Mode3AutoDutyT2;
     UINT8   Fan3Mode3AutoDutyT3;
@@ -135,6 +143,7 @@
     UINT8   Fan3Mode3AutoDutyF2;
     UINT8   Fan3Mode3AutoDutyF3;
     UINT8   Fan3Mode3AutoDutyF4;
+    UINT8   Fan3Mode3AutoDutyF5;
 
     UINT8   ParallelGpioSettings;
     UINT8   F81866LptGpioConfiguration7x[8]; // GPIO7x
@@ -442,6 +451,18 @@
 			endnumeric;
         endif;
 		
+
+		suppressif NOT ideqval SETUP_DATA.Fan1SmartFanMode == 0x02
+                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+			oneof varid     = SETUP_DATA.Fan1TempSrc,\
+				prompt      = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC),\
+				help        = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_HELP),\
+				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T3), value = 0, flags = RESET_REQUIRED;\
+				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T1), value = 1, flags = DEFAULT | RESET_REQUIRED;\
+				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T2), value = 2, flags = RESET_REQUIRED;\
+			endoneof;
+        endif;
+
 		suppressif NOT ideqval SETUP_DATA.Fan1SmartFanMode == 0x02
                     OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
 			numeric varid = SETUP_DATA.Fan1Mode2AutoRpmT1,
@@ -545,7 +566,20 @@
 				default   = 50,
 			endnumeric;
         endif;
-		
+
+		suppressif NOT ideqval SETUP_DATA.Fan1SmartFanMode == 0x02
+                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+			numeric varid = SETUP_DATA.Fan1Mode2AutoRpmF5,
+				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_F5),
+				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
+				flags     = RESET_REQUIRED,
+				minimum   = 1,
+				maximum   = 100,
+				step      = 1,
+				default   = 50,
+			endnumeric;
+        endif;
+
 		suppressif NOT ideqval SETUP_DATA.Fan1SmartFanMode == 0x03
                     OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
 			numeric varid = SETUP_DATA.Fan1Mode3AutoDutyT1,
@@ -649,7 +683,30 @@
 				default   = 50,
 			endnumeric;
         endif;
-	
+
+		suppressif NOT ideqval SETUP_DATA.Fan1SmartFanMode == 0x03
+                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+			numeric varid = SETUP_DATA.Fan1Mode3AutoDutyF5,
+				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_F5),
+				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
+				flags     = RESET_REQUIRED,
+				minimum   = 1,
+				maximum   = 100,
+				step      = 1,
+				default   = 50,
+			endnumeric;
+        endif;
+
+    suppressif ideqval SETUP_DATA.SmartFanEnable == 0x00;
+			oneof varid     = SETUP_DATA.Fan2TempSrc,\
+				prompt      = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC),\
+				help        = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_HELP),\
+				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T3), value = 0, flags = RESET_REQUIRED;\
+				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T1), value = 1, flags = DEFAULT | RESET_REQUIRED;\
+				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T2), value = 2, flags = RESET_REQUIRED;\
+			endoneof;
+    endif;
+
     suppressif ideqval SETUP_DATA.SmartFanEnable == 0x00;
 		oneof varid     = SETUP_DATA.Fan2SmartFanMode,
             prompt      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN2),
@@ -790,7 +847,20 @@
 				default   = 50,
 			endnumeric;
         endif;
-		
+
+		suppressif NOT ideqval SETUP_DATA.Fan2SmartFanMode == 0x02
+                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+			numeric varid = SETUP_DATA.Fan2Mode2AutoRpmF5,
+				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_F5),
+				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
+				flags     = RESET_REQUIRED,
+				minimum   = 1,
+				maximum   = 100,
+				step      = 1,
+				default   = 50,
+			endnumeric;
+        endif;
+
 		suppressif NOT ideqval SETUP_DATA.Fan2SmartFanMode == 0x03
                     OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
 			numeric varid = SETUP_DATA.Fan2Mode3AutoDutyT1,
@@ -895,164 +965,10 @@
 			endnumeric;
         endif;
 
-
-    suppressif ideqval SETUP_DATA.SmartFanEnable == 0x00;
-		oneof varid     = SETUP_DATA.Fan3SmartFanMode,
-            prompt      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN3),
-            help        = STRING_TOKEN(STR_F81866_SMARTFAN_CONFIG_HELP),
-            option text = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE0), value = 0, flags = RESET_REQUIRED;
-            option text = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE1), value = 1, flags = RESET_REQUIRED;
-            option text = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2), value = 2, flags = RESET_REQUIRED;
-            option text = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3), value = 3, flags = DEFAULT |RESET_REQUIRED;
-        endoneof;
-    endif;
-        suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x00
+		suppressif NOT ideqval SETUP_DATA.Fan2SmartFanMode == 0x03
                     OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode0FixedSpeed,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE0),
-				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE0_HELP),
-				flags     = RESET_REQUIRED,
-				minimum   = 500,
-				maximum   = 10000,
-				step      = 1,
-				default   = 2000,
-			endnumeric;
-        endif;
-		
-		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x01
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode1FixedDuty,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE1),
-				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE1_HELP),
-				flags     = RESET_REQUIRED,
-				minimum   = 1,
-				maximum   = 100,
-				step      = 1,
-				default   = 60,
-			endnumeric;
-        endif;
-		
-		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x02
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode2AutoRpmT1,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_T1),
-				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
-				flags     = RESET_REQUIRED,
-				minimum   = 1,
-				maximum   = 100,
-				step      = 1,
-				default   = 60,
-			endnumeric;
-        endif;
-		
-		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x02
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode2AutoRpmT2,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_T2),
-				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
-				flags     = RESET_REQUIRED,
-				minimum   = 1,
-				maximum   = 100,
-				step      = 1,
-				default   = 50,
-			endnumeric;
-        endif;
-		
-		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x02
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode2AutoRpmT3,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_T3),
-				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
-				flags     = RESET_REQUIRED,
-				minimum   = 1,
-				maximum   = 100,
-				step      = 1,
-				default   = 40,
-			endnumeric;
-        endif;
-
-		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x02
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode2AutoRpmT4,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_T4),
-				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
-				flags     = RESET_REQUIRED,
-				minimum   = 1,
-				maximum   = 100,
-				step      = 1,
-				default   = 30,
-			endnumeric;
-        endif;
-		
-		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x02
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode2AutoRpmF1,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_F1),
-				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
-				flags     = RESET_REQUIRED,
-				minimum   = 1,
-				maximum   = 100,
-				step      = 1,
-				default   = 85,
-			endnumeric;
-        endif;
-		
-		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x02
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode2AutoRpmF2,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_F2),
-				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
-				flags     = RESET_REQUIRED,
-				minimum   = 1,
-				maximum   = 100,
-				step      = 1,
-				default   = 70,
-			endnumeric;
-        endif;
-		
-		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x02
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode2AutoRpmF3,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_F3),
-				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
-				flags     = RESET_REQUIRED,
-				minimum   = 1,
-				maximum   = 100,
-				step      = 1,
-				default   = 60,
-			endnumeric;
-        endif;
-
-		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x02
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode2AutoRpmF4,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_F4),
-				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
-				flags     = RESET_REQUIRED,
-				minimum   = 1,
-				maximum   = 100,
-				step      = 1,
-				default   = 50,
-			endnumeric;
-        endif;
-		
-		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x03
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode3AutoDutyT1,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_T1),
-				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
-				flags     = RESET_REQUIRED,
-				minimum   = 1,
-				maximum   = 100,
-				step      = 1,
-				default   = 60,
-			endnumeric;
-        endif;
-		
-		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x03
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode3AutoDutyT2,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_T2),
+			numeric varid = SETUP_DATA.Fan2Mode3AutoDutyF5,
+				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_F5),
 				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
 				flags     = RESET_REQUIRED,
 				minimum   = 1,
@@ -1061,84 +977,287 @@
 				default   = 50,
 			endnumeric;
         endif;
-		
-		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x03
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode3AutoDutyT3,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_T3),
-				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
-				flags     = RESET_REQUIRED,
-				minimum   = 1,
-				maximum   = 100,
-				step      = 1,
-				default   = 40,
-			endnumeric;
-        endif;
 
-		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x03
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode3AutoDutyT4,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_T4),
-				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
-				flags     = RESET_REQUIRED,
-				minimum   = 1,
-				maximum   = 100,
-				step      = 1,
-				default   = 30,
-			endnumeric;
-        endif;
-		
-		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x03
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode3AutoDutyF1,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_F1),
-				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
-				flags     = RESET_REQUIRED,
-				minimum   = 1,
-				maximum   = 100,
-				step      = 1,
-				default   = 85,
-			endnumeric;
-        endif;
-		
-		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x03
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode3AutoDutyF2,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_F2),
-				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
-				flags     = RESET_REQUIRED,
-				minimum   = 1,
-				maximum   = 100,
-				step      = 1,
-				default   = 70,
-			endnumeric;
-        endif;
-		
-		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x03
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode3AutoDutyF3,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_F3),
-				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
-				flags     = RESET_REQUIRED,
-				minimum   = 1,
-				maximum   = 100,
-				step      = 1,
-				default   = 60,
-			endnumeric;
-        endif;
-
-		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x03
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			numeric varid = SETUP_DATA.Fan3Mode3AutoDutyF4,
-				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_F4),
-				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
-				flags     = RESET_REQUIRED,
-				minimum   = 1,
-				maximum   = 100,
-				step      = 1,
-				default   = 50,
-			endnumeric;
-        endif;
+// Zprj Not Supported FAN3
+//    suppressif ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			oneof varid     = SETUP_DATA.Fan3TempSrc,\
+//				prompt      = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC),\
+//				help        = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_HELP),\
+//				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T3), value = 0, flags = RESET_REQUIRED;\
+//				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T1), value = 1, flags = DEFAULT | RESET_REQUIRED;\
+//				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T2), value = 2, flags = RESET_REQUIRED;\
+//			endoneof;
+//    endif;
+//
+//    suppressif ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//		oneof varid     = SETUP_DATA.Fan3SmartFanMode,
+//            prompt      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN3),
+//            help        = STRING_TOKEN(STR_F81866_SMARTFAN_CONFIG_HELP),
+//            option text = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE0), value = 0, flags = RESET_REQUIRED;
+//            option text = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE1), value = 1, flags = RESET_REQUIRED;
+//            option text = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2), value = 2, flags = RESET_REQUIRED;
+//            option text = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3), value = 3, flags = DEFAULT |RESET_REQUIRED;
+//        endoneof;
+//    endif;
+//        suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x00
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode0FixedSpeed,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE0),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE0_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 500,
+//				maximum   = 10000,
+//				step      = 1,
+//				default   = 2000,
+//			endnumeric;
+//        endif;
+//		
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x01
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode1FixedDuty,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE1),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE1_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 60,
+//			endnumeric;
+//        endif;
+//		
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x02
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode2AutoRpmT1,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_T1),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 60,
+//			endnumeric;
+//        endif;
+//		
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x02
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode2AutoRpmT2,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_T2),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 50,
+//			endnumeric;
+//        endif;
+//		
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x02
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode2AutoRpmT3,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_T3),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 40,
+//			endnumeric;
+//        endif;
+//
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x02
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode2AutoRpmT4,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_T4),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 30,
+//			endnumeric;
+//        endif;
+//		
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x02
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode2AutoRpmF1,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_F1),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 85,
+//			endnumeric;
+//        endif;
+//		
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x02
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode2AutoRpmF2,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_F2),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 70,
+//			endnumeric;
+//        endif;
+//		
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x02
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode2AutoRpmF3,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_F3),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 60,
+//			endnumeric;
+//        endif;
+//
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x02
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode2AutoRpmF4,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_F4),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 50,
+//			endnumeric;
+//        endif;
+//
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x02
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode2AutoRpmF5,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_RPM_F5),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 50,
+//			endnumeric;
+//        endif;
+//
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x03
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode3AutoDutyT1,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_T1),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 60,
+//			endnumeric;
+//        endif;
+//		
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x03
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode3AutoDutyT2,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_T2),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 50,
+//			endnumeric;
+//        endif;
+//		
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x03
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode3AutoDutyT3,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_T3),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 40,
+//			endnumeric;
+//        endif;
+//
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x03
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode3AutoDutyT4,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_T4),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 30,
+//			endnumeric;
+//        endif;
+//		
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x03
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode3AutoDutyF1,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_F1),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 85,
+//			endnumeric;
+//        endif;
+//		
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x03
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode3AutoDutyF2,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_F2),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 70,
+//			endnumeric;
+//        endif;
+//		
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x03
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode3AutoDutyF3,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_F3),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 60,
+//			endnumeric;
+//        endif;
+//
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x03
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode3AutoDutyF4,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_F4),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 50,
+//			endnumeric;
+//        endif;
+//
+//		suppressif NOT ideqval SETUP_DATA.Fan3SmartFanMode == 0x03
+//                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
+//			numeric varid = SETUP_DATA.Fan3Mode3AutoDutyF5,
+//				prompt    = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_AUTO_DUTY_F5),
+//				help      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3_HELP),
+//				flags     = RESET_REQUIRED,
+//				minimum   = 1,
+//				maximum   = 100,
+//				step      = 1,
+//				default   = 50,
+//			endnumeric;
+//        endif;
 
   endform;
 #endif    // F81866_SMF_SUPPORT

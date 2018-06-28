@@ -119,7 +119,8 @@ DXE_DEVICE_INIT_DATA   DXE_HWM_Init_Table_After_Active[] = {
 	// PECI/TSI/SMBus Setting
 #if (F81866_PECI_SUPPORT)
 	{0x0A, 0xDE, (F81866_INTEL_SEL << 5) | F81866_PECI_EN },
-	{0x09, 0x01, F81866_I2C_ADDR & 0xFE },
+//	{0x09, 0x01, F81866_I2C_ADDR & 0xFE },
+    {0x0C, 0x00, 0x64 },
 #endif
 #if (F81866_IBEX_SUPPORT)
 	{0x0A, 0xDD, (F81866_INTEL_SEL << 5) | (F81866_IBEX_EN << 1)},

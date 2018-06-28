@@ -469,7 +469,7 @@ GetAndUpdateVIN2Voltage (
 
     //OEM_TODO:Get value with HWM IO interface
     GetValueWithIO(0x00,0x22,&VIN2) ; // Register 0x22
-    VIN2 = VIN2*8*(20+47)/47;
+    VIN2 = VIN2*8*(20+2)/2;
     Data->Value = (UINT16)VIN2;
 
     return;
@@ -503,7 +503,8 @@ GetAndUpdateVIN3Voltage (
 
     //OEM_TODO:Get value with HWM IO interface
     GetValueWithIO(0x00,0x23,&VIN3) ; // Register 0x23
-    VIN3 = VIN3*8;
+    //VIN3 = VIN3*8;
+    VIN3 = VIN3*8*(200 + 47) / 47;
     Data->Value = (UINT16)VIN3;
 
     return;
@@ -537,7 +538,7 @@ GetAndUpdateVIN4Voltage (
 
     //OEM_TODO:Get value with HWM IO interface
     GetValueWithIO(0x00,0x24,&VIN4) ; // Register 0x24
-    VIN4 = VIN4*8*(100+100)/100;
+    VIN4 = VIN4*8;
     Data->Value = (UINT16)VIN4;
 
     return;
@@ -571,7 +572,7 @@ GetAndUpdateVSB5VVoltage (
 
     //OEM_TODO:Get value with HWM IO interface
     GetValueWithIO(0x00,0x27,&VSB5V) ; // Register 0x27
-    VSB5V = VSB5V*8*2;
+    VSB5V = VSB5V*8*3;
     Data->Value = (UINT16)VSB5V;
 
     return;
