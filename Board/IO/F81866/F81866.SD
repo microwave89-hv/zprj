@@ -424,6 +424,17 @@
             option text = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3), value = 3, flags = DEFAULT |RESET_REQUIRED;
         endoneof;
     endif;
+
+    suppressif ideqval SETUP_DATA.SmartFanEnable == 0x00;
+			oneof varid     = SETUP_DATA.Fan1TempSrc,\
+				prompt      = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC),\
+				help        = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_HELP),\
+				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T3), value = 0, flags = DEFAULT | RESET_REQUIRED;\
+				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T1), value = 1, flags = RESET_REQUIRED;\
+				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T2), value = 2, flags = RESET_REQUIRED;\
+			endoneof;
+    endif;
+
         suppressif NOT ideqval SETUP_DATA.Fan1SmartFanMode == 0x00
                     OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
 			numeric varid = SETUP_DATA.Fan1Mode0FixedSpeed,
@@ -451,18 +462,6 @@
 			endnumeric;
         endif;
 		
-
-		suppressif NOT ideqval SETUP_DATA.Fan1SmartFanMode == 0x02
-                    OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			oneof varid     = SETUP_DATA.Fan1TempSrc,\
-				prompt      = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC),\
-				help        = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_HELP),\
-				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T3), value = 0, flags = RESET_REQUIRED;\
-				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T1), value = 1, flags = DEFAULT | RESET_REQUIRED;\
-				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T2), value = 2, flags = RESET_REQUIRED;\
-			endoneof;
-        endif;
-
 		suppressif NOT ideqval SETUP_DATA.Fan1SmartFanMode == 0x02
                     OR ideqval SETUP_DATA.SmartFanEnable == 0x00;
 			numeric varid = SETUP_DATA.Fan1Mode2AutoRpmT1,
@@ -697,16 +696,7 @@
 			endnumeric;
         endif;
 
-    suppressif ideqval SETUP_DATA.SmartFanEnable == 0x00;
-			oneof varid     = SETUP_DATA.Fan2TempSrc,\
-				prompt      = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC),\
-				help        = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_HELP),\
-				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T3), value = 0, flags = RESET_REQUIRED;\
-				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T1), value = 1, flags = DEFAULT | RESET_REQUIRED;\
-				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T2), value = 2, flags = RESET_REQUIRED;\
-			endoneof;
-    endif;
-
+    SEPARATOR
     suppressif ideqval SETUP_DATA.SmartFanEnable == 0x00;
 		oneof varid     = SETUP_DATA.Fan2SmartFanMode,
             prompt      = STRING_TOKEN(STR_F81866_SMARTFAN_FAN2),
@@ -716,6 +706,16 @@
             option text = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE2), value = 2, flags = RESET_REQUIRED;
             option text = STRING_TOKEN(STR_F81866_SMARTFAN_FAN_MODE3), value = 3, flags = DEFAULT |RESET_REQUIRED;
         endoneof;
+    endif;
+
+    suppressif ideqval SETUP_DATA.SmartFanEnable == 0x00;
+			oneof varid     = SETUP_DATA.Fan2TempSrc,\
+				prompt      = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC),\
+				help        = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_HELP),\
+				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T3), value = 0, flags = RESET_REQUIRED;\
+				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T1), value = 1, flags = DEFAULT | RESET_REQUIRED;\
+				option text = STRING_TOKEN(STR_F81866_SMARTFAN_TMPSRC_T2), value = 2, flags = RESET_REQUIRED;\
+			endoneof;
     endif;
 
         suppressif NOT ideqval SETUP_DATA.Fan2SmartFanMode == 0x00
