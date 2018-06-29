@@ -1,0 +1,1 @@
+afudos SZPRJM06.bin /p /b /n /x /k /reboot
