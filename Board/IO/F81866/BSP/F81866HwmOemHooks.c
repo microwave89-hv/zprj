@@ -378,33 +378,33 @@ GetAndUpdateFan2Speed (
 //
 //-------------------------------------------------------------------------
 //<AMI_PHDR_END>
-void
-GetAndUpdateFan3Speed (
-    IN OUT HWM_DATA * Data
-  )
-{
-    UINTN       Speed;
-    UINTN       Divisor;
-
-    Data->Token = STRING_TOKEN(STR_F81866_FAN3_SPEED_VALUE);
-    Data->Type = FAN_SPEED;
-    Data->OddPos = 0x00;
-
-    //OEM_TODO:Get value with HWM IO interface
-    GetValueWithIO(0x00,0xC0,&Speed); //  Register 0xA0
-    Divisor = (UINT8)Speed << 8;
-    GetValueWithIO(0x00,0xC1,&Speed); //  Register 0xA1
-    Divisor |= (UINT8) Speed; 
-
-    if( (Divisor == 0xFFFF) || (Divisor == 0x0FFF) || (Divisor  == 0 )) {
-        Speed = 0;    
-    } else {    
-        Speed = (UINTN)1500000/Divisor;    
-    }
-    Data->Value = (UINT16)Speed;
-
-    return;
-}
+//void
+//GetAndUpdateFan3Speed (
+//    IN OUT HWM_DATA * Data
+//  )
+//{
+//    UINTN       Speed;
+//    UINTN       Divisor;
+//
+//    Data->Token = STRING_TOKEN(STR_F81866_FAN3_SPEED_VALUE);
+//    Data->Type = FAN_SPEED;
+//    Data->OddPos = 0x00;
+//
+//    //OEM_TODO:Get value with HWM IO interface
+//    GetValueWithIO(0x00,0xC0,&Speed); //  Register 0xA0
+//    Divisor = (UINT8)Speed << 8;
+//    GetValueWithIO(0x00,0xC1,&Speed); //  Register 0xA1
+//    Divisor |= (UINT8) Speed; 
+//
+//    if( (Divisor == 0xFFFF) || (Divisor == 0x0FFF) || (Divisor  == 0 )) {
+//        Speed = 0;    
+//    } else {    
+//        Speed = (UINTN)1500000/Divisor;    
+//    }
+//    Data->Value = (UINT16)Speed;
+//
+//    return;
+//}
 
 
 //<AMI_PHDR_START>
