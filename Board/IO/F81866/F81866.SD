@@ -259,6 +259,8 @@
         help    = STRING_TOKEN(STR_F81866_SMARTFAN_FORM_HELP);
     endif;
 #endif //#if F81866_SMF_SUPPORT
+
+        SEPARATOR
         // System Temperature1
         #if EFI_SPECIFICATION_VERSION>0x20000
         INTERACTIVE_TEXT(STRING_TOKEN(STR_EMPTY), STRING_TOKEN(STR_F81866_SYSTEM_TEMP1), STRING_TOKEN(STR_F81866_SYSTEM_TEMP1_VALUE),  AUTO_ID(HWM_INTERACTIVE_KEY))
@@ -327,13 +329,13 @@
         flags  = 0,
         key    = 0;
         //
-        // System FAN3 Speed
-        text
-        help   = STRING_TOKEN(STR_EMPTY),
-        text   = STRING_TOKEN(STR_F81866_FAN3_SPEED),
-        text   = STRING_TOKEN(STR_F81866_FAN3_SPEED_VALUE),
-        flags  = 0,
-        key    = 0;
+//        // System FAN3 Speed
+//        text
+//        help   = STRING_TOKEN(STR_EMPTY),
+//        text   = STRING_TOKEN(STR_F81866_FAN3_SPEED),
+//        text   = STRING_TOKEN(STR_F81866_FAN3_SPEED_VALUE),
+//        flags  = 0,
+//        key    = 0;
         //
         // Vin1
         text

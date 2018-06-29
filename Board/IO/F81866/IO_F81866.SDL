@@ -1976,13 +1976,13 @@ ELINK
 	InvokeOrder = AfterParent
 End
 
-ELINK
-	Name  = "GetAndUpdateFan3Speed,"
-	Parent  = "HwmExtFunList"
-	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
-	Token = "F81866_HWM_PRESENT" "=" "1"
-	InvokeOrder = AfterParent
-End
+##ELINK
+##	Name  = "GetAndUpdateFan3Speed,"
+##	Parent  = "HwmExtFunList"
+##	Help  = "elink HWM external function in F81866HwnOemHooks.C to HWM external function list."
+##	Token = "F81866_HWM_PRESENT" "=" "1"
+##	InvokeOrder = AfterParent
+##End
 
 ELINK
 	Name  = "GetAndUpdateVIN1Voltage,"
