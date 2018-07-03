@@ -6341,7 +6341,7 @@ InstallDxePchPlatformPolicy (VOID)
   mPchPolicyData.SataConfig->OromUiDelay              = gSbSetupData->OromUiDelay;
   mPchPolicyData.SataConfig->TestMode                 = gSbSetupData->SataTestMode; 
   mPchPolicyData.SataConfig->SalpSupport              = gSbSetupData->SalpSupport;
-  mPchPolicyData.SataConfig->LegacyMode               = PCH_DEVICE_DISABLE;
+  mPchPolicyData.SataConfig->LegacyMode               = 1;//PCH_DEVICE_DISABLE;
   mPchPolicyData.SataConfig->SpeedSupport             = gSbSetupData->SataControllerSpeed;
 
   // AzaliaConfig

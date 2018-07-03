@@ -4161,8 +4161,8 @@
   oneof varid    = SETUP_DATA.SataInterfaceMode,\
     prompt       = STRING_TOKEN (STR_SATA_MODE_SELECTION_PROMPT),\
     help         = STRING_TOKEN (STR_SATA_MODE_SELECTION_HELP),\
-    option text  = STRING_TOKEN (STR_SATA_IDE), value = SATA_MODE_IDE, flags = RESET_REQUIRED, key = 0;\
-    option text  = STRING_TOKEN (STR_SATA_AHCI), value = SATA_MODE_AHCI, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_SATA_IDE), value = SATA_MODE_IDE, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_SATA_AHCI), value = SATA_MODE_AHCI, flags = RESET_REQUIRED, key = 0;\
     option text  = STRING_TOKEN (STR_SATA_RAID), value = SATA_MODE_RAID, flags = RESET_REQUIRED, key = 0;\
   endoneof;
 

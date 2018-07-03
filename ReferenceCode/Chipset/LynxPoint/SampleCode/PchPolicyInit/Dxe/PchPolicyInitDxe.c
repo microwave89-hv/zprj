@@ -286,7 +286,7 @@ PchPolicyInitDxeEntryPoint (
   mPchSataConfig.OromUiDelay      = PchSataOromDelay2sec;
   mPchSataConfig.TestMode         = PCH_DEVICE_DISABLE;
   mPchSataConfig.SalpSupport      = PCH_DEVICE_ENABLE;
-  mPchSataConfig.LegacyMode       = PCH_DEVICE_DISABLE;
+  mPchSataConfig.LegacyMode       = 1;//PCH_DEVICE_DISABLE;
   mPchSataConfig.SpeedSupport     = PchSataSpeedSupportDefault;
 
   ///
