@@ -1707,8 +1707,8 @@
             oneof varid = LPT_NV_DATA.DevMode,
                 prompt        = STRING_TOKEN(STR_SELECT_MODE),
                 help        = STRING_TOKEN(STR_F81866_PARALLEL_MODE_HELP),
-                option text = STRING_TOKEN(STR_F81866_PARALLEL_MODE0), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
-                option text = STRING_TOKEN(STR_F81866_PARALLEL_MODE1), value = 1, flags = RESET_REQUIRED;
+                option text = STRING_TOKEN(STR_F81866_PARALLEL_MODE0), value = 0, flags = RESET_REQUIRED;
+                option text = STRING_TOKEN(STR_F81866_PARALLEL_MODE1), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81866_PARALLEL_MODE2), value = 2, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81866_PARALLEL_MODE3), value = 3, flags = RESET_REQUIRED;
                 option text = STRING_TOKEN(STR_F81866_PARALLEL_MODE4), value = 4, flags = RESET_REQUIRED;

@@ -678,27 +678,30 @@ static EFI_STATUS COM_Init(
 //					ASSERT_EFI_ERROR(Status);
 //                }
            
-                //Programm Serial_X IRQ Share register.
-                if((dev->DeviceInfo->Flags & SIO_SHR_IRQ1) && dev->ResOwner) { 
-                    //enter cfgmode
-                    SioCfgMode(dev->Owner, TRUE);
-                    //set device resource owner share register
-                    DevSelect(dev->ResOwner);
-                      SioRegister(dev->ResOwner, FALSE, 0xF0, &rv);//read reg0xF0 value
-                      rv |= 0x01; //Bit1:share or normal
-                      SioRegister(dev->ResOwner, TRUE, 0xF0, &rv);//write reg0xF0 value
-                    //set device irq register
-                    DevSelect(dev);
-                      SioRegister(dev->ResOwner, FALSE, 0x70, &rv);//read reg0x70 value
-                      SioRegister(dev, TRUE, 0x70, &rv);//write reg0x70 value
-                      SioRegister(dev, FALSE, 0xF0, &rv);//read reg0xF0 value
-                      rv |= 0x01; //Bit1:share or normal
-                      SioRegister(dev, TRUE, 0xF0, &rv);//write reg0xF0 value
-                    //exit cfgmode
-                    SioCfgMode(dev->Owner, FALSE);
-                    dev->VlData.DevIrq1=dev->ResOwner->VlData.DevIrq1;
-                }
+//                //Programm Serial_X IRQ Share register.
+//                if((dev->DeviceInfo->Flags & SIO_SHR_IRQ1) && dev->ResOwner) { 
+//                    //enter cfgmode
+//                    SioCfgMode(dev->Owner, TRUE);
+//                    //set device resource owner share register
+//                    DevSelect(dev->ResOwner);
+//                      SioRegister(dev->ResOwner, FALSE, 0xF0, &rv);//read reg0xF0 value
+//                      rv |= 0x01; //Bit1:share or normal
+//                      SioRegister(dev->ResOwner, TRUE, 0xF0, &rv);//write reg0xF0 value
+//                    //set device irq register
+//                    DevSelect(dev);
+//                      SioRegister(dev->ResOwner, FALSE, 0x70, &rv);//read reg0x70 value
+//                      SioRegister(dev, TRUE, 0x70, &rv);//write reg0x70 value
+//                      SioRegister(dev, FALSE, 0xF0, &rv);//read reg0xF0 value
+//                      rv |= 0x01; //Bit1:share or normal
+//                      SioRegister(dev, TRUE, 0xF0, &rv);//write reg0xF0 value
+//                    //exit cfgmode
+//                    SioCfgMode(dev->Owner, FALSE);
+//                    dev->VlData.DevIrq1=dev->ResOwner->VlData.DevIrq1;
+//                }
 
+            Status=AmiSio->Access(AmiSio, FALSE, FALSE, 0xF0, &rv);
+            rv &= ~(BIT0) ;
+            Status=AmiSio->Access(AmiSio,TRUE,FALSE,0xF0,&rv);
         break;
             
         case isAfterActivate:

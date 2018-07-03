@@ -593,25 +593,26 @@ CreateByteField(CRS3, IO04._LEN, LEN4)    //Length 1 0x7
         // Write Current Settings into IRQ descriptor
         If(INTR){
             ShiftLeft(1, INTR, IRQT)
-	    // Set IRQ Type:porting according IRTT
-        //AMI_TODO:
-        If(And(OPT0,0x01)){
-		If(And(OPT0,0x02)){
-			If(And(OPT6,0x08)){
-				Store(0x18, IRQS)	}	// IRQ Type: Reserved, set as Active-Low-Level-Triggered,Shared.
-			Else{
-				Store(0x11, IRQS)	}	// IRQ Type: Active-High-Edge-Triggered,Shared.
-			}
-		Else{
-			If(And(OPT6,0x08)){
-				Store(0x10, IRQS)	}	// IRQ Type: Active-High-Level-Triggered,Shared.
-			Else{
-				Store(0x18, IRQS)	}	// IRQ Type: Active-Low-Level-Triggered,Shared.
-			}
-        } Else {
-            Store(0x01, IRQS)          // IRQ Type: Active-High-Edge-Triggered,No-Shared(default)
-        }
-
+//	    // Set IRQ Type:porting according IRTT
+//        //AMI_TODO:
+//        If(And(OPT0,0x01)){
+//		If(And(OPT0,0x02)){
+//			If(And(OPT6,0x08)){
+//				Store(0x18, IRQS)	}	// IRQ Type: Reserved, set as Active-Low-Level-Triggered,Shared.
+//			Else{
+//				Store(0x11, IRQS)	}	// IRQ Type: Active-High-Edge-Triggered,Shared.
+//			}
+//		Else{
+//			If(And(OPT6,0x08)){
+//				Store(0x10, IRQS)	}	// IRQ Type: Active-High-Level-Triggered,Shared.
+//			Else{
+//				Store(0x18, IRQS)	}	// IRQ Type: Active-Low-Level-Triggered,Shared.
+//			}
+//        } Else {
+//            Store(0x01, IRQS)          // IRQ Type: Active-High-Edge-Triggered,No-Shared(default)
+//        }
+//
+            Store(0x18, IRQS)
         }Else{
             Store(0, IRQT)            // No IRQ used
         }
@@ -765,27 +766,27 @@ CreateByteField(CRS3, IO04._LEN, LEN4)    //Length 1 0x7
         If(IRQT){
             FindSetRightBit(IRQT, Local0)
             Subtract(Local0, 1, INTR)
-        //Set IRQ flag,AMI_TODO:
-		//Set IRQ flag,AMI_TODO:
-		If(And(IRQS,0x10)){
-			Or(OPT0, 0x01, OPT0)
-			If(LEqual(IRQS,0x18)){		// IRQ Type: Active-Low-Level-Triggered,Shared.
-				And(OPT0, 0xFD, OPT0)
-				And(OPT6, 0xF7, OPT6)
-			}
-			Else{
-				If(LEqual(IRQS,0x11)){	// IRQ Type: Active-High-Edge-Triggered,Shared.
-				Or(OPT0, 0x01, OPT0)
-				And(OPT6, 0xF7, OPT6)
-				}
-				Else{
-					If(LEqual(IRQS,0x10)){	// IRQ Type: Active-High-Level-Triggered,Shared.
-					And(OPT0, 0xFD, OPT0)
-					Or(OPT6, 0x08, OPT6)
-					}
-				}
-			}
-		}
+            //Set IRQ flag,AMI_TODO:
+    		//Set IRQ flag,AMI_TODO:
+    		If(And(IRQS,0x10)){
+    			Or(OPT0, 0x01, OPT0)
+    			If(LEqual(IRQS,0x18)){		// IRQ Type: Active-Low-Level-Triggered,Shared.
+    				And(OPT0, 0xFD, OPT0)
+    				And(OPT6, 0xF7, OPT6)
+    			}
+    			Else{
+    				If(LEqual(IRQS,0x11)){	// IRQ Type: Active-High-Edge-Triggered,Shared.
+    				Or(OPT0, 0x01, OPT0)
+    				And(OPT6, 0xF7, OPT6)
+    				}
+    				Else{
+    					If(LEqual(IRQS,0x10)){	// IRQ Type: Active-High-Level-Triggered,Shared.
+    					And(OPT0, 0xFD, OPT0)
+    					Or(OPT6, 0x08, OPT6)
+    					}
+    				}
+    			}
+    		}
         }Else{
             Store(0, INTR)              //No IRQ used
         }
