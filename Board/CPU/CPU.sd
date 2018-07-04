@@ -549,32 +549,32 @@
     oneof varid     = SETUP_DATA.CxEnable,\
         prompt      = STRING_TOKEN(STR_CPU_CTATES_PROMPT),\
         help        = STRING_TOKEN(STR_CPU_CTATES_PROMPT_HELP),\
-        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = RESET_REQUIRED, key = 0;\
-        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = RESET_REQUIRED, key = 0;\
     endoneof;
     
 #define CPU_ONEOF_C1EENABLE\
     oneof varid     = SETUP_DATA.C1E,\
         prompt      = STRING_TOKEN(STR_CPU_C1E_PROMPT),\
         help        = STRING_TOKEN(STR_CPU_C1E_PROMPT_HELP),\
-        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = RESET_REQUIRED, key = 0;\
-        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = RESET_REQUIRED, key = 0;\
     endoneof;
         
 #define CPU_ONEOF_C3ENABLE\
     oneof varid     = SETUP_DATA.C3Enable,\
         prompt      = STRING_TOKEN(STR_CPU_C3_PROMPT),\
         help        = STRING_TOKEN(STR_CPU_C3_PROMPT_HELP),\
-        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = RESET_REQUIRED, key = 0;\
-        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),   value = 0,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),    value = 1,  flags = RESET_REQUIRED, key = 0;\
     endoneof;
 
 #define CPU_ONEOF_C6ENABLE\
     oneof varid     = SETUP_DATA.C6Enable,\
         prompt      = STRING_TOKEN(STR_CPU_C6_PROMPT),\
         help        = STRING_TOKEN(STR_CPU_C6_PROMPT_HELP),\
-        option text = STRING_TOKEN(STR_CPU_DISABLED),  	value = 0,  flags = RESET_REQUIRED;\
-        option text = STRING_TOKEN(STR_CPU_ENABLED),   	value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),  	value = 0,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),   	value = 1,  flags = RESET_REQUIRED;\
     endoneof;
 
 #define CPU_LONGSHORT_C6LATENCY\
@@ -589,9 +589,9 @@
     oneof varid     = SETUP_DATA.C7Enable,\
         prompt      = STRING_TOKEN(STR_CPU_C7_PROMPT),\
         help        = STRING_TOKEN(STR_CPU_C7_PROMPT_HELP),\
-        option text = STRING_TOKEN(STR_CPU_DISABLED),  	value = 0,  flags = RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),  	value = 0,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
         option text = STRING_TOKEN(STR_CPU_C7),   	value = 1,  flags = RESET_REQUIRED;\
-        option text = STRING_TOKEN(STR_CPU_C7S),   	value = 2,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_C7S),   	value = 2,  flags = RESET_REQUIRED;\
     endoneof;
 
 #define CPU_LONGSHORT_C7LATENCY\
@@ -606,24 +606,24 @@
     oneof varid     = SETUP_DATA.C8Enable,\
         prompt      = STRING_TOKEN(STR_CPU_C8_PROMPT),\
         help        = STRING_TOKEN(STR_CPU_C8_PROMPT_HELP),\
-        option text = STRING_TOKEN(STR_CPU_DISABLED),  	value = 0,  flags = RESET_REQUIRED;\
-        option text = STRING_TOKEN(STR_CPU_ENABLED),   	value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),  	value = 0,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),   	value = 1,  flags = RESET_REQUIRED;\
     endoneof;
 
 #define CPU_ONEOF_C9ENABLE\
     oneof varid     = SETUP_DATA.C9Enable,\
         prompt      = STRING_TOKEN(STR_CPU_C9_PROMPT),\
         help        = STRING_TOKEN(STR_CPU_C9_PROMPT_HELP),\
-        option text = STRING_TOKEN(STR_CPU_DISABLED),  	value = 0,  flags = RESET_REQUIRED;\
-        option text = STRING_TOKEN(STR_CPU_ENABLED),   	value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),  	value = 0,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),   	value = 1,  flags = RESET_REQUIRED;\
     endoneof;
 
 #define CPU_ONEOF_C10ENABLE\
     oneof varid     = SETUP_DATA.C10Enable,\
         prompt      = STRING_TOKEN(STR_CPU_C10_PROMPT),\
         help        = STRING_TOKEN(STR_CPU_C10_PROMPT_HELP),\
-        option text = STRING_TOKEN(STR_CPU_DISABLED),  	value = 0,  flags = RESET_REQUIRED;\
-        option text = STRING_TOKEN(STR_CPU_ENABLED),   	value = 1,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_DISABLED),  	value = 0,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+        option text = STRING_TOKEN(STR_CPU_ENABLED),   	value = 1,  flags = RESET_REQUIRED;\
     endoneof;
 
 #define CPU_ONEOF_C1AUTODEMOTIONENABLE\

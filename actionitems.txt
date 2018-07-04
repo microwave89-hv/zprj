@@ -1,10 +1,12 @@
+2018/07/02
+//	Setup Option Modify - 2018/07/04 done
 2018/06/26
-	Setup Option to control LPT / GPIO
+//	Setup Option to control LPT / GPIO
 //	NO POST BEEP - 2018/06/26 done
 2018/06/22
 //	PCIEClockConfig - 2018/06/22 done
 2018/06/19
-	F81866 H/W Monitor
+//	F81866 H/W Monitor
 //	AUDIO CODEC - 2018/06/21 done
 2018/06/16
 	LAN EEPROM
@@ -19,8 +21,8 @@
 //	Review tables in schematics
 	SML1/2 CLK / DATA should not be connected to SIO
 //	SIO GPIO Porting - 2018/06/16 done
-	SIO Function Porting
-	SIO PECI / Smart FAN
+//	SIO Function Porting
+//	SIO PECI / Smart FAN
 2018/06/14
 //	"iAMT_SUPPORT" = 0 - 2018/06/15 done
 //	IntelPTT_SUPPORT = 0 - 2018/06/15 done
