@@ -2378,411 +2378,411 @@ TOKEN
         TokenType = Expression
 End
 
-TOKEN
-        Name  = "GPIO_SYNC_UP_WITH_INTEL_BIOS"
-        Value  = "0"
-        Help  = "Enable for debugging only"
-        TokenType = Boolean
-        TargetH = Yes
-End
-
-TOKEN
-        Name  = "GPIO_001"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)+$(GPI_INV)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_002"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)+$(GPI_INV)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_004"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_005"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_007"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)+$(GPI_INV)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_008"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)+$(GPI_INV)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_011"
-        Value  = "$(IS_GPIO)+$(IS_GPO)+$(OUTPUT_LOW)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-	Name = "GPIO_013"
-	Value = "$(IS_GPIO) + $(IS_GPI) + $(GPI_INV)"
-	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
-	TokenType = Integer
-	TargetEQU = Yes
-	TargetH = Yes
-End
-
-TOKEN
-        Name  = "GPIO_013"
-        Value  = "$(IS_GPIO)+$(IS_GPO)+$(OUTPUT_LOW)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_014"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)+$(GPI_INV)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-	Name = "GPIO_016"
-	Value = "$(IS_NOT_GPIO)"
-	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
-	TokenType = Integer
-	TargetEQU = Yes
-	TargetH = Yes
-End
-
-TOKEN
-        Name  = "GPIO_017"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)+$(GPI_INV)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_018"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_019"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_021"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_022"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_024"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_025"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_026"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_028"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_032"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_033"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_035"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_036"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_037"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_038"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_039"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_044"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_045"
-        Value  = "$(IS_GPIO)+$(IS_GPO)+$(OUTPUT_HIGH)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_046"
-        Value  = "$(IS_GPIO)+$(IS_GPO)+$(OUTPUT_HIGH)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_047"
-        Value  = "$(IS_GPIO)+$(IS_GPO)+$(OUTPUT_LOW)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_048"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_051"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_053"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_055"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_060"
-        Value  = "$(IS_GPIO)+$(IS_GPO)+$(OUTPUT_LOW)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_070"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_071"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_072"
-        Value  = "$(IS_GPIO)+$(IS_GPO)+$(OUTPUT_HIGH)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
-
-TOKEN
-        Name  = "GPIO_074"
-        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
-        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
-        TokenType = Integer
-        TargetEQU = Yes
-        TargetH = Yes
-        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
-End
+##TOKEN
+##        Name  = "GPIO_SYNC_UP_WITH_INTEL_BIOS"
+##        Value  = "0"
+##        Help  = "Enable for debugging only"
+##        TokenType = Boolean
+##        TargetH = Yes
+##End
+##
+##TOKEN
+##        Name  = "GPIO_001"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)+$(GPI_INV)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_002"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)+$(GPI_INV)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_004"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_005"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_007"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)+$(GPI_INV)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_008"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)+$(GPI_INV)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_011"
+##        Value  = "$(IS_GPIO)+$(IS_GPO)+$(OUTPUT_LOW)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##	Name = "GPIO_013"
+##	Value = "$(IS_GPIO) + $(IS_GPI) + $(GPI_INV)"
+##	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+##	TokenType = Integer
+##	TargetEQU = Yes
+##	TargetH = Yes
+##End
+##
+##TOKEN
+##        Name  = "GPIO_013"
+##        Value  = "$(IS_GPIO)+$(IS_GPO)+$(OUTPUT_LOW)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_014"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)+$(GPI_INV)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##	Name = "GPIO_016"
+##	Value = "$(IS_NOT_GPIO)"
+##	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
+##	TokenType = Integer
+##	TargetEQU = Yes
+##	TargetH = Yes
+##End
+##
+##TOKEN
+##        Name  = "GPIO_017"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)+$(GPI_INV)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_018"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_019"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_021"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_022"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_024"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_025"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_026"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_028"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_032"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_033"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_035"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_036"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_037"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_038"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_039"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_044"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_045"
+##        Value  = "$(IS_GPIO)+$(IS_GPO)+$(OUTPUT_HIGH)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_046"
+##        Value  = "$(IS_GPIO)+$(IS_GPO)+$(OUTPUT_HIGH)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_047"
+##        Value  = "$(IS_GPIO)+$(IS_GPO)+$(OUTPUT_LOW)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_048"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_051"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_053"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_055"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_LOW)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_060"
+##        Value  = "$(IS_GPIO)+$(IS_GPO)+$(OUTPUT_LOW)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_070"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_071"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_072"
+##        Value  = "$(IS_GPIO)+$(IS_GPO)+$(OUTPUT_HIGH)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
+##
+##TOKEN
+##        Name  = "GPIO_074"
+##        Value  = "$(IS_GPIO)+$(IS_GPI)+$(OUTPUT_HIGH)"
+##        Help  = "BIT0:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\BIT1:GPIO Input/Output Select.\BIT2:GPIO Level Select.\BIT3:GPIO Signal Invert(Only For GPIO_00~31).\BIT4:GPIO Blink Enable(Only For GPIO_00~31).\BIT5:GPIO Reset Select."
+##        TokenType = Integer
+##        TargetEQU = Yes
+##        TargetH = Yes
+##        Token = "GPIO_SYNC_UP_WITH_INTEL_BIOS" "=" "1"
+##End
 
 
 TOKEN

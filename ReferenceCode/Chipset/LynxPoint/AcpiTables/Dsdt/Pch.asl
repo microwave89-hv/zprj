@@ -559,7 +559,8 @@ scope (\_SB.PCI0) {
   //
   Device(GLAN) { // GbE Controller
     Name(_ADR, 0x00190000)
-    Method(_PRW, 0) { Return(GPRW(0x0D, 4)) }  // can wakeup from S4 state
+//    Method(_PRW, 0) { Return(GPRW(0x0D, 4)) }  // can wakeup from S4 state
+    Method(_PRW, 0) { Return(GPRW(0, 0)) }  // can wakeup from S4 state
   	Method(_STA,0)
   	{
   	    Return(0)		// Hide device 
@@ -572,7 +573,8 @@ scope (\_SB.PCI0) {
   Device(EHC1) {
     Name(_ADR, 0x001D0000)
     include("PchEhci1.asl")
-    Method(_PRW, 0) { Return(GPRW(0x0D, 4)) }  // can wakeup from S4 state
+//    Method(_PRW, 0) { Return(GPRW(0x0D, 4)) }  // can wakeup from S4 state
+    Method(_PRW, 0) { Return(GPRW(0, 0)) }  // can wakeup from S4 state
   } // end "EHCI Controller #1"
 
   //
@@ -581,7 +583,8 @@ scope (\_SB.PCI0) {
   Device(EHC2) {
     Name(_ADR, 0x001A0000)
     include("PchEhci2.asl")
-    Method(_PRW, 0) { Return(GPRW(0x0D, 4)) }  // can wakeup from S4 state
+//    Method(_PRW, 0) { Return(GPRW(0x0D, 4)) }  // can wakeup from S4 state
+    Method(_PRW, 0) { Return(GPRW(0, 0)) }  // can wakeup from S4 state
   } // end "EHCI Controller #2"
 
   //
@@ -590,7 +593,8 @@ scope (\_SB.PCI0) {
   Device(XHC) {
     Name(_ADR, 0x00140000)
     include("PchXhci.asl")
-    Method(_PRW, 0) { Return(GPRW(0x0D, 4)) }  // can wakeup from S4 state
+//    Method(_PRW, 0) { Return(GPRW(0x0D, 4)) }  // can wakeup from S4 state
+    Method(_PRW, 0) { Return(GPRW(0, 0)) }  // can wakeup from S4 state
   } // end "xHCI Controller"
 
   //
@@ -599,7 +603,8 @@ scope (\_SB.PCI0) {
   Device(HDEF) {
     Name(_ADR, 0x001B0000)
     include("PchAudio.asl")
-    Method(_PRW, 0) { Return(GPRW(0x0D, 4)) }  // can wakeup from S4 state
+//    Method(_PRW, 0) { Return(GPRW(0x0D, 4)) }  // can wakeup from S4 state
+    Method(_PRW, 0) { Return(GPRW(0, 0)) }  // can wakeup from S4 state
   } // end "High Definition Audio Controller"
 
 #ifdef SERIAL_IO_FLAG
