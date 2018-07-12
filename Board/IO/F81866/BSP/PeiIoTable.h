@@ -330,7 +330,10 @@ SIO_DATA F81866_PEI_Init_Table[] = {
     //---------------------------------------------------------------------
     // After init all logical devices, program Global register if needed.
     //---------------------------------------------------------------------
-
+    {F81866_CONFIG_INDEX, 0xFF, F81866_LDN_SEL_REGISTER},
+    {F81866_CONFIG_DATA,  0xFF, F81866_LDN_PME},
+    {F81866_CONFIG_INDEX, 0xFF, 0xF4},
+    {F81866_CONFIG_DATA,  0xF9, 0x02}, // Bypass Mode
     //---------------------------------------------------------------------
     // After init all logical devices,  Exit Configuration Mode.
     //---------------------------------------------------------------------
