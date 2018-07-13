@@ -1341,6 +1341,11 @@ VOID Enable_GbE_PME(VOID)
   }
 }
 
+VOID EnablePs2KeyboardMousePme(VOID)
+{
+      WRITE_IO16_PM(ACPI_IOREG_GPE0_STS, BIT11);
+      SET_IO16_PM(ACPI_IOREG_GPE0_EN, BIT11);
+}
 
 //<AMI_PHDR_START>
 //----------------------------------------------------------------------------

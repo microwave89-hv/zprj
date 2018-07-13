@@ -172,6 +172,7 @@ VOID S1SleepSmiOccurred (
 #endif
 {
     // Porting required if any workaround is needed.
+    EnablePs2KeyboardMousePme();    
     return SMM_CHILD_DISPATCH_SUCCESS;
 }
 
@@ -232,6 +233,7 @@ VOID S3SleepSmiOccurred (
     }
 
     ProgramAfterG3Bit();
+    EnablePs2KeyboardMousePme();
 
     return SMM_CHILD_DISPATCH_SUCCESS;
 }
@@ -268,6 +270,7 @@ VOID S4SleepSmiOccurred (
     ClearMeWakeSts();
 
     ProgramAfterG3Bit();
+    EnablePs2KeyboardMousePme();
 
     return SMM_CHILD_DISPATCH_SUCCESS;
 }

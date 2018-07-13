@@ -325,6 +325,7 @@ VOID SBLib_Shutdown ( VOID );
 VOID GbES0ToS1Workaround(VOID);
 VOID GbES0ToSxWorkaround(VOID);
 VOID Enable_GbE_PME(VOID);
+VOID EnablePs2KeyboardMousePme(VOID);
 VOID ClearMeWakeSts(VOID);
 VOID EHCIAdditionalRequirement(VOID);
 
