@@ -1,0 +1,7 @@
+#include <Protocol\LegacyBios.h>
+#include <Protocol\LegacyRegion.h>
+
+DEPENDENCY_START
+    EFI_LEGACY_REGION_PROTOCOL_GUID AND
+    EFI_LEGACY_BIOS_PROTOCOL_GUID
+DEPENDENCY_END

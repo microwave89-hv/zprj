@@ -1,0 +1,12 @@
+<component>
+	name = "AAEON Security"
+	category = eModule
+	LocalRoot = "Board\EM\AAEONSecurity\"
+	RefName = "AAEONSecurity"
+[files]
+"AAEONSecurity.sdl"	
+"AAEONSecurity.mak"	
+"AAEONSecurity.c"	
+"AAEONSecurity.dxs"	
+"History.txt"	
+<endComponent>

@@ -1,0 +1,52 @@
+TOKEN
+	Name  = "AAEON_SECURITY_SUPPORT"
+	Value  = "1"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+	Help  = "Main switch to enable AAEON SECURITY support in Project"
+End
+
+PATH
+	Name  = "AAEON_SECURITY_DIR"
+End
+
+MODULE
+	Help  = "Includes AAEONSecurity.mak to Project"
+	File  = "AAEONSecurity.mak"
+End
+
+
+ELINK
+	Name  = "$(BUILD_DIR)\AAEONSecurity.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+	Name  = "SIGNATURE_ADDRESS1"
+	Value  = "0xFE83C"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SIGNATURE_ADDRESS2"
+	Value  = "0xFF5F5"
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SIGNATURE_MODEL_TAG"
+	Value  = "'$$IEI-SA93$$'"
+	TokenType = Expression
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+
