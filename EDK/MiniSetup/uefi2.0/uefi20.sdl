@@ -1,0 +1,53 @@
+TOKEN
+	Name  = "UEFI_2_0_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable UEFI 2.0 sources support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+	Token = "EFI_SPECIFICATION_VERSION" "<=" "0x20000"
+End
+
+TOKEN
+	Name  = "UEFI_SOURCES_SUPPORT"
+	Value  = "1"
+	Help  = "Don't Edit."
+	TokenType = Boolean
+	TargetH = Yes
+	TargetMAK = Yes
+End
+
+TOKEN
+	Name  = "TSE_SUPPORT_VFRCOMPILE_1_88"
+	Value  = "1"
+	Help  = "Turn on to support vfrcompiler version 1.88 and later"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SETUP_FORM_BROWSER_SUPPORT"
+	Value  = "0"
+	Help  = "1 => Installs form browser protocol should turn on SETUP_RUNTIME_IFR_PROCESSING. 0 => Does not install form browser protocol."
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "SETUP_RUNTIME_IFR_PROCESSING" "=" "1"
+	Token = "TSE_USE_EDK_LIBRARY" "=" "1"
+End
+
+PATH
+	Name  = "UEFISRC_DIR"
+End
+
+MODULE
+	Help  = "Includes Uefi20.mak to Project"
+	File  = "Uefi20.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Uefi20Local.lib"
+	Parent  = "$(UEFISRC_DIR)\Uefi20Local$(ARCH).lib"
+	InvokeOrder = ReplaceParent
+End
+

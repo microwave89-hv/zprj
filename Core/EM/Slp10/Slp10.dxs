@@ -1,0 +1,18 @@
+//<AMI_FHDR_START>
+//----------------------------------------------------------------------------
+// Name: Slp10.dxs
+//
+// Description: This file is the dependency file for Slp10 driver
+//
+//----------------------------------------------------------------------------
+//<AMI_FHDR_END>
+
+//----------------------------------------------------------------------------
+// Header files for GUID definitions
+//----------------------------------------------------------------------------
+
+#include <Protocol\LegacyBios.h>
+
+DEPENDENCY_START
+  EFI_LEGACY_BIOS_PROTOCOL_GUID
+DEPENDENCY_END

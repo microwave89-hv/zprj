@@ -1,0 +1,14 @@
+<component>
+	name = "TSE Sources - Style - EzportPlus"
+	category = ModulePart
+	LocalRoot = "EDK\MiniSetup\EzportPlus"
+	RefName = "EzportPlus"
+[files]
+"EzportPlus.sdl"	
+"EzportPlus.mak"	
+"ezportplus.c"	
+"ezportplus.h"	
+"stylecommon.c"	
+"style.h"	
+"style.c"	
+<endComponent>

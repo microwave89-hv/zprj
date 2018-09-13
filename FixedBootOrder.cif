@@ -1,0 +1,19 @@
+<component>
+	name = "Fixed Boot Order"
+	category = eModule
+	Rank = 46
+	RefName = "FixedBootOrder"
+[files]
+"Board\em\FixedBootOrder\FixedBootOrder.sdl"	
+"Board\em\FixedBootOrder\FixedBootOrder.mak"	
+"Board\em\FixedBootOrder\FBOSetOrder.c"	
+"Board\em\FixedBootOrder\FixedBootOrderTSE.c"	
+"Board\em\FixedBootOrder\FixedBootOrder.h"	
+"Board\em\FixedBootOrder\FixedBootOrder.c"
+"Board\em\FixedBootOrder\FixedBootOrder.chm"
+"Board\em\FixedBootOrder\FixedBootOrderHII.c"	
+"Board\em\FixedBootOrder\FixedBootOrderHII.h"	
+[parts]
+"DefaultFixedBootOrder"
+"FixedBootOrderStyle"
+<endComponent>

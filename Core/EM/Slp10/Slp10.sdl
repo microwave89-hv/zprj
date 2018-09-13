@@ -1,0 +1,43 @@
+TOKEN
+    Name = Slp10_SUPPORT
+    Value = 1
+    TokenType = Boolean
+    TargetEQU = Yes
+    TargetMAK = Yes
+    Master = Yes
+    Help = "Main switch to enable Slp10 support in Project"
+End
+
+TOKEN
+    Name = "OEM_DATA_SPACE_SIZE"
+    Value = "0x3E"
+    Help = "Maximum OEM data space size."
+    TokenType = Integer
+	TargetEQU = Yes
+	TargetH = Yes
+End
+
+TOKEN
+    Name = "SLP_STRING"
+    Value = "Copyright American Megatrends Inc. 1985-2009"
+    Help = "SLP string."
+    TokenType = Expression
+	TargetEQU = Yes
+End
+
+PATH
+    Name = Slp10_DIR
+    Help = "Path to Slp10 Module in Project"
+End
+
+MODULE
+    Help = "Includes Slp10.mak to Project"
+    File = "Slp10.mak"
+End
+
+ELINK
+    Name = "$(BUILD_DIR)\Slp10.ffs"
+    Parent = "FV_MAIN"
+    InvokeOrder = AfterParent
+End
+

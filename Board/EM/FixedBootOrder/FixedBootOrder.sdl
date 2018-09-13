@@ -1,0 +1,280 @@
+TOKEN
+	Name  = "FIXED_BOOT_ORDER_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable module support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "BOOT_OPTION_GET_BBS_ENTRY_DEVICE_TYPE_FUNCTION"
+	Value  = "FBO_GetBbsEntryDeviceType"
+	Help  = "Name of the function of type GET_BBS_ENTRY_DEVICE_TYPE.\The function is used to convert device type stored in the BBS table to a legacy device type that will be stored in the NVRAM.\The default implementation(GetBbsEntryDeviceTypeDefault) provides support for BBS_USB_DEVICE_TYPE_SUPPORT and BBS_NETWORK_DEVICE_TYPE_SUPPORT SDL tokens."
+	TokenType = Expression
+	TargetH = Yes
+	Token = "CSM_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "INITIAL_LEGCAY_HII_ITEM_FUNCTION"
+	Value  = "InitialLegacyHiiItemDefault"
+	Help  = "Name of the function of FBO_INITIAL_HII_ITEM.\The function is initial legacy boot option hii database item."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "INITIAL_UEFI_HII_ITEM_FUNCTION"
+	Value  = "InitialUefiHiiItemDefault"
+	Help  = "Name of the function of FBO_INITIAL_HII_ITEM.\The function is initial uefi boot option hii database item."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "INITIAL_LEGCAY_GROUP_FUNCTION"
+	Value  = "InitLegacyGroupDefault"
+	Help  = "Name of the function of FBO_INITIAL_GROUP.\The function is initial legacy boot option device name."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "INITIAL_UEFI_GROUP_FUNCTION"
+	Value  = "InitUefiGroupDefault"
+	Help  = "Name of the function of FBO_INITIAL_GROUP.\The function is initial uefi boot option device name."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "USBKEY_RANGE_SIZE"
+	Value  = "32000"
+	Help  = "USB key memory size define.\Exsample:\32000 is 32G.\64000 is 64G."
+	TokenType = Integer
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "SETUP_RUNTIME_IFR_PROCESSING"
+	Value  = "1"
+	Help  = "Processes IFR data that are added to hii at runtime.  This will cause an increased FW footprint and remove AMIBCP compatibility for those new pages."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FIXED_BOOT_SWAP_POLICY"
+	Value  = "0"
+	Help  = "0 = Swap option which is duplicated after boot priority is changed in TSE\1 = Swap nearby option (moving up and down)"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FIXED_BOOT_DISPLAY_DEVICE_NAME_IN_SETUP"
+	Value  = "1"
+	Help  = "ON - Display device name in boot priority.\OFF - Just display type."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FIXED_BOOT_INCLUDE_DISABLED_OPTION"
+	Value  = "1"
+	Help  = "ON - Include Disabled to each boot priority control.  NOTE: System will be reset after priorities got changed.\OFF - No Disabled option"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetH = Yes
+	Token = "FIXED_BOOT_SWAP_POLICY" "=" "0"
+End
+
+TOKEN
+	Name  = "EDK_1_05_RETRIEVE_DATA"
+	Value  = "0"
+	Help  = "Modified code to return BrowserCallback String according to either EDK browser or spec. Please be careful when to change this to 0, May cause Addon Card to not to work."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">=" "0x2000A"
+End
+
+TOKEN
+	Name  = "TSE_SAVE_DISABLED_BBS_DEVICEPATH"
+	Value  = "0"
+	Help  = "1 => Saves the DevicePaths of Disabled BBS devices to NVRAM Variable. \Depends on that varaible to keep device disbaled in next boot. \0 => Doesn't save the Disabled BBS devicepath."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TSE_LOAD_OPTION_HIDDEN"
+	Value  = "1"
+	Help  = "1 => Hide LOAD_OPTION_HIDDEN Boot option. 0 => Shows all boot options."
+	TokenType = Boolean
+	TargetH = Yes
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+End
+
+TOKEN
+	Name  = "USE_BCP_DEFAULT_PRIORITIES"
+	Value  = "0"
+	Help  = "1 => Use file .sd BcpDefaultPriorities[] set default boot sequence."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FBO_USE_BOOT_OPTION_NUMBER_UNI"
+	Value  = "0"
+	Help  = "1 => Use Boot Option number unicode string with .UNI file."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FBO_DUAL_MODE"
+	Value  = "0"
+	Help  = "1 = Legacy/Uefi mix display."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+    Name  = "FBO_WTG_PRIORITY_UPDATE"
+    Value  = "1"
+    Help  = "1 = Update Priorities when User set Windows To Go to 1st Priority in Windows To Go Startup."
+    TokenType = Boolean
+    TargetH = Yes
+    Token = "RestoreSpecialBootOptions_SUPPORT" "=" "1"
+End
+
+TOKEN
+	Name  = "FIXED_BOOT_ORDER_SUBMENU_MAX_NUM"
+	Value  = "16"
+	Help  = "All SubMenu Total boot options."
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FIXED_BOOT_ORDER_GROUP_MAX_NUM"
+	Value  = "16"
+	Help  = "Maximum number of groups."
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FIXED_BOOT_ORDER_TOTAL_DEVICES_MAX_NUM"
+	Value  = "$(FIXED_BOOT_ORDER_SUBMENU_MAX_NUM)*$(FIXED_BOOT_ORDER_GROUP_MAX_NUM)"
+	Help  = "Maximum number of devices."
+	TokenType = Integer
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+PATH
+	Name  = "FixedBootOrder_DIR"
+End
+
+MODULE
+	Help  = "Includes FixedBootOrder.mak to Project"
+	File  = "FixedBootOrder.mak"
+End
+
+ELINK
+	Name  = "FBO_Init,"
+	Parent  = "ReadBootOptions,"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "FixedBootOrderStringInit,"
+	Parent  = "SetupStringInit"
+	Help  = "Install form callback for each control"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "FixedBootOrderSaveChange,"
+	Parent  = "SavedConfigChangesHook,"
+	Help  = "Save Changed boot order"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "FixedBootOrderLoadedConfigDefaults,"
+	Parent  = "LoadedConfigDefaultsHook,"
+	Help  = "Loaded  boot order Defaults"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "FBO_Protocol_install,"
+	Parent  = "MinisetupDriverEntryHook,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "FBO_UpdateBootListPriority,"
+	Parent  = "SaveLegacyDevOrder,"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+    	Name  = "FboSyncBootOptionsFromDevOrder,"
+    	Parent  = "CreateBootOptionsForNewBootDevices,"
+    	InvokeOrder = BeforeParent
+    	Priority = 1
+End
+
+ELINK
+	Name  = "FBO_AdjustPriority,"
+	Parent  = "ReadBootOptions,"
+	InvokeOrder = AfterParent
+	Token = "FBO_WTG_PRIORITY_UPDATE" "=" "1"
+End
+
+ELINK
+	Name  = "FBO_SetDefaultUEFIDevOrder,"
+	Parent  = "SaveBootOptions,"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "FixedBootOrderSetupEnter,"
+	Parent  = "ProcessEnterSetupHook,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "FixedBootOrderToBoot,"
+	Parent  = "ProcessProceedToBootHook,"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\SetupStrTokens.h"
+	Parent  = "FIXEDBOOTORDER_STRTOKENS_INCLUDE_FILES"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "FIXEDBOOTORDER_STRTOKENS_INCLUDE_FILES"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name = "AdjustLegacyBootOptionPriorities,"
+	Parent = "UpdateBootOptionVariables,"
+	Token = "CSM_SUPPORT" "=" "1"
+	Token = "GROUP_BOOT_OPTIONS_BY_TAG" "=" "1"
+	InvokeOrder = AfterParent
+	Disable = Yes 
+End

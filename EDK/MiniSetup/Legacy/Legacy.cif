@@ -1,0 +1,14 @@
+<component>
+	name = "TSE Sources - Style - Legacy"
+	category = ModulePart
+	LocalRoot = "EDK\MiniSetup\Legacy"
+	RefName = "Legacy"
+[files]
+"Legacy.sdl"	
+"Legacy.mak"	
+"legacy.c"	
+"legacy.h"	
+"stylecommon.c"	
+"style.h"	
+"style.c"	
+<endComponent>

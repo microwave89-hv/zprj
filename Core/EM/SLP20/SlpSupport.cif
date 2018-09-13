@@ -1,0 +1,15 @@
+<component>
+	name = "SlpSupport"
+	category = eModule
+	LocalRoot = "Core\EM\SLP20"
+	RefName = "SlpSupport"
+[files]
+"SlpSupport.sdl"	
+"SlpSupport.mak"	
+"SlpSupport.c"	
+"SlpSupport.dxs"	= "dxs"
+"Marker.bin"	
+"PubKey.bin"	
+"SlpSupport.chm"	
+"SlpSupport.h"	
+<endComponent>

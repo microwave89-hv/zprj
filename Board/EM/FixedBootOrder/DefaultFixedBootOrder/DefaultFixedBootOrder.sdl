@@ -1,0 +1,88 @@
+TOKEN
+	Name  = "DEFAULT_FIXED_BOOT_ORDER_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable module part support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "FBO_STRING_INIT_FORM_SET_CLASS"
+	Value  = "BOOT_FORM_SET_CLASS"
+	Help  = "Define winch FORM_SET of InitString."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "FBO_VFR_FORM_ID"
+	Value  = "BOOT_MAIN"
+	Help  = "Define winch FORM ID of vfr."
+	TokenType = Expression
+	TargetH = Yes
+End
+
+PATH
+	Name  = "DefaultFixedBootOrder_DIR"
+	Path  = "Board\EM\FixedBootOrder\DefaultFixedBootOrder"
+End
+
+MODULE
+	Help  = "Includes DefaultFixedBootOrder.mak to Project"
+	File  = "DefaultFixedBootOrder.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\DefaultFixedBootOrder.SDB"
+	Parent  = "SETUP_SDBS"
+	Priority  = 40
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "$(DefaultFixedBootOrder_DIR)\DefaultFixedBootOrder.sd"
+	Parent  = "SETUP_DEFINITIONS"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "DefaultFixedBootOrder_Init,"
+	Parent  = "UpdateBootOptionVariables,"
+	InvokeOrder = BeforeParent
+End
+
+ELINK
+	Name  = "FBO_SetBootOptionTags,"
+	Parent  = "SetBootOptionTags,"
+	InvokeOrder = ReplaceParent
+End
+
+ELINK
+    Name  = "FBO_AdjustDeviceName,"
+    Parent  = "SaveBootOptions,"
+    InvokeOrder = BeforeParent
+End
+
+ELINK
+    Name  = "FBO_ChangeDeviceNameFunctions"
+    InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "ITEM_CALLBACK(BOOT_FORM_SET_CLASS,0,0x1001,FixedBootOrderFormCallBack),"
+	Parent  = "SetupItemCallbacks"
+	Token = "EFI_SPECIFICATION_VERSION" ">" "0x20000"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+    Name = "DefaultFixedBootOrder_Init,"
+    Parent = "BeforeConnectFastBootDeviceHook"
+    Token = "FAST_BOOT_SUPPORT" "=" "1"
+    Token = "CORE_COMBINED_VERSION" ">" "0x40280"
+    Priority = 1
+    InvokeOrder = BeforeParent
+End

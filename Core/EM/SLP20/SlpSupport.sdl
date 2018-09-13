@@ -1,0 +1,52 @@
+TOKEN
+	Name  = "SlpSupport_SUPPORT"
+	Value = "1"
+	Help  = "Main switch to enable SlpSupport support in Project"
+	TokenType = Boolean
+	TargetMAK = Yes
+	Master    = Yes
+	Token     = "ACPI_SUPPORT" "=" "1"
+End
+
+PATH
+	Name = "SLP_SUPPORT_DIR"
+End
+
+MODULE
+	Help = "Includes SlpSupport.mak to Project"
+	File = "SlpSupport.mak"
+End
+
+ELINK
+	Name   = "$(BUILD_DIR)\SlpSupport.ffs"
+	Parent = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name   = "$(BUILD_DIR)\Slp20Marker.ffs"
+	Parent = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name   = "$(BUILD_DIR)\Slp20PubKey.ffs"
+	Parent = "FV_MAIN"
+	InvokeOrder = AfterParent
+End
+
+TOKEN
+    Name  = "SLP_MARKER_ROM_FILENAME"
+    Value = "$(SLP_SUPPORT_DIR)\Marker.bin"
+    Help  = "SLP2.0 Marker key rom file"
+    TokenType = File
+    TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "SLP_PUBKEY_ROM_FILENAME"
+    Value = "$(SLP_SUPPORT_DIR)\PubKey.bin"
+    Help  = "SLP2.0 Public key rom file"
+    TokenType = File
+    TargetMAK = Yes
+End

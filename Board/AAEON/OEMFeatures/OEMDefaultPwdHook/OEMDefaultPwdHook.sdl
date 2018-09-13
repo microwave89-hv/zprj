@@ -1,0 +1,55 @@
+TOKEN
+	Name  = "OEMDefultPwdHook_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable OEMTSEHook support in Project"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+PATH
+	Name  = "OemDefaultPwdHook_DIR"
+End
+
+MODULE
+	Help  = "Includes OemDefaultPwdHook.mak to Project"
+	File  = "OemDefaultPwdHook.mak"
+End
+
+TOKEN
+	Name  = "DEFAULT_ADMIN_PASSWORD"
+	Value  = "Grg90#@B"
+	Help  = "Set default admin password"
+	TokenType = Expression
+	TargetH = Yes
+End
+TOKEN
+	Name  = "USER_PASSWORD_SUPPORT"
+	Value  = "0"
+	TokenType = Boolean
+	TargetH = Yes
+	##TargetEQU = Yes
+	##TargetMAK = Yes
+End
+TOKEN
+	Name  = "DEFAULT_USER_PASSWORD"
+	Value  = ""
+	Help  = "Set default user password"
+	TokenType = Expression
+	TargetH = Yes
+	Token = "USER_PASSWORD_SUPPORT" "=" "1"
+End
+
+ELINK
+	Name = "$(BUILD_DIR)\OEMDefaultPwdHook.obj"
+	Parent = "AMITSE_Objects"
+	InvokeOrder = AfterParent
+End
+
+ELINK
+	Name  = "OemSetDefaultPasswordHook,"
+	Parent  = "MinisetupDriverEntryHookHook,"
+	InvokeOrder = AfterParent
+End
+

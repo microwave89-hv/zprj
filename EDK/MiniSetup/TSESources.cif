@@ -1,0 +1,20 @@
+<component>
+	name = "TSE Sources"
+	category = eModule
+	LocalRoot = "EDK\MiniSetup\"
+	RefName = "TSESources"
+[files]
+"TSESources.Sdl"	
+"AMITSE.chm"	
+"changelog.log"	
+[parts]
+"TseAdvanced"
+"Minisetup"
+"TseLite"
+"Uefi20"
+"Uefi21"
+"Ezport"
+"Legacy"
+"EzportPlus"
+"TsePasswordEncode"
+<endComponent>

@@ -1,0 +1,14 @@
+<component>
+	name = "Slp10"
+	category = eModule
+	LocalRoot = "Core\EM\Slp10\"
+	RefName = "Slp10"
+[files]
+"Slp10.sdl"	
+"Slp10.mak"	
+"Slp10.c"	
+"Slp10.dxs"	
+"OemTable.asm"	
+"Slp10.h"	
+"Slp10.chm"	
+<endComponent>

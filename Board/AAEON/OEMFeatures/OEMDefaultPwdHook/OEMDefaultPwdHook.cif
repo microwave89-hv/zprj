@@ -1,0 +1,10 @@
+<component>
+	name = "OemDefualtPwdHook - Set Default Password"
+	category = ModulePart
+	LocalRoot = "Board\AAEON\OEMFeatures\OEMDefaultPwdHook\"
+	RefName = "OEMDefaultPwdHook"
+[files]
+"OEMDefaultPwdHook.c"
+"OEMDefaultPwdHook.sdl"
+"OEMDefaultPwdHook.mak"
+<endComponent>

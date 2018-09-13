@@ -1,0 +1,28 @@
+<component>
+	name = "TSE Sources - Advanced TSE"
+	category = ModulePart
+	LocalRoot = "EDK\MiniSetup\TseAdvanced"
+	RefName = "TseAdvanced"
+[files]
+"TseAdvanced.sdl"	
+"TseAdvanced.mak"
+"MyDefs.h"	
+"iJpeg.c"	
+"jpeg6.c"	
+"Jpeg6.h"	
+"jpeg.h"	
+"Logo.c"	
+"ipcx.c"	
+"pcx.h"	
+"pcxc.c"	
+"dogifmgr.c"	
+"dogif.c"	
+"Bbs.c"	
+"TseAdvanced.c"	
+"special.c"	
+"special.h"	
+"bootflowLib.c"	
+"png.c"	
+"png.h"	
+"pnguncmp.c"	
+<endComponent>

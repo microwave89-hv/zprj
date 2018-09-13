@@ -1510,3 +1510,126 @@ ELINK
 #	Token = "BEEP_ENABLE" "=" "1"
 	InvokeOrder = AfterParent
 End
+
+TOKEN
+	Name  = "PASSWORD_MIN_SIZE"
+	Value  = "8"
+	TokenType = Integer
+	TargetH = Yes
+End
+TOKEN
+	Name  = "SETUP_PASSWORD_LENGTH"
+	Value  = "12"
+	Help  = "Default maximum password length. TSE Source needed to change the length"
+	TokenType = Integer
+	TargetH = Yes
+End
+TOKEN
+	Name  = "SETUP_ENTRY_SCAN"
+	Value  = "EFI_SCAN_F11"
+	Help  = "Set to one of the defined constants from EFI_SIMPLE_TEXT_INPUT protocol. Remember to check STR_DEL_ENTER_SETUP string in MiniSetupStr.uni."
+	TokenType = Expression
+	TargetH = Yes
+End
+TOKEN
+	Name  = "POPUP_MENU_ENTRY_SCAN"
+	Value  = "EFI_SCAN_F10"
+	Help  = "Set to one of the defined constants from EFI_SIMPLE_TEXT_INPUT protocol"
+	TokenType = Expression
+	TargetH = Yes
+	Token = "SETUP_BBS_POPUP_ENABLE" "!=" "0"
+End
+TOKEN
+	Name  = "TSE_DEFAULT_SETUP_PASSWORD_SUPPORT"
+	Value  = "1"
+	Help  = "0 is default.set 1=> to Enable default setup password"
+	TokenType = Expression
+	TargetH = Yes
+	TargetMAK = Yes
+End
+TOKEN
+	Name  = "DEFAULT_SETUP_PWD_AT_FIRSTBOOT_ONLY"
+	Value  = "0"
+	Help  = "1 is default. 1 => Sets the TSE_ADMIN_PASSWORD and TSE_USER_PASSWORD at first boot only. 0 => Sets TSE_ADMIN_PASSWORD and TSE_USER_PASSWORD in TSE defaults, on load defaults these data will be loaded"
+	TokenType = Expression
+	TargetH = Yes
+	TargetMAK = Yes
+	Token = "TSE_DEFAULT_SETUP_PASSWORD_SUPPORT" "=" "1"
+End
+TOKEN
+	Name  = "TSE_ADMIN_PASSWORD"
+	Value  = "Grg90#@B"
+	Help  = "Defaultly no password is given. Need TSE source to change this. Provide data to set as default admin password. Maximum string can be provide is based on SETUP_PASSWORD_LENGTH token. String should be atleat minimum length mentioned in vfr. If no password is given it will not set any default password. Note: specify EMPTY_DATA in value if default admin password is not required"
+	TokenType = Expression
+	TargetH = Yes
+	TargetMAK = Yes
+	Token = "TSE_DEFAULT_SETUP_PASSWORD_SUPPORT" "=" "1"
+End
+TOKEN
+	Name  = "TSE_DONOT_LOAD_PASSWORD_ON_DEFAULTS"
+	Value  = "1"
+	Help  = "1 => Will not load defaults for password when we press F3. 0 => Load default passowrd."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TSE_SUPPORT_NATIVE_RESOLUTION"
+	Value  = "0"
+	Help  = "Sets the graphics mode for quiet boot from EDID. 1 - Defaultly enable make 0 to disable the feature"
+	TokenType = Boolean
+	TargetH = Yes
+End
+TOKEN
+	Name  = "GC_MODE0"
+	Value  = "{ 0, 80, 25, 640, 480 }"
+	Help  = "Parameters of the graphica console text mode 0.\NOTE: Text resolution of the mode 0 must be 80 by 25\Format: {ModeNumber, TextColomns,TextRows, HorizontalPixels,VerticalPixels}"
+	TokenType = Expression
+	TargetH = Yes
+#	Token = "WIN8_FEATURE_SUPPORT" "=" "1"
+End
+TOKEN
+	Name  = "SETUP_JPEG_LOGO_SUPPORT"
+	Value  = "1"
+	Help  = "JPEG Logo support in Setup."
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name  = "SETUP_BMP_LOGO_SUPPORT"
+	Value  = "0"
+	Help  = "BMP Logo support in Setup"
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+TOKEN
+	Name  = "LOGO_FILE_NAME"
+	Value  = "BIOS_CUSTOM\logo.jpg"
+	TokenType = Expression
+	TargetMAK = Yes
+End
+
+TOKEN
+    Name  = "SLP_MARKER_ROM_FILENAME"
+    Value = "BIOS_CUSTOM\OA20Marker.bin"
+    Help  = "SLP2.0 Marker key rom file"
+    TokenType = File
+    TargetMAK = Yes
+End
+TOKEN
+    Name  = "SLP_PUBKEY_ROM_FILENAME"
+    Value = "BIOS_CUSTOM\OA20PubKey.bin"
+    Help  = "SLP2.0 Public key rom file"
+    TokenType = File
+    TargetMAK = Yes
+End
+TOKEN
+    Name = "SLP_STRING"
+    Value = "GRGBankingIPC1"
+    Help = "SLP string."
+    TokenType = Expression
+	TargetEQU = Yes
+End

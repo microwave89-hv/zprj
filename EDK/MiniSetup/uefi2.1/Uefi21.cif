@@ -1,0 +1,21 @@
+<component>
+	name = "TSE Sources - UEFI2.1"
+	category = ModulePart
+	LocalRoot = "EDK\MiniSetup\uefi2.1"
+	RefName = "Uefi21"
+[files]
+"Uefi21.sdl"	
+"Uefi21.mak"	
+"CtrlCond.c"	
+"CtrlCond.h"	
+"FormBrowser2.c"	
+"FormBrowser2.h"	
+"Expression.c"	
+"Hii.c"	
+"HiiCallback.c"	
+"HiiNotificationHandler.c"	
+"Parse.c"	
+"TseUefiHii.h"	
+"Uefi21Wapper.c"	
+"UefiTianoHii.h"	
+<endComponent>

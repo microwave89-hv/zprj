@@ -1,0 +1,42 @@
+TOKEN
+	Name  = "TSE_ADVANCED_SUPPORT"
+	Value  = "1"
+	Help  = "Main switch to enable Ezport Style in TSE"
+	TokenType = Boolean
+	TargetEQU = Yes
+	TargetMAK = Yes
+	Master = Yes
+End
+
+TOKEN
+	Name  = "TSE_SEPERATE_EFI_LEGACY_OPTIONS"
+	Value  = "0"
+	Help  = "Turn on to have EFI options and Legacy options seperate. This will have effect only if BDS also seperates EFI and Legacy options."
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "TSE_NVRAM_DEFAULTS_SUPPORT"
+	Value  = "1"
+	Help  = "To enable NVRAM support in TSE modules. This token requires TSE Sources support"
+	TokenType = Boolean
+	TargetH = Yes
+	TargetMAK = Yes
+	Token = "NVRAM_SUPPORT" "!=" "0"
+End
+
+PATH
+	Name  = "TSE_ADVANCED_DIR"
+End
+
+MODULE
+	Help  = "Includes TseAdvanced.mak to Project"
+	File  = "TseAdvanced.mak"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\TseAdvanced.lib"
+	Parent  = "$(TSE_ADVANCED_DIR)\TseAdvanced$(ARCH).lib"
+	InvokeOrder = ReplaceParent
+End

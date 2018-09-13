@@ -1,0 +1,12 @@
+<component>
+	name = "Default FixedBootOrder"
+	category = ModulePart
+	LocalRoot = "Board\EM\FixedBootOrder\DefaultFixedBootOrder\"
+	RefName = "DefaultFixedBootOrder"
+[files]
+"DefaultFixedBootOrder.sdl"	
+"DefaultFixedBootOrder.c"	
+"DefaultFixedBootOrder.sd"	
+"DefaultFixedBootOrder.uni"		
+"DefaultFixedBootOrder.mak"
+<endComponent>

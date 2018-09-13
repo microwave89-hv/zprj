@@ -1,0 +1,962 @@
+#include <token.h>
+
+#if EFI_SPECIFICATION_VERSION>0x20000
+#define Device1 0
+#define Device2 1
+#define Device3 2
+#define Device4 3
+#define Device5 4
+#define Device6 5
+#define Device7 6
+#define Device8 7
+#define Device9 8
+#define Device10 9
+#define Device11 10
+#define Device12 11
+#define Device13 12
+#define Device14 13
+#define Device15 14
+#else
+#define Device1 1
+#define Device2 2
+#define Device3 3
+#define Device4 4
+#define Device5 5
+#define Device6 6
+#define Device7 7
+#define Device8 8
+#define Device9 8
+#define Device10 9
+#define Device11 10
+#define Device12 11
+#define Device13 12
+#define Device14 13
+#endif
+
+#ifdef SETUP_DATA_DEFINITION
+/***********************************************************/
+/* Put NVRAM data definitions here.
+/* For example:	UINT8 Data1;
+/* These definitions will be converted by the build process
+/* to a definitions of SETUP_DATA fields.
+/***********************************************************/
+UINT16 LegacyPriorities[16];
+UINT16 UefiPriorities[16];
+#if FBO_DUAL_MODE
+UINT16 DualPriorities[32];
+#endif
+UINT8  FBO_Init;
+UINT8  BootMode;
+#if USE_BCP_DEFAULT_PRIORITIES
+//UINT16 BcpDefaultPriorities[8];
+UINT16 BcpDefaultLegacyPriorities[8];  //(EIP115686+)
+UINT16 BcpDefaultUefiPriorities[8];    //(EIP115686+)
+#if FBO_DUAL_MODE
+UINT16 BcpDefaultDualPriorities[32];
+#endif
+#endif
+
+#endif
+
+
+#if 0
+STRING_TOKEN(STR_BOOT_OPTION)
+STRING_TOKEN(STR_BOOT_OPTION_HELP)
+STRING_TOKEN(STR_BOOT_HDD)
+STRING_TOKEN(STR_BOOT_CDROM)
+STRING_TOKEN(STR_BOOT_NETWORK)
+STRING_TOKEN(STR_BOOT_USBHDD)
+STRING_TOKEN(STR_BOOT_USBODD)
+STRING_TOKEN(STR_BOOT_USBFDD)
+STRING_TOKEN(STR_BOOT_USBKEY)
+
+STRING_TOKEN(STR_BOOT_UEFI_HDD)
+STRING_TOKEN(STR_BOOT_UEFI_CDROM)
+STRING_TOKEN(STR_BOOT_UEFI_NETWORK)
+STRING_TOKEN(STR_BOOT_UEFI_USBHDD)
+STRING_TOKEN(STR_BOOT_UEFI_USBODD)
+STRING_TOKEN(STR_BOOT_UEFI_USBFDD)
+STRING_TOKEN(STR_BOOT_UEFI_USBKEY)
+
+STRING_TOKEN(STR_DUAL_BOOT_UEFI_HDD)
+STRING_TOKEN(STR_DUAL_BOOT_UEFI_CDROM)
+STRING_TOKEN(STR_DUAL_BOOT_UEFI_NETWORK)
+STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBHDD)
+STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBODD)
+STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBFDD)
+STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBKEY)
+
+STRING_TOKEN(STR_BOOT_ORDER_1)
+STRING_TOKEN(STR_BOOT_ORDER_2)
+STRING_TOKEN(STR_BOOT_ORDER_3)
+STRING_TOKEN(STR_BOOT_ORDER_4)
+STRING_TOKEN(STR_BOOT_ORDER_5)
+STRING_TOKEN(STR_BOOT_ORDER_6)
+STRING_TOKEN(STR_BOOT_ORDER_7)
+STRING_TOKEN(STR_BOOT_ORDER_8)
+STRING_TOKEN(STR_BOOT_ORDER_9)
+STRING_TOKEN(STR_BOOT_ORDER_10)
+STRING_TOKEN(STR_BOOT_ORDER_11)
+STRING_TOKEN(STR_BOOT_ORDER_12)
+STRING_TOKEN(STR_BOOT_ORDER_13)
+STRING_TOKEN(STR_BOOT_ORDER_14)
+STRING_TOKEN(STR_BOOT_ORDER_15)
+STRING_TOKEN(STR_BOOT_ORDER_16)
+#endif
+
+#ifdef BOOT_FORM_SET
+	
+	#ifdef FORM_SET_TYPEDEF
+	#include "Board\EM\FixedBootOrder\FixedBootOrder.h"
+	#endif
+
+	#ifdef FORM_SET_VARSTORE
+		varstore FIXED_BOOT_SETUP,
+		key   = AUTO_ID(FIXED_BOOT_KEY),
+		name  = FixedBoot,
+		guid  = SETUP_GUID;
+
+		varstore FIXED_BOOT_GROUP,
+		key   = AUTO_ID(FIXED_BOOT_KEY1),
+		name  = FixedBootGroup,
+		guid  = SETUP_GUID;	
+	#endif
+					
+  	#ifdef FORM_SET_ITEM
+
+		//----------------------------------------
+		//Set default FBO_Init = 0, don't display.
+		suppressif ideqvallist SETUP_DATA.FBO_Init == 0 1;  
+    		checkbox varid  = SETUP_DATA.FBO_Init,
+        		prompt      = STRING_TOKEN(STR_EMPTY),
+        		help        = STRING_TOKEN(STR_EMPTY),
+        		flags       = 0, // Flags behavior for checkbox is overloaded so that it equals a DEFAULT value.
+    			endcheckbox;
+    		endif; 	
+		//----------------------------------------
+		//Make default to variable "StdDefault",don't display.
+		suppressif ideqvallist SETUP_DATA.FBO_Init == 0 1;  
+		oneof varid     = FIXED_BOOT_SETUP.LegacyDevice[0], 
+			prompt      = STRING_TOKEN(STR_EMPTY),
+			help        = STRING_TOKEN(STR_EMPTY),
+			option text = STRING_TOKEN(STR_EMPTY),	value = 0, flags = DEFAULT;
+			option text = STRING_TOKEN(STR_EMPTY),	value = 1, flags = 0;
+		endoneof;
+    		endif; 	
+		suppressif ideqvallist SETUP_DATA.FBO_Init == 0 1;  
+		oneof varid     = FIXED_BOOT_GROUP.LegacyHDD, 
+			prompt      = STRING_TOKEN(STR_EMPTY),
+			help        = STRING_TOKEN(STR_EMPTY),
+			option text = STRING_TOKEN(STR_EMPTY),	value = 0, flags = DEFAULT;
+			option text = STRING_TOKEN(STR_EMPTY),	value = 1, flags = 0;
+		endoneof;
+    		endif;
+		//----------------------------------------
+#if CSM_SUPPORT
+            	oneof varid   = SETUP_DATA.BootMode,
+                	prompt    = STRING_TOKEN(STR_BOOT_MODE_SEL),
+                	help      = STRING_TOKEN(STR_BOOT_MODE_SEL_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_MODE_LEGACY),     value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+                	option text  = STRING_TOKEN(STR_BOOT_MODE_UEFI),       value = 1, flags = 0;
+#if FBO_DUAL_MODE
+                	option text  = STRING_TOKEN(STR_BOOT_MODE_DUAL),       value = 2, flags = 0;
+#endif
+	    	endoneof;
+#else
+		//No Legacy device,Set default is UEFI mode, don't display this.
+		suppressif ideqvallist SETUP_DATA.FBO_Init == 0 1; 
+            	oneof varid   = SETUP_DATA.BootMode,
+                	prompt    = STRING_TOKEN(STR_BOOT_MODE_SEL),
+                	help      = STRING_TOKEN(STR_BOOT_MODE_SEL_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_MODE_LEGACY),     value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_MODE_UEFI),       value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+#if FBO_DUAL_MODE
+                	option text  = STRING_TOKEN(STR_BOOT_MODE_DUAL),       value = 2, flags = 0;
+#endif
+	    	endoneof;
+		endif;
+#endif		//#if CSM_SUPPORT
+	
+        	SEPARATOR
+       	 	SUBTITLE(STRING_TOKEN(STR_FIXED_BOOT_ORDER_SUBTITLE))
+
+		//LEGACY BOOT ITEM
+		suppressif  ideqvallist SETUP_DATA.BootMode == 1 2;
+       		label  AUTO_ID(FIXED_BOOT_ITEM_LABEL1);				
+		endif;	//suppressif
+
+		//UEFI BOOT ITEM
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 2;
+       		label  AUTO_ID(FIXED_BOOT_ITEM_LABEL2);
+		endif;	//suppressif
+#if FBO_DUAL_MODE
+		//LEGACY/UEFI BOOT ITEM
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1;
+       		label  AUTO_ID(FIXED_BOOT_ITEM_LABEL3);
+		endif;	//suppressif
+#endif
+							//(EIP107268+)>
+#if USE_BCP_DEFAULT_PRIORITIES
+                //----------------------------------------------------------------------------------//
+                //         USE for AMIBCP tool BcpDefaultUefiPriorities[Device1] - [Device7]        //
+                //                                                                                  //
+                //                                NOT DISPLAY                                       //
+                //                                                                                  //
+                //  		    The value sequence need same with FBOUefiDevMapData[]               //
+                //----------------------------------------------------------------------------------//
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+
+        SEPARATOR
+       	SUBTITLE(STRING_TOKEN(STR_BCP_UEFI_DEFAULT_SUBTITLE))
+
+            	oneof varid   = SETUP_DATA.BcpDefaultUefiPriorities[Device1],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_1),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),    value = 0, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),value = 6, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultUefiPriorities[Device2],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_2),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),  value = 1, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),value = 6, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultUefiPriorities[Device3],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_3),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD), value = 2, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),value = 6, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultUefiPriorities[Device4],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_4),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD), value = 3, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),value = 6, flags = 0;                                                       //<(EIP115686+)
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultUefiPriorities[Device5],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_5),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY), value = 4, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),value = 6, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultUefiPriorities[Device6],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_6),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD), value = 5, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),value = 6, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultUefiPriorities[Device7],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_7),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),value = 6, flags = MANUFACTURING | DEFAULT;
+            	endoneof;
+		endif; //suppressif
+
+            //----------------------------------------------------------------------------------//
+            //         USE for AMIBCP tool BcpDefaultPriorities[Device1] - [Device7]            //
+            //                                                                                  //
+            //                                NOT DISPLAY                                       //
+            //                                                                                  //
+            //          The value sequence need same with FBOLegacyDevMapData[]                 //
+            //----------------------------------------------------------------------------------//
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+
+        SEPARATOR
+       	SUBTITLE(STRING_TOKEN(STR_BCP_DEFAULT_SUBTITLE))
+
+            	oneof varid   = SETUP_DATA.BcpDefaultLegacyPriorities[Device1],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_1),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),    value = 0, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),value = 6, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultLegacyPriorities[Device2],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_2),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),  value = 1, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),value = 6, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultLegacyPriorities[Device3],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_3),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD), value = 2, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),value = 6, flags = 0;
+
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultLegacyPriorities[Device4],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_4),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD), value = 3, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),value = 6, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultLegacyPriorities[Device5],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_5),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY), value = 4, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),value = 6, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultLegacyPriorities[Device6],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_6),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD), value = 5, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),value = 6, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultLegacyPriorities[Device7],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_7),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),value = 6, flags = MANUFACTURING | DEFAULT;
+            	endoneof;
+		endif; //suppressif
+
+                            //(EIP122146+)>					
+#if FBO_DUAL_MODE
+                //----------------------------------------------------------------------------------//
+                //        USE for AMIBCP tool BcpDefaultDualPriorities[Device1] - [Device_x]        //
+                //                                                                                  //
+                //                                NOT DISPLAY                                       //
+                //                                                                                  //
+                //             The value sequence need same with FBODualDevMapData[]                //
+                //----------------------------------------------------------------------------------//
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+
+        SEPARATOR
+       	SUBTITLE(STRING_TOKEN(STR_BCP_DUAL_DEFAULT_SUBTITLE))
+
+            	oneof varid   = SETUP_DATA.BcpDefaultDualPriorities[Device1],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_1),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_HDD),    value = 0, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_NETWORK),value = 6, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),              value = 7, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),            value = 8, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD),           value = 9, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD),           value = 10, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY),           value = 11, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD),           value = 12, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),          value = 13, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultDualPriorities[Device2],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_2),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_CDROM),  value = 1, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_NETWORK),value = 6, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),              value = 7, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),            value = 8, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD),           value = 9, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD),           value = 10, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY),           value = 11, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD),           value = 12, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),          value = 13, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultDualPriorities[Device3],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_3),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBHDD), value = 2, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_NETWORK),value = 6, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),              value = 7, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),            value = 8, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD),           value = 9, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD),           value = 10, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY),           value = 11, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD),           value = 12, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),          value = 13, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultDualPriorities[Device4],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_4),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBODD), value = 3, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_NETWORK),value = 6, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),              value = 7, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),            value = 8, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD),           value = 9, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD),           value = 10, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY),           value = 11, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD),           value = 12, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),          value = 13, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultDualPriorities[Device5],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_5),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBKEY), value = 4, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_NETWORK),value = 6, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),              value = 7, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),            value = 8, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD),           value = 9, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD),           value = 10, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY),           value = 11, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD),           value = 12, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),          value = 13, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultDualPriorities[Device6],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_6),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBFDD), value = 5, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_NETWORK),value = 6, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),              value = 7, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),            value = 8, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD),           value = 9, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD),           value = 10, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY),           value = 11, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD),           value = 12, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),          value = 13, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultDualPriorities[Device7],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_7),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_NETWORK),value = 6, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),              value = 7, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),            value = 8, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD),           value = 9, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD),           value = 10, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY),           value = 11, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD),           value = 12, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),          value = 13, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultDualPriorities[Device8],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_8),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_NETWORK),value = 6, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),              value = 7, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),            value = 8, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD),           value = 9, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD),           value = 10, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY),           value = 11, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD),           value = 12, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),          value = 13, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultDualPriorities[Device9],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_9),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_NETWORK),value = 6, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),              value = 7, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),            value = 8, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD),           value = 9, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD),           value = 10, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY),           value = 11, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD),           value = 12, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),          value = 13, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultDualPriorities[Device10],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_10),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_NETWORK),value = 6, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),              value = 7, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),            value = 8, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD),           value = 9, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD),           value = 10, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY),           value = 11, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD),           value = 12, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),          value = 13, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultDualPriorities[Device11],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_11),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_NETWORK),value = 6, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),              value = 7, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),            value = 8, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD),           value = 9, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD),           value = 10, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY),           value = 11, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD),           value = 12, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),          value = 13, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultDualPriorities[Device12],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_12),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_NETWORK),value = 6, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),              value = 7, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),            value = 8, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD),           value = 9, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD),           value = 10, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY),           value = 11, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD),           value = 12, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),          value = 13, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultDualPriorities[Device13],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_13),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_NETWORK),value = 6, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),              value = 7, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),            value = 8, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD),           value = 9, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD),           value = 10, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY),           value = 11, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD),           value = 12, flags = MANUFACTURING | DEFAULT;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),          value = 13, flags = 0;
+            	endoneof;
+		endif; //suppressif
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0 1 2 3 4 5;
+            	oneof varid   = SETUP_DATA.BcpDefaultDualPriorities[Device14],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_14),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_HDD),    value = 0, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_CDROM),  value = 1, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBHDD), value = 2, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBODD), value = 3, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBKEY), value = 4, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_USBFDD), value = 5, flags = 0;
+                	option text  = STRING_TOKEN(STR_DUAL_BOOT_UEFI_NETWORK),value = 6, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),              value = 7, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_CDROM),            value = 8, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBHDD),           value = 9, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBODD),           value = 10, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBKEY),           value = 11, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_USBFDD),           value = 12, flags = 0;
+                	option text  = STRING_TOKEN(STR_BOOT_NETWORK),          value = 13, flags = MANUFACTURING | DEFAULT;
+            	endoneof;
+		endif; //suppressif
+
+#endif      //#if FBO_DUAL_MODE
+                            //<(EIP122146+)
+#endif      //#if USE_BCP_DEFAULT_PRIORITIES
+							//<(EIP107268+)
+  	#endif  //FORM_SET_ITEM
+
+						
+	#ifdef FORM_SET_GOTO
+	//
+	// Define goto commands for the forms defined in this file
+	//
+        	SEPARATOR
+#if CSM_SUPPORT
+		//--------------------------------------------------
+		//	LEGACY GROUP FORM GOTO ITEM
+		//--------------------------------------------------
+		suppressif  ideqvallist SETUP_DATA.BootMode == 1;
+		suppressif  ideqvallist FIXED_BOOT_GROUP.LegacyHDD == 0;
+		goto HDD_BOOT_FORM_ID,
+			prompt = STRING_TOKEN(STR_HDD_BOOT_ORDER_SUBTITLE),
+			help = STRING_TOKEN(STR_HDD_BOOT_ORDER_HELP);
+		endif;
+		endif;
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 1;
+		suppressif  ideqvallist FIXED_BOOT_GROUP.LegacyODD == 0;
+		goto ODD_BOOT_FORM_ID,
+			prompt = STRING_TOKEN(STR_ODD_BOOT_ORDER_SUBTITLE),
+			help = STRING_TOKEN(STR_ODD_BOOT_ORDER_HELP);
+		endif;
+		endif;
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 1;
+		suppressif  ideqvallist FIXED_BOOT_GROUP.LegacyNET == 0;
+		goto NET_BOOT_FORM_ID,
+			prompt = STRING_TOKEN(STR_NET_BOOT_ORDER_SUBTITLE),
+			help = STRING_TOKEN(STR_NET_BOOT_ORDER_HELP);
+		endif;
+		endif;
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 1;
+		suppressif  ideqvallist FIXED_BOOT_GROUP.LegacyUSBHDD == 0;
+		goto USBHDD_BOOT_FORM_ID,
+			prompt = STRING_TOKEN(STR_USBHDD_BOOT_ORDER_SUBTITLE),
+			help = STRING_TOKEN(STR_USBHDD_BOOT_ORDER_HELP);
+		endif;
+		endif;
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 1;
+		suppressif  ideqvallist FIXED_BOOT_GROUP.LegacyUSBKEY == 0;
+		goto USBKEY_BOOT_FORM_ID,
+			prompt = STRING_TOKEN(STR_USBKEY_BOOT_ORDER_SUBTITLE),
+			help = STRING_TOKEN(STR_USBKEY_BOOT_ORDER_HELP);
+		endif;
+		endif;
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 1;
+		suppressif  ideqvallist FIXED_BOOT_GROUP.LegacyUSBODD == 0;
+		goto USBODD_BOOT_FORM_ID,
+			prompt = STRING_TOKEN(STR_USBODD_BOOT_ORDER_SUBTITLE),
+			help = STRING_TOKEN(STR_USBODD_BOOT_ORDER_HELP);
+		endif;
+		endif;
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 1;
+		suppressif  ideqvallist FIXED_BOOT_GROUP.LegacyUSBFDD == 0;
+		goto USBFDD_BOOT_FORM_ID,
+			prompt = STRING_TOKEN(STR_USBFDD_BOOT_ORDER_SUBTITLE),
+			help = STRING_TOKEN(STR_USBFDD_BOOT_ORDER_HELP);
+		endif;
+		endif;
+#endif
+		//--------------------------------------------------
+		//	UEFI GROUP FORM GOTO ITEM
+		//--------------------------------------------------
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0;
+		suppressif  ideqvallist FIXED_BOOT_GROUP.UefiHDD == 0;
+		goto UEFI_HDD_BOOT_FORM_ID,
+			prompt = STRING_TOKEN(STR_UEFI_HDD_BOOT_ORDER_SUBTITLE),
+			help = STRING_TOKEN(STR_UEFI_HDD_BOOT_ORDER_HELP);
+		endif;
+		endif;
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0;
+		suppressif  ideqvallist FIXED_BOOT_GROUP.UefiODD == 0;
+		goto UEFI_ODD_BOOT_FORM_ID,
+			prompt = STRING_TOKEN(STR_UEFI_ODD_BOOT_ORDER_SUBTITLE),
+			help = STRING_TOKEN(STR_UEFI_ODD_BOOT_ORDER_HELP);
+		endif;
+		endif;
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0;
+		suppressif  ideqvallist FIXED_BOOT_GROUP.UefiNET == 0;
+		goto UEFI_NET_BOOT_FORM_ID,
+			prompt = STRING_TOKEN(STR_UEFI_NET_BOOT_ORDER_SUBTITLE),
+			help = STRING_TOKEN(STR_UEFI_NET_BOOT_ORDER_HELP);
+		endif;
+		endif;
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0;
+		suppressif  ideqvallist FIXED_BOOT_GROUP.UefiUSBHDD == 0;
+		goto UEFI_USBHDD_BOOT_FORM_ID,
+			prompt = STRING_TOKEN(STR_UEFI_USBHDD_BOOT_ORDER_SUBTITLE),
+			help = STRING_TOKEN(STR_UEFI_USBHDD_BOOT_ORDER_HELP);
+		endif;
+		endif;
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0;
+		suppressif  ideqvallist FIXED_BOOT_GROUP.UefiUSBODD == 0;
+		goto UEFI_USBODD_BOOT_FORM_ID,
+			prompt = STRING_TOKEN(STR_UEFI_USBODD_BOOT_ORDER_SUBTITLE),
+			help = STRING_TOKEN(STR_UEFI_USBODD_BOOT_ORDER_HELP);
+		endif;
+		endif;
+
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0;
+		suppressif  ideqvallist FIXED_BOOT_GROUP.UefiUSBKEY == 0;
+		goto UEFI_USBKEY_BOOT_FORM_ID,
+			prompt = STRING_TOKEN(STR_UEFI_USBKEY_BOOT_ORDER_SUBTITLE),
+			help = STRING_TOKEN(STR_UEFI_USBKEY_BOOT_ORDER_HELP);
+		endif;
+		endif;
+
+		suppressif  ideqvallist SETUP_DATA.BootMode == 0;
+		suppressif  ideqvallist FIXED_BOOT_GROUP.UefiUSBFDD == 0;
+		goto UEFI_USBFDD_BOOT_FORM_ID,
+			prompt = STRING_TOKEN(STR_UEFI_USBFDD_BOOT_ORDER_SUBTITLE),
+			help = STRING_TOKEN(STR_UEFI_USBFDD_BOOT_ORDER_HELP);
+		endif;
+		endif;
+
+	#endif	//#ifdef FORM_SET_GOTO
+
+
+	#ifdef FORM_SET_FORM
+
+		//
+		// Define all device group forms in this file
+		//
+#if CSM_SUPPORT
+		//--------------------------------------------------
+		//	LEGACY GROUP FORM ITEM
+		//--------------------------------------------------
+		//HDD GROUP FORM
+		form formid = AUTO_ID(HDD_BOOT_FORM_ID),
+		title = STRING_TOKEN(STR_HDD_BOOT_ORDER_SUBTITLE);
+		label  AUTO_ID(HDD_BOOT_FORM_LABEL);
+		endform;
+
+		//ODD GROUP FORM
+		form formid = AUTO_ID(ODD_BOOT_FORM_ID),
+		title = STRING_TOKEN(STR_ODD_BOOT_ORDER_SUBTITLE);
+		label  AUTO_ID(ODD_BOOT_FORM_LABEL);
+		endform;
+
+		//NETWORK GROUP FORM
+		form formid = AUTO_ID(NET_BOOT_FORM_ID),
+		title = STRING_TOKEN(STR_NET_BOOT_ORDER_SUBTITLE);
+		label  AUTO_ID(NET_BOOT_FORM_LABEL);
+		endform;
+
+		//USBHDD GROUP FORM
+		form formid = AUTO_ID(USBHDD_BOOT_FORM_ID),
+		title = STRING_TOKEN(STR_USBHDD_BOOT_ORDER_SUBTITLE);
+		label  AUTO_ID(USBHDD_BOOT_FORM_LABEL);
+		endform;
+
+		//USBKEY GROUP FORM
+		form formid = AUTO_ID(USBKEY_BOOT_FORM_ID),
+		title = STRING_TOKEN(STR_USBKEY_BOOT_ORDER_SUBTITLE);
+		label  AUTO_ID(USBKEY_BOOT_FORM_LABEL);
+		endform;
+
+		//USBODD GROUP FORM
+		form formid = AUTO_ID(USBODD_BOOT_FORM_ID),
+		title = STRING_TOKEN(STR_USBODD_BOOT_ORDER_SUBTITLE);
+		label  AUTO_ID(USBODD_BOOT_FORM_LABEL);
+		endform;
+
+		//USBFDD GROUP FORM
+		form formid = AUTO_ID(USBFDD_BOOT_FORM_ID),
+		title = STRING_TOKEN(STR_USBFDD_BOOT_ORDER_SUBTITLE);
+		label  AUTO_ID(USBFDD_BOOT_FORM_LABEL);
+		endform;
+#endif
+		//--------------------------------------------------
+		//	UEFI GROUP FORM ITEM
+		//--------------------------------------------------
+
+		//UEFI HDD GROUP FORM
+		form formid = AUTO_ID(UEFI_HDD_BOOT_FORM_ID),
+		title = STRING_TOKEN(STR_UEFI_HDD_BOOT_ORDER_SUBTITLE);
+		label  AUTO_ID(UEFI_HDD_BOOT_FORM_LABEL);
+		endform;
+
+		//UEFI ODD GROUP FORM
+		form formid = AUTO_ID(UEFI_ODD_BOOT_FORM_ID),
+		title = STRING_TOKEN(STR_UEFI_ODD_BOOT_ORDER_SUBTITLE);
+		label  AUTO_ID(UEFI_ODD_BOOT_FORM_LABEL);
+		endform;
+
+		//UEFI NETWORK GROUP FORM
+		form formid = AUTO_ID(UEFI_NET_BOOT_FORM_ID),
+		title = STRING_TOKEN(STR_UEFI_NET_BOOT_ORDER_SUBTITLE);
+		label  AUTO_ID(UEFI_NET_BOOT_FORM_LABEL);
+		endform;
+
+		//UEFI USBHDD GROUP FORM
+		form formid = AUTO_ID(UEFI_USBHDD_BOOT_FORM_ID),
+		title = STRING_TOKEN(STR_UEFI_USBHDD_BOOT_ORDER_SUBTITLE);
+		label  AUTO_ID(UEFI_USBHDD_BOOT_FORM_LABEL);
+		endform;
+
+		//UEFI USBODD GROUP FORM
+		form formid = AUTO_ID(UEFI_USBODD_BOOT_FORM_ID),
+		title = STRING_TOKEN(STR_UEFI_USBODD_BOOT_ORDER_SUBTITLE);
+		label  AUTO_ID(UEFI_USBODD_BOOT_FORM_LABEL);
+		endform;
+
+		//UEFI USBKEY GROUP FORM
+		form formid = AUTO_ID(UEFI_USBKEY_BOOT_FORM_ID),
+		title = STRING_TOKEN(STR_UEFI_USBKEY_BOOT_ORDER_SUBTITLE);
+		label  AUTO_ID(UEFI_USBKEY_BOOT_FORM_LABEL);
+		endform;
+
+		//UEFI USBFDD GROUP FORM
+		form formid = AUTO_ID(UEFI_USBFDD_BOOT_FORM_ID),
+		title = STRING_TOKEN(STR_UEFI_USBFDD_BOOT_ORDER_SUBTITLE);
+		label  AUTO_ID(UEFI_USBFDD_BOOT_FORM_LABEL);
+		endform;
+	#endif 	//#ifdef FORM_SET_FORM
+						
+#endif	//#ifdef BOOT_FORM_SET

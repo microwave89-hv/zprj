@@ -1,0 +1,73 @@
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
+
+//*****************************************************************************
+// $Header: /Alaska/BIN/Modules/SLP/SlpSupport.dxs 3     8/01/11 5:07p Vyacheslava $
+//
+// $Revision: 3 $
+//
+// $Date: 8/01/11 5:07p $
+//*****************************************************************************
+// Revision History
+// ----------------
+// $Log: /Alaska/BIN/Modules/SLP/SlpSupport.dxs $
+// 
+// 3     8/01/11 5:07p Vyacheslava
+// 
+// 2     7/01/11 12:00p Vyacheslava
+// [TAG]  		EIP63678
+// [Category]  	New Feature
+// [Description]  	Preserve the OEM Activation SLIC during the BIOS
+// recovery path.
+// [Files]  		SlpSupport.sdl
+// SlpSupport.mak
+// SlpSupport.c
+// SlpSupport.dxs
+// SlpSupport.h
+// SlpSupport.cif
+// 
+//
+//*****************************************************************************
+//<AMI_FHDR_START>
+//
+// Name: SlpSupport.dxs
+//
+// Description: This file is the dependency file for SlpSupport eModule.
+//
+//<AMI_FHDR_END>
+//*****************************************************************************
+
+//----------------------------------------------------------------------------
+// Header files for GUID definitions
+//----------------------------------------------------------------------------
+
+#include <Protocol/AcpiTable.h>
+
+DEPENDENCY_START
+  EFI_ACPI_TABLE_PROTOCOL_GUID
+DEPENDENCY_END
+
+//*************************************************************************
+//*************************************************************************
+//**                                                                     **
+//**        (C)Copyright 1985-2011, American Megatrends, Inc.            **
+//**                                                                     **
+//**                       All Rights Reserved.                          **
+//**                                                                     **
+//**      5555 Oakbrook Parkway, Suite 200, Norcross, GA 30093           **
+//**                                                                     **
+//**                       Phone: (770)-246-8600                         **
+//**                                                                     **
+//*************************************************************************
+//*************************************************************************
