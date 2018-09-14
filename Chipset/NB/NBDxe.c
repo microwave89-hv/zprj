@@ -2241,8 +2241,8 @@ VOID NbExitPmAuthProtocolCallback (
 //----------------------------------------------------------------------------
 #if (ACPI_SUPPORT)
 
-UINT8    ACPI_OEM_ID[6]     = CONVERT_TO_STRING(T_ACPI_OEM_ID);
-UINT8    ACPI_OEM_TBL_ID[8] = CONVERT_TO_STRING(T_ACPI_OEM_TBL_ID);
+UINT8    ACPI_OEM_ID[6]     = T_ACPI_OEM_ID ;//CONVERT_TO_STRING(T_ACPI_OEM_ID);
+UINT8    ACPI_OEM_TBL_ID[8] = T_ACPI_OEM_TBL_ID ;//CONVERT_TO_STRING(T_ACPI_OEM_TBL_ID);
 
 UINTN           mMcfgTblHandle=0;
 EFI_EVENT       mAcpiEvent;

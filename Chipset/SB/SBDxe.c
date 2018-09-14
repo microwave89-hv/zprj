@@ -2013,9 +2013,9 @@ VOID CreateSbAcpiCallback (
     UINT32                      OldSbAslBufVarPtr = 0;
     UINT32                      Attributes = 0;
     UINTN                       VarSize;
-    UINT8                       OemId[6] = CONVERT_TO_STRING(T_ACPI_OEM_ID);
+    UINT8                       OemId[6] = T_ACPI_OEM_ID ;//CONVERT_TO_STRING(T_ACPI_OEM_ID);
     UINT8                       OemTblId[8] = \
-                                        CONVERT_TO_STRING(T_ACPI_OEM_TBL_ID);
+                                        T_ACPI_OEM_TBL_ID ;//CONVERT_TO_STRING(T_ACPI_OEM_TBL_ID);
 
     // It must be only one instance of such protocol
     Status = pBS->LocateProtocol(&gEfiAcpiSupportGuid, NULL, &As);

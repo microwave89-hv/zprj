@@ -586,8 +586,8 @@ MADT_ENTRY_HEADER * BuildLocalApicNmi(
     IN UINT16 Flags
     );
 
-UINT8    ACPI_OEM_ID[6]     = ACPI_OEM_ID_MAK;     //"A M I";      //add 0 at the end.OemId 6 bytes
-UINT8    ACPI_OEM_TBL_ID[8] = ACPI_OEM_TBL_ID_MAK; //"ALASKA"; //add 0 at the end.OemTableId  8 bytes
+UINT8    ACPI_OEM_ID[6]     = T_ACPI_OEM_ID ;//ACPI_OEM_ID_MAK;     //"A M I";      //add 0 at the end.OemId 6 bytes
+UINT8    ACPI_OEM_TBL_ID[8] = T_ACPI_OEM_TBL_ID ;//ACPI_OEM_TBL_ID_MAK; //"ALASKA"; //add 0 at the end.OemTableId  8 bytes
 
 #if defined(OemActivation_SUPPORT) && (OemActivation_SUPPORT == 1)
 #define EFI_OA3_MSDM_VARIABLE   L"OA3MSDMvariable"

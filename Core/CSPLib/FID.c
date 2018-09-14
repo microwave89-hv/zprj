@@ -81,8 +81,10 @@ FW_VERSION  FwVersionData = {
     TWO_DIGIT_MINUTE_INT,
     TWO_DIGIT_SECOND_INT,
     0xffff,
-    CONVERT_TO_STRING(T_ACPI_OEM_ID),
-    CONVERT_TO_STRING(T_ACPI_OEM_TBL_ID),
+//    CONVERT_TO_STRING(T_ACPI_OEM_ID),
+//    CONVERT_TO_STRING(T_ACPI_OEM_TBL_ID),
+    T_ACPI_OEM_ID,
+    T_ACPI_OEM_TBL_ID,
     49,
     { 
         0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,

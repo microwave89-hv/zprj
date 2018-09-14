@@ -28,7 +28,7 @@
 // [Category]  	Bug Fix
 // [Severity]  	Important
 // [Symptom]  	Using SMM Communication can cause OS to hang
-// [RootCause]  	SMM Communication Protocol’s Communicate API does not
+// [RootCause]  	SMM Communication Protocolï¿½s Communicate API does not
 // function in UEFI OS after Exit boot services event because
 // ConvertPointer() did not convert SMM_COMMUNICATE_DATA *gCommunicateData
 // pointer from a Physical Memory Map Pointer to a Virtual Memory Map
@@ -251,8 +251,8 @@ ACPI_SMM_COMM_TABLE gAcpiSmmCommTable =
      sizeof(ACPI_SMM_COMM_TABLE),
      1, //Revision
      0, //Checksum
-     CONVERT_TO_STRING(T_ACPI_OEM_ID),
-     CONVERT_TO_STRING(T_ACPI_OEM_TBL_ID),
+     T_ACPI_OEM_ID, //CONVERT_TO_STRING(T_ACPI_OEM_ID),
+     T_ACPI_OEM_TBL_ID, //CONVERT_TO_STRING(T_ACPI_OEM_TBL_ID),
      ACPI_OEM_REV,
      0, //Creator ID
      0, //Creator Revision,

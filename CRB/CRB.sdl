@@ -1689,23 +1689,23 @@ TOKEN
 	TargetH = Yes
 End
 
-TOKEN
-	Name  = "BASE_BOARD_MANUFACTURER"
-	Value  = "$(DEFAULT_STRING)"
-	Help  = "Specifies the Board Manufacturer."
-	TokenType = Expression
-	TargetEQU = Yes
-	Token = "BASE_BOARD_INFO" "=" "1"
-End
-
-TOKEN
-	Name  = "BASE_BOARD_PRODUCT_NAME"
-	Value  = "$(DEFAULT_STRING)"
-	Help  = "Specifies the Product Name"
-	TokenType = Expression
-	TargetEQU = Yes
-	Token = "BASE_BOARD_INFO" "=" "1"
-End
+##TOKEN
+##	Name  = "BASE_BOARD_MANUFACTURER"
+##	Value  = "$(DEFAULT_STRING)"
+##	Help  = "Specifies the Board Manufacturer."
+##	TokenType = Expression
+##	TargetEQU = Yes
+##	Token = "BASE_BOARD_INFO" "=" "1"
+##End
+##
+##TOKEN
+##	Name  = "BASE_BOARD_PRODUCT_NAME"
+##	Value  = "$(DEFAULT_STRING)"
+##	Help  = "Specifies the Product Name"
+##	TokenType = Expression
+##	TargetEQU = Yes
+##	Token = "BASE_BOARD_INFO" "=" "1"
+##End
 
 TOKEN
 	Name  = "NO_OF_PHYSICAL_MEMORY_ARRAY"

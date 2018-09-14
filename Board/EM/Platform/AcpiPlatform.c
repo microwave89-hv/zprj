@@ -1204,9 +1204,9 @@ VOID LoadDbgpTable()
     EFI_STATUS                      Status = EFI_SUCCESS;
     EFI_ACPI_DEBUG_PORT_DESCRIPTION_TABLE   *DBGP;
     EFI_ACPI_SUPPORT_PROTOCOL       *As;
-    UINT8                           OemId[6] = CONVERT_TO_STRING(T_ACPI_OEM_ID);
+    UINT8                           OemId[6] = T_ACPI_OEM_ID ;//CONVERT_TO_STRING(T_ACPI_OEM_ID);
     UINT8                           OemTblId[8] = \
-                                            CONVERT_TO_STRING(T_ACPI_OEM_TBL_ID);
+                                            T_ACPI_OEM_TBL_ID ;//CONVERT_TO_STRING(T_ACPI_OEM_TBL_ID);
     UINTN                           mDbgpTblHandle;
 
 

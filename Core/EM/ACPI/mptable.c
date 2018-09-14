@@ -188,8 +188,8 @@ static VOID *MpsExTableCurrentPointer = NULL;
 static UINT16  BaseTableLength = 0;
 static UINT16  BaseTableEntryCount = 0;
 static UINT16  ExtendedTableLength = 0;
-static UINT8   OemId[8] = CONVERT_TO_STRING(T_ACPI_OEM_TBL_ID);   //{ 0,1,2,3,4,5,6,7 };
-static UINT8   ProductId[12] = CONVERT_TO_STRING(T_ACPI_OEM_ID);   //{ 0,1,2,3,4,5,6,7,8,9,0xA, 0xB };
+static UINT8   OemId[8] = T_ACPI_OEM_TBL_ID ;//CONVERT_TO_STRING(T_ACPI_OEM_TBL_ID);   //{ 0,1,2,3,4,5,6,7 };
+static UINT8   ProductId[12] = T_ACPI_OEM_ID ;//CONVERT_TO_STRING(T_ACPI_OEM_ID);   //{ 0,1,2,3,4,5,6,7,8,9,0xA, 0xB };
 
 static BUS_INFO BusEntry[MP_TABLE_MAX_BUS_ENTRIES];
 static UINT8    MaxBusId = 0;

@@ -560,24 +560,24 @@ VOID InitMain(EFI_HII_HANDLE HiiHandle)
         *(UINT16*)&pST->FirmwareRevision % 100 / 10,
         *(UINT16*)&pST->FirmwareRevision % 10
     );
-    InitString(
-        HiiHandle,STRING_TOKEN(STR_BIOS_VERSION_VALUE),
-#if PROJECT_BUILD_NUMBER_IN_TITLE_SUPPORTED && defined (PROJECT_BUILD)
-#ifdef EFIx64
-        L"%s %d.%02d.%03d x64",
-#else
-        L"%s %d.%02d.%03d",
-#endif
-        STR(PROJECT_TAG), PROJECT_MAJOR_VERSION, PROJECT_MINOR_VERSION, PROJECT_BUILD
-#else //#if PROJECT_BUILD_NUMBER_IN_TITLE_SUPPORTED && defined (PROJECT_BUILD)
-#ifdef EFIx64
-        L"%s %d.%02d x64",
-#else
-        L"%s %d.%02d",
-#endif
-        STR(PROJECT_TAG), PROJECT_MAJOR_VERSION, PROJECT_MINOR_VERSION
-#endif//#if PROJECT_BUILD_NUMBER_IN_TITLE_SUPPORTED && defined (PROJECT_BUILD)
-    );
+//    InitString(
+//        HiiHandle,STRING_TOKEN(STR_BIOS_VERSION_VALUE),
+//#if PROJECT_BUILD_NUMBER_IN_TITLE_SUPPORTED && defined (PROJECT_BUILD)
+//#ifdef EFIx64
+//        L"%s %d.%02d.%03d x64",
+//#else
+//        L"%s %d.%02d.%03d",
+//#endif
+//        STR(PROJECT_TAG), PROJECT_MAJOR_VERSION, PROJECT_MINOR_VERSION, PROJECT_BUILD
+//#else //#if PROJECT_BUILD_NUMBER_IN_TITLE_SUPPORTED && defined (PROJECT_BUILD)
+//#ifdef EFIx64
+//        L"%s %d.%02d x64",
+//#else
+//        L"%s %d.%02d",
+//#endif
+//        STR(PROJECT_TAG), PROJECT_MAJOR_VERSION, PROJECT_MINOR_VERSION
+//#endif//#if PROJECT_BUILD_NUMBER_IN_TITLE_SUPPORTED && defined (PROJECT_BUILD)
+//    );
     InitString(
         HiiHandle,STRING_TOKEN(STR_BIOS_DATE_VALUE),
         L"%s %s", L_TODAY, L_NOW
