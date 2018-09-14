@@ -1633,3 +1633,28 @@ TOKEN
     TokenType = Expression
 	TargetEQU = Yes
 End
+
+TOKEN
+	Name  = "BBS_USB_DEVICE_TYPE_SUPPORT"
+	Value  = "1"
+	Help  = "Treat USB devices as a separate BBS device type"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "RemoveLegacyGptHddDevice"
+	Value  = "1"
+	Help  = "On. Filter GPT Format Hard disk of Legacy device."
+	TokenType = Boolean
+	TargetMAK = Yes
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "BOOT_FLOW_NORMAL_LAUNCH_DEFAULT_BOOTIMAGE"
+	Value  = "0"
+	Help  = "Support for UEFI specification v 2.3.1 section 3.4.1.1 and 3.4.1.2 to load the default boot image (efi\boot\boot####.efi) from any of the available file system if no boot option found. 1 = Enabling default image boot and 0 = Disabling default image boot."
+	TokenType = Boolean
+	TargetH = Yes
+End

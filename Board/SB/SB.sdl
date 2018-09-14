@@ -5320,7 +5320,7 @@ End
 
 ELINK
 	Name  = "SBIsDefaultConfigMode,"
-	Parent  = "IsDefaultConfigMode"
+	Parent  = "IsResetConfigMode"
 	InvokeOrder = AfterParent
 End
 

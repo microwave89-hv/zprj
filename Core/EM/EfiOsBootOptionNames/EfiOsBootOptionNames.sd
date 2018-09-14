@@ -50,6 +50,7 @@
 /* These definitions will be converted by the build process
 /* to a definitions of SETUP_DATA fields.
 /***********************************************************/
+    UINT8 OnlyBootHDD ;
 #endif
 
 #if defined(VFRCOMPILE) && !defined(CONTROLS_ARE_DEFINED)
@@ -99,6 +100,13 @@
   	
         EOBON_ONEOF_NEW_OPTION_POLICY
         
+        SEPARATOR
+        oneof varid = SETUP_DATA.OnlyBootHDD,
+            prompt = STRING_TOKEN(STR_ONLY_BOOT_HDD),
+            help = STRING_TOKEN(STR_ONLY_BOOT_HDD),
+            option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;
+            option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = 0, key = 0;
+        endoneof;
 	#endif 	//#ifdef FORM_SET_FORM
 						
 #endif	//#ifdef BOOT_FORM_SET

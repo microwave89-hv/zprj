@@ -554,7 +554,8 @@ UINT32 CheckSystemPassword(UINT32 EmptyPasswordType, UINTN *NoOfRetries, UINTN *
                 (!(PasswordInstalled & AMI_PASSWORD_USER ))&&
                 (EmptyPasswordType & AMI_PASSWORD_USER)
                 )
-                PasswordCheck = AMI_PASSWORD_USER;
+                //PasswordCheck = AMI_PASSWORD_USER;
+                PasswordCheck = AMI_PASSWORD_NONE;
             if(
                 (!(PasswordInstalled & AMI_PASSWORD_ADMIN ))&&
                 (EmptyPasswordType & AMI_PASSWORD_ADMIN)

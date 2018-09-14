@@ -1561,9 +1561,18 @@ BOOLEAN SBIsDefaultConfigMode (
     IN EFI_PEI_READ_ONLY_VARIABLE2_PPI  *ReadVariablePpi )
 {
     UINT8           Buffer8;
+	UINT8	CmosDiagnosticSts = FALSE;
 
     Buffer8 = READ_PCI8_SB(SB_REG_GEN_PMCON_3); // 0xA4 
-    return (Buffer8 & 4) ? TRUE : FALSE;
+//    return (Buffer8 & 4) ? TRUE : FALSE;
+
+    IoWrite8(0x70, 0x0E);
+	CmosDiagnosticSts = IoRead8(0x71) & (BIT6 + BIT7);
+
+    if( Buffer8 & 4 || CmosDiagnosticSts ) {
+        return TRUE;
+    }
+    return FALSE;
 }
 
 #if SB_STALL_PPI_SUPPORT

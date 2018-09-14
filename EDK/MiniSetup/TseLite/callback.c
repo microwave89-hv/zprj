@@ -607,7 +607,7 @@ VOID _LoadDefaults( NVRAM_VARIABLE *defaults, UINTN data )
 					 ( controlInfo->ControlVariable == VARIABLE_ID_LEGACY_GROUP_INFO) ||
 					 ( controlInfo->ControlVariable == VARIABLE_ID_ADD_DRIVER_OPTION) ||			//EIP70421 & 70422 Support for driver order
 					 (controlInfo->ControlVariable == VARIABLE_ID_DEL_DRIVER_OPTION) ||
-					( (TSEDonotLoadPasswordOnDefaults()) && (controlInfo->ControlVariable == VARIABLE_ID_AMITSESETUP) ) ) //EIP 93881 & 93873 : Save pwd to nvram and not loading empty pwd on loading defaults.
+					( (TSEDonotLoadPasswordOnDefaults()) && (controlInfo->ControlVariable == VARIABLE_ID_AMITSESETUP && (controlInfo->ControlType == CONTROL_TYPE_PASSWORD) ) ) ) //EIP 93881 & 93873 : Save pwd to nvram and not loading empty pwd on loading defaults.
 						continue;
 					else if(	((defaults[controlInfo->ControlVariable].Buffer != NULL) && (defaults[controlInfo->ControlVariable].Size))
 								&&((VARIABLE_ID_BOOT_ORDER == controlInfo->ControlVariable) || (VARIABLE_ID_DRIVER_ORDER == controlInfo->ControlVariable))

@@ -181,6 +181,8 @@
 #include "EfiOsNamesFilePathMaps.h"
 #include <Protocol\PDiskinfo.h>
 #include <Token.h>
+#include <AmiDxeLib.h>
+#include <Setup.h>
 
 #if DISPLAY_FULL_OPTION_NAME_WITH_FBO
 #include "Board\em\FixedBootOrder\FixedBootOrder.h"
@@ -1378,49 +1380,59 @@ VOID AdjustEfiOsBootOrder(VOID)
 //----------------------------------------------------------------------------
 //<AMI_PHDR_END>
 BOOLEAN RemoveLegacyGptHdd(BOOT_DEVICE *Device){
-    EFI_BLOCK_IO_PROTOCOL *BlkIo;
+//    EFI_BLOCK_IO_PROTOCOL *BlkIo;
+//    EFI_STATUS Status;
+//    UINT8 *Buffer = NULL;
+//    UINTN index;
+//    PARTITION_ENTRY *pEntries;
+//
+//    if (   Device->DeviceHandle == INVALID_HANDLE
+//        || Device->BbsEntry == NULL
+//    ) return FALSE;
+//     
+//    if( Device->BbsEntry->DeviceType != BBS_HARDDISK ) return FALSE;
+//
+//    Status=pBS->HandleProtocol(
+//        Device->DeviceHandle, &gEfiBlockIoProtocolGuid, &BlkIo
+//    );
+//
+//    if (EFI_ERROR(Status) || BlkIo->Media->RemovableMedia) return FALSE;	//USB device?
+//
+//    Status = pBS->AllocatePool( EfiBootServicesData, BlkIo->Media->BlockSize, &Buffer );
+//    if( Buffer == NULL ) return FALSE;
+//    
+//    // read the first sector
+//    BlkIo->ReadBlocks ( BlkIo,
+//                        BlkIo->Media->MediaId,
+//                        0,
+//                        BlkIo->Media->BlockSize,
+//  	                (VOID*)Buffer);	
+//			
+//    if(Buffer[0x1fe]==(UINT8)0x55 && Buffer[0x1ff]==(UINT8)0xaa)	//MBR Signature
+//    {
+//        pEntries=(PARTITION_ENTRY *)(Buffer+0x1be);
+//
+//        for(index=0;index<4;index++)
+//        {
+//            if( pEntries[index].PartitionType==0xee) 	//Check GPT Partition?
+//            {
+//                pBS->FreePool( Buffer );
+//                return TRUE;			//Set Can't Boot.
+//            }
+//        } //for(index=0;index<4;index++)					
+//    }//if(Buffer[0x1fe]==0x55 && Buffer[0x1ff]==0xaa)
+//
+//    pBS->FreePool( Buffer );
+//    return FALSE;
+
     EFI_STATUS Status;
-    UINT8 *Buffer = NULL;
-    UINTN index;
-    PARTITION_ENTRY *pEntries;
+    SETUP_DATA SetupData;
+    UINTN Size = sizeof(SETUP_DATA);
+    EFI_GUID SetupGuid = SETUP_GUID;
 
-    if (   Device->DeviceHandle == INVALID_HANDLE
-        || Device->BbsEntry == NULL
-    ) return FALSE;
-     
-    if( Device->BbsEntry->DeviceType != BBS_HARDDISK ) return FALSE;
+    Status = pRS->GetVariable(L"Setup", &SetupGuid, NULL, &Size, &SetupData);
 
-    Status=pBS->HandleProtocol(
-        Device->DeviceHandle, &gEfiBlockIoProtocolGuid, &BlkIo
-    );
-
-    if (EFI_ERROR(Status) || BlkIo->Media->RemovableMedia) return FALSE;	//USB device?
-
-    Status = pBS->AllocatePool( EfiBootServicesData, BlkIo->Media->BlockSize, &Buffer );
-    if( Buffer == NULL ) return FALSE;
-    
-    // read the first sector
-    BlkIo->ReadBlocks ( BlkIo,
-                        BlkIo->Media->MediaId,
-                        0,
-                        BlkIo->Media->BlockSize,
-  	                (VOID*)Buffer);	
-			
-    if(Buffer[0x1fe]==(UINT8)0x55 && Buffer[0x1ff]==(UINT8)0xaa)	//MBR Signature
-    {
-        pEntries=(PARTITION_ENTRY *)(Buffer+0x1be);
-
-        for(index=0;index<4;index++)
-        {
-            if( pEntries[index].PartitionType==0xee) 	//Check GPT Partition?
-            {
-                pBS->FreePool( Buffer );
-                return TRUE;			//Set Can't Boot.
-            }
-        } //for(index=0;index<4;index++)					
-    }//if(Buffer[0x1fe]==0x55 && Buffer[0x1ff]==0xaa)
-
-    pBS->FreePool( Buffer );
+    if( Device->BbsEntry->DeviceType != BBS_HARDDISK && SetupData.OnlyBootHDD == 1 ) return TRUE;
     return FALSE;
 }
 #endif
