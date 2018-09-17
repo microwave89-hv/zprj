@@ -424,6 +424,7 @@
   SPST, 8,      // (688) SATA port state, Bit0 - Port0, Bit1 - Port1, Bit2 - Port2, Bit3 - Port3
   ECLP, 8,      // (689) EC Low Power Mode: 1 - Enabled, 0 - Disabled
   INSC, 8,      // (690) Intel RMT Configuration
+  CISM, 8,
   }
 
 #if defined(ASL_Remove_SaSsdt_Data_To_Dsdt) && (ASL_Remove_SaSsdt_Data_To_Dsdt == 1)

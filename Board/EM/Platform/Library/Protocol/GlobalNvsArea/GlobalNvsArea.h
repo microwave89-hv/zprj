@@ -522,6 +522,7 @@ typedef struct {
   UINT8     SPST;                           // (688) SATA port state, Bit0 - Port0, Bit1 - Port1, Bit2 - Port2, Bit3 - Port3
   UINT8     ECLP;                           // (689) EC Low Power Mode: 1 - Enabled, 0 - Disabled
   UINT8     INSC;                           // (690) Intel RMT Configuration 
+  UINT8     ComIrqShareMode;
 } EFI_GLOBAL_NVS_AREA;
 #pragma pack ()
 

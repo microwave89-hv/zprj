@@ -480,6 +480,30 @@ static EFI_STATUS COM_Init(
                 SioCfgMode(dev->Owner, FALSE);
 				dev->VlData.DevIrq1=dev->ResOwner->VlData.DevIrq1;
             }
+
+            {
+                EFI_GUID SetupGuid = SETUP_GUID;
+                UINTN       Size = sizeof(SETUP_DATA);
+                SETUP_DATA                      SetupData;
+            
+                  Status = pRS->GetVariable ( L"Setup", \
+                                              &SetupGuid, \
+                                              NULL,\
+                                              &Size, \
+                                              &SetupData );
+
+                Status=AmiSio->Access(AmiSio,FALSE,FALSE,0x70,&rv);
+                // PCI Share Mode
+                if( SetupData.F81216ComIrqShareMode == 0 ) {
+                    rv &= ~(BIT5) ;
+                    rv |= BIT4 ;
+                }
+                else { // ISA Share Mode
+                    rv |= BIT5 ;
+                    rv |= BIT4 ;
+                }
+                Status=AmiSio->Access(AmiSio,TRUE,FALSE,0x70,&rv);
+            }
         break;
             
         case isAfterActivate:

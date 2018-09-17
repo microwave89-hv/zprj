@@ -415,7 +415,13 @@ Device(SIO2) {
     	    // Set IRQ Type:porting according INTT
             //AMI_TODO:
             If(And(INTT,0x01)){
-                Store(0x18, IRQS)       // IRQ Type: Active-Low-Level-Triggered,Shared.
+                //Store(0x18, IRQS)       // IRQ Type: Active-Low-Level-Triggered,Shared.
+                If( And(INTT, 0x02) ) {
+                    Store(0x19, IRQS)
+                }
+                Else {
+                    Store(0x18, IRQS)
+                }
             } Else {
                 Store(1, IRQS)          // IRQ Type: Active-High-Edge-Triggered,No-Shared(default)
             }
@@ -465,7 +471,13 @@ Device(SIO2) {
             FindSetRightBit(IRQT, Local0)
             Subtract(Local0, 1, INTR)
             //Set IRQ flag,AMI_TODO: bit4:_SHR,bit3:_LL,bit0:_HE
-            Store(0x01, INTT) //some relative share,active-low/high registers
+            //Store(0x01, INTT) //some relative share,active-low/high registers
+            If( LEqual(CISM, 0) ) {
+                Store(0x01, INTT)
+            }
+            Else {
+                Store(0x03, INTT)
+            }
         }Else{
             Store(0, INTR)              //No IRQ used
         }
