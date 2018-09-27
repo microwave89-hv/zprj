@@ -1002,8 +1002,7 @@ InstallEfiMemory (
       //
       BuildResourceDescriptorHob (
         EFI_RESOURCE_MEMORY_RESERVED,     // MemoryType,
-//        0,                                // MemoryAttribute
-        (MemoryMap[Index].Type == DualChannelDdrGraphicsMemoryNonCacheable)? EFI_RESOURCE_ATTRIBUTE_UNCACHEABLE : 0,
+        0,                                // MemoryAttribute
         MemoryMap[Index].PhysicalAddress, // MemoryBegin
         MemoryMap[Index].RangeLength      // MemoryLength
         );
