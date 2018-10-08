@@ -2346,14 +2346,14 @@ TOKEN
 	Token = "WIN8_FEATURE_SUPPORT" "=" "1"
 End
 
-TOKEN
-	Name  = "DEFAULT_QUIET_BOOT"
-	Value  = "1"
-	Help  = "Default value of the Quiet Boot option"
-	TokenType = Boolean
-	TargetH = Yes
-	Token = "WIN8_FEATURE_SUPPORT" "=" "1"
-End
+##TOKEN
+##	Name  = "DEFAULT_QUIET_BOOT"
+##	Value  = "1"
+##	Help  = "Default value of the Quiet Boot option"
+##	TokenType = Boolean
+##	TargetH = Yes
+##	Token = "WIN8_FEATURE_SUPPORT" "=" "1"
+##End
 
 TOKEN
 	Name  = "OPTIMIZE_BOOT_FV_COPY"

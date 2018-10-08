@@ -1541,7 +1541,7 @@ TOKEN
 End
 TOKEN
 	Name  = "TSE_DEFAULT_SETUP_PASSWORD_SUPPORT"
-	Value  = "1"
+	Value  = "0"
 	Help  = "0 is default.set 1=> to Enable default setup password"
 	TokenType = Expression
 	TargetH = Yes
@@ -1722,4 +1722,20 @@ TOKEN
 	TargetEQU = Yes
 	Token = "BASE_BOARD_INFO" "=" "1"
 #	Token = "NUMBER_OF_BASEBOARDS" "=" "1"
+End
+
+ELINK
+	Name  = "$(BUILD_DIR)\Logo.ffs"
+	Parent  = "FV_MAIN"
+	InvokeOrder = AfterParent
+	Disable = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_QUIET_BOOT"
+	Value  = "0"
+	Help  = "Default value of the Quiet Boot option"
+	TokenType = Boolean
+	TargetH = Yes
+#	Token = "WIN8_FEATURE_SUPPORT" "=" "1"
 End
