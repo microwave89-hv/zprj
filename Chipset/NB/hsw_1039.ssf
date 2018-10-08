@@ -675,10 +675,10 @@ $DP_SSC_Enb 00
 $DP_SSC_Dongle_Enb 00
 
 PAGE Device 1 (EFP1)
-$Int_EFP1_Type C6 68
-$Int_EFP1_Port 07
-$Int_EFP1_DDC_Pin 00
-$Int_EFP1_AUX_Channel 10
+$Int_EFP1_Type D2 68
+$Int_EFP1_Port 01
+$Int_EFP1_DDC_Pin 05
+$Int_EFP1_AUX_Channel 00
 $Int_EFP1_HDMI_LS_Type 03
 $Int_EFP1_Lane_Reversal 00
 $Int_EFP1_Port_Dockable 00
