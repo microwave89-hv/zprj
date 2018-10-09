@@ -791,6 +791,8 @@ TOKEN
 	TargetEQU = Yes
 	TargetH = Yes
 End
+##GPIO1 Core GPI Yes Yes No Desktop and Mobile: Available as GPIO1 only (Note 4).
+##Server: Multiplexed with TACH1.
 TOKEN
 	Name = "GPIO_001"
 	Value = "$(IS_GPIO)+$(IS_GPI)"
@@ -831,6 +833,8 @@ TOKEN
 	TargetEQU = Yes
 	TargetH = Yes
 End
+##GPIO6 Core GPI Yes Yes No Desktop and Mobile: Available as GPIO6 only (Note 4).
+##Server: Multiplexed with TACH2.
 TOKEN
 	Name = "GPIO_006"
 	Value = "$(IS_GPIO)+$(IS_GPI)"
@@ -839,6 +843,8 @@ TOKEN
 	TargetEQU = Yes
 	TargetH = Yes
 End
+##GPIO7 Core GPI Yes Yes No Desktop and Mobile: Available as GPIO7 only (Note 4).
+##Server: Multiplexed with TACH3.
 TOKEN
 	Name = "GPIO_007"
 	Value = "$(IS_GPIO)+$(IS_GPI)"
@@ -919,6 +925,8 @@ TOKEN
 	TargetEQU = Yes
 	TargetH = Yes
 End
+##GPIO17 Core GPI Yes Yes No Desktop and Mobile: Available as GPIO17 only (Note 4).
+##Server: Multiplexed with TACH0.
 TOKEN
 	Name = "GPIO_017"
 	Value = "$(IS_GPIO)+$(IS_GPI)"
@@ -1297,7 +1305,7 @@ TOKEN
 End
 TOKEN
 	Name = "GPIO_066"
-	Value = "$(IS_NOT_GPIO)"
+	Value = "$(IS_GPIO)+$(IS_GPI)"
 	Help = "[0]:GPIO USE Select - 0:Native Mode/1:GPIO Mode.;\[1]:GPIO Input/Output Select.\[2]:GPIO Level Select.\[3]:GPIO Signal Invert(Only For GPIO_00~31).\[4]:GPIO Blink Enable(Only For GPIO_00~31).\[5]:GPIO Reset Select.\[15:6]:RESERVED"
 	TokenType = Integer
 	TargetEQU = Yes
@@ -1311,6 +1319,8 @@ TOKEN
 	TargetEQU = Yes
 	TargetH = Yes
 End
+##GPIO68 Core GPI No Yes No Desktop and Mobile: Available as GPIO68 only (Note 4).
+##Server: Multiplexed with TACH4.
 TOKEN
 	Name = "GPIO_068"
 	Value = "$(IS_GPIO)+$(IS_GPI)"
@@ -1319,6 +1329,8 @@ TOKEN
 	TargetEQU = Yes
 	TargetH = Yes
 End
+##GPIO69 Core GPI No Yes No Desktop and Mobile: Available as GPIO69 only (Note 4).
+##Server: Multiplexed with TACH5.
 TOKEN
 	Name = "GPIO_069"
 	Value = "$(IS_GPIO)+$(IS_GPI)"
@@ -1431,36 +1443,6 @@ TOKEN
 	Token = "F81866_HWM_PRESENT" "=" "1"
 End
 
-## Board\IO\F81216\IO_F81216.SDL
-TOKEN
-	Name  = "F81216SEC_CLOCK"
-	Value  = "1"
-	Help  = "1/0 for 48Mhz/24MHz"
-	TokenType = Integer
-	TargetH = Yes
-End
-TOKEN
-	Name  = "F81216SEC_CONFIG_INDEX"
-	Value  = "0x4E"
-	TokenType = Integer
-	TargetEQU = Yes
-	TargetH = Yes
-End
-TOKEN
-	Name  = "F81216SEC_CONFIG_DATA"
-	Value  = "0x4F"
-	TokenType = Integer
-	TargetEQU = Yes
-	TargetH = Yes
-End
-TOKEN
-	Name  = "F81216SEC_CONFIG_MODE_ENTER_VALUE"
-	Value  = "0x87"
-	Help  = "Value to enter Configuration Mode.Please check your hardware\Default is 0x77.\others are 0xA0, 0x87, 0x67"
-	TokenType = Integer
-	TargetH = Yes
-End
-
 ## Core\EM\Recovery\Recovery.sdl
 TOKEN
 	Name  = "Recovery_SUPPORT"
@@ -1487,6 +1469,36 @@ ELINK
 End
 ELINK
 	Name  = "{ CLOCK_SRC2, PCI_FUNCTION_NUMBER_PCH_PCIE_ROOT_PORT_3, 0 },"
+	Parent  = "PCIEClockConfig"
+	InvokeOrder = AfterParent
+	Help  = "Intel Flathead Creek, PCIE Slot#6(J13BU)"
+End
+ELINK
+	Name  = "{ CLOCK_SRC3, PCI_FUNCTION_NUMBER_PCH_PCIE_ROOT_PORT_4, 0 },"
+	Parent  = "PCIEClockConfig"
+	InvokeOrder = AfterParent
+	Help  = "Intel Flathead Creek, PCIE Slot#6(J13BU)"
+End
+ELINK
+	Name  = "{ CLOCK_SRC4, PCI_FUNCTION_NUMBER_PCH_PCIE_ROOT_PORT_5, 0 },"
+	Parent  = "PCIEClockConfig"
+	InvokeOrder = AfterParent
+	Help  = "Intel Flathead Creek, PCIE Slot#6(J13BU)"
+End
+ELINK
+	Name  = "{ CLOCK_SRC5, PCI_FUNCTION_NUMBER_PCH_PCIE_ROOT_PORT_6, 0 },"
+	Parent  = "PCIEClockConfig"
+	InvokeOrder = AfterParent
+	Help  = "Intel Flathead Creek, PCIE Slot#6(J13BU)"
+End
+ELINK
+	Name  = "{ CLOCK_SRC6, PCI_FUNCTION_NUMBER_PCH_PCIE_ROOT_PORT_7, 0 },"
+	Parent  = "PCIEClockConfig"
+	InvokeOrder = AfterParent
+	Help  = "Intel Flathead Creek, PCIE Slot#6(J13BU)"
+End
+ELINK
+	Name  = "{ CLOCK_SRC7, PCI_FUNCTION_NUMBER_PCH_PCIE_ROOT_PORT_8, 0 },"
 	Parent  = "PCIEClockConfig"
 	InvokeOrder = AfterParent
 	Help  = "Intel Flathead Creek, PCIE Slot#6(J13BU)"
@@ -1686,7 +1698,7 @@ TOKEN
 End
 TOKEN
 	Name  = "SYSTEM_PRODUCT_NAME"
-	Value  = "DW01"
+	Value  = "DW03"
 	Help  = "Specifies the System Product Name"
 	TokenType = Expression
 	TargetEQU = Yes
@@ -1708,7 +1720,7 @@ TOKEN
 End
 TOKEN
 	Name  = "BASE_BOARD_PRODUCT_NAME"
-	Value  = "DW01"
+	Value  = "DW03"
 	Help  = "Specifies the Product Name"
 	TokenType = Expression
 	TargetEQU = Yes
@@ -1722,20 +1734,4 @@ TOKEN
 	TargetEQU = Yes
 	Token = "BASE_BOARD_INFO" "=" "1"
 #	Token = "NUMBER_OF_BASEBOARDS" "=" "1"
-End
-
-ELINK
-	Name  = "$(BUILD_DIR)\Logo.ffs"
-	Parent  = "FV_MAIN"
-	InvokeOrder = AfterParent
-	Disable = Yes
-End
-
-TOKEN
-	Name  = "DEFAULT_QUIET_BOOT"
-	Value  = "0"
-	Help  = "Default value of the Quiet Boot option"
-	TokenType = Boolean
-	TargetH = Yes
-#	Token = "WIN8_FEATURE_SUPPORT" "=" "1"
 End

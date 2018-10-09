@@ -179,8 +179,8 @@
 			<RegionLength value="0x00000000" edit="true" visible="true" name="GbE LAN region length" help_text="This is the size of the GbE LAN region in bytes. Set this to 0 to make the region length equal to the binary file length (rounded up to 4k). Extra space will be filled with 0xFF."/>
 			<InputFile value="$SourceDir\gbe\nahum6_clarksville_desktop_1_3.bin" edit="true" visible="true" name="GbE binary input file" help_text="This is the Gbe image binary that will be copied into this region."/>
 			<MajorVersion value="0" edit="false" visible="true" name="Major Version" help_text=""/>
-			<MinorVersion value="13" edit="false" visible="true" name="Minor Version" help_text=""/>
-			<ImageId value="4" edit="false" visible="true" name="Image ID" help_text=""/>
+			<MinorVersion value="0" edit="false" visible="true" name="Minor Version" help_text=""/>
+			<ImageId value="0" edit="false" visible="true" name="Image ID" help_text=""/>
 			<LANEn value="false" edit="false" visible="true" name="Intel (R) Integrated LAN Enable" help_text="Intel (R) Integrated LAN related PCH Straps are set up automatically according to this setting."/>
 		</Region3>
 		<Region4 name="PDR Region">
@@ -192,8 +192,8 @@
 			<Enabled value="true" edit="false" visible="false" name="ME region enabled" help_text=""/>
 			<RegionLength value="0x00000000" edit="true" visible="false" name="ME region length" help_text="This is the size of the ME region in bytes. Set this to 0 to make the region length equal to the binary file length (rounded up to 4k). Extra space will be filled with 0xFF."/>
 			<InputFile value="$SourceDir\me\me9.1_1.5m_production.bin" edit="true" visible="true" name="ME Binary Input File" help_text="This is the path to a binary file that will be used for the ME region."/>
-			<WcodChosen value="0x0082 TAYLOR" value_list="0x088E JACKSON,,0x0087 KILMER,,0x422B PUMA,,0x08B1 WILKINS,,0x0082 TAYLOR" edit="true" visible="true" name="WCOD Id" help_text="Determines which wireless LAN micro code will be supported in the firmware image"/>
-			<LoclChosen value="0x01 EN" value_list="0x02 FR,,0x03 GER,,0x04 CH,,0x05 JPN,,0x06 RUS,,0x07 ITA,,0x08 ESP,,0x09 PTB,,0x0A KOR,,0x0B CHS,,0x0C ARA,,0x0D CZE,,0x0E DAN,,0x0F GRE,,0x10 FIN,,0x11 HEB,,0x12 HUN,,0x13 DUT,,0x14 NOR,,0x15 POL,,0x16 POR,,0x17 SLK,,0x18 SLV,,0x19 SWE,,0x1A THA,,0x1B TUR,,0x01 EN" edit="true" visible="true" name="LOCL Id" help_text="Determines which localized language data will be used by the firmware for the secure output screens (Examples: SOL / KVM)"/>
+			<WcodChosen value="None" value_list="" edit="false" visible="false" name="WCOD Id" help_text="Determines which wireless LAN micro code will be supported in the firmware image"/>
+			<LoclChosen value="None" value_list="" edit="false" visible="false" name="LOCL Id" help_text="Determines which localized language data will be used by the firmware for the secure output screens (Examples: SOL / KVM)"/>
 			<Configuration name="Configuration">
 				<ME name="ME">
 					<FwuOemId value="00000000-0000-0000-0000-000000000000" edit="true" visible="true" name="FW Update OEM ID" help_text="Enter UUID or file containing the UUID.  This UUID will make sure that customers can only update a platform with an image coming from the OEM of the platform.  If set to zero than any input is valid (including none) when doing a FW update."/>
@@ -760,7 +760,7 @@
 						<Profile name="UserProfile" base="Standard" selected="TRUE">
 							<HwRegisters>
 								<SSCCTL_PCHPCIE100 value="0x00000008"/>
-								<OCKEN value="0x700F0F8C"/>
+								<OCKEN value="0x74FF0A88"/>
 								<SECOSS value="0x00002216"/>
 							</HwRegisters>
 						</Profile>

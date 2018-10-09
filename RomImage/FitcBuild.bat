@@ -103,7 +103,7 @@ GOTO ImageOutput
 
 :ImageOutput
 IF EXIST %DestDir%\OutImage.bin ECHO Rom_%RomSize%%RomSkue%.bin && move /Y %DestDir%\OutImage.bin Rom_%RomSize%%RomSkue%.bin
-IF EXIST Rom_%RomSize%%RomSkue%.bin move /Y Rom_%RomSize%%RomSkue%.bin DW01VR10.bin
+IF EXIST Rom_%RomSize%%RomSkue%.bin move /Y Rom_%RomSize%%RomSkue%.bin DW03AR00.bin
 IF EXIST %DestDir%\OutImage_1.bin ECHO Rom00%RomSkue%.bin && move /Y %DestDir%\OutImage_1.bin Rom00%RomSkue%.bin
 IF EXIST %DestDir%\OutImage_2.bin ECHO Rom01%RomSkue%.bin && move /Y %DestDir%\OutImage_2.bin Rom01%RomSkue%.bin
 echo Rom_%RomSize%%RomSkue%.bin>ForPfatName.txt

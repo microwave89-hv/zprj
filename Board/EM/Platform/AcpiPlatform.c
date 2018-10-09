@@ -1067,9 +1067,9 @@ AcpiPlatformInit (
 
   mGlobalNvsArea.Area->Revision         = GLOBAL_NVS_AREA_REVISION_1; 
 
-{
-  mGlobalNvsArea.Area->ComIrqShareMode = gSetupData->F81216ComIrqShareMode ;
-} 
+//{
+//  mGlobalNvsArea.Area->ComIrqShareMode = gSetupData->F81216ComIrqShareMode ;
+//} 
 
   Status = pBS->InstallMultipleProtocolInterfaces (&ImageHandle,
                                                    &gEfiGlobalNvsAreaProtocolGuid,
