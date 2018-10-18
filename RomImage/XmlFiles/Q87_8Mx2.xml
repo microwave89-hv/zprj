@@ -759,10 +759,13 @@
 					<Custom>
 						<Profile name="UserProfile" base="Standard" selected="TRUE">
 							<HwRegisters>
+								<SSCCTL_DMI100 value="0x00000000"/>
 								<SSCCTL_PCHPCIE100 value="0x00000008"/>
 								<OCKEN value="0x74FF0A88"/>
 								<SECOSS value="0x00002216"/>
 							</HwRegisters>
+							<ClkRangeDefRecord clock="2" value="0x0000070001B00D80"/>
+							<ClkRangeDefRecord clock="3" value="0x0000D832A5B00D80"/>
 						</Profile>
 					</Custom>
 					<LockMask value="0:Default"/>

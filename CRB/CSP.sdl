@@ -1735,3 +1735,66 @@ TOKEN
 	Token = "BASE_BOARD_INFO" "=" "1"
 #	Token = "NUMBER_OF_BASEBOARDS" "=" "1"
 End
+
+PCIDEVICE
+	Title  = "IT8892FX"
+	Bus  = 06h
+	Dev  = 00h
+	Fun  = 00h
+	BridgeBus  = 010h
+	IntA = 	LNKA; 16
+	IntB = 	LNKB; 17
+	IntC = 	LNKC; 18
+	IntD = 	LNKD; 19
+	DeviceType = OnBoard
+	PCIBusSize = PciEx
+	PCIBridge = Yes
+End
+PCIDEVICE
+	Title  = "IT8892FX #1 Slot"
+	Bus  = 010h
+	Dev  = 00h
+	Slot  = 00h
+	IntA = 	LNKA; 16
+	IntB = 	LNKB; 17
+	IntC = 	LNKC; 18
+	IntD = 	LNKD; 19
+	DeviceType = Slot
+	PCIBusSize = 32bit
+End
+PCIDEVICE
+	Title  = "IT8892FX #2 Slot"
+	Bus  = 010h
+	Dev  = 00h
+	Slot  = 01h
+	IntA = 	LNKB; 17
+	IntB = 	LNKC; 18
+	IntC = 	LNKD; 19
+	IntD = 	LNKA; 16
+	DeviceType = Slot
+	PCIBusSize = 32bit
+End
+PCIDEVICE
+	Title  = "IT8892FX #3 Slot"
+	Bus  = 010h
+	Dev  = 00h
+	Slot  = 02h
+	IntA = 	LNKC; 18
+	IntB = 	LNKD; 19
+	IntC = 	LNKA; 16
+	IntD = 	LNKB; 17
+	DeviceType = Slot
+	PCIBusSize = 32bit
+End
+PCIDEVICE
+	Title  = "IT8892FX #4 Slot"
+	Bus  = 010h
+	Dev  = 00h
+	Slot  = 03h
+	IntA = 	LNKD; 19
+	IntB = 	LNKA; 16
+	IntC = 	LNKB; 17
+	IntD = 	LNKC; 18
+	DeviceType = Slot
+	PCIBusSize = 32bit
+End
