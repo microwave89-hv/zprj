@@ -13,15 +13,21 @@
 //**********************************************************************
 
 //**********************************************************************
-// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Thunk/INT13/CsmInt13.c 17    12/23/13 3:14p Olegi $
+// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Thunk/INT13/CsmInt13.c 18    6/18/15 10:15a Olegi $
 //
-// $Revision: 17 $
+// $Revision: 18 $
 //
-// $Date: 12/23/13 3:14p $
+// $Date: 6/18/15 10:15a $
 //**********************************************************************
 // Revision History
 // ----------------
 // $Log: /Alaska/SOURCE/Modules/CSM/Generic/Thunk/INT13/CsmInt13.c $
+// 
+// 18    6/18/15 10:15a Olegi
+// [TAG]  		EIP221923
+// [Category]  	Bug Fix
+// [Symptom]  	CsmBlockIO issue for 4K Sector size - Do the changes of
+// EIP219657 to Aptio4 CSMBlockIo.
 // 
 // 17    12/23/13 3:14p Olegi
 // EIP148138: use AMI_BLOCKIO_WRITE_PROTECTION_PROTOCOL instead of
@@ -205,7 +211,11 @@ InitBlockIo (
         }
 
 //  TRACE((-1," BlockSize = %d  LastBlock = %d\n", BlockMedia->BlockSize, BlockMedia->LastBlock));
-
+        // If the BlockSize is more than 512 bytes per sector, don't install the BlockIO Protocol 
+        // for the device: Int13 function supports only 512 bytes per sector. 
+        if(BlockMedia->BlockSize != 512) {
+        	return FALSE;
+        }
         BlockMedia->LogicalPartition = FALSE;
         BlockMedia->WriteCaching = FALSE;
 

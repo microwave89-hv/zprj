@@ -13,11 +13,11 @@
 //**********************************************************************
 
 //**********************************************************************
-// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Core/csm.h 88    8/06/14 3:20p Fasihm $
+// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Core/csm.h 92    9/08/15 2:46p Olegi $
 //
-// $Revision: 88 $
+// $Revision: 92 $
 //
-// $Date: 8/06/14 3:20p $
+// $Date: 9/08/15 2:46p $
 //**********************************************************************
 
 //**********************************************************************
@@ -140,6 +140,13 @@ typedef struct {
 #define CSM_RT_CPU_RM_ONBOOT_BIT        0x20
 #define CSM_RT_CMOS_PS2_BIT             0x40
 #define CSM_RT_CMOS_LTE_BIT             0x80
+
+//****************************************************
+// ACPI timer 
+//****************************************************
+#define ACPI_TMR_SIGNATURE              0x544D // Signature used is 'TM'
+#define ACPI_TMR_WIDTH_SHIFT            31
+#define ACPI_TMR_SIGNATURE_SHIFT        16
 
 //****************************************************
 // Type values
@@ -543,7 +550,7 @@ typedef struct {
    IN UINT16               OpromSegment;
    IN UINT8                PciBus;
    IN UINT8                PciDeviceFunction;
-   IN OUT UINT8            NumberBbbsEntries;
+   IN OUT UINT8            NumberBbsEntries;
    UINT32                  BbsTable;
    IN UINT16               FinalLocationSegment;
 } EFI_DISPATCH_OPROM_TABLE;
@@ -1009,6 +1016,20 @@ typedef struct _LEGACY16_TO_EFI_DATA_TABLE_EXT {
     UINT8   RbArrayCount;
 } LEGACY16_TO_EFI_DATA_TABLE_EXT;
 
+typedef struct {
+    struct {
+        UINT16  Offset;
+        UINT16  Segment;
+    } FarCall;
+    EFI_IA32_REGISTER_SET   Regs;
+    struct {
+        UINT32  Stack;
+        UINT32  StackSize;
+    } StackData;
+    BOOLEAN     isFarCall;  //if false, then INT86.
+    UINT8       BiosInt;
+} AMI_CSM_THUNK_DATA;
+
 EFI_STATUS  Get16BitFuncAddress (UINT16, UINT32*);
 UINTN       CopyLegacyTable(VOID*, UINT16, UINT16, UINT16);
 EFI_STATUS  GetEmbeddedRom(UINT16, UINT16, UINT16, VOID**, UINTN*);
@@ -1061,11 +1082,15 @@ EFI_STATUS  GetShadowRamAddress(UINT32*, UINT32, UINT32, UINT32);
 
 VOID    DisconnectSerialIO();
 VOID    ConnectSerialIO();
+EFI_STATUS  LockConsole();
+EFI_STATUS  UnlockConsole();
 BOOLEAN IsAMICSM16(EFI_COMPATIBILITY16_TABLE*);
 UINT8   ChecksumCSM16Header(EFI_COMPATIBILITY16_TABLE*);
-EFI_STATUS GetSystemMemoryMap(EFI_MEMORY_DESCRIPTOR**, UINTN*,UINTN*);
-EFI_STATUS ClearFreeMemory(EFI_PHYSICAL_ADDRESS,EFI_PHYSICAL_ADDRESS);
+EFI_STATUS  GetSystemMemoryMap(EFI_MEMORY_DESCRIPTOR**, UINTN*,UINTN*);
+EFI_STATUS  ClearFreeMemory(EFI_PHYSICAL_ADDRESS,EFI_PHYSICAL_ADDRESS);
 EFI_STATUS  Csm16Configuration(CSM16_CONFIGURATION_ACTION, CSM16_FEATURE, UINT32*);
+EFI_STATUS  AllocateHiMemPmmBlock(UINTN, UINTN*);
+VOID    FreePmmBeforeBoot (EFI_EVENT, VOID*);
 
 #pragma pack ()
 /****** DO NOT WRITE BELOW THIS LINE *******/

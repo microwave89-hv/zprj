@@ -13,16 +13,57 @@
 //**********************************************************************
 
 //****************************************************************************
-// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Core/CsmOpROM.c 171   8/06/14 4:24p Fasihm $
+// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Core/CsmOpROM.c 180   9/14/15 10:15a Olegi $
 //
-// $Revision: 171 $
+// $Revision: 180 $
 //
-// $Date: 8/06/14 4:24p $
+// $Date: 9/14/15 10:15a $
 //
 //**********************************************************************
 // Revision History
 // ----------------
 // $Log: /Alaska/SOURCE/Modules/CSM/Generic/Core/CsmOpROM.c $
+// 
+// 180   9/14/15 10:15a Olegi
+// [TAG]  		EIP237972
+// [Category]  	Bug Fix
+// [Symptom]  	Aptio4 CSM: default int10 installation may fail
+// 
+// 179   9/09/15 11:09a Olegi
+// [TAG]  		EIP237387
+// [Description]  	Aptio4 CSM: Add PciIo check to prevent CPU exceptions
+// when executing service ROMs
+// 
+// 178   9/09/15 10:54a Olegi
+// [TAG]  		EIP237386
+// [Description]  	Aptio4 CSM: ASSERT in headless mode on OptionROM
+// execution
+// 
+// 177   9/09/15 10:47a Olegi
+// [TAG]  		EIP237385
+// [Description]  	Aptio4 CSM: trapped INT19 may fail
+// 
+// 176   9/09/15 9:53a Olegi
+// [TAG]  		EIP237381
+// [Description]  	Aptio 4 CSM: add INT19 TRAP setup question
+// 
+// 175   9/08/15 2:47p Olegi
+// [TAG]  		EIP237205
+// [Description]  	Aptio4 CSM: Add Lock/Unlock console calls during Option
+// ROMs execution
+// 
+// 174   8/24/15 3:00p Olegi
+// [TAG]  		EIP235037
+// [Description]  	Aptio4 CSM: Optimize video mode switching during Option
+// ROMs execution
+// 
+// 173   12/01/14 11:40a Olegi
+// correction to the previous check-in
+// 
+// 172   11/06/14 11:28a Olegi
+// [TAG]  		EIP187681
+// [Description]  	Aptio4 CSM: Larger than 128KB sized OPROM support /
+// checking
 // 
 // 171   8/06/14 4:24p Fasihm
 // [TAG]           EIP180681
@@ -700,9 +741,15 @@ extern  SAVED_PCI_ROM *gSavedOprom;
 EFI_HANDLE gVgaHandle = NULL;
 
 BOOLEAN gBbsUpdateInProgress = FALSE;
+BOOLEAN gDoNotUpdateBbsTable = FALSE;
+
+EFI_STATUS  PreProcessOpRom(CSM_PLATFORM_PROTOCOL*, EFI_PCI_IO_PROTOCOL*, VOID**);
+EFI_STATUS  PostProcessOpRom(CSM_PLATFORM_PROTOCOL*, EFI_PCI_IO_PROTOCOL*, VOID**);
+EFI_STATUS  GetOpromVideoSwitchingMode(EFI_PCI_IO_PROTOCOL*, UINT16,UINTN*);
 
 //
 // gSetTxtMode
+// ff - initial value
 // 0 - switching to text mode is needed
 // 1 - switching is needed, restoration is not
 // 2 - neither switching nor restoration is needed
@@ -778,7 +825,7 @@ IsValidLegacyPciOpROM (
     PCI_DATA_STRUCTURE *pcir;
     BOOLEAN IsLastImage = FALSE;
     UINT8 *RomStart = *Image;
-    UINTN RomSize = 0;
+    UINT32 RomSize = 0;
     BOOLEAN FoundLegacyRom = FALSE;
     UINTN   RomEnd = (UINTN)*Image + *Size;
 
@@ -818,13 +865,28 @@ IsValidLegacyPciOpROM (
                 //
                 return TRUE;
             }
-
-            RomSize = ((LEGACY_OPT_ROM_HEADER*)RomStart)->Size512 << 9;
+            
+            // Validate the ROM size
+            RomSize = pcir->ImageLength << 9;
+            if (RomSize <= 0x1fe00)
+            {
+                UINT32 HeaderRomSize = ((LEGACY_OPT_ROM_HEADER*)RomStart)->Size512 << 9;
+                if (HeaderRomSize > RomSize) RomSize = HeaderRomSize;
+            }
+            else
+            {
+                TRACE((-1, "CSM: Found unusually large legacy Option ROM (%d Bytes) - loading ", RomSize));
+                if (CSM_ALLOW_LARGE_OPROMS == 0)
+                {
+                    TRACE((-1, "skipped.\n"));
+                    RomSize = 0;
+                } else TRACE((-1, "allowed.\n"));
+            }
 
             if (RomSize == 0) return FALSE;
     
             *Image = RomStart;
-            *Size = RomSize;
+            *Size = (UINTN)RomSize;
 
             if (pcir->Revision == 3) return TRUE;
 
@@ -1033,6 +1095,8 @@ FetchBbsBootDevices(
     UINT32 *ivt = (UINT32*)0;
     UINT8  i, Checksum;
 
+    if (gDoNotUpdateBbsTable) return;
+
     gBbsUpdateInProgress = TRUE;
 
     BbsCount = BiosInfo->BbsEntriesNo;
@@ -1068,6 +1132,8 @@ TRACE((-1, "FetchBbsBootDevices: B%x/D%x/F%x, ClassCode %x\n", Bus, Dev, Fun, *(
     //
     PnpOfs = *((UINT16*)(Rom + 0x1A));// Offset of the 1st PnP header
     for (;;PnpOfs = (UINT16)PnpHdr->NextHeaderOffset) {
+        if (gDoNotUpdateBbsTable) break;
+
         PnpHdr = (PCI_PNP_EXPANSION_HEADER*) (Rom + PnpOfs);
         if (*((UINT32*)PnpHdr) != 0x506E5024) break;    // "$PnP"
 
@@ -1123,6 +1189,16 @@ TRACE((-1, "FetchBbsBootDevices: B%x/D%x/F%x, ClassCode %x\n", Bus, Dev, Fun, *(
             BbsTable[BbsCount].BootHandlerOffset = PnpHdr->BEV;
         }
 
+        if (gSetup.I19Trap == 0 && NewInt19) {
+            TRACE((-1, "CSM: trapped int19 execution postponed.\n"));
+            
+            // clear up the BBS table, leave only the one entry that traps INT19
+            // block any further BBS table updates
+            for (i = 0; i < BbsCount; i++) {
+                BbsTable[i].BootPriority = BBS_IGNORE_ENTRY;
+            }
+            gDoNotUpdateBbsTable = TRUE;
+        }
         BbsCount++;
     }
 
@@ -1736,105 +1812,65 @@ CsmInstallRom (
     UINT8       *RtData = NULL;
     UINT32      RtDataSize;
     UINT32      RtRomSize;
-    UINTN       SetTxtMode;
     EFI_STATUS  Status;
     UINT32      CurrentInt10 = 0;
-    UINT8       CurrentMode = 0;
-    BOOLEAN     VgaWasConnected = FALSE;
-//    static EFI_CONSOLE_CONTROL_PROTOCOL *ConsoleControl = NULL;
     UINT32      EbdaOffset;
     EFI_PCI_IO_PROTOCOL *PciIo = NULL;
-    EFI_PCI_IO_PROTOCOL *VgaPciIo;
-    static      UINT8 LegacyVgaStartCounter = 0;
-    UINT64      VgaCapabilities;
+    UINT64      Capabilities;
+    UINTN       SetTxtMode;
 
-    if (Handle != NULL) {
-        Status = pBS->HandleProtocol (
-            Handle,
-            &gEfiPciIoProtocolGuid,
-            &PciIo);
-        ASSERT_EFI_ERROR (Status);
-    }
 
-    // Call LegacyBiosPlatform to get the VGA switching policy override
+    if (!IsVga) {
+        LockConsole();
+        if ((gSetTxtMode == 0) || (gSetTxtMode == 0xff)) {
+            DisconnectSerialIO();
+            
+            if (gSetTxtMode == 0xff) {
+                // Call LegacyBiosPlatform to get the VGA switching policy override
+                // by default gSetTxtMode will be set to CSM_DEFAULT_VMODE_SWITCHING
+                if (Handle != NULL) {
+                    Status = pBS->HandleProtocol (
+                        Handle,
+                        &gEfiPciIoProtocolGuid,
+                        &PciIo);
+                    ASSERT_EFI_ERROR (Status);
+                }
+            
+                GetOpromVideoSwitchingMode(PciIo, CSM_DEFAULT_VMODE_SWITCHING, &SetTxtMode);
+                gSetTxtMode = (UINT8)SetTxtMode;
 
-    Status = CoreBiosInfo->iBiosPlatform->GetPlatformInfo(CoreBiosInfo->iBiosPlatform,
-                    EfiGetPlatformOpromVideoMode,
-                    &PciIo,
-                    &SetTxtMode,
-                    0,
-                    0,
-                    (UINT16)gSetTxtMode,
-                    0);
-    if (EFI_ERROR(Status)) {
-        SetTxtMode = (UINTN)gSetTxtMode;
-    }
+                if (gSetTxtMode == 1) {
+                    // gSetTxtMode is 1: keep gVgaHandle connected, quietly change the video mode
+                    RegSet.X.AX = 3;
+                    Int86 (&CoreBiosInfo->iBios, 0x10, &RegSet);
+                }
+            }
 
-    if (IsVga) {
-        LegacyVgaStartCounter++;
-    } else {
-        // If it is not for VGA, than video mode might be forced to 3 for compatibility.
-        // Current video mode is saved before the call and restored afterwards.
-        DisconnectSerialIO();
-        if (SetTxtMode != 2 && SetTxtMode != 3) {
-            CurrentMode = *(UINT8*)(UINTN)0x449;
-            Status = pBS->DisconnectController(gVgaHandle, NULL, NULL);
-
-            // Note: later VgaWasConnected is checked only for SetTxtMode == 0
-
-            VgaWasConnected = (BOOLEAN)(Status == EFI_SUCCESS);
-
-            if (VgaWasConnected) {
-                UINT64              Capabilities;
-                //
-                // VGA was successfully disconnected. Store the current attributes (to
-                // be restored after executing OptionROM), and enable MEM/IO/VGA
-                // decoding according to the supported attributes
-                //
+            if (gSetTxtMode == 0) {
+                // gSetTxtMode is 0: disconnect controller and enable legacy VGA MEM/IO
+                Status = pBS->DisconnectController(gVgaHandle, NULL, NULL);
+                ASSERT_EFI_ERROR(Status);
+                
                 Status = pBS->HandleProtocol (
                         gVgaHandle,
                         &gEfiPciIoProtocolGuid,
-                        &VgaPciIo);
+                        &PciIo);
                 ASSERT_EFI_ERROR(Status);
 
-                // Store the attributes set by DisconnectController
-                Status = VgaPciIo->Attributes (VgaPciIo, EfiPciIoAttributeOperationGet, 0,
-                        &VgaCapabilities);
-                ASSERT_EFI_ERROR(Status);
-        
-                Status = VgaPciIo->Attributes (VgaPciIo, EfiPciIoAttributeOperationSupported, 0,
+                Status = PciIo->Attributes (PciIo, EfiPciIoAttributeOperationSupported, 0,
                         &Capabilities);
                 ASSERT_EFI_ERROR(Status);
 
-                // Enable VGA legacy MEM/IO access, do not check the status
-                VgaPciIo->Attributes (VgaPciIo, EfiPciIoAttributeOperationEnable,
+                // Enable VGA legacy MEM/IO access
+                PciIo->Attributes (PciIo, EfiPciIoAttributeOperationEnable,
                         (Capabilities & EFI_PCI_DEVICE_ENABLE)
                          | EFI_PCI_IO_ATTRIBUTE_VGA_MEMORY | EFI_PCI_IO_ATTRIBUTE_VGA_IO,
                          NULL);
             }
-
-//            if (ConsoleControl == NULL) {
-//                Status = pBS->LocateProtocol(&gEfiConsoleControlProtocolGuid,NULL,&ConsoleControl);
-//                if (!EFI_ERROR(Status)) {
-//                    Status = ConsoleControl->SetMode(ConsoleControl, EfiConsoleControlScreenText);
-//                    ASSERT_EFI_ERROR(Status);
-//                }
-//            }
         }
-
-#if LEGACYSREDIR_SUPPORT
-        // Enable Legacy Serial Redirection if enabled in the project
-        pBS->LocateProtocol (
-                &gEfiLegacySredirProtocolGuid,
-                NULL,
-                &gLegacySredir
-                );
-        if(gLegacySredir != NULL) {
-            gLegacySredir->EnableLegacySredir(gLegacySredir);
-        }
-#endif
-
-        if (SetTxtMode == 2) {
+        // Set a dummy INT10 handler if gSetTxtMode is set to 2; note that gSetTxtMode
+        // might change after GetOpromVideoSwitchingMode
+        if (gSetTxtMode == 2) {
             CurrentInt10 = *(UINT32*)(UINTN)0x40;
             *(UINT32*)(UINTN)0x40 = 0xf000f065;    // legacy int10
         }
@@ -1847,14 +1883,11 @@ CsmInstallRom (
     // Save the current EBDA location to check if OpROM modifies it
     ebdaSeg1 = *(UINT16*)(UINTN)0x40e;
     ebdaSizeKB = *(UINT8*)((UINTN)ebdaSeg1<<4);
-    ebdaSize1 = (UINT32)ebdaSizeKB << 10;
+    ebdaSize1 = (UINTN)ebdaSizeKB << 10;
     ASSERT(ebdaSizeKB);   // should be initialized, can not be 0
     baseMem1 = *(UINT16*)(UINTN)0x413;
 
     // Execute OpROM
-
-//  Status = DispatchOptionRom(CoreBiosInfo, Csm16DOT);
-//  ASSERT_EFI_ERROR(Status);
 
     pBS->SetMem(&RegSet, sizeof (EFI_IA32_REGISTER_SET), 0);
     RegSet.X.AX = Compatibility16DispatchOprom;
@@ -1877,7 +1910,7 @@ CsmInstallRom (
 TRACE((-1, "InstallRom...Run-time ROM Size = %x Bytes\n", RtRomSize));
 
     // Update EBDA map
-	ebdaSeg2 = *(UINT16*)(UINTN)0x40e;
+    ebdaSeg2 = *(UINT16*)(UINTN)0x40e;
     ebdaSize2 = *(UINT8*)((UINTN)ebdaSeg2<<4) << 10;
 
     RtDataSize = 0;
@@ -1895,59 +1928,32 @@ TRACE((-1, "InstallRom...Run-time ROM Size = %x Bytes\n", RtRomSize));
 
     if (IsVga) return EFI_SUCCESS;  // Done for VBIOS
 
-    // Restore video mode
-    if (SetTxtMode == 2) {
+    if (gSetTxtMode != 1) {
+        UnlockConsole();
+    }
+
+    // Restore video mode if needed
+    //  gSetTxtMode:
+    //      0: reconnect VGA controller
+    //      1: do nothing
+    //      2: restore fake INT10 vector
+    // Note that at first pass gSetTxtMode is either 0 or 2; in case of 0 it is
+    // reassigned using CSM_DEFAULT_VMODE_SWITCHING and OEM override.
+
+    if (gSetTxtMode == 2) {
         *(UINT32*)(UINTN)0x40 = CurrentInt10;
     }
 
-    // Disable Legacy console redirection
-#if LEGACYSREDIR_SUPPORT
-    if(gLegacySredir == NULL) {
-        pBS->LocateProtocol (
-            &gEfiLegacySredirProtocolGuid,
-            NULL,
-            &gLegacySredir
-            );
-    }
-    if(gLegacySredir != NULL) {	
-        gLegacySredir->DisableLegacySredir(gLegacySredir);
-    }
-#endif
-
-
-    // VGA needs to be reconnected in several cases:
-    // 1) SetTxtMode == 0
-    // 2) SetTxtMode == 1 and VGA was started outside CSM control; this is determined
-    //    by the value of LegacyVgaStartCounter (greater than 1)
-    if (SetTxtMode == 0 || (SetTxtMode == 1 && LegacyVgaStartCounter > 1))
-    {
-        if (VgaWasConnected) {
-            // Restore VgaCapabilities on VgaPciIo
-            VgaPciIo->Attributes (VgaPciIo, EfiPciIoAttributeOperationSet, VgaCapabilities, 0);
-        } else {
-            RegSet.H.AL = CurrentMode;
-            RegSet.H.AH = 0;
-            Status = CoreBiosInfo->iBios.Int86 (&CoreBiosInfo->iBios, 0x10, &RegSet);
-            ASSERT_EFI_ERROR(Status);
-        }
-
+    if (gSetTxtMode == 0) {
+        pBS->DisconnectController(gVgaHandle, NULL, NULL);
         pBS->ConnectController(gVgaHandle, NULL, NULL, TRUE);
-
-        // Reset counter so that following OpROMs will properly switch video when SetTxtMode is 1
-        LegacyVgaStartCounter = 1;
-
-//        if (ConsoleControl != NULL) {
-//            Status = ConsoleControl->SetMode(ConsoleControl, EfiConsoleControlScreenGraphics);
-//            ASSERT_EFI_ERROR(Status);
-//        }
+        ConnectSerialIO();
     }
-
-    ConnectSerialIO();
 
     // Update BBS device count
-    if (CoreBiosInfo->BbsEntriesNo != Csm16DOT->NumberBbbsEntries) {
+    if (CoreBiosInfo->BbsEntriesNo != Csm16DOT->NumberBbsEntries) {
         // CSM16 had inserted some BBS entries for non-BBS devices
-        CoreBiosInfo->BbsEntriesNo = Csm16DOT->NumberBbbsEntries;
+        CoreBiosInfo->BbsEntriesNo = Csm16DOT->NumberBbsEntries;
     }
 
     // Process boot devices
@@ -2115,15 +2121,17 @@ InstallPciRom (
         ASSERT_EFI_ERROR(Status);
     }
 
+
     //
     // Execute platform pre-OpROM function
     //
-    pBS->LocateProtocol(&gCsmPlatformProtocolGuid, NULL, &CsmPlatformProtocol);
+    Status = pBS->LocateProtocol(&gCsmPlatformProtocolGuid, NULL, &CsmPlatformProtocol);
 
-    if (CsmPlatformProtocol) {
-        Status = CsmPlatformProtocol->PreProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
+    if (!EFI_ERROR(Status)) {
+        Status = PreProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
+
         if (EFI_ERROR(Status)) {
-            CsmPlatformProtocol->PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
+            PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
             return Status;
         }
     }
@@ -2136,7 +2144,7 @@ InstallPciRom (
             // does not fail.
             //
             if (CsmPlatformProtocol) {
-                CsmPlatformProtocol->PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
+                PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
             }
             return EFI_SUCCESS;
         }
@@ -2150,7 +2158,7 @@ InstallPciRom (
         if (!EFI_ERROR(Status)) {       // Platform returned VGA handle
             if (PciHandle != *VgaHandlePtr) {   // Not the one requested by platform
                 if (CsmPlatformProtocol) {
-                    CsmPlatformProtocol->PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
+                    PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
                 }
                 return EFI_UNSUPPORTED;
             }
@@ -2158,6 +2166,7 @@ InstallPciRom (
     }
     else {  // Not VGA
         if (CoreBiosInfo->hVga == NULL) {
+            // NOTE: WITH THE CURRENT BDS IMPLEMENTATION CONTROL SHOULD NEVER COME HERE
             EFI_PCI_IO_PROTOCOL *VgaPciIo = NULL;
             //
             // The control is passed to this routine to install non-VGA OpROM and VGA BIOS is
@@ -2228,7 +2237,7 @@ InstallPciRom (
         Status = CheckPciRom (This, PciHandle, &RomLocation, &RomSize, Flags);
         if (EFI_ERROR(Status) || (RomLocation == NULL)) {
             if (CsmPlatformProtocol) {
-                CsmPlatformProtocol->PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
+                PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
             }
             return EFI_UNSUPPORTED;
         }
@@ -2240,7 +2249,7 @@ InstallPciRom (
         RomSize = ((LEGACY_OPT_ROM_HEADER*)RomLocation)->Size512 * 0x200;
         if (RomSize == 0) {
             if (CsmPlatformProtocol) {
-                CsmPlatformProtocol->PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
+                PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
             }
             return EFI_UNSUPPORTED;
         }
@@ -2263,7 +2272,7 @@ InstallPciRom (
         ASSERT_EFI_ERROR(Status);
         if (EFI_ERROR(Status)) {
             if (CsmPlatformProtocol) {
-                CsmPlatformProtocol->PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
+                PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
             }
             DEVICE_ERROR_CODE(DXE_LEGACY_OPROM_NO_SPACE, EFI_ERROR_MAJOR, PciHandle);
             return EFI_OUT_OF_RESOURCES;
@@ -2271,7 +2280,7 @@ InstallPciRom (
 
         if (Rom30Address < 0x8000) {
             if (CsmPlatformProtocol) {
-                CsmPlatformProtocol->PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
+                PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
             }
             Status = EFI_OUT_OF_RESOURCES;
             TRACE(((UINTN)TRACE_ALWAYS,"Can not execute PCI 3.0 OPROM: out of Base Memory.\n"));
@@ -2291,7 +2300,7 @@ InstallPciRom (
 
         if(((UINTN)(gNextRomAddress) + SizeInShadow) > OPROM_MAX_ADDRESS){
             if (CsmPlatformProtocol) {
-                CsmPlatformProtocol->PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
+                PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
             }
             TRACE(((UINTN)TRACE_ALWAYS,"Can not execute PCI OPROM: out of resources. RomAddr %x RomSize %x\n", gNextRomAddress, SizeInShadow));
             Status = EFI_OUT_OF_RESOURCES;
@@ -2325,7 +2334,7 @@ InstallPciRom (
 
     Csm16DOT->PciBus = (UINT8)PciBus;
     Csm16DOT->PciDeviceFunction = (UINT8)(PciDeviceNumber << 3 | PciFunction);
-    Csm16DOT->NumberBbbsEntries = CoreBiosInfo->BbsEntriesNo;
+    Csm16DOT->NumberBbsEntries = CoreBiosInfo->BbsEntriesNo;
 	Csm16DOT->BbsTable = (UINT32)(UINTN)(CoreBiosInfo->BbsTable);
 
     TRACE((TRACE_ALWAYS, "OptionROM for B%x/D%x/F%x is executed from %x:0003\n",
@@ -2356,10 +2365,10 @@ InstallPciRom (
     ivt[0x18] = Int18;
     ivt[0x19] = Int19;
 
-    DiskTo = DiskFrom + *(UINT8*)(UINTN)0x475;
+    DiskTo = (DiskFrom & 0xc0) + *(UINT8*)(UINTN)0x475; 
 
     if (CsmPlatformProtocol) {
-        CsmPlatformProtocol->PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
+        PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
     }
 
     if (is30ROM) {
@@ -2412,8 +2421,32 @@ TRACE((TRACE_ALWAYS, "PCI OPROM(handle %x, %x/%x/%x): addr %x, size %x\n",
             PciHandle, PciBus, PciDeviceNumber, PciFunction, gNextRomAddress, NewRomSize));
     gNextRomAddress += NewRomSize;
 
-    if (Int19Trapped && !IsVga)
+    if (Int19Trapped && !IsVga && (gSetup.I19Trap == 1))
     {
+        if (gSetTxtMode == 1)
+        {
+			if (gVgaHandle != NULL) 
+			{
+	            TRACE((-1, "Reconnecting video and serial before calling INT19 trap.\n"));
+	            pBS->DisconnectController(gVgaHandle, NULL, NULL);
+	            pBS->ConnectController(gVgaHandle, NULL, NULL, TRUE);
+	            ConnectSerialIO();
+			}
+			UnlockConsole();
+        }
+
+        // Signal READY_TO_BOOT event
+        {
+            EFI_EVENT ReadyToBootEvent;
+            Status = CreateReadyToBootEvent(
+                TPL_CALLBACK, NULL, NULL, &ReadyToBootEvent
+            );
+            if (!EFI_ERROR(Status)) {
+                pBS->SignalEvent(ReadyToBootEvent);
+                pBS->CloseEvent(ReadyToBootEvent);
+            }
+        }
+
         LegacyBoot (
             &CoreBiosInfo->iBios,
             &(DummyLoadOption.BbsDevicePath),
@@ -2553,12 +2586,12 @@ InstallIsaRom(
     //
     // Execute platform pre-OpROM function
     //
-    pBS->LocateProtocol(&gCsmPlatformProtocolGuid, NULL, &CsmPlatformProtocol);
+    Status = pBS->LocateProtocol(&gCsmPlatformProtocolGuid, NULL, &CsmPlatformProtocol);
 
-    if (CsmPlatformProtocol) {
-        Status = CsmPlatformProtocol->PreProcessOpRom(CsmPlatformProtocol, NULL, (VOID*)&RomAddress);
+    if (!EFI_ERROR(Status)) {
+        Status = PreProcessOpRom(CsmPlatformProtocol,  NULL, (VOID*)&RomAddress);
         if (EFI_ERROR(Status)) {
-            CsmPlatformProtocol->PostProcessOpRom(CsmPlatformProtocol, NULL, (VOID*)&RomAddress);
+            PostProcessOpRom(CsmPlatformProtocol,  NULL, (VOID*)&RomAddress);
             return Status;
         }
     }
@@ -2567,7 +2600,7 @@ InstallIsaRom(
 
     Csm16DOT = &CoreBiosInfo->Thunk->DispatchOpromTable;
     Csm16DOT->OpromSegment = (UINT16)(RomAddress >> 4);
-    Csm16DOT->NumberBbbsEntries = CoreBiosInfo->BbsEntriesNo;
+    Csm16DOT->NumberBbsEntries = CoreBiosInfo->BbsEntriesNo;
 	Csm16DOT->BbsTable = (UINT32)(UINTN)(CoreBiosInfo->BbsTable);
 
     TRACE((TRACE_ALWAYS, "OptionROM for ISA Device is executed from %x:0003\n", Csm16DOT->OpromSegment));
@@ -2596,7 +2629,7 @@ InstallIsaRom(
     ivt[0x19] = Int19;
 
     if (CsmPlatformProtocol) {
-        CsmPlatformProtocol->PostProcessOpRom(CsmPlatformProtocol, NULL, (VOID*)&RomAddress);
+        PostProcessOpRom(CsmPlatformProtocol, NULL, (VOID*)&RomAddress);
     }
 
     return Status;
@@ -2631,7 +2664,6 @@ ShadowAllLegacyOproms (
     UINT64      Capabilities;
     UINTN       Flags;
     UINT8       dData[4];
-    UINT8       SetTxtMode = gSetTxtMode;
 
     //
     // Locate all PciIo handles
@@ -2705,11 +2737,87 @@ ShadowAllLegacyOproms (
         gServiceRomsExecuted = TRUE;
     }
 
-    gSetTxtMode = SetTxtMode;
-
     return EFI_SUCCESS;
 }
 
+EFI_STATUS
+PreProcessOpRom(
+    CSM_PLATFORM_PROTOCOL   *CsmPlatformProtocol,
+    EFI_PCI_IO_PROTOCOL     *PciIo,
+    VOID                    **RomImage
+)
+{
+    EFI_STATUS Status;
+
+    if (gVgaHandle == NULL)
+    {
+        BOOLEAN IsVga = FALSE;
+
+        if (PciIo != NULL)
+        {
+            UINT8 PciCfgData[4];
+            EFI_STATUS Status;
+            
+            Status = PciIo->Pci.Read(
+                PciIo,
+                EfiPciIoWidthUint8,
+                8,   // offset
+                4,   // width
+                PciCfgData);
+            ASSERT_EFI_ERROR(Status);
+    
+            if (PciCfgData[3]==PCI_CL_OLD && PciCfgData[2]==PCI_CL_OLD_SCL_VGA) {
+                IsVga = TRUE;
+            }
+            if (PciCfgData[3]==PCI_CL_DISPLAY && PciCfgData[2]==PCI_CL_DISPLAY_SCL_VGA) {
+                IsVga = TRUE;
+            }
+        }
+        if (!IsVga)
+            gSetTxtMode = 2;
+    }
+
+    Status = CsmPlatformProtocol->PreProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
+
+#if LEGACYSREDIR_SUPPORT
+    if(gLegacySredir == NULL) {
+        pBS->LocateProtocol (
+            &gEfiLegacySredirProtocolGuid,
+            NULL,
+            &gLegacySredir
+            );
+    }
+    if(gLegacySredir != NULL) {	
+        gLegacySredir->EnableLegacySredir(gLegacySredir);
+    }
+#endif
+    return Status;
+}
+
+EFI_STATUS
+PostProcessOpRom(
+    CSM_PLATFORM_PROTOCOL   *CsmPlatformProtocol,
+    EFI_PCI_IO_PROTOCOL     *PciIo,
+    VOID                    **RomImage
+)
+{
+    EFI_STATUS Status;
+    Status = CsmPlatformProtocol->PostProcessOpRom(CsmPlatformProtocol, PciIo, RomImage);
+
+#if LEGACYSREDIR_SUPPORT
+    if(gLegacySredir == NULL) {
+        pBS->LocateProtocol (
+            &gEfiLegacySredirProtocolGuid,
+            NULL,
+            &gLegacySredir
+            );
+    }
+    if(gLegacySredir != NULL) {	
+        gLegacySredir->DisableLegacySredir(gLegacySredir);
+    }
+#endif
+    return Status;
+}
 
 //**********************************************************************
 //**********************************************************************

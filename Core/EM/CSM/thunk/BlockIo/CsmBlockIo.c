@@ -13,15 +13,22 @@
 //**********************************************************************
 
 //**********************************************************************
-// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Thunk/INT13/CsmBlockIo.c 49    8/06/14 1:20p Fasihm $
+// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Thunk/INT13/CsmBlockIo.c 51    9/09/15 11:46a Olegi $
 //
-// $Revision: 49 $
+// $Revision: 51 $
 //
-// $Date: 8/06/14 1:20p $
+// $Date: 9/09/15 11:46a $
 //**********************************************************************
 // Revision History
 // ----------------
 // $Log: /Alaska/SOURCE/Modules/CSM/Generic/Thunk/INT13/CsmBlockIo.c $
+// 
+// 51    9/09/15 11:46a Olegi
+// [TAG]  		EIP237391
+// [Description]  	Aptio4 CSM: CsmBlockIo drive handle is lost
+// 
+// 50    9/09/15 11:26a Olegi
+// cleanup
 // 
 // 49    8/06/14 1:20p Fasihm
 // [TAG]           EIP180668
@@ -251,15 +258,22 @@ CSM_LEGACY_DRIVE            *mDriveParameterBuffer;
 //    has gOnboardRaidGuid installed on it
 //
 #define ONBOARD_RAID_GUID \
-    { 0x5d206dd3, 0x516a, 0x47dc, 0xa1, 0xbc, 0x6d, 0xa2, 0x4, 0xaa, 0xbe, 0x8};
+    { 0x5d206dd3, 0x516a, 0x47dc, {0xa1, 0xbc, 0x6d, 0xa2, 0x4, 0xaa, 0xbe, 0x8}};
 EFI_GUID    gOnboardRaidGuid = ONBOARD_RAID_GUID;
 
 // The following GUID is used to ensure the Start function is executed after all
 // individual drives in RAID are unlocked before RAID Option ROM is executed
 //
 #define HDD_UNLOCKED_GUID \
-    { 0x1fd29be6, 0x70d0, 0x42a4, 0xa6, 0xe7, 0xe5, 0xd1, 0xe, 0x6a, 0xc3, 0x76};
+    { 0x1fd29be6, 0x70d0, 0x42a4, {0xa6, 0xe7, 0xe5, 0xd1, 0xe, 0x6a, 0xc3, 0x76}};
 EFI_GUID gHddUnlockedGuid = HDD_UNLOCKED_GUID;
+
+#define LTEB_GUID  \
+    {0xC8BCA618, 0xBFC6, 0x46B7, 0x8D, 0x19, 0x83, 0x14, 0xE2, 0xE5, 0x6E, 0xC1}
+
+EFI_GUID gLTEBGuid = LTEB_GUID;
+
+VOID CsmBlockIoComebackFromLegacyBoot(EFI_EVENT, VOID*);
 
 
 //<AMI_PHDR_START>
@@ -720,7 +734,7 @@ CsmBlockIoStart (
         }
 
         // Zero the private device structure
-        ZeroMemory (PrivateBlockIoStruc, sizeof (CSM_BLOCK_IO_DEV));
+        pBS->SetMem (PrivateBlockIoStruc, sizeof (CSM_BLOCK_IO_DEV), 0);
 
         // Initialize the private device structure
         PrivateBlockIoStruc->ControllerHandle   = Controller;
@@ -754,11 +768,17 @@ CsmBlockIoStart (
                 pBS->FreePool (PrivateBlockIoStruc);
             }
 
-            // Set handle to which BlockIO has been installed
+            // Set handle and BCV information to which BlockIO has been installed
             if (j < NewBbsEntries)
             {
                 *(UINTN*)(&(BbsTable[FirstNewBbsEntry + j].IBV1)) = (UINTN)(PrivateBlockIoStruc->Handle);
+                PrivateBlockIoStruc->BcvSegment = BbsTable[FirstNewBbsEntry + j].BootHandlerSegment;
+                PrivateBlockIoStruc->BcvOffset = BbsTable[FirstNewBbsEntry + j].BootHandlerOffset;
             }
+
+            // For Onboard Raid controller use device path protocol 
+            // and other Raid controller uses the PciIO protocol.	
+
             if(OnboardRaidController) {
                 // Open For Child Device
                 Status = pBS->OpenProtocol( Controller,
@@ -778,6 +798,18 @@ CsmBlockIoStart (
                     PrivateBlockIoStruc->Handle,
                     EFI_OPEN_PROTOCOL_BY_CHILD_CONTROLLER );
             }
+            
+            // Register callback notification on Legacy2Efi. Use PrivateBlockInfoStruc as Context
+            
+            Status = pBS->CreateEventEx(
+                            EVT_NOTIFY_SIGNAL,
+                            TPL_CALLBACK,
+                            CsmBlockIoComebackFromLegacyBoot,
+                            PrivateBlockIoStruc,
+                            &gLTEBGuid,
+                            &PrivateBlockIoStruc->Legacy2EfiEvent);
+            ASSERT_EFI_ERROR(Status);
+
         } else {
             pBS->FreePool (PrivateBlockIoStruc);
         }
@@ -884,6 +916,8 @@ CsmBlockIoStop (
                             This->DriverBindingHandle,
                             ChildHandleBuffer[i] );
         }
+        
+        pBS->CloseEvent(PrivateBlockIoStruc->Legacy2EfiEvent);
 
         //  Release PCI I/O and Block IO Protocols on the clild handle.
         Status = pBS->UninstallMultipleProtocolInterfaces( ChildHandleBuffer[i],
@@ -1048,18 +1082,59 @@ UINTN AlignAddress (UINTN Address)
     }
 }
 
-// Zero memory
-VOID ZeroMemory (
-    VOID    *Buffer,
-    UINTN   Size
+/**
+    Callback notification on legacy boot return. This function adjusts the INT13 handles
+    that might have been changed during legacy boot.
+
+    @note  
+  Control flow:
+    - locate CSM_BLOCK_IO_DEV device
+    - look in IPLDT for this device using BCV Segment/Offset
+    - get the handle index from IPLDT ipld_table_entry.VectorIndex
+    - get the handle from dimVectorMap[32 max]
+    - updates BlockIoDev->Drive->Number with the new handle
+
+**/
+
+#define EFI_CSM_BLOCKIO_MAX_IPLDT_ENTRIES 32
+
+VOID
+CsmBlockIoComebackFromLegacyBoot(
+    EFI_EVENT Event,
+    VOID      *Context
 )
 {
-    UINT8   *Ptr;
-    Ptr = Buffer;
-    while (Size--) {
-        *(Ptr++) = 0;
+    CSM_BLOCK_IO_DEV *Device = Context;
+    UINT16  EbdaSeg = *(UINT16*)0x40e;
+    UINT8   *Ebda = (UINT8*)((UINTN)EbdaSeg<<4);
+    UINT8   i;
+    UINT8   *Int13Handles = Ebda + 0x3e0;
+    UINT8   *Ipldt = Ebda + 0x440;
+    UINT8   VectorIndex;
+    UINT8   Handle;
+    
+    TRACE((TRACE_ALWAYS, "CsmBlockIo L2E: BCV at %x:%x\n", Device->BcvSegment, Device->BcvOffset));
+    for (i = 0; i < EFI_CSM_BLOCKIO_MAX_IPLDT_ENTRIES; i++)
+    {
+        if (*((UINT16*)(Ipldt+0xe)) == Device->BcvOffset &&
+                (*((UINT16*)(Ipldt + 0x10)) == Device->BcvSegment)) break;
+        Ipldt += 0x40;
     }
+    if (i == EFI_CSM_BLOCKIO_MAX_IPLDT_ENTRIES)
+    {
+        TRACE((TRACE_ALWAYS, "Entry is not found in IPLDT\n"));
+        return;
+    }
+    
+    VectorIndex = Ipldt[2];
+    Handle = Int13Handles[VectorIndex];
+    
+    TRACE((TRACE_ALWAYS, "IPLDT[%x], index %x, handle %x\n", i, VectorIndex, Handle));
+    ASSERT(Handle > 0x7f);
+    
+    Device->Drive.Number = Handle;
 }
+
 
 //**********************************************************************
 //**********************************************************************

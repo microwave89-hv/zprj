@@ -13,16 +13,25 @@
 //**********************************************************************
 
 //****************************************************************************
-// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Core/CsmLib.c 69    1/10/14 12:21p Olegi $
+// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Core/CsmLib.c 71    9/09/15 9:53a Olegi $
 //
-// $Revision: 69 $
+// $Revision: 71 $
 //
-// $Date: 1/10/14 12:21p $
+// $Date: 9/09/15 9:53a $
 //
 //**********************************************************************
 // Revision History
 // ----------------
 // $Log: /Alaska/SOURCE/Modules/CSM/Generic/Core/CsmLib.c $
+// 
+// 71    9/09/15 9:53a Olegi
+// [TAG]  		EIP237381
+// [Description]  	Aptio 4 CSM: add INT19 TRAP setup question
+// 
+// 70    9/08/15 2:47p Olegi
+// [TAG]  		EIP237205
+// [Description]  	Aptio4 CSM: Add Lock/Unlock console calls during Option
+// ROMs execution
 // 
 // 69    1/10/14 12:21p Olegi
 // EIP149769: LegacyToEfi boot management
@@ -324,6 +333,7 @@
 #include "pci.h"
 #include <Protocol/SerialIo.h>
 #include <Protocol/AmiBoardInfo.h>
+#include <Protocol/ConsoleControl.h>
 
 extern BIOS_INFO *CoreBiosInfo;
 extern UINTN gMaxOpRomAddress;
@@ -334,7 +344,11 @@ UINTN       EmbeddedRomSize;
 VOID        UpdateEbdaMap(UINT32);
 
 extern AMI_BOARD_INFO_PROTOCOL *gAmiBoardInfo;
+extern BOOLEAN gDoNotUpdateBbsTable;
 extern BOOLEAN gBbsUpdateInProgress;
+
+EFI_CONSOLE_CONTROL_PROTOCOL *gConsoleControl = NULL;
+BOOLEAN     gConsoleLocked = FALSE;
 
 BOOLEAN
 Check30ROM(
@@ -1173,6 +1187,7 @@ AddBbsEntry (
     IN BBS_TABLE *BbsEntry
 )
 {
+    if (gDoNotUpdateBbsTable) return EFI_ACCESS_DENIED;
     if (gBbsUpdateInProgress) return EFI_NOT_READY;
 
     gBbsUpdateInProgress = TRUE;
@@ -1216,6 +1231,7 @@ InsertBbsEntryAt (
 {
     UINT8 EntryNo;
 
+    if (gDoNotUpdateBbsTable) return EFI_ACCESS_DENIED;
     if (gBbsUpdateInProgress) return EFI_NOT_READY;
 
     if (EntryNumber == NULL) return EFI_INVALID_PARAMETER;
@@ -1282,6 +1298,7 @@ RemoveBbsEntryAt (
 {
     EFI_STATUS Status = EFI_SUCCESS;
 
+    if (gDoNotUpdateBbsTable) return EFI_ACCESS_DENIED;
     if (gBbsUpdateInProgress) return EFI_NOT_READY;
 
     gBbsUpdateInProgress = TRUE;
@@ -1367,6 +1384,39 @@ VOID ConnectSerialIO()
 
 }
 
+EFI_STATUS LockConsole()
+{
+    EFI_STATUS Status;
+    
+    if (gConsoleControl == NULL)
+    {
+        Status = pBS->LocateProtocol(&gEfiConsoleControlProtocolGuid, NULL, &gConsoleControl);
+    }
+    ASSERT_EFI_ERROR(Status);
+    if (EFI_ERROR(Status)) return Status;
+    if (gConsoleLocked) return EFI_NO_RESPONSE;
+    
+    Status = gConsoleControl->LockStdIn(gConsoleControl, L"");
+    if (!EFI_ERROR(Status))
+    {
+        gConsoleLocked = TRUE;
+    }
+    return Status;
+}
+
+EFI_STATUS UnlockConsole()
+{
+    EFI_STATUS Status;
+    
+    if (gConsoleControl == NULL) return EFI_NOT_FOUND;
+    if (gConsoleLocked == FALSE) return EFI_NO_RESPONSE;
+    Status = gConsoleControl->LockStdIn(gConsoleControl, L"");
+    if (!EFI_ERROR(Status))
+    {
+        gConsoleLocked = FALSE;
+    }
+    return Status;
+}
 
 //<AMI_PHDR_START>
 //---------------------------------------------------------------------------

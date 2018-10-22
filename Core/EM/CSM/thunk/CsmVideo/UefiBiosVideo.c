@@ -1788,7 +1788,7 @@ BiosVideoCheckForVbe (
     //
     Status = gBS->AllocatePool (
                     EfiBootServicesData,
-                    sizeof ((VESA_BIOS_EXTENSIONS_EDID_BLOCK_SIZE * 2)),
+                    VESA_BIOS_EXTENSIONS_EDID_BLOCK_SIZE * 2,
                     &EdidOverrideDataBlock
                     );
 
@@ -2030,7 +2030,7 @@ BiosVideoCheckForVbe (
       // When EDID exist and if the timing matches with VESA add it.
       // And also add three possible resolutions, i.e. 1024x768, 800x600, 640x480
       //
-      TRACE((TRACE_BIOS_VIDEO, "neither EDID nor MODE match is found.\n", i));
+      TRACE((TRACE_BIOS_VIDEO, "neither EDID nor MODE match is found.\n"));
       continue;
     }
 
@@ -2738,7 +2738,7 @@ Routine Description:
   //
   // Frame BufferSize remain unchanged
   //
-  This->Mode->FrameBufferBase = (EFI_PHYSICAL_ADDRESS) ModeData->LinearFrameBuffer;
+  This->Mode->FrameBufferBase = (EFI_PHYSICAL_ADDRESS)(UINTN)ModeData->LinearFrameBuffer;
   This->Mode->FrameBufferSize = ModeData->FrameBufferSize;
 
   BiosVideoPrivate->HardwareNeedsStarting = FALSE;

@@ -13,15 +13,18 @@
 //**********************************************************************
 
 //**********************************************************************
-// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Thunk/INT13/CsmBlkIoComponentName.c 6     12/23/13 3:38p Olegi $
+// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Thunk/INT13/CsmBlkIoComponentName.c 7     9/09/15 11:42a Olegi $
 //
-// $Revision: 6 $
+// $Revision: 7 $
 //
-// $Date: 12/23/13 3:38p $
+// $Date: 9/09/15 11:42a $
 //**********************************************************************
 // Revision History
 // ----------------
 // $Log: /Alaska/SOURCE/Modules/CSM/Generic/Thunk/INT13/CsmBlkIoComponentName.c $
+// 
+// 7     9/09/15 11:42a Olegi
+// cleanup
 // 
 // 6     12/23/13 3:38p Olegi
 // EIP128504: implement EFI_COMPONENT2_NAME_PROTOCOL for CsmBlockIo driver
@@ -223,7 +226,7 @@ CsmBlockIoComponentNameGetControllerName (
     Status = LegacyBiosExt->GetBbsTable(&BbsEntry, &BbsCount);
     if (EFI_ERROR(Status)) return Status;
 
-    ZeroMemory(gCsmBlockIoControllerName, sizeof(gCsmBlockIoControllerName));
+    pBS->SetMem(gCsmBlockIoControllerName, sizeof(gCsmBlockIoControllerName), 0);
 
     for (i = 0; i < MAX_BBS_ENTRIES_NO; i++, BbsEntry++) {
         Handle = *(VOID**)(&BbsEntry->IBV1);

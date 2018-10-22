@@ -13,11 +13,11 @@
 //**********************************************************************
 
 //****************************************************************************
-// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Core/CsmBsp.c 39    8/06/14 4:40p Fasihm $
+// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Core/CsmBsp.c 40    9/08/15 2:25p Olegi $
 //
-// $Revision: 39 $
+// $Revision: 40 $
 //
-// $Date: 8/06/14 4:40p $
+// $Date: 9/08/15 2:25p $
 //
 //****************************************************************************
 
@@ -93,6 +93,10 @@ CSM_CHECK_OEM_PCI_SIBLINGS *CsmCheckOemPciSiblingsFunctions[] = { CSM_CHECK_OEM_
 typedef EFI_STATUS (CSM_ENABLE_OEM_PCI_SIBLINGS)(EFI_PCI_IO_PROTOCOL *PciIo);
 extern CSM_ENABLE_OEM_PCI_SIBLINGS CSM_ENABLE_OEM_PCI_SIBLINGS_FUNCTIONS EndOfEnableOemPciSiblingsFunctions;
 CSM_ENABLE_OEM_PCI_SIBLINGS *CsmEnableOemPciSiblingsFunctions[] = { CSM_ENABLE_OEM_PCI_SIBLINGS_FUNCTIONS NULL };
+
+typedef EFI_STATUS (AMI_CSM_16_CALL_COMPANION)(AMI_CSM_THUNK_DATA*, BOOLEAN);
+extern AMI_CSM_16_CALL_COMPANION CSM_16_CALL_COMPANION_FUNCTIONS EndOfCsm16CompanionFunctions;
+AMI_CSM_16_CALL_COMPANION *Csm16CallCompanionFunctions[] = { CSM_16_CALL_COMPANION_FUNCTIONS NULL };
 
 typedef EFI_STATUS (CSM_GET_ROUTING_TABLE)(
   IN  EFI_LEGACY_BIOS_PLATFORM_PROTOCOL   *This,
@@ -779,6 +783,44 @@ EnableOemPciSiblings(
         if(!EFI_ERROR(Status)) break;
     }
 
+    return Status;
+}
+
+/**
+    This function is called from FarCall86() and Int86() before and after executing
+    16-bit code. OEM code can be hooked up in SDL to the parent eLink
+    "AMI_CSM_16_CALL_COMPANION_FUNCTIONS" and execute before and after 16-bit code.
+
+    @param IsFarCall       BOOLEAN to indicate the 16-bit FAR CALL (TRUE) or INT (FALSE)
+    @param TargetLocation  UINT32 address of FAR CALL or INT number
+    @param Priority        BOOLEAN function is called before (TRUE) or after (FALSE) 16-bit code
+
+    @retval         EFI_UNSUPPORTED     Function is not implemented
+    @retval         EFI_SUCCESS         All OEM functions have been executed
+
+    @note  
+      For the function calls the address is passed in segment:offset format; upper 16 bits
+      is the segment, lower 16 bits is the offset of the function entry point.
+    @note
+      After 16-bit code execution (Priority == FALSE) TargetLocation is not relevant; value is ignored.
+
+**/
+
+EFI_STATUS
+Csm16CallCompanion(
+    AMI_CSM_THUNK_DATA *ThunkData,
+    BOOLEAN Priority
+)
+{
+    EFI_STATUS Status = EFI_UNSUPPORTED;
+    UINTN i;
+    AMI_CSM_THUNK_DATA  ThunkDataCopy = *ThunkData;
+
+    for(i = 0; Csm16CallCompanionFunctions[i] != NULL; i++)
+    {
+        Status = EFI_SUCCESS;
+        Csm16CallCompanionFunctions[i](&ThunkDataCopy, Priority);
+    }
     return Status;
 }
 

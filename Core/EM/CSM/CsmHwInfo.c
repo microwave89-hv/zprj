@@ -13,20 +13,39 @@
 //**********************************************************************
 
 //****************************************************************************
-// $Header: /Alaska/Projects/Intel/Haswell/LynxPoint_SharkBay-DT_Crb_1AQQW/Core/EM/CSM/CsmHwInfo.c 1     7/31/17 4:55a Chienhsieh $
+// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Core/CsmHwInfo.c 117   8/26/15 9:49a Olegi $
 //
-// $Revision: 1 $
+// $Revision: 117 $
 //
-// $Date: 7/31/17 4:55a $
+// $Date: 8/26/15 9:49a $
 //
 //**********************************************************************
 // Revision History
 // ----------------
-// $Log: /Alaska/Projects/Intel/Haswell/LynxPoint_SharkBay-DT_Crb_1AQQW/Core/EM/CSM/CsmHwInfo.c $
+// $Log: /Alaska/SOURCE/Modules/CSM/Generic/Core/CsmHwInfo.c $
 // 
-// 1     7/31/17 4:55a Chienhsieh
-// [TAG]  		EIP184371
-// [Description]  	Filter the DiskInfo protocols while creating HddInfo
+// 117   8/26/15 9:49a Olegi
+// [TAG]  		EIP235407
+// [Description]  	Aptio4 CSM: add error handling for out-of-memory PMM
+// initialization
+// 
+// 116   8/06/15 2:13a Rameshr
+// [TAG]  		EIP230079
+// [Category]  	Bug Fix
+// [Severity]  	Minor
+// [Symptom]  	Boot option will appear an unknown device "C0::PATA SM:"
+// after added the NVMe module and attached the NVMe device
+// [RootCause]  	CSM should handle the device that belongs to IDE
+// interface. But It handles the all the diskinfo protocol avilable
+// [Solution]  	Modified the code to handle only the Ide Interface
+// Diskinfo Protocol
+// [Files]  		Csmhwinfo.c
+// 
+// 115   5/25/15 6:01a Rameshr
+// [TAG]  		EIP213255
+// [Category]  	Improvement
+// [Description]  	Dont add Legacy boot option for the Ata device doesnt
+// have 512 bytes per sector.
 // [Files]  		CsmHwInfo.c
 // 
 // 114   8/07/14 12:44p Fasihm
@@ -444,6 +463,7 @@ UINT8                              gIdeController = 0;
 UINT16 aInstalledPciIrq[MAX_IDE_PCI_CONTROLLER];
 
 EFI_GUID    gDiskInfoProtocol = EFI_DISK_INFO_PROTOCOL_GUID;
+EFI_GUID    gEfiBlockIoProtocolGuid = EFI_BLOCK_IO_PROTOCOL_GUID;
 EFI_GUID    gSataControllerProtocol = SATA_CONTROLLER_PROTOCOL_GUID;
 EFI_GUID    gAcpiRsdtPtr = ACPI_20_TABLE_GUID;
 EFI_GUID    gAcpiRsdtPtr1_0 = ACPI_10_TABLE_GUID;
@@ -775,6 +795,7 @@ EFI_STATUS GetAtaAtapiInfo(
     EFI_DISK_INFO_PROTOCOL      *pDiskInfo;
     EFI_DEVICE_PATH_PROTOCOL    *pDevicePath;
     EFI_PCI_IO_PROTOCOL         *pPciIo;
+    EFI_BLOCK_IO_PROTOCOL 		*BlkIo;
     EFI_HANDLE  Handle;
     UINTN       Seg, Bus, Dev, Func;
     HDD_INFO    *HddInfo;
@@ -803,25 +824,32 @@ EFI_STATUS GetAtaAtapiInfo(
                     DiskInfoHandles);
     if (EFI_ERROR(Status)) return EFI_NOT_FOUND;
 
-
     for (i = 0; i < HandlesNo; i++) {
-// [ EIP184371 ]+>
+
         // Check DiskInfo.Interface field
         static EFI_GUID DiIntrfGuid = EFI_DISK_INFO_IDE_INTERFACE_GUID;
 
         Status = pBS->HandleProtocol (
-            (*DiskInfoHandles)[i],
-            &gDiskInfoProtocol,
-            &pDiskInfo);    // Get DiskInfo protocol
+                                (*DiskInfoHandles)[i],
+                                &gDiskInfoProtocol,
+                                &pDiskInfo);    // Get DiskInfo protocol
+
         ASSERT_EFI_ERROR (Status);
 
-        
         if (guidcmp(&pDiskInfo->Interface, &DiIntrfGuid)) continue;
-// [ EIP184371 ]+<
-        
+
+        Status = pBS->HandleProtocol((*DiskInfoHandles)[i],
+        								&gEfiBlockIoProtocolGuid, 
+        								&BlkIo);
+        ASSERT_EFI_ERROR(Status);
+        if (EFI_ERROR(Status)) { 
+        	continue;    
+        }
+
         Status = pBS->HandleProtocol ((*DiskInfoHandles)[i],
-            &gEfiDevicePathProtocolGuid,
-            (VOID*)&pDevicePath);
+                                        &gEfiDevicePathProtocolGuid,
+                                        (VOID*)&pDevicePath);
+
         ASSERT_EFI_ERROR(Status);
 
         //
@@ -846,13 +874,6 @@ EFI_STATUS GetAtaAtapiInfo(
             &pPciIo);           // Get PciIo protocol
         ASSERT_EFI_ERROR (Status);
 
-// [ EIP184371 ]+>
-//        Status = pBS->HandleProtocol (
-//            (*DiskInfoHandles)[i],
-//            &gDiskInfoProtocol,
-//            &pDiskInfo);    // Get DiskInfo protocol
-//        ASSERT_EFI_ERROR (Status);
-// [ EIP184371 ]+<
 
         pDiskInfo->WhichIde(pDiskInfo, &PriSec, &MasterSlave);  // Device/Channel info
         Status = pPciIo->GetLocation(pPciIo, &Seg, &Bus, &Dev, &Func);   // Location on PCI bus      
@@ -952,13 +973,24 @@ EFI_STATUS GetAtaAtapiInfo(
         pAtapiIdentifyBuffer = HddInfo->IdentifyDrive;
         if (MasterSlave != MASTER_DRIVE) pAtapiIdentifyBuffer++;
         pDiskInfo->Identify(pDiskInfo, pAtapiIdentifyBuffer, &DataCount);
-        pDriveHandle->IdentifyPtr = pAtapiIdentifyBuffer;
-        pDriveHandle->DriveHandle = (*DiskInfoHandles)[i];
-        pDriveHandle++;
+
         //
         // Check whether device is ATA or ATAPI - WORD 0 bits 14 and 15
         //
         IsAtapiDevice = (BOOLEAN)((*(UINT16*)pAtapiIdentifyBuffer & 0xC000) == 0x8000);
+
+        // If the device Block size is more than 512 bytes and ATA device
+        // Don't add the device as INT13 device ( Legacy supported device).
+        if( IsAtapiDevice == FALSE ) {
+            if(BlkIo->Media->BlockSize != 512) {
+                continue;
+            }
+        }
+
+
+        pDriveHandle->IdentifyPtr = pAtapiIdentifyBuffer;
+        pDriveHandle->DriveHandle = (*DiskInfoHandles)[i];
+        pDriveHandle++;
         //
         // Update HDD_INFO status
         //
@@ -1949,6 +1981,7 @@ EFI_STATUS AllocateHiMemPmmBlock(
     EFI_PHYSICAL_ADDRESS HiPmmMemory;
     EFI_STATUS Status;
     UINT64 NumberOfPages;
+    UINT64 BlockLength;
     
     GetSystemMemoryMap(&MemMap, &MemDescSize, &MemEntriesCount);
 
@@ -1978,16 +2011,17 @@ EFI_STATUS AllocateHiMemPmmBlock(
     // and use the end
     Status = FindMemoryBlockForHiPmm(MemMap, MemEntriesCount, MemDescSize, BlockSize*4, &HiPmmMemory, &NumberOfPages);
     if (!EFI_ERROR(Status)) {
-        HiPmmMemory += Shl64(NumberOfPages, 11); // Middle of the block
+        BlockLength = Shl64(NumberOfPages, 11); // Middle of the block
     } else {
         Status = FindMemoryBlockForHiPmm(MemMap, MemEntriesCount, MemDescSize, BlockSize*2, &HiPmmMemory, &NumberOfPages);
-        HiPmmMemory += Shl64(NumberOfPages, 12); // End of the block
+        BlockLength = Shl64(NumberOfPages, 12); // End of the block
     }
-    ASSERT_EFI_ERROR(Status);
-    
 
     pBS->FreePool(MemMap);
-
+    
+    if (EFI_ERROR(Status)) return Status;
+        
+    HiPmmMemory += BlockLength;
 
     Status = pBS->AllocatePages(AllocateMaxAddress, EfiBootServicesData, BlockSize*2, &HiPmmMemory);
     *BlockAddr = (UINTN)HiPmmMemory;
@@ -2028,24 +2062,25 @@ VOID  FreePmmBeforeBoot (
     UINTN   Size = NumberOfPages << 12;
     UINTN   Address = CoreBiosInfo->Thunk->Csm16InitTable.HiPmmMemory;
 
-    if (ClearMemoryEnabled ())
+    if (Address != 0)
     {
-        pBS->CopyMem((VOID*)(Address+Size), (VOID*)Address, Size);
-        Status = pBS->FreePages(Address, NumberOfPages);
-        ASSERT_EFI_ERROR(Status);
-        pBS->CopyMem((VOID*)Address, (VOID*)(Address+Size), Size);
-        Status = pBS->FreePages(Address+Size, NumberOfPages);
-        ASSERT_EFI_ERROR(Status);
-    }
-    else 
-    {
-        Status = pBS->FreePages(Address, NumberOfPages*2);
-        ASSERT_EFI_ERROR(Status);
+        if (ClearMemoryEnabled ())
+        {
+            pBS->CopyMem((VOID*)(Address+Size), (VOID*)Address, Size);
+            Status = pBS->FreePages(Address, NumberOfPages);
+            ASSERT_EFI_ERROR(Status);
+            pBS->CopyMem((VOID*)Address, (VOID*)(Address+Size), Size);
+            Status = pBS->FreePages(Address+Size, NumberOfPages);
+            ASSERT_EFI_ERROR(Status);
+        }
+        else 
+        {
+            Status = pBS->FreePages(Address, NumberOfPages*2);
+            ASSERT_EFI_ERROR(Status);
+        }
+        TRACE((-1, "Free HI PMM memory: %r\n", Status));
     }
     pBS->CloseEvent(Event);
-
-    TRACE((-1, "Free HI PMM memory: %r\n", Status));
-
 }
 
 //**********************************************************************

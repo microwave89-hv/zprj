@@ -20,7 +20,7 @@ End
 
 TOKEN
 	Name  = "CSM16_VERSION_MINOR"
-	Value  = "76"
+	Value  = "78"
 	Help  = "CSM16 minor version"
 	TokenType = Integer
 	TargetMAK = Yes
@@ -29,7 +29,7 @@ End
 
 TOKEN
 	Name  = "CSM_VERSION_BUILD"
-	Value  = "81"
+	Value  = "82"
 	Help  = "CSM module build version"
 	TokenType = Integer
 	TargetMAK = Yes
@@ -83,15 +83,6 @@ TOKEN
 	Help  = "Default setting for legacy to EFI feature.\Enabled: legacy boot options can be mixed with UEFI. Disabled: if legacy boot fails, next boot attempts are limited to legacy devices only - no UEFI boot will be tried."
 	TokenType = Boolean
 	TargetH = Yes
-End
-
-TOKEN
-	Name  = "LEGACY_TO_EFI_BOOTRECORD_RETURN"
-	Value  = "0"
-	Help  = "This token controls the LegacyToEfi feature after legacy boot gives control to the boot record\Disabled: next boot option can be Legacy only.\Enabled: next boot option can be either Legacy or UEFI."
-	TokenType = Boolean
-	TargetH = Yes
-	Token = "LEGACY_TO_EFI_DEFAULT" "=" "1"
 End
 
 TOKEN
@@ -195,6 +186,14 @@ TOKEN
 	TokenType = Integer
 	TargetH = Yes
 	Range  = "0...1"
+End
+
+TOKEN
+    Name  = "CSM_ALLOW_LARGE_OPROMS"
+    Value  = "0"
+    Help  = "Enabling this switch allows CSM to load and execute legacy Option ROMs larger than 128K. If enabled, the >128KB size will be taken from PCIR structure, not from ROM header."
+    TokenType = Boolean
+    TargetH = Yes
 End
 
 TOKEN
@@ -363,4 +362,18 @@ End
 ELINK
     Name = "CSM_INIT_LEGACY_MEMORY_FUNCTIONS"
     InvokeOrder = ReplaceParent
+End
+
+ELINK
+	Name  = "CSM_16_CALL_COMPANION_FUNCTIONS"
+	InvokeOrder = ReplaceParent
+End
+
+TOKEN
+  Name  = "ACPI_TIMER_IN_LEGACY_SUPPORT"
+  Value  = "0"
+  Help  = "Enable this token if ACPI timer needs to be used in AmiLegacy16 instead of 8254 timer for delay.\ If disabled 8254 timer will be used for creating delay."
+  TokenType = Boolean
+  TargetH = Yes
+  Token = "ACPI_SUPPORT" "=" "1"
 End

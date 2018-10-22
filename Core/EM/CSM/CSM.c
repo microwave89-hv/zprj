@@ -13,16 +13,75 @@
 //**********************************************************************
 
 //****************************************************************************
-// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Core/csm.c 198   8/06/14 12:57p Fasihm $
+// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Core/csm.c 211   9/14/15 1:53p Olegi $
 //
-// $Revision: 198 $
+// $Revision: 211 $
 //
-// $Date: 8/06/14 12:57p $
+// $Date: 9/14/15 1:53p $
 //
 //****************************************************************************
 // Revision History
 // ----------------
 // $Log: /Alaska/SOURCE/Modules/CSM/Generic/Core/csm.c $
+// 
+// 211   9/14/15 1:53p Olegi
+// [TAG]  		EIP237981
+// [Description]  	Aptio4 CSM:  BBS table adjustment needed when BootNext
+// variable is set
+// 
+// 210   9/09/15 8:29a Olegi
+// [TAG]  		EIP237374
+// [Description]  	Aptio 4 CSM: ASSERT in TerminalSetup due to
+// DisconnectSerialIo in CSM
+// 
+// 209   9/08/15 2:45p Olegi
+// [TAG]  		EIP237205
+// [Description]  	Aptio4 CSM: Add Lock/Unlock console calls during Option
+// ROMs execution
+// 
+// 208   9/08/15 11:17a Olegi
+// [TAG]  		EIP237186
+// [Description]  	Aptio4 CSM: move BBS data to EBDA
+// 
+// 207   8/26/15 9:49a Olegi
+// [TAG]  		EIP235407
+// [Description]  	Aptio4 CSM: add error handling for out-of-memory PMM
+// initialization
+// 
+// 206   8/25/15 10:16a Olegi
+// [TAG]  		EIP235214
+// [Description]  	CSM Aptio4: properly restore BBS table after
+// unsuccessful boot
+// 
+// 205   8/24/15 3:00p Olegi
+// [TAG]  		EIP235037
+// [Description]  	Aptio4 CSM: Optimize video mode switching during Option
+// ROMs execution
+// 
+// 204   8/20/15 9:37a Olegi
+// [TAG]  		EIP234641
+// [Description]  	Aptio4 CSM: PMM memory life cycle
+// 
+// 203   8/20/15 8:47a Olegi
+// [TAG]  		EIP234636
+// [Description]  	Aptio4 CSM: allocate PMM block below 4GB
+// 
+// 202   8/20/15 8:38a Olegi
+// [TAG]  		EIP234635
+// [Description]  	CSM Aptio4: do not deallocate PMM block
+// 
+// 201   8/19/15 1:31p Olegi
+// [TAG]  		EIP234472
+// [Description]  	Remove duplicate GetVariable calls from CSM.C
+// 
+// 200   8/19/15 11:19a Olegi
+// [TAG]  		EIP234465
+// [Description]  	Aptio4 CSM: remove LEGACY_TO_EFI_BOOTRECORD_RETURN
+// 
+// 199   12/01/14 1:17p Olegi
+// [TAG]  		EIP194476
+// [Category]  	New Feature
+// [Description]  	Aptio 4 CSM: Add ACPI timer parameters passing to CSM
 // 
 // 198   8/06/14 12:57p Fasihm
 // [TAG]           EIP180667
@@ -736,6 +795,7 @@ IVT_SAVE_RESTORE gIrqSav[MAX_NUM_IRQS_SAVERESTORE];
 
 //
 // gSetTxtMode
+// ff - initial value
 // 0 - switching to text mode is needed (init value)
 // 1 - switching is needed, restoration is not (set in ShadowOptionRoms)
 // 2 - neither switching nor restoration is needed
@@ -759,10 +819,9 @@ VOID        DisconnectSerialIO();
 VOID        DummyFunction(EFI_EVENT Event, VOID *Context);
 EFI_TPL     gOldTplValue = NULL;
 UINT16      gProtectedIrqMask = 0xffff;
-BBS_TABLE   *gOriginalBbsTable = NULL;
+BBS_TABLE   *gBbsTableBackup = NULL;
 
 VOID DumpBbsTable(UINT32);
-#define BBS_LOWEST_ACTIVE_PRIORITY 0xfffb
 
 /*---------------------------------------------------*/
 /*---                                             ---*/
@@ -936,15 +995,12 @@ InitializeCsm16MiscInfo(
         *(UINT32*)Csm16BufferPointer = (UINT32)Address;
         *(UINT32*)(Csm16BufferPointer+4) = LEGACY_TO_EFI_BOOT_BUFFER_SIZE;
 
-        Csm16Configuration(Csm16FeatureReset, Csm16LegacyToEfi, NULL);
-        Csm16Configuration(Csm16FeatureReset, Csm16LegacyToEfiPonr, NULL);
-
 #if LEGACY_TO_EFI_DEFAULT
         Csm16Configuration(Csm16FeatureSet, Csm16LegacyToEfi, NULL);
-#if LEGACY_TO_EFI_BOOTRECORD_RETURN
-        Csm16Configuration(Csm16FeatureSet, Csm16LegacyToEfiPonr, NULL);
+#else
+        Csm16Configuration(Csm16FeatureReset, Csm16LegacyToEfi, NULL);
 #endif
-#endif
+
     }
 }
 
@@ -1062,15 +1118,7 @@ EFI_STATUS UpdatePciLastBus()
     return Status;
 }
 
-VOID ReadyToBootNotify(EFI_EVENT Event, VOID *Context)
-{
-    EFI_TO_COMPATIBILITY16_INIT_TABLE *Csm16InitTable;
 
-    Csm16InitTable = &CoreBiosInfo->Thunk->Csm16InitTable;
-    pBS->FreePool((VOID*)(UINTN)Csm16InitTable->HiPmmMemory);
-    pBS->CloseEvent(Event);
-}
- 
 //<AMI_PHDR_START>
 //---------------------------------------------------------------------------
 //
@@ -1224,7 +1272,8 @@ CsmEntryPoint(
     //  - 1 - use text mode during all Option ROMs execution time, no mode
     //      switching during this time frame.
 
-    gSetTxtMode = CSM_DEFAULT_VMODE_SWITCHING;
+    gSetTxtMode = 0xff;    // CSM_DEFAULT_VMODE_SWITCHING will be applied after 1st ROM is executed
+
     if (Status == EFI_SUCCESS && gSetup.ExpansionCardText == 0) {
         gSetTxtMode = 2;
     }
@@ -1316,7 +1365,7 @@ CsmEntryPoint(
 
     UpdatePciLastBus(); // Update Pci Last Bus number in Csm16 Header
 
-    Status = CreateReadyToBootEvent(TPL_CALLBACK, ReadyToBootNotify, NULL, &Event);
+    Status = CreateReadyToBootEvent(TPL_CALLBACK, FreePmmBeforeBoot, NULL, &Event);
     ASSERT_EFI_ERROR(Status);
 
     return EFI_SUCCESS; // Force success: every unsuccessful status is branched
@@ -1345,8 +1394,18 @@ AllConnectedCallback (
     VOID      *Context
 )
 {
-    if (gSetTxtMode == 1 && gVgaHandle != NULL) {
-        pBS->ConnectController(gVgaHandle, NULL, NULL, TRUE);
+	TRACE((-1, "CSM.AllConnectedCallback: SetMode: %x VgaHandle %x\n", gSetTxtMode, gVgaHandle));
+
+    if (gSetTxtMode == 1)
+    {
+        if (gVgaHandle != NULL)
+        {
+            TRACE((-1, "Reconnecting video and serial after all OPROMs are done.\n"));
+            pBS->DisconnectController(gVgaHandle, NULL, NULL);
+            pBS->ConnectController(gVgaHandle, NULL, NULL, TRUE);
+            ConnectSerialIO();
+        }
+        UnlockConsole();
     }
 }
 
@@ -1532,7 +1591,7 @@ EFI_STATUS  InitializeLegacyMemory(BIOS_INFO *CoreBiosInfo)
     //
     bda = (BDA_DATA*)((UINTN) 0x400);
 
-    bda->system_memory = (TopOfBaseMemory>>10)-1;   // 1K is for BIOS EBDA
+    bda->system_memory = (TopOfBaseMemory>>10)-5;   // 5K is for BIOS EBDA
     bda->kb_buf_head_ptr = bda->kb_buf_tail_ptr = 0x1E;
     bda->motor_time_count = 0xFF;
     bda->kb_buff_begin = 0x1E;
@@ -1542,10 +1601,10 @@ EFI_STATUS  InitializeLegacyMemory(BIOS_INFO *CoreBiosInfo)
     bda->winch_number = 0;
 //  bda->machine_config is updated later when SIO information becomes available
 
-    bda->ext_bios_data_seg = (TopOfBaseMemory>>4)-0x40;
+    bda->ext_bios_data_seg = (TopOfBaseMemory>>4)-0x140;
 
-    ebda = (UINT8*)((UINTN)(TopOfBaseMemory-0x400));
-    *ebda = 1;  // 1K
+    ebda = (UINT8*)((UINTN)(TopOfBaseMemory-0x1400));
+    *ebda = 5;  // 5K
 
     //
     // Create BBS table and initialize it with BBS_IGNORE_ENTRY values
@@ -1605,7 +1664,7 @@ InitCompatibility16(
     UINT8               i;
     UINTN               LowPmmMemorySizeInBytes;
     UINTN               HiPmmMemorySizeInBytes;
-    VOID                *HiPmmMemory;
+    UINTN               HiPmmMemory;
     UINTN               PciExpressBase;
 
     struct IRQ_REDIRECTION_CODE {
@@ -1713,17 +1772,21 @@ InitCompatibility16(
     ASSERT_EFI_ERROR(Status);
 
     Csm16InitTable->LowPmmMemorySizeInBytes = (UINT32)LowPmmMemorySizeInBytes;
-    Csm16InitTable->HiPmmMemorySizeInBytes = (UINT32)HiPmmMemorySizeInBytes;
 
-    //
-    // Allocate Hi memory for PMM
-    //
-    Status = pBS->AllocatePool(
-                EfiBootServicesData,
-                Csm16InitTable->HiPmmMemorySizeInBytes,
-                &HiPmmMemory);
-    ASSERT_EFI_ERROR(Status);
-    Csm16InitTable->HiPmmMemory = (UINT32)HiPmmMemory;
+    Status = AllocateHiMemPmmBlock((HiPmmMemorySizeInBytes >> 12) + 1, &HiPmmMemory);
+    if (EFI_ERROR(Status))
+    {
+        Csm16InitTable->HiPmmMemorySizeInBytes = 0;
+        Csm16InitTable->HiPmmMemory = 0;
+        TRACE((-1, "HI PMM memory block is NOT allocated.\n"));
+        ERROR_CODE(DXE_CSM_INIT,EFI_ERROR_MINOR);
+    }
+    else
+    {
+        Csm16InitTable->HiPmmMemorySizeInBytes = (UINT32)HiPmmMemorySizeInBytes;
+        Csm16InitTable->HiPmmMemory = (UINT32)HiPmmMemory;
+        TRACE((-1, "HI PMM memory allocated at 0x%x, size 0x%x\n", HiPmmMemory, HiPmmMemorySizeInBytes));
+    }
 
     //
     // Make a call to 16 bit code to initialize itself
@@ -1732,14 +1795,24 @@ InitCompatibility16(
     RegSet.X.AX = Compatibility16InitializeYourself;
     RegSet.X.ES = EFI_SEGMENT (Csm16InitTable);
     RegSet.X.BX = EFI_OFFSET (Csm16InitTable);
-
+    #if ACPI_TIMER_IN_LEGACY_SUPPORT
+    // ACPI timer address is passed to AmiLegacy16 binary in the following structure
+    // Width (0/1) | Signature 'TM'| base address
+    // 31          30              15           0   
+    RegSet.E.ECX = (FACP_FLAG_TMR_VAL_EXT << ACPI_TMR_WIDTH_SHIFT) 
+                    | ( ACPI_TMR_SIGNATURE << ACPI_TMR_SIGNATURE_SHIFT) 
+                    |  PM_TMR_BLK_ADDRESS;
+    #else
+    RegSet.E.ECX = 0;
+    #endif
+    
     FarCall86 (&CoreBiosInfo->iBios,
                 CoreBiosInfo->Csm16EntrySeg,
                 CoreBiosInfo->Csm16EntryOfs,
                 &RegSet,
                 NULL,
                 0);
-    if (RegSet.X.AX) Status = (RegSet.X.AX & 0x7FFF) | EFI_ERROR_BIT;
+    Status = (RegSet.X.AX)? ((RegSet.X.AX & 0x7FFF) | EFI_ERROR_BIT) : EFI_SUCCESS;
     ASSERT_EFI_ERROR(Status);
     if (EFI_ERROR(Status)) return Status;
 
@@ -2428,36 +2501,38 @@ LegacyBoot (
     Status = ShadowAllLegacyOproms(This);   // Launch remaining OpROMs
     ASSERT_EFI_ERROR(Status);
 
-    // For the 1st boot store BBS table, else update the entries
-    if (gOriginalBbsTable == NULL){
+    // For the 1st boot allocate BBS table backup
+    if (gBbsTableBackup == NULL){
         Status = pBS->AllocatePool(EfiBootServicesData, (sizeof(BBS_TABLE))*CoreBiosInfo->BbsEntriesNo,
-                               &gOriginalBbsTable);
+                               &gBbsTableBackup);
         ASSERT_EFI_ERROR(Status);
-        pBS->CopyMem(gOriginalBbsTable, CoreBiosInfo->BbsTable, (sizeof(BBS_TABLE))*CoreBiosInfo->BbsEntriesNo);
+        
+        // If BootNext is set, TSE sets the BBS priorities to BBS_UNPRIORITIZED_ENTRY.
+        // Give unprioritized devices a priority to allow it to show up in INT13h.
+        {
+            #define BBS_LOWEST_ACTIVE_PRIORITY  0xfffb
+            UINT16  LowestPriority = 0;
+
+            // Locate the lowest priority
+            for (i = 0; i < CoreBiosInfo->BbsEntriesNo; i++) {
+                if (CoreBiosInfo->BbsTable[i].BootPriority > LowestPriority
+                     && CoreBiosInfo->BbsTable[i].BootPriority <= BBS_LOWEST_ACTIVE_PRIORITY) {
+                    LowestPriority = CoreBiosInfo->BbsTable[i].BootPriority;
+                }
+            }
+    
+            for (i = 0; i < CoreBiosInfo->BbsEntriesNo; i++) {
+                if (CoreBiosInfo->BbsTable[i].BootPriority == BBS_UNPRIORITIZED_ENTRY) {
+                    TRACE((-1, "Assigning unprioritized device %d priority %x\n", i, (LowestPriority+1)));
+                    CoreBiosInfo->BbsTable[i].BootPriority = ++LowestPriority;
+                }
+            }
+        }
+        pBS->CopyMem(gBbsTableBackup, CoreBiosInfo->BbsTable, (sizeof(BBS_TABLE))*CoreBiosInfo->BbsEntriesNo);
     }
     else
     {
-        // find the lowest priority and update failed-to-boot entries with even lower priority values
-        UINT16 LowestPriority = 0;
-
-        for (i = 0; i < CoreBiosInfo->BbsEntriesNo; i++)
-        {
-            if (CoreBiosInfo->BbsTable[i].BootPriority > LowestPriority
-                && CoreBiosInfo->BbsTable[i].BootPriority <= BBS_LOWEST_ACTIVE_PRIORITY)
-            {
-                LowestPriority = CoreBiosInfo->BbsTable[i].BootPriority;
-            }
-        }
-        // the failed entries have the priority of BBS_UNPRIORITIZED_ENTRY (set by TSE)
-        for (i = 0; i < CoreBiosInfo->BbsEntriesNo; i++)
-        {
-            if (CoreBiosInfo->BbsTable[i].BootPriority == BBS_UNPRIORITIZED_ENTRY
-                && gOriginalBbsTable[i].BootPriority != BBS_UNPRIORITIZED_ENTRY)
-            {
-                CoreBiosInfo->BbsTable[i].BootPriority = ++LowestPriority; // bump the entry all the way back
-                ASSERT(LowestPriority < BBS_LOWEST_ACTIVE_PRIORITY);
-            }
-        }
+        pBS->CopyMem(CoreBiosInfo->BbsTable, gBbsTableBackup, (sizeof(BBS_TABLE))*CoreBiosInfo->BbsEntriesNo);
     }
 
     DumpBbsTable(0);
@@ -2470,6 +2545,8 @@ LegacyBoot (
 
     Status = pBS->LocateProtocol(&gEfiTimerArchProtocolGuid, NULL, &Timer);
     ASSERT_EFI_ERROR(Status);
+
+    DisconnectSerialIO();
 
     //
     // Signal EFI_EVENT_SIGNAL_LEGACY_BOOT event
@@ -2505,21 +2582,10 @@ LegacyBoot (
     //
     // Set NumLock state according to Setup question
     //
-	Size = sizeof(SETUP_DATA);
-	Status = pRS->GetVariable(L"Setup",&guidSetup, NULL, &Size, &gSetup);
-	if (Status==EFI_SUCCESS) {
-        i = (gSetup.Numlock)? 2 : 0;    
-    } else {
-        i = 2;   // NumLock is on
-    }
-    //
-    // Note: GetVariable call could have been done once in the entry point,
-    //       but in this case we will have to require reset on Setup.Numlock
-    //       change.
-    //
+    i = (gSetup.Numlock)? 2 : 0;    // On:Off
+
     UpdateKeyboardLedStatus(This, (UINT8)i);
     						//(EIP52733+)>
-    DisconnectSerialIO();
     CoreBiosInfo->i8259->GetMask(CoreBiosInfo->i8259, NULL, NULL, &gProtectedIrqMask, NULL);      // Save current Mask
     						//<(EIP52733+)
 
@@ -2581,6 +2647,8 @@ LegacyBoot (
         pBS->ConnectController(gVgaHandle, NULL, NULL, TRUE);
     }
     ConnectSerialIO();
+
+    pBS->CopyMem(CoreBiosInfo->BbsTable, gBbsTableBackup, (sizeof(BBS_TABLE))*CoreBiosInfo->BbsEntriesNo);
 
     return EFI_SUCCESS;
 

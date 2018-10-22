@@ -237,8 +237,7 @@ extern  UINTN                           RbCount;
 
 UINT8   SBGen_GetPIRQIndex (UINT8);
 
-//UINT8   irq_priority_map[] = {11, 10, 9, 15, 5, 3, 7, 4, 14};
-UINT8   irq_priority_map[] = {15, 7, 14, 6, 11, 10, 9, 5, 3, 4};
+UINT8   irq_priority_map[] = {11, 10, 9, 15, 5, 3, 7, 4, 14};
 UINT8   irq_allocated_count[sizeof(irq_priority_map)] = {0};
 UINT16  IsaIrqMask;
 

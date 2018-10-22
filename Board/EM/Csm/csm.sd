@@ -13,15 +13,19 @@
 //**********************************************************************
 
 //**********************************************************************
-// $Header: /Alaska/SOURCE/Modules/CSM/Generic/csm.sd 23    8/06/14 4:23p Fasihm $
+// $Header: /Alaska/SOURCE/Modules/CSM/Generic/csm.sd 24    9/09/15 9:46a Olegi $
 //
-// $Revision: 23 $
+// $Revision: 24 $
 //
-// $Date: 8/06/14 4:23p $
+// $Date: 9/09/15 9:46a $
 //**********************************************************************
 // Revision History
 // ----------------
 // $Log: /Alaska/SOURCE/Modules/CSM/Generic/csm.sd $
+// 
+// 24    9/09/15 9:46a Olegi
+// [TAG]  		EIP237381
+// [Description]  	Aptio 4 CSM: add INT19 TRAP setup question
 // 
 // 23    8/06/14 4:23p Fasihm
 // [TAG]           EIP180681
@@ -123,9 +127,10 @@
 //**********************************************************************
 
 #ifdef SETUP_DATA_DEFINITION
-        UINT8	ExpansionCardText;
+    UINT8	ExpansionCardText;
+    UINT8   I19Trap;
 	UINT8	ZipEmulation;
-        UINT8   KeepGA20Active;
+    UINT8   KeepGA20Active;
 //      UINT8   CsmSupport;
 #endif
 
@@ -150,6 +155,13 @@
 		option text = STRING_TOKEN(STR_CSM_OPROM_DISPLAY_KEEP_CURRENT),	value = 0, flags = 0, key = 0;\
 	endoneof;
 
+#define CSM_CHECKBOX_I19TRAP\
+	oneof varid  = SETUP_DATA.I19Trap,\
+		prompt      = STRING_TOKEN(STR_CSM_I19_TRAP),\
+		help        = STRING_TOKEN(STR_CSM_I19_TRAP_HELP),\
+		option text = STRING_TOKEN(STR_CSM_I19_TRAP_IMMEDIATE),	value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+		option text = STRING_TOKEN(STR_CSM_I19_TRAP_POSTPONED),	value = 0, flags = 0;\
+	endoneof;
 
 #if CSM_SET_ZIP_EMULATION_TYPE
 
@@ -180,6 +192,7 @@
 
 	CSM_ONEOF_KEEPGA20ACTIVE
 	CSM_ONEOF_EXPANSIONCARDTEXT
+    CSM_CHECKBOX_I19TRAP
 	CSM_ONEOF_ZIPEMULATION
 #endif //#ifdef CONTROLS_WITH_DEFAULTS
 
@@ -239,7 +252,7 @@
 
 	CSM_ONEOF_KEEPGA20ACTIVE
 	CSM_ONEOF_EXPANSIONCARDTEXT
-
+    CSM_CHECKBOX_I19TRAP
 #if CSM_SET_ZIP_EMULATION_TYPE
 	CSM_ONEOF_ZIPEMULATION
 #endif

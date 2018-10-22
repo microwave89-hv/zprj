@@ -13,15 +13,20 @@
 //**********************************************************************
 
 //**********************************************************************
-// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Thunk/x86/thunk.c 49    10/07/13 9:41a Olegi $
+// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Thunk/x86/thunk.c 50    9/09/15 11:13a Olegi $
 //
-// $Revision: 49 $
+// $Revision: 50 $
 //
-// $Date: 10/07/13 9:41a $
+// $Date: 9/09/15 11:13a $
 //**********************************************************************
 // Revision History
 // ----------------
 // $Log: /Alaska/SOURCE/Modules/CSM/Generic/Thunk/x86/thunk.c $
+// 
+// 50    9/09/15 11:13a Olegi
+// [TAG]  		EIP237204
+// [Description]  	Aptio4 CSM: implement OEM eLink function for
+// FarCall86() and Int86()
 // 
 // 49    10/07/13 9:41a Olegi
 // Undone previous checkin related to EIP125856 as it is causing assert
@@ -227,24 +232,6 @@
 
 
 #pragma pack(1)
-typedef struct {
-    UINT16  Offset;
-    UINT16  Segment;
-} FAR_CALL_PTR_16;
-
-typedef struct {
-    UINT32  Stack;
-    UINT32  StackSize;
-} STACK;
-
-typedef struct {
-    FAR_CALL_PTR_16         FarCall;
-    EFI_IA32_REGISTER_SET   Regs;
-    STACK                   Stack;
-    BOOLEAN                 isFarCall;  //if false, then INT86.
-    UINT8                   BiosInt;
-} THUNK_DATA;
-
 typedef struct _ACPI_PNPID {
     UINT32  Signature   :16;
     UINT32  PnpID       :16;
@@ -273,6 +260,8 @@ EFI_STATUS GetPs2SimpleTextInProtocolInterface(
     BIOS_INFO               *This,
     EFI_SIMPLE_TEXT_INPUT_PROTOCOL  **PS2KBDInterface
 );
+
+EFI_STATUS  Csm16CallCompanion(AMI_CSM_THUNK_DATA*, BOOLEAN);
 
 //<AMI_PHDR_START>
 //---------------------------------------------------------------------------
@@ -384,7 +373,7 @@ BOOLEAN Int86(
 {
     EFI_TPL     OldTpl;
 
-    THUNK_DATA *ThunkData = (THUNK_DATA*)(gThunkAsmAddr+6);
+    AMI_CSM_THUNK_DATA *ThunkData = (AMI_CSM_THUNK_DATA*)(gThunkAsmAddr+6);
     //
     // To avoid reentrance in Int86
     //
@@ -394,12 +383,14 @@ BOOLEAN Int86(
     gInsideThunk = TRUE;
     ThunkData->isFarCall = FALSE;
     ThunkData->BiosInt = BiosInt;
-    ThunkData->Stack.StackSize = 0; //This is required
+    ThunkData->StackData.StackSize = 0; //This is required
 
 
     //Copy thunk registers.
     ThunkData->Regs = *Regs;
-
+    
+    Csm16CallCompanion(ThunkData, TRUE);
+    
 #if defined(AMIUSB_SUPPORT)
 {
     EFI_STATUS  Status;
@@ -432,6 +423,8 @@ BOOLEAN Int86(
     gLegacy8259->SetMode(gLegacy8259,Efi8259ProtectedMode,NULL,NULL);
     pBS->RestoreTPL(OldTpl);
 
+    Csm16CallCompanion(ThunkData, FALSE);
+    
     //Restore thunk registers.
     *Regs = ThunkData->Regs;
     gInsideThunk = FALSE;
@@ -473,7 +466,7 @@ BOOLEAN FarCall86(
     EFI_TPL     OldTpl;
     UINT16      IrqMask, SaveIrqMask;
     UINT16      ProtectedIrqMask, ProtectedSaveIrqMask;
-    THUNK_DATA *ThunkData = (THUNK_DATA*)(gThunkAsmAddr+6);
+    AMI_CSM_THUNK_DATA *ThunkData = (AMI_CSM_THUNK_DATA*)(gThunkAsmAddr+6);
     UINT16      FuncNumber;
     BOOLEAN     IsCsm16Call =
                     Segment == CoreBiosInfo->Csm16EntrySeg &&
@@ -521,13 +514,15 @@ BOOLEAN FarCall86(
     //Copy address for stack
     if (Stack)
     {
-        ThunkData->Stack.Stack = (UINT32)Stack;
-        ThunkData->Stack.StackSize = (UINT32)StackSize;
-    } else ThunkData->Stack.StackSize = 0;
+        ThunkData->StackData.Stack = (UINT32)Stack;
+        ThunkData->StackData.StackSize = (UINT32)StackSize;
+    } else ThunkData->StackData.StackSize = 0;
 
     //Copy thunk registers.
     ThunkData->Regs = *Regs;
-
+    
+    Csm16CallCompanion(ThunkData, TRUE);
+    
     // Reset the PS/2 keyboard before legacy boot
     if (IsCsm16LegacyBoot == TRUE) {
         if (gPS2KBDInterface) gPS2KBDInterface->Reset(gPS2KBDInterface, FALSE);
@@ -547,9 +542,6 @@ BOOLEAN FarCall86(
     //
     // Mask all HW interrupts for real mode for CSM16 function #0 (InitializeYourself).
     // This is needed since IVT is not installed before executing function #0.
-    //
-    // TODO: Explore the possibility of IVT installation from CSM32; in this case the
-    // code that is updating and using ProtectedIrqMask can be removed.
     //
     if (IsCsm16Call && FuncNumber == 00 ) {
         gLegacy8259->GetMask(gLegacy8259, NULL, NULL, &ProtectedSaveIrqMask, NULL);      // Save current Mask
@@ -620,7 +612,8 @@ BOOLEAN FarCall86(
             pKeyCodeProtocol->SetState((EFI_SIMPLE_TEXT_INPUT_EX_PROTOCOL*)pKeyCodeProtocol,&KeyToggleState);
         }
     }
-
+    Csm16CallCompanion(ThunkData, FALSE);
+    
     *(UINT8*)(UINTN)0x417 &= 0x70;  // Clear key modifiers status in BDA
    
     gInsideThunk = FALSE;

@@ -13,15 +13,19 @@
 //**********************************************************************
 
 //**********************************************************************
-// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Thunk/INT13/CsmEdd.h 7     1/12/10 11:50a Olegi $
+// $Header: /Alaska/SOURCE/Modules/CSM/Generic/Thunk/INT13/CsmEdd.h 8     9/09/15 11:46a Olegi $
 //
-// $Revision: 7 $
+// $Revision: 8 $
 //
-// $Date: 1/12/10 11:50a $
+// $Date: 9/09/15 11:46a $
 //**********************************************************************
 // Revision History
 // ----------------
 // $Log: /Alaska/SOURCE/Modules/CSM/Generic/Thunk/INT13/CsmEdd.h $
+// 
+// 8     9/09/15 11:46a Olegi
+// [TAG]  		EIP237391
+// [Description]  	Aptio4 CSM: CsmBlockIo drive handle is lost
 // 
 // 7     1/12/10 11:50a Olegi
 // Copyright message updated.
@@ -388,6 +392,9 @@ typedef struct {
     CSM_LEGACY_DRIVE            Drive;
     UINT8                       HwInt;
     UINT32                      HwIntHandler;
+    EFI_EVENT                   Legacy2EfiEvent;
+    UINT16                      BcvSegment;
+    UINT16                      BcvOffset;
 } CSM_BLOCK_IO_DEV;
 
 #endif

@@ -13,11 +13,11 @@
 #**********************************************************************
 
 #**********************************************************************
-# $Header: /Alaska/SOURCE/Modules/CSM/Generic/Core/csm.mak 36    10/07/13 8:58a Olegi $
+# $Header: /Alaska/SOURCE/Modules/CSM/Generic/Core/csm.mak 37    9/08/15 2:25p Olegi $
 #
-# $Revision: 36 $
+# $Revision: 37 $
 #
-# $Date: 10/07/13 8:58a $
+# $Date: 9/08/15 2:25p $
 #**********************************************************************
 
 #**********************************************************************
@@ -73,6 +73,8 @@ CSMELINKFUNCTIONS :
 #define CSM_BSP_PREPARE_TO_BOOT_FUNCTIONS $(CSM_BSP_PREPARE_TO_BOOT_FUNCTIONS:},=},\^
 )
 #define CSM_INIT_LEGACY_MEMORY_FUNCTIONS $(CSM_INIT_LEGACY_MEMORY_FUNCTIONS:},=},\^
+)
+#define CSM_16_CALL_COMPANION_FUNCTIONS $(CSM_16_CALL_COMPANION_FUNCTIONS:},=},\^
 )
 <<
 
