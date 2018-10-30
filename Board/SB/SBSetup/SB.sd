@@ -691,6 +691,15 @@
     UINT8   ADspMode;
 
     UINT8   NFCE;
+
+    UINT8 AaeonWakeOnRtc;			//AAEON_RTC_001_Elflo+
+//  UINT8 FixedWakeOnRTCS5;		//AAEON_RTC_001_Elflo-
+//  UINT8 DynamicWakeOnRTCS5;		//AAEON_RTC_001_Elflo-
+    UINT8 AaeonRTCWakeupTimeDay;
+    UINT8 AaeonRTCWakeupTimeHour;
+    UINT8 AaeonRTCWakeupTimeMinute;
+    UINT8 AaeonRTCWakeupTimeSecond;
+    UINT8 AaeonRTCWakeupTimeMinuteIncrease;
 #endif
 
 #ifdef FORM_SET_TYPEDEF
@@ -708,6 +717,98 @@
 
 //---------------------------------------------------------------------------
 #ifdef CONTROL_DEFINITION
+
+  #define AAEON_WAKEONRTC_DIS\
+      text \
+          help   = STRING_TOKEN(STR_WAKE_ON_RTC_PROMPT_HELP), \
+          text   = STRING_TOKEN(STR_WAKE_ON_RTC_PROMPT), \
+          text   = STRING_TOKEN(STR_DISABLED), \
+          flags  = 0, \
+          key    = 0;
+
+  #define AAEON_WAKEONRTC\
+	oneof	varid	= SETUP_DATA.AaeonWakeOnRtc,\
+			prompt		= STRING_TOKEN(STR_WAKE_ON_RTC_PROMPT),\
+			help		= STRING_TOKEN(STR_WAKE_ON_RTC_PROMPT_HELP),\
+			option text = STRING_TOKEN(STR_DISABLED), value=0, flags= DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+			option text = STRING_TOKEN(STR_WOR_FIXED), value=1, flags= RESET_REQUIRED;\
+			option text = STRING_TOKEN(STR_WOR_DYNAMIC), value=2, flags= RESET_REQUIRED;\
+	endoneof;
+
+//AAEON_RTC_001_Elflo- >>
+//  #define AAEON_ONEOF_FIXED_WAKEONRTCS5\
+//	oneof	varid	= SETUP_DATA.FixedWakeOnRTCS5,\
+//			prompt		= STRING_TOKEN(STR_FIXED_WAKE_ON_RTCS5_PROMPT),\
+//			help		= STRING_TOKEN(STR_FIXED_WAKE_ON_RTCS5_HELP),\
+//			option text = STRING_TOKEN(STR_DISABLED), value=0, flags= DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+//			option text = STRING_TOKEN(STR_ENABLED), value=1, flags= RESET_REQUIRED;\
+//	endoneof;
+//AAEON_RTC_001_Elflo- <<	
+
+  #define AAEON_NUM_RTCWAKEUP_TIMEDAY\
+	numeric varid  = SETUP_DATA.AaeonRTCWakeupTimeDay,\
+		  prompt	  = STRING_TOKEN(STR_RTC_WAKEUP_DAY_PROMPT),\
+		  help		  = STRING_TOKEN(STR_RTC_DAY_HELP),\
+		  flags 	  = RESET_REQUIRED,\
+		  minimum		= 0,\
+		  maximum		= 31,\
+		  step			= 1,\
+		  default		= 0,\
+	endnumeric;
+
+  #define AAEON_NUM_RTCWAKEUP_TIMEHOUR\
+	numeric varid  = SETUP_DATA.AaeonRTCWakeupTimeHour,\
+		  prompt	  = STRING_TOKEN(STR_RTC_WAKEUP_HOUR_PROMPT),\
+		  help		  = STRING_TOKEN(STR_RTC_HOUR_HELP),\
+		  flags 	  = RESET_REQUIRED,\
+		  minimum	  = 0,\
+		  maximum	  = 23,\
+		  step		  = 1,\
+		  default	  = 0,\
+	endnumeric;
+	
+  #define AAEON_NUM_RTCWAKEUP_TIMEMINUTE\
+	numeric varid  = SETUP_DATA.AaeonRTCWakeupTimeMinute,\
+		  prompt	  = STRING_TOKEN(STR_RTC_WAKEUP_MINUTE_PROMPT),\
+		  help		  = STRING_TOKEN(STR_TIME_MINUTE_HELP),\
+		  flags 	  = RESET_REQUIRED,\
+		  minimum		= 0,\
+		  maximum		= 59,\
+		  step			= 1,\
+		  default		= 0,\
+	endnumeric;
+	
+  #define AAEON_NUM_RTCWAKEUP_TIMESECOND\
+	numeric varid  = SETUP_DATA.AaeonRTCWakeupTimeSecond,\
+		  prompt	  = STRING_TOKEN(STR_RTC_WAKEUP_SECOND_PROMPT),\
+		  help		  = STRING_TOKEN(STR_TIME_SECOND_HELP),\
+		  flags 	  = RESET_REQUIRED,\
+		  minimum		= 0,\
+		  maximum		= 59,\
+		  step			= 1,\
+		  default		= 0,\
+	endnumeric;
+
+//AAEON_RTC_001_Elflo- >>
+//  #define AAEON_ONEOF_DYNAMIC_WAKEONRTCS5\
+//	oneof	varid	= SETUP_DATA.DynamicWakeOnRTCS5,\
+//			prompt		= STRING_TOKEN(STR_DYNAMIC_WAKE_ON_RTCS5_PROMPT),\
+//			help		= STRING_TOKEN(STR_DYNAMIC_WAKE_ON_RTCS5_HELP),\
+//			option text = STRING_TOKEN(STR_DISABLED), value=0, flags= DEFAULT | MANUFACTURING | RESET_REQUIRED;\
+//			option text = STRING_TOKEN(STR_ENABLED), value=1, flags= RESET_REQUIRED;\
+//	endoneof;
+//AAEON_RTC_001_Elflo- <<
+	
+  #define AAEON_NUM_RTCWAKEUP_TIMEMINUTEINCREASE\
+	numeric varid  = SETUP_DATA.AaeonRTCWakeupTimeMinuteIncrease,\
+		prompt		= STRING_TOKEN(STR_RTC_WAKEUP_MINUTE_INCREASE_PROMPT),\
+		help		= STRING_TOKEN(STR_TIME_MINUTE_INCREASE_HELP),\
+		flags		= RESET_REQUIRED,\
+		minimum 	  = 1,\
+		maximum 	  = 5,\
+		step		  = 1,\
+		default 	  = 1,\
+	endnumeric;
 
 #define SB_ONEOF_ECTG\
   oneof varid    = SETUP_DATA.ECTG,\
@@ -1034,11 +1135,11 @@
   oneof varid    = SETUP_DATA.PchUsb30Mode,\
     prompt       = STRING_TOKEN (STR_PCH_USB30_MODE_PROMPT),\
     help         = STRING_TOKEN (STR_PCH_USB30_MODE_HELP),\
-    option text  = STRING_TOKEN (STR_COMMON_SMART_AUTO), value = 3, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_COMMON_SMART_AUTO), value = 3, flags = RESET_REQUIRED, key = 0;\
     option text  = STRING_TOKEN (STR_COMMON_AUTO), value = 2, flags = RESET_REQUIRED, key = 0;\
     option text  = STRING_TOKEN (STR_COMMON_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
     option text  = STRING_TOKEN (STR_COMMON_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
-    option text  = STRING_TOKEN (STR_COMMON_MANUAL), value = 4, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_COMMON_MANUAL), value = 4, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
   endoneof;
 
 #define SB_ONEOF_PCHENABLERMH1\
@@ -1087,8 +1188,8 @@
     prompt       = STRING_TOKEN (STR_PCH_ENABLE_USB30_PIN),\
     help         = STRING_TOKEN (STR_PCH_ENABLE_USB30_PIN_HELP),\
     option text  = STRING_TOKEN (STR_SELECT_PER_PIN), value = 0, flags = RESET_REQUIRED, key = 0;\
-    option text  = STRING_TOKEN (STR_SELECT_ALL_PIN_DISABLE), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
-    option text  = STRING_TOKEN (STR_SELECT_ALL_PIN_ENABLE), value = 2, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_SELECT_ALL_PIN_DISABLE), value = 1, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_SELECT_ALL_PIN_ENABLE), value = 2, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
   endoneof;
 
 #define SB_ONEOF_USB20PERPINROUTE00\
@@ -1311,8 +1412,8 @@
   oneof varid    = SETUP_DATA.PchUsbPerPortCtl,\
     prompt       = STRING_TOKEN (STR_PCH_USB_PER_PORT_PROMPT),\
     help         = STRING_TOKEN (STR_PCH_USB_PER_PORT_HELP),\
-    option text  = STRING_TOKEN (STR_COMMON_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
-    option text  = STRING_TOKEN (STR_COMMON_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_COMMON_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_COMMON_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
   endoneof;
 
 #if EHCI_CON_DISCON_WAKE_UP_SUPPORT
@@ -5416,6 +5517,14 @@
 
 //---------------------------------------------------------------------------
 #ifdef CONTROLS_WITH_DEFAULTS
+	AAEON_WAKEONRTC					//AAEON_RTC_001_Elflo+
+//	AAEON_ONEOF_FIXED_WAKEONRTCS5			//AAEON_RTC_001_Elflo-
+	AAEON_NUM_RTCWAKEUP_TIMEDAY
+	AAEON_NUM_RTCWAKEUP_TIMEHOUR
+	AAEON_NUM_RTCWAKEUP_TIMEMINUTE
+	AAEON_NUM_RTCWAKEUP_TIMESECOND
+//	AAEON_ONEOF_DYNAMIC_WAKEONRTCS5			//AAEON_RTC_001_Elflo-
+	AAEON_NUM_RTCWAKEUP_TIMEMINUTEINCREASE
 
 	SB_ONEOF_ECTG
     SB_ONEOF_PCHLAN
@@ -7348,6 +7457,11 @@
     goto THERMAL_CONFIG_FORM_ID,
     prompt  = STRING_TOKEN (STR_THERMAL_CONFIGURATION),
     help    = STRING_TOKEN (STR_THERMAL_CONFIGURATION_HELP);
+
+	goto S5_RTCWAKE_FORM_ID, 
+	    prompt = STRING_TOKEN(STR_S5_RTCWAKE_FORM),
+	    help = STRING_TOKEN(STR_S5_RTCWAKE_FORM_HELP);
+
   #endif
 
 //----------------------------------------------------------------------------
@@ -7850,6 +7964,39 @@
       endform; //End of PCH_RAID_SFMS_OPTIONS_FORM_ID
 
     #endif // End of SB_FORM_SATA_SFMS_OPTIONS
+
+//DW01_Custom_Support_RTC_Wake >>
+		form formid = AUTO_ID(S5_RTCWAKE_FORM_ID),
+			title = STRING_TOKEN(STR_S5_RTCWAKE_FORM);
+
+			AAEON_WAKEONRTC						//AAEON_RTC_001_Elflo+
+
+//AAEON_RTC_001_Elflo- >>
+//	  grayoutif ideqval SETUP_DATA.DynamicWakeOnRTCS5 == 1;
+//	  AAEON_ONEOF_FIXED_WAKEONRTCS5
+//	  endif;
+//AAEON_RTC_001_Elflo- <<
+
+//	  suppressif  ideqval SETUP_DATA.FixedWakeOnRTCS5 == 0;	//AAEON_RTC_001_Elflo- 
+			suppressif NOT ideqval SETUP_DATA.AaeonWakeOnRtc == 1;	//AAEON_RTC_001_Elflo+
+			AAEON_NUM_RTCWAKEUP_TIMEDAY
+			AAEON_NUM_RTCWAKEUP_TIMEHOUR
+			AAEON_NUM_RTCWAKEUP_TIMEMINUTE
+			AAEON_NUM_RTCWAKEUP_TIMESECOND
+			endif;	  
+//AAEON_RTC_001_Elflo- >>	  
+//	  SEPARATOR
+//	  grayoutif ideqval SETUP_DATA.FixedWakeOnRTCS5 == 1;
+//	  AAEON_ONEOF_DYNAMIC_WAKEONRTCS5
+//	  endif;
+//AAEON_RTC_001_Elflo- <<
+
+//	  suppressif  ideqval SETUP_DATA.DynamicWakeOnRTCS5 == 0; //AAEON_RTC_001_Elflo- 	  
+			suppressif NOT ideqval SETUP_DATA.AaeonWakeOnRtc == 2;	  //AAEON_RTC_001_Elflo+
+			AAEON_NUM_RTCWAKEUP_TIMEMINUTEINCREASE
+			endif;
+		endform;  // AAEON_FORM_ID
+//DW01_Custom_Support_RTC_Wake <<
 
   #endif 
 //----------------------------------------------------------------------------
