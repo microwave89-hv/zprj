@@ -224,7 +224,7 @@ CSM_OPT_OUT_OLD_OPROM
        
         suppressif ideqval SETUP_DATA.CsmLaunchPolicy == 0;
             CSM_OPT_OUT_BOOT_OPTION_FILTER
-            CSM_OPT_OUT_PXE_OPROM
+//            CSM_OPT_OUT_PXE_OPROM
             CSM_OPT_OUT_MASS_STORAGE_OPROM
             CSM_OPT_OUT_VIDEO_OPROM
             SEPARATOR
