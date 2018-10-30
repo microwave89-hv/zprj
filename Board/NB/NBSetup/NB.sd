@@ -641,8 +641,8 @@
         oneof varid    = SETUP_DATA.PrimaryDisplay,\
           prompt   = STRING_TOKEN(STR_PRIMARY_VIDEO),\
           help     = STRING_TOKEN(STR_PRIMARY_VIDEO_HELP3),\
-          option text = STRING_TOKEN(STR_COMMON_AUTO), value = 3, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
-          option text = STRING_TOKEN(STR_IGFX_STRING), value = 0, flags = RESET_REQUIRED, key = 0;\
+          option text = STRING_TOKEN(STR_COMMON_AUTO), value = 3, flags = RESET_REQUIRED, key = 0;\
+          option text = STRING_TOKEN(STR_IGFX_STRING), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
           option text = STRING_TOKEN(STR_PEG_STRING),  value = 1, flags = RESET_REQUIRED, key = 0;\
           option text = STRING_TOKEN(STR_PCIE_STRING),  value = 2, flags = RESET_REQUIRED, key = 0;\
         endoneof;
@@ -651,18 +651,27 @@
         oneof varid    = SETUP_DATA.PrimaryDisplay,\
           prompt   = STRING_TOKEN(STR_PRIMARY_VIDEO),\
           help     = STRING_TOKEN(STR_PRIMARY_VIDEO_HELP4),\
-          option text = STRING_TOKEN(STR_COMMON_AUTO), value = 3, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
-          option text = STRING_TOKEN(STR_IGFX_STRING), value = 0, flags = RESET_REQUIRED, key = 0;\
+          option text = STRING_TOKEN(STR_COMMON_AUTO), value = 3, flags = RESET_REQUIRED, key = 0;\
+          option text = STRING_TOKEN(STR_IGFX_STRING), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
           option text = STRING_TOKEN(STR_PCIE_STRING),  value = 2, flags = RESET_REQUIRED, key = 0;\
         endoneof;
 
+//#define NB_ONEOF_PRIMARYDISPLAY1\
+//        oneof varid    = SETUP_DATA.PrimaryDisplay,\
+//          prompt   = STRING_TOKEN(STR_PRIMARY_VIDEO),\
+//          help     = STRING_TOKEN(STR_PRIMARY_VIDEO_HELP5),\
+//          option text = STRING_TOKEN(STR_COMMON_AUTO), value = 3, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+//          option text = STRING_TOKEN(STR_PEG_STRING),  value = 1, flags = RESET_REQUIRED, key = 0;\
+//          option text = STRING_TOKEN(STR_PCIE_STRING),  value = 2, flags = RESET_REQUIRED, key = 0;\
+//        endoneof;
 #define NB_ONEOF_PRIMARYDISPLAY1\
         oneof varid    = SETUP_DATA.PrimaryDisplay,\
           prompt   = STRING_TOKEN(STR_PRIMARY_VIDEO),\
           help     = STRING_TOKEN(STR_PRIMARY_VIDEO_HELP5),\
-          option text = STRING_TOKEN(STR_COMMON_AUTO), value = 3, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+          option text = STRING_TOKEN(STR_COMMON_AUTO), value = 3, flags = RESET_REQUIRED, key = 0;\
           option text = STRING_TOKEN(STR_PEG_STRING),  value = 1, flags = RESET_REQUIRED, key = 0;\
           option text = STRING_TOKEN(STR_PCIE_STRING),  value = 2, flags = RESET_REQUIRED, key = 0;\
+          option text = STRING_TOKEN(STR_IGFX_STRING), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
         endoneof;
 
 #endif // SwitchableGraphics_SUPPORT
@@ -877,6 +886,18 @@
         option text = STRING_TOKEN (STR_COMMON_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
       endoneof;
 
+//#define NB_ONEOF_IGDBOOTTYPE\
+//      oneof varid    = SETUP_DATA.IgdBootType,\
+//        prompt   = STRING_TOKEN(STR_VIDEO_BT_PROMPT),\
+//        help     = STRING_TOKEN(STR_VIDEO_BT_HELP),\
+//        option text = STRING_TOKEN(STR_VIDEO_BT_DEFAULT),      value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+//        option text = STRING_TOKEN(STR_VIDEO_BT_CRT),          value = 0x01, flags = RESET_REQUIRED, key = 0;\
+//        option text = STRING_TOKEN(STR_VIDEO_BT_EFP),          value = 0x04, flags = RESET_REQUIRED, key = 0;\
+//        option text = STRING_TOKEN(STR_VIDEO_BT_LFP),          value = 0x08, flags = RESET_REQUIRED, key = 0;\
+//        option text = STRING_TOKEN(STR_VIDEO_BT_EFP3),         value = 0x20, flags = RESET_REQUIRED, key = 0;\
+//        option text = STRING_TOKEN(STR_VIDEO_BT_EFP2),         value = 0x40, flags = RESET_REQUIRED, key = 0;\
+//        option text = STRING_TOKEN(STR_VIDEO_BT_LFP2),         value = 0x80, flags = RESET_REQUIRED, key = 0;\
+//      endoneof;
 #define NB_ONEOF_IGDBOOTTYPE\
       oneof varid    = SETUP_DATA.IgdBootType,\
         prompt   = STRING_TOKEN(STR_VIDEO_BT_PROMPT),\
@@ -884,10 +905,6 @@
         option text = STRING_TOKEN(STR_VIDEO_BT_DEFAULT),      value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
         option text = STRING_TOKEN(STR_VIDEO_BT_CRT),          value = 0x01, flags = RESET_REQUIRED, key = 0;\
         option text = STRING_TOKEN(STR_VIDEO_BT_EFP),          value = 0x04, flags = RESET_REQUIRED, key = 0;\
-        option text = STRING_TOKEN(STR_VIDEO_BT_LFP),          value = 0x08, flags = RESET_REQUIRED, key = 0;\
-        option text = STRING_TOKEN(STR_VIDEO_BT_EFP3),         value = 0x20, flags = RESET_REQUIRED, key = 0;\
-        option text = STRING_TOKEN(STR_VIDEO_BT_EFP2),         value = 0x40, flags = RESET_REQUIRED, key = 0;\
-        option text = STRING_TOKEN(STR_VIDEO_BT_LFP2),         value = 0x80, flags = RESET_REQUIRED, key = 0;\
       endoneof;
 
 #define NB_ONEOF_DISPLAYPIPEB\
@@ -3802,7 +3819,7 @@ NB_ONEOF_GDXCENABLE                        // GdxcEnable
       form formid = AUTO_ID(INTEL_IGFX_ID),
       title = STRING_TOKEN(STR_INTEL_IGFX_FORM);
       SUBTITLE(STRING_TOKEN(STR_INTEL_IGFX_FORM))
-        
+suppressif TRUE ;
       suppressif ideqval NB_PLATFORM_DATA.IGFXAvailable == 0 OR
                  ideqval SETUP_DATA.InternalGraphics == 0 OR
                  ideqval NB_PLATFORM_DATA.IGFXGopAvailable == 1;
@@ -3824,7 +3841,7 @@ NB_ONEOF_GDXCENABLE                        // GdxcEnable
         NB_NUMERIC_GFXTURBOIMON
 
       endif;
-
+endif ;
       SEPARATOR
 
       suppressif ideqval NB_PLATFORM_DATA.PegAvailable == 0 OR
@@ -3858,6 +3875,8 @@ NB_ONEOF_GDXCENABLE                        // GdxcEnable
 //      NB_ONEOF_PRIMARYGOPDISPLAY
 
 //      endif;
+
+      NB_ONEOF_IGDBOOTTYPE
 
 #if defined(RC_PEG_0) && (RC_PEG_0 == 1)
 #if ( defined(SwitchableGraphics_SUPPORT) && (SwitchableGraphics_SUPPORT == 1) )
@@ -3902,23 +3921,27 @@ NB_ONEOF_GDXCENABLE                        // GdxcEnable
 
       endif; 
          
+suppressif TRUE ;
       suppressif NOT ideqval NB_PLATFORM_DATA.IGFXCapability == 1;
 
          NB_ONEOF_INTERNALGRAPHICS
 
       endif; 
+endif ;
 
       suppressif ideqval NB_PLATFORM_DATA.IGFXAvailable == 0 OR
                  ideqval SETUP_DATA.InternalGraphics == 0;
 
 //         NB_ONEOF_GTTSIZE
       
+suppressif TRUE ;
          NB_ONEOF_APERTURESIZE
+endif ;
 
          NB_ONEOF_IGDDVMT50PREALLOC
 
          NB_ONEOF_IGDDVMT50TOTALALLOC
-
+suppressif TRUE ;
          NB_ONEOF_LOWPOWERMODE
 
          NB_ONEOF_PANELPOWERE
@@ -3926,7 +3949,7 @@ NB_ONEOF_GDXCENABLE                        // GdxcEnable
          goto IGFX_LCD_FORM_ID,
            prompt  = STRING_TOKEN(STR_IGFX_LCD),
            help    = STRING_TOKEN(STR_IGFX_LCD);
-
+endif ;
       endif;
 
       endform;
