@@ -6328,23 +6328,40 @@
         //
         SB_ONEOF_PCHUSBPERPORTCTL
 
+//        suppressif ideqval SETUP_DATA.PchUsbPerPortCtl == 0x0;
+//          SB_ONEOF_PCHUSBPORT00
+//          SB_ONEOF_PCHUSBPORT01
+//          SB_ONEOF_PCHUSBPORT02
+////          SB_ONEOF_PCHUSBPORT03
+//          SB_ONEOF_PCHUSBPORT04
+//          SB_ONEOF_PCHUSBPORT05
+////          SB_ONEOF_PCHUSBPORT06
+////          SB_ONEOF_PCHUSBPORT07
+//          suppressif ideqval SB_PLATFORM_DATA.LPTType == 1;
+////            SB_ONEOF_PCHUSBPORT08
+//            SB_ONEOF_PCHUSBPORT09
+//            SB_ONEOF_PCHUSBPORT10
+//            SB_ONEOF_PCHUSBPORT11
+////            SB_ONEOF_PCHUSBPORT12
+////            SB_ONEOF_PCHUSBPORT13
+//          endif;
         suppressif ideqval SETUP_DATA.PchUsbPerPortCtl == 0x0;
-          SB_ONEOF_PCHUSBPORT00
-          SB_ONEOF_PCHUSBPORT01
-          SB_ONEOF_PCHUSBPORT02
-          SB_ONEOF_PCHUSBPORT03
-          SB_ONEOF_PCHUSBPORT04
           SB_ONEOF_PCHUSBPORT05
-          SB_ONEOF_PCHUSBPORT06
-          SB_ONEOF_PCHUSBPORT07
-          suppressif ideqval SB_PLATFORM_DATA.LPTType == 1;
-            SB_ONEOF_PCHUSBPORT08
-            SB_ONEOF_PCHUSBPORT09
-            SB_ONEOF_PCHUSBPORT10
+          SB_ONEOF_PCHUSBPORT04
+          SB_ONEOF_PCHUSBPORT03
+          SB_ONEOF_PCHUSBPORT02
             SB_ONEOF_PCHUSBPORT11
-            SB_ONEOF_PCHUSBPORT12
-            SB_ONEOF_PCHUSBPORT13
-          endif;
+            SB_ONEOF_PCHUSBPORT10
+            SB_ONEOF_PCHUSBPORT09
+            SB_ONEOF_PCHUSBPORT08
+          SB_ONEOF_PCHUSBPORT01
+          SB_ONEOF_PCHUSBPORT00
+//          SB_ONEOF_PCHUSBPORT06
+//          SB_ONEOF_PCHUSBPORT07
+//          suppressif ideqval SB_PLATFORM_DATA.LPTType == 1;
+//            SB_ONEOF_PCHUSBPORT12
+//            SB_ONEOF_PCHUSBPORT13
+//          endif;
 
 //          SEPARATOR
 
