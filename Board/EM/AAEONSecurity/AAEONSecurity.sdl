@@ -43,7 +43,7 @@ End
 
 TOKEN
 	Name  = "SIGNATURE_MODEL_TAG"
-	Value  = "'$$IEI-SA93$$'"
+	Value  = "'$$IEI-SA22$$'"
 	TokenType = Expression
 	TargetMAK = Yes
 	TargetH = Yes
