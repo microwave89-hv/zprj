@@ -184,6 +184,8 @@ formset guid  = BOOT_FORM_SET_GUID,
         #include <SetupDefinitions.h>
         #undef FORM_SET_ITEM
 
+        CSM_OPT_OUT_PXE_OPROM
+
         SEPARATOR
         SUBTITLE(STRING_TOKEN(STR_BOOT_ORDER_SUBTITLE))
         suppressif ideqvallist BOOT_MANAGER.BootCount == 0xFFFF;

@@ -1739,3 +1739,19 @@ TOKEN
 	TargetH = Yes
 #	Token = "WIN8_FEATURE_SUPPORT" "=" "1"
 End
+TOKEN
+	Name  = "TSE_MULTILINE_CONTROLS"
+	Value  = "1"
+	Help  = "Turns on multi line controls. Currently subtitle and static text controls are supported. Default is DISABLE"
+	TokenType = Boolean
+	TargetH = Yes
+End
+
+TOKEN
+	Name  = "DEFAULT_BOOT_TIMEOUT"
+	Value  = "3"
+	Help  = "Number of seconds that the firmware will wait before initiating the original default boot selection. \A value of 0 indicates that the default boot selection is to be initiated immediately on boot. \A value of 65535(0xFFFF) indicates that firmware will wait for user input before booting. \This means the default boot selection is not automatically started by the firmware."
+	TokenType = Integer
+	TargetH = Yes
+	Range  = "0-65535"
+End

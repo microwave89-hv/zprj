@@ -873,6 +873,13 @@ PCIDEVICE
 	Token = "RC_PORT_0" "=" "1"
 	DeviceType = Slot
 	PCIBusSize = PciEx
+##DW01_Custom_Support_LAN_PXE_Boot >>
+	ROMFile  = "Chipset\SB\RTEG263.LOM"
+	OptionROM = Yes
+	CompressedROM = Yes
+	DeviceID  = 08168h
+	VendorID  = 010ech
+##DW01_Custom_Support_LAN_PXE_Boot <<
 End
 
 PCIDEVICE
@@ -888,6 +895,13 @@ PCIDEVICE
 	Token = "RC_PORT_1" "=" "1"
 	DeviceType = Slot
 	PCIBusSize = PciEx
+##DW01_Custom_Support_LAN_PXE_Boot >>
+	ROMFile  = "Chipset\SB\RTEG263.LOM"
+	OptionROM = Yes
+	CompressedROM = Yes
+	DeviceID  = 08168h
+	VendorID  = 010ech
+##DW01_Custom_Support_LAN_PXE_Boot <<
 End
 
 PCIDEVICE
