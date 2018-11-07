@@ -1455,7 +1455,7 @@ TOKEN
 End
 TOKEN
 	Name  = "F81216SEC_CONFIG_MODE_ENTER_VALUE"
-	Value  = "0x87"
+	Value  = "0x67"
 	Help  = "Value to enter Configuration Mode.Please check your hardware\Default is 0x77.\others are 0xA0, 0x87, 0x67"
 	TokenType = Integer
 	TargetH = Yes
