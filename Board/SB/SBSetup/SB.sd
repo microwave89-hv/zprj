@@ -1178,8 +1178,8 @@
   oneof varid    = SETUP_DATA.PchUsb20PinRoute,\
     prompt       = STRING_TOKEN (STR_PCH_ROUTE_USB20_PIN_TO_HC),\
     help         = STRING_TOKEN (STR_PCH_ROUTE_USB20_PIN_TO_HC_HELP),\
-    option text  = STRING_TOKEN (STR_ROUTE_PER_PIN), value = 0, flags = RESET_REQUIRED, key = 0;\
-    option text  = STRING_TOKEN (STR_ROUTE_ALL_PIN_EHCI), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_ROUTE_PER_PIN), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_ROUTE_ALL_PIN_EHCI), value = 1, flags = RESET_REQUIRED, key = 0;\
     option text  = STRING_TOKEN (STR_ROUTE_ALL_PIN_XHCI), value = 2, flags = RESET_REQUIRED, key = 0;\
   endoneof;
 
@@ -1196,16 +1196,16 @@
   oneof varid    = SETUP_DATA.ManualModeUsb20PerPinRoute[OFFSET_0],\
     prompt       = STRING_TOKEN (STR_PCH_USB_20_PIN0),\
     help         = STRING_TOKEN (STR_EMPTY_STRING),\
-    option text  = STRING_TOKEN (STR_ROUTE_TO_EHCI), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
-    option text  = STRING_TOKEN (STR_ROUTE_TO_XHCI), value = 1, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_ROUTE_TO_EHCI), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_ROUTE_TO_XHCI), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
   endoneof;
 
 #define SB_ONEOF_USB20PERPINROUTE01\
   oneof varid    = SETUP_DATA.ManualModeUsb20PerPinRoute[OFFSET_1],\
     prompt       = STRING_TOKEN (STR_PCH_USB_20_PIN1),\
     help         = STRING_TOKEN (STR_EMPTY_STRING),\
-    option text  = STRING_TOKEN (STR_ROUTE_TO_EHCI), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
-    option text  = STRING_TOKEN (STR_ROUTE_TO_XHCI), value = 1, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_ROUTE_TO_EHCI), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_ROUTE_TO_XHCI), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
   endoneof;
 
 #define SB_ONEOF_USB20PERPINROUTE02\

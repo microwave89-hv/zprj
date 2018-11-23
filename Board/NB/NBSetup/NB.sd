@@ -3877,6 +3877,11 @@ endif ;
 //      endif;
 
       NB_ONEOF_IGDBOOTTYPE
+      suppressif ideqval SETUP_DATA.IgdBootType == 0x0;
+
+         NB_ONEOF_DISPLAYPIPEB
+
+      endif;
 
 #if defined(RC_PEG_0) && (RC_PEG_0 == 1)
 #if ( defined(SwitchableGraphics_SUPPORT) && (SwitchableGraphics_SUPPORT == 1) )
