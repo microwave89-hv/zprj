@@ -344,12 +344,12 @@ UINT32 ZprjHdaVerbTbl[] = {
 // HDA Codec PnP ID : HDAUDIO\FUNC_01&VEN_10EC&DEV_0662&SUBSYS_10EC0000
 // The number of verb command block : 13
 
-//    NID 0x14 : 0x02014010
+//    NID 0x14 : 0x02014110
 //    NID 0x15 : 0x4000C000
 //    NID 0x16 : 0x411111F0
-//    NID 0x18 : 0x01A19020
+//    NID 0x18 : 0x01A19120
 //    NID 0x19 : 0x411111F0
-//    NID 0x1A : 0x0181302F
+//    NID 0x1A : 0x0181312F
 //    NID 0x1B : 0x411111F0
 //    NID 0x1C : 0x411111F0
 //    NID 0x1D : 0x40B00001
@@ -372,7 +372,7 @@ UINT32 ZprjHdaVerbTbl[] = {
 0x0017FF00,
 // Pin widget 0x14 - FRONT (Port-D)
 0x01471C10,
-0x01471D40,
+0x01471D41,
 0x01471E01,
 0x01471F02,
 // Pin widget 0x15 - SURR (Port-A)
@@ -387,7 +387,7 @@ UINT32 ZprjHdaVerbTbl[] = {
 0x01671F41,
 // Pin widget 0x18 - MIC1 (Port-B)
 0x01871C20,
-0x01871D90,
+0x01871D91,
 0x01871EA1,
 0x01871F01,
 // Pin widget 0x19 - MIC2 (Port-F)
@@ -397,7 +397,7 @@ UINT32 ZprjHdaVerbTbl[] = {
 0x01971F41,
 // Pin widget 0x1A - LINE1 (Port-C)
 0x01A71C2F,
-0x01A71D30,
+0x01A71D31,
 0x01A71E81,
 0x01A71F01,
 // Pin widget 0x1B - LINE2 (Port-E)
