@@ -1582,7 +1582,7 @@ TOKEN
 End
 TOKEN
 	Name  = "GC_MODE0"
-	Value  = "{ 0, 80, 25, 640, 480 }"
+	Value  = "{ 0, 80, 25, 800, 600 }"
 	Help  = "Parameters of the graphica console text mode 0.\NOTE: Text resolution of the mode 0 must be 80 by 25\Format: {ModeNumber, TextColomns,TextRows, HorizontalPixels,VerticalPixels}"
 	TokenType = Expression
 	TargetH = Yes
@@ -1607,7 +1607,7 @@ TOKEN
 End
 TOKEN
 	Name  = "LOGO_FILE_NAME"
-	Value  = "BIOS_CUSTOM\logo.jpg"
+	Value  = "BIOS_CUSTOM\GRG_Logo_800x600.jpg"
 	TokenType = Expression
 	TargetMAK = Yes
 End

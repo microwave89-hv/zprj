@@ -2337,14 +2337,14 @@ TOKEN
 	Token = "WIN8_FEATURE_SUPPORT" "=" "0"
 End
 
-TOKEN
-	Name  = "GC_MODE0"
-	Value  = "{ 0, 80, 25, 0, 0 }"
-	Help  = "Parameters of the graphica console text mode 0.\NOTE: Text resolution of the mode 0 must be 80 by 25\Format: {ModeNumber, TextColomns,TextRows, HorizontalPixels,VerticalPixels}"
-	TokenType = Expression
-	TargetH = Yes
-	Token = "WIN8_FEATURE_SUPPORT" "=" "1"
-End
+##TOKEN
+##	Name  = "GC_MODE0"
+##	Value  = "{ 0, 80, 25, 0, 0 }"
+##	Help  = "Parameters of the graphica console text mode 0.\NOTE: Text resolution of the mode 0 must be 80 by 25\Format: {ModeNumber, TextColomns,TextRows, HorizontalPixels,VerticalPixels}"
+##	TokenType = Expression
+##	TargetH = Yes
+##	Token = "WIN8_FEATURE_SUPPORT" "=" "1"
+##End
 
 TOKEN
 	Name  = "DEFAULT_QUIET_BOOT"
