@@ -1111,8 +1111,8 @@
     prompt       = STRING_TOKEN (STR_LAST_STATE_PROMPT),\
     help         = STRING_TOKEN (STR_LAST_STATE_HELP),\
     option text  = STRING_TOKEN (STR_POWER_OFF), value = 0, flags = RESET_REQUIRED, key = 0;\
-    option text  = STRING_TOKEN (STR_POWER_ON), value = 1, flags = RESET_REQUIRED, key = 0;\
-    option text  = STRING_TOKEN (STR_LAST_STATE), value = 2, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_POWER_ON), value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+    option text  = STRING_TOKEN (STR_LAST_STATE), value = 2, flags = RESET_REQUIRED, key = 0;\
   endoneof;
 
 #define SB_ONEOF_PORT80\
