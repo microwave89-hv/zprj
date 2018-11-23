@@ -10,12 +10,12 @@
 ;HDA Codec PnP ID : HDAUDIO\FUNC_01&VEN_10EC&DEV_0662&SUBSYS_10EC0000
 ;The number of verb command block : 13
 
-;    NID 0x14 : 0x02014010
+;    NID 0x14 : 0x02014110
 ;    NID 0x15 : 0x4000C000
 ;    NID 0x16 : 0x411111F0
-;    NID 0x18 : 0x01A19020
+;    NID 0x18 : 0x01A19120
 ;    NID 0x19 : 0x411111F0
-;    NID 0x1A : 0x0181302F
+;    NID 0x1A : 0x0181312F
 ;    NID 0x1B : 0x411111F0
 ;    NID 0x1C : 0x411111F0
 ;    NID 0x1D : 0x40B00001
@@ -38,7 +38,7 @@ dd 0017FF00h
 dd 0017FF00h
 ;Pin widget 0x14 - FRONT (Port-D)
 dd 01471C10h
-dd 01471D40h
+dd 01471D41h
 dd 01471E01h
 dd 01471F02h
 ;Pin widget 0x15 - SURR (Port-A)
@@ -53,7 +53,7 @@ dd 01671E11h
 dd 01671F41h
 ;Pin widget 0x18 - MIC1 (Port-B)
 dd 01871C20h
-dd 01871D90h
+dd 01871D91h
 dd 01871EA1h
 dd 01871F01h
 ;Pin widget 0x19 - MIC2 (Port-F)
@@ -63,7 +63,7 @@ dd 01971E11h
 dd 01971F41h
 ;Pin widget 0x1A - LINE1 (Port-C)
 dd 01A71C2Fh
-dd 01A71D30h
+dd 01A71D31h
 dd 01A71E81h
 dd 01A71F01h
 ;Pin widget 0x1B - LINE2 (Port-E)
