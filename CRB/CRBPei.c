@@ -558,6 +558,44 @@ EFI_STATUS EFIAPI CRBPEI_Init (
         F81866ExitConfigMode();
 	}
 	// Parallel Port / Gpio multi function selection _End <<
+
+    {
+        F81866EnterConfigMode() ;
+        F81866LDNSelect(F81866_LDN_WDT) ;
+        
+        switch( SetupData.F81866WdtEnable ) {
+            case 1 : // WDT Enabled
+                // Disable WDT
+                F81866ConfigRegisterWrite( 0xF5 , F81866ConfigRegisterRead(0xF5) & ~BIT5 ) ;
+                // Clear WDT Status
+                F81866ConfigRegisterWrite( 0xF5 , F81866ConfigRegisterRead(0xF5) | BIT6 ) ;
+
+                // Configure WDT to Pulse Mode
+                F81866ConfigRegisterWrite( 0xF5 , F81866ConfigRegisterRead(0xF5) | BIT4 ) ;
+                // Configure WDT Pulse Width to 25ms
+                F81866ConfigRegisterWrite( 0xF5 , F81866ConfigRegisterRead(0xF5) & ~(BIT1 + BIT0) ) ;
+                F81866ConfigRegisterWrite( 0xF5 , F81866ConfigRegisterRead(0xF5) | BIT0 ) ;
+                // Configure WDT Polarity to Low Active
+                F81866ConfigRegisterWrite( 0xF5 , F81866ConfigRegisterRead(0xF5) & ~BIT2 ) ;
+                // Configure WDT Reset via WDTRST#
+                F81866ConfigRegisterWrite( 0xFA , F81866ConfigRegisterRead(0xFA) | BIT0 ) ;
+
+                // Configure WDT Timer
+                F81866ConfigRegisterWrite( 0xF6 , SetupData.F81866WdtTimer ) ;
+                F81866ConfigRegisterWrite( 0xF5 , F81866ConfigRegisterRead(0xF5) & ~BIT3 ) ; // Configure Timer Unit : 1 Second
+
+                // Enable WDT
+                F81866ConfigRegisterWrite( 0xF5 , F81866ConfigRegisterRead(0xF5) | BIT5 ) ;
+            break ;
+
+            default :
+            case 0 : // WDT Disabled
+                F81866ConfigRegisterWrite( 0xF5 , F81866ConfigRegisterRead(0xF5) & ~BIT5 ) ;
+            break ;
+        }
+
+        F81866ExitConfigMode() ;
+    }
 }
     return EFI_SUCCESS;
 }

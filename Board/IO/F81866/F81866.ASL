@@ -884,6 +884,10 @@ Method(SIOW, 1){
     And(0xF0, ^SIO1.CR2D,^SIO1.CR2D)            //disable kbc/mouse wakeup
     And(0x7F, ^SIO1.RGE0, ^SIO1.RGE0)           //disable ERP function,bit7        
 
+    ^SIO1.ENFG(0x07)
+    And(^SIO1.OPT5, 0xDF, ^SIO1.OPT5)
+    Store(^SIO1.OPT5, ^SIO1.OPT5)
+
     ^SIO1.EXFG()
 }
 

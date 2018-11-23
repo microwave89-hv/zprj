@@ -150,7 +150,37 @@
     UINT8   F81866LptGpioConfiguration7xLevel[8];
     UINT8   F81866LptGpioConfiguration8x[8]; // GPIO8x
     UINT8   F81866LptGpioConfiguration8xLevel[8];
+
+    UINT8   F81866WdtEnable ;
+    UINT8   F81866WdtTimer ;
 #endif //SETUP_DATA_DEFINITION
+
+#if defined(VFRCOMPILE) && !defined(CONTROLS_ARE_DEFINED)
+#define CONTROL_DEFINITION
+#endif
+
+#ifdef CONTROL_DEFINITION
+
+    #define CHECKBOX_F81866_WDT_ENABLE\
+        checkbox varid = SETUP_DATA.F81866WdtEnable,\
+        prompt = STRING_TOKEN(STR_F81866_WDT_ENABLE),\
+        help = STRING_TOKEN(STR_F81866_WDT_ENABLE),\
+        flags = 1 | MANUFACTURING | RESET_REQUIRED,\
+        key = 0,\
+        endcheckbox;
+
+    #define NUMERIC_F81866_WDT_TIMER\
+        numeric varid   = SETUP_DATA.F81866WdtTimer,\
+        prompt  = STRING_TOKEN(STR_F81866_WDT_TIMER),\
+        help    = STRING_TOKEN(STR_F81866_WDT_TIMER),\
+        flags   = 0 | RESET_REQUIRED,\
+        minimum = 0,\
+        maximum = 255,\
+        step    = 1,\
+        default = 16,\
+        endnumeric;
+
+#endif //#ifdef CONTROL_DEFINITION
 
 //-------------------------------------------------------------------------
 //Select Top level menu itmem (forset) for you pages

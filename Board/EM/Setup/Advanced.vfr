@@ -121,6 +121,13 @@ formset guid = ADVANCED_FORM_SET_GUID,
         #include <SetupDefinitions.h>
         #undef FORM_SET_GOTO
 
+        SEPARATOR
+
+        CHECKBOX_F81866_WDT_ENABLE
+        suppressif ideqval SETUP_DATA.F81866WdtEnable == 0x0;
+        NUMERIC_F81866_WDT_TIMER
+        endif;
+
 #if SETUP_GROUP_DYNAMIC_PAGES
         SEPARATOR
         suppressif ideqvallist DYNAMIC_PAGE_COUNT.PageCount == 0xFFFF;
