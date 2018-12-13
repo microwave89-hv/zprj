@@ -799,7 +799,9 @@
 "Core\EM\AMIDebugRx\binaries\LIBS\DbgrUsbCableSelectLib.cif"= "SS: Alaska;$/Alaska/BIN/Modules/AMIDebugRx\binaries/LIBS;4.6.2_AMIDebugRx_2.04.0074"
 "Core\EM\AMIDebugRx\binaries\LIBS\DbgrX64Lib\DbgrX64Lib.cif"= "SS: Alaska;$/Alaska/BIN/Modules/AMIDebugRx\binaries/LIBS/DbgrX64Lib;4.6.2_AMIDebugRx_2.04.0074"
 "Core\EM\AMIDebugRx\binaries\LIBS\DebuggerLib\DebuggerLib.cif"= "SS: Alaska;$/Alaska/BIN/Modules/AMIDebugRx\binaries/LIBS/DebuggerLib;4.6.2_AMIDebugRx_2.04.0074"
-
+"FixedBootOrder.cif"= "SS: ALASKA;$/Alaska/BIN/Modules/Template/FixedBootOrder Demo;4.6.5.1_FixedBootOrder_17"
+"Board\EM\FixedBootOrder\DefaultFixedBootOrder\DefaultFixedBootOrder.cif"= "SS: ALASKA;$/Alaska/BIN/Modules/Template/FixedBootOrder Demo\Board/em/FixedBootOrder;4.6.5.1_FixedBootOrder_17"
+"Board\EM\FixedBootOrder\FixedBootOrderStyle\FixedBootOrderStyle.cif"= "SS: ALASKA;$/Alaska/BIN/Modules/Template/FixedBootOrder Demo\Board/em/FixedBootOrder;4.6.5.1_FixedBootOrder_17"
 "Board\Board.cif"= "SS: Alaska;$/Alaska/BIN/Board;4.6.5.4_Board_31"
 "Board\em\Setup\Setup.cif"= "SS: Alaska;$/Alaska/BIN/Board\Setup;4.6.5.4_Board_31"
 "Include\Protocol\AmiSetupProtocol.cif"= "SS: ALASKA;$/Alaska/BIN/Board\Setup;4.6.5.4_Board_31"

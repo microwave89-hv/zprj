@@ -1654,7 +1654,7 @@ End
 
 TOKEN
 	Name  = "BBS_USB_DEVICE_TYPE_SUPPORT"
-	Value  = "1"
+	Value  = "0"
 	Help  = "Treat USB devices as a separate BBS device type"
 	TokenType = Boolean
 	TargetH = Yes

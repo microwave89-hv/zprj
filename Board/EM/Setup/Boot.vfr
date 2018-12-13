@@ -186,6 +186,7 @@ formset guid  = BOOT_FORM_SET_GUID,
 
         CSM_OPT_OUT_PXE_OPROM
 
+#if !FIXED_BOOT_ORDER_SUPPORT						//(EIP9585)
         SEPARATOR
         SUBTITLE(STRING_TOKEN(STR_BOOT_ORDER_SUBTITLE))
         suppressif ideqvallist BOOT_MANAGER.BootCount == 0xFFFF;
@@ -211,10 +212,12 @@ formset guid  = BOOT_FORM_SET_GUID,
             help = STRING_TOKEN(STR_BBS_ORDER_HELP);
         endif;
 #endif
+#endif	//#if !FIXED_BOOT_ORDER_SUPPORT			//(EIP9585)
         #define FORM_SET_GOTO
         #include <SetupDefinitions.h>
         #undef FORM_SET_GOTO
     endform;
+#if !FIXED_BOOT_ORDER_SUPPORT						//(EIP9585)
 #if !defined(GROUP_BOOT_OPTIONS_BY_TAG) || GROUP_BOOT_OPTIONS_BY_TAG==1
     form
         formid = AUTO_ID(BBS_ORDER_FORM),
@@ -237,6 +240,7 @@ formset guid  = BOOT_FORM_SET_GUID,
         endif;
     endform;
 #endif
+#endif	//#if !FIXED_BOOT_ORDER_SUPPORT			//(EIP9585)
     #define FORM_SET_FORM
     #include <SetupDefinitions.h>
     #undef FORM_SET_FORM
