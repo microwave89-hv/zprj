@@ -180,6 +180,7 @@ STRING_TOKEN(STR_BOOT_ORDER_16)
         	SEPARATOR
        	 	SUBTITLE(STRING_TOKEN(STR_FIXED_BOOT_ORDER_SUBTITLE))
 
+suppressif ideqvallist SETUP_DATA.OnlyBootHDD == 1 ;
 		//LEGACY BOOT ITEM
 		suppressif  ideqvallist SETUP_DATA.BootMode == 1 2;
        		label  AUTO_ID(FIXED_BOOT_ITEM_LABEL1);				
@@ -195,6 +196,28 @@ STRING_TOKEN(STR_BOOT_ORDER_16)
        		label  AUTO_ID(FIXED_BOOT_ITEM_LABEL3);
 		endif;	//suppressif
 #endif
+endif ; // suppressif ideqvallist SETUP_DATA.OnlyBootHDD == 1 ;
+suppressif ideqvallist SETUP_DATA.OnlyBootHDD == 0 ;
+	suppressif  ideqvallist SETUP_DATA.BootMode == 1 2;
+	grayoutif TRUE ;
+            	oneof varid   = SETUP_DATA.LegacyPriorities[0],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_1),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),    value = 0, flags = MANUFACTURING | DEFAULT;
+            	endoneof;
+	endif ; // grayoutif TRUE ;
+	endif ; // suppressif  ideqvallist SETUP_DATA.BootMode == 1 2;
+
+	suppressif  ideqvallist SETUP_DATA.BootMode == 0 2;
+	grayoutif TRUE ;
+            	oneof varid   = SETUP_DATA.UefiPriorities[0],
+                	prompt    = STRING_TOKEN(STR_BOOT_ORDER_1),
+                	help      = STRING_TOKEN(STR_BOOT_OPTION_HELP),
+                	option text  = STRING_TOKEN(STR_BOOT_HDD),    value = 0, flags = MANUFACTURING | DEFAULT;
+            	endoneof;
+	endif ; // grayoutif TRUE ;
+	endif ; // suppressif  ideqvallist SETUP_DATA.BootMode == 0 2;
+endif ; // suppressif ideqvallist SETUP_DATA.OnlyBootHDD == 0 ;
 							//(EIP107268+)>
 #if USE_BCP_DEFAULT_PRIORITIES
                 //----------------------------------------------------------------------------------//
@@ -749,7 +772,7 @@ STRING_TOKEN(STR_BOOT_ORDER_16)
 			help = STRING_TOKEN(STR_HDD_BOOT_ORDER_HELP);
 		endif;
 		endif;
-
+suppressif ideqvallist SETUP_DATA.OnlyBootHDD == 1 ;
 		suppressif  ideqvallist SETUP_DATA.BootMode == 1;
 		suppressif  ideqvallist FIXED_BOOT_GROUP.LegacyODD == 0;
 		goto ODD_BOOT_FORM_ID,
@@ -797,6 +820,7 @@ STRING_TOKEN(STR_BOOT_ORDER_16)
 			help = STRING_TOKEN(STR_USBFDD_BOOT_ORDER_HELP);
 		endif;
 		endif;
+endif ; // suppressif ideqvallist SETUP_DATA.OnlyBootHDD == 1 ;
 #endif
 		//--------------------------------------------------
 		//	UEFI GROUP FORM GOTO ITEM
@@ -808,7 +832,7 @@ STRING_TOKEN(STR_BOOT_ORDER_16)
 			help = STRING_TOKEN(STR_UEFI_HDD_BOOT_ORDER_HELP);
 		endif;
 		endif;
-
+suppressif ideqvallist SETUP_DATA.OnlyBootHDD == 1 ;
 		suppressif  ideqvallist SETUP_DATA.BootMode == 0;
 		suppressif  ideqvallist FIXED_BOOT_GROUP.UefiODD == 0;
 		goto UEFI_ODD_BOOT_FORM_ID,
@@ -857,7 +881,7 @@ STRING_TOKEN(STR_BOOT_ORDER_16)
 			help = STRING_TOKEN(STR_UEFI_USBFDD_BOOT_ORDER_HELP);
 		endif;
 		endif;
-
+endif ; // suppressif ideqvallist SETUP_DATA.OnlyBootHDD == 1 ;
 	#endif	//#ifdef FORM_SET_GOTO
 
 
