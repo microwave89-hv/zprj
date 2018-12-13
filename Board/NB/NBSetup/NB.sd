@@ -907,6 +907,18 @@
         option text = STRING_TOKEN(STR_VIDEO_BT_EFP),          value = 0x04, flags = RESET_REQUIRED, key = 0;\
       endoneof;
 
+//#define NB_ONEOF_DISPLAYPIPEB\
+//      oneof varid    = SETUP_DATA.DisplayPipeB,\
+//        prompt   = STRING_TOKEN(STR_VIDEO_BT_PIPE_B_PROMPT),\
+//        help     = STRING_TOKEN(STR_VIDEO_BT_PIPE_B_HELP),\
+//        option text = STRING_TOKEN(STR_VIDEO_BT_PIPE_B_DISABLED),       value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
+//        option text = STRING_TOKEN(STR_VIDEO_BT_CRT),          value = 0x01, flags = RESET_REQUIRED, key = 0;\
+//        option text = STRING_TOKEN(STR_VIDEO_BT_EFP),          value = 0x04, flags = RESET_REQUIRED, key = 0;\
+//        option text = STRING_TOKEN(STR_VIDEO_BT_LFP),          value = 0x08, flags = RESET_REQUIRED, key = 0;\
+//        option text = STRING_TOKEN(STR_VIDEO_BT_EFP3),         value = 0x20, flags = RESET_REQUIRED, key = 0;\
+//        option text = STRING_TOKEN(STR_VIDEO_BT_EFP2),         value = 0x40, flags = RESET_REQUIRED, key = 0;\
+//        option text = STRING_TOKEN(STR_VIDEO_BT_LFP2),         value = 0x80, flags = RESET_REQUIRED, key = 0;\
+//      endoneof;
 #define NB_ONEOF_DISPLAYPIPEB\
       oneof varid    = SETUP_DATA.DisplayPipeB,\
         prompt   = STRING_TOKEN(STR_VIDEO_BT_PIPE_B_PROMPT),\
@@ -914,10 +926,6 @@
         option text = STRING_TOKEN(STR_VIDEO_BT_PIPE_B_DISABLED),       value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING, key = 0;\
         option text = STRING_TOKEN(STR_VIDEO_BT_CRT),          value = 0x01, flags = RESET_REQUIRED, key = 0;\
         option text = STRING_TOKEN(STR_VIDEO_BT_EFP),          value = 0x04, flags = RESET_REQUIRED, key = 0;\
-        option text = STRING_TOKEN(STR_VIDEO_BT_LFP),          value = 0x08, flags = RESET_REQUIRED, key = 0;\
-        option text = STRING_TOKEN(STR_VIDEO_BT_EFP3),         value = 0x20, flags = RESET_REQUIRED, key = 0;\
-        option text = STRING_TOKEN(STR_VIDEO_BT_EFP2),         value = 0x40, flags = RESET_REQUIRED, key = 0;\
-        option text = STRING_TOKEN(STR_VIDEO_BT_LFP2),         value = 0x80, flags = RESET_REQUIRED, key = 0;\
       endoneof;
 
 #define NB_ONEOF_LCDPANELTYPE\
