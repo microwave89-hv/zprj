@@ -467,6 +467,110 @@ extern FBO_INITIAL_GROUP INITIAL_LEGCAY_GROUP_FUNCTION;
 FBO_INITIAL_GROUP *InitLegacyGroup = INITIAL_LEGCAY_GROUP_FUNCTION;
 extern FBO_INITIAL_GROUP INITIAL_UEFI_GROUP_FUNCTION;
 FBO_INITIAL_GROUP *InitUefiGroup = INITIAL_UEFI_GROUP_FUNCTION;
+
+#define CONFIG_PORT0        0x2E
+#define INDEX_PORT0         0x2E
+#define DATA_PORT0          0x2F
+#define SEND_BYTE_DELEY     0x200
+#define SEND_BYTE_ATEMPTS   0x10
+
+#define COM_BASE_ADDR       0x03f8
+
+#define LSR_OFFSET          0x05
+#define LCR_OFFSET          0x03
+#define DIV_MSB             0x01
+#define DIV_LSB             0
+
+#define TRANSMIT_READY_BIT  0x020
+#ifdef UART_INPUT_CLOCK
+UINTN   UartInputClock=UART_INPUT_CLOCK;
+#else
+//
+// Set the default value((24000000/13)MHz input clock) if the UART_INPUT_CLOCK SDL token is not present.
+//
+UINTN   UartInputClock=1843200;
+#endif
+
+#define BAUD_RATE_DIVISOR   115200
+
+#define DATA_BITS           3   // 0 - 5 bits / 1 - 6 bits
+// 2 - 7 bits / 3 - 8 bits
+// RSP BUGBUG #define STOP_BIT          0   // 0 - 1 stop bit
+#define STOP_BIT            1   // 0 - 1 stop bit
+// 1 - mutiple bits depending on the databits
+#define PARITY_BITS         0   // 0 - None / 1 enables parity
+#define BREAK_BIT           0   // 0 - No break
+#define DLAB_BIT            1   // 0 - Divisor Latch Disabled
+
+BOOLEAN SendByte(UINT8 Byte)
+{
+    UINT8 Buffer8;
+    UINT32 Cntr = 0;
+    
+    do
+    {
+        // Read the ready signal to see if the serial port is
+        // ready for the next byte.
+        Buffer8 = IoRead8(COM_BASE_ADDR + LSR_OFFSET);
+        // Increment timeout counter.
+        Cntr++;
+        // Loop until the serial port is ready for the next byte.
+    }
+    while ( (Cntr < SEND_BYTE_DELEY) && 
+            ((Buffer8 & TRANSMIT_READY_BIT) == FALSE) );
+    if (Cntr < SEND_BYTE_DELEY){
+       
+        IoWrite8(COM_BASE_ADDR, Byte);
+        return TRUE;
+    } else return FALSE;
+
+}
+
+EFI_STATUS SerialOutput(
+    IN CHAR8 *String
+)
+{
+//#if SERIAL_STATUS_SUPPORT
+    UINT8       *Buffer, i;
+    UINT32       Delay;
+    BOOLEAN     ByteSent;
+    
+    if (String == NULL) return EFI_SUCCESS;
+    // first make data useable
+    Buffer = String;
+    
+    // now send data one byte at a time until the string hits the end of string
+    // or we hit the max number of characters
+    while (*Buffer)
+    {
+        // replace "\n" with "\r\n"
+        for (i = 0; i <= SEND_BYTE_ATEMPTS; i++){
+            ByteSent = TRUE;
+
+            if (*Buffer=='\n') ByteSent = SendByte('\r');
+            
+            if (ByteSent)  ByteSent = SendByte(*Buffer);
+            
+            if (ByteSent) break;
+            else
+                for (Delay = 0; Delay <= 100000; Delay++);
+        }
+        
+        // move Data pointer to the next byte if previous was sent
+        if (ByteSent) Buffer++;
+        else return EFI_SUCCESS;
+    }
+//#endif    
+    return EFI_SUCCESS;
+}
+
+VOID SerialCheckpoint(UINT16 Checkpoint)
+{
+    char s[20];
+    Sprintf_s(s, sizeof(s), " == %X\n",Checkpoint);
+    SerialOutput(s);
+}
+
 //<AMI_PHDR_START>
 //---------------------------------------------------------------------------
 //
