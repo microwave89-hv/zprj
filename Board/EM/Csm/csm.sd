@@ -216,6 +216,7 @@
 
 #ifdef FORM_SET_GOTO
 // Define goto commands for the forms defined in this file
+	SEPARATOR
 	goto CSM_FORM_ID, 
 		prompt = STRING_TOKEN(STR_CSM_FORM),
 		help = STRING_TOKEN(STR_CSM_FORM_HELP);
