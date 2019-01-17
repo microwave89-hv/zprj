@@ -1798,3 +1798,11 @@ PCIDEVICE
 	DeviceType = Slot
 	PCIBusSize = 32bit
 End
+
+TOKEN
+	Name  = "TSE_MULTILINE_CONTROLS"
+	Value  = "1"
+	Help  = "Turns on multi line controls. Currently subtitle and static text controls are supported. Default is DISABLE"
+	TokenType = Boolean
+	TargetH = Yes
+End
