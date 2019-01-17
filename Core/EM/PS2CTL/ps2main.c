@@ -443,7 +443,8 @@ EFI_STATUS PS2CtlStart(
             }
         }
         // Swap ports if needed
-        if (AutodetectKbdMousePortsPtr!=NULL) AutodetectKbdMousePortsPtr();
+        //if (AutodetectKbdMousePortsPtr!=NULL) AutodetectKbdMousePortsPtr();
+        AutodetectKbdMousePorts() ;
     
         gDriverStartCounter++;
     }
