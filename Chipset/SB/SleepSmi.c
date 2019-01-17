@@ -120,8 +120,89 @@ EFI_GUID gThisFileGuid = \
 // External Declaration(s)
 
 // Function Definition(s)
+// DW01_Custom_Support_RTC_Wake >>
+typedef struct {
+  UINT8    AaeonRTCWakeupTimeHour ;
+  UINT8    AaeonRTCWakeupTimeMinute ;
+  UINT8    AaeonRTCWakeupTimeSecond ;
+  UINT8    AaeonRTCWakeupDateDay;
+} SMMData ;
 
+SMMData gSmmData ;
+
+EFI_GUID	gSetupGuid = SETUP_GUID;
+SETUP_DATA	SetupData;
 //---------------------------------------------------------------------------
+UINT8 DecToBCD(UINT8 Dec)
+{
+    UINT8 FirstDigit = Dec % 10;
+    UINT8 SecondDigit = Dec / 10;
+
+    return (SecondDigit << 4) + FirstDigit;
+}
+UINT8 BCDToDec(UINT8 BCD)
+{
+    UINT8 FirstDigit = BCD & 0xf;
+    UINT8 SecondDigit = BCD >> 4;;
+    
+    return SecondDigit * 10  + FirstDigit;
+}
+UINT8 ReadRtcIndex(IN UINT8 Index)
+{
+    UINT8 volatile Value;
+
+    // Check if Data Time is valid
+    if(Index <= 9) do {
+    IoWrite8(0x70, 0x0A | 0x80);
+    Value = IoRead8(0x71);        
+    } while (Value & 0x80); 
+
+    IoWrite8(0x70, Index | 0x80);
+    // Read register
+    Value = IoRead8(0x71);               
+    if (Index <= 9) Value = BCDToDec(Value);    
+    return (UINT8)Value;
+}
+void WriteRtcIndex(IN UINT8 Index, IN UINT8 Value)
+{
+    IoWrite8(0x70,Index | 0x80);
+      if (Index <= 9 ) Value = DecToBCD(Value);
+    // Write Register
+    IoWrite8(0x71,Value);               
+}
+void SetWakeupTime (
+    IN EFI_TIME     *Time
+)
+{
+    UINT8 Value;
+
+    WriteRtcIndex(5,Time->Hour);
+    WriteRtcIndex(3,Time->Minute);
+    WriteRtcIndex(1,Time->Second);
+    Value = ReadRtcIndex(0x0D) & 0xC0;
+    WriteRtcIndex(0x0D,(Value|DecToBCD(Time->Day)));
+
+    //Set Enable
+    Value = ReadRtcIndex(0xB);
+    Value |= 1 << 5;
+    WriteRtcIndex(0xB,Value);
+}
+VOID RTCWakeFunc(){
+	UINT32 i = 0;
+	EFI_TIME Time;
+    
+	Time.Hour = gSmmData.AaeonRTCWakeupTimeHour;
+	Time.Minute = gSmmData.AaeonRTCWakeupTimeMinute;
+	Time.Second = gSmmData.AaeonRTCWakeupTimeSecond;
+	Time.Day = gSmmData.AaeonRTCWakeupDateDay;
+
+	SetWakeupTime(&Time);            
+	//Clear RTC PM1 status
+	IoWrite16(PM_BASE_ADDRESS , ( IoRead16(PM_BASE_ADDRESS) | (1 << 10) ));
+	//set RTC_EN bit to wake up from the alarm
+	IoWrite32(PM_BASE_ADDRESS, ( IoRead32(PM_BASE_ADDRESS) | (1 << 26) ));
+}
+// DW01_Custom_Support_RTC_Wake <<
 
 //<AMI_PHDR_START>
 //----------------------------------------------------------------------------
@@ -311,6 +392,49 @@ VOID S5SleepSmiOccurred (
 
     if (gPchWakeOnLan) Enable_GbE_PME();
 
+// DW01_Custom_Support_RTC_Wake >>
+    {
+	    EFI_STATUS Status = EFI_SUCCESS;
+	    UINT8	Value;
+
+    	//Disable RTC alarm and clear RTC PM1 status
+    	Value = ReadRtcIndex(0xB);
+    	Value &= ~((UINT8)1 << 5);
+    	WriteRtcIndex(0xB,Value);
+    	//Clear Alarm Flag (AF) by reading RTC Reg C
+    	Value = ReadRtcIndex(0xC);
+    	IoWrite16(PM_BASE_ADDRESS , ( IoRead16(PM_BASE_ADDRESS) | (1 << 10) ));
+
+    	if(!EFI_ERROR(Status)){
+    		//if(gSetupData.FixedWakeOnRTCS5 == 1){
+    		if(SetupData.AaeonWakeOnRtc == 1){
+    			gSmmData.AaeonRTCWakeupTimeHour = SetupData.AaeonRTCWakeupTimeHour ;
+    			gSmmData.AaeonRTCWakeupTimeMinute = SetupData.AaeonRTCWakeupTimeMinute ;
+    			gSmmData.AaeonRTCWakeupTimeSecond = SetupData.AaeonRTCWakeupTimeSecond ;
+    			gSmmData.AaeonRTCWakeupDateDay = SetupData.AaeonRTCWakeupTimeDay;
+    		}
+
+    		//if(gSetupData.DynamicWakeOnRTCS5 == 1){
+    		if(SetupData.AaeonWakeOnRtc == 2){
+    			gSmmData.AaeonRTCWakeupTimeHour = ReadRtcIndex(4);
+    			gSmmData.AaeonRTCWakeupTimeMinute = ReadRtcIndex(2);
+    			gSmmData.AaeonRTCWakeupTimeSecond = ReadRtcIndex(0);
+    			gSmmData.AaeonRTCWakeupTimeMinute += SetupData.AaeonRTCWakeupTimeMinuteIncrease;
+    			if  (gSmmData.AaeonRTCWakeupTimeMinute >= 60)
+    			{
+    				gSmmData.AaeonRTCWakeupTimeMinute = 0;
+    				++gSmmData.AaeonRTCWakeupTimeHour;
+    				if (gSmmData.AaeonRTCWakeupTimeHour == 24)
+    					gSmmData.AaeonRTCWakeupTimeHour = 0;
+    			}
+    		}
+    	}
+
+    	if(SetupData.AaeonWakeOnRtc == 1 || SetupData.AaeonWakeOnRtc == 2)
+    		RTCWakeFunc();
+    }
+// DW01_Custom_Support_RTC_Wake <<
+
     // Program AfterG3 bit depend the setup question.
     ProgramAfterG3Bit();
 
@@ -439,6 +563,15 @@ EFI_STATUS InitSleepSmi (
     gPchWakeOnLan = (SbSetupData->PchWakeOnLan == 1) ? TRUE : FALSE;
     Status = pBS->FreePool( SbSetupData );
 
+// DW01_Custom_Support_RTC_Wake >>
+    VariableSize = sizeof(SETUP_DATA);
+    Status = pRS->GetVariable( L"Setup", \
+                                       &gSetupGuid, \
+                                       NULL, \
+                                       &VariableSize, \
+                                       &SetupData );
+
+// DW01_Custom_Support_RTC_Wake <<
     // Porting End
 
     return InitSmmHandler( ImageHandle, SystemTable, InSmmFunction, NULL );
