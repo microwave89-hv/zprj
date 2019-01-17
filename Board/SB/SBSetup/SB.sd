@@ -1135,11 +1135,11 @@
   oneof varid    = SETUP_DATA.PchUsb30Mode,\
     prompt       = STRING_TOKEN (STR_PCH_USB30_MODE_PROMPT),\
     help         = STRING_TOKEN (STR_PCH_USB30_MODE_HELP),\
-    option text  = STRING_TOKEN (STR_COMMON_SMART_AUTO), value = 3, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_COMMON_SMART_AUTO), value = 3, flags = RESET_REQUIRED, key = 0;\
     option text  = STRING_TOKEN (STR_COMMON_AUTO), value = 2, flags = RESET_REQUIRED, key = 0;\
     option text  = STRING_TOKEN (STR_COMMON_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
     option text  = STRING_TOKEN (STR_COMMON_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
-    option text  = STRING_TOKEN (STR_COMMON_MANUAL), value = 4, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_COMMON_MANUAL), value = 4, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
   endoneof;
 
 #define SB_ONEOF_PCHENABLERMH1\
@@ -1178,8 +1178,8 @@
   oneof varid    = SETUP_DATA.PchUsb20PinRoute,\
     prompt       = STRING_TOKEN (STR_PCH_ROUTE_USB20_PIN_TO_HC),\
     help         = STRING_TOKEN (STR_PCH_ROUTE_USB20_PIN_TO_HC_HELP),\
-    option text  = STRING_TOKEN (STR_ROUTE_PER_PIN), value = 0, flags = RESET_REQUIRED, key = 0;\
-    option text  = STRING_TOKEN (STR_ROUTE_ALL_PIN_EHCI), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_ROUTE_PER_PIN), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_ROUTE_ALL_PIN_EHCI), value = 1, flags = RESET_REQUIRED, key = 0;\
     option text  = STRING_TOKEN (STR_ROUTE_ALL_PIN_XHCI), value = 2, flags = RESET_REQUIRED, key = 0;\
   endoneof;
 
@@ -1188,24 +1188,24 @@
     prompt       = STRING_TOKEN (STR_PCH_ENABLE_USB30_PIN),\
     help         = STRING_TOKEN (STR_PCH_ENABLE_USB30_PIN_HELP),\
     option text  = STRING_TOKEN (STR_SELECT_PER_PIN), value = 0, flags = RESET_REQUIRED, key = 0;\
-    option text  = STRING_TOKEN (STR_SELECT_ALL_PIN_DISABLE), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
-    option text  = STRING_TOKEN (STR_SELECT_ALL_PIN_ENABLE), value = 2, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_SELECT_ALL_PIN_DISABLE), value = 1, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_SELECT_ALL_PIN_ENABLE), value = 2, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
   endoneof;
 
 #define SB_ONEOF_USB20PERPINROUTE00\
   oneof varid    = SETUP_DATA.ManualModeUsb20PerPinRoute[OFFSET_0],\
     prompt       = STRING_TOKEN (STR_PCH_USB_20_PIN0),\
     help         = STRING_TOKEN (STR_EMPTY_STRING),\
-    option text  = STRING_TOKEN (STR_ROUTE_TO_EHCI), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
-    option text  = STRING_TOKEN (STR_ROUTE_TO_XHCI), value = 1, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_ROUTE_TO_EHCI), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_ROUTE_TO_XHCI), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
   endoneof;
 
 #define SB_ONEOF_USB20PERPINROUTE01\
   oneof varid    = SETUP_DATA.ManualModeUsb20PerPinRoute[OFFSET_1],\
     prompt       = STRING_TOKEN (STR_PCH_USB_20_PIN1),\
     help         = STRING_TOKEN (STR_EMPTY_STRING),\
-    option text  = STRING_TOKEN (STR_ROUTE_TO_EHCI), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
-    option text  = STRING_TOKEN (STR_ROUTE_TO_XHCI), value = 1, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_ROUTE_TO_EHCI), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_ROUTE_TO_XHCI), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
   endoneof;
 
 #define SB_ONEOF_USB20PERPINROUTE02\
@@ -1412,8 +1412,8 @@
   oneof varid    = SETUP_DATA.PchUsbPerPortCtl,\
     prompt       = STRING_TOKEN (STR_PCH_USB_PER_PORT_PROMPT),\
     help         = STRING_TOKEN (STR_PCH_USB_PER_PORT_HELP),\
-    option text  = STRING_TOKEN (STR_COMMON_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
-    option text  = STRING_TOKEN (STR_COMMON_ENABLED), value = 1, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_COMMON_DISABLED), value = 0, flags = RESET_REQUIRED, key = 0;\
+    option text  = STRING_TOKEN (STR_COMMON_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED, key = 0;\
   endoneof;
 
 #if EHCI_CON_DISCON_WAKE_UP_SUPPORT
@@ -6328,23 +6328,40 @@
         //
         SB_ONEOF_PCHUSBPERPORTCTL
 
+//        suppressif ideqval SETUP_DATA.PchUsbPerPortCtl == 0x0;
+//          SB_ONEOF_PCHUSBPORT00
+//          SB_ONEOF_PCHUSBPORT01
+//          SB_ONEOF_PCHUSBPORT02
+////          SB_ONEOF_PCHUSBPORT03
+//          SB_ONEOF_PCHUSBPORT04
+//          SB_ONEOF_PCHUSBPORT05
+////          SB_ONEOF_PCHUSBPORT06
+////          SB_ONEOF_PCHUSBPORT07
+//          suppressif ideqval SB_PLATFORM_DATA.LPTType == 1;
+////            SB_ONEOF_PCHUSBPORT08
+//            SB_ONEOF_PCHUSBPORT09
+//            SB_ONEOF_PCHUSBPORT10
+//            SB_ONEOF_PCHUSBPORT11
+////            SB_ONEOF_PCHUSBPORT12
+////            SB_ONEOF_PCHUSBPORT13
+//          endif;
         suppressif ideqval SETUP_DATA.PchUsbPerPortCtl == 0x0;
-          SB_ONEOF_PCHUSBPORT00
-          SB_ONEOF_PCHUSBPORT01
-          SB_ONEOF_PCHUSBPORT02
-          SB_ONEOF_PCHUSBPORT03
-          SB_ONEOF_PCHUSBPORT04
           SB_ONEOF_PCHUSBPORT05
-          SB_ONEOF_PCHUSBPORT06
-          SB_ONEOF_PCHUSBPORT07
-          suppressif ideqval SB_PLATFORM_DATA.LPTType == 1;
-            SB_ONEOF_PCHUSBPORT08
-            SB_ONEOF_PCHUSBPORT09
-            SB_ONEOF_PCHUSBPORT10
+          SB_ONEOF_PCHUSBPORT04
+          SB_ONEOF_PCHUSBPORT03
+          SB_ONEOF_PCHUSBPORT02
             SB_ONEOF_PCHUSBPORT11
-            SB_ONEOF_PCHUSBPORT12
-            SB_ONEOF_PCHUSBPORT13
-          endif;
+            SB_ONEOF_PCHUSBPORT10
+            SB_ONEOF_PCHUSBPORT09
+            SB_ONEOF_PCHUSBPORT08
+          SB_ONEOF_PCHUSBPORT01
+          SB_ONEOF_PCHUSBPORT00
+//          SB_ONEOF_PCHUSBPORT06
+//          SB_ONEOF_PCHUSBPORT07
+//          suppressif ideqval SB_PLATFORM_DATA.LPTType == 1;
+//            SB_ONEOF_PCHUSBPORT12
+//            SB_ONEOF_PCHUSBPORT13
+//          endif;
 
 //          SEPARATOR
 
