@@ -873,6 +873,13 @@ PCIDEVICE
 	Token = "RC_PORT_0" "=" "1"
 	DeviceType = Slot
 	PCIBusSize = PciEx
+##DW01_Custom_Support_LAN_PXE_Boot >>
+	ROMFile  = "Chipset\SB\BA1561L2.LOM"
+	OptionROM = Yes
+	CompressedROM = Yes
+	DeviceID  = 01539h
+	VendorID  = 08086h
+##DW01_Custom_Support_LAN_PXE_Boot <<
 End
 
 PCIDEVICE

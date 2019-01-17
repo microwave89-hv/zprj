@@ -180,6 +180,8 @@ formset guid  = BOOT_FORM_SET_GUID,
 #endif
         endcheckbox;
 
+        CSM_OPT_OUT_PXE_OPROM
+
         #define FORM_SET_ITEM
         #include <SetupDefinitions.h>
         #undef FORM_SET_ITEM
