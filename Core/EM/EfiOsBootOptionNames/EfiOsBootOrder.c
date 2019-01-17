@@ -1432,7 +1432,8 @@ BOOLEAN RemoveLegacyGptHdd(BOOT_DEVICE *Device){
 
     Status = pRS->GetVariable(L"Setup", &SetupGuid, NULL, &Size, &SetupData);
 
-    if( Device->BbsEntry->DeviceType != BBS_HARDDISK && SetupData.OnlyBootHDD == 1 ) return TRUE;
+//    if( Device->BbsEntry->DeviceType != BBS_HARDDISK && SetupData.OnlyBootHDD == 1 ) return TRUE;
+    if( Device->BbsEntry->Class != PCI_CL_MASS_STOR && SetupData.OnlyBootHDD == 1 ) return TRUE;
     return FALSE;
 }
 #endif
