@@ -348,6 +348,7 @@ Device(SIO1) {
 
         ENFG(CGLD(Arg0))    //Enter Config Mode, Select LDN
         Store(ACTR, Local0)
+        Or(ShiftLeft(IOAH, 8),IOAL,Local1)
         EXFG()                //Exit Config Mode
 
         If(LEqual(Local0, 0xFF)) {Return(0x0)}    //LDN's not decoded, Device not present.
@@ -371,10 +372,11 @@ Device(SIO1) {
                 Else{ Return(0x00)}  // Device not present
             }
             Else{//by Base1 & Base2 check
-                Or(ShiftLeft(IOAH, 8),IOAL,Local0)
-                If(Local0) { Return(0x0D)}  // Device Detected & Not Active
+//                Or(ShiftLeft(IOAH, 8),IOAL,Local0)
+//                If(Local0) { Return(0x0D)}  // Device Detected & Not Active
 //                Or(ShiftLeft(IOH2, 8),IOL2,Local0)    
 //                If(Local0) { Return(0x0D)}  // Device Detected & Not Active
+                If(Local1) { Return(0x0D)}  // Device Detected & Not Active
                 Return(0x00) // Device not present
             }
         }               //Exit Config Mode
@@ -883,6 +885,10 @@ Method(SIOW, 1){
     // 2. Disable PME
     And(0xF0, ^SIO1.CR2D,^SIO1.CR2D)            //disable kbc/mouse wakeup
     And(0x7F, ^SIO1.RGE0, ^SIO1.RGE0)           //disable ERP function,bit7        
+
+    ^SIO1.ENFG(0x07)
+    And(^SIO1.OPT5, 0xDF, ^SIO1.OPT5)
+    Store(^SIO1.OPT5, ^SIO1.OPT5)
 
     ^SIO1.EXFG()
 }
