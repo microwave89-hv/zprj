@@ -421,10 +421,10 @@ static EFI_STATUS COM_Init(
     {
         case isGetSetupData:
  //           // Disable IODecode?
- //           if((!dev->DeviceInfo->Implemented) || (!dev->NvData.DevEnable)) {
+            if((!dev->DeviceInfo->Implemented) || (!dev->NvData.DevEnable)) {
  //                LoopCspIoDecodeListInit(NULL,AmiSio); 
- //                ClearDevResource(dev);
- //           }
+                 ClearDevResource(dev);
+            }
         break;
     
         case isPrsSelect:
