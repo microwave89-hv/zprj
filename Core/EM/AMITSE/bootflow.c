@@ -317,7 +317,7 @@ VOID bootflow_F81866WDTDisable()
 	bootflow_F81866EnterConfigMode() ;
 	bootflow_F81866LDNSelect(F81866_LDN_WDT) ;
 	// WDT Disabled
-	bootflow_F81866ConfigRegisterWrite( 0xF5 , F81866ConfigRegisterRead(0xF5) & ~BIT5 ) ;
+	bootflow_F81866ConfigRegisterWrite( 0xF5 , bootflow_F81866ConfigRegisterRead(0xF5) & ~BIT5 ) ;
 	bootflow_F81866ExitConfigMode() ;
 }
 //ray_override / Fixed System Reboot by WDT if There's no Boot Devices / Added <<
