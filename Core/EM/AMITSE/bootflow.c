@@ -218,6 +218,10 @@
 #include "commonoem.h"
 #include "HookAnchor.h"
 
+//ray_override / Fixed System Reboot by WDT if There's no Boot Devices / Added >>
+#include <AmiDxeLib.h>
+//ray_override / Fixed System Reboot by WDT if There's no Boot Devices / Added <<
+
 #ifndef MAIN_FORM_SET_CLASS
 #define MAIN_FORM_SET_CLASS 1
 #endif
@@ -278,6 +282,45 @@ static BOOT_FLOW _gBootFlowTable[] =
 BOOT_FLOW	*gBootFlowTable = _gBootFlowTable;
 EFI_STATUS LaunchSecondaryBootPath (CHAR16 *);			//EIP 88447
 EFI_STATUS EfiLibNamedEventSignal (IN EFI_GUID  *Name );      //EIP125219
+
+//ray_override / Fixed System Reboot by WDT if There's no Boot Devices / Added >>
+VOID F81866ConfigRegisterWrite(UINT8 Index, UINT8 Data)
+{
+	IoWrite8(F81866_CONFIG_INDEX, Index);
+	IoWrite8(F81866_CONFIG_DATA, Data);
+}
+UINT8 F81866ConfigRegisterRead(UINT8 Index)
+{
+	UINT8 Data8;
+	IoWrite8(F81866_CONFIG_INDEX, Index);
+	Data8 = IoRead8(F81866_CONFIG_DATA);
+	return Data8;
+}
+VOID F81866LDNSelect(UINT8 Ldn)
+{
+	IoWrite8(F81866_CONFIG_INDEX, F81866_LDN_SEL_REGISTER);
+	IoWrite8(F81866_CONFIG_DATA, Ldn);
+}
+VOID F81866EnterConfigMode()
+{
+	IoWrite8(F81866_CONFIG_INDEX, F81866_CONFIG_MODE_ENTER_VALUE);
+	IoWrite8(F81866_CONFIG_INDEX, F81866_CONFIG_MODE_ENTER_VALUE);
+}
+VOID F81866ExitConfigMode()
+{
+	// Exit config mode
+	IoWrite8(F81866_CONFIG_INDEX, F81866_CONFIG_MODE_EXIT_VALUE);
+}
+
+VOID F81866WDTDisable()
+{
+	F81866EnterConfigMode() ;
+	F81866LDNSelect(F81866_LDN_WDT) ;
+	// WDT Disabled
+	F81866ConfigRegisterWrite( 0xF5 , F81866ConfigRegisterRead(0xF5) & ~BIT5 ) ;
+	F81866ExitConfigMode() ;
+}
+//ray_override / Fixed System Reboot by WDT if There's no Boot Devices / Added <<
 
 //<AMI_PHDR_START>
 //----------------------------------------------------------------------------
@@ -395,6 +438,9 @@ EFI_STATUS BootFlowManageExit (VOID)
 
 	MemFreePointer( (VOID **)&conditionPtr );
 
+//ray_override / Fixed System Reboot by WDT if There's no Boot Devices / Added >>
+	F81866WDTDisable();
+//ray_override / Fixed System Reboot by WDT if There's no Boot Devices / Added <<
 	bootFlowPtr = gBootFlowTable;
 	for ( bootFlowPtr = gBootFlowTable;
 			bootFlowPtr->Condition != BOOT_FLOW_CONDITION_NULL; bootFlowPtr++ )
