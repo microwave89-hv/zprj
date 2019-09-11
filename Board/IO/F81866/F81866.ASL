@@ -618,7 +618,7 @@ CreateByteField(CRS3, IO04._LEN, LEN4)    //Length 1 0x7
 //            Store(0x18, IRQS)
             If( And(OPT0,0x01) ) { // Shared
                 If( And(OPT0,0x02) ) { // Edge
-                    Store(0x11, IRQS)   // High, Edge, Share
+                    Store(0x19, IRQS)   // High, Edge, Share
                 }
                 Else { // Level
                     Store(0x18, IRQS)   // Low, Level, Share
