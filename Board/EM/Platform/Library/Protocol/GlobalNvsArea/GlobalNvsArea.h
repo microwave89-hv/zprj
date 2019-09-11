@@ -523,6 +523,9 @@ typedef struct {
   UINT8     ECLP;                           // (689) EC Low Power Mode: 1 - Enabled, 0 - Disabled
   UINT8     INSC;                           // (690) Intel RMT Configuration 
   UINT8     ComIrqShareMode;
+//ray_override / Support F81866 COM3 ~ COM6 IRQ Sharing Mode Selection / Modified >>
+  UINT8     F81866ComIrqShareMode;
+//ray_override / Support F81866 COM3 ~ COM6 IRQ Sharing Mode Selection / Modified <<
 } EFI_GLOBAL_NVS_AREA;
 #pragma pack ()
 

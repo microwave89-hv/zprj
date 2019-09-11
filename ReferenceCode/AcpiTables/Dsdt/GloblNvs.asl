@@ -425,6 +425,9 @@
   ECLP, 8,      // (689) EC Low Power Mode: 1 - Enabled, 0 - Disabled
   INSC, 8,      // (690) Intel RMT Configuration
   CISM, 8,
+//ray_override / Support F81866 COM3 ~ COM6 IRQ Sharing Mode Selection / Modified >>
+  CIS1, 8,
+//ray_override / Support F81866 COM3 ~ COM6 IRQ Sharing Mode Selection / Modified <<
   }
 
 #if defined(ASL_Remove_SaSsdt_Data_To_Dsdt) && (ASL_Remove_SaSsdt_Data_To_Dsdt == 1)

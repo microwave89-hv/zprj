@@ -614,7 +614,25 @@ CreateByteField(CRS3, IO04._LEN, LEN4)    //Length 1 0x7
 //            Store(0x01, IRQS)          // IRQ Type: Active-High-Edge-Triggered,No-Shared(default)
 //        }
 //
-            Store(0x18, IRQS)
+//ray_override / Support F81866 COM3 ~ COM6 IRQ Sharing Mode Selection / Modified >>
+//            Store(0x18, IRQS)
+            If( And(OPT0,0x01) ) { // Shared
+                If( And(OPT0,0x02) ) { // Edge
+                    Store(0x11, IRQS)   // High, Edge, Share
+                }
+                Else { // Level
+                    Store(0x18, IRQS)   // Low, Level, Share
+                }
+            }
+            Else { // Non Shared
+                If( And(OPT0,0x02) ) { // Edge
+                    Store(0x01, IRQS)   // High, Edge, Non Share
+                }
+                Else { // Level
+                    Store(0x08, IRQS)   // Low, Level, Non Share
+                }
+            }
+//ray_override / Support F81866 COM3 ~ COM6 IRQ Sharing Mode Selection / Modified <<
         }Else{
             Store(0, IRQT)            // No IRQ used
         }
@@ -770,25 +788,36 @@ CreateByteField(CRS3, IO04._LEN, LEN4)    //Length 1 0x7
             Subtract(Local0, 1, INTR)
             //Set IRQ flag,AMI_TODO:
     		//Set IRQ flag,AMI_TODO:
-    		If(And(IRQS,0x10)){
-    			Or(OPT0, 0x01, OPT0)
-    			If(LEqual(IRQS,0x18)){		// IRQ Type: Active-Low-Level-Triggered,Shared.
-    				And(OPT0, 0xFD, OPT0)
-    				And(OPT6, 0xF7, OPT6)
-    			}
-    			Else{
-    				If(LEqual(IRQS,0x11)){	// IRQ Type: Active-High-Edge-Triggered,Shared.
-    				Or(OPT0, 0x01, OPT0)
-    				And(OPT6, 0xF7, OPT6)
-    				}
-    				Else{
-    					If(LEqual(IRQS,0x10)){	// IRQ Type: Active-High-Level-Triggered,Shared.
-    					And(OPT0, 0xFD, OPT0)
-    					Or(OPT6, 0x08, OPT6)
-    					}
-    				}
-    			}
-    		}
+//ray_override / Support F81866 COM3 ~ COM6 IRQ Sharing Mode Selection / Modified >>
+//    		If(And(IRQS,0x10)){
+//    			Or(OPT0, 0x01, OPT0)
+//    			If(LEqual(IRQS,0x18)){		// IRQ Type: Active-Low-Level-Triggered,Shared.
+//    				And(OPT0, 0xFD, OPT0)
+//    				And(OPT6, 0xF7, OPT6)
+//    			}
+//    			Else{
+//    				If(LEqual(IRQS,0x11)){	// IRQ Type: Active-High-Edge-Triggered,Shared.
+//    				Or(OPT0, 0x01, OPT0)
+//    				And(OPT6, 0xF7, OPT6)
+//    				}
+//    				Else{
+//    					If(LEqual(IRQS,0x10)){	// IRQ Type: Active-High-Level-Triggered,Shared.
+//    					And(OPT0, 0xFD, OPT0)
+//    					Or(OPT6, 0x08, OPT6)
+//    					}
+//    				}
+//    			}
+//    		}
+            If( LEqual(CIS1, 0) ) {
+                And( OPT6, 0xF7, OPT6 )
+                And( OPT0, 0xFC, OPT0 )
+            }
+            Else {
+                And( OPT6, 0xF7, OPT6 )
+                And( OPT0, 0xFC, OPT0 )
+                Or( OPT0, 0x02, OPT0 )
+            }
+//ray_override / Support F81866 COM3 ~ COM6 IRQ Sharing Mode Selection / Modified <<
         }Else{
             Store(0, INTR)              //No IRQ used
         }

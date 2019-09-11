@@ -702,6 +702,35 @@ static EFI_STATUS COM_Init(
             Status=AmiSio->Access(AmiSio, FALSE, FALSE, 0xF0, &rv);
             rv &= ~(BIT0) ;
             Status=AmiSio->Access(AmiSio,TRUE,FALSE,0xF0,&rv);
+
+//ray_override / Support F81866 COM3 ~ COM6 IRQ Sharing Mode Selection / Added >>
+            if ( dev->DeviceInfo->UID >= 2 && dev->DeviceInfo->UID <= 5 )
+            {
+                EFI_GUID SetupGuid = SETUP_GUID;
+                UINTN       Size = sizeof(SETUP_DATA);
+                SETUP_DATA                      SetupData;
+            
+                Status = pRS->GetVariable ( L"Setup", \
+                                            &SetupGuid, \
+                                            NULL,\
+                                            &Size, \
+                                            &SetupData );
+
+                // PCI Share Mode
+                if( SetupData.F81866ComIrqShareMode == 0 ) {
+                    Status=AmiSio->Access(AmiSio,FALSE,FALSE,0xF0,&rv);
+                    rv |= BIT0 ;
+                    rv &= ~(BIT1);
+                    Status=AmiSio->Access(AmiSio,TRUE,FALSE,0xF0,&rv);
+                }
+                else { // ISA Share Mode
+                    Status=AmiSio->Access(AmiSio,FALSE,FALSE,0xF0,&rv);
+                    rv |= BIT0 ;
+                    rv |= BIT1;
+                    Status=AmiSio->Access(AmiSio,TRUE,FALSE,0xF0,&rv);
+                }
+            }
+//ray_override / Support F81866 COM3 ~ COM6 IRQ Sharing Mode Selection / Added <<
         break;
             
         case isAfterActivate:

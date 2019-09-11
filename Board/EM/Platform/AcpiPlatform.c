@@ -1069,6 +1069,9 @@ AcpiPlatformInit (
 
 {
   mGlobalNvsArea.Area->ComIrqShareMode = gSetupData->F81216ComIrqShareMode ;
+//ray_override / Support F81866 COM3 ~ COM6 IRQ Sharing Mode Selection / Modified >>
+  mGlobalNvsArea.Area->F81866ComIrqShareMode = gSetupData->F81866ComIrqShareMode ;
+//ray_override / Support F81866 COM3 ~ COM6 IRQ Sharing Mode Selection / Modified <<
 } 
 
   Status = pBS->InstallMultipleProtocolInterfaces (&ImageHandle,
