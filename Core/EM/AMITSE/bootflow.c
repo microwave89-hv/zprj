@@ -284,41 +284,41 @@ EFI_STATUS LaunchSecondaryBootPath (CHAR16 *);			//EIP 88447
 EFI_STATUS EfiLibNamedEventSignal (IN EFI_GUID  *Name );      //EIP125219
 
 //ray_override / Fixed System Reboot by WDT if There's no Boot Devices / Added >>
-VOID F81866ConfigRegisterWrite(UINT8 Index, UINT8 Data)
+VOID bootflow_F81866ConfigRegisterWrite(UINT8 Index, UINT8 Data)
 {
 	IoWrite8(F81866_CONFIG_INDEX, Index);
 	IoWrite8(F81866_CONFIG_DATA, Data);
 }
-UINT8 F81866ConfigRegisterRead(UINT8 Index)
+UINT8 bootflow_F81866ConfigRegisterRead(UINT8 Index)
 {
 	UINT8 Data8;
 	IoWrite8(F81866_CONFIG_INDEX, Index);
 	Data8 = IoRead8(F81866_CONFIG_DATA);
 	return Data8;
 }
-VOID F81866LDNSelect(UINT8 Ldn)
+VOID bootflow_F81866LDNSelect(UINT8 Ldn)
 {
 	IoWrite8(F81866_CONFIG_INDEX, F81866_LDN_SEL_REGISTER);
 	IoWrite8(F81866_CONFIG_DATA, Ldn);
 }
-VOID F81866EnterConfigMode()
+VOID bootflow_F81866EnterConfigMode()
 {
 	IoWrite8(F81866_CONFIG_INDEX, F81866_CONFIG_MODE_ENTER_VALUE);
 	IoWrite8(F81866_CONFIG_INDEX, F81866_CONFIG_MODE_ENTER_VALUE);
 }
-VOID F81866ExitConfigMode()
+VOID bootflow_F81866ExitConfigMode()
 {
 	// Exit config mode
 	IoWrite8(F81866_CONFIG_INDEX, F81866_CONFIG_MODE_EXIT_VALUE);
 }
 
-VOID F81866WDTDisable()
+VOID bootflow_F81866WDTDisable()
 {
-	F81866EnterConfigMode() ;
-	F81866LDNSelect(F81866_LDN_WDT) ;
+	bootflow_F81866EnterConfigMode() ;
+	bootflow_F81866LDNSelect(F81866_LDN_WDT) ;
 	// WDT Disabled
-	F81866ConfigRegisterWrite( 0xF5 , F81866ConfigRegisterRead(0xF5) & ~BIT5 ) ;
-	F81866ExitConfigMode() ;
+	bootflow_F81866ConfigRegisterWrite( 0xF5 , F81866ConfigRegisterRead(0xF5) & ~BIT5 ) ;
+	bootflow_F81866ExitConfigMode() ;
 }
 //ray_override / Fixed System Reboot by WDT if There's no Boot Devices / Added <<
 
@@ -439,7 +439,7 @@ EFI_STATUS BootFlowManageExit (VOID)
 	MemFreePointer( (VOID **)&conditionPtr );
 
 //ray_override / Fixed System Reboot by WDT if There's no Boot Devices / Added >>
-	F81866WDTDisable();
+	bootflow_F81866WDTDisable();
 //ray_override / Fixed System Reboot by WDT if There's no Boot Devices / Added <<
 	bootFlowPtr = gBootFlowTable;
 	for ( bootFlowPtr = gBootFlowTable;
