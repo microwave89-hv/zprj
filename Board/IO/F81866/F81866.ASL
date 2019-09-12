@@ -811,11 +811,12 @@ CreateByteField(CRS3, IO04._LEN, LEN4)    //Length 1 0x7
             If( LEqual(CIS1, 0) ) {
                 And( OPT6, 0xF7, OPT6 )
                 And( OPT0, 0xFC, OPT0 )
+                Or( OPT0, 0x01, OPT0 )
             }
             Else {
                 And( OPT6, 0xF7, OPT6 )
                 And( OPT0, 0xFC, OPT0 )
-                Or( OPT0, 0x02, OPT0 )
+                Or( OPT0, 0x03, OPT0 )
             }
 //ray_override / Support F81866 COM3 ~ COM6 IRQ Sharing Mode Selection / Modified <<
         }Else{
