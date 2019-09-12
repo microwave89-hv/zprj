@@ -2346,14 +2346,16 @@ End
 ##	Token = "WIN8_FEATURE_SUPPORT" "=" "1"
 ##End
 
-TOKEN
-	Name  = "DEFAULT_QUIET_BOOT"
-	Value  = "1"
-	Help  = "Default value of the Quiet Boot option"
-	TokenType = Boolean
-	TargetH = Yes
-	Token = "WIN8_FEATURE_SUPPORT" "=" "1"
-End
+##ray_override / [FormalRelease_VersionRevert_DW01VR16] Not Support GRG Logo / Removed >>
+##TOKEN
+##	Name  = "DEFAULT_QUIET_BOOT"
+##	Value  = "1"
+##	Help  = "Default value of the Quiet Boot option"
+##	TokenType = Boolean
+##	TargetH = Yes
+##	Token = "WIN8_FEATURE_SUPPORT" "=" "1"
+##End
+##ray_override / [FormalRelease_VersionRevert_DW01VR16] Not Support GRG Logo / Removed <<
 
 TOKEN
 	Name  = "OPTIMIZE_BOOT_FV_COPY"
