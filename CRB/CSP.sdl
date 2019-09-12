@@ -1540,6 +1540,17 @@ TOKEN
 	Token = "SETUP_BBS_POPUP_ENABLE" "!=" "0"
 End
 
+##ray_override / [FormalRelease_VersionRevert_DW01VR16] DEL to Setup Menu / Adde >>
+TOKEN
+	Name  = "SETUP_ALT_ENTRY_SCAN"
+	Value  = "EFI_SCAN_DEL"
+	Help  = "Set to one of the defined constants from EFI_SIMPLE_TEXT_INPUT protocol. Remember to check STR_DEL_ENTER_SETUP string in MiniSetupStr.uni."
+	TokenType = Expression
+	TargetH = Yes
+	Token = "SETUP_ALT_ENTRY_ENABLE" "!=" "0"
+End
+##ray_override / [FormalRelease_VersionRevert_DW01VR16] DEL to Setup Menu / Adde <<
+
 ##ray_override / [FormalRelease_VersionRevert_DW01VR16] Not Support Default Password / Modified 1 -> 0
 TOKEN
 	Name  = "TSE_DEFAULT_SETUP_PASSWORD_SUPPORT"
