@@ -1549,8 +1549,21 @@ BOOLEAN RemoveLegacyGptHdd(BOOT_DEVICE *Device){
 
     Status = pRS->GetVariable(L"Setup", &SetupGuid, NULL, &Size, &SetupData);
 
-//    if( Device->BbsEntry->DeviceType != BBS_HARDDISK && SetupData.OnlyBootHDD == 1 ) return TRUE;
-    if( Device->BbsEntry->Class != PCI_CL_MASS_STOR && SetupData.OnlyBootHDD == 1 ) return TRUE;
+//ray_override / [Fixed] HDD could not be Detected under Uefi Mode / Modified >>
+////    if( Device->BbsEntry->DeviceType != BBS_HARDDISK && SetupData.OnlyBootHDD == 1 ) return TRUE;
+//    if( Device->BbsEntry->Class != PCI_CL_MASS_STOR && SetupData.OnlyBootHDD == 1 ) return TRUE;
+    if ( SetupData.OnlyBootHDD == 1 ) {
+        if ( Device->BbsEntry == NULL ) {
+            if ( BlkIo->Media->RemovableMedia == FALSE )
+                return FALSE ;
+            else
+                return TRUE ;
+        } else {
+            if( Device->BbsEntry->Class != PCI_CL_MASS_STOR ) return TRUE;
+            return FALSE;
+        }
+    }
+//ray_override / [Fixed] HDD could not be Detected under Uefi Mode / Modified <<
     return FALSE;
 }
 #endif
